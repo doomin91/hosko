@@ -49,7 +49,8 @@ class User extends CI_Controller {
 		$reg_date_end = isset($_GET["reg_date_end"]) ? $_GET["reg_date_end"] : "";
 		$last_login_start = isset($_POST["last_login_start"]) ? $_POST["last_login_start"] : "";
 		$last_login_end = isset($_POST["last_login_end"]) ? $_POST["last_login_end"] : "";
-		$user_type = isset($_GET["user_type"]) ? $_GET["user_type"] : "";
+		$user_skill_jp = isset($_GET["user_skill_jp"]) ? $_GET["user_skill_jp"] : "";
+		$user_skill_ch = isset($_GET["user_skill_ch"]) ? $_GET["user_skill_ch"] : "";
 		$searchField = isset($_GET["searchField"]) ? $_GET["searchField"] : "";
 		$searchString = isset($_GET["searchString"]) ? $_GET["searchString"] : "";
 

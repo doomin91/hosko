@@ -43,7 +43,7 @@
 				<div class="col-md-12">
 					<section class="tile transparent">
 						<div class="tile-body color transparent-black rounded-corners">
-							<table class="table table-custom dataTable">
+							<table class="table table-custom userTable">
 								<colgroup>
 									<col width="15%"/>
 									<col width="35%"/>
@@ -54,20 +54,20 @@
 									<tr>
 										<th>가입일자</th>
 										<td>
-											<div class="col-md-6">
-												<input type="text" class="form-control">
+											<div class="col-md-5">
+												<input name="reg_date_start" type="text" class="wid100p datepicker">
 											</div>
-											<div class="col-md-6">
-												<input type="text" class="form-control">
+											<div class="col-md-5">
+												<input name="reg_date_end" type="text" class="wid100p datepicker">
 											</div>
 										</td>
 										<th>로그인 일자</th>
 										<td>
-											<div class="col-md-6">
-												<input type="text" class="form-control">
+											<div class="col-md-5">
+												<input name="last_login_start" type="text" class="wid100p datepicker">
 											</div>
-											<div class="col-md-6">
-												<input type="text" class="form-control">
+											<div class="col-md-5">
+												<input name="last_login_end" type="text" class="wid100p datepicker">
 											</div>
 										</td>
 									</tr>
@@ -75,18 +75,33 @@
 										<th>회화능력</th>
 										<td colspan="3">
 											<div class="col-md-2">
-												<select class="form-control">
+												<select name="user_skill_eng" class="wid100p">
 													<option value="">::영어::</option>
+													<option value="1">1점</option>
+													<option value="2">2점</option>
+													<option value="3">3점</option>
+													<option value="4">4점</option>
+													<option value="5">5점</option>
 												</select>
 											</div>
 											<div class="col-md-2">
-												<select class="form-control">
+												<select name="user_skill_jp" class="wid100p">
 													<option value="">::일본어::</option>
+													<option value="1">1점</option>
+													<option value="2">2점</option>
+													<option value="3">3점</option>
+													<option value="4">4점</option>
+													<option value="5">5점</option>
 												</select>
 											</div>
 											<div class="col-md-2">
-												<select class="form-control">
+												<select name=user_skill_ch" class="wid100p">
 													<option value="">::중국::</option>
+													<option value="1">1점</option>
+													<option value="2">2점</option>
+													<option value="3">3점</option>
+													<option value="4">4점</option>
+													<option value="5">5점</option>
 												</select>
 											</div>
 										</td>
@@ -95,29 +110,52 @@
 										<th>해외연수경험</th>
 										<td colspan="3">
 											<div class="col-md-2">
-												<select class="form-control">
+												<select name="user_study_nation" class="wid100p">
 													<option value="">::국가::</option>
+													<option value="1">미국</option>
+													<option value="2">괌</option>
+													<option value="3">일본</option>
+													<option value="4">호주</option>
+													<option value="5">아시아</option>
+													<option value="6">유럽</option>
+													<option value="7">서남아시아</option>
+													<option value="8">기타</option>
 												</select>
 											</div>
 											<div class="col-md-2">
-												<select class="form-control">
+												<select name="user_study_term" class="wid100p">
 													<option value="">::기간::</option>
+													<option value="0">없음</option>
+													<option value="1">6개월 미만</option>
+													<option value="2">12개월 미만</option>
+													<option value="3">12개월 이상</option>
 												</select>
 											</div>
-
 										</td>
 									</tr>
 									<tr>
 										<th>해외어학연수경험</th>
 										<td colspan="3">
 											<div class="col-md-2">
-												<select class="form-control">
+												<select name="user_lan_study_nation" class="wid100p">
 													<option value="">::국가::</option>
+													<option value="1">미국</option>
+													<option value="2">괌</option>
+													<option value="3">일본</option>
+													<option value="4">호주</option>
+													<option value="5">아시아</option>
+													<option value="6">유럽</option>
+													<option value="7">서남아시아</option>
+													<option value="8">기타</option>
 												</select>
 											</div>
 											<div class="col-md-2">
-												<select class="form-control">
+												<select name="user_lan_study_term" class="wid100p">
 													<option value="">::기간::</option>
+													<option value="0">없음</option>
+													<option value="1">6개월 미만</option>
+													<option value="2">12개월 미만</option>
+													<option value="3">12개월 이상</option>
 												</select>
 											</div>
 										</td>
@@ -126,18 +164,33 @@
 										<th>국내외 근무경력</th>
 										<td colspan="3">
 											<div class="col-md-2">
-												<select class="form-control">
+												<select class="wid100p">
 													<option value="">::근무기간1::</option>
+													<option value="0">없음</option>
+													<option value="1">3개월 미만</option>
+													<option value="2">6개월 미만</option>
+													<option value="3">12개월 미만</option>
+													<option value="4">12개월 이상</option>
 												</select>
 											</div>
 											<div class="col-md-2">
-												<select class="form-control">
+												<select class="wid100p">
 													<option value="">::근무기간2::</option>
+													<option value="0">없음</option>
+													<option value="1">3개월 미만</option>
+													<option value="2">6개월 미만</option>
+													<option value="3">12개월 미만</option>
+													<option value="4">12개월 이상</option>
 												</select>
 											</div>
 											<div class="col-md-2">
-												<select class="form-control">
+												<select class="wid100p">
 													<option value="">::근무기간3::</option>
+													<option value="0">없음</option>
+													<option value="1">3개월 미만</option>
+													<option value="2">6개월 미만</option>
+													<option value="3">12개월 미만</option>
+													<option value="4">12개월 이상</option>
 												</select>
 											</div>
 										</td>
@@ -146,12 +199,16 @@
 										<th>단어검색</th>
 										<td colspan="3">
 											<div class="col-md-2">
-												<select class="form-control">
-													<option value="">::근무기간1::</option>
+												<select name="search_field" class="wid100p">
+													<option value="all">전체</option>
+													<option value="USER_ID">아이디</option>
+													<option value="USER_NAME">이름</option>
+													<option value="USER_NUMBER">회원번호</option>
+													<option value="USER_HP">연락처</option>
 												</select>
 											</div>
 											<div class="col-md-8">
-												<input type="text" name="searchstring" class="form-control" placeholder="검색어를 입력해주세요">
+												<input type="text" name="search_string" class="wid100p" placeholder="검색어를 입력해주세요">
 											</div>
 										</td>
 									</tr>
@@ -341,4 +398,21 @@
 	?>
 </body>
 </html>
-
+<script type="text/javascript">
+	$(function(){
+		$.datepicker.setDefaults({
+	        dateFormat: 'yy-mm-dd',
+	        prevText: '이전 달',
+	        nextText: '다음 달',
+	        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	        showMonthAfterYear: true,
+	        yearSuffix: '년',
+	        color: "black"
+	    });
+		$(".datepicker").datepicker();
+	});
+</script>
