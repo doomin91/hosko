@@ -160,6 +160,7 @@
 											</div>
 										</td>
 									</tr>
+									<!--
 									<tr>
 										<th>국내외 근무경력</th>
 										<td colspan="3">
@@ -195,6 +196,7 @@
 											</div>
 										</td>
 									</tr>
+									-->
 									<tr>
 										<th>단어검색</th>
 										<td colspan="3">
@@ -205,6 +207,7 @@
 													<option value="USER_NAME">이름</option>
 													<option value="USER_NUMBER">회원번호</option>
 													<option value="USER_HP">연락처</option>
+													<option value="USER_EMAIL">이메일주소</option>
 												</select>
 											</div>
 											<div class="col-md-8">
@@ -366,7 +369,7 @@
 									</div>
 								</div>
 								<div class="col-md-4 text-right">
-									<a href="#" type="button" class="btn btn-primary "> 회원 등록하기</a>
+									<a href="/admin/user/write" type="button" class="btn btn-primary "> 회원 등록하기</a>
 								</div>
 							</div>
 						</div>

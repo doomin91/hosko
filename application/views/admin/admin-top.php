@@ -239,7 +239,7 @@
 	<li class="navigation">
 	  <ul class="menu">
 		<li>
-			<a href="/administrator/home/logout">
+			<a href="/admin/home/logout">
 			  <i class="fa fa-power-off"></i> 로그아웃
 			</a>
 		  </li>

@@ -31,7 +31,7 @@ class Home extends CI_Controller {
 		//$this->load->library('encrypt');
 		$this->load->helper('download');
 
-		//$this->load->model("adminModel");
+		$this->load->model("BasicModel");
 
 	}
 
@@ -42,14 +42,14 @@ class Home extends CI_Controller {
 
 	public function logout(){
 		$this->session->sess_destroy();
-		redirect("http://".$_SERVER["SERVER_NAME"]."/admin", "location");
+		redirect("/admin", "location");
 	}
 
 	public function login_proc(){
 		$admin_id = isset($_POST["admin_id"]) ? $_POST["admin_id"] : "";
 		$admin_pass = isset($_POST["admin_pass"]) ? $_POST["admin_pass"] : "";
 
-		$user = $this->AdminModel->adminLogin($admin_id, $admin_pass);
+		$user = $this->BasicModel->adminLogin($admin_id, $admin_pass);
 		//echo $this->db->last_query();
 		if (empty($user)){
 			echo json_encode(array("code" => "201", "msg" => "아이디 패스워드를 확인해주세요"));
@@ -64,16 +64,4 @@ class Home extends CI_Controller {
 		}
 	}
 
-	public function thumbnail_del_proc(){
-		$seq = isset($_POST["seq"]) ? $_POST["seq"] : "";
-		$part = isset($_POST["part"]) ? $_POST["part"] : "";
-
-		$result = $this->CodeModel->attachDel($seq, $part);
-		//echo $this->db->last_query();
-		if ($result == true){
-			echo json_encode(array("code" => "200"));
-		}else{
-			echo json_encode(array("code" => "202", "msg" => $logs));
-		}
-	}
 }

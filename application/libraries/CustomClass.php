@@ -154,4 +154,12 @@ class Customclass{
 			$ipaddress = 'UNKNOWN';
 		return $ipaddress;
 	}
+
+    public function adminCheck(){
+        $this->CI->load->library('session');
+
+        if ($this->CI->session->userdata("admin_id") == ""){
+             redirect('/admin', 'refresh');
+        }
+    }
 }

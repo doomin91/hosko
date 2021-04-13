@@ -90,4 +90,10 @@ class BasicModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_SITE_INFO.SITE_SEQ", "1");
 		return $this->db->update("TBL_HOSKO_SITE_INFO", $updateArr);
 	}
+
+	public function adminLogin($admin_id, $admin_pass){
+		$this->db->where("TBL_HOSKO_ADMIN.ADMIN_ID", $admin_id);
+		$this->db->where("TBL_HOSKO_ADMIN.ADMIN_PW", md5($admin_pass));
+		return $this->db->get("TBL_HOSKO_ADMIN")->row();
+	}
 }

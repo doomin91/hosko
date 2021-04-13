@@ -52,6 +52,13 @@
 <script type="text/javascript">
 
 (function($){
+
+	$(document).on("keyup", "input[name=admin_pass]", function(){
+		if (event.keyCode == "13"){
+			$("#loginBtn").click();
+		}
+	})
+
 	$(document).on("click", "#loginBtn", function(){
 		var admin_id = $("input[name=admin_id]").val();
 		var admin_pass = $("input[name=admin_pass]").val();
@@ -78,7 +85,7 @@
 			}, success : function(resultMsg){
 				console.log(resultMsg);
 				if (resultMsg.code == "200"){
-					document.location.href="/administrator/notice";
+					document.location.href="/admin/basic/siteinfo";
 				}else{
 					alert(resultMsg.msg);
 				}
