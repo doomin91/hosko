@@ -229,7 +229,7 @@
 									<th>우편번호</th>
 									<td>
 										<input type="text" name="comp_zip" id="comp_zip" value="<?php echo $info->COMP_ZIP_CODE; ?>" size="50">
-										<button class="btn btn-default btn-sm" id="searchZip">우편번호 검색</button>
+										<button type="button" class="btn btn-default btn-sm" id="searchZip">우편번호 검색</button>
 									</td>
 									<th>&nbsp;</th>
 									<td>&nbsp;</td>
