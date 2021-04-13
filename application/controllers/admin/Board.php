@@ -136,12 +136,8 @@ class Board extends CI_Controller {
 			"BOARD_LIST_COUNT" => $list_view,
 			"BOARD_REG_IP" => $ip_address
 		);
-<<<<<<< HEAD
 		
 		$DATA["BOARD_WRITE"] = $write_btn == 'Y' ? $write_btn : 'N';
-=======
-
->>>>>>> origin/develop
 		$DATA["BOARD_SECRET_FLAG"] = $fn_secret == 'Y' ? $fn_secret : 'N';
 		$DATA["BOARD_RECOMMAND_FLAG"] =  $fn_recommand == 'Y' ? $fn_recommand : 'N';
 		$DATA["BOARD_BOTTOM_LIST_FLAG"] =  $fn_viewpage == 'Y' ? $fn_viewpage : 'N';
@@ -261,10 +257,6 @@ class Board extends CI_Controller {
 		$POST_SECRET_CHK = $this->input->post("post_secret_chk");
 		$SPAM_CHECK = $this->rpHash($this->input->post("defaultReal"));
 		$SPAM_CHECK_HASH = $this->input->post("defaultRealHash");
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/develop
 
 
 		$POST_INFO = $this->BoardModel->getBoardSeqByPost($POST_SEQ);
@@ -290,15 +282,14 @@ class Board extends CI_Controller {
 			exit;
 		}
 
-<<<<<<< HEAD
 		$DATA = array(
 			"POST_USER_SEQ" => $this->session->userdata("USER_SEQ"),
 			"POST_SUBJECT" => $POST_SUBJECT,
 			"POST_CONTENTS" => $POST_CONTENTS,
 			"POST_REG_IP" => $this->customclass->get_client_ip(),
 			"POST_NOTICE_YN" => isset($POST_NOTICE_CHK) ? "Y" : "N",
-			"POST_SECRET_YN" => isset($POST_SECRET_CHK) ? "Y" : "N"
-=======
+			"POST_SECRET_YN" => isset($POST_SECRET_CHK) ? "Y" : "N");
+			
         $config["upload_path"] = $_SERVER['DOCUMENT_ROOT'] . "/upload/attach/";
         $config["allowed_types"] = "xls|xlsx|ppt|pptx|gif|jpg|png|hwp|doc|bmp|jpeg|zip|GIF|JPG|PNG|JPEG";
         $new_name = $BOARD_INFO->BOARD_NAME . "_" . date("YmdHis");
@@ -332,7 +323,6 @@ class Board extends CI_Controller {
 			"ATTACH_POST_SEQ" => $BOARD_SEQ,
 			"ATTACH_FILE_NAME" => $post_file_name,
 			"ATTACH_FILE_PATH" => $post_file_path
->>>>>>> origin/develop
 		);
 
 		$result = $this->BoardModel->uptPost($POST_SEQ, $DATA);
@@ -480,33 +470,6 @@ class Board extends CI_Controller {
 		echo json_encode($result);
 	}
 
-<<<<<<< HEAD
-	// 자동 입력 방지 해쉬 함수 //
-	function rpHash($value) { 
-		$hash = 5381; 
-		$value = strtoupper($value); 
-		for($i = 0; $i < strlen($value); $i++) { 
-			$hash = ($this->leftShift32($hash, 5) + $hash) + ord(substr($value, $i)); 
-		} 
-		return $hash; 
-	} 
-	 
-	// Perform a 32bit left shift 
-	function leftShift32($number, $steps) { 
-		// convert to binary (string) 
-		$binary = decbin($number); 
-		// left-pad with 0's if necessary 
-		$binary = str_pad($binary, 32, "0", STR_PAD_LEFT); 
-		// left shift manually 
-		$binary = $binary.str_repeat("0", $steps); 
-		// get the last 32 bits 
-		$binary = substr($binary, strlen($binary) - 32); 
-		// if it's a positive number return it 
-		// otherwise return the 2's complement 
-		return ($binary{0} == "0" ? bindec($binary) : 
-			-(pow(2, 31) - bindec(substr($binary, 1)))); 
-	} 
-=======
 	function rpHash($value) {
 		$hash = 5381;
 		$value = strtoupper($value);
@@ -533,6 +496,5 @@ class Board extends CI_Controller {
 			-(pow(2, 31) - bindec(substr($binary, 1))));
 			*/
 	}
->>>>>>> origin/develop
 
 }
