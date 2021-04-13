@@ -1,0 +1,357 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>동부건설</title>
+	
+    <link rel="stylesheet" href="/static/front/js/vendor/jquery-ui.min.css">
+    <link rel="stylesheet" href="/static/front/js/vendor/owl.carousel.css">
+    <link rel="stylesheet" href="/static/front/css/common.css">
+    <link rel="stylesheet" href="/static/front/css/other.css">
+
+	<script type="text/javascript" src="/static/front/js/vendor/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="/static/front/js/vendor/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/static/front/js/vendor/owl.carousel.js"></script>
+	<script type="text/javascript" src="/static/front/js/vendor/faq.js"></script>
+	<script type="text/javascript" src="/static/front/js/vendor/modernizr.js"></script>
+	<script type="text/javascript" src="/static/front/js/vendor/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/static/front/js/vendor/iscroll.js"></script>
+	<script type="text/javascript" src="/static/front/js/common.js"></script>
+</head>
+
+<body>
+    <div id="skipTo">
+        <a href="#gnb">메뉴 바로가기</a>
+        <a href="#container">본문 바로가기(skip to content)</a>
+    </div>
+    
+    <div class="wrap">
+		
+
+
+
+
+
+
+<!--header-->
+<header class="header_wrap">
+    <div class="header">
+        <h1><a href="/index.do">동부건설</a></h1>
+
+        <!--nav-->
+        <nav id="gnb">
+            <h2 class="blind">메인 네비게이션</h2>
+            <ul class="nav_box">
+
+
+	
+	
+	
+	
+	
+            
+                <li class="oneD">
+                    <a href="/about/ceo.do">회사소개</a>
+                    <div class="twoD">
+ <a href="/about/ceo.do">CEO인사말</a> 		
+ <a href="/about/vision.do">비전</a>		
+ <a href="/about/history.do">연혁</a>		
+ <a href="/about/group.do">조직구성</a>		
+ <a href="/about/rnd.do">연구개발</a>			
+ <a href="/about/location.do">오시는 길</a>	
+                    </div>
+                </li>
+                
+                <li class="oneD">
+                    <a href="/business/intro.do">사업소개</a>
+                    <div class="twoD">
+ <a href="/business/civil.do">토목</a>			
+ <a href="/business/architecture.do">건축</a>	
+ <a href="/business/house.do">주택</a>			
+ <a href="/business/plant.do">플랜트</a>			
+                    </div>
+                </li>
+                
+
+
+	
+	
+	
+	
+                
+                <li class="oneD">
+                    <a href="/ir/stock.do">투자정보</a>
+                    <div class="twoD">
+ <a href="/ir/stock.do">주식정보</a>				
+ <a href="/ir/manage.do">경영정보</a>				
+ <a href="/ir/financial.do">재무정보</a>			
+ <a href="/ir/announce.do">전자공시</a>			
+ <a href="/ir/announceCompany.do">회사공고</a>	
+                    </div>
+                </li>
+                
+
+
+	
+	
+	
+                
+                <li class="oneD">
+                    <a href="/sustainability/safety.do">지속가능경영</a>
+                    <div class="twoD">
+ <a href="/sustainability/safety.do">안전보건경영</a>	
+ <a href="/sustainability/quality.do">품질경영</a>	
+ <a href="/sustainability/green.do">환경경영</a>		
+ <a href="/sustainability/ethicsRule.do">윤리경영</a>	
+                    </div>
+                </li>
+                
+
+
+	
+	
+	
+                 
+                <li class="oneD">
+                    <a href="/pr/notice.do">홍보센터</a>
+                    <div class="twoD">
+ <a href="/pr/notice.do">동부소식</a>		
+ <a href="/pr/ci.do">CI/BI소개</a>		
+ <a href="/pr/award.do">수상실적</a>		
+ <a href="/pr/brochure.do">홍보자료</a>	
+                    </div>
+                </li>
+                <li class="oneD">
+                    <a href="/recruit/recruit.do">인재채용</a>
+                    
+                </li>
+            </ul>
+        </nav>
+        <!--// nav-->
+        <!--사이트링크-->
+        <div class="site_link">
+            <a href="https://www.centreville.co.kr/" target="_blank">센트레빌</a>
+            <a href="http://recruit.dongbu.co.kr/" class="link_dongbu" target="_blank">동부건설 채용</a>
+		    <!--언어선택 웹용-->
+		    <div class="lang_link">
+		        <button type="button">KOR</button>
+		        <ul>
+					<li><a href="javascript:;">KOR</a></li>
+					<li><a href="http://dongbucorp.com">ENG</a></li>
+		        </ul> 
+		    </div>
+		    <!--//언어선택-->
+		</div>
+		<!--// 사이트링크-->
+    </div>
+    <!-- nav drop-->
+    <div class="twoDBg"></div>
+    <!--// nav drop-->
+
+    <!--mobile nav-->
+    <div class="mobile_gnb">
+		<!--언어선택 모바일용-->
+		<div class="lang_link">
+			<button type="button">KOR</button>
+			<ul>
+				<li><a href="javascript:;">KOR</a></li>
+				<li><a href="http://dongbucorp.com">ENG</a></li>
+			</ul> 
+		</div>
+		<!--//언어선택-->
+        <div class="hamburger mobile_gnb_open_btn" id="hamburger-1">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+        <div class="mobile_gnb_list">
+            <div class="gnb_area">
+                <div class="oneD depth"><a href="javascript:">회사소개</a></div>
+                <div class="twoD">
+ <a href="/about/ceo.do">CEO인사말</a> 		
+ <a href="/about/vision.do">비전</a>		
+ <a href="/about/history.do">연혁</a>		
+ <a href="/about/group.do">조직구성</a>		
+ <a href="/about/rnd.do">연구개발</a>			
+ <a href="/about/location.do">오시는 길</a>	
+                </div>
+                <div class="oneD depth"><a href="javascript:">사업소개</a></div>
+                <div class="twoD">
+ <a href="/business/civil.do">토목</a>			
+ <a href="/business/architecture.do">건축</a>	
+ <a href="/business/house.do">주택</a>			
+ <a href="/business/plant.do">플랜트</a>			
+                </div>
+                <div class="oneD depth"><a href="javascript:">투자정보</a></div>
+                <div class="twoD">
+ <a href="/ir/stock.do">주식정보</a>				
+ <a href="/ir/manage.do">경영정보</a>				
+ <a href="/ir/financial.do">재무정보</a>			
+ <a href="/ir/announce.do">전자공시</a>			
+ <a href="/ir/announceCompany.do">회사공고</a>	
+                </div>
+                <div class="oneD depth"><a href="javascript:">지속가능경영</a></div>
+                <div class="twoD">
+ <a href="/sustainability/safety.do">안전보건경영</a>	
+ <a href="/sustainability/quality.do">품질경영</a>	
+ <a href="/sustainability/green.do">환경경영</a>		
+ <a href="/sustainability/ethicsRule.do">윤리경영</a>	
+                </div>
+                <div class="oneD depth"><a href="javascript:">홍보센터</a></div>
+                <div class="twoD">
+ <a href="/pr/notice.do">동부소식</a>		
+ <a href="/pr/ci.do">CI/BI소개</a>		
+ <a href="/pr/award.do">수상실적</a>		
+ <a href="/pr/brochure.do">홍보자료</a>	                
+                </div>
+                <div class="oneD depth"><a href="/recruit/recruit.do">인재채용</a></div>
+                
+            </div>
+        </div>
+    </div>
+    <!--// mobile nav-->
+</header>
+<!-- // header -->
+		
+		<section class="sub_wrap">
+			<!-- 서브상단  -->
+			
+
+
+
+
+
+<!-- 화면별 조건 추가 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<!-- //서브상단 --> 
+			
+
+
+
+
+
+
+<!--sub content-->
+<section class="sub_wrap no_head">
+
+    <section class="sub_content">
+
+        <div class="error_404">
+            <strong>404 에러</strong>
+            <p>죄송합니다. 요청하신 페이지를 찾을 수 없습니다.</p>
+        </div>
+    </section>
+</section>
+<!--// sub content-->
+
+		</section>
+		
+		
+
+
+
+
+
+<footer class="footer_wrap">
+    <div class="footer">
+        <div class="footer_link">
+            <a href="/etc/privacy.do">개인정보처리방침</a>
+            <a href="/etc/rules.do">법적고지</a>
+            <a href="javascript:" class="modal_button" data-modal="#emailPrivacy">이메일주소무단수집거부</a>
+            <a href="/etc/sitemap.do">사이트맵</a>
+            <a href="/cs/faq.do">고객센터</a>
+            <a href="/sustainability/sinmungoInfo.do">사이버신문고</a>
+        </div>
+        <span class="f_logo">동부건설</span>
+        <address>
+            <p>서울시 용산구 한강대로 372 센트레빌 아스테리움 D동</p>
+            <p>COPYRIGHT © 2018 DONGBU CORPORATION., ALL RIGHTS RESERVED.</p>
+        </address>
+        <div class="family_site">
+            <button type="button">계열사 바로가기</button>
+				<ul>
+				    <li><a href="http://www.dongbueng.co.kr/" target="_blank">동부엔지니어링</a></li>
+				</ul>
+        </div>
+    </div>
+    <a class="go_top"><img src="/static/front/img/ico/go_top.png" alt="맨위로 이동하기"></a>
+</footer>
+<!--// footer-->
+
+<!--팝업- 이메일무단수집-->
+<div id="emailPrivacy" class="modal_wrap">
+    <div class="modal-content">
+        <div class="close close_btn"></div>
+        <div class="pop_con email_privacy">
+            <h5>이메일주소무단수집거부</h5>
+            <p>'본 웹사이트에 게시된 이메일 주소가 전자우편수집프로그램이나 그 밖의 기술적 장치를 이용하여 무단으로
+수집되는 것을 거부하며 이를 위반 시 정보통신망 이용촉진 및 정보보호 등에 관한 법률에 의해 형사처벌 됨을 유념하시기 바랍니다. </p>
+           <dl>
+               <dt>제 70조 (벌칙)에 따라 7년 이하의 징역 또는 5천 만원 이하의 벌금에 처한다. </dt>
+               <dd>① 사람을 비방할 목적으로 정보통신망을 통하여 공공연하게 사실을 드러내어 다른 사람의 명예를 훼손한 자</dd>
+               <dd>② 사람을 비방할 목적으로 정보통신망을 통하여 공공연하게 거짓의 사실을 드러내어 다른 사람의 명예를 훼손한 자 </dd>
+               <dd>③ 제1항과 제2항의 죄는 피해자가 구체적으로 밝힌 의사에 반하여 공소를 제기할 수 없다.</dd>
+           </dl>
+        </div>
+        <div class="pop_btn">
+            <button class="p_btn black close">닫기</button>
+        </div>
+    </div>
+</div>
+<!--// 팝업- 이메일무단수집-->
+
+<form id="statiFrm" name="statiFrm" method="post">
+	<input type="hidden" id="urlMain" name="urlMain" />
+</form>
+<script>
+function statistics() {
+	$("#urlMain").val(window.location.pathname);
+	$.ajax({
+		url : "/statistics.do"
+        , method : "post"
+        , data : $("#statiFrm").serialize()
+		, success : function(data) {
+		}
+	});
+}
+statistics();
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118122254-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118122254-1');
+</script>
+
+		
+	</div>
+
+</body>
+</html>
