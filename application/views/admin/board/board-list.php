@@ -115,7 +115,7 @@
 					str += "<tr onclick=\"view_board("+  value["BOARD_SEQ"] +")\" style=\"cursor:pointer\">";
 					str += "<td>" + (index+1) + "</td>";
 					str += "<td>" + value["BOARD_KOR_NAME"] + "</td>";
-					str += "<td>" + value["BOARD_GROUP"] + "</td>";
+					str += "<td>" + value["GP_NAME"] + "</td>";
 					str += "<td>" + value["BOARD_ADMIN_ID"] + "</td>";
 					str += "<td>" + value["BOARD_SECRET_FLAG"] + "</td>";
 					str += "<td>" + value["BOARD_RECOMMAND_FLAG"] + "</td>";

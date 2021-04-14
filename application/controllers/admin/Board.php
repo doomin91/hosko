@@ -42,7 +42,8 @@ class Board extends CI_Controller {
 	}
 
 	public function board_write(){
-		$this->load->view("./admin/board/board-write");
+		$DATA["GROUP"] = $this->BoardModel->getGroups();
+		$this->load->view("./admin/board/board-write", $DATA);
 	}
 
 	public function board_view($BOARD_SEQ){
@@ -167,8 +168,10 @@ class Board extends CI_Controller {
 
 	public function post_list($BOARD_SEQ){
 		$BOARD_INFO = $this->BoardModel->getBoard($BOARD_SEQ);
-		$searchField = $this->input->get("searchField");
-		$searchString = $this->input->get("searchString");
+		$reg_date_start = $this->input->post("reg_date_start");
+		$reg_date_end = $this->input->post("reg_date_end");
+		$searchField = $this->input->get("search_field");
+		$searchString = $this->input->get("search_string");
 
 		$limit = $BOARD_INFO->BOARD_LIST_COUNT;
         $nowpage = "";
@@ -180,6 +183,8 @@ class Board extends CI_Controller {
         }
 
         $wheresql = array(
+						"reg_date_start" => $reg_date_start,
+						"reg_date_end" => $reg_date_end,
 						"searchField" => $searchField,
                         "searchString" => $searchString,
                         "start" => $start,
@@ -377,15 +382,14 @@ class Board extends CI_Controller {
         // $new_name = $BOARD_INFO->BOARD_NAME . "_" . date("YmdHis");
         // $config["file_name"] = $new_name;
 		$i = 1;
+
 		foreach($_FILES as $key => $file){
 			if(!empty($file["name"])){
 				$new_name = time();
-				$filetype = end(explode(".", $file["name"]));
-				$filename = $filepath . $new_name . "." . $filetype;
-				
-				while(!file_exist($filename)){
-					$num = 1;
-				}
+				$temp = explode(".", $file["name"]);
+				$filetype = end($temp);
+				$filename = $filepath . $new_name . $i . "." . $filetype;
+
 				move_uploaded_file($file["tmp_name"], $filename);
 
 				$insert_arr = array(
@@ -398,12 +402,11 @@ class Board extends CI_Controller {
 			}
 			$i = $i + 1;
 		}
-		exit;
 
 		$DATA = array(
 			"POST_BOARD_SEQ" => $BOARD_SEQ,
 			"POST_ADMIN_SEQ" => $BOARD_INFO->BOARD_ADMIN_ID,
-			"POST_USER_SEQ" => $this->session->userdata("USER_SEQ"),
+			"POST_USER_SEQ" => $this->session->userdata("admin_seq"),
 			"POST_SUBJECT" => $POST_SUBJECT,
 			"POST_CONTENTS" => $POST_CONTENTS,
 			"POST_REG_IP" => $this->customclass->get_client_ip(),

@@ -217,11 +217,6 @@
 			<ul class="dropdown-menu" id="boardMenu">
 				<li>
 					<a href="/admin/board/board_write">
-						<i class="fa fa-caret-right"></i> 배너 관리
-					</a>
-				</li>
-				<li>
-					<a href="/admin/board/board_write">
 						<i class="fa fa-caret-right"></i> 게시판 등록
 					</a>
 				</li>

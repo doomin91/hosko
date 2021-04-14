@@ -166,7 +166,6 @@
 
 
 	function post_regist(){
-		
 		let hash = $("#defaultReal").realperson('getHash');
 		let board_seq = <?php echo $BOARD_INFO->BOARD_SEQ?>;
 		$("#defaultRealHash").val(hash);
@@ -191,7 +190,7 @@
 				let msg = resultMsg["msg"];
 				if(code == 200){
 					alert(msg);
-					// location.href="/admin/board/post_list/" + board_seq;
+					location.href="/admin/board/post_list/" + board_seq;
 				} else {
 					alert(msg);
 				}
