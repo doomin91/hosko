@@ -42,6 +42,12 @@ class RecruitModel extends CI_Model{
         return $this->db->get("TBL_HOSKO_RECRUIT_APPLY")->row();   
     }
 
+    public function updateRecruitApply($apply_seq, $whereArr){
+        $this->db->where("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ", $apply_seq);
+
+        return $this->db->update("TBL_HOSKO_RECRUIT_APPLY", $whereArr);
+    }
+
     public function getRecruitAbroadList($whereArr){
         $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
 

@@ -79,10 +79,9 @@
                                         <th class="col-sm-2">조건검색</th>
 										<td class="col-sm-10">
                                             <select class="apply_search_option">
-                                                <option>글자1</option>
-                                                <option>글자2</option>
-                                                <option>글자3</option>
-                                                <option>글자4</option>
+                                                <option>지원프로그램</option>
+                                                <option>성명</option>
+                                                <option>아이디</option>
                                             </select>
                                             <input type="text" id="apply_search_text" name="apply_search_text" placeholder="검색어를 입력해주세요" value="">
 
@@ -155,16 +154,23 @@
                                     <td class="text-center"><?php echo $list->APP_REG_DATE ?></td>
                                     <td class="text-center">
 										<select class="apply_status">
-											<option <?php if($list->REC_STATUS==1) echo "selected"?>>온라인상담</option>
-											<option <?php if($list->REC_STATUS==2) echo "selected"?>>지원</option>
-											<option <?php if($list->REC_STATUS==3) echo "selected"?>>지원서류제출</option>
-											<option <?php if($list->REC_STATUS==4) echo "selected"?>>비용입금</option>
+											<option <?php if($list->APP_STATUS==0) echo "selected"?>>온라인상담</option>
+											<option <?php if($list->APP_STATUS==1) echo "selected"?>>지원</option>
+											<option <?php if($list->APP_STATUS==2) echo "selected"?>>지원서류제출</option>
+											<option <?php if($list->APP_STATUS==3) echo "selected"?>>비용입금</option>
+											<option <?php if($list->APP_STATUS==4) echo "selected"?>>서류전형</option>
+											<option <?php if($list->APP_STATUS==5) echo "selected"?>>인터뷰준비</option>
+											<option <?php if($list->APP_STATUS==6) echo "selected"?>>인터뷰</option>
+											<option <?php if($list->APP_STATUS==7) echo "selected"?>>합격공지</option>
+											<option <?php if($list->APP_STATUS==8) echo "selected"?>>출국준비</option>
+											<option <?php if($list->APP_STATUS==9) echo "selected"?>>소양교육</option>
+											<option <?php if($list->APP_STATUS==10) echo "selected"?>>출국</option>
 										</select>
 
-										<input type="button" class="btn btn-success" id="apply_status_save" value="적용"></input>
+										<input type="button" class="btn btn-sm btn-success" id="apply_status_save" value="적용"></input>
 									</td>
 									
-                                    <td class="text-center"><a href ="/admin/recruit/recruit_apply_view/<?php echo $list->APP_SEQ?>" class="btn btn-default">상세보기</a></td>
+                                    <td class="text-center"><a href ="/admin/recruit/recruit_apply_view/<?php echo $list->APP_SEQ?>" class="btn btn-sm btn-default">상세보기</a></td>
 								</tr>
 						<?php
 								$pagenum--;
