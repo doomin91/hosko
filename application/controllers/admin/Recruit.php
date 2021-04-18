@@ -90,6 +90,60 @@ class Recruit extends CI_Controller {
 		$this->load->view("./admin/recruit/recruit-apply_view", $DATA);
 	}
 
+	public function recruit_apply_save(){
+		$APP_SEQ = isset($_POST["APP_SEQ"]) ? $_POST["APP_SEQ"] : "";
+		$APP_PRICE = isset($_POST["APP_PRICE"]) ? $_POST["APP_PRICE"] : "";
+		$APP_STATUS = isset($_POST["APP_STATUS"]) ? $_POST["APP_STATUS"] : "";
+		$APP_UNIVERSITY = isset($_POST["APP_UNIVERSITY"]) ? $_POST["APP_UNIVERSITY"] : "";
+		$APP_MAJOR = isset($_POST["APP_MAJOR"]) ? $_POST["APP_MAJOR"] : "";
+		$APP_GRADE = isset($_POST["APP_GRADE"]) ? $_POST["APP_GRADE"] : "";
+		$APP_GRADE_TYPE = isset($_POST["APP_GRADE_TYPE"]) ? $_POST["APP_GRADE_TYPE"] : "";
+		$APP_COMP_DEPARTMENT = isset($_POST["APP_COMP_DEPARTMENT"]) ? $_POST["APP_COMP_DEPARTMENT"] : "";
+		$APP_START_DATE = isset($_POST["APP_START_DATE"]) ? $_POST["APP_START_DATE"] : "";
+		$APP_ENG_SKILL = isset($_POST["APP_ENG_SKILL"]) ? $_POST["APP_ENG_SKILL"] : "";
+		$APP_ETC_LANG_SKILL = isset($_POST["APP_ETC_LANG_SKILL"]) ? $_POST["APP_ETC_LANG_SKILL"] : "";
+		$APP_ETC_LANG_NAME = isset($_POST["APP_ETC_LANG_NAME"]) ? $_POST["APP_ETC_LANG_NAME"] : "";
+		$APP_CAREER = isset($_POST["APP_CAREER"]) ? $_POST["APP_CAREER"] : "";
+		$APP_TOEIC_SCORE = isset($_POST["APP_TOEIC_SCORE"]) ? $_POST["APP_TOEIC_SCORE"] : "";
+		$APP_TOEFL_SCORE = isset($_POST["APP_TOEFL_SCORE"]) ? $_POST["APP_TOEFL_SCORE"] : "";
+		$APP_PASSPORT_FLAG = isset($_POST["APP_PASSPORT_FLAG"]) ? $_POST["APP_PASSPORT_FLAG"] : "";
+		$APP_VISA_FLAG = isset($_POST["APP_VISA_FLAG"]) ? $_POST["APP_VISA_FLAG"] : "";
+		$APP_INTRODUCE = isset($_POST["APP_INTRODUCE"]) ? $_POST["APP_INTRODUCE"] : "";
+		$APP_ADMIN_MEMO = isset($_POST["APP_ADMIN_MEMO"]) ? $_POST["APP_ADMIN_MEMO"] : "";
+
+		$wheresql = array(
+			"APP_SEQ" => $APP_SEQ,
+			"APP_PRICE" => $APP_PRICE,
+			"APP_STATUS" => $APP_STATUS,
+			"APP_UNIVERSITY" => $APP_UNIVERSITY,
+			"APP_MAJOR" => $APP_MAJOR,
+			"APP_GRADE" => $APP_GRADE,
+			"APP_GRADE_TYPE" => $APP_GRADE_TYPE,
+			"APP_COMP_DEPARTMENT" => $APP_COMP_DEPARTMENT,
+			"APP_START_DATE" => $APP_START_DATE,
+			"APP_ENG_SKILL" => $APP_ENG_SKILL,
+			"APP_ETC_LANG_SKILL" => $APP_ETC_LANG_SKILL,
+			"APP_ETC_LANG_NAME" => $APP_ETC_LANG_NAME,
+			"APP_CAREER" => $APP_CAREER,
+			"APP_TOEIC_SCORE" => $APP_TOEIC_SCORE,
+			"APP_TOEFL_SCORE" => $APP_TOEFL_SCORE,
+			"APP_PASSPORT_FLAG" => $APP_PASSPORT_FLAG,
+			"APP_VISA_FLAG" => $APP_VISA_FLAG,
+			"APP_INTRODUCE" => $APP_INTRODUCE,
+			"APP_ADMIN_MEMO" => $APP_ADMIN_MEMO
+		);
+
+		$result = $this->RecruitModel->updateRecruitApply($APP_SEQ, $wheresql);
+        
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "저장 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
+
+	
+
 	public function recruit_abroad_list(){
 		$limit = 15;
 		$nowpage = "";

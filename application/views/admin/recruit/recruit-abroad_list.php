@@ -103,10 +103,11 @@
                                             <div class="col-sm-3">
                                                 <select class="chosen-select chosen-transparent form-control abroad_group_option common_select">
                                                     <option selected>:: 그룹선택 ::</option>
-                                                    <option>글자1</option>
-                                                    <option>글자2</option>
-                                                    <option>글자3</option>
-                                                    <option>글자4</option>
+                                                    <option value="new">신컨텐츠</option>
+                                                    <option value="best">베스트컨텐츠</option>
+                                                    <option value="popular">인기컨텐츠</option>
+                                                    <option value="recommend">추천컨텐츠</option>
+                                                    <option value="sale">세일컨텐츠</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-2">
@@ -130,10 +131,8 @@
                                             <div class="col-sm-2">
                                                 <select class="chosen-select chosen-transparent form-control abroad_apply_coupon common_select">
                                                     <option selected>:: 선택 ::</option>
-                                                    <option>글자1</option>
-                                                    <option>글자2</option>
-                                                    <option>글자3</option>
-                                                    <option>글자4</option>
+                                                    <option value="Y">예</option>
+                                                    <option value="N">아니오</option>
                                                 </select>
                                             </div>
 										</td>
@@ -144,10 +143,8 @@
                                             <div class="col-sm-2">
                                                 <select class="chosen-select chosen-transparent form-control abroad_display_option common_select">
                                                     <option selected>:: 선택 ::</option>
-                                                    <option>글자1</option>
-                                                    <option>글자2</option>
-                                                    <option>글자3</option>
-                                                    <option>글자4</option>
+                                                    <option value="Y">진열함</option>
+                                                    <option value="N">진열안함</option>
                                                 </select>
                                             </div>
 										</td>
