@@ -13,6 +13,7 @@ class BoardModel extends CI_Model{
     }
     public function getBoards(){
         $this->db->where("BOARD_DEL_YN", 'Y');
+        $this->db->join("TBL_HOSKO_BOARD_GROUP", "TBL_HOSKO_BOARD_GROUP.GP_SEQ = TBL_HOSKO_BOARD.BOARD_GROUP");
         return $this->db->get("TBL_HOSKO_BOARD")->result();
     }
 
@@ -36,15 +37,34 @@ class BoardModel extends CI_Model{
     }
 
     public function getPosts($BOARD_SEQ, $wheresql){
-        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.USER_NAME AS USERNAME, count(RECOMMAND.RMD_SEQ) AS CNT");
-        $this->db->where("POST_BOARD_SEQ", $BOARD_SEQ);
+        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.USER_NAME, count(RECOMMAND.RMD_SEQ) AS CNT");
 
-            if($wheresql['searchField'] == "subject"){
-                $this->db->LIKE("POST_SUBJECT", $wheresql['searchString']);
-            } else if($wheresql['searchField'] == "username") {
-                $this->db->LIKE("USERNAME", $wheresql['searchString']);
-            }
+        if ((isset($whereArr["reg_date_start"])) && ($whereArr["reg_date_start"] != "")){
+			$this->db->where("TBL_HOSKO_BOARD_POSTS.POST_REG_DATE >=", $whereArr["reg_date_start"]);
+		}
 
+		if ((isset($whereArr["reg_date_end"])) && ($whereArr["reg_date_end"] != "")){
+			$this->db->where("TBL_HOSKO_BOARD_POSTS.POST_REG_DATE <=", $whereArr["reg_date_start"]);
+		}
+
+        if((isset($wheresql['searchField'])) && $wheresql['searchField'] == "SUBJECT"){
+            $this->db->LIKE("TBL_HOSKO_BOARD_POSTS.POST_SUBJECT", $wheresql['searchString']);
+        }
+
+        if((isset($wheresql['searchField'])) && $wheresql['searchField'] == "CONTENTS"){
+            $this->db->LIKE("TBL_HOSKO_BOARD_POSTS.POST_CONTENTS", $wheresql['searchString']);
+        }
+
+        if((isset($wheresql['searchField'])) && $wheresql['searchField'] == "USER_NAME"){
+            $this->db->LIKE("USER.USER_NAME", $wheresql['searchString']);
+        }
+
+        if((isset($wheresql['searchField'])) && $wheresql['searchField'] == "ALL"){
+            $this->db->LIKE("TBL_HOSKO_BOARD_POSTS.POST_SUBJECT", $wheresql['searchString']);
+            $this->db->OR_LIKE("USER.USER_NAME", $wheresql['searchString']);
+        }
+
+        $this->db->where("TBL_HOSKO_BOARD_POSTS.POST_BOARD_SEQ", $BOARD_SEQ);
         $this->db->join("TBL_HOSKO_USER AS USER", "USER.USER_SEQ = POST_USER_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_USER AS ADMIN", "USER.USER_SEQ = POST_ADMIN_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD_RECOMMAND AS RECOMMAND", "RMD_POST_SEQ = POST_SEQ", "LEFT");
@@ -57,16 +77,27 @@ class BoardModel extends CI_Model{
     }
 
     public function getPostsCnt($BOARD_SEQ, $wheresql){
+        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, count(RECOMMAND.RMD_SEQ) AS CNT");
         $this->db->where("POST_BOARD_SEQ", $BOARD_SEQ);
-        
-        if(!empty($wheresql['searchField']) || !empty($wheresql['searchString'])){
-            if($wheresql['searchField'] == "subject"){
-                $this->db->LIKE("POST_SUBJECT", $wheresql['searchString']);
-            } else if($wheresql['searchField'] == "username") {
-                $this->db->LIKE("USER_NAME", $wheresql['searchString']);
-            }
-        }
 
+            if($wheresql['searchField'] == "SUBJECT"){
+                $this->db->LIKE("POST_SUBJECT", $wheresql['searchString']);
+            // } else if($wheresql['searchField'] == "USER_NAME") {
+                // $this->db->LIKE("USER_NAME", $wheresql['searchString']);
+            } else if($wheresql['searchField'] == "CONTENTS") {
+                $this->db->LIKE("POST_CONTENTS", $wheresql['searchString']);
+            } else {
+                $this->db->LIKE("POST_SUBJECT", $wheresql['searchString']);
+                // $this->db->OR_LIKE("USER_NAME", $wheresql['searchString']);
+            }
+
+        // $this->db->join("TBL_HOSKO_USER AS USER", "USER.USER_SEQ = POST_USER_SEQ", "LEFT");
+        // $this->db->join("TBL_HOSKO_USER AS ADMIN", "USER.USER_SEQ = POST_ADMIN_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_BOARD_RECOMMAND AS RECOMMAND", "RMD_POST_SEQ = POST_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ");
+        $this->db->order_by("POST_NOTICE_YN", "DESC");
+        $this->db->order_by("POST_REG_DATE", "DESC");
+        $this->db->group_by("POST_SEQ");
         return $this->db->get("TBL_HOSKO_BOARD_POSTS")->num_rows();
     }
 
@@ -84,7 +115,7 @@ class BoardModel extends CI_Model{
     }
 
     public function getBoardSeqByPost($POST_SEQ){
-        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.USER_NAME AS USERNAME");
+        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.*");
         $this->db->where("POST_SEQ", $POST_SEQ);
         $this->db->join("TBL_HOSKO_USER AS USER", "USER.USER_SEQ = POST_USER_SEQ", "LEFT");
         return $this->db->get("TBL_HOSKO_BOARD_POSTS")->row();
@@ -123,6 +154,10 @@ class BoardModel extends CI_Model{
 
     public function setComment($DATA){
         return $this->db->insert("TBL_HOSKO_BOARD_COMMENT", $DATA);
+    }
+
+    public function getGroups(){
+        return $this->db->get("TBL_HOSKO_BOARD_GROUP")->result();
     }
 
 }

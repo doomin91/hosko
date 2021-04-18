@@ -79,11 +79,14 @@ input[type=text]{
 									<td>게시판그룹</td>
 									<td colspan=3>
 										<select name="board_group">
-											<option>:: 게시판그룹 ::</option>
-											<option>고객센터</option>
-											<option>커뮤니티</option>
-											<option>호텔채용정보</option>
-											<option>지식경영</option>
+											<option value="">:: 게시판그룹 ::</option>
+											<?php 
+											foreach($GROUP as $val):
+											?>
+											<option value="<?php echo $val->GP_SEQ;?>"><?php echo $val->GP_NAME;?></option>	
+											<?php
+											endforeach;
+											?>
 										</select>
 										<button type="button" class="btn btn-xs btn-slategray">그룹관리</button>
 									</td>
@@ -92,10 +95,7 @@ input[type=text]{
 									<td>카테고리</td>
 									<td colspan=3>
 										<select name="board_cate">
-										<option>:: 카테고리 ::</option>
-											<option>호텔 인턴 및 직원 채용</option>
-											<option>조리인턴 및 직원채용</option>
-											<option>Management Trainee</option>
+											<option value="">:: 카테고리 ::</option>
 										</select>
 										<button type="button" class="btn btn-xs btn-slategray">카테고리관리</button>
 									</td>

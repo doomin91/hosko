@@ -56,6 +56,7 @@ class Home extends CI_Controller {
 		}else{
 			//print_r($user);
 			$session_data = array(
+								"admin_seq" => $user->ADMIN_SEQ,
 								"admin_id" => $user->ADMIN_ID
 			);
 			$this->session->set_userdata($session_data);

@@ -40,59 +40,17 @@
 			</div>
 
 		  </div>
+		  <!-- /page header -->
+			[테스트 페이지]<br>
+			<?php echo "비밀글 기능 => " . $BOARD_INFO->BOARD_SECRET_FLAG . "<br>";?>
+			<?php echo "추천기능 => " . $BOARD_INFO->BOARD_RECOMMAND_FLAG . "<br>";?>
+			<?php echo "뷰페이지 하단 목록 노출 => " . $BOARD_INFO->BOARD_BOTTOM_LIST_FLAG . "<br>";?>
+			<?php echo "스팸체크 기능 => " . $BOARD_INFO->BOARD_SPAM_CHECK_FLAG . "<br>";?>
+			<?php echo "댓글 기능 => " . $BOARD_INFO->BOARD_COMMENT_FLAG . "<br>";?>
+			<?php echo "파일업로드 갯수 => " . $BOARD_INFO->BOARD_FILEUPLOAD_COUNT . "<br>";?>
+			<?php echo "리스트 출력수 => " . $BOARD_INFO->BOARD_LIST_COUNT . "<br>";?>
+		  <!-- content main container -->
 		  <div class="main">
-		  <div class="row">
-				<div class="col-md-12">
-					<section class="tile transparent">
-						<div class="tile-body color transparent-black rounded-corners">
-						<form method="get">
-							<table class="table table-custom userTable">
-								<colgroup>
-									<col width="15%"/>
-									<col width="35%"/>
-									<col width="15%"/>
-									<col width="35%"/>
-								</colgroup>
-								<tbody>
-									<tr>
-										<th>등록일자</th>
-										<td colspan="3">
-											<div class="col-md-5">
-												<input name="reg_date_start" type="text" class="wid100p datepicker">
-											</div>
-											<div class="col-md-5">
-												<input name="reg_date_end" type="text" class="wid100p datepicker">
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<th>단어검색</th>
-										<td colspan="3">
-											<div class="col-md-2">
-												<select name="search_field" class="wid100p">
-													<option value="all">전체</option>
-													<option value="USER_ID" <?php echo $searchField == "USER_ID" ? 'selected': ""?>>글쓴이</option>
-													<option value="SUBJECT" <?php echo $searchField == "SUBJECT" ? 'selected': ""?>>제목</option>
-													<option value="CONTENTS" <?php echo $searchField == "CONTENTS" ? 'selected': ""?>>내용</option>
-												</select>
-											</div>
-											<div class="col-md-8">
-												<input type="text" name="search_string" class="wid100p" placeholder="검색어를 입력해주세요">
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="4" class="text-right">
-											<button class="btn btn-primary">검색하기</button>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</form>
-						</div>
-					</section>
-				</div>
-			</div>
 
 			<div class="row">
 
@@ -129,7 +87,6 @@
                         <tbody id="boardItems">
 
 							<?php 
-							if($listCount > 0):
 							foreach($LIST as $lt):?>
 							<tr style="cursor:pointer;" onclick="viewPost(<?php echo $lt->POST_SEQ?>);">
 								<td><?php 
@@ -151,7 +108,7 @@
 								endif;
 								?>
 								</td>
-								<td><?php echo $lt->USER_NAME?></td>
+								<td><?php echo $lt->USERNAME?></td>
 								<td><?php echo $lt->POST_VIEW_CNT?></td>
 								<?php 
 								// 추천 표시
@@ -168,9 +125,6 @@
 							<?php 
 							$pagenum -= 1;	
 							endforeach;
-							else:
-								echo "<tr><td colspan=5 style=\"text-align:center;padding:50px;\">게시글이 없습니다.</td></tr>";
-							endif;
 							?>
 
                         </tbody>
@@ -196,7 +150,31 @@
 	                    </div>
 					</div>
 
+					<div class="row">
 
+					<div class="form-group ">
+						<form method="get" role="form" id="sform" class="form-horizontal">
+
+						<label for="apply_title" class="col-sm-2 control-label">게시글 검색</label>
+						<div class="col-sm-2">
+							<select name="searchField" class="form-control">
+							<option value="">선택</option>
+							<option value="subject" <?php echo $searchField == "subject" ? 'selected': ""?>>제목</option>
+							<option value="username" <?php echo $searchField == "username" ? 'selected': ""?>>글쓴이</option>
+							</select>
+						</div>
+						<div class="col-sm-6">
+							<div class="input-group">
+							<input type="text" name="searchString" class="form-control" value="<?php echo $searchString; ?>" style="z-index:1;">
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-primary">검색</button>
+							</span>
+							</div>
+						</div>
+						</div>
+						</form>
+
+					</div>
 
                     </div>
                   </div>
@@ -232,24 +210,6 @@
 </html>
 
 <script>
-
-	$(function(){
-		$.datepicker.setDefaults({
-	        dateFormat: 'yy-mm-dd',
-	        prevText: '이전 달',
-	        nextText: '다음 달',
-	        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-	        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-	        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-	        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-	        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-	        showMonthAfterYear: true,
-	        yearSuffix: '년',
-	        color: "black"
-	    });
-		$(".datepicker").datepicker();
-	});
-
 	function viewPost(POST_SEQ){
 		location.href="/admin/board/post_view/" + POST_SEQ;
 	}

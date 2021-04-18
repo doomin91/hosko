@@ -90,7 +90,7 @@ td a {
 													<!-- <a href="/user/info/71755" class="avatar-photo"><img src="//www.gravatar.com/avatar/c8f8ae1de372f1338bb08e0e3258bd02?d=identicon&amp;s=40"></a> -->
 													<div class="avatar-info">
 														<a class="nickname" href="/user/info/71755"
-															title="fluke"><?php echo $POST_INFO->USERNAME;?></a>
+															title="fluke"><?php echo $POST_INFO->USER_NAME;?></a>
 														<div class="date-created"><span class="timeago"
 																title="2018-07-25T15:25:28"><?php echo $POST_INFO->POST_REG_DATE;?></span>
 														</div>
