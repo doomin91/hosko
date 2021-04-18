@@ -40,6 +40,10 @@ class UserModel extends CI_Model{
 			$this->db->where("TBL_HOSKO_USER.USER_LAN_STUDY_TERM", $whereArr["user_lan_study_term"]);
 		}
 
+		if ((isset($whereArr["user_level"])) && ($whereArr["user_level"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_LEVEL", $whereArr["user_level"]);
+		}
+
 		if ((isset($whereArr["search_string"])) && ($whereArr["search_string"] != "")){
 			if ($whereArr["search_field"] == "all"){
 				$this->db->group_start();
@@ -94,6 +98,10 @@ class UserModel extends CI_Model{
 			$this->db->where("TBL_HOSKO_USER.USER_LAN_STUDY_TERM", $whereArr["user_lan_study_term"]);
 		}
 
+		if ((isset($whereArr["user_level"])) && ($whereArr["user_level"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_LEVEL", $whereArr["user_level"]);
+		}
+
 		if ((isset($whereArr["search_string"])) && ($whereArr["search_string"] != "")){
 			if ($whereArr["search_field"] == "all"){
 				$this->db->group_start();
@@ -116,5 +124,76 @@ class UserModel extends CI_Model{
 	public function getUserInfo($user_seq){
 		$this->db->where("TBL_HOSKO_USER.USER_SEQ", $user_seq);
 		return $this->db->get("TBL_HOSKO_USER")->row();
+	}
+
+	public function editUser($updateArr, $user_seq){
+		$this->db->where("TBL_HOSKO_USER.USER_SEQ", $user_seq);
+		return $this->db->update("TBL_HOSKO_USER", $updateArr);
+	}
+
+	public function CheckUserId($user_id){
+		$this->db->where("TBL_HOSKO_USER.USER_ID", $user_id);
+		return $this->db->get("TBL_HOSKO_USER")->row();
+	}
+
+	public function insertUser($insertData){
+		return $this->db->insert("TBL_HOSKO_USER", $insertData);
+	}
+
+	public function getUserLevelAll(){
+		$this->db->where("TBL_HOSKO_USER_LEVEL.LEVEL_DEL_YN", "N");
+		$this->db->order_by("TBL_HOSKO_USER_LEVEL.LEVEL_RANK", "ASC");
+		return $this->db->get("TBL_HOSKO_USER_LEVEL")->result();
+	}
+
+	public function getUserLevel($whereArr){
+		$this->db->where("TBL_HOSKO_USER_LEVEL.LEVEL_DEL_YN", "N");
+		$this->db->order_by("TBL_HOSKO_USER_LEVEL.LEVEL_RANK", "ASC");
+		$this->db->limit($whereArr["limit"], $whereArr["start"]);
+		return $this->db->get("TBL_HOSKO_USER_LEVEL")->result();
+	}
+
+	public function getUserLevelCount($whereArr){
+		$this->db->where("TBL_HOSKO_USER_LEVEL.LEVEL_DEL_YN", "N");
+		$this->db->from("TBL_HOSKO_USER_LEVEL");
+		return $this->db->count_all_results();
+	}
+
+	public function insertLevel($saveArr){
+		return $this->db->insert("TBL_HOSKO_USER_LEVEL", $saveArr);
+	}
+
+	public function updateLevel($saveArr, $level_seq){
+		$this->db->where("TBL_HOSKO_USER_LEVEL.LEVEL_SEQ", $level_seq);
+		return $this->db->update("TBL_HOSKO_USER_LEVEL", $saveArr);
+	}
+
+	public function getLevel($level_seq){
+		$this->db->where("TBL_HOSKO_USER_LEVEL.LEVEL_SEQ", $level_seq);
+		return $this->db->get("TBL_HOSKO_USER_LEVEL")->row();
+	}
+
+	public function getUserLevelStaics(){
+		$this->db->where("TBL_HOSKO_USER.USER_DEL_YN", "N");
+		$this->db->where("TBL_HOSKO_USER_LEVEL.LEVEL_RANK !=", "0");
+		$this->db->join("TBL_HOSKO_USER_LEVEL", "TBL_HOSKO_USER_LEVEL.LEVEL_SEQ = TBL_HOSKO_USER.USER_LEVEL", "INNER");
+		$this->db->select("TBL_HOSKO_USER_LEVEL.LEVEL_NAME, TBL_HOSKO_USER_LEVEL.LEVEL_RANK, count(*) as CNT");
+		$this->db->group_by("TBL_HOSKO_USER_LEVEL.LEVEL_NAME, TBL_HOSKO_USER_LEVEL.LEVEL_RANK");
+		$this->db->order_by("TBL_HOSKO_USER_LEVEL.LEVEL_RANK", "ASC");
+		return $this->db->get("TBL_HOSKO_USER")->result();
+	}
+
+	public function getUserlAllCount(){
+		$this->db->where("TBL_HOSKO_USER.USER_DEL_YN", "N");
+		$this->db->from("TBL_HOSKO_USER");
+		return $this->db->count_all_results();
+	}
+
+	public function getUserGenderStatics(){
+		$this->db->where("TBL_HOSKO_USER.USER_DEL_YN", "N");
+		$this->db->select("TBL_HOSKO_USER.USER_SEX, count(*) as CNT");
+		$this->db->group_by("TBL_HOSKO_USER.USER_SEX");
+		$this->db->order_by("CNT", "DESC");
+		return $this->db->get("TBL_HOSKO_USER")->result();
 	}
 }

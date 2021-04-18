@@ -92,7 +92,7 @@
 					</a>
 				</li>
 				<li>
-				  <a href="#">
+				  <a href="/admin/user/userLevel">
 					<i class="fa fa-caret-right"></i> 등급관리
 				  </a>
 				</li>
@@ -102,7 +102,7 @@
 				  </a>
 				</li>
 				<li>
-				  <a href="#">
+				  <a href="/admin/user/userStatics">
 					<i class="fa fa-caret-right"></i> 회원분석(국가/전공/성별)
 				  </a>
 				</li>
