@@ -74,7 +74,7 @@
                                 <tr>
                                     <td><?php echo $rank->LEVEL_NAME; ?></td>
                                     <td><?php echo $rank->CNT; ?></td>
-                                    <td><?php echo round($rank->CNT/($AllCount/100), 2); ?></td>
+                                    <td><?php echo round($rank->CNT/($AllCount/100), 2); ?>%</td>
                                     <td>
                                         <div style="background:#418bca; width:<?php echo round($rank->CNT/($AllCount/100), 2); ?>%">&nbsp;</div>
                                     </td>
@@ -119,7 +119,7 @@
                                 <tr>
                                     <td><?php echo $gender; ?></td>
                                     <td><?php echo $rank->CNT; ?></td>
-                                    <td><?php echo round($rank->CNT/($AllCount/100), 2); ?></td>
+                                    <td><?php echo round($rank->CNT/($AllCount/100), 2); ?>%</td>
                                     <td>
                                         <div style="background:#418bca; width:<?php echo round($rank->CNT/($AllCount/100), 2); ?>%">&nbsp;</div>
                                     </td>
@@ -151,7 +151,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                            <?php
+                                foreach ($geneRanks as $rank){
+                            ?>
+                                <tr>
+                                    <td><?php echo $rank->GENERATION; ?></td>
+                                    <td><?php echo $rank->CNT; ?></td>
+                                    <td><?php echo round($rank->CNT/($AllCount/100), 2); ?>%</td>
+                                    <td>
+                                        <div style="background:#418bca; width:<?php echo round($rank->CNT/($AllCount/100), 2); ?>%">&nbsp;</div>
+                                    </td>
+                                </tr>
+                            <?php
+                                }
+                            ?>
                             </tbody>
                         </table>
                     </div>
@@ -176,7 +189,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                            <?php
+                                foreach ($areaRank as $rank){
+                            ?>
+                                <tr>
+                                    <td><?php echo $rank->AREA; ?></td>
+                                    <td><?php echo $rank->CNT; ?></td>
+                                    <td><?php echo round($rank->CNT/($AllCount/100), 2); ?>%</td>
+                                    <td>
+                                        <div style="background:#418bca; width:<?php echo round($rank->CNT/($AllCount/100), 2); ?>%">&nbsp;</div>
+                                    </td>
+                                </tr>
+                            <?php
+                                }
+                            ?>
                             </tbody>
                         </table>
                     </div>
@@ -201,7 +227,50 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                            <?php
+                                foreach ($joinRank as $rank){
+                                    $joinRoute = "";
+                                    switch($rank->USER_JOIN_ROUTE){
+                                        case 1:
+                                            $joinRoute = "신문광고";
+                                            break;
+                                        case 2:
+                                            $joinRoute = "SNS매체";
+                                            break;
+                                        case 3:
+                                            $joinRoute = "온라인검색";
+                                            break;
+                                        case 4:
+                                            $joinRoute = "학교설명회/박람회";
+                                            break;
+                                        case 5:
+                                            $joinRoute = "광고홍보물";
+                                            break;
+                                        case 6:
+                                            $joinRoute = "친구/친척소개";
+                                            break;
+                                        case 7:
+                                            $joinRoute = "교수님/선배소개";
+                                            break;
+                                        case 8:
+                                            $joinRoute = "업체소개";
+                                            break;
+                                        case 9:
+                                            $joinRoute = "기타";
+                                            break;
+                                    }
+                            ?>
+                                <tr>
+                                    <td><?php echo $joinRoute; ?></td>
+                                    <td><?php echo $rank->CNT; ?></td>
+                                    <td><?php echo round($rank->CNT/($AllCount/100), 2); ?>%</td>
+                                    <td>
+                                        <div style="background:#418bca; width:<?php echo round($rank->CNT/($AllCount/100), 2); ?>%">&nbsp;</div>
+                                    </td>
+                                </tr>
+                            <?php
+                                }
+                            ?>
                             </tbody>
                         </table>
                     </div>
@@ -226,7 +295,50 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                            <?php
+                                foreach ($hopeRank as $rank){
+                                    $hopeCountry = "미선택";
+                                    switch($rank->USER_HOPE_NATION){
+                                        case 1:
+                                            $hopeCountry = "미국";
+                                            break;
+                                        case 2:
+                                            $hopeCountry = "괌";
+                                            break;
+                                        case 3:
+                                            $hopeCountry = "일본";
+                                            break;
+                                        case 4:
+                                            $hopeCountry = "호주";
+                                            break;
+                                        case 5:
+                                            $hopeCountry = "중국";
+                                            break;
+                                        case 6:
+                                            $hopeCountry = "유럼";
+                                            break;
+                                        case 7:
+                                            $hopeCountry = "중동";
+                                            break;
+                                        case 8:
+                                            $hopeCountry = "기타";
+                                            break;
+                                        case 9:
+                                            $hopeCountry = "싱가포르";
+                                            break;
+                                    }
+                            ?>
+                                <tr>
+                                    <td><?php echo $hopeCountry; ?></td>
+                                    <td><?php echo $rank->CNT; ?></td>
+                                    <td><?php echo round($rank->CNT/($AllCount/100), 2); ?>%</td>
+                                    <td>
+                                        <div style="background:#418bca; width:<?php echo round($rank->CNT/($AllCount/100), 2); ?>%">&nbsp;</div>
+                                    </td>
+                                </tr>
+                            <?php
+                                }
+                            ?>
                             </tbody>
                         </table>
                     </div>
@@ -251,7 +363,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                            <?php
+                                foreach ($leaveRank as $rank){
+                            ?>
+                                <tr>
+                                    <td><?php echo $rank->USER_LEAVE_COUNTRY; ?></td>
+                                    <td><?php echo $rank->CNT; ?></td>
+                                    <td><?php echo round($rank->CNT/($AllCount/100), 2); ?>%</td>
+                                    <td>
+                                        <div style="background:#418bca; width:<?php echo round($rank->CNT/($AllCount/100), 2); ?>%">&nbsp;</div>
+                                    </td>
+                                </tr>
+                            <?php
+                                }
+                            ?>
                             </tbody>
                         </table>
                     </div>
@@ -276,7 +401,41 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                            <?php
+                                foreach ($hopePartRank as $rank){
+                                     $hopePart = "미선택";
+                                    switch($rank->USER_HOPE_PART){
+                                        case 1:
+                                            $hopePart = "Fornt Office";
+                                            break;
+                                        case 2:
+                                            $hopePart = "F&B";
+                                            break;
+                                        case 3:
+                                            $hopePart = "Culinary";
+                                            break;
+                                        case 4:
+                                            $hopePart = "Housekeeping";
+                                            break;
+                                        case 5:
+                                            $hopePart = "Cruises";
+                                            break;
+                                        case 6:
+                                            $hopePart = "기타";
+                                            break;
+                                    }
+                            ?>
+                                <tr>
+                                    <td><?php echo $hopePart; ?></td>
+                                    <td><?php echo $rank->CNT; ?></td>
+                                    <td><?php echo round($rank->CNT/($AllCount/100), 2); ?>%</td>
+                                    <td>
+                                        <div style="background:#418bca; width:<?php echo round($rank->CNT/($AllCount/100), 2); ?>%">&nbsp;</div>
+                                    </td>
+                                </tr>
+                            <?php
+                                }
+                            ?>
                             </tbody>
                         </table>
                     </div>

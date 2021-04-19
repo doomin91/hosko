@@ -196,4 +196,11 @@ class UserModel extends CI_Model{
 		$this->db->order_by("CNT", "DESC");
 		return $this->db->get("TBL_HOSKO_USER")->result();
 	}
+
+	public function getUserStatics($field){
+		$this->db->select("VIEW_USER_STATICS.".$field.", count(*) as CNT");
+		$this->db->group_by("VIEW_USER_STATICS.".$field."");
+		$this->db->order_by("VIEW_USER_STATICS.".$field."", "ASC");
+		return $this->db->get("VIEW_USER_STATICS")->result();
+	}
 }

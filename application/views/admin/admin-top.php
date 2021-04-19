@@ -108,6 +108,11 @@
 				</li>
 				<li>
 				  <a href="#">
+					<i class="fa fa-caret-right"></i> 메일폼 관리
+				  </a>
+				</li>
+				<li>
+				  <a href="#">
 					<i class="fa fa-caret-right"></i> 메일발송관리
 				  </a>
 				</li>

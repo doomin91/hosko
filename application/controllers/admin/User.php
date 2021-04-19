@@ -414,12 +414,26 @@ class User extends CI_Controller {
 		$userAllCount = $this->UserModel->getUserlAllCount();
 		$levRanks = $this->UserModel->getUserLevelStaics();
 		$genRanks = $this->UserModel->getUserGenderStatics();
+		$geneRanks = $this->UserModel->getUserStatics("GENERATION");
+		$areaRank = $this->UserModel->getUserStatics("AREA");
+		$joinRank = $this->UserModel->getUserStatics("USER_JOIN_ROUTE");
+		$hopeRank = $this->UserModel->getUserStatics("USER_HOPE_NATION");
+		$leaveRank = $this->UserModel->getUserStatics("USER_LEAVE_COUNTRY");
+		$hopePartRank = $this->UserModel->getUserStatics("USER_HOPE_PART");
+		$majorRank = $this->UserModel->getUserStatics("USER_MAJOR");
 		//print_r($lev_rank);
 
 		$data = array(
 					"AllCount" => $userAllCount,
 					"levRanks" => $levRanks,
-					"genRanks" => $genRanks
+					"genRanks" => $genRanks,
+					"geneRanks" => $geneRanks,
+					"areaRank" => $areaRank,
+					"joinRank" => $joinRank,
+					"hopeRank" => $hopeRank,
+					"leaveRank" => $leaveRank,
+					"hopePartRank" => $hopePartRank,
+					"majorRank" => $majorRank
 		);
 		$this->load->view("/admin/user/user-statics", $data);
 	}
