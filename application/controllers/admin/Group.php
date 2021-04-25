@@ -30,7 +30,7 @@ class Group extends CI_Controller {
 		$this->load->library('CustomClass');
 		//$this->load->library('encrypt');
 		$this->load->helper('download');
-		$this->load->model("BoardModel");
+		$this->load->model("GroupModel");
 	}
 
 	/////////////////////
@@ -38,7 +38,102 @@ class Group extends CI_Controller {
 	/////////////////////
 
 	public function group_list(){
-		$this->load->view("./admin/board/group-list");
+		$data["group"] = $this->GroupModel->getGroupList();
+		$this->load->view("./admin/board/group-list", $data);
+	}
+
+	public function group_write(){
+		$this->load->view("./admin/board/group-write");
+	}
+
+	public function group_modify($SEQ){
+		$data["group"] = $this->GroupModel->getGroup($SEQ);
+		$this->load->view("./admin/board/group-modify", $data);
+	}
+	
+	public function group_write_proc(){
+		 $GROUP_NAME = $this->input->post("group_name");
+		 $chk = $this->GroupModel->checkGroupName($GROUP_NAME);
+		 if(!$chk){
+			 $DATA = array(
+				 "GP_NAME" => $GROUP_NAME
+			 );
+			 
+			 $result = $this->GroupModel->setGroup($DATA);
+		 } else {
+			 $returnMsg = array(
+				 "code" => "201",
+				 "msg" => "중복된 그룹명이 존재합니다."
+			 );
+			 echo json_encode($returnMsg);
+			 exit;
+		 }
+
+		 if($result){
+			 $returnMsg = array(
+				 "code" => "200",
+				 "msg" => "등록 성공"
+			 );
+		 } else {
+			$returnMsg = array(
+				"code" => "201",
+				"msg" => "등록 실패"
+			);
+		 }
+
+		 echo json_encode($returnMsg);
+	}
+
+	public function group_modify_proc(){
+		$GROUP_SEQ = $this->input->post("group_seq");
+		$GROUP_NAME = $this->input->post("group_name");
+
+		$chk = $this->GroupModel->checkGroupName($GROUP_NAME);
+		if(!$chk){
+			$DATA = array(
+				"GP_NAME" => $GROUP_NAME
+			);
+
+			$result = $this->GroupModel->uptGroup($GROUP_SEQ, $DATA);
+		} else {
+			$returnMsg = array(
+				"code" => "201",
+				"msg" => "중복된 그룹명이 존재합니다."
+			);
+			echo json_encode($returnMsg);
+			exit;
+		}
+
+		
+		if($result){
+			$returnMsg = array(
+				"code" => "200",
+				"msg" => "등록 성공"
+			);
+		} else {
+		   $returnMsg = array(
+			   "code" => "201",
+			   "msg" => "등록 실패"
+		   );
+		}
+
+		echo json_encode($returnMsg);
+	}
+
+	public function group_delete_proc($SEQ){
+		$result = $this->GroupModel->delGroup($SEQ);
+		if($result){
+			$returnMsg = array(
+				"code" => "200",
+				"msg" => "삭제 성공"
+			);
+		} else {
+		   $returnMsg = array(
+			   "code" => "201",
+			   "msg" => "삭제 실패"
+		   );
+		}
+		echo json_encode($returnMsg);
 	}
 
 }

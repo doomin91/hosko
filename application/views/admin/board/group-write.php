@@ -52,32 +52,19 @@
 							<div class="tile-body">
 								<div class="tile-header">
 									<div><h5><strong><i class="fa fa-angle-right" aria-hidden="true"></i> 게시판그룹관리</strong></h5></div>
-									<div><a href="/admin/group/group_write" class="btn btn-xs btn-default" ><i class="fa fa-plus" aria-hidden="true"></i> 분류등록</a></div>
 								</div>
-
-								<table class="table">
-									<thead>
+								<table class="table table-bordered">
 										<tr>
-											<th>번호</th>
-											<th>분류명</th>
-											<th>기능</th>
+											<th class="info" style="vertical-align:middle">그룹명</th>
+											<td><input type="text" name="group_name" class="form-control"></td>
 										</tr>
-									</head>
-									<tbody>
-										<?php foreach($group as $gp){?>
-										<tr>
-											<td><?php echo $gp->GP_SEQ;?></td>
-											<td><?php echo $gp->GP_NAME;?></td>
-											<td>
-											<a href="/admin/group/group_modify/<?php echo $gp->GP_SEQ?>" class="btn btn-xs btn-default">수정</a> 
-											<button class="btn btn-xs btn-default" onclick="groupDelete(<?php echo $gp->GP_SEQ?>);">삭제</button>
-											</td>
-										</tr>
-										<?php } ?>
-									</tbody>
-									
 								</table>
 							</div>
+							<div class="tile-footer" style="text-align:center;">
+								<button type="button" class="btn btn-primary" onclick="groupRegist();">확인</button>
+								<a href="/admin/group/group_list" type="button" class="btn btn-default">목록</a>
+							</div>
+
 							<!-- /tile body -->
 
 						</section>
@@ -107,25 +94,32 @@
 
 	<script>
 
-	function groupDelete(GROUP_SEQ){
+	function groupRegist(){
+		if(!$("input[name=group_name]").val()){
+			alert("그룹명을 입력해주세요.");
+			$("input[name=group_name]").focus()
+			return false;
+		}
 		
-		if(confirm("선택하신 그룹을 삭제하시겠습니까?")){
 		$.ajax({
-			url:"/admin/group/group_delete_proc/" + GROUP_SEQ,
+			url:"/admin/group/group_write_proc",
 			type:"post",
+			data:{
+				"group_name" : $("input[name=group_name]").val()
+			},
 			dataType:"json",
 			success:function(data){
 				let msg = data["msg"];
 				let code = data["code"];
+
 				if(code == "200"){
-					alert("삭제되었습니다.")
-					location.reload();
+					alert("등록되었습니다.")
+					location.href = "/admin/group/group_list";
 				} else {
 					alert(msg);
 				}
 			}
 		})
-		}
 	}
 
 	</script>
