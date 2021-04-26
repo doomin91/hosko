@@ -134,7 +134,7 @@
 								<tr>
 									<th>주소</th>
 									<td colspan="3">
-										<input type="text" name="zipcode" id="zipcode" value="<?php echo $info->USER_ZIPCODE; ?>"><button class="btn btn-default btn-sm" id="searchZip">우편번호 검색</button><br>
+										<input type="text" name="zipcode" id="zipcode" value="<?php echo $info->USER_ZIPCODE; ?>"><button class="btn btn-default btn-sm" type="button" id="searchZip">우편번호 검색</button><br>
 										<input type="text" name="addr1" id="addr1" size="150" value="<?php echo $info->USER_ADDR1; ?>"><br>
 										<input type="text" name="addr2" id="addr2" size="150" value="<?php echo $info->USER_ADDR2; ?>">
 									</td>
@@ -436,7 +436,7 @@ $(function(){
 		$.ajax({
 			url:"/admin/User/userModifyProc",
 			type:"post",
-			//dataType:"json",
+			dataType:"json",
 			data : formData,
 			success:function(data){
 				console.log(data);

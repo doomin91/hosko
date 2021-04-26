@@ -88,7 +88,7 @@ input[type=text]{
 											endforeach;
 											?>
 										</select>
-										<button type="button" class="btn btn-xs btn-slategray">그룹관리</button>
+										<button type="button" class="btn btn-xs btn-slategray" onclick="viewGroupList();">그룹관리</button>
 									</td>
 								</tr>
 								<tr>
@@ -335,7 +335,6 @@ input[type=text]{
 
 	<?php
 		include_once dirname(__DIR__)."/admin-footer.php";
-
 	?>
 	<!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> 
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -367,6 +366,10 @@ input[type=text]{
 				console.log(e);
 			}
 		})
+	}
+
+	function viewGroupList(){
+		window.open("/admin/group/group_list", "_blank", "left=100; top=100; width=400; height=250; status=0; titlebar=0; menubar=0; scrollbar=0");
 	}
 </script>
 

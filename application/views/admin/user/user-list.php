@@ -198,6 +198,26 @@
 									</tr>
 									-->
 									<tr>
+										<th>회원등급</th>
+										<td colspan="3">
+											<div class="col-md-2">
+												<select name="user_level" class="wid100p">
+													<option value="">선택해주세요</option>
+												<?php
+													foreach ($levels as $lev) {
+														if ($lev->LEVEL_SEQ == $user_level){
+															echo "<option value=\"".$lev->LEVEL_SEQ."\" selected>".$lev->LEVEL_NAME."</option>";
+														}else{
+															echo "<option value=\"".$lev->LEVEL_SEQ."\">".$lev->LEVEL_NAME."</option>";
+														}
+
+													}
+												?>
+												</select>
+											</div>
+										</td>
+									</tr>
+									<tr>
 										<th>단어검색</th>
 										<td colspan="3">
 											<div class="col-md-2">
@@ -239,18 +259,6 @@
 					<div class="tile-body color transparent-black rounded-corners">
 
 						<div class="table-responsive dataTables_wrapper form-inline" role="grid" id="basicDataTable_wrapper">
-							<div class="row">
-								<div class="col-md-6"></div>
-								<div class="col-md-6">
-									<form name="sform" id="sform" method="get">
-									<div class="dataTables_filter text-right" id="basicDataTable_filter">
-										<label>
-											<input type="text" name="search" id="search" aria-controls="basicDataTable" placeholder="Search" class="form-control" value="">
-										</label>
-									</div>
-									</form>
-								</div>
-							</div>
 
 							<table class="table table-custom dataTable">
 							<colgroup>
@@ -315,7 +323,7 @@
 						?>
 								<tr>
 									<td class="text-center"><?php echo $pagenum; ?></td>
-									<td class="text-center"><a href="/admin/user/user_modify/<?php echo $list->USER_SEQ; ?>"><?php echo $list->USER_ID; ?></a></td>
+									<td class="text-center"><a href="/admin/user/userModify/<?php echo $list->USER_SEQ; ?>"><?php echo $list->USER_ID; ?></a></td>
 									<td class="text-center"><?php echo $list->USER_NAME; ?></td>
 									<td class="text-center"><?php echo $list->USER_NUMBER; ?></td>
 									<td class="text-center"><?php echo $list->USER_MANAGER_NAME; ?></td>
@@ -328,7 +336,7 @@
 									<td class="text-center"><?php echo $list->USER_LAST_LOGIN; ?></td>
 									<td class="text-center"><?php echo $list->USER_LOGIN_CNT; ?></td>
 									<td class="text-center">
-										<a href="/admin/user/user_modify/<?php echo $list->USER_SEQ; ?>" class="btn btn-default btn-xs">수정</a>
+										<a href="/admin/user/userModify/<?php echo $list->USER_SEQ; ?>" class="btn btn-default btn-xs">수정</a>
 									</td>
 								</tr>
 						<?php
@@ -369,7 +377,7 @@
 									</div>
 								</div>
 								<div class="col-md-4 text-right">
-									<a href="/admin/user/write" type="button" class="btn btn-primary "> 회원 등록하기</a>
+									<a href="/admin/user/userWrite" type="button" class="btn btn-primary "> 회원 등록하기</a>
 								</div>
 							</div>
 						</div>
