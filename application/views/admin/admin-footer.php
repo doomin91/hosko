@@ -25,6 +25,7 @@
 
     <script src="/static/admin/js/vendor/momentjs/moment.min.js"></script>
     <script src="/static/admin/js/vendor/datepicker/bootstrap-datetimepicker.js"></script>
+    <script src="/static/admin/js/vendor/summernote/summernote.min.js"></script>
 
 
     <script src="/static/admin/js/minimal.min.js"></script>

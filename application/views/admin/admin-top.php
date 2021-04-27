@@ -177,10 +177,6 @@
 						<i class="fa fa-caret-right"></i> 유학목록
 					</a>
 				</li>
-				<li>
-					<a href="/admin/recruit/recruit_abroad_register">
-						<i class="fa fa-caret-right"></i> 유학등록하기
-					</a>
 				</li>
 				<li>
 					<a href="/admin/recruit">

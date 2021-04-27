@@ -156,8 +156,4 @@ class BoardModel extends CI_Model{
         return $this->db->insert("TBL_HOSKO_BOARD_COMMENT", $DATA);
     }
 
-    public function getGroups(){
-        return $this->db->get("TBL_HOSKO_BOARD_GROUP")->result();
-    }
-
 }

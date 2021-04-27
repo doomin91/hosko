@@ -31,6 +31,7 @@ class Board extends CI_Controller {
 		//$this->load->library('encrypt');
 		$this->load->helper('download');
 		$this->load->model("BoardModel");
+		$this->load->model("GroupModel");
 	}
 
 	/////////////////////
@@ -42,7 +43,7 @@ class Board extends CI_Controller {
 	}
 
 	public function board_write(){
-		$DATA["GROUP"] = $this->BoardModel->getGroups();
+		$DATA["GROUP"] = $this->GroupModel->getGroupList();
 		$this->load->view("./admin/board/board-write", $DATA);
 	}
 

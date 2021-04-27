@@ -18,8 +18,11 @@
     <link rel="stylesheet" href="/static/admin/js/vendor/chosen/css/chosen.min.css">
     <link rel="stylesheet" href="/static/admin/js/vendor/chosen/css/chosen-bootstrap.css">
 
-    <link rel="stylesheet" href="/static/admin/js/vendor/datepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/static/admin/js/vendor/datepicker/css/bootstrap-datetimepicker.min.css">    
     <link rel="stylesheet" href="/static/admin/js/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css"></script>
+
+    <link rel="stylesheet" href="/static/admin/js/vendor/summernote/css/summernote.css">
+    <link rel="stylesheet" href="/static/admin/js/vendor/summernote/css/summernote-bs3.css">
 
     <link href="/static/admin/css/minimal.css" rel="stylesheet">
     <link href="/static/admin/css/custom.css" rel="stylesheet">

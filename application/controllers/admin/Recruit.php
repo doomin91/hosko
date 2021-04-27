@@ -28,10 +28,12 @@ class Recruit extends CI_Controller {
 		$this->load->library('pagination');
 
 		$this->load->library('CustomClass');
+		$this->load->library('image_lib');
 		//$this->load->library('encrypt');
 		$this->load->helper('download');
 
 		$this->load->model("RecruitModel");
+		$this->load->model("BasicModel");
 
 	}
 
@@ -45,12 +47,22 @@ class Recruit extends CI_Controller {
 			$nowpage = $_GET["per_page"];
 		}
 
-		$searchField = isset($_GET["searchField"]) ? $_GET["searchField"] : "";
-		$searchString = isset($_GET["searchString"]) ? $_GET["searchString"] : "";
+		$ctg = isset($_GET["ctg"]) ? $_GET["ctg"] : "";
+		$ctg2 = isset($_GET["ctg2"]) ? $_GET["ctg2"] : "";
+		$ctg3 = isset($_GET["ctg3"]) ? $_GET["ctg3"] : "";
+		$searchOpt = isset($_GET["searchOpt"]) ? $_GET["searchOpt"] : "";
+		$searchGrp = isset($_GET["searchGrp"]) ? $_GET["searchGrp"] : "";
+		$coupon = isset($_GET["coupon"]) ? $_GET["coupon"] : "";
+		$display = isset($_GET["display"]) ? $_GET["display"] : "";
 
 		$wheresql = array(
-						"searchField" => $searchField,
-						"searchString" => $searchString,
+						"ctg" => $ctg,
+						"ctg2" => $ctg2,
+						"ctg3" => $ctg3,
+						"searchOpt" => $searchOpt,
+						"searchGrp" => $searchGrp,
+						"coupon" => $coupon,
+						"display" => $display,
 						"start" => $start,
 						"limit" => $limit
 						);
@@ -66,11 +78,11 @@ class Recruit extends CI_Controller {
 			$pagenum = $listCount;
 		}
 
+		// $queryString = "?start_reg_date=".$start_reg_date."&end_reg_date=".$end_reg_date."&status=".$status;
+
 		$pagination = $this->customclass->pagenavi("/admin/recruit", $listCount, 10, 5, $nowpage);
 		//print_r($listCount);
 		$data = array(
-					"searchField" => $searchField,
-					"searchString" => $searchString,
 					"lists" => $lists,
 					"listCount" => $listCount,
 					"pagination" => $pagination,
@@ -154,16 +166,28 @@ class Recruit extends CI_Controller {
 			$nowpage = $_GET["per_page"];
 		}
 
-		$searchField = isset($_GET["searchField"]) ? $_GET["searchField"] : "";
-		$searchString = isset($_GET["searchString"]) ? $_GET["searchString"] : "";
+		$ctg = isset($_GET["ctg"]) ? $_GET["ctg"] : "";
+		$ctg2 = isset($_GET["ctg2"]) ? $_GET["ctg2"] : "";
+		$ctg3 = isset($_GET["ctg3"]) ? $_GET["ctg3"] : "";
+		$searchOpt = isset($_GET["searchOpt"]) ? $_GET["searchOpt"] : "";
+		$searchTxt = isset($_GET["searchTxt"]) ? $_GET["searchTxt"] : "";
+		$searchGrp = isset($_GET["searchGrp"]) ? $_GET["searchGrp"] : "";
+		$coupon = isset($_GET["coupon"]) ? $_GET["coupon"] : "";
+		$display = isset($_GET["display"]) ? $_GET["display"] : "";
 
 		$wheresql = array(
-						"searchField" => $searchField,
-						"searchString" => $searchString,
+						"ctg" => $ctg,
+						"ctg2" => $ctg2,
+						"ctg3" => $ctg3,
+						"searchOpt" => $searchOpt,
+						"searchTxt" => $searchTxt,
+						"searchGrp" => $searchGrp,
+						"coupon" => $coupon,
+						"display" => $display,
 						"start" => $start,
 						"limit" => $limit
 						);
-
+		// print_r($searchTxt);
 		$lists = $this->RecruitModel->getRecruitAbroadList($wheresql);
 		// $lists = array();
 		//echo $this->db->last_query();
@@ -178,8 +202,14 @@ class Recruit extends CI_Controller {
 		$pagination = $this->customclass->pagenavi("/admin/recurit/abroad", $listCount, 15, 5, $nowpage);
 		//print_r($listCount);
 		$data = array(
-					"searchField" => $searchField,
-					"searchString" => $searchString,
+					"ctg" => $ctg,
+					"ctg2" => $ctg2,
+					"ctg3" => $ctg3,
+					"searchOpt" => $searchOpt,
+					"searchTxt" => $searchTxt,
+					"searchGrp" => $searchGrp,
+					"coupon" => $coupon,
+					"display" => $display,
 					"lists" => $lists,
 					"listCount" => $listCount,
 					"pagination" => $pagination,
@@ -190,6 +220,154 @@ class Recruit extends CI_Controller {
 
 		$this->load->view("./admin/recruit/recruit-abroad_list", $data);
 	}
+
+	public function recruit_abroad_new(){
+		$DATA["USER_IP"] = $this->customclass->get_client_ip();
+		
+		$this->load->view("./admin/recruit/recruit-abroad_register", $DATA);
+	}
+
+	public function recruit_abroad_new_proc(){
+		$REC_CONTENTS_CATEGORY = isset($_POST["ctg"]) ? $_POST["ctg"] : "";
+		$REC_CONTENTS_SUB1_CATEGORY = isset($_POST["ctg2"]) ? $_POST["ctg2"] : "";
+		$REC_CONTENTS_SUB2_CATEGORY = isset($_POST["ctg3"]) ? $_POST["ctg3"] : "";
+		$REC_TITLE = isset($_POST["abroad_contents_title"]) ? $_POST["abroad_contents_title"] : "";
+		$REC_STATUS = isset($_POST["abroad_status"]) ? $_POST["abroad_status"] : "";
+		$REC_COUNT = isset($_POST["abroad_hit_count"]) ? $_POST["abroad_hit_count"] : "";
+		$REC_ADMIN_ID = isset($_POST["abroad_manager"]) ? $_POST["abroad_manager"] : "";
+		$REC_COUNTRY = isset($_POST["abroad_country"]) ? $_POST["abroad_country"] : "";
+		$REC_TYPE = isset($_POST["abroad_type"]) ? $_POST["abroad_type"] : "";
+		$REC_PERIOD = isset($_POST["abroad_period"]) ? $_POST["abroad_period"] : "";
+		$REC_CATEGORY = isset($_POST["abroad_category"]) ? $_POST["abroad_category"] : "";
+		$REC_DEADLINE = isset($_POST["abroad_deadline"]) ? $_POST["abroad_deadline"] : "";
+		$REC_INTERVIEW_TYPE = isset($_POST["abroad_interview_type"]) ? $_POST["abroad_interview_type"] : "";
+		$REC_INTERVIEW_DATE = isset($_POST["abroad_interview_date"]) ? $_POST["abroad_interview_date"] : "";
+		$REC_PREREQUISITE = isset($_POST["abroad_prerequisite"]) ? $_POST["abroad_prerequisite"] : "";
+		$REC_LODGIN = isset($_POST["abroad_accomdation"]) ? $_POST["abroad_accomdation"] : "";
+		$REC_WELFARE = isset($_POST["abroad_welfare"]) ? $_POST["abroad_welfare"] : "";
+		$REC_VISA = isset($_POST["abroad_visa"]) ? $_POST["abroad_visa"] : "";
+		$REC_CONTENTS = isset($_POST["abroad_detail"]) ? $_POST["abroad_detail"] : "";
+		$REC_REG_IP = isset($_POST["user_ip"]) ? $_POST["user_ip"] : "";
+		// $REC_THUMBNAIL = isset($_POST["abroad_origin_pic"]) ? $_POST["abroad_origin_pic"] : "";
+
+		$MANAGER = $this->BasicModel->getManagerById($REC_ADMIN_ID);
+
+		$REC_ADMIN_SEQ = isset($MANAGER->ADMIN_SEQ) ? $MANAGER->ADMIN_SEQ : "";
+
+		$insertArr = array(
+			"REC_CONTENTS_CATEGORY" => $REC_CONTENTS_CATEGORY,
+			"REC_CONTENTS_SUB1_CATEGORY" => $REC_CONTENTS_SUB1_CATEGORY,
+			"REC_CONTENTS_SUB2_CATEGORY" => $REC_CONTENTS_SUB2_CATEGORY,
+			"REC_TITLE" => $REC_TITLE,
+			"REC_STATUS" => $REC_STATUS,
+			"REC_COUNT" => $REC_COUNT,
+			"REC_ADMIN_SEQ" => $REC_ADMIN_SEQ,
+			"REC_COUNTRY" => $REC_COUNTRY,
+			"REC_TYPE" => $REC_TYPE,
+			"REC_PERIOD" => $REC_PERIOD,
+			"REC_CATEGORY" => $REC_CATEGORY,
+			"REC_DEADLINE" => $REC_DEADLINE,
+			"REC_INTERVIEW_TYPE" => $REC_INTERVIEW_TYPE,
+			"REC_INTERVIEW_DATE" => $REC_INTERVIEW_DATE,
+			"REC_PREREQUISITE" => $REC_PREREQUISITE,
+			"REC_LODGIN" => $REC_LODGIN,
+			"REC_WELFARE" => $REC_WELFARE,
+			"REC_VISA" => $REC_VISA,
+			"REC_CONTENTS" => $REC_CONTENTS
+		);
+
+		// print_r($insertArr);
+	
+		$result = $this->RecruitModel->insertRecruitAbroad($insertArr);
+
+		$insert_id = $this->db->insert_id();
+
+        $file_name = array();
+        $file_path = array();
+		// print_r($_FILES["abroad_origin_pic"]);
+		// exit;
+        if (isset($_FILES["abroad_origin_pic"]) && !empty($_FILES["abroad_origin_pic"])){
+            // $_FILES["abroad_origin_pic"]["name"];
+            
+			if ($_FILES["abroad_origin_pic"]["error"] > 0){
+				echo "Error : " . $_FILES["abroad_origin_pic"]["error"];
+			}else{
+				if (file_exists("/upload/recruit/".$_FILES["abroad_origin_pic"]["name"])){
+					echo "동일한 이름의 파일이 존재합니다.";
+				}else{
+					$tmp = explode(".", $_FILES["abroad_origin_pic"]["name"]);
+					// print_r($tmp);
+					$time = time();
+					$new_name = "recruit".$time."_".$insert_id.".".end($tmp);
+					// print_r($new_name);
+					/* 
+						$_FILES["apply_attach"]에서
+
+						[tmp_name] => Array
+							(
+								[0] => C:\xampp\tmp\phpA57A.tmp
+							)
+						tmp 경로에서 -> 실제 업로드 경로
+					*/  
+					move_uploaded_file($_FILES["abroad_origin_pic"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/upload/recruit/".$new_name);
+					//array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
+					$file_name = $_FILES["abroad_origin_pic"]["name"];
+					$file_path = "./upload/recruit/".$new_name;
+					// print_r($_FILES["apply_attach"]);
+				}
+			}
+
+			$thumb_file_path = array();
+			$thumb_name = array("R", "S", "M", "L");
+
+			for($i = 0 ; $i < 4 ; $i++){
+				$config['image_library'] = 'gd2';
+				$config['source_image'] = $file_path;
+				$config['new_image'] = "./upload/recruit/"."recruit".$time."_".$insert_id."_".$thumb_name[$i].".".end($tmp);
+				$pathArr = explode(".",$config['new_image']);
+				
+				// $config['create_thumb'] = TRUE;
+				// $config['maintain_ratio'] = TRUE;
+				if($thumb_name[$i] == "R"){
+					$config['width']         = 75;
+					$config['height']       = 75;
+				}else{
+					$config['width']         = 200;
+					$config['height']       = 200;
+				}
+
+				// $this->load->library('image_lib', $config);
+				$this->image_lib->initialize($config);
+
+				if($this->image_lib->resize() == false){
+					echo json_encode(array("code" => "202", "error" => $this->image_lib->display_errors()));
+					// print_r($this->image_lib->display_errors());
+				}else{
+					array_push($thumb_file_path, $pathArr[1].".".$pathArr[2]);
+				}
+			}
+
+			$this->image_lib->clear();
+
+			$update_arr = array(
+				"REC_THUMBNAIL" => $file_path,
+				"REC_THUMBNAIL_R" => $thumb_file_path[0],
+				"REC_THUMBNAIL_S" => $thumb_file_path[1],
+				"REC_THUMBNAIL_M" => $thumb_file_path[2],
+				"REC_THUMBNAIL_L" => $thumb_file_path[3],
+			);
+			$result = $this->RecruitModel->updateRecruitAbroad($insert_id, $update_arr);
+
+        }
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "abraod_seq" => $insert_id));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+
+	}
+
 
 	public function recruit_abroad_view($abroad_seq){
 		$DATA["ABROAD_INFO"] = $this->RecruitModel->getRecruitAbroadInfo($abroad_seq);

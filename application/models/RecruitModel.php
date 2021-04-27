@@ -8,6 +8,7 @@ class RecruitModel extends CI_Model{
     }
 
     public function getRecruitApplyList($whereArr){
+
         $this->db->where("TBL_HOSKO_RECRUIT_APPLY.APP_DEL_YN", 'N');
 
         $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT_APPLY.APP_USER_SEQ");
@@ -49,6 +50,34 @@ class RecruitModel extends CI_Model{
     }
 
     public function getRecruitAbroadList($whereArr){
+        if (isset($whereArr["ctg"]) && $whereArr["ctg"] != ""){
+            $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", $whereArr["ctg"]);
+        }
+        if (isset($whereArr["ctg2"]) && $whereArr["ctg2"] != ""){
+            $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_SUB1_CATEGORY", $whereArr["ctg2"]);
+        }
+        if (isset($whereArr["ctg3"]) && $whereArr["ctg3"] != ""){
+            $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_SUB2_CATEGORY", $whereArr["ctg3"]);
+        }
+        if (isset($whereArr["searchOpt"]) && $whereArr["searchOpt"] != ""){
+            if($whereArr["searchOpt"] == "name"){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchTxt"]);
+            }else if($whereArr["searchOpt"] == "code"){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_SEQ", $whereArr["searchTxt"]);
+            }else if($whereArr["searchOpt"] == "comapny"){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_COUNTRY", $whereArr["searchTxt"]);
+            }
+        }
+        // if (isset($whereArr["searchGrp"]) && $whereArr["searchGrp"] != ""){
+        //     $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", $whereArr["searchGrp"]);
+        // }
+        // if (isset($whereArr["coupon"]) && $whereArr["coupon"] != ""){
+        //     $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", $whereArr["coupon"]);
+        // }
+        // if (isset($whereArr["display"]) && $whereArr["end_work_date"] != ""){
+        //     $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", $whereArr["display"]);
+        // }
+
         $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
 
         $this->db->group_by("TBL_HOSKO_RECRUIT.REC_SEQ");
@@ -59,6 +88,25 @@ class RecruitModel extends CI_Model{
     }
 
     public function getRecruitAbroadListCount($whereArr){
+        if (isset($whereArr["ctg"]) && $whereArr["ctg"] != ""){
+            $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", $whereArr["ctg"]);
+        }
+        if (isset($whereArr["ctg2"]) && $whereArr["ctg2"] != ""){
+            $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_SUB1_CATEGORY", $whereArr["ctg2"]);
+        }
+        if (isset($whereArr["ctg3"]) && $whereArr["ctg3"] != ""){
+            $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_SUB2_CATEGORY", $whereArr["ctg3"]);
+        }
+        if (isset($whereArr["searchOpt"]) && $whereArr["searchOpt"] != ""){
+            if($whereArr["searchOpt"] == "name"){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchTxt"]);
+            }else if($whereArr["searchOpt"] == "code"){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_SEQ", $whereArr["searchTxt"]);
+            }else if($whereArr["searchOpt"] == "comapny"){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_COUNTRY", $whereArr["searchTxt"]);
+            }
+        }
+
         $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
 
         $this->db->select("TBL_HOSKO_RECRUIT.REC_SEQ");
@@ -75,6 +123,16 @@ class RecruitModel extends CI_Model{
         $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_USER.USER_NAME AS ADMIN_USER_NAME");
 
         return $this->db->get("TBL_HOSKO_RECRUIT")->row(); 
+    }
+
+    public function insertRecruitAbroad($insert_arr){
+        return $this->db->insert("TBL_HOSKO_RECRUIT", $insert_arr);
+    }
+
+    public function updateRecruitAbroad($aborad_seq, $update_arr){
+        $this->db->where("TBL_HOSKO_RECRUIT.REC_SEQ", $aborad_seq);
+
+        return $this->db->update("TBL_HOSKO_RECRUIT", $update_arr);
     }
 
     public function deleteRecruitAbroad($aborad_seq){

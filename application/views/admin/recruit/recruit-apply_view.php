@@ -391,7 +391,7 @@
                         }
                     });
                 }
-            })
+            });
 
             $("#apply_view_print").on("click", function(){
                 alert("인쇄하기");
