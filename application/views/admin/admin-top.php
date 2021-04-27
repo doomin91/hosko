@@ -117,7 +117,7 @@
 				  </a>
 				</li>
 				<li>
-				  <a href="#">
+				  <a href="/admin/user/smsSend">
 					<i class="fa fa-caret-right"></i> SMS발송관리
 				  </a>
 				</li>

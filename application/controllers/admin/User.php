@@ -437,4 +437,61 @@ class User extends CI_Controller {
 		);
 		$this->load->view("/admin/user/user-statics", $data);
 	}
+
+	public function smsSend(){
+		$limit = 5;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*10;
+			$nowpage = $_GET["per_page"];
+		}
+
+		$reg_date_start = $this->input->get("reg_date_start");
+		$reg_date_end = $this->input->get("reg_date_end");
+		$user_level = $this->input->get("user_level");
+		$search_field = $this->input->get("search_field");
+		$search_string = $this->input->get("search_string");
+		$sms_type = $this->input->get("sms_type");
+
+		$wheresql = array(
+						"reg_date_start" => $reg_date_start,
+						"reg_date_end" => $reg_date_end,
+						"user_level" => $user_level,
+						"search_field" => $search_field,
+						"search_string" => $search_string,
+						"sms_type" => $sms_type,
+						"start" => $start,
+						"limit" => $limit
+						);
+		$lists = $this->UserModel->getUsers($wheresql);
+		//echo $this->db->last_query();
+		$listCount = $this->UserModel->getUsersCount($wheresql);
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*10);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$pagination = $this->customclass->pagenavi("/admin/user", $listCount, 10, 5, $nowpage);
+		//print_r($listCount);
+		$levels = $this->UserModel->getUserLevelAll();
+		$data = array(
+					"reg_date_start" => $reg_date_start,
+					"reg_date_end" => $reg_date_end,
+					"user_level" => $user_level,
+					"search_field" => $search_field,
+					"search_string" => $search_string,
+					"sms_type" => $sms_type,
+					"lists" => $lists,
+					"listCount" => $listCount,
+					"pagination" => $pagination,
+					"pagenum" => $pagenum,
+					"start" => $start,
+					"limit" => $limit,
+					"levels" => $levels
+					);
+		$this->load->view("/admin/user/user-sms-send", $data);
+	}
 }
