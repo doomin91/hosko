@@ -102,19 +102,6 @@
                                 </div>
                             </div>
 							<?php endif; ?>
-								
-							<?php if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'): ?>
-							<div class="form-group">
-								
-								<div class="col-sm-offset-2 col-sm-6" style="background:#FFEFBA;max-width:350px;">
-									<p><label class="label label-waning" style="color:#000;">Please enter the letters displayed:</label>
-										<input type="hidden" id="defaultRealHash" name="defaultRealHash" value="">
-										<input type="text" id="defaultReal" name="defaultReal" placeholder="문자를 입력해주세요." style="color:#000;"></p>
-								</div>
-
-							</div>
-							<?php endif; ?>
-							
 
                             <div class="form-group form-footer">
                                 <div class="col-sm-offset-2 col-sm-10">
@@ -169,7 +156,6 @@
 	function post_modify(){
 
 		let hash = $("#defaultReal").realperson('getHash');
-		console.log(hash);
 
 		let post_seq = <?php echo $POST_INFO->POST_SEQ?>;
 		
@@ -177,7 +163,6 @@
 		$("#post_contents").val($("#post_contents").Editor("getText"));
 		let form = $("#post_write_form").serializeArray();
 
-		console.log(form);
 		$.ajax({
 			url:"/admin/board/upt_post_info?post_seq=" + post_seq,
 			type:"post",

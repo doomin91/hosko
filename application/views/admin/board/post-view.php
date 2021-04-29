@@ -25,6 +25,7 @@
 td a {
 	color:#000;
 }
+
 </style>
 
 <body class="bg-1">
@@ -80,7 +81,7 @@ td a {
 							<section class="tile color transparent-white">
 
 								<!-- tile body -->
-								<div class="tile-body">
+								<div class="tile-body" style="padding:0">
 									<form id="comment_write_form">
 										<div class="panel panel-default clearfix fa-">
 											<div class="panel-heading clearfix">
@@ -126,7 +127,6 @@ td a {
 													</article>
 
 												</div>
-
 												<div id="content-function"
 													class="content-function pull-right text-center">
 													<div class="content-function-group">
@@ -134,6 +134,7 @@ td a {
 
 
 													</div>
+
 												</div>
 											</div>
 
@@ -151,8 +152,18 @@ td a {
 														class="btn btn-primary btn-sm">목록</a>
 												</div>
 											</div>
-
-
+											
+											<ul class="list-group" style="margin-top:5px;">
+												<li id="note-title" class="list-group-item note-title">
+													<h3 class="panel-title">첨부파일 <?php echo count($ATTACH_FILES);?><span id="note-count"></span></h3>
+												</li>
+													<?php foreach($ATTACH_FILES as $files){
+														echo "<li id=\"note-title\" class=\"list-group-item\" style=\"border-bottom:0\">";
+														echo "<a href=\"/admin/Board/downalod_attach/" . $files->ATTACH_SEQ . "\">". $files->ATTACH_FILE_NAME ."</a></li>";
+													}?>
+											</ul>
+											
+											
 											<?php if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'): ?>
 											<ul class="list-group" style="margin-top:5px;">
 												<li id="note-title" class="list-group-item note-title">

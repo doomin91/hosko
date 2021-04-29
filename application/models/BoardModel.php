@@ -31,6 +31,11 @@ class BoardModel extends CI_Model{
         return $this->db->insert("TBL_HOSKO_BOARD", $DATA);
     }
 
+    public function modifyBoard($BOARD_SEQ, $DATA){
+        $this->db->where("BOARD_SEQ", $BOARD_SEQ);
+        return $this->db->update("TBL_HOSKO_BOARD", $DATA);
+    }
+
     public function delBoard($BOARD_SEQ){
         $this->db->where("BOARD_SEQ", $BOARD_SEQ);
         return $this->db->update("TBL_HOSKO_BOARD", array("BOARD_DEL_YN" => 'N'));
@@ -102,12 +107,23 @@ class BoardModel extends CI_Model{
     }
 
     public function setPost($DATA){
-        return $this->db->insert("TBL_HOSKO_BOARD_POSTS", $DATA);
+        $this->db->insert("TBL_HOSKO_BOARD_POSTS", $DATA);
+        return $this->db->insert_id();
     }
 
     public function uptPost($POST_SEQ, $DATA){
         $this->db->where("POST_SEQ", $POST_SEQ);
         return $this->db->update("TBL_HOSKO_BOARD_POSTS", $DATA);
+    }
+
+    public function getPostAttach($POST_SEQ){
+        $this->db->where("ATTACH_POST_SEQ", $POST_SEQ);
+        return $this->db->get("TBL_HOSKO_BOARD_ATTACH")->result();
+    }
+
+    public function getPostAttachByAttachSeq($ATTACH_SEQ){
+        $this->db->where("ATTACH_SEQ", $ATTACH_SEQ);
+        return $this->db->get("TBL_HOSKO_BOARD_ATTACH")->row();
     }
 
     public function insertPostAttach($DATA){

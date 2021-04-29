@@ -68,6 +68,16 @@ input[type=text]{
 							</colgroup>
 							<tbody>
 								<tr>
+									<td>게시판 타입</td>
+									<td colspan=3>
+									<select name="board_type">
+											<option value=0 selected>일반 게시판</option>
+											<option value=1>포토 게시판</option>
+											<option value=2>동영상 게시판</option>
+									</select>
+									</td>
+								</tr>
+								<tr>
 									<td>영문명(db명) <span style="bold:700;">*</span></td>
 									<td colspan=3><input type="text" name="board_name"></td>
 								</tr>
@@ -91,7 +101,7 @@ input[type=text]{
 										<button type="button" class="btn btn-xs btn-slategray" onclick="viewGroupList();">그룹관리</button>
 									</td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td>카테고리</td>
 									<td colspan=3>
 										<select name="board_cate">
@@ -99,7 +109,7 @@ input[type=text]{
 										</select>
 										<button type="button" class="btn btn-xs btn-slategray">카테고리관리</button>
 									</td>
-								</tr>
+								</tr> -->
 								<tr>
 									<td>게시판관리자</td>
 									<td colspan=3><input type="text" name="board_admin">아이디를 쉼표를 분리(admin,admin1,admin2)</td>
@@ -125,46 +135,41 @@ input[type=text]{
 												<td>
 													<select name="auth_list">
 														<option value=0>전체</option>
-														<option value=1>관리자</option>
-														<option value=3>합격회원</option>
-														<option value=5>정회원</option>
-														<option value=7>일반회원</option>
+														<?php foreach($USER_LEVEL AS $ul){
+															echo "<option value=" . $ul->LEVEL_SEQ . ">" . $ul->LEVEL_NAME . "</option>";
+														}?>
 													</select>
 												</td>
 												<td>
 													<select name="auth_content">
-														<option value=0>전체</option>
-														<option value=1>관리자</option>
-														<option value=3>합격회원</option>
-														<option value=5>정회원</option>
-														<option value=7>일반회원</option>
+													<option value="all">전체</option>
+													<?php foreach($USER_LEVEL AS $ul){
+															echo "<option value=" . $ul->LEVEL_SEQ . ">" . $ul->LEVEL_NAME . "</option>";
+														}?>
 													</select>
 												</td>
 												<td>
 													<select name="auth_write">
-														<option value=0>전체</option>
-														<option value=1>관리자</option>
-														<option value=3>합격회원</option>
-														<option value=5>정회원</option>
-														<option value=7>일반회원</option>
+													<option value="all">전체</option>
+													<?php foreach($USER_LEVEL AS $ul){
+															echo "<option value=" . $ul->LEVEL_SEQ . ">" . $ul->LEVEL_NAME . "</option>";
+														}?>
 													</select>
 												</td>
 												<td>
 													<select name="auth_repost">
-														<option value=0>전체</option>
-														<option value=1>관리자</option>
-														<option value=3>합격회원</option>
-														<option value=5>정회원</option>
-														<option value=7>일반회원</option>
+													<option value="all">전체</option>
+													<?php foreach($USER_LEVEL AS $ul){
+															echo "<option value=" . $ul->LEVEL_SEQ . ">" . $ul->LEVEL_NAME . "</option>";
+														}?>
 													</select>
 												</td>
 												<td>
 													<select name="auth_reply">
-														<option value=0>전체</option>
-														<option value=1>관리자</option>
-														<option value=3>합격회원</option>
-														<option value=5>정회원</option>
-														<option value=7>일반회원</option>
+													<option value="all">전체</option>
+													<?php foreach($USER_LEVEL AS $ul){
+															echo "<option value=" . $ul->LEVEL_SEQ . ">" . $ul->LEVEL_NAME . "</option>";
+														}?>
 													</select>
 												</td>
 											</tr>
@@ -175,7 +180,7 @@ input[type=text]{
 									<td>권한이 없을경우</td>
 									<td colspan=3>
 										경고메세지:<input type="text" name="warn_message">경고후 이동페이지:<input type="text" name="redirect_url"><br>
-										<label for="show_write_btn_y"><input type="radio" name="show_write_btn" id="show_write_btn_y" value="Y"> 글쓰기 버튼이 보이지 않음</label>
+										<label for="show_write_btn_y"><input type="radio" name="show_write_btn" id="show_write_btn_y" value="Y" checked> 글쓰기 버튼이 보이지 않음</label>
 										<label for="show_write_btn_n"><input type="radio" name="show_write_btn" id="show_write_btn_n" value="N"> 글쓰기 버튼이 보이고 클릭 시 경고창</label>
 									</td>
 								</tr>
@@ -187,12 +192,12 @@ input[type=text]{
 								</tr>
 								<tr>
 									<td>이미지파일</td>
-									<td colspan=3><input type="checkbox" name="attach_img_view">첨부파일이 이미지인 경우 보기 페이지에서 이미지 감추기</td>
+									<td colspan=3><input type="checkbox" name="attach_img_view" value="Y">첨부파일이 이미지인 경우 보기 페이지에서 이미지 감추기</td>
 								</tr>
 								<tr>
 									<td>이미지 첨부파일 정렬</td>
 									<td colspan=3>
-										<label for="align_img_l"><input type="radio" name="align_img" id="align_img_l" value="left">좌측정렬</label>
+										<label for="align_img_l"><input type="radio" name="align_img" id="align_img_l" value="left" checked>좌측정렬</label>
 										<label for="align_img_c"><input type="radio" name="align_img" id="align_img_c" value="center">중앙정렬</label>
 										<label for="align_img_r"><input type="radio" name="align_img" id="align_img_r" value="right">우측정렬</label>
 									</td>
@@ -201,32 +206,26 @@ input[type=text]{
 									<td>보기 하단에 목록보기</td>
 									<td>
 										<label for="fn_viewpage_y"><input type="radio" name="fn_viewpage" id="fn_viewpage_y" value="Y"> 사용함</label>
-										<label for="fn_viewpage_n"><input type="radio" name="fn_viewpage" id="fn_viewpage_n" value="N"> 사용안함</label>
+										<label for="fn_viewpage_n"><input type="radio" name="fn_viewpage" id="fn_viewpage_n" value="N" checked> 사용안함</label>
 									</td>
 								</tr>
 								<tr>
 									<td>스팸글체크기능</td>
 									<td colspan=3>
 										<label for="fn_spamcheck_y"><input type="radio" name="fn_spamcheck" id="fn_spamcheck_y" value="Y"> 사용함</label>
-										<label for="fn_spamcheck_n"><input type="radio" name="fn_spamcheck" id="fn_spamcheck_n" value="N"> 사용안함</label>
+										<label for="fn_spamcheck_n"><input type="radio" name="fn_spamcheck" id="fn_spamcheck_n" value="N" checked> 사용안함</label>
 									</td>
-								</tr>
-								<tr>
-									<td>날짜형식(목록페이지)</td>
-									<td></td>
-									<td>글쓴이 형식</td>
-									<td></td>
 								</tr>
 								<tr>
 									<td>추천 기능</td>
 									<td>
 										<label for="fn_recommand_y"><input type="radio" name="fn_recommand" id="fn_recommand_y" value="Y"> 사용함</label>
-										<label for="fn_recommand_n"><input type="radio" name="fn_recommand" id="fn_recommand_n" value="N"> 사용안함</label>
+										<label for="fn_recommand_n"><input type="radio" name="fn_recommand" id="fn_recommand_n" value="N"checked> 사용안함</label>
 									</td>
 									<td>코멘트 허용</td>
 									<td>
 										<label for="fn_reply_y"><input type="radio" name="fn_reply" id="fn_reply_y" value="Y"> 허용함</label>
-										<label for="fn_reply_n"><input type="radio" name="fn_reply" id="fn_reply_n" value="N"> 허용안함</label>
+										<label for="fn_reply_n"><input type="radio" name="fn_reply" id="fn_reply_n" value="N" checked> 허용안함</label>
 									</td>
 								</tr>
 								<tr>
@@ -348,7 +347,7 @@ input[type=text]{
 		console.log(form);
 
 		$.ajax({
-			url:"/admin/board/regist_board",
+			url:"/admin/board/board_write_proc",
 			type:"post",
 			data:form,
 			dataType:"json",
@@ -357,7 +356,7 @@ input[type=text]{
 				let msg = resultMsg["msg"];
 				if(code == 200){
 					alert(msg);
-					// location.reload();
+					location.href="/admin/board/board_list";
 				} else {
 					alert(msg);
 				}
