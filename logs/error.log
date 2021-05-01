@@ -1,0 +1,2 @@
+[Mon Apr 26 23:59:38.612898 2021] [autoindex:error] [pid 10602] [client 127.0.0.1:56583] AH01276: Cannot serve directory /Users/junho/MAMP/www/dev2.example.com/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Sat May 01 13:50:59.586651 2021] [autoindex:error] [pid 19153] [client 127.0.0.1:64844] AH01276: Cannot serve directory /Users/junho/MAMP/www/dev2.example.com/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive

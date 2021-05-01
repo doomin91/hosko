@@ -52,23 +52,58 @@
 								<tbody>
 									<tr>
 										<th class="col-sm-2">컨텐츠분류</th>
-                                        <td class="col-sm-3"><?php echo $ABROAD_INFO->REC_CONTENTS_CATEGORY?>&nbsp<?php echo $ABROAD_INFO->REC_CONTENTS_SUB1_CATEGORY?>&nbsp<?php echo $ABROAD_INFO->REC_CONTENTS_SUB2_CATEGORY?></td>
+                                        
+                                        <td class="col-sm-10">
+                                            <div class="col-sm-2 ctg_select_form">
+                                                <select name="ctg" class="chosen-select chosen-transparent chosen-single form-control ctg_select search_field" >
+                                                    <option value="" >:: 대분류 ::</option>
+                                                    <option value="1" >인턴쉽</option>
+                                                    <option value="2" >채용&헤드헌팅</option>
+                                                    <option value="3" >유학</option>
+                                                </select>
+                                                
+                                                </div>
+                                            <div class="col-sm-2 ctg_select_form ">
+                                                <select name="ctg2" class="chosen-select chosen-transparent form-control ctg_select search_field">
+                                                    <option value="" selected>:: 중분류 ::</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2 ctg_select_form">
+                                                <select name="ctg3" class="chosen-select chosen-transparent form-control ctg_select search_field">
+                                                    <option value="" selected>:: 소분류 ::</option>
+                                                </select>
+                                            </div>
+                                        </td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">컨텐츠명</th>
-                                        <td class="col-sm-10"><?php echo  $ABROAD_INFO->REC_TITLE?></td>
+                                        <td class="col-sm-10">
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" id="abroad_contents_title" name="abroad_contents_title" value="<?php echo $ABROAD_INFO->REC_TITLE?>">
+                                            </div></td>
 									</tr>
                                     <tr>
                                         <th class="col-sm-2">마감</th>
-                                        <td class="col-sm-10"><?php echo  $ABROAD_INFO->REC_STATUS == 0 ? print_r("마감") : print_r("모집중") ?></td>
+                                        <td class="col-sm-10">
+                                            <div class="col-sm-6">
+                                                <label for="abroad_status_open"><input type="radio" name="abroad_status" id="abroad_status_open" value="1" <?php if($ABROAD_INFO->REC_STATUS == 1) echo "checked" ?>> 모집중 </label>
+                                                <label for="abroad_status_close"><input type="radio" name="abroad_status" id="abroad_status_close" value="0" <?php if($ABROAD_INFO->REC_STATUS == 0) echo "checked" ?>> 마감 </label>
+                                            </div></td>
 									</tr>
                                     <tr>
-                                        <th class="col-sm-2">모집수</th>
-                                        <td class="col-sm-10"><?php echo  $ABROAD_INFO->REC_COUNT?></td>
+                                        <th class="col-sm-2">조회수</th>
+                                        <td class="col-sm-10">
+                                            <div class="col-sm-2">
+                                                <input type="text" class="form-control" id="abroad_hit_count" name="abroad_hit_count" value="<?php echo $ABROAD_INFO->REC_COUNT?>">
+                                            </div></td>
 									</tr>
                                     <tr>
                                         <th class="col-sm-2">담당</th>
-                                        <td class="col-sm-10"><?php echo  $ABROAD_INFO->ADMIN_USER_NAME?></td>
+                                        <td class="col-sm-10">
+                                            <div class="col-sm-2">
+                                                <input type="text" class="form-control" id="abroad_manager" name="abroad_manager" value="<?php echo $ABROAD_INFO->ADMIN_USER_ID?>">
+                                            </div>
+                                        </td>
 									</tr>
 								</tbody>
 							</table>
@@ -80,7 +115,7 @@
 
             <div class="row">
 				<div class="col-md-12">
-					<section class="tile transparent">
+                    <section class="tile transparent">
                         <!-- tile header -->
                         <div class="header-text">
                             <p class="apply_detail_view"><strong>컨텐츠정보</strong></p>
@@ -92,51 +127,87 @@
                                     <tr>
 										<th class="col-sm-3" rowspan="12">컨텐츠 정보</th>
                                         <td class="col-sm-1">국가/도시</td>
-                                        <td class="col-sm-8"><?php echo $ABROAD_INFO->REC_COUNTRY ?></td>
+                                        <td class="col-sm-8">
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_country" id="abroad_country"><?php echo $ABROAD_INFO->REC_COUNTRY?></textarea>
+                                            </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1">유학분류</td>
-                                        <td class="col-sm-8"><?php echo $ABROAD_INFO->REC_TYPE ?></td>
+                                        <td class="col-sm-8">
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_type" id="abroad_type"><?php echo $ABROAD_INFO->REC_TYPE?></textarea>
+                                            </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1">기간</td>
-                                        <td class="col-sm-8"><?php echo $ABROAD_INFO->REC_PERIOD_START." ~ ".$ABROAD_INFO->REC_PERIOD_END ?></td>
+                                        <td class="col-sm-8">
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_period" id="abroad_period"><?php echo $ABROAD_INFO->REC_PERIOD?></textarea>
+                                            </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1">채용분야</td>
-                                        <td class="col-sm-8"><?php echo $ABROAD_INFO->REC_CATEGORY ?></td>
+                                        <td class="col-sm-8">
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_category" id="abroad_category"><?php echo $ABROAD_INFO->REC_CATEGORY?></textarea>
+                                            </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1">채용마감</td>
-                                        <td class="col-sm-8"><?php echo $ABROAD_INFO->REC_DEADLINE ?></td>
+                                        <td class="col-sm-8">
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_deadline" id="abroad_deadline"><?php echo $ABROAD_INFO->REC_DEADLINE?></textarea>
+                                            </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1">면접방식</td>
-                                        <td class="col-sm-8"><?php echo $ABROAD_INFO->REC_INTERVIEW_TYPE ?></td>
+                                        <td class="col-sm-8">
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_interview_type" id="abroad_interview_type"><?php echo $ABROAD_INFO->REC_INTERVIEW_TYPE?></textarea>
+                                            </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1">면접일자</td>
-                                        <td class="col-sm-8"><?php echo $ABROAD_INFO->REC_INTERVIEW_DATE ?></td>
+                                        <td class="col-sm-8">
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_interview_date" id="abroad_interview_date"><?php echo $ABROAD_INFO->REC_INTERVIEW_DATE?></textarea>
+                                            </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1">자격요건</td>
-                                        <td class="col-sm-8"><?php echo $ABROAD_INFO->REC_CONDITION ?></td>
+                                        <td class="col-sm-8">
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_prerequisite" id="abroad_prerequisite"><?php echo $ABROAD_INFO->REC_PREREQUISITE?></textarea>
+                                            </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1">급여</td>
-                                        <td class="col-sm-8"><?php echo $ABROAD_INFO->REC_CONDITION ?></td>
+                                        <td class="col-sm-8">
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_pay" id="abroad_pay"><?php echo $ABROAD_INFO->REC_PAY?></textarea>
+                                            </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1">숙소</td>
-                                        <td class="col-sm-8"><?php echo $ABROAD_INFO->REC_LODGIN ?></td>
+                                        <td class="col-sm-8">
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_accomdation" id="abroad_accomdation"><?php echo $ABROAD_INFO->REC_LODGIN?></textarea>
+                                            </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1">복지</td>
-                                        <td class="col-sm-8"><?php echo $ABROAD_INFO->REC_WELFARE ?></td>
+                                        <td class="col-sm-8">
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_welfare" id="abroad_welfare"><?php echo $ABROAD_INFO->REC_WELFARE?></textarea>
+                                            </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1">비자</td>
-                                        <td class="col-sm-8"><?php echo $ABROAD_INFO->REC_VISA ?></td>
+                                        <td class="col-sm-8">
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_visa" id="abroad_visa"><?php echo $ABROAD_INFO->REC_VISA?></textarea>
+                                            </div></td>
 									</tr>
 								</tbody>
 							</table>
@@ -148,10 +219,10 @@
 
             <div class="row">
 				<div class="col-md-12">
-					<section class="tile transparent">
+                <section class="tile transparent">
                         <!-- tile header -->
                         <div class="header-text">
-                            <p class="apply_detail_view"><strong>컨텐츠설명</strong></p>
+                            <p class="apply_detail_view"><strong>컨텐츠사진</strong></p>
                         </div>
                         <!-- tile body -->
 						<div class="tile-body color transparent-black rounded-corners">
@@ -159,8 +230,96 @@
 								<tbody>
 									<tr>
 										<th class="col-sm-2">원본 이미지</th>
-                                        <td class="col-sm-10"><?php echo $ABROAD_INFO->REC_THUMBNAIL?></td>
+                                        <td>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+                                                    <div class="input-group col-sm-12">
+                                                        <span class="input-group-btn">
+                                                            <span class="btn btn-primary btn-file">
+                                                            <i class="fa fa-upload"></i><input type="file" id="abroad_origin_pic" name="abroad_pics[]">
+                                                            </span>
+                                                        </span>
+                                                        <input type="text" class="form-control file_view" value="<?php echo $ABROAD_INFO->REC_THUMBNAIL?>" readonly="">
+                                                    </div>
+                                                    <p style="margin-top: 5px;">
+                                                    원본이미지를 등록하면 나머지 이미지가 자동생성 됩니다.
+                                                    </p>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <p style="margin-top: 7px; margin-left: -15px"> [GIF, JPG, PNG] </p>
+                                                </div>
+                                            </div>
+                                        </td>
 									</tr>
+                                    <tr>
+                                        <th class="col-sm-2">컨텐츠목록 이미지 * <br> => 크기 : 200* x 200*</th>
+                                        <td >
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+                                                    <div class="input-group col-sm-12">
+                                                        <span class="input-group-btn">
+                                                            <span class="btn btn-primary btn-file disabled">
+                                                            <i class="fa fa-upload"></i><input type="file" id="abroad_contents_pic" name="abroad_pics[]">
+                                                            </span>
+                                                        </span>
+                                                        <input type="text" class="form-control file_view" value="<?php echo $ABROAD_INFO->REC_THUMBNAIL_R?>" readonly="">
+                                                    </div>  
+                                                </div>
+                                            </div>                                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="col-sm-2">축소 이미지1 <br> => 크기 : 200 x 200</th>
+                                        <td>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+                                                    <div class="input-group col-sm-12">
+                                                        <span class="input-group-btn">
+                                                            <span class="btn btn-primary btn-file disabled">
+                                                            <i class="fa fa-upload"></i><input type="file" id="abroad_contents_small_pic" name="abroad_pics[]">
+                                                            </span>
+                                                        </span>
+                                                        <input type="text" class="form-control file_view" value="<?php echo $ABROAD_INFO->REC_THUMBNAIL_S?>" readonly="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="col-sm-2">제품상세 이미지1 * <br> =>크기 : 200 x 200</th>
+                                        <td>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+                                                    <div class="input-group col-sm-12">
+                                                        <span class="input-group-btn">
+                                                            <span class="btn btn-primary btn-file disabled">
+                                                            <i class="fa fa-upload"></i><input type="file" id="abroad_contents_medium_pic" name="abroad_pics[]">
+                                                            </span>
+                                                        </span>
+                                                        <input type="text" class="form-control file_view" value="<?php echo $ABROAD_INFO->REC_THUMBNAIL_M?>" readonly="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="col-sm-2">확대 이미지1 * <br> =>크기 : 200 x 200</th>
+                                        <td>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+                                                    <div class="input-group col-sm-12">
+                                                        <span class="input-group-btn">
+                                                            <span class="btn btn-primary btn-file disabled">
+                                                            <i class="fa fa-upload"></i><input type="file" id="abroad_contents_large_pic" name="abroad_pics[]">
+                                                            </span>
+                                                        </span>
+                                                        <input type="text" class="form-control file_view" value="<?php echo $ABROAD_INFO->REC_THUMBNAIL_L?>" readonly="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                        
 								</tbody>
 							</table>
 						</div>
@@ -171,7 +330,7 @@
 
             <div class="row">
 				<div class="col-md-12">
-					<section class="tile transparent">
+                <section class="tile transparent">
                         <!-- tile header -->
                         <div class="header-text">
                             <p class="apply_detail_view"><strong>컨텐츠설명</strong></p>
@@ -184,7 +343,12 @@
 										<th class="col-sm-12 text-center">상세설명</th>
 									</tr>
                                     <tr>
-                                        <td class="col-sm-12 text-center"><?php echo $ABROAD_INFO->REC_CONTENTS?></td>
+                                        <td class="col-sm-12">
+                                            <div class="col-sm-12 transparent-editor">
+                                               <textarea class="form-control" name="abroad_detail" id="abroad_detail"><?php echo $ABROAD_INFO->REC_CONTENTS?></textarea>
+                                            </div>
+                                            
+                                        </td>
 									</tr>
 								</tbody>
 							</table>
@@ -200,6 +364,7 @@
                     <input type="button" id="apply_view_print" class="btn btn-default" value="인쇄하기">
                 </div>
                 <div class="col-md-8 text-right">
+                    <input type="button" class="btn btn-primary" name="abroad_modify" id="abroad_modify" value="확인">
                     <a href ="/admin/recruit/recruit_abroad_list" class="btn btn-default">목록</a>
                 </div>
             </div>
@@ -224,50 +389,212 @@
         $(function(){
             $("#apply_view_print").on("click", function(){
                 alert("인쇄하기");
-            })
-
-            $('#apply_start_date').datepicker({
-                dateFormat : "yy-mm-dd",
-                changeMonth: true,
-                changeYear: true,
-                closeText:'취소',
-                //minDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
-                showButtonPanel:true,
-                beforeShow: function(input) {
-                    var i_offset= $(input).offset(); //클릭된 input의 위치값 체크
-
-                    setTimeout(function(){
-                        $('#ui-datepicker-div').css({'top':i_offset.top, 'bottom':'', 'left':i_offset.left});      //datepicker의 div의 포지션을 강제로 input 위치에 그리고 좌측은 모바일이여서 작기때문에 무조건 10px에 놓았다.
-                    })
-                },
-                onClose: function( selectedDate ) {    
-                    // 시작일(fromDate) datepicker가 닫힐때
-                    // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-                    $("#p_end_date").datepicker( "option", "minDate", selectedDate );
-                }                
             });
 
-            //종료일
-            $('#apply_end_date').datepicker({
-                dateFormat : "yy-mm-dd",
-                changeMonth: true,
-                changeYear: true,
-                closeText:'취소',
-                //minDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
-                showButtonPanel:true,
-                beforeShow: function(input) {
-                    var i_offset= $(input).offset(); //클릭된 input의 위치값 체크
+            $("#abroad_modify").on("click", function(){
+                var fd = new FormData();
 
-                    setTimeout(function(){
-                        $('#ui-datepicker-div').css({'top':i_offset.top, 'bottom':'', 'left':i_offset.left});      //datepicker의 div의 포지션을 강제로 input 위치에 그리고 좌측은 모바일이여서 작기때문에 무조건 10px에 놓았다.
-                    })
-                },
-                onClose: function( selectedDate ) {
-                    // 종료일(toDate) datepicker가 닫힐때
-                    // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-                    $("#p_start_date").datepicker( "option", "maxDate", selectedDate );
-                }                
+                var form_data = $('#abroadRegisterForm').serializeArray(); // serialize 사용
+                $.each(form_data, function (key, input) {
+                    if(input.value==""){
+                        alert("값을 넣어주세요");
+                        return false;
+                    }
+                    fd.append(input.name, input.value);
+                });
+                
+                for (var key of FILE.keys()) {
+                    fd.append(key, FILE.get(key));
+                }
+
+                for (var key of fd.keys()) {
+                    console.log(key);
+                }
+
+                // FormData의 value 확인
+                for (var value of fd.values()) {
+                    console.log(value);
+                }
+                
+                $.ajax({
+                    url: "/admin/recruit/recruit_abroad_modify_proc",
+                    type: "POST",
+                    data: fd,
+                    dataType: "text",
+                    contentType: false,
+                    processData: false,
+                    success: function(resultMsg){
+                        console.log(resultMsg);
+                        if(resultMsg.code == 200){
+                            alert("생성 되었습니다");
+                            document.location.href="/admin/recruit/recruit_abroad_edit/"+abraod_seq;
+                            
+                        }else{
+                            console.log("문제 발생");
+                        }
+                    },
+                    error: function (request, status, error){        
+                        console.log(error);
+                    }
+                });
             });
+
+            $(".ctg_select").on("change", function(){
+                var ctg = "";
+                var ctg2 = "";
+                var ctg3 = "";
+                var ctg2Html = "";
+                var ctg3Html = "";
+                
+                console.log($(this));
+
+                if($(this).is("select[name=ctg]")){
+                    ctg = $(this).val();
+                    if(ctg == ""){
+                        ctg2Html = ""
+                                + "<option value=\"\">:: 중분류 ::</option>";
+                        ctg3Html = ""
+                                + "<option value=\"\">:: 소분류 ::</option>";
+                        $("select[name=ctg3]").html(ctg3Html);
+                        $("select[name=ctg3] option[value='"+ctg3+"']").attr("selected", 'selected');
+                    }else if(ctg == 1){
+                        ctg2Html = ""
+                                + "<option value=\"\">:: 중분류 ::</option>"
+                                + "<option value=\"10\">해외호텔 인턴쉽</option>"
+                                + "<option value=\"11\">해외 외식전문 인턴쉽</option>"
+                                + "<option value=\"12\">국내호텔 인턴쉽</option>";
+
+                    }else if(ctg == 2){
+                        ctg2Html = ""
+                                + "<option value=\"\">:: 중분류 ::</option>"
+                                + "<option value=\"20\">Job</option>"
+                                + "<option value=\"21\">Headhunting</option>";
+
+                    }else if(ctg == 3){
+                        ctg2Html = ""
+                                + "<option value=\"\">:: 중분류 ::</option>"
+                                + "<option value=\"30\">영어권유학</option>"
+                                + "<option value=\"31\">일본어 및 기타국가 유학</option>"
+                                + "<option value=\"32\">해외추업교육과정</option>"
+                                + "<option value=\"32\">EMT 영어캠프</option>";
+                    }
+                    $("select[name=ctg2]").html(ctg2Html);
+                    $("select[name=ctg2] option[value='"+ctg2+"']").attr("selected", 'selected');
+                }else if($(this).is("select[name=ctg2]")){
+                    ctg2 = $(this).val();
+                    if(ctg2 == ""){
+                        ctg3Html = ""
+                                + "<option value=\"\">:: 소분류 ::</option>";
+                    }else if(ctg2 == 10){
+                        ctg3Html = ""
+                                + "<option value=\"\">:: 소분류 ::</option>"
+                                + "<option value=\"100\">호텔 인턴 및 직원 채용</option>"
+                                + "<option value=\"101\">조리인턴 및 직원 채용</option>"
+                                + "<option value=\"102\">Management Trainee</option>";
+                                + "<option value=\"103\">기타</option>";
+                    }else if(ctg2 == 11){
+                        ctg3Html = ""
+                                + "<option value=\"\">:: 소분류 ::</option>"
+                                + "<option value=\"110\">호텔 인턴 및 직원 채용</option>"
+                                + "<option value=\"111\">조리인턴 및 직원 채용</option>"
+                                + "<option value=\"112\">기타</option>";
+                    }else if(ctg2 == 12){
+                        ctg3Html = ""
+                                + "<option value=\"\">:: 소분류 ::</option>"
+                                + "<option value=\"120\">호텔 인턴 및 직원 채용</option>"
+                                + "<option value=\"121\">조리인턴 및 직원 채용</option>"
+                                + "<option value=\"122\">기타</option>";
+                    }else if(ctg2 == 20){
+                        ctg3Html = ""
+                                + "<option value=\"\">:: 소분류 ::</option>"
+                                + "<option value=\"200\">국내호텔 직원 채용</option>"
+                                + "<option value=\"201\">해외취업</option>"
+                                + "<option value=\"202\">유학+취업프로그램</option>"
+                                + "<option value=\"203\">크루즈</option>";
+                    }else if(ctg2 == 21){
+                        ctg3Html = ""
+                                + "<option value=\"\">:: 소분류 ::</option>"
+                                + "<option value=\"210\">호스코 귀국 회원 채용 정보</option>"
+                                + "<option value=\"211\">호텔 및 기타 헤드헌팅</option>";
+                    }else if(ctg2 == 30){
+                        ctg3Html = ""
+                                + "<option value=\"\">:: 소분류 ::</option>";
+                    }else if(ctg2 == 31){
+                        ctg3Html = ""
+                                + "<option value=\"\">:: 소분류 ::</option>";
+                    }else if(ctg2 == 32){
+                        ctg3Html = ""
+                                + "<option value=\"\">:: 소분류 ::</option>";
+                    }else if(ctg2 == 33){
+                        ctg3Html = ""
+                                + "<option value=\"\">:: 소분류 ::</option>";
+                    }
+                    $("select[name=ctg3]").html(ctg3Html);
+                    $("select[name=ctg3] option[value='"+ctg3+"']").attr("selected", 'selected');
+                }
+                
+            });
+            
+            $("input[name='abroad_pics[]']").change(function(){
+                var file = this.files[0];
+                var parent = $(this).closest(".input-group");
+                // $(this).val("test");
+                console.log(parent);
+                var input = $(parent).find(".file_view");
+                console.log(input);
+                $(input).val(file['name']);
+                // console.log(file['name']);
+                // console.log(input);
+                console.log(file);
+                console.log(this.id);
+
+                FILE.append(this.id, file);
+
+                // for (var key of FILES.keys()) {
+                // console.log(key);
+                // }
+
+                // // FormData의 value 확인
+                // for (var value of FILES.values()) {
+                // console.log(value);
+                // }
+            });
+
+            $('#abroad_detail').summernote({
+                height: 500,                 // 에디터 높이
+                codemirror: { // codemirror options
+                    theme: 'monokai'
+                },
+                onImageUpload: function(files, editor, welEditable) {
+                        uploadImage(files[0], editor, welEditable);
+                }
+            });
+
+            function uploadImage(image, editor, welEditable){
+                var data = new FormData();
+                data.append("image", image);
+                //console.log("AAAAA");
+                $.ajax({
+                    url : "/admin/recruit/recruit_abroad_upload_contents_image",
+                    cache : false,
+                    contentType : false,
+                    processData : false,
+                    data : data,
+                    type : "POST",
+                    dataType : "JSON",
+                    success : function(resultMsg){
+                        if (resultMsg.code == "200"){
+                            console.log(resultMsg);
+                            editor.insertImage(welEditable, resultMsg.image_url);
+                        }else{
+                            console.log(resultMsg);
+                            alert(resultMsg.msg);
+                        }
+                    }, error : function(data){
+                        console.log(data);
+                    }
+                })
+            }
 
         });
     </script>
@@ -281,6 +608,11 @@
             padding: 6px;
             border:0; 
             background-color:rgba(0, 0, 0, 0.3)
+        }
+
+        .common_select, .common_input{
+            min-height: 30px;
+            font-size: 12px !important;
         }
         
     </style>
