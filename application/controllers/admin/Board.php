@@ -58,8 +58,14 @@ class Board extends CI_Controller {
 	}
 
 	public function get_boards(){
-		$result = $this->BoardModel->getBoards();
-		echo json_encode($result);
+		$board_info = $this->BoardModel->getBoards();
+		$group_info = $this->GroupModel->getGroupList();
+
+		$returnMsg = array(
+			"group" => $group_info,
+			"board" => $board_info,
+		);
+		echo json_encode($returnMsg);
 	}
 
 	public function del_board(){
@@ -147,8 +153,8 @@ class Board extends CI_Controller {
 			"BOARD_ALIGN_IMG" => $align_img,
 			"BOARD_IMAGE_SIZE_LIST" => $thumbnail_size,
 			"BOARD_IMAGE_SIZE_VIEW" => $detail_size,
-			"BOARD_WARNING_TYPE" => $attach_img_view,
-			"BOARD_WRITE" => $write_btn == 'Y' ? $write_btn : 'N',
+			"BOARD_WRITE_BTN_VIEW" => $write_btn == 'Y' ? $write_btn : 'N',
+			"BOARD_ATTACH_IMG_YN" => $attach_img_view == 'Y' ? $attach_img_view : 'N',
 			"BOARD_SECRET_FLAG" => $fn_secret == 'Y' ? $fn_secret : 'N',
 			"BOARD_RECOMMAND_FLAG" => $fn_recommand == 'Y' ? $fn_recommand : 'N',
 			"BOARD_BOTTOM_LIST_FLAG" => $fn_viewpage == 'Y' ? $fn_viewpage : 'N',
@@ -230,7 +236,7 @@ class Board extends CI_Controller {
 			exit;
 		}
 
-		$data = array(
+		$DATA = array(
 			// "BOARD_TYPE" => $board_type,
 			"BOARD_CATEGORY" => $board_cate,
 			"BOARD_MEMO" => $board_memo,
@@ -246,8 +252,8 @@ class Board extends CI_Controller {
 			"BOARD_ALIGN_IMG" => $align_img,
 			"BOARD_IMAGE_SIZE_LIST" => $thumbnail_size,
 			"BOARD_IMAGE_SIZE_VIEW" => $detail_size,
-			"BOARD_WARNING_TYPE" => $attach_img_view,
-			"BOARD_WRITE" => $write_btn == 'Y' ? $write_btn : 'N',
+			"BOARD_WRITE_BTN_VIEW" => $write_btn == 'Y' ? $write_btn : 'N',
+			"BOARD_ATTACH_IMG_YN" => $attach_img_view == 'Y' ? $attach_img_view : 'N',
 			"BOARD_SECRET_FLAG" => $fn_secret == 'Y' ? $fn_secret : 'N',
 			"BOARD_RECOMMAND_FLAG" => $fn_recommand == 'Y' ? $fn_recommand : 'N',
 			"BOARD_BOTTOM_LIST_FLAG" => $fn_viewpage == 'Y' ? $fn_viewpage : 'N',
@@ -260,7 +266,7 @@ class Board extends CI_Controller {
 			"BOARD_FILTER_WORDS" => $fn_filter_words
 		);
 
-		$return = $this->BoardModel->modifyBoard($board_seq, $data);
+		$return = $this->BoardModel->modifyBoard($board_seq, $DATA);
 
 		if($return){
 			$resultMsg = array(
@@ -307,8 +313,8 @@ class Board extends CI_Controller {
                         );
 		// print_r($wheresql);
         $lists = $this->BoardModel->getPosts($BOARD_SEQ, $wheresql);
-        echo $this->db->last_query();
-		print_r($lists);
+        // echo $this->db->last_query();
+		// print_r($lists);
 
 		// exit;
         $listCount = $this->BoardModel->getPostsCnt($BOARD_SEQ, $wheresql);
@@ -371,6 +377,7 @@ class Board extends CI_Controller {
 		$BOARD_INFO = $this->BoardModel->getBoard($POST_INFO->POST_BOARD_SEQ);
 
 		$DATA["POST_INFO"] = $POST_INFO;
+		$DATA["ATTACH_INFO"] = $this->BoardModel->getPostAttach($POST_SEQ);
 		$DATA["BOARD_INFO"] = $BOARD_INFO;
 		$this->load->view("admin/board/post-modify", $DATA);
 	}
@@ -384,10 +391,8 @@ class Board extends CI_Controller {
 		// $SPAM_CHECK = $this->rpHash($this->input->post("defaultReal"));
 		// $SPAM_CHECK_HASH = $this->input->post("defaultRealHash");
 
-
 		$POST_INFO = $this->BoardModel->getBoardSeqByPost($POST_SEQ);
 		$BOARD_INFO = $this->BoardModel->getBoard($POST_INFO->POST_BOARD_SEQ);
-
 		if(empty($POST_SUBJECT) || empty($POST_CONTENTS)){
 			$returnMsg = array(
 				"code" => 202,
@@ -413,6 +418,8 @@ class Board extends CI_Controller {
 
         $post_file_name = "";
         $post_file_path = "";
+
+
         if (isset($_FILES['post_file_name']['name'])) {
             if (0 < $_FILES['post_file_name']['error']) {
                 echo 'Error during file upload' . $_FILES['post_file_name']['error'];
@@ -567,6 +574,27 @@ class Board extends CI_Controller {
 		}
 
 		echo json_encode($resultMsg);
+	}
+
+	public function post_check_auth(){
+		$POST_SEQ = $this->input->get("post_seq");
+		$chk = $this->BoardModel->getPost($POST_SEQ);
+		if($chk->POST_SECRET_YN == "N" || $this->session->userdata("admin_id") || $this->session->userdata("user_id") == $chk->POST_ADMIN_SEQ){
+			$returnMsg = array(
+				"auth" => "Y",
+				"url" => "",
+				"msg" => ""
+			);
+			echo json_encode($returnMsg);
+		} else {
+			$returnMsg = array(
+				"auth" => "N",
+				"url" => $chk->BOARD_AUTH_REDIRECT,
+				"msg" => $chk->BOARD_AUTH_MSG
+			);
+			echo json_encode($returnMsg);
+		}
+		exit;
 	}
 
 	public function downalod_attach($SEQ){

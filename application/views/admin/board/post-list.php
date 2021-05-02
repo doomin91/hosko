@@ -71,7 +71,7 @@
 											<div class="col-md-2">
 												<select name="search_field" class="wid100p">
 													<option value="all">전체</option>
-													<option value="USER_ID" <?php echo $searchField == "USER_ID" ? 'selected': ""?>>글쓴이</option>
+													<option value="USER_NAME" <?php echo $searchField == "USER_NAME" ? 'selected': ""?>>글쓴이</option>
 													<option value="SUBJECT" <?php echo $searchField == "SUBJECT" ? 'selected': ""?>>제목</option>
 													<option value="CONTENTS" <?php echo $searchField == "CONTENTS" ? 'selected': ""?>>내용</option>
 												</select>
@@ -147,8 +147,13 @@
 									?>	
 								
 								</td>
-								<td><?php 
-									echo $lt->POST_SUBJECT?>
+								<td>
+									<?php 
+										echo $lt->POST_SUBJECT;
+										if($lt->POST_SECRET_YN == "Y"){
+											echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>";
+										}
+									?> 
 								</td>
 								<td><?php echo $lt->USER_NAME?></td>
 								<td><?php echo $lt->POST_VIEW_CNT?></td>
@@ -218,7 +223,15 @@
 
                 <!-- /tile -->
 					<div style="text-align:right" id="menu">
+						<?php
+						$ADMIN = explode(",", $BOARD_INFO->BOARD_ADMIN_ID);
+						if( $this->session->userdata("admin_id") == "admin" 
+						|| in_array($this->session->userdata("admin_id"), $ADMIN) ):
+						?>
 						<a href="/admin/board/post_write/<?php echo $BOARD_INFO->BOARD_SEQ?>" class="btn btn-success">게시글 작성</a>
+						<?php elseif($BOARD_INFO->BOARD_WARNING_TYPE == "N"):?>
+						<button type="button" onclick="alert('<?php echo $BOARD_INFO->BOARD_AUTH_MSG;?>');location.href='<?php echo $BOARD_INFO->BOARD_AUTH_REDIRECT;?>'" class="btn btn-success">게시글 작성</a>
+						<?php endif;?>
 					</div>
 			</div>
 
@@ -260,6 +273,23 @@
 	});
 
 	function viewPost(POST_SEQ){
-		location.href="/admin/board/post_view/" + POST_SEQ;
+		$.ajax({
+			url:"/admin/Board/post_check_auth?post_seq=" + POST_SEQ,
+			type:"get",
+			dataType:"json",
+			success: function(data){
+				let auth = data["auth"];
+				let url = data["url"];
+				let msg = data["msg"];
+				if(auth == "Y"){
+					location.href="/admin/board/post_view/" + POST_SEQ;
+				} else {
+					alert(msg);
+					// location.href=url;
+				}
+			},error: function(e){
+				console.log(e);
+			}
+		});
 	}
 </script>

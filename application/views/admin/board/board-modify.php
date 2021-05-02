@@ -202,8 +202,8 @@
 									<td>권한이 없을경우</td>
 									<td colspan=3>
 										경고메세지:<input type="text" name="warn_message" value="<?php echo $BOARD->BOARD_AUTH_MSG?>">경고후 이동페이지:<input type="text" name="redirect_url" value="<?php echo $BOARD->BOARD_AUTH_REDIRECT?>"><br>
-										<label for="show_write_btn_y"><input type="radio" name="show_write_btn" id="show_write_btn_y" value="Y" <?php echo $BOARD->BOARD_WARNING_TYPE == "Y" ? "checked" : "" ?>> 글쓰기 버튼이 보이지 않음</label>
-										<label for="show_write_btn_n"><input type="radio" name="show_write_btn" id="show_write_btn_n" value="N" <?php echo $BOARD->BOARD_WARNING_TYPE == "N" ? "checked" : "" ?>> 글쓰기 버튼이 보이고 클릭 시 경고창</label>
+										<label for="show_write_btn_y"><input type="radio" name="show_write_btn" id="show_write_btn_y" value="Y" <?php echo $BOARD->BOARD_WRITE_BTN_VIEW == "Y" ? "checked" : "" ?>> 글쓰기 버튼이 보이지 않음</label>
+										<label for="show_write_btn_n"><input type="radio" name="show_write_btn" id="show_write_btn_n" value="N" <?php echo $BOARD->BOARD_WRITE_BTN_VIEW == "N" ? "checked" : "" ?>> 글쓰기 버튼이 보이고 클릭 시 경고창</label>
 									</td>
 								</tr>
 								<tr>

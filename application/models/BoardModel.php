@@ -11,6 +11,7 @@ class BoardModel extends CI_Model{
         $this->db->where("BOARD_SEQ", $BOARD_SEQ);
         return $this->db->get("TBL_HOSKO_BOARD")->row();
     }
+
     public function getBoards(){
         $this->db->where("BOARD_DEL_YN", 'Y');
         $this->db->join("TBL_HOSKO_BOARD_GROUP", "TBL_HOSKO_BOARD_GROUP.GP_SEQ = TBL_HOSKO_BOARD.BOARD_GROUP");
@@ -41,6 +42,12 @@ class BoardModel extends CI_Model{
         return $this->db->update("TBL_HOSKO_BOARD", array("BOARD_DEL_YN" => 'N'));
     }
 
+    public function getPost($POST_SEQ){
+        $this->db->where("POST_SEQ", $POST_SEQ);
+        $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ");
+        return $this->db->get("TBL_HOSKO_BOARD_POSTS")->row();
+    }
+
     public function getPosts($BOARD_SEQ, $wheresql){
         $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.USER_NAME, count(RECOMMAND.RMD_SEQ) AS CNT, count(COMMENTS.COM_SEQ) AS COMMENTS");
         $this->db->where("POST_DEL_YN", "N");
@@ -66,9 +73,11 @@ class BoardModel extends CI_Model{
         }
 
         if((isset($wheresql['searchField'])) && $wheresql['searchField'] == "all"){
+            $this->db->group_start();
             $this->db->LIKE("USER.USER_NAME", $wheresql['searchString']);
             $this->db->OR_LIKE("TBL_HOSKO_BOARD_POSTS.POST_CONTENTS", $wheresql['searchString']);
             $this->db->OR_LIKE("TBL_HOSKO_BOARD_POSTS.POST_SUBJECT", $wheresql['searchString']);
+            $this->db->group_end();
         }
 
 
@@ -109,6 +118,14 @@ class BoardModel extends CI_Model{
 
         if((isset($wheresql['searchField'])) && $wheresql['searchField'] == "USER_NAME"){
             $this->db->LIKE("USER.USER_NAME", $wheresql['searchString']);
+        }
+
+        if((isset($wheresql['searchField'])) && $wheresql['searchField'] == "all"){
+            $this->db->group_start();
+            $this->db->LIKE("USER.USER_NAME", $wheresql['searchString']);
+            $this->db->OR_LIKE("TBL_HOSKO_BOARD_POSTS.POST_CONTENTS", $wheresql['searchString']);
+            $this->db->OR_LIKE("TBL_HOSKO_BOARD_POSTS.POST_SUBJECT", $wheresql['searchString']);
+            $this->db->group_end();
         }
 
 

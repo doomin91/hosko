@@ -74,8 +74,22 @@
 							for($i = 0 ; $i < $BOARD_INFO->BOARD_FILEUPLOAD_COUNT; $i++){?>
                             <div class="form-group">
                                 <label for="input01" class="col-sm-2 control-label">첨부파일<?php echo ($i+1)?></label>
-                                <div class="col-sm-6">
-                                    <input type="file" class="form-control" ID="post_file_name<?php echo ($i+1)?>" name="post_file_name<?php echo ($i+1)?>">
+                                <!-- <div class="col-sm-6">
+                                    <input type="file" class="form-control" ID="post_file_name<?php echo ($i+1)?>" name="post_file_name[<?php echo ($i+1)?>">
+                                </div> -->
+								<div class="input-group col-sm-6">
+									<span class="input-group-btn">
+										<span class="btn btn-primary btn-file">
+											<i class="fa fa-upload"></i><input type="file" class="post_file_name" name="post_file_name_<?php echo ($i+1)?>">
+										</span>
+									</span>
+                                    <input type="text" class="form-control file_view" 
+									value="<?php 
+									foreach ($ATTACH_INFO as $ai){
+										if( ($i+1) == $ai->ATTACH_FILE_PRIORITY){
+											echo $ai->ATTACH_FILE_NAME;	
+										}}?>" 
+									readonly="">
                                 </div>
                                 <!-- <div class="col-sm-4" style="font-size:12px">* 한글파일명은 사용할수 없습니다.</div> -->
                             </div>
@@ -152,16 +166,25 @@
 		$("#post_contents").Editor('setText', "<?php echo $POST_INFO->POST_CONTENTS;?>");
 	})
 
-
+	$(".post_file_name").change(function(){
+                var file = this.files[0];
+                var parent = $(this).closest(".input-group");
+                var input = $(parent).find(".file_view");
+                $(input).val(file['name']);
+				
+	})
 	function post_modify(){
-
 		let hash = $("#defaultReal").realperson('getHash');
-
 		let post_seq = <?php echo $POST_INFO->POST_SEQ?>;
-		
+
 		$("#defaultRealHash").val(hash);
 		$("#post_contents").val($("#post_contents").Editor("getText"));
 		let form = $("#post_write_form").serializeArray();
+
+		console.log(form);
+		// let formData = new FormData(form);
+		// formData.append("post_file", "D");
+
 
 		$.ajax({
 			url:"/admin/board/upt_post_info?post_seq=" + post_seq,
