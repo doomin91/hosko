@@ -146,6 +146,8 @@ td a {
 													<button type="button" class="btn btn-primary btn-sm"
 														id="btnRecommand">추천</button>
 													<?php endif;?>
+													<button type="button" class="btn btn-primary btn-sm"
+														id="btnRepost">답글</button>
 													<a href="/admin/board/post_modify/<?php echo $POST_INFO->POST_SEQ?>"
 														class="btn btn-primary btn-sm">수정</a>
 													<a href="/admin/board/post_list/<?php echo $BOARD_INFO->BOARD_SEQ?>"

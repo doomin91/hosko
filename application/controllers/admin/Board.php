@@ -283,11 +283,10 @@ class Board extends CI_Controller {
 
 	public function post_list($BOARD_SEQ){
 		$BOARD_INFO = $this->BoardModel->getBoard($BOARD_SEQ);
-		$reg_date_start = $this->input->post("reg_date_start");
-		$reg_date_end = $this->input->post("reg_date_end");
+		$reg_date_start = $this->input->get("reg_date_start");
+		$reg_date_end = $this->input->get("reg_date_end");
 		$searchField = $this->input->get("search_field");
 		$searchString = $this->input->get("search_string");
-
 		$limit = $BOARD_INFO->BOARD_LIST_COUNT;
         $nowpage = "";
         if (!isset($_GET["per_page"])){
@@ -297,6 +296,7 @@ class Board extends CI_Controller {
             $nowpage = $_GET["per_page"];
         }
 
+
         $wheresql = array(
 						"reg_date_start" => $reg_date_start,
 						"reg_date_end" => $reg_date_end,
@@ -305,9 +305,12 @@ class Board extends CI_Controller {
                         "start" => $start,
                         "limit" => $limit
                         );
-
+		// print_r($wheresql);
         $lists = $this->BoardModel->getPosts($BOARD_SEQ, $wheresql);
-        //echo $this->db->last_query();
+        echo $this->db->last_query();
+		print_r($lists);
+
+		// exit;
         $listCount = $this->BoardModel->getPostsCnt($BOARD_SEQ, $wheresql);
         if ($nowpage != ""){
             $pagenum = $listCount-(($nowpage-1)*$limit);
@@ -315,19 +318,20 @@ class Board extends CI_Controller {
             $pagenum = $listCount;
         }
 
-        $queryString = "?searchField=". $searchField. "&searchString=".$searchString;
+        $queryString = "?reg_date_start=". $reg_date_start. "&reg_date_end=" . $reg_date_end."&searchField=". $searchField. "&searchString=".$searchString;
         $pagination = $this->customclass->pagenavi("/admin/board/post_list/$BOARD_SEQ".$queryString, $listCount, $limit, 3, $nowpage);
 
-		$DATA["LIST"] = $lists;
-		$DATA["LIST_CNT"] = $listCount;
 		$DATA["BOARD_INFO"] = $BOARD_INFO;
+		$DATA["lists"] = $lists;
+        $DATA["listCount"] = $listCount;
+		$DATA["startDate"] = $reg_date_start;
+		$DATA["endDate"] = $reg_date_end;
 		$DATA["searchField"] = $searchField;
         $DATA["searchString"] = $searchString;
-        $DATA["lists"] = $lists;
-        $DATA["listCount"] = $listCount;
         $DATA["pagination"] = $pagination;
         $DATA["pagenum"] = $pagenum;
         $DATA["start"] = $start;
+
         $DATA["limit"] = $limit;
 
 		$this->load->view("./admin/board/post-list", $DATA);
