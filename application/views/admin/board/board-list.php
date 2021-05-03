@@ -47,13 +47,11 @@
                 
                 
                 <!-- tile -->
-                <section class="tile transparent">
-
+                <section class="tile color transparent-black">
                   <!-- tile body -->
-                  <div class="tile-body color transparent-black rounded-corners">
-                    
+                  <div class="tile-body">
                     <div class="table-responsive">
-                      <table  class="table table-datatable table-custom">
+                      <table class="table table-datatable table-custom01 userTable">
                         <thead>
                           <tr>
                             <th class="sort-numeric">#</th>

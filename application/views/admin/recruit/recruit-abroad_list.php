@@ -43,9 +43,11 @@
             <form name="abroadSearchForm" id="abroadSearchForm" class="form-horizontal" method="get" role="form">
             <div class="row">
 				<div class="col-md-6">
-					<section class="tile transparent">
-						<div class="tile-body color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyTopViewTable">
+                
+                <section class="tile color transparent-black">
+                  <!-- tile body -->
+                  <div class="tile-body">
+                      <table class="table datatable table-custom applyTopViewTable">
 								<tbody>
 									<tr>
 										<th class="col-sm-2">컨텐츠분류</th>
@@ -112,9 +114,10 @@
 					</section>
 				</div>
                 <div class="col-md-6">
-					<section class="tile transparent">
-						<div class="tile-body color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyTopViewTable">
+                <section class="tile color transparent-black">
+                  <!-- tile body -->
+                  <div class="tile-body">
+                      <table class="table datatable table-custom applyTopViewTable">
 								<tbody>
 									<tr>
 										<th class="col-sm-2">쿠폰적용</th>
@@ -155,10 +158,9 @@
 				<!-- col 6 -->
 				<div class="col-md-12">
 				<!-- tile -->
-				<section class="tile transparent">
-
-					<!-- tile body -->
-					<div class="tile-body color transparent-black rounded-corners">
+				<section class="tile color transparent-black">
+                  <!-- tile body -->
+                  <div class="tile-body">
 
 						<div class="table-responsive dataTables_wrapper form-inline" role="grid" id="basicDataTable_wrapper">
 							<div class="row">
@@ -170,7 +172,8 @@
 								</div>
 							</div>
 
-							<table class="table table-custom dataTable">
+                            <table class="table datatable table-custom01 applyTopViewTable">
+
 							<colgroup>
 									<col width="5%"/>
 									<col width="10%"/>

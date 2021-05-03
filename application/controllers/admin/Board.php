@@ -289,8 +289,8 @@ class Board extends CI_Controller {
 
 	public function post_list($BOARD_SEQ){
 		$BOARD_INFO = $this->BoardModel->getBoard($BOARD_SEQ);
-		$reg_date_start = $this->input->get("reg_date_start");
-		$reg_date_end = $this->input->get("reg_date_end");
+		$regDateStart = $this->input->get("regDateStart");
+		$regDateEnd = $this->input->get("regDateEnd");
 		$searchField = $this->input->get("search_field");
 		$searchString = $this->input->get("search_string");
 		$limit = $BOARD_INFO->BOARD_LIST_COUNT;
@@ -304,30 +304,30 @@ class Board extends CI_Controller {
 
 
         $wheresql = array(
-						"reg_date_start" => $reg_date_start,
-						"reg_date_end" => $reg_date_end,
+						"reg_date_start" => $regDateStart,
+						"reg_date_end" => $regDateEnd,
 						"searchField" => $searchField,
                         "searchString" => $searchString,
                         "start" => $start,
                         "limit" => $limit
                         );
         $lists = $this->BoardModel->getPosts($BOARD_SEQ, $wheresql);
-        // echo $this->db->last_query();
         $listCount = $this->BoardModel->getPostsCnt($BOARD_SEQ, $wheresql);
+
         if ($nowpage != ""){
             $pagenum = $listCount-(($nowpage-1)*$limit);
         }else{
             $pagenum = $listCount;
         }
 
-        $queryString = "?reg_date_start=". $reg_date_start. "&reg_date_end=" . $reg_date_end."&searchField=". $searchField. "&searchString=".$searchString;
-        $pagination = $this->customclass->pagenavi("/admin/board/post_list/$BOARD_SEQ".$queryString, $listCount, $limit, 3, $nowpage);
+        $queryString = "?regDateStart=".$regDateStart."&regDateEnd=".$regDateEnd."&searchField=". $searchField. "&searchString=".$searchString;
+        $pagination = $this->customclass->pagenavi("/admin/board/post_list/$BOARD_SEQ" . $queryString, $listCount, $limit, 3, $nowpage);
 
 		$DATA["BOARD_INFO"] = $BOARD_INFO;
 		$DATA["lists"] = $lists;
         $DATA["listCount"] = $listCount;
-		$DATA["startDate"] = $reg_date_start;
-		$DATA["endDate"] = $reg_date_end;
+		$DATA["startDate"] = $regDateStart;
+		$DATA["endDate"] = $regDateEnd;
 		$DATA["searchField"] = $searchField;
         $DATA["searchString"] = $searchString;
         $DATA["pagination"] = $pagination;

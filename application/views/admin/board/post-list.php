@@ -30,12 +30,12 @@
 
 		  <!-- page header -->
 		  <div class="pageheader">
-			<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b><?php echo $BOARD_INFO->BOARD_NAME;?></b> <span></span></h2>
+			<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b><?php echo $BOARD_INFO->BOARD_KOR_NAME;?></b> <span></span></h2>
 			<div class="breadcrumbs">
 			  <ol class="breadcrumb">
 				<li>관리자 페이지</li>
 				<li><a href="#">게시판관리</a></li>
-				<li class="active"><?php echo $BOARD_INFO->BOARD_NAME;?></li>
+				<li class="active"><?php echo $BOARD_INFO->BOARD_KOR_NAME;?></li>
 			  </ol>
 			</div>
 
@@ -43,10 +43,12 @@
 		  <div class="main">
 		  <div class="row">
 				<div class="col-md-12">
-					<section class="tile transparent">
-						<div class="tile-body color transparent-black rounded-corners">
+                <!-- tile -->
+                <section class="tile color transparent-black">
+                  <!-- tile body -->
+                  <div class="tile-body">
+                      <table class="table table-custom datatable userTable">
 						<form method="get" role="form"> 
-							<table class="table table-custom userTable">
 								<colgroup>
 									<col width="15%"/>
 									<col width="35%"/>
@@ -58,10 +60,10 @@
 										<th>등록일자</th>
 										<td colspan="3">
 											<div class="col-md-5">
-												<input name="reg_date_start" type="text" class="wid100p datepicker" value="<?php echo $startDate?>">
+												<input name="regDateStart" type="text" class="wid100p datepicker" value="<?php echo $startDate?>">
 											</div>
 											<div class="col-md-5">
-												<input name="reg_date_end" type="text" class="wid100p datepicker" value="<?php echo $endDate?>">
+												<input name="regDateEnd" type="text" class="wid100p datepicker" value="<?php echo $endDate?>">
 											</div>
 										</td>
 									</tr>
@@ -100,12 +102,12 @@
 			<div class="col-md-12">
                 <!-- tile -->
 
-                <section class="tile transparent">
-
+                <!-- tile -->
+                <section class="tile color transparent-black">
                   <!-- tile body -->
-                  <div class="tile-body color transparent-black rounded-corners">
+                  <div class="tile-body">
                     <div class="table-responsive">
-                      <table  class="table table-datatable table-custom">
+                      <table class="table table-datatable table-custom01 userTable">
                         <thead>
                           <tr>
                             <th class="sort-numeric">No</th>

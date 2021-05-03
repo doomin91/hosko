@@ -50,7 +50,7 @@
 
 		<li class="dropdown">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			<i class="far fa-building"></i> 기본설정 <b class="fa fa-plus dropdown-plus"></b>
+			<i class="fa fa-circle-o" aria-hidden="true"></i> 기본설정 <b class="fa fa-plus dropdown-plus"></b>
 		  </a>
 		  <ul class="dropdown-menu">
 			<li>
@@ -83,7 +83,7 @@
 
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<i class="far fa-building"></i> 회원관리 <b class="fa fa-plus dropdown-plus"></b>
+				<i class="fa fa-circle-o" aria-hidden="true"></i> 회원관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
 			<ul class="dropdown-menu">
 				<li>
@@ -126,7 +126,7 @@
 
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<i class="far fa-building"></i> 상담관리 <b class="fa fa-plus dropdown-plus"></b>
+				<i class="fa fa-circle-o" aria-hidden="true"></i> 상담관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
 			<ul class="dropdown-menu">
 				<li>
@@ -169,7 +169,7 @@
 
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<i class="far fa-building"></i> 수속관리 <b class="fa fa-plus dropdown-plus"></b>
+				<i class="fa fa-circle-o" aria-hidden="true"></i> 수속관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
 			<ul class="dropdown-menu">
 				<li>
@@ -213,7 +213,7 @@
 
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<i class="far fa-building"></i> 게시판관리 <b class="fa fa-plus dropdown-plus"></b>
+				<i class="fa fa-circle-o" aria-hidden="true"></i> 게시판관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
 			<ul class="dropdown-menu" id="boardMenu">
 				<li>
