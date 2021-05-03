@@ -207,25 +207,6 @@
 									</td>
 								</tr>
 								<tr>
-									<td>이미지크기</td>
-									<td colspan=3>
-									목록페이지 : <input type="text" style="width:60px;" name="thumbnail_size" value="<?php echo $BOARD->BOARD_IMAGE_SIZE_LIST?>">픽셀&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp보기페이지 : 
-									<input type="text" style="width:60px;" name="detail_size" value="<?php echo $BOARD->BOARD_IMAGE_SIZE_VIEW?>">픽셀
-									</td>
-								</tr>
-								<tr>
-									<td>이미지파일</td>
-									<td colspan=3><input type="checkbox" name="attach_img_view" value="Y" <?php echo $BOARD->BOARD_ATTACH_IMG_YN == "Y" ? "checked" : ""?>>첨부파일이 이미지인 경우 보기 페이지에서 이미지 감추기</td>
-								</tr>
-								<tr>
-									<td>이미지 첨부파일 정렬</td>
-									<td colspan=3>
-										<label for="align_img_l"><input type="radio" name="align_img" id="align_img_l" value="left" <?php echo $BOARD->BOARD_ALIGN_IMG == "left" ? "checked" : "" ?>>좌측정렬</label>
-										<label for="align_img_c"><input type="radio" name="align_img" id="align_img_c" value="center" <?php echo $BOARD->BOARD_ALIGN_IMG == "center" ? "checked" : "" ?>>중앙정렬</label>
-										<label for="align_img_r"><input type="radio" name="align_img" id="align_img_r" value="right" <?php echo $BOARD->BOARD_ALIGN_IMG == "right" ? "checked" : "" ?>>우측정렬</label>
-									</td>
-								</tr>
-								<tr>
 									<td>보기 하단에 목록보기</td>
 									<td>
 										<label for="fn_viewpage_y"><input type="radio" name="fn_viewpage" id="fn_viewpage_y" value="Y" <?php echo $BOARD->BOARD_BOTTOM_LIST_FLAG == "Y" ? "checked" : ""?>> 사용함</label>

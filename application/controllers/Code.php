@@ -63,7 +63,7 @@ class Code extends CI_Controller {
         $config["encrypt_name"] = TRUE;
         $config["remove_spaces"] = TRUE;
         $config["overwrite"] = FALSE;
-        $config[""]
+        // $config[""];
 		$this->load->library("upload", $config);
 
 		$file_name = "";

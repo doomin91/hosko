@@ -311,12 +311,8 @@ class Board extends CI_Controller {
                         "start" => $start,
                         "limit" => $limit
                         );
-		// print_r($wheresql);
         $lists = $this->BoardModel->getPosts($BOARD_SEQ, $wheresql);
         // echo $this->db->last_query();
-		// print_r($lists);
-
-		// exit;
         $listCount = $this->BoardModel->getPostsCnt($BOARD_SEQ, $wheresql);
         if ($nowpage != ""){
             $pagenum = $listCount-(($nowpage-1)*$limit);
@@ -344,23 +340,28 @@ class Board extends CI_Controller {
 	}
 
 	public function post_view($POST_SEQ){
-
 		$POST_INFO = $this->BoardModel->getBoardSeqByPost($POST_SEQ);
 
+		// 조회수
 		$DATA = array(
 			"POST_VIEW_CNT"	=> $POST_INFO->POST_VIEW_CNT + 1
 		);
 		$this->BoardModel->addPostViewCnt($POST_SEQ, $DATA);
 
+		$DATA["BOTTOM_LIST"] = $this->BoardModel->getBoardBottom($POST_SEQ, $POST_INFO->POST_BOARD_SEQ);
+		// $listCount = $this->BoardModel->getBoardBottomCnt($POST_SEQ, $POST_INFO->POST_BOARD_SEQ);
+        // if ($nowpage != ""){
+        //     $pagenum = $listCount-(($nowpage-1)*$limit);
+        // }else{
+        //     $pagenum = $listCount;
+        // }
 
 		$DATA["COMMENTS"] = $this->BoardModel->getComments($POST_SEQ);
 		$DATA["RECOMMAND"] = $this->BoardModel->getRecommand($POST_SEQ);
-		
 		$DATA["BOARD_INFO"] = $this->BoardModel->getBoard($POST_INFO->POST_BOARD_SEQ);
 		$DATA["ATTACH_FILES"] = $this->BoardModel->getPostAttach($POST_SEQ);
-
 		$DATA["POST_INFO"] = $POST_INFO;
-		// $DATA["POST_INFO"] = $POST_INFO;
+        // $DATA["pagenum"] = $pagenum;
 		$this->load->view("./admin/board/post-view", $DATA);
 	}
 
@@ -513,28 +514,32 @@ class Board extends CI_Controller {
         // $config["file_name"] = $new_name;
 		$i = 1;
 
-		foreach($_FILES as $key => $file){
-			if(!empty($file["name"])){
-				$new_name = time();
-				$temp = explode(".", $file["name"]);
-				$filetype = end($temp);
-				$filename = $filepath . $new_name . $i . "." . $filetype;
 
-				move_uploaded_file($file["tmp_name"], $filename);
-
-				$insert_arr = array(
-					"ATTACH_POST_SEQ" => $POST_SEQ,
-					"ATTACH_FILE_PRIORITY" => $i,
-					"ATTACH_FILE_NAME" => $file["name"],
-					"ATTACH_FILE_PATH" => $filename
-				);
+		if(count($_FILES) > 0){
+			foreach($_FILES as $key => $file){
+				if(!empty($file["name"])){
+					$new_name = time();
+					$temp = explode(".", $file["name"]);
+					$filetype = end($temp);
+					$filename = $filepath . $new_name . $i . "." . $filetype;
+					
+					
+					move_uploaded_file($file["tmp_name"], $filename);
+					
+					$insert_arr = array(
+						"ATTACH_POST_SEQ" => $POST_SEQ,
+						"ATTACH_FILE_PRIORITY" => $i,
+						"ATTACH_FILE_NAME" => $file["name"],
+						"ATTACH_FILE_PATH" => $filename
+					);
 				$result = $this->BoardModel->insertPostAttach($insert_arr);
+				}
+				$i = $i + 1;
 			}
-			$i = $i + 1;
 		}
 
 
-		if($result){
+		if($POST_SEQ){
 			$returnMsg = array(
 				"code" => 200,
 				"msg" => "등록되었습니다."

@@ -149,7 +149,22 @@
 								</td>
 								<td>
 									<?php 
+
+										date_default_timezone_set('Asia/Seoul');
+										if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
+											if(time() - strtotime($lt->POST_REG_DATE) < ( 86400 * $BOARD_INFO->BOARD_PERIOD_NEW )){
+												echo "<label class=\"label label-red\">new</label>";												
+											};
+										}
+											
+										if($BOARD_INFO->BOARD_PERIOD_HOT > 0){
+											if($lt->POST_VIEW_CNT >= $BOARD_INFO->BOARD_PERIOD_HOT){
+												echo "<label class=\"label label-hotpink\">hot</label>";
+											}
+										}
 										echo $lt->POST_SUBJECT;
+
+										// 비밀글
 										if($lt->POST_SECRET_YN == "Y"){
 											echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>";
 										}
@@ -157,15 +172,15 @@
 								</td>
 								<td><?php echo $lt->USER_NAME?></td>
 								<td><?php echo $lt->POST_VIEW_CNT?></td>
-								<td>
 								<?php
 								// 댓글 기능
 								if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
+								<td>
 								<span class="badge badge-danger"><?php echo $lt->COMMENTS?></span>
+								</td>
 								<?php
 								endif;
 								?>
-								</td>
 								
 								<?php 
 								// 추천 표시

@@ -216,6 +216,86 @@ td a {
 							</section>
 							<!-- /tile -->
 
+							<?php if($BOARD_INFO->BOARD_BOTTOM_LIST_FLAG == "Y"): ?>
+							<section class="tile transparent-white">
+							<!-- tile body -->
+								<div class="tile-body rounded-corners">
+									<div class="table-responsive">
+										<table  class="table table-datatable table-custom dataTable">
+											<thead>
+											<tr>
+												<th class="sort-numeric">No</th>
+												<th class="sort">제목</th>
+												<th class="sort">글쓴이</th>
+												<th class="sort">조회수</th>
+												<?php 
+												// 댓글 표시
+												if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
+												<th class="sort">댓글수</th>
+												<?php endif;?>
+
+												<?php
+												// 추천 표시
+												if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
+												<th class="sort">추천수</th>
+												<?php endif;?>
+												<th class="sort">등록일</th>
+											</tr>
+											</thead>
+											<tbody>
+											<?php foreach($BOTTOM_LIST as $lt):?>
+											<?php if($POST_INFO->POST_SEQ == $lt->POST_SEQ):?>
+											<tr style="background:#3071A9; color:white;">
+											<?php else: ?>
+											<tr style="cursor:pointer;" onclick="viewPost(<?php echo $lt->POST_SEQ?>);">
+											<?php endif; ?>
+												<td><?php 
+												if($lt->POST_NOTICE_YN == 'Y'){
+													echo "<span style=\"color:red;\">[공지]</span> ";
+												} else {
+													// echo $pagenum;
+												}
+													?>	
+												
+												</td>
+												<td>
+													<?php 
+														echo $lt->POST_SUBJECT;
+														if($lt->POST_SECRET_YN == "Y"){
+															echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>";
+														}
+													?> 
+												</td>
+												<td><?php echo $lt->USER_NAME?></td>
+												<td><?php echo $lt->POST_VIEW_CNT?></td>
+												<?php
+												// 댓글 기능
+												if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
+												<td>
+												<span class="badge badge-danger"><?php echo $lt->COMMENTS?></span>
+												</td>
+												<?php
+												endif;
+												?>
+												
+												<?php 
+												// 추천 표시
+												if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
+												<td><i class="fa fa-heart" aria-hidden="true"></i> <?php ?><?php echo $lt->CNT?></td>
+												<?php endif;?>
+												<td><?php echo $lt->POST_REG_DATE?></td>
+											</tr>
+											<?php 
+											// $pagenum -= 1;	
+											endforeach;
+											?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</section>
+							<?php endif; ?>
+
 						</div>
 						<!-- /col 12 -->
 
@@ -267,6 +347,27 @@ td a {
 			})
 		});
 
+		function viewPost(POST_SEQ){
+			$.ajax({
+				url:"/admin/Board/post_check_auth?post_seq=" + POST_SEQ,
+				type:"get",
+				dataType:"json",
+				success: function(data){
+					let auth = data["auth"];
+					let url = data["url"];
+					let msg = data["msg"];
+					if(auth == "Y"){
+						location.href="/admin/board/post_view/" + POST_SEQ;
+					} else {
+						alert(msg);
+						// location.href=url;
+					}
+				},error: function(e){
+					console.log(e);
+				}
+			});
+		}
+
 		function comment_regist() {
 			let board_seq = <?php echo $BOARD_INFO->BOARD_SEQ?>;
 			$("#comment_content").val(CKEDITOR.instances.comment_content.getData());
@@ -287,7 +388,3 @@ td a {
 		}
 
 	</script>
-
-</body>
-
-</html>
