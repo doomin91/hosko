@@ -50,7 +50,7 @@
 
 		<li class="dropdown">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			<i class="far fa-building"></i> 기본설정 <b class="fa fa-plus dropdown-plus"></b>
+			<i class="fa fa-circle-o" aria-hidden="true"></i> 기본설정 <b class="fa fa-plus dropdown-plus"></b>
 		  </a>
 		  <ul class="dropdown-menu">
 			<li>
@@ -83,7 +83,7 @@
 
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<i class="far fa-building"></i> 회원관리 <b class="fa fa-plus dropdown-plus"></b>
+				<i class="fa fa-circle-o" aria-hidden="true"></i> 회원관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
 			<ul class="dropdown-menu">
 				<li>
@@ -126,7 +126,7 @@
 
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<i class="far fa-building"></i> 상담관리 <b class="fa fa-plus dropdown-plus"></b>
+				<i class="fa fa-circle-o" aria-hidden="true"></i> 상담관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
 			<ul class="dropdown-menu">
 				<li>
@@ -169,7 +169,7 @@
 
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<i class="far fa-building"></i> 수속관리 <b class="fa fa-plus dropdown-plus"></b>
+				<i class="fa fa-circle-o" aria-hidden="true"></i> 수속관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
 			<ul class="dropdown-menu">
 				<li>
@@ -213,7 +213,7 @@
 
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<i class="far fa-building"></i> 게시판관리 <b class="fa fa-plus dropdown-plus"></b>
+				<i class="fa fa-circle-o" aria-hidden="true"></i> 게시판관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
 			<ul class="dropdown-menu" id="boardMenu">
 				<li>
@@ -256,7 +256,6 @@
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script>
-
 	ViewBoardMenu();
 	function ViewBoardMenu(){
 		let str = "";
@@ -265,15 +264,28 @@
 			type:"post",
 			dataType:"json",
 			success:function(data){
+				let board = data["board"];
+				let group = data["group"];
+
 				str += "<li>&nbsp</li>";
-				$.each(data, function(index, value){
-					str += "<li>";
-					str += "<a href=\"/admin/board/post_list/" + value["BOARD_SEQ"] + "\">";
-					str += "<i class=\"fa fa-caret-right\"></i> " + value["BOARD_KOR_NAME"];
-					str += "</a>"
+				$.each(group, function(index, value){
+					str += "<li class=\"dropdown\">"
+					str += "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">"
+					str += "<i class=\"fa fa-caret-right\"></i>" + value["GP_NAME"] + " <b class=\"fa fa-plus dropdown-plus\"></b>"
+					str += "</a>";
+					str += "<ul class=\"dropdown-menu\">";
+					$.each(board, function(index2, value2){
+							if(value["GP_SEQ"] == value2["BOARD_GROUP"]){
+								str += "<li>";
+								str += "<a href=\"/admin/board/post_list/" + value2["BOARD_SEQ"] + "\">";
+								str += "<i class=\"fa fa-caret-right\"></i> " + value2["BOARD_KOR_NAME"];
+								str += "</a>"
+								str += "</li>";
+							}
+					})
+					str += "</ul>";
 					str += "</li>";
 				});
-				str += "<li>&nbsp</li>";
 				$("#boardMenu").append(str);
 			}, error:function(e){
 				console.log(e);

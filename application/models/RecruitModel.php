@@ -120,7 +120,7 @@ class RecruitModel extends CI_Model{
 
         $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ");
 
-        $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_USER.USER_NAME AS ADMIN_USER_NAME");
+        $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_USER.USER_NAME AS ADMIN_USER_NAME, TBL_HOSKO_USER.USER_ID AS ADMIN_USER_ID");
 
         return $this->db->get("TBL_HOSKO_RECRUIT")->row(); 
     }

@@ -32,6 +32,8 @@ class Board extends CI_Controller {
 		$this->load->helper('download');
 		$this->load->model("BoardModel");
 		$this->load->model("GroupModel");
+		$this->load->model("UserModel");
+
 	}
 
 	/////////////////////
@@ -44,18 +46,26 @@ class Board extends CI_Controller {
 
 	public function board_write(){
 		$DATA["GROUP"] = $this->GroupModel->getGroupList();
+		$DATA["USER_LEVEL"] = $this->UserModel->getUserLevelAll();
 		$this->load->view("./admin/board/board-write", $DATA);
 	}
 
 	public function board_view($BOARD_SEQ){
+		$DATA["GROUP"] = $this->GroupModel->getGroupList();
+		$DATA["USER_LEVEL"] = $this->UserModel->getUserLevelAll();
 		$DATA["BOARD"] = $this->BoardModel->getBoard($BOARD_SEQ);
 		$this->load->view("./admin/board/board-modify", $DATA);
 	}
 
-
 	public function get_boards(){
-		$result = $this->BoardModel->getBoards();
-		echo json_encode($result);
+		$board_info = $this->BoardModel->getBoards();
+		$group_info = $this->GroupModel->getGroupList();
+
+		$returnMsg = array(
+			"group" => $group_info,
+			"board" => $board_info,
+		);
+		echo json_encode($returnMsg);
 	}
 
 	public function del_board(){
@@ -66,7 +76,8 @@ class Board extends CI_Controller {
 		echo json_encode($result);
 	}
 
-	public function regist_board(){
+	public function board_write_proc(){
+		$board_type = $this->input->post("board_type");
 		$board_cate = $this->input->post("board_cate");
 		$board_memo = $this->input->post("board_memo");
 		$board_name = $this->input->post("board_name");
@@ -81,6 +92,9 @@ class Board extends CI_Controller {
 		$redirect_url = $this->input->post("redirect_url");
 		$write_btn = $this->input->post("show_write_btn");
 		$align_img = $this->input->post("align_img");
+		$thumbnail_size = $this->input->post("thumbnail_size");
+		$detail_size = $this->input->post("detail_size");
+		$attach_img_view = $this->input->post("attach_img_view");
 		$fn_secret = $this->input->post("fn_secret");
 		$fn_recommand = $this->input->post("fn_recommand");
 		$fn_viewpage = $this->input->post("fn_viewpage");
@@ -90,6 +104,8 @@ class Board extends CI_Controller {
 		$list_view = $this->input->post("list_view");
 		$new_period = $this->input->post("new_period");
 		$hot_period = $this->input->post("hot_period");
+		$fn_filter = $this->input->post("fn_filter");
+		$fn_filter_words = $this->input->post("fn_filter_words");
 		$ip_address = $this->customclass->get_client_ip();
 
 		$chk = $this->BoardModel->checkBoardName($board_name);
@@ -122,6 +138,7 @@ class Board extends CI_Controller {
 		}
 
 		$DATA = array(
+			"BOARD_TYPE" => $board_type,
 			"BOARD_CATEGORY" => $board_cate,
 			"BOARD_MEMO" => $board_memo,
 			"BOARD_NAME" => $board_name,
@@ -134,17 +151,21 @@ class Board extends CI_Controller {
 			"BOARD_AUTH_MSG" => $redirect_url,
 			"BOARD_ADMIN_ID" => $board_admin,
 			"BOARD_ALIGN_IMG" => $align_img,
+			"BOARD_IMAGE_SIZE_LIST" => $thumbnail_size,
+			"BOARD_IMAGE_SIZE_VIEW" => $detail_size,
+			"BOARD_WRITE_BTN_VIEW" => $write_btn == 'Y' ? $write_btn : 'N',
+			"BOARD_ATTACH_IMG_YN" => $attach_img_view == 'Y' ? $attach_img_view : 'N',
+			"BOARD_SECRET_FLAG" => $fn_secret == 'Y' ? $fn_secret : 'N',
+			"BOARD_RECOMMAND_FLAG" => $fn_recommand == 'Y' ? $fn_recommand : 'N',
+			"BOARD_BOTTOM_LIST_FLAG" => $fn_viewpage == 'Y' ? $fn_viewpage : 'N',
+			"BOARD_SPAM_CHECK_FLAG" => $fn_spamcheck == 'Y' ? $fn_spamcheck : 'N',
+			"BOARD_COMMENT_FLAG" => $fn_reply == 'Y' ? $fn_reply : 'N',
 			"BOARD_FILEUPLOAD_COUNT" => $file_upload,
 			"BOARD_LIST_COUNT" => $list_view,
-			"BOARD_REG_IP" => $ip_address
+			"BOARD_REG_IP" => $ip_address,
+			"BOARD_FILTER_YN" => $fn_filter == 'Y' ? $fn_filter : 'N',
+			"BOARD_FILTER_WORDS" => $fn_filter_words
 		);
-		
-		$DATA["BOARD_WRITE"] = $write_btn == 'Y' ? $write_btn : 'N';
-		$DATA["BOARD_SECRET_FLAG"] = $fn_secret == 'Y' ? $fn_secret : 'N';
-		$DATA["BOARD_RECOMMAND_FLAG"] =  $fn_recommand == 'Y' ? $fn_recommand : 'N';
-		$DATA["BOARD_BOTTOM_LIST_FLAG"] =  $fn_viewpage == 'Y' ? $fn_viewpage : 'N';
-		$DATA["BOARD_SPAM_CHECK_FLAG"] =  $fn_spamcheck == 'Y' ? $fn_spamcheck : 'N';
-		$DATA["BOARD_COMMENT_FLAG"] =  $fn_reply == 'Y' ? $fn_reply : 'N';
 
 		$return = $this->BoardModel->writeBoard($DATA);
 
@@ -163,17 +184,115 @@ class Board extends CI_Controller {
 		echo json_encode($resultMsg);
 	}
 
+
+	public function board_modify_proc(){
+		$board_seq = $this->input->post("board_seq");
+		// $board_type = $this->input->post("board_type");
+		$board_cate = $this->input->post("board_cate");
+		$board_memo = $this->input->post("board_memo");
+		$board_name_kor = $this->input->post("board_name_kor");
+		$board_group = $this->input->post("board_group");
+		$board_admin = $this->input->post("board_admin");
+		$auth = $this->input->post("auth_list") . "," . $this->input->post("auth_content") . "," . 
+			$this->input->post("auth_write") . "," . 
+			$this->input->post("auth_repost") . "," . 
+			$this->input->post("auth_reply");
+		$warn_message = $this->input->post("warn_message");
+		$redirect_url = $this->input->post("redirect_url");
+		$write_btn = $this->input->post("show_write_btn");
+		$align_img = $this->input->post("align_img");
+		$thumbnail_size = $this->input->post("thumbnail_size");
+		$detail_size = $this->input->post("detail_size");
+		$attach_img_view = $this->input->post("attach_img_view");
+		$fn_secret = $this->input->post("fn_secret");
+		$fn_recommand = $this->input->post("fn_recommand");
+		$fn_viewpage = $this->input->post("fn_viewpage");
+		$fn_spamcheck = $this->input->post("fn_spamcheck");
+		$fn_reply = $this->input->post("fn_reply");
+		$file_upload = $this->input->post("file_upload");
+		$list_view = $this->input->post("list_view");
+		$new_period = $this->input->post("new_period");
+		$hot_period = $this->input->post("hot_period");
+		$fn_filter = $this->input->post("fn_filter");
+		$fn_filter_words = $this->input->post("fn_filter_words");
+		$ip_address = $this->customclass->get_client_ip();
+
+		if(empty($board_name_kor)){
+			$resultMsg = array(
+				"code" => 202,
+				"msg" => "게시판명을 입력해주세요."
+			);
+			echo json_encode($resultMsg);
+			exit;		
+		}
+
+		$chk = $this->BoardModel->checkBoardKorName($board_name_kor);
+		if($chk && $chk->BOARD_KOR_NAME != $board_name_kor) {
+			$resultMsg = array(
+				"code" => 202,
+				"msg" => "중복된 한글 게시판명이 존재합니다."
+			);
+			echo json_encode($resultMsg);
+			exit;
+		}
+
+		$DATA = array(
+			// "BOARD_TYPE" => $board_type,
+			"BOARD_CATEGORY" => $board_cate,
+			"BOARD_MEMO" => $board_memo,
+			// "BOARD_NAME" => $board_name,
+			"BOARD_KOR_NAME" => $board_name_kor,
+			"BOARD_GROUP" => $board_group,
+			"BOARD_AUTH" => $auth,
+			"BOARD_AUTH_REDIRECT" => $warn_message, 
+			"BOARD_PERIOD_NEW" => $new_period,
+			"BOARD_PERIOD_HOT" => $hot_period,
+			"BOARD_AUTH_MSG" => $redirect_url,
+			"BOARD_ADMIN_ID" => $board_admin,
+			"BOARD_ALIGN_IMG" => $align_img,
+			"BOARD_IMAGE_SIZE_LIST" => $thumbnail_size,
+			"BOARD_IMAGE_SIZE_VIEW" => $detail_size,
+			"BOARD_WRITE_BTN_VIEW" => $write_btn == 'Y' ? $write_btn : 'N',
+			"BOARD_ATTACH_IMG_YN" => $attach_img_view == 'Y' ? $attach_img_view : 'N',
+			"BOARD_SECRET_FLAG" => $fn_secret == 'Y' ? $fn_secret : 'N',
+			"BOARD_RECOMMAND_FLAG" => $fn_recommand == 'Y' ? $fn_recommand : 'N',
+			"BOARD_BOTTOM_LIST_FLAG" => $fn_viewpage == 'Y' ? $fn_viewpage : 'N',
+			"BOARD_SPAM_CHECK_FLAG" => $fn_spamcheck == 'Y' ? $fn_spamcheck : 'N',
+			"BOARD_COMMENT_FLAG" => $fn_reply == 'Y' ? $fn_reply : 'N',
+			"BOARD_FILEUPLOAD_COUNT" => $file_upload,
+			"BOARD_LIST_COUNT" => $list_view,
+			"BOARD_REG_IP" => $ip_address,
+			"BOARD_FILTER_YN" => $fn_filter == 'Y' ? $fn_filter : 'N',
+			"BOARD_FILTER_WORDS" => $fn_filter_words
+		);
+
+		$return = $this->BoardModel->modifyBoard($board_seq, $DATA);
+
+		if($return){
+			$resultMsg = array(
+				"code" => 200,
+				"msg" => "\"" . $board_name_kor . "\" 게시판이 수정되었습니다."
+			);
+		} else {
+			$resultMsg = array(
+				"code" => 201,
+				"msg" => "수정에 실패했습니다. 관리자에게 문의해주세요."
+			);
+		}
+
+		echo json_encode($resultMsg);
+	}
+
 	///////////////////////
 	// 생성된 게시판 관리 //
 	///////////////////////
 
 	public function post_list($BOARD_SEQ){
 		$BOARD_INFO = $this->BoardModel->getBoard($BOARD_SEQ);
-		$reg_date_start = $this->input->post("reg_date_start");
-		$reg_date_end = $this->input->post("reg_date_end");
+		$regDateStart = $this->input->get("regDateStart");
+		$regDateEnd = $this->input->get("regDateEnd");
 		$searchField = $this->input->get("search_field");
 		$searchString = $this->input->get("search_string");
-
 		$limit = $BOARD_INFO->BOARD_LIST_COUNT;
         $nowpage = "";
         if (!isset($_GET["per_page"])){
@@ -183,58 +302,66 @@ class Board extends CI_Controller {
             $nowpage = $_GET["per_page"];
         }
 
+
         $wheresql = array(
-						"reg_date_start" => $reg_date_start,
-						"reg_date_end" => $reg_date_end,
+						"reg_date_start" => $regDateStart,
+						"reg_date_end" => $regDateEnd,
 						"searchField" => $searchField,
                         "searchString" => $searchString,
                         "start" => $start,
                         "limit" => $limit
                         );
-
         $lists = $this->BoardModel->getPosts($BOARD_SEQ, $wheresql);
-        //echo $this->db->last_query();
         $listCount = $this->BoardModel->getPostsCnt($BOARD_SEQ, $wheresql);
+
         if ($nowpage != ""){
             $pagenum = $listCount-(($nowpage-1)*$limit);
         }else{
             $pagenum = $listCount;
         }
 
-        $queryString = "?searchField=". $searchField. "&searchString=".$searchString;
-        $pagination = $this->customclass->pagenavi("/admin/board/post_list/$BOARD_SEQ".$queryString, $listCount, $limit, 3, $nowpage);
+        $queryString = "?regDateStart=".$regDateStart."&regDateEnd=".$regDateEnd."&searchField=". $searchField. "&searchString=".$searchString;
+        $pagination = $this->customclass->pagenavi("/admin/board/post_list/$BOARD_SEQ" . $queryString, $listCount, $limit, 3, $nowpage);
 
-		$DATA["LIST"] = $lists;
-		$DATA["LIST_CNT"] = $listCount;
 		$DATA["BOARD_INFO"] = $BOARD_INFO;
+		$DATA["lists"] = $lists;
+        $DATA["listCount"] = $listCount;
+		$DATA["startDate"] = $regDateStart;
+		$DATA["endDate"] = $regDateEnd;
 		$DATA["searchField"] = $searchField;
         $DATA["searchString"] = $searchString;
-        $DATA["lists"] = $lists;
-        $DATA["listCount"] = $listCount;
         $DATA["pagination"] = $pagination;
         $DATA["pagenum"] = $pagenum;
         $DATA["start"] = $start;
+
         $DATA["limit"] = $limit;
 
 		$this->load->view("./admin/board/post-list", $DATA);
 	}
 
 	public function post_view($POST_SEQ){
-
 		$POST_INFO = $this->BoardModel->getBoardSeqByPost($POST_SEQ);
 
+		// 조회수
 		$DATA = array(
 			"POST_VIEW_CNT"	=> $POST_INFO->POST_VIEW_CNT + 1
 		);
 		$this->BoardModel->addPostViewCnt($POST_SEQ, $DATA);
 
+		$DATA["BOTTOM_LIST"] = $this->BoardModel->getBoardBottom($POST_SEQ, $POST_INFO->POST_BOARD_SEQ);
+		// $listCount = $this->BoardModel->getBoardBottomCnt($POST_SEQ, $POST_INFO->POST_BOARD_SEQ);
+        // if ($nowpage != ""){
+        //     $pagenum = $listCount-(($nowpage-1)*$limit);
+        // }else{
+        //     $pagenum = $listCount;
+        // }
 
 		$DATA["COMMENTS"] = $this->BoardModel->getComments($POST_SEQ);
 		$DATA["RECOMMAND"] = $this->BoardModel->getRecommand($POST_SEQ);
-
 		$DATA["BOARD_INFO"] = $this->BoardModel->getBoard($POST_INFO->POST_BOARD_SEQ);
+		$DATA["ATTACH_FILES"] = $this->BoardModel->getPostAttach($POST_SEQ);
 		$DATA["POST_INFO"] = $POST_INFO;
-		// $DATA["POST_INFO"] = $POST_INFO;
+        // $DATA["pagenum"] = $pagenum;
 		$this->load->view("./admin/board/post-view", $DATA);
 	}
 
@@ -251,6 +378,7 @@ class Board extends CI_Controller {
 		$BOARD_INFO = $this->BoardModel->getBoard($POST_INFO->POST_BOARD_SEQ);
 
 		$DATA["POST_INFO"] = $POST_INFO;
+		$DATA["ATTACH_INFO"] = $this->BoardModel->getPostAttach($POST_SEQ);
 		$DATA["BOARD_INFO"] = $BOARD_INFO;
 		$this->load->view("admin/board/post-modify", $DATA);
 	}
@@ -261,24 +389,11 @@ class Board extends CI_Controller {
 		$POST_CONTENTS = $this->input->post("post_contents");
 		$POST_NOTICE_CHK = $this->input->post("post_notice_chk");
 		$POST_SECRET_CHK = $this->input->post("post_secret_chk");
-		$SPAM_CHECK = $this->rpHash($this->input->post("defaultReal"));
-		$SPAM_CHECK_HASH = $this->input->post("defaultRealHash");
-
+		// $SPAM_CHECK = $this->rpHash($this->input->post("defaultReal"));
+		// $SPAM_CHECK_HASH = $this->input->post("defaultRealHash");
 
 		$POST_INFO = $this->BoardModel->getBoardSeqByPost($POST_SEQ);
 		$BOARD_INFO = $this->BoardModel->getBoard($POST_INFO->POST_BOARD_SEQ);
-
-		if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'){
-			if($SPAM_CHECK != $SPAM_CHECK_HASH){
-				$returnMsg = array(
-					"code" => 202,
-					"msg" => "자동입력방지 값이 다릅니다."
-				);
-				echo json_encode($returnMsg);
-				exit;
-			}
-		}
-
 		if(empty($POST_SUBJECT) || empty($POST_CONTENTS)){
 			$returnMsg = array(
 				"code" => 202,
@@ -304,6 +419,8 @@ class Board extends CI_Controller {
 
         $post_file_name = "";
         $post_file_path = "";
+
+
         if (isset($_FILES['post_file_name']['name'])) {
             if (0 < $_FILES['post_file_name']['error']) {
                 echo 'Error during file upload' . $_FILES['post_file_name']['error'];
@@ -326,7 +443,7 @@ class Board extends CI_Controller {
         }
 
         $insert_arr = array(
-			"ATTACH_POST_SEQ" => $BOARD_SEQ,
+			"ATTACH_POST_SEQ" => $POST_SEQ,
 			"ATTACH_FILE_NAME" => $post_file_name,
 			"ATTACH_FILE_PATH" => $post_file_path
 		);
@@ -357,7 +474,7 @@ class Board extends CI_Controller {
 		$SPAM_CHECK = $this->rpHash($this->input->post("defaultReal"));
 		$SPAM_CHECK_HASH = $this->input->post("defaultRealHash");
 		$BOARD_INFO = $this->BoardModel->getBoard($BOARD_SEQ);
-
+		
 		if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'){
 			if($SPAM_CHECK != $SPAM_CHECK_HASH){
 				$returnMsg = array(
@@ -378,32 +495,6 @@ class Board extends CI_Controller {
 			exit;
 		}
 
-		$filepath = $_SERVER['DOCUMENT_ROOT'] . "/upload/attach/";
-		
-        // $new_name = $BOARD_INFO->BOARD_NAME . "_" . date("YmdHis");
-        // $config["file_name"] = $new_name;
-		$i = 1;
-
-		foreach($_FILES as $key => $file){
-			if(!empty($file["name"])){
-				$new_name = time();
-				$temp = explode(".", $file["name"]);
-				$filetype = end($temp);
-				$filename = $filepath . $new_name . $i . "." . $filetype;
-
-				move_uploaded_file($file["tmp_name"], $filename);
-
-				$insert_arr = array(
-					"ATTACH_POST_SEQ" => $BOARD_SEQ,
-					"ATTACH_FILE_PRIORITY" => $i,
-					"ATTACH_FILE_NAME" => $file["name"],
-					"ATTACH_FILE_PATH" => $filename
-				);
-				$result = $this->BoardModel->insertPostAttach($insert_arr);
-			}
-			$i = $i + 1;
-		}
-
 		$DATA = array(
 			"POST_BOARD_SEQ" => $BOARD_SEQ,
 			"POST_ADMIN_SEQ" => $BOARD_INFO->BOARD_ADMIN_ID,
@@ -415,8 +506,40 @@ class Board extends CI_Controller {
 			"POST_SECRET_YN" => isset($POST_SECRET_CHK) ? "Y" : "N"
 		);
 
-		$result = $this->BoardModel->setPost($DATA);
-		if($result){
+		$POST_SEQ = $this->BoardModel->setPost($DATA);
+
+		$filepath = $_SERVER['DOCUMENT_ROOT'] . "/upload/attach/";
+		
+        // $new_name = $BOARD_INFO->BOARD_NAME . "_" . date("YmdHis");
+        // $config["file_name"] = $new_name;
+		$i = 1;
+
+
+		if(count($_FILES) > 0){
+			foreach($_FILES as $key => $file){
+				if(!empty($file["name"])){
+					$new_name = time();
+					$temp = explode(".", $file["name"]);
+					$filetype = end($temp);
+					$filename = $filepath . $new_name . $i . "." . $filetype;
+					
+					
+					move_uploaded_file($file["tmp_name"], $filename);
+					
+					$insert_arr = array(
+						"ATTACH_POST_SEQ" => $POST_SEQ,
+						"ATTACH_FILE_PRIORITY" => $i,
+						"ATTACH_FILE_NAME" => $file["name"],
+						"ATTACH_FILE_PATH" => $filename
+					);
+				$result = $this->BoardModel->insertPostAttach($insert_arr);
+				}
+				$i = $i + 1;
+			}
+		}
+
+
+		if($POST_SEQ){
 			$returnMsg = array(
 				"code" => 200,
 				"msg" => "등록되었습니다."
@@ -458,6 +581,34 @@ class Board extends CI_Controller {
 		echo json_encode($resultMsg);
 	}
 
+	public function post_check_auth(){
+		$POST_SEQ = $this->input->get("post_seq");
+		$chk = $this->BoardModel->getPost($POST_SEQ);
+		if($chk->POST_SECRET_YN == "N" || $this->session->userdata("admin_id") || $this->session->userdata("user_id") == $chk->POST_ADMIN_SEQ){
+			$returnMsg = array(
+				"auth" => "Y",
+				"url" => "",
+				"msg" => ""
+			);
+			echo json_encode($returnMsg);
+		} else {
+			$returnMsg = array(
+				"auth" => "N",
+				"url" => $chk->BOARD_AUTH_REDIRECT,
+				"msg" => $chk->BOARD_AUTH_MSG
+			);
+			echo json_encode($returnMsg);
+		}
+		exit;
+	}
+
+	public function downalod_attach($SEQ){
+		$attach = $this->BoardModel->getPostAttachByAttachSeq($SEQ);
+		$name = $attach->ATTACH_FILE_NAME;
+		$data = file_get_contents($attach->ATTACH_FILE_PATH);
+		force_download($name, $data);
+	}
+
 	// 댓글 기능 함수 //
 	public function comment_regist(){
 		$POST_SEQ = $this->input->post("post_seq");
@@ -495,10 +646,10 @@ class Board extends CI_Controller {
 		$binary = substr($binary, strlen($binary) - 32);
 		// if it's a positive number return it
 		// otherwise return the 2's complement
-		/*
+		
 		return ($binary{0} == "0" ? bindec($binary) :
 			-(pow(2, 31) - bindec(substr($binary, 1))));
-			*/
+		
 	}
 
 }

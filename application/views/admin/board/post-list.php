@@ -30,12 +30,12 @@
 
 		  <!-- page header -->
 		  <div class="pageheader">
-			<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b><?php echo $BOARD_INFO->BOARD_NAME;?></b> <span></span></h2>
+			<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b><?php echo $BOARD_INFO->BOARD_KOR_NAME;?></b> <span></span></h2>
 			<div class="breadcrumbs">
 			  <ol class="breadcrumb">
 				<li>관리자 페이지</li>
 				<li><a href="#">게시판관리</a></li>
-				<li class="active"><?php echo $BOARD_INFO->BOARD_NAME;?></li>
+				<li class="active"><?php echo $BOARD_INFO->BOARD_KOR_NAME;?></li>
 			  </ol>
 			</div>
 
@@ -43,10 +43,12 @@
 		  <div class="main">
 		  <div class="row">
 				<div class="col-md-12">
-					<section class="tile transparent">
-						<div class="tile-body color transparent-black rounded-corners">
-						<form method="get">
-							<table class="table table-custom userTable">
+                <!-- tile -->
+                <section class="tile color transparent-black">
+                  <!-- tile body -->
+                  <div class="tile-body">
+                      <table class="table table-custom datatable userTable">
+						<form method="get" role="form"> 
 								<colgroup>
 									<col width="15%"/>
 									<col width="35%"/>
@@ -58,10 +60,10 @@
 										<th>등록일자</th>
 										<td colspan="3">
 											<div class="col-md-5">
-												<input name="reg_date_start" type="text" class="wid100p datepicker">
+												<input name="regDateStart" type="text" class="wid100p datepicker" value="<?php echo $startDate?>">
 											</div>
 											<div class="col-md-5">
-												<input name="reg_date_end" type="text" class="wid100p datepicker">
+												<input name="regDateEnd" type="text" class="wid100p datepicker" value="<?php echo $endDate?>">
 											</div>
 										</td>
 									</tr>
@@ -71,13 +73,13 @@
 											<div class="col-md-2">
 												<select name="search_field" class="wid100p">
 													<option value="all">전체</option>
-													<option value="USER_ID" <?php echo $searchField == "USER_ID" ? 'selected': ""?>>글쓴이</option>
+													<option value="USER_NAME" <?php echo $searchField == "USER_NAME" ? 'selected': ""?>>글쓴이</option>
 													<option value="SUBJECT" <?php echo $searchField == "SUBJECT" ? 'selected': ""?>>제목</option>
 													<option value="CONTENTS" <?php echo $searchField == "CONTENTS" ? 'selected': ""?>>내용</option>
 												</select>
 											</div>
 											<div class="col-md-8">
-												<input type="text" name="search_string" class="wid100p" placeholder="검색어를 입력해주세요">
+												<input type="text" name="search_string" class="wid100p" placeholder="검색어를 입력해주세요" value="<?php echo $searchString?>">
 											</div>
 										</td>
 									</tr>
@@ -100,18 +102,24 @@
 			<div class="col-md-12">
                 <!-- tile -->
 
-                <section class="tile transparent">
-
+                <!-- tile -->
+                <section class="tile color transparent-black">
                   <!-- tile body -->
-                  <div class="tile-body color transparent-black rounded-corners">
+                  <div class="tile-body">
                     <div class="table-responsive">
-                      <table  class="table table-datatable table-custom">
+                      <table class="table table-datatable table-custom01 userTable">
                         <thead>
                           <tr>
                             <th class="sort-numeric">No</th>
                             <th class="sort">제목</th>
 							<th class="sort">글쓴이</th>
 							<th class="sort">조회수</th>
+							<?php 
+							// 댓글 표시
+							if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
+							<th class="sort">댓글수</th>
+							<?php endif;?>
+
 							<?php
 							// 추천 표시
 							if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
@@ -130,7 +138,7 @@
 
 							<?php 
 							if($listCount > 0):
-							foreach($LIST as $lt):?>
+							foreach($lists as $lt):?>
 							<tr style="cursor:pointer;" onclick="viewPost(<?php echo $lt->POST_SEQ?>);">
 								<td><?php 
 								if($lt->POST_NOTICE_YN == 'Y'){
@@ -141,22 +149,45 @@
 									?>	
 								
 								</td>
-								<td><?php 
-									echo $lt->POST_SUBJECT?>
-								<?php
-								// 댓글 기능
-								if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
-								<span class="badge badge-danger">1</span>
-								<?php
-								endif;
-								?>
+								<td>
+									<?php 
+
+										date_default_timezone_set('Asia/Seoul');
+										if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
+											if(time() - strtotime($lt->POST_REG_DATE) < ( 86400 * $BOARD_INFO->BOARD_PERIOD_NEW )){
+												echo "<label class=\"label label-red\">new</label>";												
+											};
+										}
+											
+										if($BOARD_INFO->BOARD_PERIOD_HOT > 0){
+											if($lt->POST_VIEW_CNT >= $BOARD_INFO->BOARD_PERIOD_HOT){
+												echo "<label class=\"label label-hotpink\">hot</label>";
+											}
+										}
+										echo $lt->POST_SUBJECT;
+
+										// 비밀글
+										if($lt->POST_SECRET_YN == "Y"){
+											echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>";
+										}
+									?> 
 								</td>
 								<td><?php echo $lt->USER_NAME?></td>
 								<td><?php echo $lt->POST_VIEW_CNT?></td>
+								<?php
+								// 댓글 기능
+								if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
+								<td>
+								<span class="badge badge-danger"><?php echo $lt->COMMENTS?></span>
+								</td>
+								<?php
+								endif;
+								?>
+								
 								<?php 
 								// 추천 표시
 								if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
-								<td><?php ?><?php echo $lt->CNT?></td>
+								<td><i class="fa fa-heart" aria-hidden="true"></i> <?php ?><?php echo $lt->CNT?></td>
 								<?php endif;?>
 								<td><?php echo $lt->POST_REG_DATE?></td>
 								<?php 
@@ -209,7 +240,15 @@
 
                 <!-- /tile -->
 					<div style="text-align:right" id="menu">
+						<?php
+						$ADMIN = explode(",", $BOARD_INFO->BOARD_ADMIN_ID);
+						if( $this->session->userdata("admin_id") == "admin" 
+						|| in_array($this->session->userdata("admin_id"), $ADMIN) ):
+						?>
 						<a href="/admin/board/post_write/<?php echo $BOARD_INFO->BOARD_SEQ?>" class="btn btn-success">게시글 작성</a>
+						<?php elseif($BOARD_INFO->BOARD_WARNING_TYPE == "N"):?>
+						<button type="button" onclick="alert('<?php echo $BOARD_INFO->BOARD_AUTH_MSG;?>');location.href='<?php echo $BOARD_INFO->BOARD_AUTH_REDIRECT;?>'" class="btn btn-success">게시글 작성</a>
+						<?php endif;?>
 					</div>
 			</div>
 
@@ -251,6 +290,23 @@
 	});
 
 	function viewPost(POST_SEQ){
-		location.href="/admin/board/post_view/" + POST_SEQ;
+		$.ajax({
+			url:"/admin/Board/post_check_auth?post_seq=" + POST_SEQ,
+			type:"get",
+			dataType:"json",
+			success: function(data){
+				let auth = data["auth"];
+				let url = data["url"];
+				let msg = data["msg"];
+				if(auth == "Y"){
+					location.href="/admin/board/post_view/" + POST_SEQ;
+				} else {
+					alert(msg);
+					// location.href=url;
+				}
+			},error: function(e){
+				console.log(e);
+			}
+		});
 	}
 </script>

@@ -41,9 +41,10 @@
 
 			<div class="row">
 				<div class="col-md-12">
-					<section class="tile transparent">
-						<div class="tile-body color transparent-black rounded-corners">
-							<table class="table table-custom userTable">
+                <section class="tile color transparent-black">
+                  <!-- tile body -->
+                  <div class="tile-body">
+                      <table class="table table-custom datatable userTable">
 								<colgroup>
 									<col width="15%"/>
 									<col width="35%"/>
@@ -253,14 +254,14 @@
 				<!-- col 6 -->
 				<div class="col-md-12">
 				<!-- tile -->
-				<section class="tile transparent">
 
-					<!-- tile body -->
-					<div class="tile-body color transparent-black rounded-corners">
 
-						<div class="table-responsive dataTables_wrapper form-inline" role="grid" id="basicDataTable_wrapper">
+				<section class="tile color transparent-black">
+                  <!-- tile body -->
+                  <div class="tile-body">
+                    <div class="table-responsive"  role="grid" id="basicDataTable_wrapper">
+                      <table class="table datatable table-custom01 userTable">
 
-							<table class="table table-custom dataTable">
 							<colgroup>
 									<col width="5%"/>
 									<col width="10%"/>

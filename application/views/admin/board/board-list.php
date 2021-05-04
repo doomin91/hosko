@@ -47,13 +47,11 @@
                 
                 
                 <!-- tile -->
-                <section class="tile transparent">
-
+                <section class="tile color transparent-black">
                   <!-- tile body -->
-                  <div class="tile-body color transparent-black rounded-corners">
-                    
+                  <div class="tile-body">
                     <div class="table-responsive">
-                      <table  class="table table-datatable table-custom">
+                      <table class="table table-datatable table-custom01 userTable">
                         <thead>
                           <tr>
                             <th class="sort-numeric">#</th>
@@ -111,7 +109,7 @@
 			dataType:"json",
 			success:function(data){
 				let str = "";
-				$.each(data, function(index, value){
+				$.each(data["board"], function(index, value){
 					str += "<tr onclick=\"view_board("+  value["BOARD_SEQ"] +")\" style=\"cursor:pointer\">";
 					str += "<td>" + (index+1) + "</td>";
 					str += "<td>" + value["BOARD_KOR_NAME"] + "</td>";

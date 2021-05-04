@@ -44,14 +44,12 @@
 			<!-- col 12 -->
 			<div class="col-md-12">
 
-				<!-- tile -->
-				<section class="tile transparent">
 
-				  <!-- tile body -->
-					<div class="tile-body color transparent-black rounded-corners">
-
-						<div class="table-responsive dataTables_wrapper form-inline" role="grid" id="basicDataTable_wrapper">
-							<table class="table table-customdataTable ">
+			<section class="tile color transparent-black">
+                  <!-- tile body -->
+                  <div class="tile-body">
+                    <div class="table-responsive"  role="grid" id="basicDataTable_wrapper">
+                      <table class="table datatable table-custom01 userTable">
 								<colgroup>
 									<col width="5%"/>
 									<col width="40%"/>

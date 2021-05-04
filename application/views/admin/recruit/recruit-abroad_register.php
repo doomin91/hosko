@@ -574,9 +574,31 @@
                 }
             });
 
-            // $('#abroad_detail').summernote({
-            //     height: 500   //set editable area's height
-            // });
+            function uploadImage(image, editor, welEditable){
+                var data = new FormData();
+                data.append("image", image);
+                //console.log("AAAAA");
+                $.ajax({
+                    url : "/admin/recruit/recruit_abroad_upload_contents_image",
+                    cache : false,
+                    contentType : false,
+                    processData : false,
+                    data : data,
+                    type : "POST",
+                    dataType : "JSON",
+                    success : function(resultMsg){
+                        if (resultMsg.code == "200"){
+                            console.log(resultMsg);
+                            editor.insertImage(welEditable, resultMsg.image_url);
+                        }else{
+                            console.log(resultMsg);
+                            alert(resultMsg.msg);
+                        }
+                    }, error : function(data){
+                        console.log(data);
+                    }
+                })
+            }
 
         });
     </script>

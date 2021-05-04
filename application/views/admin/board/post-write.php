@@ -170,7 +170,6 @@
 		let board_seq = <?php echo $BOARD_INFO->BOARD_SEQ?>;
 		$("#defaultRealHash").val(hash);
 		$("#post_contents").val($("#post_contents").Editor("getText"));
-		
 		// var form = $("#post_write_form").serializeArray();
 		var formData = new FormData($("#post_write_form")[0]);
 

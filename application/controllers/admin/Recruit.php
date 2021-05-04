@@ -368,6 +368,29 @@ class Recruit extends CI_Controller {
 
 	}
 
+	public function recruit_abroad_upload_contents_image(){
+		$config["upload_path"] = $_SERVER['DOCUMENT_ROOT'] . "/upload/recruit/contents";
+        $config["allowed_types"] = "*";
+        $config["overwrite"] = TRUE;
+        $config["encrypt_name"] = TRUE;
+        $config["remove_space"] = TRUE;
+        $this->load->library("upload", $config);
+        $this->upload->initialize($config);
+        // print_r($_FILES);
+		// exit;
+
+        if (!$this->upload->do_upload("image")){
+            $error = array('error' => $this->upload->display_errors());
+            //print_r($error);
+            echo json_encode(array("code" => "202", "msg" => $error["error"]));
+        }else{
+            $data = array('upload_data' => $this->upload->data());
+            //print_r($data);
+            //echo SITE_URL."/upload/editor/".$data["upload_data"]["file_name"];
+            echo json_encode(array("code" => "200", "image_url" => "/upload/recruit/contents/".$data["upload_data"]["file_name"]));
+        }
+	}
+
 
 	public function recruit_abroad_view($abroad_seq){
 		$DATA["ABROAD_INFO"] = $this->RecruitModel->getRecruitAbroadInfo($abroad_seq);

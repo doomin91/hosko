@@ -25,6 +25,7 @@
 td a {
 	color:#000;
 }
+
 </style>
 
 <body class="bg-1">
@@ -80,7 +81,7 @@ td a {
 							<section class="tile color transparent-white">
 
 								<!-- tile body -->
-								<div class="tile-body">
+								<div class="tile-body" style="padding:0">
 									<form id="comment_write_form">
 										<div class="panel panel-default clearfix fa-">
 											<div class="panel-heading clearfix">
@@ -126,7 +127,6 @@ td a {
 													</article>
 
 												</div>
-
 												<div id="content-function"
 													class="content-function pull-right text-center">
 													<div class="content-function-group">
@@ -134,6 +134,7 @@ td a {
 
 
 													</div>
+
 												</div>
 											</div>
 
@@ -145,14 +146,26 @@ td a {
 													<button type="button" class="btn btn-primary btn-sm"
 														id="btnRecommand">추천</button>
 													<?php endif;?>
+													<button type="button" class="btn btn-primary btn-sm"
+														id="btnRepost">답글</button>
 													<a href="/admin/board/post_modify/<?php echo $POST_INFO->POST_SEQ?>"
 														class="btn btn-primary btn-sm">수정</a>
 													<a href="/admin/board/post_list/<?php echo $BOARD_INFO->BOARD_SEQ?>"
 														class="btn btn-primary btn-sm">목록</a>
 												</div>
 											</div>
-
-
+											
+											<ul class="list-group" style="margin-top:5px;">
+												<li id="note-title" class="list-group-item note-title">
+													<h3 class="panel-title">첨부파일 <?php echo count($ATTACH_FILES);?><span id="note-count"></span></h3>
+												</li>
+													<?php foreach($ATTACH_FILES as $files){
+														echo "<li id=\"note-title\" class=\"list-group-item\" style=\"border-bottom:0\">";
+														echo "<a href=\"/admin/Board/downalod_attach/" . $files->ATTACH_SEQ . "\">". $files->ATTACH_FILE_NAME ."</a></li>";
+													}?>
+											</ul>
+											
+											
 											<?php if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'): ?>
 											<ul class="list-group" style="margin-top:5px;">
 												<li id="note-title" class="list-group-item note-title">
@@ -202,6 +215,86 @@ td a {
 
 							</section>
 							<!-- /tile -->
+
+							<?php if($BOARD_INFO->BOARD_BOTTOM_LIST_FLAG == "Y"): ?>
+							<section class="tile transparent-white">
+							<!-- tile body -->
+								<div class="tile-body rounded-corners">
+									<div class="table-responsive">
+										<table  class="table table-datatable table-custom dataTable">
+											<thead>
+											<tr>
+												<th class="sort-numeric">No</th>
+												<th class="sort">제목</th>
+												<th class="sort">글쓴이</th>
+												<th class="sort">조회수</th>
+												<?php 
+												// 댓글 표시
+												if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
+												<th class="sort">댓글수</th>
+												<?php endif;?>
+
+												<?php
+												// 추천 표시
+												if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
+												<th class="sort">추천수</th>
+												<?php endif;?>
+												<th class="sort">등록일</th>
+											</tr>
+											</thead>
+											<tbody>
+											<?php foreach($BOTTOM_LIST as $lt):?>
+											<?php if($POST_INFO->POST_SEQ == $lt->POST_SEQ):?>
+											<tr style="background:#3071A9; color:white;">
+											<?php else: ?>
+											<tr style="cursor:pointer;" onclick="viewPost(<?php echo $lt->POST_SEQ?>);">
+											<?php endif; ?>
+												<td><?php 
+												if($lt->POST_NOTICE_YN == 'Y'){
+													echo "<span style=\"color:red;\">[공지]</span> ";
+												} else {
+													// echo $pagenum;
+												}
+													?>	
+												
+												</td>
+												<td>
+													<?php 
+														echo $lt->POST_SUBJECT;
+														if($lt->POST_SECRET_YN == "Y"){
+															echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>";
+														}
+													?> 
+												</td>
+												<td><?php echo $lt->USER_NAME?></td>
+												<td><?php echo $lt->POST_VIEW_CNT?></td>
+												<?php
+												// 댓글 기능
+												if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
+												<td>
+												<span class="badge badge-danger"><?php echo $lt->COMMENTS?></span>
+												</td>
+												<?php
+												endif;
+												?>
+												
+												<?php 
+												// 추천 표시
+												if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
+												<td><i class="fa fa-heart" aria-hidden="true"></i> <?php ?><?php echo $lt->CNT?></td>
+												<?php endif;?>
+												<td><?php echo $lt->POST_REG_DATE?></td>
+											</tr>
+											<?php 
+											// $pagenum -= 1;	
+											endforeach;
+											?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</section>
+							<?php endif; ?>
 
 						</div>
 						<!-- /col 12 -->
@@ -254,6 +347,27 @@ td a {
 			})
 		});
 
+		function viewPost(POST_SEQ){
+			$.ajax({
+				url:"/admin/Board/post_check_auth?post_seq=" + POST_SEQ,
+				type:"get",
+				dataType:"json",
+				success: function(data){
+					let auth = data["auth"];
+					let url = data["url"];
+					let msg = data["msg"];
+					if(auth == "Y"){
+						location.href="/admin/board/post_view/" + POST_SEQ;
+					} else {
+						alert(msg);
+						// location.href=url;
+					}
+				},error: function(e){
+					console.log(e);
+				}
+			});
+		}
+
 		function comment_regist() {
 			let board_seq = <?php echo $BOARD_INFO->BOARD_SEQ?>;
 			$("#comment_content").val(CKEDITOR.instances.comment_content.getData());
@@ -274,7 +388,3 @@ td a {
 		}
 
 	</script>
-
-</body>
-
-</html>
