@@ -41,22 +41,23 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <section class="tile transparent">
-                        <div class="tile-body color transparent-black rounded-corners">
-                            <table class="table table-custom userTable">
+                   <section class="tile color transparent-black">
+                        <div class="tile-body">
+                            <table class="table table-custom datatable userTable">
                                 <colgroup>
                                     <col width="15%"/>
                                     <col width="85%"/>
                                 </colgroup>
                                 <tbody>
+                                <form name="sform"  method="get" action="/admin/user/smsSend">
                                     <tr>
                                         <th>가입일자</th>
                                         <td>
-                                            <div class="col-md-5">
-                                                <input name="reg_date_start" type="text" class="wid100p datepicker">
+                                            <div class="col-md-2">
+                                                <input name="reg_date_start" type="text" class="wid100p datepicker" value="<?php echo $reg_date_start; ?>">
                                             </div>
-                                            <div class="col-md-5">
-                                                <input name="reg_date_end" type="text" class="wid100p datepicker">
+                                            <div class="col-md-2">
+                                                <input name="reg_date_end" type="text" class="wid100p datepicker" value="<?php echo $reg_date_end; ?>">
                                             </div>
                                         </td>
                                     </tr>
@@ -97,16 +98,18 @@
                                         <th>SMS 수신</th>
                                         <td>
                                             <div class="col-md-6">
-                                                <input type="radio" id="all" name="sms_type" value="Y" <?php if ($sms_type == "Y") echo "checked"; ?>><label for="all"> 회원전체</label>
-                                                <input type="radio" id="sms_send" name="sms_type" value="N" <?php if ($sms_type == "N") echo "checked"; ?>><label for="sms_send"> 수신거부회원 제의</label>
+                                                <input type="radio" id="all" name="user_email_flag" value="" <?php if ($user_email_flag == "") echo "checked"; ?>><label for="all"> 회원전체</label>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <input type="radio" id="sms_send" name="user_email_flag" value="Y" <?php if ($user_email_flag == "Y") echo "checked"; ?>><label for="sms_send"> 수신거부회원 제의</label>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="4" class="text-right">
-                                            <button class="btn btn-primary">검색하기</button>
+                                            <button class="btn btn-primary" type="submit">검색하기</button>
                                         </td>
                                     </tr>
+                                </form>
                                 </tbody>
                             </table>
                         </div>
@@ -120,14 +123,14 @@
                 <!-- col 6 -->
                 <div class="col-md-12">
                 <!-- tile -->
-                <section class="tile transparent">
+                <section class="tile color transparent-black">
 
                     <!-- tile body -->
-                    <div class="tile-body color transparent-black rounded-corners">
+                    <div class="tile-body">
 
                         <div class="table-responsive dataTables_wrapper form-inline" role="grid" id="basicDataTable_wrapper">
 
-                            <table class="table table-custom dataTable">
+                            <table class="table table-custom datatable userTable">
                             <colgroup>
                                     <col width="5%"/>
                                     <col width="10%"/>
@@ -190,7 +193,7 @@
                         ?>
                                 <tr>
                                     <td class="text-center"><?php echo $pagenum; ?></td>
-                                    <td class="text-center"><a href="/admin/user/userModify/<?php echo $list->USER_SEQ; ?>"><?php echo $list->USER_ID; ?></a></td>
+                                    <td class="text-center"><?php echo $list->USER_ID; ?></td>
                                     <td class="text-center"><?php echo $list->USER_NAME; ?></td>
                                     <td class="text-center"><?php echo $list->USER_NUMBER; ?></td>
                                     <td class="text-center"><?php echo $list->USER_MANAGER_NAME; ?></td>
@@ -260,71 +263,40 @@
             <!-- /row -->
             <div class="row">
                 <div class="col-md-6">
-                    <section class="tile transparent">
-                        <div class="tile-body color transparent-black rounded-corners">
-                            <table class="table table-custom userTable">
+                    <section class="tile color transparent-black">
+                        <div class="tile-body">
+                            <table class="table table-custom datatable userTable">
                                 <colgroup>
                                     <col width="15%"/>
                                     <col width="85%"/>
                                 </colgroup>
                                 <tbody>
+                                    <!--
                                     <tr>
-                                        <th>가입일자</th>
+                                        <th>연락받을 번호</th>
                                         <td>
                                             <div class="col-md-12">
-                                                <input name="reg_date_start" type="text" class="wid100p">
+                                                <input name="send_phone" type="text" class="wid100p">
                                             </div>
                                         </td>
                                     </tr>
+                                    -->
                                     <tr>
-                                        <th>회원등급</th>
+                                        <th>전달 SMS 메세지</th>
                                         <td colspan="3">
-                                            <div class="col-md-2">
-                                                <select name="user_level" class="wid100p">
-                                                    <option value="">선택해주세요</option>
-                                                <?php
-                                                    foreach ($levels as $lev) {
-                                                        if ($lev->LEVEL_SEQ == $user_level){
-                                                            echo "<option value=\"".$lev->LEVEL_SEQ."\" selected>".$lev->LEVEL_NAME."</option>";
-                                                        }else{
-                                                            echo "<option value=\"".$lev->LEVEL_SEQ."\">".$lev->LEVEL_NAME."</option>";
-                                                        }
-
-                                                    }
-                                                ?>
-                                                </select>
+                                            <div class="col-md-12">
+                                                <textarea name="send_message" class="wid100p"></textarea>
                                             </div>
-                                            <div class="col-md-2">
-                                                <select name="search_field" class="wid100p">
-                                                    <option value="all">전체</option>
-                                                    <option value="USER_ID">아이디</option>
-                                                    <option value="USER_NAME">이름</option>
-                                                    <option value="USER_NUMBER">회원번호</option>
-                                                    <option value="USER_HP">연락처</option>
-                                                    <option value="USER_EMAIL">이메일주소</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <input type="text" name="search_string" class="wid100p" placeholder="검색어를 입력해주세요">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>SMS 수신</th>
-                                        <td>
-                                            <div class="col-md-6">
-                                                <input type="radio" id="all" name="sms_type" value="Y" <?php if ($sms_type == "Y") echo "checked"; ?>><label for="all"> 회원전체</label>
-                                                <input type="radio" id="sms_send" name="sms_type" value="N" <?php if ($sms_type == "N") echo "checked"; ?>><label for="sms_send"> 수신거부회원 제의</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" class="text-right">
-                                            <button class="btn btn-primary">검색하기</button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col-md-12 text-right">
+                                    <button class="btn btn-primary" id="sendSms">발송하기</button>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -362,5 +334,53 @@
             color: "black"
         });
         $(".datepicker").datepicker();
+
+
+        $(document).on("click", "#sendSms", function(){
+            //var sformData = $("#sform").serialize();
+            var reg_date_start = $("input[name=reg_date_start]").val();
+            var reg_date_end = $("input[name=reg_date_end]").val();
+            var user_level = $("select[name=user_level]").val();
+            var search_field = $("select[name=search_field]").val();
+            var search_string = $("input[name=search_string]").val();
+            var user_email_flag = $("input:checkbox[name=user_email_flag]").val();
+            var send_message = $("textarea[name=send_message]").val();
+
+            if (send_message == ""){
+                alert("메세지를 입력해주세요");
+                $("textarea[name=send_message]").focus();
+                return false;
+            }
+
+            $.ajax({
+                url:"/admin/user/smsSendProc",
+                type:"post",
+                data:{
+                    "reg_date_start" : reg_date_start,
+                    "reg_date_end" : reg_date_end,
+                    "user_level" : user_level,
+                    "search_field" : search_field,
+                    "search_string" : search_string,
+                    "user_email_flag" : user_email_flag,
+                    "send_message" : send_message
+                },
+                //dataType:"json",
+                success:function(resultMsg){
+                    console.log(resultMsg);
+                    console.log(":ASDFASDFASDFASDFASD");
+                    return false;
+                    if (resultMsg.code == "200"){
+                        alert(resultMsg.msg);
+                        //document.location.href="/admin/user/managers";
+                        //document.location.reload();
+                    }else{
+                        alert(resultMsg.msg);
+                    }
+                },
+                error:function(e){
+                    console.log(e.responseText);
+                }
+            })
+        });
     });
 </script>

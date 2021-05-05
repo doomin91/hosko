@@ -453,7 +453,7 @@ class User extends CI_Controller {
 		$user_level = $this->input->get("user_level");
 		$search_field = $this->input->get("search_field");
 		$search_string = $this->input->get("search_string");
-		$sms_type = $this->input->get("sms_type");
+		$user_email_flag = $this->input->get("user_email_flag");
 
 		$wheresql = array(
 						"reg_date_start" => $reg_date_start,
@@ -461,12 +461,12 @@ class User extends CI_Controller {
 						"user_level" => $user_level,
 						"search_field" => $search_field,
 						"search_string" => $search_string,
-						"sms_type" => $sms_type,
+						"user_email_flag" => $user_email_flag,
 						"start" => $start,
 						"limit" => $limit
 						);
 		$lists = $this->UserModel->getUsers($wheresql);
-		//echo $this->db->last_query();
+		echo $this->db->last_query();
 		$listCount = $this->UserModel->getUsersCount($wheresql);
 		if ($nowpage != ""){
 			$pagenum = $listCount-(($nowpage-1)*10);
@@ -474,7 +474,7 @@ class User extends CI_Controller {
 			$pagenum = $listCount;
 		}
 
-		$pagination = $this->customclass->pagenavi("/admin/user", $listCount, 10, 5, $nowpage);
+		$pagination = $this->customclass->pagenavi("/admin/user/smsSend", $listCount, 10, 5, $nowpage);
 		//print_r($listCount);
 		$levels = $this->UserModel->getUserLevelAll();
 		$data = array(
@@ -483,7 +483,7 @@ class User extends CI_Controller {
 					"user_level" => $user_level,
 					"search_field" => $search_field,
 					"search_string" => $search_string,
-					"sms_type" => $sms_type,
+					"user_email_flag" => $user_email_flag,
 					"lists" => $lists,
 					"listCount" => $listCount,
 					"pagination" => $pagination,
@@ -493,5 +493,46 @@ class User extends CI_Controller {
 					"levels" => $levels
 					);
 		$this->load->view("/admin/user/user-sms-send", $data);
+	}
+
+	public function smsSendProc(){
+		$reg_date_start = $this->input->post("reg_date_start");
+		$reg_date_end = $this->input->post("reg_date_end");
+		$user_level = $this->input->post("user_level");
+		$search_field = $this->input->post("search_field");
+		$search_string = $this->input->post("search_string");
+		$user_email_flag = $this->input->post("user_email_flag");
+		$send_message = $this->input->post("send_message");
+		//print_r($this->input->post());
+		$wheresql = array(
+						"reg_date_start" => $reg_date_start,
+						"reg_date_end" => $reg_date_end,
+						"user_level" => $user_level,
+						"search_field" => $search_field,
+						"search_string" => $search_string,
+						"user_email_flag" => $user_email_flag,
+						);
+
+		$lists = $this->UserModel->getUserAll($wheresql);
+		//echo $this->db->last_query();
+		//print_r(count($lists));
+		//exit;
+		if (!empty($lists)){
+			foreach ($lists as $list){
+				$sendArr = array(
+								"SENDER_KEY" => "testSendKey",
+								"PHONE" => $list->USER_HP,
+								"TMPL_CD" => "TEST1234",
+								"SEND_MSG" => $send_message,
+								"REQ_DATE" => date("y-m-d h:i:s"),
+								"CUR_STATE" => "0",
+								"SMS_TYPE" => "S"
+								);
+				print_r($sendArr);
+				$this->UserModel->setMsgData($sendArr);
+			}
+		}
+
+		echo json_encode(array("code" => "200", "msg" => "발송 저장 되었습니다."));
 	}
 }
