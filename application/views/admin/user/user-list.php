@@ -324,7 +324,7 @@
 						?>
 								<tr>
 									<td class="text-center"><?php echo $pagenum; ?></td>
-									<td class="text-center"><a href="/admin/user/userModify/<?php echo $list->USER_SEQ; ?>"><?php echo $list->USER_ID; ?></a></td>
+									<td class="text-center"><a href="/admin/user/userCallMsg/<?php echo $list->USER_SEQ; ?>"><?php echo $list->USER_ID; ?></a></td>
 									<td class="text-center"><?php echo $list->USER_NAME; ?></td>
 									<td class="text-center"><?php echo $list->USER_NUMBER; ?></td>
 									<td class="text-center"><?php echo $list->USER_MANAGER_NAME; ?></td>

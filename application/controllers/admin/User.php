@@ -535,4 +535,44 @@ class User extends CI_Controller {
 
 		echo json_encode(array("code" => "200", "msg" => "발송 저장 되었습니다."));
 	}
+
+	public function userCallMsg($user_seq){
+		$limit = 5;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*10;
+			$nowpage = $_GET["per_page"];
+		}
+
+		$wheresql = array(
+						"user_seq" => $user_seq,
+						"start" => $start,
+						"limit" => $limit
+						);
+		$lists = $this->UserModel->getUserCallMsg($wheresql);
+		//echo $this->db->last_query();
+		$listCount = $this->UserModel->getUserCallMsgCount($wheresql);
+
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*10);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$pagination = $this->customclass->pagenavi("/admin/user/userCallMsg/".$user_seq, $listCount, 10, 5, $nowpage);
+
+		$user_info = $this->UserModel->getUserInfo($user_seq);
+		$data = array(
+			"user_info" => $user_info,
+			"lists" => $lists,
+			"listCount" => $listCount,
+			"pagination" => $pagination,
+			"pagenum" => $pagenum,
+			"start" => $start,
+			"limit" => $limit
+			);
+		$this->load->view("/admin/user/user-call-log", $data);
+	}
 }

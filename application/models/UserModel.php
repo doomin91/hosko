@@ -275,4 +275,19 @@ class UserModel extends CI_Model{
 	public function setMsgData($sendData){
 		return $this->db->insert("MSG_DATA", $sendData);
 	}
+
+	public function getUserCallMsg($whereArr){
+		$this->db->where("TBL_HOSKO_CALL_LOG.CLOG_USER_SEQ", $whereArr["user_seq"]);
+		$this->db->where("TBL_HOSKO_CALL_LOG.CLOG_DEL_YN", "N");
+		$this->db->order_by("TBL_HOSKO_CALL_LOG.CLOG_SEQ", "DESC");
+		$this->db->limit($whereArr["limit"], $whereArr["start"]);
+		return $this->db->get("TBL_HOSKO_CALL_LOG")->result();
+	}
+
+	public function getUserCallMsgCount($whereArr){
+		$this->db->where("TBL_HOSKO_CALL_LOG.CLOG_USER_SEQ", $whereArr["user_seq"]);
+		$this->db->where("TBL_HOSKO_CALL_LOG.CLOG_DEL_YN", "N");
+		$this->db->from("TBL_HOSKO_CALL_LOG");
+		return $this->db->count_all_results();
+	}
 }
