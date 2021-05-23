@@ -290,4 +290,23 @@ class UserModel extends CI_Model{
 		$this->db->from("TBL_HOSKO_CALL_LOG");
 		return $this->db->count_all_results();
 	}
+
+	public function insertUserCallMsg($whereArr){
+		return $this->db->insert("TBL_HOSKO_CALL_LOG", $whereArr);
+	}
+
+	public function updateUserCallMsg($updateArr, $clog_seq){
+		$this->db->where("TBL_HOSKO_CALL_LOG.CLOG_SEQ", $clog_seq);
+		return $this->db->update("TBL_HOSKO_CALL_LOG", $updateArr);
+	}
+
+	public function getCallLog($clog_seq){
+		$this->db->where("TBL_HOSKO_CALL_LOG.CLOG_SEQ", $clog_seq);
+		return $this->db->get("TBL_HOSKO_CALL_LOG")->row();
+	}
+
+	public function delCallLog($clog_seq){
+		$this->db->where("TBL_HOSKO_CALL_LOG.CLOG_SEQ", $clog_seq);
+		return $this->db->update("TBL_HOSKO_CALL_LOG", array("CLOG_DEL_YN" => "Y"));
+	}
 }

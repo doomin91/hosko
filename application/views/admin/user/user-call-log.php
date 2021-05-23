@@ -52,7 +52,7 @@
                   <div class="row" style="padding:15px">
                     <div class="col-lg-12 text-right">
                         <button id="writeMsg" type="button" class="btn btn-primary btn-sm"> 기록하기</button>
-                        <a href="/admin/user/userWrite" type="button" class="btn btn-info btn-sm"> 회원정보 보기</a>
+                        <a href="/admin/user/userModify/<?php echo $user_info->USER_SEQ; ?>" type="button" class="btn btn-info btn-sm"> 회원정보 보기</a>
                     </div>
                   </div>
                   <div class="tile-body">
@@ -63,7 +63,6 @@
 									<col width="5%"/>
 									<col width="10%"/>
 									<col width="10%"/>
-                                    <col width="10%"/>
                                     <col width="10%"/>
                                     <col width="10%"/>
                                     <col width="10%"/>
@@ -81,14 +80,38 @@
 									<th class="text-center">회원번호</th>
 									<th class="text-center">관심도</th>
 									<th class="text-center">외국어</th>
-									<th class="text-center">비고</th>
 									<th class="text-center"> - </th>
 								</tr>
 							</thead>
 							<tbody>
                             <?php
-                            if (!empty($LISTS)){
-
+                            if (!empty($lists)){
+                                foreach ($lists as $lt){
+                                    if ($lt->CLOG_INTEREST == "1"){
+                                        $interest = "상";
+                                    }else if ($lt->CLOG_INTEREST == "2"){
+                                        $interest = "중";
+                                    }else if ($lt->CLOG_INTEREST == "3"){
+                                        $interest = "하";
+                                    }
+                            ?>
+                                <tr>
+                                    <td class="text-center"><?php echo $pagenum; ?></td>
+                                    <td class="text-center"><?php echo $lt->CLOG_CONSULT_DATE; ?></td>
+                                    <td class="text-center"><?php echo $lt->CLOG_MANAGER_NAME; ?></td>
+                                    <td class="text-center"><?php echo $lt->CLOG_USER_NAME; ?></td>
+                                    <td class="text-center"><?php echo $lt->CLOG_USER_COMPANY; ?></td>
+                                    <td class="text-center"><?php echo $lt->CLOG_USER_NUM; ?></td>
+                                    <td class="text-center"><?php echo $interest; ?></td>
+                                    <td class="text-center"><?php echo $lt->CLOG_LANG_SKILL; ?>점</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-default btn-xs clogView" data-seq="<?php echo $lt->CLOG_SEQ; ?>">보기</button>
+                                        <button class="btn btn-danger btn-xs clogDel" data-seq="<?php echo $lt->CLOG_SEQ; ?>">삭제</button>
+                                    </td>
+                                </tr>
+                            <?php
+                                    $pagenum--;
+                                }
                             }else{
                                 echo "<tr><td colspan=\"10\" align=\"center\"> 회원 통화내역이 없습니다. </td></tr>";
                             }
@@ -97,28 +120,12 @@
 							</table>
 
 							<div class="row">
-								<div class="col-md-4 sm-center">
-									<div class="dataTables_info">
-									
-									</div>
-								</div>
-								<div class="col-md-4 text-center sm-center">
+								<div class="col-md-12 text-center sm-center">
 									<div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
-										<!--
-										<ul class="pagination" style="margin:0 !important">
-											<li class="prev disabled"><a href="#">Previous</a></li>
-											<li class="active"><a href="#">1</a></li>
-											<li><a href="#">2</a></li>
-											<li><a href="#">3</a></li>
-											<li><a href="#">4</a></li>
-											<li><a href="#">5</a></li>
-											<li class="next"><a href="#">Next</a></li>
-										</ul>
-										-->
-										<?php // echo $pagination; ?>
+										<?php  echo $pagination; ?>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
@@ -154,7 +161,10 @@
 					<h3 class="modal-title" id="modalConfirmLabel">회원 통화내역 저장</h3>
 				</div>
 				<div class="modal-body">
-					<form role="form">
+					<form role="wform" id="wform">
+                        <input type="hidden" name="user_seq" value="<?php echo $user_info->USER_SEQ; ?>">
+                        <input type="hidden" name="clog_seq" value="">
+                        <input type="hidden" name="clog_mode" value="">
 					<table class="table datatable table-custom01 userTable">
                         <colgroup>
                             <col width="30%"/>
@@ -163,7 +173,7 @@
                         <tbody>
                             <tr>
                                 <th>상담자</td>
-                                <td><input type="text" class="form-control" id="consult_name" name="consult_name" value="<?php echo $this->session->userdata("admin_name"); ?>"></td>
+                                <td><input type="text" class="form-control" id="manager_name" name="manager_name" value="<?php echo $this->session->userdata("admin_name"); ?>"></td>
                             </tr>
                             <tr>
                                 <th>회원명</td>
@@ -174,8 +184,11 @@
                                 <td><input type="text" class="form-control" id="user_company" name="user_company" value="<?php echo $user_info->USER_COMPANY; ?>"></td>
                             </tr>
                             <tr>
-                                <th>상담시각</td>
-                                <td><input type="text" class="form-control" id="call_date" name="call_date"></td>
+                                <th>상담날짜</td>
+                                <td>
+                                    <!--<input type="text" class="form-control datepicker" id="consult_date" name="consult_date" value="<?php echo date("Y-m-d"); ?>">-->
+                                    <input name="consult_date" id="consult_date" type="text" class="wid100p datepicker">
+                                </td>
                             </tr>
                             <tr>
                                 <th>내용</td>
@@ -184,7 +197,7 @@
                             <tr>
                                 <th>관심도</td>
                                 <td>
-                                    <select name="">
+                                    <select name="interest">
                                         <option value="1">상</option>
                                         <option value="2">중</option>
                                         <option value="3">하</option>
@@ -194,7 +207,7 @@
                             <tr>
                                 <th>외국어 능력</td>
                                 <td>
-                                    <select name="">
+                                    <select name="lang_skill">
                                         <option value="1">1점</option>
                                         <option value="2">2점</option>
                                         <option value="3">3점</option>
@@ -204,7 +217,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table> 
+                    </table>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -233,12 +246,131 @@
 	        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 	        showMonthAfterYear: true,
 	        yearSuffix: '년',
-	        color: "black"
+	        color: "black",
+            zindex: "20000"
 	    });
 		$(".datepicker").datepicker();
-
+        console.log("ASDFASDFASDF");
         $(document).on("click", "#writeMsg", function(){
+            $('#wform')[0].reset();
             $("#modalMessage").modal("show");
         });
-	}); 
+
+        $(document).on("click", "#saveMessage", function(){
+            var manager_name = $("input[name=manager_name]").val();
+            var user_seq = $("input[name=user_seq]").val();
+            var user_name = $("input[name=user_name]").val();
+            var user_company = $("input[name=user_company]").val();
+            var call_message = $("textarea[name=call_message]").val();
+            var consult_date = $("input[name=consult_date]").val();
+            var interest = $("select[name=interest]").val();
+            var lang_skill = $("select[name=lang_skill]").val();
+            var clog_seq = $("input[name=clog_seq]").val();
+            var clog_mode = $("input[name=clog_mode]").val();
+
+            $.ajax({
+                url:"/admin/user/userCallMsgProc",
+                type:"post",
+                data:{
+                    "manager_name" : manager_name,
+                    "user_seq" : user_seq,
+                    "user_name" : user_name,
+                    "user_company" : user_company,
+                    "call_message" : call_message,
+                    //"consult_date" : consult_year + "-" + numLneCheck(consult_month) + "-" + numLneCheck(consult_day),
+                    "consult_date" : consult_date,
+                    "interest" : interest,
+                    "lang_skill" : lang_skill,
+                    "clog_seq" : clog_seq,
+                    "clog_mode" : clog_mode
+                },
+                dataType:"json",
+                success:function(resultMsg){
+                    console.log(resultMsg);
+
+                    if (resultMsg.code == "200"){
+                        alert(resultMsg.msg);
+                        document.location.reload();
+                    }else{
+                        alert(resultMsg.msg);
+                    }
+                },
+                error:function(e){
+                    console.log(e.responseText);
+                }
+            })
+        });
+
+        $(document).on("click", ".clogView", function(){
+            var seq = $(this).data("seq");
+
+            $.ajax({
+                url:"/admin/user/getCallMsg",
+                type:"post",
+                data:{
+                    "clog_seq" : seq
+                },
+                dataType:"json",
+                success:function(resultMsg){
+                    console.log(resultMsg);
+                    if (resultMsg.code == "200"){
+                        //alert(resultMsg.msg);
+                        //document.location.reload();
+                        var result = resultMsg.result;
+
+                        $("input[name=manager_name]").val(result.CLOG_MANAGER_NAME);
+                        $("input[name=user_name]").val(result.CLOG_USER_NAME);
+                        $("input[name=user_company]").val(result.CLOG_USER_COMPANY);
+                        $("input[name=consult_date]").val(result.CLOG_CONSULT_DATE);
+                        $("textarea[name=call_message]").val(result.CLOG_MESSAGE);
+                        $("select[name=interest]").val(result.CLOG_INTEREST);
+                        $("select[name=lang_skill]").val(result.CLOG_LANG_SKILL);
+                        $("input[name=clog_seq]").val(result.CLOG_SEQ);
+                        $("input[name=clog_mode]").val("modify");
+                        $("#modalMessage").modal("show");
+                    }else{
+                        alert(resultMsg.msg);
+                    }
+                },
+                error:function(e){
+                    console.log(e.responseText);
+                }
+            })
+        })
+
+        $(document).on("click", ".clogDel", function(){
+             var seq = $(this).data("seq");
+
+            if (confirm("통화내역을 삭제하시겠습니까?")){
+                $.ajax({
+                    url:"/admin/user/deleteCallMsg",
+                    type:"post",
+                    data:{
+                        "clog_seq" : seq
+                    },
+                    dataType:"json",
+                    success:function(resultMsg){
+                        console.log(resultMsg);
+                        if (resultMsg.code == "200"){
+                            alert(resultMsg.msg);
+                            document.location.reload();
+                        }else{
+                            alert(resultMsg.msg);
+                        }
+                    },
+                    error:function(e){
+                        console.log(e.responseText);
+                    }
+                })
+            }
+        });
+
+        function numLneCheck(num){
+            if (parseInt(num) < 10){
+                num = "0"+num;
+            }
+
+            return num;
+        }
+	});
 </script>

@@ -575,4 +575,88 @@ class User extends CI_Controller {
 			);
 		$this->load->view("/admin/user/user-call-log", $data);
 	}
+
+	public function userCallMsgProc(){
+		$manager_name = $this->input->post("manager_name");
+		$user_seq = $this->input->post("user_seq");
+		$user_name = $this->input->post("user_name");
+		$user_company = $this->input->post("user_company");
+		$consult_date = $this->input->post("consult_date");
+		$call_message = $this->input->post("call_message");
+		$interest = $this->input->post("interest");
+		$lang_skill = $this->input->post("lang_skill");
+		$clog_seq = $this->input->post("clog_seq");
+		$clog_mode = $this->input->post("clog_mode");
+
+		if ($clog_mode == ""){
+			$insertArr = array(
+								"CLOG_MANAGER_NAME" => $manager_name,
+								"CLOG_USER_SEQ" => $user_seq,
+								"CLOG_USER_NAME" => $user_name,
+								"CLOG_USER_COMPANY" => $user_company,
+								"CLOG_MESSAGE" => $call_message,
+								"CLOG_CONSULT_DATE" => $consult_date,
+								"CLOG_INTEREST" => $interest,
+								"CLOG_LANG_SKILL" => $lang_skill,
+								"CLOG_REG_DATE" => date("Y-m-d H:i:s"),
+								"CLOG_REG_IP" => $_SERVER["REMOTE_ADDR"],
+								"CLOG_DEL_YN" => "N"
+								);
+
+			$result = $this->UserModel->insertUserCallMsg($insertArr);
+
+			if ($result == true){
+				echo json_encode(array("code" => "200", "msg" => "회원 통화내역 저장 완료되었습니다."));
+			}else{
+				echo json_encode(array("code" => "202", "msg" => "회원 통화내역 저장중 문제가 생겼습니다."));
+			}
+		}else if ($clog_mode == "modify"){
+			$updateArr = array(
+								"CLOG_MANAGER_NAME" => $manager_name,
+								"CLOG_USER_SEQ" => $user_seq,
+								"CLOG_USER_NAME" => $user_name,
+								"CLOG_USER_COMPANY" => $user_company,
+								"CLOG_MESSAGE" => $call_message,
+								"CLOG_CONSULT_DATE" => $consult_date,
+								"CLOG_INTEREST" => $interest,
+								"CLOG_LANG_SKILL" => $lang_skill,
+								);
+
+			$result = $this->UserModel->updateUserCallMsg($updateArr, $clog_seq);
+
+			if ($result == true){
+				echo json_encode(array("code" => "200", "msg" => "회원 통화내역 수정 완료되었습니다."));
+			}else{
+				echo json_encode(array("code" => "202", "msg" => "회원 통화내역 수정중 문제가 생겼습니다."));
+			}
+		}
+	}
+
+	public function deleteCallMsg(){
+		$clog_seq = $this->input->post("clog_seq");
+
+		$result = $this->UserModel->delCallLog($clog_seq);
+		//echo $this->db->last_query();
+		//print_r($result);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "", "result" => $result));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "통화내역 불러오는중 문제가 생겼습니다."));
+		}
+	}
+
+	public function getCallMsg(){
+		$clog_seq = $this->input->post("clog_seq");
+
+		$result = $this->UserModel->getCallLog($clog_seq);
+		//echo $this->db->last_query();
+		//print_r($result);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "", "result" => $result));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "통화내역 불러오는중 문제가 생겼습니다."));
+		}
+	}
 }
