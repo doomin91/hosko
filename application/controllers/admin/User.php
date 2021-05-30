@@ -659,4 +659,183 @@ class User extends CI_Controller {
 			echo json_encode(array("code" => "202", "msg" => "통화내역 불러오는중 문제가 생겼습니다."));
 		}
 	}
+
+	public function mailFormList(){
+		$limit = 10;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*10;
+			$nowpage = $_GET["per_page"];
+		}
+
+		$wheresql = array(
+						"start" => $start,
+						"limit" => $limit
+						);
+		$lists = $this->UserModel->getMailFormLists($wheresql);
+		//echo $this->db->last_query();
+		$listCount = $this->UserModel->getMailFormListCount($wheresql);
+
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*10);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$pagination = $this->customclass->pagenavi("/admin/user/mailFormList/", $listCount, 10, 5, $nowpage);
+
+		$data = array(
+			"lists" => $lists,
+			"listCount" => $listCount,
+			"pagination" => $pagination,
+			"pagenum" => $pagenum,
+			"start" => $start,
+			"limit" => $limit
+			);
+		$this->load->view("/admin/user/mailform-list", $data);
+	}
+
+	public function mailFormWrite(){
+		$data = array();
+
+		$this->load->view("/admin/user/mailform-write", $data);
+	}
+
+	public function mailFormWriteProc(){
+		$mf_code = $this->input->post("mf_code");
+		$mf_name = $this->input->post("mf_name");
+		$mf_body = $this->input->post("mf_body");
+
+		$insertArr = array(
+							"MF_CODE" => $mf_code,
+							"MF_NAME" => $mf_name,
+							"MF_BODY" => $mf_body,
+							"MF_DEL_YN" => "N"
+							);
+
+		$result = $this->UserModel->insertMailForm($insertArr);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "메일폼 등록 완료되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "메일폼 등록중 문제가 생겼습니다."));
+		}
+	}
+
+	public function mailformModify($mf_seq){
+		$info = $this->UserModel->getMailForm($mf_seq);
+		//print_r($info);
+		$data = array(
+				"info" => $info
+		);
+
+		$this->load->view("/admin/user/mailform-modify", $data);
+	}
+
+	public function mailFormModifyProc(){
+		$mf_seq = $this->input->post("mf_seq");
+		$mf_code = $this->input->post("mf_code");
+		$mf_name = $this->input->post("mf_name");
+		$mf_body = $this->input->post("mf_body");
+
+		$updateArr = array(
+							"MF_CODE" => $mf_code,
+							"MF_NAME" => $mf_name,
+							"MF_BODY" => $mf_body,
+							);
+
+		$result = $this->UserModel->updateMailForm($updateArr, $mf_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "메일폼 수정 완료되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "메일폼 수정중 문제가 생겼습니다."));
+		}
+	}
+
+	public function mailFormDelProc(){
+		$mf_seq = $this->input->post("mf_seq");
+
+		$result = $this->UserModel->delMailForm($mf_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "메일폼 삭제 완료되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "메일폼 삭제중 문제가 생겼습니다."));
+		}
+	}
+
+	public function emailSend(){
+		$limit = 5;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*10;
+			$nowpage = $_GET["per_page"];
+		}
+
+		$reg_date_start = $this->input->get("reg_date_start");
+		$reg_date_end = $this->input->get("reg_date_end");
+		$user_level = $this->input->get("user_level");
+		$search_field = $this->input->get("search_field");
+		$search_string = $this->input->get("search_string");
+		$user_email_flag = $this->input->get("user_email_flag");
+
+		$wheresql = array(
+						"reg_date_start" => $reg_date_start,
+						"reg_date_end" => $reg_date_end,
+						"user_level" => $user_level,
+						"search_field" => $search_field,
+						"search_string" => $search_string,
+						"user_email_flag" => $user_email_flag,
+						"start" => $start,
+						"limit" => $limit
+						);
+		$lists = $this->UserModel->getUsers($wheresql);
+		//echo $this->db->last_query();
+		$listCount = $this->UserModel->getUsersCount($wheresql);
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*10);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$pagination = $this->customclass->pagenavi("/admin/user/emailSend", $listCount, 10, 5, $nowpage);
+		//print_r($listCount);
+		$levels = $this->UserModel->getUserLevelAll();
+		$mailForms = $this->UserModel->getMailForms();
+		//print_r($mailForms);
+		$data = array(
+					"reg_date_start" => $reg_date_start,
+					"reg_date_end" => $reg_date_end,
+					"user_level" => $user_level,
+					"search_field" => $search_field,
+					"search_string" => $search_string,
+					"user_email_flag" => $user_email_flag,
+					"lists" => $lists,
+					"listCount" => $listCount,
+					"pagination" => $pagination,
+					"pagenum" => $pagenum,
+					"start" => $start,
+					"limit" => $limit,
+					"levels" => $levels,
+					"mailForms" => $mailForms
+					);
+		$this->load->view("/admin/user/user-email-send", $data);
+	}
+
+	public function getMailForm(){
+		$mf_seq = $this->input->post("mf_seq");
+
+		$result = $this->UserModel->getMailForm($mf_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "", "result" => $result));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "메일폼 불러오는중 문제가 생겼습니다."));
+		}
+	}
 }

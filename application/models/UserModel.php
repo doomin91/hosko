@@ -309,4 +309,43 @@ class UserModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_CALL_LOG.CLOG_SEQ", $clog_seq);
 		return $this->db->update("TBL_HOSKO_CALL_LOG", array("CLOG_DEL_YN" => "Y"));
 	}
+
+	public function getMailFormLists($whereArr){
+		$this->db->where("TBL_HOSKO_MAILFORM.MF_DEL_YN", "N");
+		$this->db->order_by("TBL_HOSKO_MAILFORM.MF_SEQ", "DESC");
+		$this->db->limit($whereArr["limit"], $whereArr["start"]);
+		return $this->db->get("TBL_HOSKO_MAILFORM")->result();
+	}
+
+	public function getMailFormListCount($whereArr){
+		$this->db->where("TBL_HOSKO_MAILFORM.MF_DEL_YN", "N");
+		$this->db->from("TBL_HOSKO_MAILFORM");
+		return $this->db->count_all_results();
+	}
+
+	public function insertMailForm($insertArr){
+		return $this->db->insert("TBL_HOSKO_MAILFORM", $insertArr);
+	}
+
+	public function getMailForm($mf_seq){
+		$this->db->where("TBL_HOSKO_MAILFORM.MF_SEQ", $mf_seq);
+		return $this->db->get("TBL_HOSKO_MAILFORM")->row();
+	}
+
+	public function updateMailForm($updateArr, $mf_seq){
+		$this->db->where("TBL_HOSKO_MAILFORM.MF_SEQ", $mf_seq);
+		return $this->db->update("TBL_HOSKO_MAILFORM", $updateArr);
+	}
+
+	public function delMailForm($mf_seq){
+		$this->db->where("TBL_HOSKO_MAILFORM.MF_SEQ", $mf_seq);
+		return $this->db->update("TBL_HOSKO_MAILFORM", array("MF_DEL_YN" => "Y"));
+	}
+
+	public function getMailForms(){
+		$this->db->where("TBL_HOSKO_MAILFORM.MF_DEL_YN", "N");
+		$this->db->select("TBL_HOSKO_MAILFORM.MF_SEQ, TBL_HOSKO_MAILFORM.MF_NAME");
+		$this->db->order_by("TBL_HOSKO_MAILFORM.MF_SEQ", "ASC");
+		return $this->db->get("TBL_HOSKO_MAILFORM")->result();
+	}
 }
