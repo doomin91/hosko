@@ -163,4 +163,12 @@ class Customclass{
         }
     }
 
+    public function numConvertString($num){
+        if (strlen($num) == 1){
+            $str = "0".$num;
+        }else{
+            $str = $num;
+        }
+        return $str;
+    }
 }

@@ -135,12 +135,12 @@
 					</a>
 				</li>
 				<li>
-				  <a href="#">
+				  <a href="/admin/consult/onlineConsult">
 					<i class="fa fa-caret-right"></i> 온라인상담
 				  </a>
 				</li>
 				<li>
-				  <a href="#">
+				  <a href="/admin/consult/visitConsult">
 					<i class="fa fa-caret-right"></i> 방문상담
 				  </a>
 				</li>
@@ -150,17 +150,17 @@
 				  </a>
 				</li>
 				<li>
-				  <a href="#">
+				  <a href="/admin/consult/callConsultList">
 					<i class="fa fa-caret-right"></i> 전화상담이력
 				  </a>
 				</li>
 				<li>
-				  <a href="#">
+				  <a href="/admin/consult/schedule?flag=hosko">
 					<i class="fa fa-caret-right"></i> HOSKO 일정
 				  </a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="/admin/consult/schedule?flag=presentation">
 						<i class="fa fa-caret-right"></i> 설명회 일정
 					</a>
 				</li>

@@ -141,63 +141,63 @@ class User extends CI_Controller {
 		}
 
 		$config["upload_path"] = $_SERVER['DOCUMENT_ROOT'] . "/upload/profile/";
-        $config["allowed_types"] = "xls|xlsx|ppt|pptx|gif|jpg|png|hwp|doc|bmp|jpeg|zip|GIF|JPG|PNG|JPEG";
-        $new_name = $post_data["user_id"] . "_img_" . date("YmdHis");
-        $config["file_name"] = $new_name;
-        $this->load->library("upload", $config);
+		$config["allowed_types"] = "xls|xlsx|ppt|pptx|gif|jpg|png|hwp|doc|bmp|jpeg|zip|GIF|JPG|PNG|JPEG";
+		$new_name = $post_data["user_id"] . "_img_" . date("YmdHis");
+		$config["file_name"] = $new_name;
+		$this->load->library("upload", $config);
 
 		$user_profile = "";
-        $user_profile_path = "";
-        if (isset($_FILES['user_profile']['name'])) {
-            if (0 < $_FILES['user_profile']['error']) {
-                echo 'Error during file upload' . $_FILES['user_profile']['error'];
-            } else {
-                if (file_exists('upload/profile' . $_FILES['user_profile']['name'])) {
-                    echo 'File already exists : upload/profile' . $_FILES['user_profile']['name'];
-                } else {
-                    $this->load->library('upload', $config);
-                    if (!$this->upload->do_upload('user_profile')) {
-                        echo $this->upload->display_errors();
-                    } else {
-                        //echo 'File successfully uploaded : uploads/' . $_FILES['post_thumbnail']['name'];
-                        $user_profile = $_FILES['user_profile']['name'];
-                        $user_profile_path = "/upload/profile/".$this->upload->data("file_name");
-                    }
-                }
-            }
-        } else {
-            echo 'Please choose a file';
-        }
+		$user_profile_path = "";
+		if (isset($_FILES['user_profile']['name'])) {
+			if (0 < $_FILES['user_profile']['error']) {
+				echo 'Error during file upload' . $_FILES['user_profile']['error'];
+			} else {
+				if (file_exists('upload/profile' . $_FILES['user_profile']['name'])) {
+					echo 'File already exists : upload/profile' . $_FILES['user_profile']['name'];
+				} else {
+					$this->load->library('upload', $config);
+					if (!$this->upload->do_upload('user_profile')) {
+						echo $this->upload->display_errors();
+					} else {
+						//echo 'File successfully uploaded : uploads/' . $_FILES['post_thumbnail']['name'];
+						$user_profile = $_FILES['user_profile']['name'];
+						$user_profile_path = "/upload/profile/".$this->upload->data("file_name");
+					}
+				}
+			}
+		} else {
+			echo 'Please choose a file';
+		}
 
-        $user_profile_doc = "";
-        $user_profile_doc_path = "";
-        if (isset($_FILES['user_profile_doc']['name'])) {
-            if (0 < $_FILES['user_profile_doc']['error']) {
-                echo 'Error during file upload' . $_FILES['user_profile_doc']['error'];
-            } else {
-                if (file_exists('upload/attach' . $_FILES['user_profile_doc']['name'])) {
-                    echo 'File already exists : upload/attach' . $_FILES['user_profile_doc']['name'];
-                } else {
-                    $this->load->library('upload', $config);
-                    if (!$this->upload->do_upload('user_profile_doc')) {
-                        echo $this->upload->display_errors();
-                    } else {
-                        //echo 'File successfully uploaded : uploads/' . $_FILES['post_thumbnail']['name'];
-                        $user_profile_doc = $_FILES['user_profile_doc']['name'];
-                        $user_profile_doc_path = "/upload/attach/".$this->upload->data("file_name");
-                    }
-                }
-            }
-        } else {
-            //echo 'Please choose a file';
-        }
+		$user_profile_doc = "";
+		$user_profile_doc_path = "";
+		if (isset($_FILES['user_profile_doc']['name'])) {
+			if (0 < $_FILES['user_profile_doc']['error']) {
+				echo 'Error during file upload' . $_FILES['user_profile_doc']['error'];
+			} else {
+				if (file_exists('upload/attach' . $_FILES['user_profile_doc']['name'])) {
+					echo 'File already exists : upload/attach' . $_FILES['user_profile_doc']['name'];
+				} else {
+					$this->load->library('upload', $config);
+					if (!$this->upload->do_upload('user_profile_doc')) {
+						echo $this->upload->display_errors();
+					} else {
+						//echo 'File successfully uploaded : uploads/' . $_FILES['post_thumbnail']['name'];
+						$user_profile_doc = $_FILES['user_profile_doc']['name'];
+						$user_profile_doc_path = "/upload/attach/".$this->upload->data("file_name");
+					}
+				}
+			}
+		} else {
+			//echo 'Please choose a file';
+		}
 
-        $insertArr = array(
-        				"USER_LEVEL" => $post_data["user_level"],
-        				"USER_ID" => $post_data["user_id"],
-        				"USER_PASS" => $post_data["user_pass"],
-        				"USER_NAME" => $post_data["user_name"],
-        				"USER_ENG_NAME" => $post_data["user_eng_name"],
+		$insertArr = array(
+						"USER_LEVEL" => $post_data["user_level"],
+						"USER_ID" => $post_data["user_id"],
+						"USER_PASS" => $post_data["user_pass"],
+						"USER_NAME" => $post_data["user_name"],
+						"USER_ENG_NAME" => $post_data["user_eng_name"],
 						"USER_SEX" => $post_data["user_sex"],
 						"USER_PROFILE" => $user_profile_path,
 						"USER_BIRTHDAY" => $post_data["user_birthday"],
@@ -242,9 +242,9 @@ class User extends CI_Controller {
 						"USER_REG_DATE" => date("Y-m-d H:i:s"),
 						"USER_DEL_YN" => "N",
 						"USER_REG_IP" => $_SERVER["REMOTE_ADDR"],
-        );
+		);
 
-        $result = $this->UserModel->insertUser($insertArr);
+		$result = $this->UserModel->insertUser($insertArr);
 
 		if ($result == true){
 			echo json_encode(array("code" => "200", "msg" => "회원 정보 등록 완료되었습니다."));
@@ -537,7 +537,7 @@ class User extends CI_Controller {
 	}
 
 	public function userCallMsg($user_seq){
-		$limit = 5;
+		$limit = 10;
 		$nowpage = "";
 		if (!isset($_GET["per_page"])){
 			$start = 0;
@@ -837,5 +837,78 @@ class User extends CI_Controller {
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "메일폼 불러오는중 문제가 생겼습니다."));
 		}
+	}
+
+	public function mailSend(){
+		$mf_body = $this->input->post("mf_body");
+		$send_start = $this->input->post("send_start");
+		$send_end = $this->input->post("send_end");
+		$send_subject = $this->input->post("send_subject");
+		$flag = $this->input->post("flag");
+
+		$reg_date_start = $this->input->post("reg_date_start");
+		$reg_date_end = $this->input->post("reg_date_end");
+		$user_level = $this->input->post("user_level");
+		$search_field = $this->input->post("search_field");
+		$search_string = $this->input->post("search_string");
+		$user_email_flag = $this->input->post("user_email_flag");
+
+		if ($flag == "userSend"){
+			$wheresql = array(
+							"reg_date_start" => $reg_date_start,
+							"reg_date_end" => $reg_date_end,
+							"user_level" => $user_level,
+							"search_field" => $search_field,
+							"search_string" => $search_string,
+							"user_email_flag" => $user_email_flag,
+							"start" => $send_start,
+							"limit" => $send_end-$send_start
+							);
+			$lists = $this->UserModel->getUsers($wheresql);
+
+			foreach ($lists as $list){
+
+			}
+		}else if ($flag == "testSend"){
+			$mail_body = str_replace("{DATE}", date("Y-m-d"), $mf_body);
+			$mail_body = str_replace("{MEM_ID}", "TEST_ADMIN", $mail_body);
+			$mail_body = str_replace("{MEM_PW}", "TEST_PW", $mail_body);
+			$mail_body = str_replace("{MEM_NAME}", "관리자", $mail_body);
+			$mail_body = str_replace("{SITE_NAME}", "호스코", $mail_body);
+			$mail_body = str_replace("{SITE_EMAIL}", "hosko-email", $mail_body);
+			$mail_body = str_replace("{SITE_TEL}", "010-0000-0000", $mail_body);
+			$mail_body = str_replace("{SITE_URL}", "http://hoskoweb.cafe24.com", $mail_body);
+			echo $mail_body;
+			$this->SendMail("inho4864@withnetworks.com", $send_subject, $mail_body);
+		}
+
+		echo json_encode(array("code" => "200", "msg" => "메일 전송 완료되었습니다."));
+	}
+
+	public function SendMail($mail_addr, $subject, $contents){
+		$this->load->library('email');
+
+		$config['protocol'] = 'smtp';
+		$config['wordwrap'] = TRUE;
+		$config['charset'] = 'utf-8';
+		$config['mailtype'] = "html";
+		$config['smtp_host'] = "smtp.mailplug.co.kr";
+		$config['smtp_user'] = "inho4864@withnetworks.com";
+		$config['smtp_pass'] = "with!2009";
+		$config['smtp_port'] = "465";
+		$config['newline'] = "\r\n";
+		$config['crlf'] = "\r\n";
+
+		$this->email->initialize($config);
+
+		$this->email->from('hosko@hospitalitykorea.com', '호스코 관리자');
+		$this->email->to($mail_addr);
+
+		$this->email->subject($subject);
+		$this->email->message($contents);
+
+		$this->email->send();
+
+		echo $this->email->print_debugger();
 	}
 }
