@@ -141,6 +141,29 @@ class RecruitModel extends CI_Model{
         return $this->db->update("TBL_HOSKO_RECRUIT", array("REC_DEL_YN" => "Y"));
     }
 
+    public function getRecruitResumeList($whereArr){
+        $this->db->where("TBL_HOSKO_RESUME.RESUME_DEL_YN", 'N');
+
+        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RESUME.USER_SEQ");
+
+        $this->db->group_by("TBL_HOSKO_RESUME.RESUME_SEQ");
+        $this->db->order_by("TBL_HOSKO_RESUME.RESUME_SEQ");
+        $this->db->select("TBL_HOSKO_RESUME.*, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_RESUME.RESUME_TITLE");
+        $this->db->limit(15);
+        return $this->db->get("TBL_HOSKO_RESUME")->result();
+    }
+
+    public function getRecruitResumeListCount($whereArr){
+        $this->db->where("TBL_HOSKO_RESUME.RESUME_DEL_YN", 'N');
+
+        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RESUME.USER_SEQ");
+
+        $this->db->select("TBL_HOSKO_RESUME.RESUME_SEQ");
+        $this->db->distinct();
+        $this->db->from("TBL_HOSKO_RESUME");
+        return $this->db->count_All_results();
+    }
+
     
 
 

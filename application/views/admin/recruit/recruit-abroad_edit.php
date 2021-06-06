@@ -337,7 +337,7 @@
                         </div>
                         <!-- tile body -->
 						<div class="tile-body color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyTopViewTable">
+							<table class="table table-custom dataTable applyTopViewTable">`~
 								<tbody>
 									<tr>
 										<th class="col-sm-12 text-center">상세설명</th>
@@ -613,6 +613,10 @@
         .common_select, .common_input{
             min-height: 30px;
             font-size: 12px !important;
+        }
+        
+        .note-editable{
+            overflow-y: auto;
         }
         
     </style>

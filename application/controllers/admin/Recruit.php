@@ -199,7 +199,7 @@ class Recruit extends CI_Controller {
 			$pagenum = $listCount;
 		}
 
-		$pagination = $this->customclass->pagenavi("/admin/recurit/abroad", $listCount, 15, 5, $nowpage);
+		$pagination = $this->customclass->pagenavi("/admin/recurit/recruit-abroad_list", $listCount, 15, 5, $nowpage);
 		//print_r($listCount);
 		$data = array(
 					"ctg" => $ctg,
@@ -391,7 +391,6 @@ class Recruit extends CI_Controller {
         }
 	}
 
-
 	public function recruit_abroad_view($abroad_seq){
 		$DATA["ABROAD_INFO"] = $this->RecruitModel->getRecruitAbroadInfo($abroad_seq);
 
@@ -420,24 +419,49 @@ class Recruit extends CI_Controller {
 		}
 	}
 
-	public function login_proc(){
-		$admin_id = isset($_POST["admin_id"]) ? $_POST["admin_id"] : "";
-		$admin_pass = isset($_POST["admin_pass"]) ? $_POST["admin_pass"] : "";
-
-		$user = $this->AdminModel->adminLogin($admin_id, $admin_pass);
-		//echo $this->db->last_query();
-		if (empty($user)){
-			echo json_encode(array("code" => "201", "msg" => "아이디 패스워드를 확인해주세요"));
+	public function recruit_resume_list(){
+		$limit = 15;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
 		}else{
-			//print_r($user);
-			$session_data = array(
-								"admin_id" => $user->ADMIN_ID
-			);
-			$this->session->set_userdata($session_data);
-
-			echo json_encode(array("code" => "200"));
+			$start = ($_GET["per_page"]-1)*15;
+			$nowpage = $_GET["per_page"];
 		}
+
+		$ctg = isset($_GET["ctg"]) ? $_GET["ctg"] : "";
+
+		$wheresql = array(
+						"ctg" => $ctg,
+						"start" => $start,
+						"limit" => $limit
+						);
+		// print_r($searchTxt);
+		$lists = $this->RecruitModel->getRecruitResumeList($wheresql);
+		// $lists = array();
+		//echo $this->db->last_query();
+		$listCount = $this->RecruitModel->getRecruitResumeListCount($wheresql);
+		// $listCount= array();
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*15);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$pagination = $this->customclass->pagenavi("/admin/recurit/recruit_resume_list", $listCount, 15, 5, $nowpage);
+		//print_r($listCount);
+		$data = array(
+					"lists" => $lists,
+					"listCount" => $listCount,
+					"pagination" => $pagination,
+					"pagenum" => $pagenum,
+					"start" => $start,
+					"limit" => $limit
+					);
+
+		$this->load->view("./admin/recruit/recruit-resume_list", $data);
 	}
+
 
 	public function thumbnail_del_proc(){
 		$seq = isset($_POST["seq"]) ? $_POST["seq"] : "";
