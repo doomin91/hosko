@@ -217,37 +217,21 @@ td a {
 							<!-- /tile -->
 
 							<?php if($BOARD_INFO->BOARD_BOTTOM_LIST_FLAG == "Y"): ?>
-							<section class="tile transparent-white">
+							<!-- tile -->
+							<section class="tile color transparent-black">
 							<!-- tile body -->
-								<div class="tile-body rounded-corners">
-									<div class="table-responsive">
-										<table  class="table table-datatable table-custom dataTable">
-											<thead>
-											<tr>
-												<th class="sort-numeric">No</th>
-												<th class="sort">제목</th>
-												<th class="sort">글쓴이</th>
-												<th class="sort">조회수</th>
-												<?php 
-												// 댓글 표시
-												if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
-												<th class="sort">댓글수</th>
-												<?php endif;?>
+							<div class="tile-body">
+								<div class="table-responsive">
+								<table class="table table-hover table-condensed table-custom01">
 
-												<?php
-												// 추천 표시
-												if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
-												<th class="sort">추천수</th>
-												<?php endif;?>
-												<th class="sort">등록일</th>
-											</tr>
-											</thead>
 											<tbody>
 											<?php foreach($BOTTOM_LIST as $lt):?>
 											<?php if($POST_INFO->POST_SEQ == $lt->POST_SEQ):?>
 											<tr style="background:#3071A9; color:white;">
+											<td style="text-align:center;">-</td>
 											<?php else: ?>
 											<tr style="cursor:pointer;" onclick="viewPost(<?php echo $lt->POST_SEQ?>);">
+											<td style="text-align:center;"><?php echo $lt->POST_SEQ?></td>
 											<?php endif; ?>
 												<td><?php 
 												if($lt->POST_NOTICE_YN == 'Y'){
@@ -266,24 +250,9 @@ td a {
 														}
 													?> 
 												</td>
-												<td><?php echo $lt->USER_NAME?></td>
-												<td><?php echo $lt->POST_VIEW_CNT?></td>
-												<?php
-												// 댓글 기능
-												if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
-												<td>
-												<span class="badge badge-danger"><?php echo $lt->COMMENTS?></span>
-												</td>
-												<?php
-												endif;
-												?>
-												
-												<?php 
-												// 추천 표시
-												if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
-												<td><i class="fa fa-heart" aria-hidden="true"></i> <?php ?><?php echo $lt->CNT?></td>
-												<?php endif;?>
-												<td><?php echo $lt->POST_REG_DATE?></td>
+												<td style="text-align:center;"><?php echo $lt->USER_NAME?></td>
+												<td style="text-align:center;"><?php echo $lt->POST_VIEW_CNT?></td>
+												<td style="text-align:center;"><?php echo $lt->POST_REG_DATE?></td>
 											</tr>
 											<?php 
 											// $pagenum -= 1;	
