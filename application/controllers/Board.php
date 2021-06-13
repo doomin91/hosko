@@ -45,10 +45,10 @@ class Board extends CI_Controller {
                 $board_seq = $boards_info[0]->BOARD_SEQ;
             }
 
-            $BOARD_INFO = $this->BoardModel->getBoard($board_seq);
+            $board_info = $this->BoardModel->getBoard($board_seq);
             $searchField = $this->input->get("search_field");
             $searchString = $this->input->get("search_string");
-            $limit = $BOARD_INFO->BOARD_LIST_COUNT;
+            $limit = $board_info->BOARD_LIST_COUNT;
             $nowpage = "";
             if (!isset($_GET["per_page"])){
                 $start = 0;
@@ -73,10 +73,10 @@ class Board extends CI_Controller {
                 $pagenum = $listCount;
             }
     
-            $queryString = "?searchField=". $searchField. "&searchString=".$searchString;
-            $pagination = $this->customclass->pagenavi("/Board/q/$seq?seq=$board_seq" . $queryString, $listCount, $limit, 3, $nowpage);
+            $queryString = "search_field=". $searchField. "&search_string=".$searchString;
+            $pagination = $this->customclass->front_pagenavi("/Board/q/$seq?seq=$board_seq&" . $queryString, $listCount, $limit, 3, $nowpage);
     
-            $DATA["BOARD_INFO"] = $BOARD_INFO;
+            $DATA["BOARD_INFO"] = $board_info;
             $DATA["lists"] = $lists;
             $DATA["listCount"] = $listCount;
             $DATA["searchField"] = $searchField;
@@ -87,16 +87,39 @@ class Board extends CI_Controller {
             $DATA["limit"] = $limit;
 
         } else {
-            $post_info = "";
+            $searchField = $this->input->get("search_field");
+            $searchString = $this->input->get("search_string");
         }
 
+        $DATA["searchField"] = $searchField;
+        $DATA["searchString"] = $searchString;
         $DATA["GROUP_INFO"] = $group_info;
         $DATA["BOARDS_INFO"] = $boards_info;
         $this->load->view("board_list", $DATA);
     }
 
-    function board_view(){
-        $this->load->view("board_view");
+    function board_view($post_seq){
+        $post_info = $this->BoardModel->getPost($post_seq);
+        $board_seq = $post_info->BOARD_SEQ;
+        $board_info = $this->BoardModel->getBoard($board_seq);
+        $group_seq = $board_info->BOARD_GROUP;
+        $group_info = $this->GroupModel->getGroup($group_seq);
+        $boards_info = $this->BoardModel->getBoardInGroup($group_seq);
+
+        $this->BoardModel->getBoardBottom($post_seq, $board_seq);
+        $bottom_list = $this->BoardModel->getBoardBottomCnt($post_seq, $board_seq);
+        $bottom_cnt = $this->BoardModel->getBoardSeqByPost($post_seq);
+        $comments = $this->BoardModel->getComments($post_seq);
+        $recommand = $this->BoardModel->getRecommand($post_seq);
+        $attach = $this->BoardModel->getPostAttach($post_seq);
+
+        $DATA["GROUP_INFO"] = $group_info;
+        $DATA["POST_INFO"] = $post_info;
+        $DATA["BOARD_INFO"] = $board_info;
+        $DATA["BOARDS_INFO"] = $boards_info;
+        $DATA["ATTACH"] = $attach;
+        $DATA["COMMENTS"] = $comments;
+        $this->load->view("board_view", $DATA);
     }
 
     function board_write(){

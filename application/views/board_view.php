@@ -10,7 +10,7 @@
                 <div class="layout_sub">
                     <div class="sub_visual v01">
                         <div class="sub_visual_text">
-                            <h1>공지 & 뉴스</h1>
+                            <h1><?php echo $GROUP_INFO->GP_NAME;?></h1>
                             <p>HOSPITALITY KOREA</p>
                         </div>
 
@@ -18,27 +18,43 @@
                     <div class="sub_contents">
                         <div class="sub_category">
                             <ul>
-                                <li class="on"><a href="/">호스코뉴스</a></li>
-                                <li><a href="/">해외취업후기</a></li>
-                                <li><a href="/">출국회원소식</a></li>
-                                <li><a href="/">동영상자료실</a></li>
-                                <li><a href="/">갤러리</a></li>
+                                <?php foreach($BOARDS_INFO as $val){
+                                    echo "<li><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                }
+                                ?>
                             </ul>
                         </div>
 
                         <div class="inner">
                             <div class="subContWrap">
                                 <div class="subTit">
-                                    <h2>호스코 뉴스</h2>
+                                    <h2><?php echo $BOARD_INFO->BOARD_KOR_NAME?></h2>
                                 </div>
                                 <div class="subContSec">
                                     <div class="boardViewTop">
                                         <div class="type_table">
                                             <div class="col1">
                                                 <div class="boardViewTop_item">
-                                                    <strong>번호</strong>
+                                                    <strong><?php echo $POST_INFO->POST_SEQ?></strong>
                                                     <div class="type_td">
-                                                        질문합니다.										
+                                                        
+                                                    <?php 
+                                                date_default_timezone_set('Asia/Seoul');
+                                                if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
+                                                    if(time() - strtotime($POST_INFO->POST_REG_DATE) < ( 86400 * $BOARD_INFO->BOARD_PERIOD_NEW )){
+                                                        echo "[NEW ICON]";												
+                                                    };
+                                                }
+                                                    
+                                                if($BOARD_INFO->BOARD_PERIOD_HOT > 0){
+                                                    if($POST_INFO->POST_VIEW_CNT >= $BOARD_INFO->BOARD_PERIOD_HOT){
+                                                        echo "[HOT ICON]";
+                                                    }
+                                                }
+
+                                                echo "<a href=\"/board/board_view/$POST_INFO->POST_SEQ\">$POST_INFO->POST_SUBJECT</a>";
+                                                echo $POST_INFO->POST_SECRET_YN == "Y" ? "[자물쇠 ICON]" : "";
+                                                ?>					
                                                     </div>
                                                 </div>
                                             </div>
@@ -47,19 +63,19 @@
                                                 <div class="boardViewTop_item">
                                                     <strong>작성자</strong>
                                                     <div class="type_td">
-                                                        홍길동
+                                                        <?php echo !empty($POST_INFO->ADMIN_NAME)? $POST_INFO->ADMIN_NAME : $POST_INFO->USER_NAME ?>
                                                     </div>
                                                 </div>
                                                 <div class="boardViewTop_item">
                                                     <strong>작성일</strong>
                                                     <div class="type_td">
-                                                        2021-06-06
+                                                        <?php echo $POST_INFO->POST_REG_DATE; ?>
                                                     </div>
                                                 </div>
                                                 <div class="boardViewTop_item">
                                                     <strong>조회수</strong>
                                                     <div class="type_td">
-                                                        222
+                                                        <?php echo $POST_INFO->POST_VIEW_CNT;?>
                                                     </div>
                                                 </div>                                                
                                             </div>
@@ -70,7 +86,9 @@
                                                     <div class="type_td">
                                                         <ul class="fileList">
                                                             <li class="file_item">
-                                                                <a href="/" title="파일 다운로드 하기"><em>첨부파일.txt</em></a>
+                                                                <?php foreach($ATTACH as $at){ ?>
+                                                                <a href="/admin/Board/downalod_attach/<?php echo $at->ATTACH_SEQ?>" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
+                                                                <?php } ?>
                                                             </li>
                                                         </ul>								
                                                     </div>
@@ -82,7 +100,7 @@
 
                                     <div class="boardViewCont">
                                         <div class="View_cont">
-                                            <p>ddddd</p>
+                                            <p><?php echo $POST_INFO->POST_CONTENTS;?></p>
                                         </div>
                                     </div>
 
@@ -99,7 +117,7 @@
                                                 <div class="comment_sub03">
                                                     <p class="date">2021-05-14</p>
                                                     <p class="time">17:39:33</p>
-                                                    <p class="delete"><a href="/"><img src="static\front\html\static\img/icon_comment_del.png" alt="댓글삭제"></a></p>
+                                                    <p class="delete"><a href="/"><img src="/static/front/html/static/img/icon_comment_del.png" alt="댓글삭제"></a></p>
                                                 </div>
                                             </div>
                                         </div>

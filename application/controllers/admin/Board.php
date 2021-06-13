@@ -647,7 +647,7 @@ class Board extends CI_Controller {
 		// if it's a positive number return it
 		// otherwise return the 2's complement
 		
-		return ($binary{0} == "0" ? bindec($binary) :
+		return ($binary[0] == "0" ? bindec($binary) :
 			-(pow(2, 31) - bindec(substr($binary, 1))));
 		
 	}
