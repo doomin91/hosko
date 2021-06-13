@@ -38,7 +38,7 @@
 
 		  <!-- content main container -->
 		  <div class="main">
-
+		  	<form name="applySearchForm" id="applySearchForm" class="form-horizontal" method="get" role="form">
 			<div class="row">
 				<div class="col-md-12">
 					<section class="tile transparent">
@@ -47,45 +47,47 @@
 								<tbody>
 									<tr>
 										<th class="col-sm-2">진행상태</th>
+										<input type="hidden" name="apply_status" id="apply_status" value="<?php echo $status?>">
 										<td class="col-sm-10">
-                                            <span class="status_condition active">전체</span>
-                                            <span class="status_condition">온라인상담</span>
-                                            <span class="status_condition">지원</span>
-                                            <span class="status_condition">지원서류제출</span>
-                                            <span class="status_condition">비용입금</span>
-                                            <span class="status_condition">서류전형</span>
-                                            <span class="status_condition">인터뷰준비</span>
-                                            <span class="status_condition">인터뷰</span>
-                                            <span class="status_condition">합격공지</span>
-                                            <span class="status_condition">출국준비</span>
-                                            <span class="status_condition">소양교육</span>
-                                            <span class="status_condition">출국</span>
+                                            <span class="status_condition <?php if($status==0) echo "active"?>" data-val="0">전체</span>
+                                            <span class="status_condition <?php if($status==1) echo "active"?>" data-val="1">온라인상담</span>
+                                            <span class="status_condition <?php if($status==2) echo "active"?>" data-val="2">지원</span>
+                                            <span class="status_condition <?php if($status==3) echo "active"?>" data-val="3">지원서류제출</span>
+                                            <span class="status_condition <?php if($status==4) echo "active"?>" data-val="4">비용입금</span>
+                                            <span class="status_condition <?php if($status==5) echo "active"?>" data-val="5">서류전형</span>
+                                            <span class="status_condition <?php if($status==6) echo "active"?>" data-val="6">인터뷰준비</span>
+                                            <span class="status_condition <?php if($status==7) echo "active"?>" data-val="7">인터뷰</span>
+                                            <span class="status_condition <?php if($status==8) echo "active"?>" data-val="8">합격공지</span>
+                                            <span class="status_condition <?php if($status==9) echo "active"?>" data-val="9">출국준비</span>
+                                            <span class="status_condition <?php if($status==10) echo "active"?>" data-val="10">소양교육</span>
+                                            <span class="status_condition <?php if($status==11) echo "active"?>" data-val="11">출국</span>
                                         </td>
 									</tr>
 									<tr>
 										<th class="col-sm-2">기간</th>
+										<input type="hidden" name="apply_date" id="apply_date" value="">
 										<td class="col-sm-10">
-                                            <input type="text" id="apply_start_date" name="apply_start_date" class="date_field" value="">
+                                            <input type="text" id="apply_start_date" name="apply_start_date" class="date_field" value="<?php echo $startDate?>">
                                             ~
-                                            <input type="text" id="apply_end_date" name="apply_end_date" class="date_field" value="">
+                                            <input type="text" id="apply_end_date" name="apply_end_date" class="date_field" value="<?php echo $endDate?>">
                                                 
-                                            <span class="date_condition today">오늘</span>
-                                            <span class="date_condition yesterday">어제</span>
-                                            <span class="date_condition week">1주일</span>
-                                            <span class="date_condition month">1개월</span>
+                                            <span class="date_condition today <?php if($searchDate=="today") echo "active"?>" data-val="today">오늘</span>
+                                            <span class="date_condition yesterday <?php if($searchDate=="yesterday") echo "active"?>" data-val="yesterday">어제</span>
+                                            <span class="date_condition week <?php if($searchDate=="week") echo "active"?>" data-val="week">1주일</span>
+                                            <span class="date_condition month <?php if($searchDate=="month") echo "active"?>" data-val="month">1개월</span>
 										</td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">조건검색</th>
 										<td class="col-sm-10">
-                                            <select class="apply_search_option">
-                                                <option>지원프로그램</option>
-                                                <option>성명</option>
-                                                <option>아이디</option>
+                                            <select name="apply_search_option" class="apply_search_option">
+                                                <option value="title"  <?php if($searchOption=="title") echo "selected"?>>지원프로그램</option>
+                                                <option value="name" <?php if($searchOption=="name") echo "selected"?>>성명</option>
+                                                <option value="id" <?php if($searchOption=="id") echo "selected"?>>아이디</option>
                                             </select>
                                             <input type="text" id="apply_search_text" name="apply_search_text" placeholder="검색어를 입력해주세요" value="">
 
-                                            <input type="button" class="btn btn-success" id="apply_search" value="검색"></input>
+                                            <input type="submit" class="btn btn-sm btn-primary" id="apply_search" value="검색"></input>
                                             
 										</td>
 									</tr>
@@ -95,7 +97,7 @@
 					</section>
 				</div>
 			</div>
-
+			</form>
 			<!-- row -->
 			<div class="row">
 
@@ -109,9 +111,9 @@
 
 						<div class="table-responsive dataTables_wrapper form-inline" role="grid" id="basicDataTable_wrapper">
 							<div class="row">
-								<div class="col-md-10">총 주문수 : 100 &nbsp&nbsp&nbsp 검색 주문수 : 100</div>
+								<div class="col-md-10">총 컨텐츠수 : <?php echo $listCountAll?> &nbsp&nbsp&nbsp 검색 컨텐츠수 : <?php echo $listCount ?></div>
                                 <div class="col-md-2 text-right">
-									<input type="button" id="apply_excel_save" class="btn btn-sm btn-default" value="+ 엑셀파일저장">
+									<input type="button" id="apply_excel_save" class="btn btn-xs btn-default" value="+ 엑셀파일저장">
 								</div>
 							</div>
 
@@ -128,7 +130,7 @@
 							</colgroup>
 							<thead>
 								<tr>
-									<th class="text-center"><input type="checkbox"></th>
+									<th class="text-center"><input type="checkbox" id="apply_select_all"></th>
 									<th class="text-center">성명</th>
 									<th class="text-center">아이디</th>
 									<th class="text-center">지원프로그램</th>
@@ -143,10 +145,9 @@
 						<?php
 							if (!empty($lists)) :
 								foreach ($lists as $list) :
-									
 						?>
 								<tr>
-									<td class="text-center"><input type="checkbox" value=<?php echo $list->APP_SEQ?>></td>
+									<td class="text-center"><input type="checkbox" name="apply_select" value=<?php echo $list->APP_SEQ?>></td>
 									<td class="text-center"><?php echo $list->USER_NAME ?></td>
                                     <td class="text-center"><?php echo $list->USER_ID ?></td>
                                     <td class="text-center"><?php echo $list->REC_TITLE ?></td>
@@ -154,20 +155,20 @@
                                     <td class="text-center"><?php echo $list->APP_REG_DATE ?></td>
                                     <td class="text-center">
 										<select class="apply_status">
-											<option <?php if($list->APP_STATUS==0) echo "selected"?>>온라인상담</option>
-											<option <?php if($list->APP_STATUS==1) echo "selected"?>>지원</option>
-											<option <?php if($list->APP_STATUS==2) echo "selected"?>>지원서류제출</option>
-											<option <?php if($list->APP_STATUS==3) echo "selected"?>>비용입금</option>
-											<option <?php if($list->APP_STATUS==4) echo "selected"?>>서류전형</option>
-											<option <?php if($list->APP_STATUS==5) echo "selected"?>>인터뷰준비</option>
-											<option <?php if($list->APP_STATUS==6) echo "selected"?>>인터뷰</option>
-											<option <?php if($list->APP_STATUS==7) echo "selected"?>>합격공지</option>
-											<option <?php if($list->APP_STATUS==8) echo "selected"?>>출국준비</option>
-											<option <?php if($list->APP_STATUS==9) echo "selected"?>>소양교육</option>
-											<option <?php if($list->APP_STATUS==10) echo "selected"?>>출국</option>
+											<option value="1" <?php if($list->APP_STATUS==1) echo "selected"?>>온라인상담</option>
+											<option value="2" <?php if($list->APP_STATUS==2) echo "selected"?>>지원</option>
+											<option value="3" <?php if($list->APP_STATUS==3) echo "selected"?>>지원서류제출</option>
+											<option value="4" <?php if($list->APP_STATUS==4) echo "selected"?>>비용입금</option>
+											<option value="5" <?php if($list->APP_STATUS==5) echo "selected"?>>서류전형</option>
+											<option value="6" <?php if($list->APP_STATUS==6) echo "selected"?>>인터뷰준비</option>
+											<option value="7" <?php if($list->APP_STATUS==7) echo "selected"?>>인터뷰</option>
+											<option value="8" <?php if($list->APP_STATUS==8) echo "selected"?>>합격공지</option>
+											<option value="9" <?php if($list->APP_STATUS==9) echo "selected"?>>출국준비</option>
+											<option value="10" <?php if($list->APP_STATUS==10) echo "selected"?>>소양교육</option>
+											<option value="11" <?php if($list->APP_STATUS==11) echo "selected"?>>출국</option>
 										</select>
 
-										<input type="button" class="btn btn-sm btn-success" id="apply_status_save" value="적용"></input>
+										<input type="button" class="btn btn-sm btn-success" id="apply_status_save" data-seq="<?php echo $list->APP_SEQ ?>" value="적용"></input>
 									</td>
 									
                                     <td class="text-center"><a href ="/admin/recruit/recruit_apply_view/<?php echo $list->APP_SEQ?>" class="btn btn-sm btn-default">상세보기</a></td>
@@ -185,8 +186,8 @@
 
 							<div class="row">
                                 <div class="col-md-4 text-left">
-                                    <input type="button" id="selected_apply_del" class="btn btn-sm btn-default" value="- 선택삭제">
-                                    <input type="button" id="selected_apply_save" class="btn btn-sm btn-default" value="+ 선택일괄적용">
+                                    <input type="button" id="selected_apply_del" class="btn btn-xs btn-default" value="- 선택삭제">
+                                    <input type="button" id="selected_apply_save" class="btn btn-xs btn-default" value="+ 선택일괄적용">
 								</div>
 								<div class="col-md-4 text-center sm-center">
 									<div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
@@ -263,8 +264,11 @@
                 onClose: function( selectedDate ) {    
                     // 시작일(fromDate) datepicker가 닫힐때
                     // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-                    $("#p_end_date").datepicker( "option", "minDate", selectedDate );
-                }                
+                    $("#apply_end_date").datepicker( "option", "minDate", selectedDate );
+                },
+				onSelect: function( dateText, inst) {
+					$(".date_condition.active").removeClass("active");
+                }            
             });
 
             //종료일
@@ -284,8 +288,11 @@
                 },
                 onClose: function( selectedDate ) {
                     // 종료일(toDate) datepicker가 닫힐때
-                    // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-                    $("#p_start_date").datepicker( "option", "maxDate", selectedDate );
+                    // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정
+                    $("#apply_start_date").datepicker( "option", "maxDate", selectedDate );
+                },
+				onSelect: function( dateText, inst) {
+					$(".date_condition.active").removeClass("active");
                 }                
             });
 
@@ -296,6 +303,9 @@
                 $(row).find(".status_condition.active").removeClass("active");
 
                 $(this).addClass("active");
+
+				$("input[name=apply_status]").val($(this).data("val"));
+				console.log($("input[name=apply_status]").val());
             });
 
             $(".applyTable").on("click", ".date_condition", function(){
@@ -306,23 +316,26 @@
 
                 $(this).addClass("active");
 
+				$("input[name=apply_date]").val($(this).data("val"));
+				console.log($("input[name=apply_date]").val());
+
 				var date = new Date();
-				var today = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+				var today = date.getFullYear()+'-'+("0" + (1 + date.getMonth())).slice(-2)+'-'+("0" + date.getDate()).slice(-2);
 				var str = "";
 				if($(this).is(".today")){
 					str = today;
 					$('#apply_start_date').val(str);
 				}else if($(this).is(".yesterday")){
 					var yesterday = new Date(date.setDate(date.getDate()-1));
-					str = yesterday.getFullYear()+'-'+(yesterday.getMonth()+1)+'-'+yesterday.getDate();
+					str = yesterday.getFullYear()+'-'+("0" + (1 + yesterday.getMonth())).slice(-2)+'-'+("0" + yesterday.getDate()).slice(-2);
 					$('#apply_start_date').val(str);
 				}else if($(this).is(".week")){
 					var week = new Date(date.setDate(date.getDate()-7));
-					str = week.getFullYear()+'-'+(week.getMonth()+1)+'-'+week.getDate();
+					str = week.getFullYear()+'-'+("0" + (1 + week.getMonth())).slice(-2)+'-'+("0" + week.getDate()).slice(-2);
 					$('#apply_start_date').val(str);
 				}else if($(this).is(".month")){
 					var month = new Date(date.setDate(date.getDate()-30));
-					str = month.getFullYear()+'-'+(month.getMonth()+1)+'-'+month.getDate();
+					str = month.getFullYear()+'-'+("0" + (1 + month.getMonth())).slice(-2)+'-'+("0" + month.getDate()).slice(-2);
 					$('#apply_start_date').val(str);
 				}
 				console.log(str);
@@ -334,26 +347,162 @@
 				}
             });
 
-            $("#apply_search_text").on("keypress", function(e){
-                var key = e.which;
+            // $("#apply_search_text").on("keypress", function(e){
+            //     var key = e.which;
                 
-                if (key == 13){
-                    $("#apply_search").click();
-                }
-            });
+            //     if (key == 13){
+            //         $("#apply_search").click();
+            //     }
+            // });
 
-            $("#apply_search").on("click", function(){
-                var row = $(this).closest("td");
-                var input = $(row).find("#apply_search_text").val();
+            // $("#apply_search").on("click", function(){
+            //     var row = $(this).closest("td");
+            //     var input = $(row).find("#apply_search_text").val();
 
-                if(input == ""){
-                    alert("검색어를 입력해주세요");
-                }
-            });
+			// 	var APPLY_STATUS = $(".status_condition.active").data("val");
+			// 	var START_DATE = $("input[name=apply_start_date]").val();
+			// 	var END_DATE = $("input[name=apply_end_date]").val();
+			// 	var DATE_CONDITION = $(".date_condition.active");
+			// 	var SEARCH_OPTION = $(".apply_search_option option:selected").val();
+			// 	console.log(APPLY_STATUS);
+			// 	console.log(SEARCH_OPTION);
+
+            // });
 
             $("#apply_excel_save").on("click", function(){
                 alert("엑셀 따운");
             });
+
+			$("#apply_select_all").on("change", function(){
+                var selects = $("input[name=apply_select]");
+
+                if($(this).is(":checked")){
+                    console.log("지금체크");
+                    $.each(selects, function(index, element){
+                        $(element).prop("checked", true);
+                    });
+                }else{
+                    console.log("지금체크품");
+                    $.each(selects, function(index, element){
+                        $(element).prop("checked", false);
+                    });
+                }
+            });
+
+            $("#selected_apply_del").on("click", function(){
+                var selected = $("input[name=apply_select]:checked");
+                var seqs = [];
+
+                selected.each(function(index, element){
+                    seqs.push($(this).val());
+                })
+                console.log(seqs);
+                
+                if(confirm("정말 모두 삭제하시겠습니까?")){
+                    $.ajax({
+                        url : "/admin/recruit/recruit_applies_del",
+                        type : "post",
+                        data : {
+                            "SEQ" : seqs
+                        },
+                        dataType : "json",
+                        success : function(resultMsg){
+                            if(resultMsg.code == 200){
+                                console.log("삭제되었습니다.");
+                                alert("삭제되었습니다.");
+                                location.reload();
+                            }else{
+                                alert(resultMsg.msg)
+                            }
+                        },
+                        error : function(e){
+							console.log(e.responseText);
+                            // console.log("삭제할 수 없습니다.");
+                        }
+                    });
+                }
+            });
+
+			$("#selected_apply_save").on("click", function(){
+				var SELECTED = $("input[name=apply_select]:checked");
+                var SEQ = [];
+				var STATUS = [];
+
+                SELECTED.each(function(index, element){
+                    SEQ.push($(this).val());
+					var OPTIONS = $(element).closest("tr").find("option");
+					$.each(OPTIONS, function(index, element){
+						if(element.selected){
+							STATUS.push($(element).val());
+						}
+					});
+					console.log(STATUS);
+
+					// console.log($(element).closest("tr").find("option"));
+                })
+                console.log(SEQ);
+				if(confirm("일괄 변경 하시겠습니까?")){
+                    $.ajax({
+                        url : "/admin/recruit/update_recruits_status",
+                        type : "post",
+                        data : {
+                            "APP_SEQ": SEQ,
+							"APP_STATUS": STATUS
+                        },
+                        dataType : "json",
+                        success : function(resultMsg){
+                            if(resultMsg.code == 200){
+                                console.log("수정되었습니다.");
+                                alert("수정되었습니다.");
+                                location.reload();
+                            }else{
+                                alert(resultMsg.msg)
+                            }
+                        },
+                        error : function(e){
+							console.log(e.responseText);
+                            // console.log("삭제할 수 없습니다.");
+                        }
+                    })
+				}
+			});
+
+			$("#apply_status_save").on("click", function(){
+				var APP_SEQ = $(this).data("seq");
+				var OPTIONS = $(this).prev().find("option");
+				var APP_STATUS = "";
+				$.each(OPTIONS, function(index, element){
+					if(element.selected){
+						APP_STATUS = $(element).val();
+					}
+				});
+
+				if(confirm("변경 하시겠습니까?")){
+                    $.ajax({
+                        url : "/admin/recruit/update_recruit_status",
+                        type : "post",
+                        data : {
+                            "APP_SEQ": APP_SEQ,
+							"APP_STATUS": APP_STATUS
+                        },
+                        dataType : "json",
+                        success : function(resultMsg){
+                            if(resultMsg.code == 200){
+                                console.log("수정되었습니다.");
+                                alert("수정되었습니다.");
+                                location.reload();
+                            }else{
+                                alert(resultMsg.msg)
+                            }
+                        },
+                        error : function(e){
+							console.log(e.responseText);
+                            // console.log("삭제할 수 없습니다.");
+                        }
+                    })
+				}
+
+			});
 
 
         });

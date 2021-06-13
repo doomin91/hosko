@@ -43,7 +43,7 @@
 				<div class="col-md-12">
 					<section class="tile transparent">
 						<div class="tile-body color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyTable">
+							<table class="table table-custom dataTable reSumeTable">
 								<tbody>
 									<tr>
                                         <th class="col-sm-2">조건검색</th>
@@ -82,7 +82,7 @@
 							<div class="row">
 								<div class="col-md-10">총 주문수 : 100 &nbsp&nbsp&nbsp 검색 주문수 : 100</div>
                                 <div class="col-md-2 text-right">
-									<input type="button" id="apply_excel_save" class="btn btn-sm btn-default" value="+ 엑셀파일저장">
+									<input type="button" id="apply_excel_save" class="btn btn-xs btn-default" value="+ 엑셀파일저장">
 								</div>
 							</div>
 
@@ -131,7 +131,7 @@
 
 							<div class="row">
                                 <div class="col-md-4 text-left">
-                                    <input type="button" id="selected_resume_del" class="btn btn-sm btn-default" value="- 선택삭제">
+                                    <input type="button" id="selected_resume_del" class="btn btn-xs btn-default" value="- 선택삭제">
 								</div>
 								<div class="col-md-4 text-center sm-center">
 									<div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
@@ -180,7 +180,7 @@
     <script>
         $(function(){
 
-            $("#apply_search_text").on("keypress", function(e){
+            $("#resume_search_text").on("keypress", function(e){
                 var key = e.which;
                 
                 if (key == 13){
@@ -188,7 +188,7 @@
                 }
             });
 
-            $("#apply_search").on("click", function(){
+            $("#resume_search").on("click", function(){
                 var row = $(this).closest("td");
                 var input = $(row).find("#resume_search_text").val();
 
@@ -205,22 +205,6 @@
         });
     </script>
     <style>
-        .ui-datepicker-month, .ui-datepicker-year{
-            color: black;
-        }
-        .ui-state-default {
-            color: black !important;
-        }
-
-        .applyTable .date_field{
-            border-radius:5px; 
-            margin-left: 5px;
-            margin-right: 5px;
-            padding: 8px;
-            border:0; 
-            background-color:rgba(0, 0, 0, 0.3)
-        }
-
         #resume_search_option{
             border-radius:5px; 
             margin-right: 5px;
@@ -230,16 +214,7 @@
             background-color:rgba(0, 0, 0, 0.3)
         }
 
-		.apply_status{
-            border-radius:5px; 
-            margin-right: 5px;
-            width: 50%;
-            padding: 6px;
-            border:0; 
-            background-color:rgba(0, 0, 0, 0.3)
-        }
-
-        #apply_search_text{
+        #resume_search_text{
             border-radius:5px; 
             margin-right: 5px;
             width: 20%;
@@ -248,22 +223,8 @@
             background-color:rgba(0, 0, 0, 0.3)
         }
 
-        #apply_search{
+        #resume_search{
             padding: 4px 10px;
-        }
-
-        .applyTable .status_condition, .date_condition{
-            margin-right:3px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 2px 6px;
-            box-sizing: border-box;
-            background: grey;
-            cursor: pointer;
-        }
-
-        .applyTable .status_condition.active, .date_condition.active{
-            background: rgb(60,180,180);
         }
         
     </style>
