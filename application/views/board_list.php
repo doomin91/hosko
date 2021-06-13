@@ -10,7 +10,7 @@
                 <div class="layout_sub">
                     <div class="sub_visual v01">
                         <div class="sub_visual_text">
-                            <h1>공지 & 뉴스</h1>
+                            <h1><?php echo $GROUP_INFO->GP_NAME;?></h1>
                             <p>HOSPITALITY KOREA</p>
                         </div>
 
@@ -18,11 +18,10 @@
                     <div class="sub_contents">
                         <div class="sub_category">
                             <ul>
-                                <li class="on"><a href="/">호스코뉴스</a></li>
-                                <li><a href="/">해외취업후기</a></li>
-                                <li><a href="/">출국회원소식</a></li>
-                                <li><a href="/">동영상자료실</a></li>
-                                <li><a href="/">갤러리</a></li>
+                                <?php foreach($BOARD_INFO as $val){
+                                    echo "<li>$val->BOARD_KOR_NAME</li>";
+                                }
+                                ?>
                             </ul>
                         </div>
 

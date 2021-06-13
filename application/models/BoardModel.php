@@ -18,6 +18,12 @@ class BoardModel extends CI_Model{
         return $this->db->get("TBL_HOSKO_BOARD")->result();
     }
 
+    public function getBoardInGroup($GROUP_SEQ){
+        $this->db->where("BOARD_DEL_YN", 'Y');
+        $this->db->where("BOARD_GROUP", $GROUP_SEQ);
+        return $this->db->get("TBL_HOSKO_BOARD")->result();
+    }
+
     public function getBoardBottom($POST_SEQ, $BOARD_SEQ){
         $sql = "
         SELECT * FROM 

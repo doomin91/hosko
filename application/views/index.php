@@ -1,276 +1,119 @@
-<?php include_once "header.php"; ?>
-
-<!--header-->
-<?php include_once "menu.php"; ?>
-
-<!-- // header -->
-
-
-<section class="sub_wrap">
-
-
-<!--main content-->
-<section id="container" class="main_wrap">
-    <!--메인 비주얼슬라이드-->
-    <article class="main_visual">
-        <div class="owl-carousel main_visual_slide">
-
-<!-- 메인배너
-            <div class="item slide3">
-                <div class="inner">
-                    <div class="img"></div>
-
-                    <div class="txt">
-                        <div class="mb_btn"><a href="http://www.itevents.co.kr/company/withnetworks/1907_withnetworks_Fortinet_roadshow/register.html" target="_blank">사전등록 바로가기</a></div>
-                    </div>
-                </div>
-            </div>
-
--->
-
-            <div class="item slide1">
-                <div class="inner">
-                    <div class="img"></div>
-                    <div class="txt">
-                        <dl>
-                            <dt class="main_font01">IT의 가치를 고객과 함께</dt>
-							<dt class="main_font02">With you and withnetworks</dt>
-							<dt class="main_font03">Total ICT 보안 서비스 전문 기업</dt>
-                           <!--  <dd>㈜ 위드네트웍스</dd> -->
-                        </dl>
-
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="item slide2">
-                <div class="inner">
-                    <div class="img"></div>
-                    <div class="txt">
-                        <dl>
-                            <dt class="main_font01">Cybereason</dt>
-							<dt class="main_font02">엔드포인트 통합 보안 플랫폼</dt>
-							<dt class="main_font03">EDR(Endpoint Detection & Response) + MDR (Managed Detection & Response)</dt>
-							<dt class="main_font03"><div class="mb_link_btn"><a href="http://www.withnetworks.com/Cybereason" target="_blank">Cybereason 바로가기</a></div></dt>
-                        </dl>
-
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="item slide3">
-                <div class="inner">
-                    <div class="img"></div>
-                    <div class="txt">
-                        <dl>
-                            <dt class="main_font01">i24</dt>
-							<dt class="main_font02">보안의 체질을 강화하다</dt>
-							<dt class="main_font03"><div class="mb_link_btn"><a href="http://www.i24safe.com" target="_blank">i24 바로가기</a></div></dt>
-                        </dl>
-
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-        </div>
-    </article>
-    <!--E 메인 비주얼슬라이드-->
-
-
-
-
-    <!-- 위드네트웍스 솔루션-->
-
-	<article class="solution_box">
-        <h3>사업소개</h3>
-		<p>Total ICT Security</p>
-        <ul>
-            <li class="list1"><a href="/Security">Security</a></li>
-
-			<li class="list2"><a href="/Infra">Infrastructure</a></li>
-
-			<li class="list3"><a href="/Managed">Managed Service</a></li>
-
-			<li class="list4"><a href="/Solutions">Solution</a></li>
-        </ul>
-    </article>
-
-    <!--// 위드네트웍스 솔루션-->
-
-	<!-- G 회사 소개 영역 -->
-	<article class="company_box">
-        <h3>withnetworks</h3>
-		<div class="company_box_list">
-			<ul class="thumbnailList">
-				<li>
-					<a href="/Company">
-						<p class="img"><img src="static/front/img/main_with_visual01.jpg" alt=""></p>
-						<div class="txtwrap">
-							<span>회사소개</span>
-							<p class="tit">고객의 입장에 선 Total 컨설팅을 통해 ICT혁신을 지지하는 기업입니다.</p>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="/news/award_list">
-						<p class="img"><img src="static/front/img/main_with_visual02.jpg" alt=""></p>
-						<div class="txtwrap">
-							<span>인증 및 수상</span>
-							<p class="tit">위드네트웍스의 인증 및 수상 내역을 확인하실 수 있습니다.</p>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="/Partners">
-						<p class="img"><img src="static/front/img/main_with_visual03.jpg" alt=""></p>
-						<div class="txtwrap">
-							<span>위드파트너</span>
-							<p class="tit">위드네트웍스의 파트너사를 확인하실 수 있습니다.</p>
-						</div>
-					</a>
-				</li>
-			</ul>
-		</div>
-    </article>
-	<!-- E 회사 소개 영역 -->
-
-
-
-	<!--// 보도자료 -->
-	<article class="news_box">
-
-	<div class="news_box_list">
-        <h3>보도자료</h3>
-		<ul class="clearfix ul_list_area">
-    <?php
-      foreach ($main_press as $press) :
-    ?>
-        <li>
-					<a href="/news/press_view/<?php echo $press->SEQ; ?>" class="btn_photo">
-							<span class="photo">
-								<span class="img_area">
-									<span class="img" style="background-image:url('<?php echo $press->PRESS_THUMBNAIL; ?>')"></span>
-								</span>
-							</span>
-
-						<span class="info">
-							<span class="cat"><!-- SNS --> &nbsp;</span>
-							<span class="title"><?php echo $press->PRESS_TITLE; ?></span>
-
-							<span class="date"><?php echo str_replace("-", ".", substr($press->PRESS_REG_DATE, 0, 10)); ?></span>
-						</span>
-					</a>
-				</li>
-    <?php
-        endforeach;
-    ?>
-		</ul>
-	</div>
-
-
-
-
-
-
-	</article>
-	<!-- 보도자료 -->
-
-
-
-
-
-
-
-
-
-</section>
-<!--// main content-->
-
-
-		</section>
-
-
-<!-- 리뉴얼 레이어 팝업 ->
-
-<div id="layer_popup" style="visibility: visible;">
-    <a href="http://www.itevents.co.kr/company/withnetworks/1907_withnetworks_Fortinet_roadshow/register.html" target="_blank"><div class="popup_img01"><img src="static/front/img/popup/fortinet_load.jpg" alt="fortinet 세미나"></div></a>
-    <div class="close">
-        <form name="pop_form">
-            <div id="check"><input type="checkbox" name="chkbox" value="checkbox" style="margin-right:5px; vertical-align: middle;display:inline-block;">오늘 하루동안 보지 않기</div>
-            <div id="close" style="margin:auto;"><a href="javascript:closePop();">닫기</a></div>
-        </form>
-    </div>
-</div>
-
-<script language="Javascript">
-    cookiedata = document.cookie;
-    if ( cookiedata.indexOf("maindiv=done") < 0 ){
-        document.all['layer_popup'].style.visibility = "visible";
-    }
-    else {
-        document.all['layer_popup'].style.visibility = "hidden";
-    }
-</script>
-
-
-
-<style>
-#layer_popup { width:500px; height:530px; text-align:center; position:absolute; top:18%; left: 10%;  z-index:1;background-color:#505050;}
-.close div{float:left; text-align:right;}
-.popup_img01 {width:500px; height:500px;position:relative;}
-
-.popup_btn {position:absolute; bottom:40px; width:500px; height:60px;  margin:0 auto;}
-.popup_btn li {display:inline-block; padding:0 5px; }
-#check{font-size:12px; font-family:'돋움'; position:absolute; bottom:3px; right:60px; color:#fff;  }
-#close{font-size:12px; position:absolute; bottom:4px; right:20px; }
-#close a { color:#fff; }
-
-@media all and (max-width:700px){
-	#layer_popup { width:330px; height:360px; text-align:center; position:absolute; top:18%; left: 10%;  z-index:1;background-color:#505050;}
-
-	.popup_img01 {width:100%; min-height:100%; position:relative;}
-
-}
-
-</style>
-
-<!--메인팝업-->
-
-<script type="text/javascript">
-
-        function setCookie( name, value, expiredays ) {
-            var todayDate = new Date();
-            todayDate.setDate( todayDate.getDate() + expiredays );
-            document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
-        }
-
-        function closePop() {
-            if ( document.pop_form.chkbox.checked ){
-                setCookie( "maindiv", "done" , 1 );
-            }
-            document.all['layer_popup'].style.visibility = "hidden";
-        }
-
-        window.open("/home/popup0805", "popup0805", "width=560, height=460")
-
-</script>
-<!--// 메인팝업-->
-
-
+<!DOCTYPE html lang="ko">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+    <head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="content-language" content="ko">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Cache-Control" content="No-Cache">
+	<meta http-equiv="pragma" content="No-cache">
+	<meta http-equiv="expires" content="0">	
+	<meta name="viewport" content="width=1380">
+	<meta name="robots" content="all">
+	<title>대표적인 교육 훈련기관 브랜드 HOSKO</title>
+	<meta name="author" content="교육 훈련기관 브랜드 HOSKO">
+	<meta name="title" content="교육 훈련기관 브랜드 HOSKO">
+	<meta name="Description" content="교육 훈련기관 브랜드 HOSKO">
+	<meta name="Keywords" content="교육 훈련기관 브랜드 HOSKO">
+	<meta name="format-detection" content="telephone=no">
+	
+
+	<meta id="meta_og_title" property="og:title" content="교육 훈련기관 브랜드 HOSKO">
+    <meta id="meta_og_description" property="og:description" content="교육 훈련기관 브랜드 HOSKO">
 
 <!--
-!-- 하단 배너->
-	<?php include_once "footer_banner.php"; ?>
+    <meta id="meta_og_url" property="og:url" content="">
+    <meta id="meta_og_image" property="og:image" content="">
 
-!-- 하단 사이트 맵 ->
-	<?php include_once "footer_sitemap.php"; ?>
+	<link rel="shortcut icon" href="" type="image/x-icon">
 -->
 
-	<?php include_once "footer.php"; ?>
+	<link rel="stylesheet" href="static\front\html\static\css\style.css">
+
+
+    </head>
+
+    <body>
+
+        <div id="wrap" class="main_wrap">
+            <header>
+                <div class="header_con">
+                <?php include 'nav.php'; ?>
+
+                    <h1><a href="/">Hosko</a></h1>
+
+                    <!--
+                    <div class="header_util">
+                        <ul>
+                            <li>Login</li>
+                            <li>더보기</li>
+                        </ul>
+                    </div>
+-->
+                </div>
+            </header>
+
+            <div id="container">
+                <div class="layout_main">
+                    <div class="main_visual">
+                        <div class="main_visual_text">
+                            <h1>대표적인 교육 훈련기관 브랜드</h1>
+                            <h2>“ HOSKO ”</h2>
+                            <p>지속적인 교육훈련을 제공하는 Hospitality HR 전문기관입니다.</p>
+                        </div>
+                        <!--
+                        <div class="main_visual_menu">
+                            <ul>
+                                <li>호스코 뉴스</li>
+                                <li>포지션 공고</li>
+                                <li>해외취업 후기</li>
+                                <li>갤러리</li>
+                            </ul>
+                        </div>
+-->
+                    </div>
+                    <div class="main_contents">main contents</div>
+                </div>
+            </div>
+
+            <footer>
+                <div class="footer_menu">
+                    <ul>
+                        <li><a href="/">개인정보정책</a></li>
+                        <li><a href="/">이용약관</a></li>
+                        <li><a href="/">이메일무단수집거부</a></li>
+                    </ul>
+                </div>
+            
+                <div class="footer_info">
+                    <div class="f_logo">
+                        <img src="static\front\html\static\img\f_hosko_logo.png">
+                    </div>
+                    <div class="f_address">
+                        <ul>
+                            <li>(주)프로액티브러닝 HOSKO</li>
+                            <li>서울시 서초구 서운로 43 (서암빌딩) 3층</li>
+                            <li>TEL. 02-2052-9700~6 / FAX. 02-2052-9708 / EMAIL. hosko@hospitalitykorea.com</li>
+                            <li>대표자명 : 홍성민 사업자등록번호 : 117-81-46905 고용노동부등록번호  : 서울청유제2011-7호</li>
+                            <li>CopyrightㅇㅇㅇHOSKO.All right reserved.</li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+
+    </body>
+</html>
+
+
+
+
+
+

@@ -99,7 +99,7 @@
                                                 <div class="comment_sub03">
                                                     <p class="date">2021-05-14</p>
                                                     <p class="time">17:39:33</p>
-                                                    <p class="delete"><a href="/"><img src="./static/img/icon_comment_del.png" alt="댓글삭제"></a></p>
+                                                    <p class="delete"><a href="/"><img src="static\front\html\static\img/icon_comment_del.png" alt="댓글삭제"></a></p>
                                                 </div>
                                             </div>
                                         </div>
