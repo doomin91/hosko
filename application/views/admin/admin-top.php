@@ -184,7 +184,7 @@
 					</a>
 				</li>
 				<li>
-				  <a href="#">
+				  <a href="/admin/recruit/recruit_resume_list">
 					<i class="fa fa-caret-right"></i> 이력서관리
 				  </a>
 				</li>
