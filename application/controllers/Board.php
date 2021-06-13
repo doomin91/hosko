@@ -36,14 +36,62 @@ class Board extends CI_Controller {
 
     function q($seq){
         $group_info = $this->GroupModel->getGroup($seq);
-        $board_info = $this->BoardModel->getBoardInGroup($seq);
-        
-        if($board_info){
+        $boards_info = $this->BoardModel->getBoardInGroup($seq);
             
+        if(count($boards_info) > 0){
+            if(isset($_GET["seq"])){
+                $board_seq = $this->input->get("seq");
+            } else {
+                $board_seq = $boards_info[0]->BOARD_SEQ;
+            }
+
+            $BOARD_INFO = $this->BoardModel->getBoard($board_seq);
+            $searchField = $this->input->get("search_field");
+            $searchString = $this->input->get("search_string");
+            $limit = $BOARD_INFO->BOARD_LIST_COUNT;
+            $nowpage = "";
+            if (!isset($_GET["per_page"])){
+                $start = 0;
+            }else{
+                $start = ($_GET["per_page"]-1)*$limit;
+                $nowpage = $_GET["per_page"];
+            }
+    
+            $wheresql = array(
+                            "searchField" => $searchField,
+                            "searchString" => $searchString,
+                            "start" => $start,
+                            "limit" => $limit
+                            );
+
+            $lists = $this->BoardModel->getPosts($board_seq, $wheresql);
+            $listCount = $this->BoardModel->getPostsCnt($board_seq, $wheresql);
+    
+            if ($nowpage != ""){
+                $pagenum = $listCount-(($nowpage-1)*$limit);
+            }else{
+                $pagenum = $listCount;
+            }
+    
+            $queryString = "?searchField=". $searchField. "&searchString=".$searchString;
+            $pagination = $this->customclass->pagenavi("/Board/q/$seq?seq=$board_seq" . $queryString, $listCount, $limit, 3, $nowpage);
+    
+            $DATA["BOARD_INFO"] = $BOARD_INFO;
+            $DATA["lists"] = $lists;
+            $DATA["listCount"] = $listCount;
+            $DATA["searchField"] = $searchField;
+            $DATA["searchString"] = $searchString;
+            $DATA["pagination"] = $pagination;
+            $DATA["pagenum"] = $pagenum;
+            $DATA["start"] = $start;
+            $DATA["limit"] = $limit;
+
+        } else {
+            $post_info = "";
         }
 
         $DATA["GROUP_INFO"] = $group_info;
-        $DATA["BOARD_INFO"] = $board_info;
+        $DATA["BOARDS_INFO"] = $boards_info;
         $this->load->view("board_list", $DATA);
     }
 

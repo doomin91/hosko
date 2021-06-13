@@ -34,7 +34,7 @@
 	<link rel="shortcut icon" href="" type="image/x-icon">
 -->
 
-	<link rel="stylesheet" href="\static\front\html\static\css/style.css">
+	<link rel="stylesheet" href="\static\front\html\static\css\style.css">
 
 
     </head>

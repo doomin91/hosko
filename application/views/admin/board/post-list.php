@@ -118,7 +118,7 @@
                             <th class="sort-numeric">No</th>
                             <th class="sort">제목</th>
 							<th class="sort">글쓴이</th>
-							<th class="sort">조회수</th>
+							<th class="sort">조회</th>
 							<?php 
 							// 댓글 표시
 							if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
