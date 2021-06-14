@@ -19,13 +19,15 @@
                         <div class="sub_category">
                             <ul>
                                 <?php foreach($BOARDS_INFO as $val){
-                                    echo "<li><a href=\"?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</li>";
+                                    echo "<li><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
                                 }
                                 ?>
                             </ul>
                         </div>
 
                         <div class="inner">
+                        <form name="tag" id="">
+
                         <?php if(isset($BOARD_INFO)){
                         ?>
                             <div class="subContWrap">
@@ -48,37 +50,35 @@
                                         <?php
                                          foreach ($lists as $lt){ ?>
                                         <div class="tblBot-item">
-                                            <span class="col_num"
-                                            ><?php 
+                                            <span class="col_num"><?php 
                                             if($lt->POST_NOTICE_YN == 'Y'){
-                                                echo "<span style=\"color:red;\">[공지]</span> ";
+                                                echo "[공지]";
                                             } else {
                                                 echo $pagenum;
                                             }
 									    ?></span>
-                                            <span class="col_tit"><a href="news_view.php">
+                                            <span class="col_tit">
                                             <?php 
                                                 date_default_timezone_set('Asia/Seoul');
                                                 if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
                                                     if(time() - strtotime($lt->POST_REG_DATE) < ( 86400 * $BOARD_INFO->BOARD_PERIOD_NEW )){
-                                                        echo "<label class=\"label label-red\">new</label>";												
+                                                        echo "[NEW ICON]";												
                                                     };
                                                 }
                                                     
                                                 if($BOARD_INFO->BOARD_PERIOD_HOT > 0){
                                                     if($lt->POST_VIEW_CNT >= $BOARD_INFO->BOARD_PERIOD_HOT){
-                                                        echo "<label class=\"label label-hotpink\">hot</label>";
+                                                        echo "[HOT ICON]";
                                                     }
                                                 }
-                                                echo $lt->POST_SUBJECT;
 
-                                                // 비밀글
-                                                if($lt->POST_SECRET_YN == "Y"){
-                                                    echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>";
-                                                }
-                                                ?> </a></span>
-                                            <span class="col_name">홍길동</span>
-                                            <span class="col_hit">5</span>
+                                                echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
+                                                echo $lt->POST_SECRET_YN == "Y" ? "[자물쇠 ICON]" : "";
+                                                echo $lt->ATTACHS > 0 ? "[첨부파일 ICON]" : "";
+
+                                                ?></span>
+                                            <span class="col_name"><?php echo $lt->USER_NAME?></span>
+                                            <span class="col_hit"><?php echo $lt->POST_VIEW_CNT?></span>
                                             <span class="col_date">2021-05-14</span>                                            
                                         </div>
                                         <?php 
@@ -87,31 +87,25 @@
                                     </div>
 
                                     <div class="subBtn_Write f_right mt40">
-                                        <a href="/">글쓰기</a>
+                                        <a href="/Board/board_write/<?php echo $BOARD_INFO->BOARD_SEQ?>">글쓰기</a>
                                     </div>
 
-                                    <div class="pagination">
                                         <?php echo $pagination; ?>
-                                        <a href="/" class="btn_prev"><span>맨처음</span></a>
-                                        <span>1</span>
-                                        <a href="/">2</a>
-                                        <a href="/">3</a>
-                                        <a href="/">4</a>
-                                        <a href="/">5</a>
-                                        <a href="/" class="btn_next"><span>맨마지막</span></a>
-                                    </div>
 
                                     <div class="boardSearchWrap">
-                                        <form name="" id="" method="">
-                                        <input type="hidden" name="page" value="1">
-                                        <input type="hidden" name="num" value="">
-
+                                        <!-- <input type="hidden" name="page" value="1"> -->
+                                        <!-- <input type="hidden" name="num" value=""> -->
+                                        
+                                        
                                             <div class="boardSearch">
-                                                <select name="">
-                                                    <option value="all" selected="selected">전체</option>
+                                                <select name="search_field">
+                                                    <option value="all" <?php echo $searchField == "all" ?  "selected" : "" ?>>전체</option>
+                                                    <option value="SUBJECT" <?php echo $searchField == "SUBJECT" ?  "selected" : "" ?>>제목</option>
+                                                    <option value="CONTENTS" <?php echo $searchField == "CONTENTS" ?  "selected" : "" ?>>내용</option>
+                                                    <option value="USER_NAME" <?php echo $searchField == "USER_NAME" ?  "selected" : "" ?>>글쓴이</option>
                                                 </select>
                                                 <div class="inputSearch">
-                                                    <input type="text" name="" value="" maxlength="50">
+                                                    <input type="text" name="search_string" value="<?php echo $searchString; ?>" maxlength="50">
                                                     <input type="submit" value="">
                                                 </div>
                                             </div>
