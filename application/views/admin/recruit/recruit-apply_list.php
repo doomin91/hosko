@@ -49,18 +49,18 @@
 										<th class="col-sm-2">진행상태</th>
 										<input type="hidden" name="apply_status" id="apply_status" value="<?php echo $status?>">
 										<td class="col-sm-10">
-                                            <span class="status_condition <?php if($status==0) echo "active"?>" data-val="0">전체</span>
-                                            <span class="status_condition <?php if($status==1) echo "active"?>" data-val="1">온라인상담</span>
-                                            <span class="status_condition <?php if($status==2) echo "active"?>" data-val="2">지원</span>
-                                            <span class="status_condition <?php if($status==3) echo "active"?>" data-val="3">지원서류제출</span>
-                                            <span class="status_condition <?php if($status==4) echo "active"?>" data-val="4">비용입금</span>
-                                            <span class="status_condition <?php if($status==5) echo "active"?>" data-val="5">서류전형</span>
-                                            <span class="status_condition <?php if($status==6) echo "active"?>" data-val="6">인터뷰준비</span>
-                                            <span class="status_condition <?php if($status==7) echo "active"?>" data-val="7">인터뷰</span>
-                                            <span class="status_condition <?php if($status==8) echo "active"?>" data-val="8">합격공지</span>
-                                            <span class="status_condition <?php if($status==9) echo "active"?>" data-val="9">출국준비</span>
-                                            <span class="status_condition <?php if($status==10) echo "active"?>" data-val="10">소양교육</span>
-                                            <span class="status_condition <?php if($status==11) echo "active"?>" data-val="11">출국</span>
+                                            <span class="status_option <?php if($status==0) echo "active"?>" data-val="0">전체</span>
+                                            <span class="status_option <?php if($status==1) echo "active"?>" data-val="1">온라인상담</span>
+                                            <span class="status_option <?php if($status==2) echo "active"?>" data-val="2">지원</span>
+                                            <span class="status_option <?php if($status==3) echo "active"?>" data-val="3">지원서류제출</span>
+                                            <span class="status_option <?php if($status==4) echo "active"?>" data-val="4">비용입금</span>
+                                            <span class="status_option <?php if($status==5) echo "active"?>" data-val="5">서류전형</span>
+                                            <span class="status_option <?php if($status==6) echo "active"?>" data-val="6">인터뷰준비</span>
+                                            <span class="status_option <?php if($status==7) echo "active"?>" data-val="7">인터뷰</span>
+                                            <span class="status_option <?php if($status==8) echo "active"?>" data-val="8">합격공지</span>
+                                            <span class="status_option <?php if($status==9) echo "active"?>" data-val="9">출국준비</span>
+                                            <span class="status_option <?php if($status==10) echo "active"?>" data-val="10">소양교육</span>
+                                            <span class="status_option <?php if($status==11) echo "active"?>" data-val="11">출국</span>
                                         </td>
 									</tr>
 									<tr>
@@ -71,10 +71,10 @@
                                             ~
                                             <input type="text" id="apply_end_date" name="apply_end_date" class="date_field" value="<?php echo $endDate?>">
                                                 
-                                            <span class="date_condition today <?php if($searchDate=="today") echo "active"?>" data-val="today">오늘</span>
-                                            <span class="date_condition yesterday <?php if($searchDate=="yesterday") echo "active"?>" data-val="yesterday">어제</span>
-                                            <span class="date_condition week <?php if($searchDate=="week") echo "active"?>" data-val="week">1주일</span>
-                                            <span class="date_condition month <?php if($searchDate=="month") echo "active"?>" data-val="month">1개월</span>
+                                            <span class="date_option today <?php if($searchDate=="today") echo "active"?>" data-val="today">오늘</span>
+                                            <span class="date_option yesterday <?php if($searchDate=="yesterday") echo "active"?>" data-val="yesterday">어제</span>
+                                            <span class="date_option week <?php if($searchDate=="week") echo "active"?>" data-val="week">1주일</span>
+                                            <span class="date_option month <?php if($searchDate=="month") echo "active"?>" data-val="month">1개월</span>
 										</td>
 									</tr>
 									<tr>
@@ -267,7 +267,7 @@
                     $("#apply_end_date").datepicker( "option", "minDate", selectedDate );
                 },
 				onSelect: function( dateText, inst) {
-					$(".date_condition.active").removeClass("active");
+					$(".date_option.active").removeClass("active");
                 }            
             });
 
@@ -292,15 +292,15 @@
                     $("#apply_start_date").datepicker( "option", "maxDate", selectedDate );
                 },
 				onSelect: function( dateText, inst) {
-					$(".date_condition.active").removeClass("active");
+					$(".date_option.active").removeClass("active");
                 }                
             });
 
-            $(".applyTable").on("click", ".status_condition", function(){
+            $(".applyTable").on("click", ".status_option", function(){
                 var row = $(this).closest("td");
                 console.log(row);
 
-                $(row).find(".status_condition.active").removeClass("active");
+                $(row).find(".status_option.active").removeClass("active");
 
                 $(this).addClass("active");
 
@@ -308,11 +308,11 @@
 				console.log($("input[name=apply_status]").val());
             });
 
-            $(".applyTable").on("click", ".date_condition", function(){
+            $(".applyTable").on("click", ".date_option", function(){
                 var row = $(this).closest("td");
                 console.log(row);
 
-                $(row).find(".date_condition.active").removeClass("active");
+                $(row).find(".date_option.active").removeClass("active");
 
                 $(this).addClass("active");
 
@@ -359,10 +359,10 @@
             //     var row = $(this).closest("td");
             //     var input = $(row).find("#apply_search_text").val();
 
-			// 	var APPLY_STATUS = $(".status_condition.active").data("val");
+			// 	var APPLY_STATUS = $(".status_option.active").data("val");
 			// 	var START_DATE = $("input[name=apply_start_date]").val();
 			// 	var END_DATE = $("input[name=apply_end_date]").val();
-			// 	var DATE_CONDITION = $(".date_condition.active");
+			// 	var date_option = $(".date_option.active");
 			// 	var SEARCH_OPTION = $(".apply_search_option option:selected").val();
 			// 	console.log(APPLY_STATUS);
 			// 	console.log(SEARCH_OPTION);
@@ -397,6 +397,11 @@
                     seqs.push($(this).val());
                 })
                 console.log(seqs);
+
+                if(seqs.length == 0){
+					alert("신청서를 선택해주세요");
+					return false;
+				}
                 
                 if(confirm("정말 모두 삭제하시겠습니까?")){
                     $.ajax({
@@ -555,7 +560,7 @@
             padding: 4px 10px;
         }
 
-        .applyTable .status_condition, .date_condition{
+        .applyTable .status_option, .date_option{
             margin-right:3px;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -565,7 +570,7 @@
             cursor: pointer;
         }
 
-        .applyTable .status_condition.active, .date_condition.active{
+        .applyTable .status_option.active, .date_option.active{
             background: rgb(60,180,180);
         }
         

@@ -361,7 +361,7 @@
             <!-- row -->
             <div class="row">
                 <div class="col-md-4 text-left">
-                    <input type="button" id="apply_view_print" class="btn btn-default" value="인쇄하기">
+                    <input type="button" id="apply_view_print" class="btn btn-default" data-seq="<?php echo $ABROAD_INFO->REC_SEQ ?>" value="인쇄하기">
                 </div>
                 <div class="col-md-8 text-right">
                     <input type="button" class="btn btn-primary" name="abroad_modify" id="abroad_modify" value="확인">
@@ -388,7 +388,12 @@
     <script>
         $(function(){
             $("#apply_view_print").on("click", function(){
-                alert("인쇄하기");
+                var seq = $(this).data("seq");
+                var url = "/admin/recruit/recruit_abroad_edit_print/"+seq;
+                var name = "PopPrint";
+                var option = "width=720,height=800,top=100,left=200,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,";
+
+                window.open(url, name, option);
             });
 
             $("#abroad_modify").on("click", function(){

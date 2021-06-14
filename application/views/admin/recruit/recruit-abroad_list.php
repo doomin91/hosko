@@ -419,6 +419,11 @@
                     seqs.push($(this).val());
                 })
                 console.log(seqs);
+
+                if(seqs.length == 0){
+					alert("삭제할 목록을 선택해주세요");
+					return false;
+				}
                 
                 if(confirm("정말 모두 삭제하시겠습니까?")){
                     $.ajax({
@@ -621,21 +626,6 @@
         #apply_search{
             padding: 4px 10px;
         }
-
-        .applyTable .status_condition, .date_condition{
-            margin-right:3px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 2px 6px;
-            box-sizing: border-box;
-            background: grey;
-            cursor: pointer;
-        }
-
-        .applyTable .status_condition.active{
-            background: rgb(60,180,180);
-        }
-
         
     </style>
 </body>

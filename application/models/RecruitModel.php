@@ -230,6 +230,56 @@ class RecruitModel extends CI_Model{
         return $this->db->count_All_results();
     }
 
+    public function getRecruitResumeListCountAll(){
+        $this->db->where("TBL_HOSKO_USER_RESUME.RESUME_DEL_YN", 'N');
+        $this->db->from("TBL_HOSKO_USER_RESUME");
+        return $this->db->count_All_results();
+    }
+
+    public function getRecruitResumeInfo($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME.RESUME_SEQ", $resume_seq);
+        
+        return $this->db->get("TBL_HOSKO_USER_RESUME")->row(); 
+    }
+
+    public function getRecruitResumeAhvmnt($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME_ACHIEVEMENT.RESUME_SEQ", $resume_seq);
+
+        return $this->db->get("TBL_HOSKO_USER_RESUME_ACHIEVEMENT")->result(); 
+    }
+    public function getRecruitResumeActivity($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME_ACTIVITY.RESUME_SEQ", $resume_seq);
+
+        return $this->db->get("TBL_HOSKO_USER_RESUME_ACTIVITY")->result(); 
+    }
+    public function getRecruitResumeLanguage($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME_LANGUAGE.RESUME_SEQ", $resume_seq);
+
+        return $this->db->get("TBL_HOSKO_USER_RESUME_LANGUAGE")->result(); 
+    }
+    public function getRecruitResumeSkill($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME_SKILL.RESUME_SEQ", $resume_seq);
+
+        return $this->db->get("TBL_HOSKO_USER_RESUME_SKILL")->result(); 
+    }
+    public function getRecruitResumeWokringExp($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE.RESUME_SEQ", $resume_seq);
+
+        return $this->db->get("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE")->result(); 
+    }
+
+    public function deleteRecruitResume($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME.RESUME_SEQ", $resume_seq);
+
+        return $this->db->update("TBL_HOSKO_USER_RESUME", array("RESUME_DEL_YN" => "Y"));
+    }
+
+    public function deleteRecruitResumes($resume_seqs){
+        $this->db->where_in("TBL_HOSKO_USER_RESUME.RESUME_SEQ", $resume_seqs);
+
+        return $this->db->update("TBL_HOSKO_USER_RESUME", array("RESUME_DEL_YN" => "Y"));
+    }
+
     
 
 

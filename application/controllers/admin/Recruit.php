@@ -109,6 +109,14 @@ class Recruit extends CI_Controller {
 		$this->load->view("./admin/recruit/recruit-apply_view", $DATA);
 	}
 
+	public function recruit_apply_view_print($apply_seq){
+		$DATA["APPLY_INFO"] = $this->RecruitModel->getRecruitApplyInfo($apply_seq);
+
+		// print_r($DATA["APPLY_INFO"]);
+        
+		$this->load->view("./admin/recruit/recruit-apply_view_print", $DATA);
+	}
+
 	public function recruit_apply_save(){
 		$APP_SEQ = isset($_POST["APP_SEQ"]) ? $_POST["APP_SEQ"] : "";
 		$APP_PRICE = isset($_POST["APP_PRICE"]) ? $_POST["APP_PRICE"] : "";
@@ -462,6 +470,14 @@ class Recruit extends CI_Controller {
 		$this->load->view("./admin/recruit/recruit-abroad_edit", $DATA);
 	}
 
+	public function recruit_abroad_edit_print($abroad_seq){
+		$DATA["ABROAD_INFO"] = $this->RecruitModel->getRecruitAbroadInfo($abroad_seq);
+
+		// print_r($DATA["APPLY_INFO"]);
+        
+		$this->load->view("./admin/recruit/recruit-abroad_edit_print", $DATA);
+	}
+
 	public function recruit_abroad_del($abroad_seq){
 		
 		$result = $this->RecruitModel->deleteRecruitAbroad($abroad_seq);
@@ -534,10 +550,10 @@ class Recruit extends CI_Controller {
 			$nowpage = $_GET["per_page"];
 		}
 
-		$ctg = isset($_GET["ctg"]) ? $_GET["ctg"] : "";
+		$search_option = isset($_GET["srchOpt"]) ? $_GET["srchOpt"] : "";
 
 		$wheresql = array(
-						"ctg" => $ctg,
+						"srchOpt" => $search_option,
 						"start" => $start,
 						"limit" => $limit
 						);
@@ -546,6 +562,7 @@ class Recruit extends CI_Controller {
 		// $lists = array();
 		//echo $this->db->last_query();
 		$listCount = $this->RecruitModel->getRecruitResumeListCount($wheresql);
+		$listCountAll = $this->RecruitModel->getRecruitResumeListCountAll();
 		// $listCount= array();
 		if ($nowpage != ""){
 			$pagenum = $listCount-(($nowpage-1)*15);
@@ -558,6 +575,7 @@ class Recruit extends CI_Controller {
 		$data = array(
 					"lists" => $lists,
 					"listCount" => $listCount,
+					"listCountAll" => $listCountAll,
 					"pagination" => $pagination,
 					"pagenum" => $pagenum,
 					"start" => $start,
@@ -567,6 +585,50 @@ class Recruit extends CI_Controller {
 		$this->load->view("./admin/recruit/recruit-resume_list", $data);
 	}
 
+	public function recruit_resume_view($resume_seq){
+		$DATA["RESUME_INFO"] = $this->RecruitModel->getRecruitResumeInfo($resume_seq);
+		$DATA["RESUME_AHIEVEMENT"] = $this->RecruitModel->getRecruitResumeAhvmnt($resume_seq);
+		$DATA["RESUME_ACTIVITY"] = $this->RecruitModel->getRecruitResumeActivity($resume_seq);
+		$DATA["RESUME_LANGUAGE"] = $this->RecruitModel->getRecruitResumeLanguage($resume_seq);
+		$DATA["RESUME_SKILL"] = $this->RecruitModel->getRecruitResumeSkill($resume_seq);
+		$DATA["RESUME_WORKING_EXP"] = $this->RecruitModel->getRecruitResumeWokringExp($resume_seq);
+        
+		$this->load->view("./admin/recruit/recruit-resume_view", $DATA);
+	}
+
+	public function recruit_resume_view_print($resume_seq){
+		$DATA["RESUME_INFO"] = $this->RecruitModel->getRecruitResumeInfo($resume_seq);
+		$DATA["RESUME_AHIEVEMENT"] = $this->RecruitModel->getRecruitResumeAhvmnt($resume_seq);
+		$DATA["RESUME_ACTIVITY"] = $this->RecruitModel->getRecruitResumeActivity($resume_seq);
+		$DATA["RESUME_LANGUAGE"] = $this->RecruitModel->getRecruitResumeLanguage($resume_seq);
+		$DATA["RESUME_SKILL"] = $this->RecruitModel->getRecruitResumeSkill($resume_seq);
+		$DATA["RESUME_WORKING_EXP"] = $this->RecruitModel->getRecruitResumeWokringExp($resume_seq);
+        
+		$this->load->view("./admin/recruit/recruit-resume_view_print", $DATA);
+	}
+
+	public function recruit_resume_del($resume_seq){
+		
+		$result = $this->RecruitModel->deleteRecruitResume($resume_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
+
+	public function recruit_resumes_del(){
+		$seqs = isset($_POST["SEQ"]) ? $_POST["SEQ"] : "";
+
+		$result = $this->RecruitModel->deleteRecruitResumes($seqs);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
 
 	public function thumbnail_del_proc(){
 		$seq = isset($_POST["seq"]) ? $_POST["seq"] : "";

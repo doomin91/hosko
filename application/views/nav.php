@@ -33,10 +33,9 @@
 			url:"/admin/Board/get_boards",
 			type:"post",
 			dataType:"json",
-			success:function(data){
+			success: function(data){
 				let board = data["board"];
 				let group = data["group"];
-
                 
 				str += "<li>&nbsp</li>";
                 str += "<li><a href=\"/\">HOME</a></li>";
@@ -51,7 +50,7 @@
                     str += "<li>상담ㆍ신청</li>"
                     str += "<li>마이페이지</li>"
 				$("#boardMenu").append(str);
-			}, error:function(e){
+			}, error: function(e){
 				console.log(e);
 			}
 		})
