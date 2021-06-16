@@ -263,4 +263,54 @@ class Consult extends CI_Controller {
 
 		$this->load->view("/admin/consult/schedule-write", $data);
 	}
+
+	public function scheduleWriteProc(){
+		$cal_title = $this->input->post("cal_title");
+		$cal_schdule = $this->input->post("cal_schedule");
+		$flag = $this->input->post("flag");
+		$cal_date = $this->input->post("cal_date");
+		//print_r($this->input->post());
+
+		if ($flag == "hosko"){
+			$cal_flag = "1";
+		}else if ($flag == "presentation"){
+			$cal_flag = "2";
+		}
+
+		$insertArr = array(
+						"CAL_FLAG" => $cal_flag,
+						"CAL_DATE" => $cal_date,
+						"CAL_TITLE" => $cal_title,
+						"CAL_SCHEDULE" => $cal_schdule,
+						"CAL_REG_DATE" => date("Y-m-d H:i:s"),
+						"CAL_REG_USER_SEQ" => $this->session->userdata("admin_seq"),
+						"CAL_DEL_YN" => "N"
+		);
+		$result = $this->ConsultModel->insertSchedule($insertArr);
+		//echo $this->db->last_query();
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "일정 등록 완료되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "일정 등록중 문제가 생겼습니다."));
+		}
+	}
+
+	public function schedule_view($cal_seq, $flag){
+		if ($flag == "hosko"){
+			$flag_string = "HOSKO 일정";
+		}else if ($flag == "presentation"){
+			$flag_string = "설명회 일정";
+		}
+
+		$detail = $this->ConsultModel->getScheduleDetail($cal_seq);
+
+		$data = array(
+					"flag" => $flag,
+					"flag_string" => $flag_string,
+					"detail" => $detail
+		);
+
+		$this->load->view("/admin/consult/schedule-view", $data);
+	}
 }

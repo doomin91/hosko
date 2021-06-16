@@ -171,4 +171,16 @@ class Customclass{
         }
         return $str;
     }
+
+    public function getSchedule($date, $flag){
+        $this->CI->load->model("ConsultModel");
+        if ($flag == "hosko"){
+			$cal_flag = "1";
+		}else if ($flag == "presentation"){
+			$cal_flag = "2";
+		}
+        $result = $this->CI->ConsultModel->getSchedule($date, $cal_flag);
+
+        return $result;
+    }
 }

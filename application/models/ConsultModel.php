@@ -122,4 +122,20 @@ class ConsultModel extends CI_Model{
 		return $this->db->count_all_results();
 	}
 
+	public function insertSchedule($insertArr){
+		return $this->db->insert("TBL_HOSKO_SCHEDULE", $insertArr);
+	}
+
+	public function getSchedule($_nDay, $flag){
+		$this->db->where("TBL_HOSKO_SCHEDULE.CAL_FLAG", $flag);
+		$this->db->where("TBL_HOSKO_SCHEDULE.CAL_DATE", $_nDay);
+		return $this->db->get("TBL_HOSKO_SCHEDULE")->result();
+	}
+
+	public function getScheduleDetail($cal_seq){
+		$this->db->where("TBL_HOSKO_SCHEDULE.CAL_SEQ", $cal_seq);
+		$this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ=TBL_HOSKO_SCHEDULE.CAL_REG_USER_SEQ", "INNER");
+		$this->db->select("TBL_HOSKO_SCHEDULE.*, TBL_HOSKO_ADMIN.ADMIN_NAME, TBL_HOSKO_ADMIN.ADMIN_EMAIL");
+		return $this->db->get("TBL_HOSKO_SCHEDULE")->row();
+	}
 }

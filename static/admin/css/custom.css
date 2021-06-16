@@ -29,4 +29,5 @@ td a {color:#428bca !important}
 
 #calendarTable {border:1px !important}
 #calendarTable tbody tr td {height:150px; vertical-align: top !important; text-align:right}
-#calendarTable tbody tr td .date-block {font-weight: bold;}
+#calendarTable tbody tr td .date-block {font-weight: bold; display: block;}
+#calendarTable tbody tr td .schedule-item {padding-top:10px; display: block}

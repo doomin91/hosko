@@ -61,22 +61,22 @@
                             <tbody>
                                 <tr>
                                     <th>이름</th>
-                                    <td><input type="text" name="user_name" value="<?php echo $this->session->userdata("admin_name"); ?>" size="50" readonly></td>
+                                    <td><?php echo $detail->ADMIN_NAME; ?></td>
                                     <th>이메일</th>
-                                    <td><input type="text" name="user_name" value="<?php echo $this->session->userdata("admin_email"); ?>" size="50" readonly></td>
+                                    <td><?php echo $detail->ADMIN_EMAIL; ?></td>
                                 </tr>
                                 <tr>
                                     <th>일정 날짜</th>
-                                    <td colspan="3"><?php echo $nDay; ?></td>
+                                    <td colspan="3"><?php echo $detail->CAL_DATE; ?></td>
                                 </tr>
                                 <tr>
                                     <th>일정 제목</th>
-                                    <td colspan="3"><input type="text" name="cal_title" value="" size="100"></td>
+                                    <td colspan="3"><?php echo $detail->CAL_TITLE; ?></td>
                                 </tr>
                                 <tr>
                                     <th>일정 날짜</th>
                                     <td colspan="3">
-                                        <textarea name="cal_schedule"></textarea>
+                                        <?php echo nl2br($detail->CAL_TITLE); ?>
                                     </td>
                                 </tr>
                             </tbody>
@@ -84,8 +84,8 @@
                         </form>
                         <div class="row form-footer">
                             <div class="col-sm-offset-2 col-sm-10 text-right">
-                                <a href="/admin/consult/schedule?flag=<?php echo $flag; ?>" class="btn btn-default btn-sm">취소</a>
-                                <button type="button" class="btn btn-primary btn-sm" id="saveSchedule">저장</a>
+                                <button type="button" class="btn btn-danger btn-sm" id="delSchedule">삭제</button>
+                                <a type="button" class="btn btn-primary btn-sm" href="/admin/consult/schedule?flag=<?php echo $flag; ?>">목록</a>
                             </div>
                         </div>
 

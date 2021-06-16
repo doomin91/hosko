@@ -128,12 +128,14 @@
                                     //    echo "<span class=\"col-lg-12 date-block\">".$_nDay."</span>";
                                     //    echo "<div class=\"col-lg-12\">김인호</div>";
                                     //    echo "</td>";
-                                    //$slists = $this->customclass->getScheduleMem($_nDay);
+                                    $slists = $this->customclass->getSchedule($_nDay, $flag);
+                                    //print_r($slists);
                                 ?>
                                     <td>
-                                        <span class="col-lg-12 date-block"><a href="/admin/consult/schedule_write/<?php echo $_nDay; ?>/?flag=<?php echo $flag; ?>"><?php echo $this->customclass->numConvertString($i+1); ?></a></span>
-                                        
-                                        <!--<span class="schedule-item">10-18 가톨릭관동대 창업캠프</span>-->
+                                        <div class="col-lg-12 date-block"><a href="/admin/consult/schedule_write/<?php echo $_nDay; ?>/?flag=<?php echo $flag; ?>"><?php echo $this->customclass->numConvertString($i+1); ?></a></div>
+                                        <?php foreach ($slists as $slt): ?>
+                                        <div class="col-lg-12 schedule-item"><a href="/admin/consult/schedule_view/<?php echo $slt->CAL_SEQ; ?>/<?php echo $flag; ?>"><?php echo $slt->CAL_TITLE; ?></a></div>
+                                        <?php endforeach; ?>
                                     </td>
                                 <?php
                                     }
