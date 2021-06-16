@@ -85,7 +85,12 @@
 									</tr>
 									<tr>
 										<td colspan="4" class="text-right">
-											<button class="btn btn-primary">검색하기</button>
+											<div class="col-md-12">
+											<?php if($this->session->userdata("AUTH") == 'Y' || $this->session->userdata("USER_SEQ") == $BOARD_INFO->BOARD_ADMIN_ID):?>
+												<button class="btn btn-default">+ 카테고리 추가</button>
+											<?php endif;?>
+												<button class="btn btn-primary">검색하기</button>
+											</div>
 										</td>
 									</tr>
 								</tbody>
@@ -113,7 +118,7 @@
                             <th class="sort-numeric">No</th>
                             <th class="sort">제목</th>
 							<th class="sort">글쓴이</th>
-							<th class="sort">조회수</th>
+							<th class="sort">조회</th>
 							<?php 
 							// 댓글 표시
 							if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
@@ -140,7 +145,7 @@
 							if($listCount > 0):
 							foreach($lists as $lt):?>
 							<tr style="cursor:pointer;" onclick="viewPost(<?php echo $lt->POST_SEQ?>);">
-								<td><?php 
+								<td style="text-align:center;"><?php 
 								if($lt->POST_NOTICE_YN == 'Y'){
 									echo "<span style=\"color:red;\">[공지]</span> ";
 								} else {
@@ -170,14 +175,18 @@
 										if($lt->POST_SECRET_YN == "Y"){
 											echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>";
 										}
+
+										if(count($lt->ATTACHS) > 0){
+											echo " cjaqn파일 있다";
+										}
 									?> 
 								</td>
 								<td><?php echo $lt->USER_NAME?></td>
-								<td><?php echo $lt->POST_VIEW_CNT?></td>
+								<td style="text-align:center;"><?php echo $lt->POST_VIEW_CNT?></td>
 								<?php
 								// 댓글 기능
 								if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
-								<td>
+								<td style="text-align:center;">
 								<span class="badge badge-danger"><?php echo $lt->COMMENTS?></span>
 								</td>
 								<?php
@@ -187,13 +196,13 @@
 								<?php 
 								// 추천 표시
 								if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
-								<td><i class="fa fa-heart" aria-hidden="true"></i> <?php ?><?php echo $lt->CNT?></td>
+								<td style="text-align:center;"><i class="fa fa-heart" aria-hidden="true"></i> <?php ?><?php echo $lt->CNT?></td>
 								<?php endif;?>
-								<td><?php echo $lt->POST_REG_DATE?></td>
+								<td style="text-align:center;"><?php echo $lt->POST_REG_DATE?></td>
 								<?php 
 								// 게시판 관리자 혹은 마스터 계정인 경우
 								if($this->session->userdata("AUTH") == 'Y' || $this->session->userdata("USER_SEQ") == $BOARD_INFO->BOARD_ADMIN_ID):?>
-								<td class="sort"><button class="btn btn-xs btn-danger">삭제</button></td>
+								<td style="text-align:center;"><button class="btn btn-xs btn-danger">삭제</button></td>
 								<?php endif;?>
 							</tr>
 							<?php 
@@ -246,7 +255,7 @@
 						|| in_array($this->session->userdata("admin_id"), $ADMIN) ):
 						?>
 						<a href="/admin/board/post_write/<?php echo $BOARD_INFO->BOARD_SEQ?>" class="btn btn-success">게시글 작성</a>
-						<?php elseif($BOARD_INFO->BOARD_WARNING_TYPE == "N"):?>
+						<?php elseif($BOARD_INFO->BOARD_WRITE_BTN_VIEW == "N"):?>
 						<button type="button" onclick="alert('<?php echo $BOARD_INFO->BOARD_AUTH_MSG;?>');location.href='<?php echo $BOARD_INFO->BOARD_AUTH_REDIRECT;?>'" class="btn btn-success">게시글 작성</a>
 						<?php endif;?>
 					</div>

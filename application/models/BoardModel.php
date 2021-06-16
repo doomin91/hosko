@@ -18,6 +18,12 @@ class BoardModel extends CI_Model{
         return $this->db->get("TBL_HOSKO_BOARD")->result();
     }
 
+    public function getBoardInGroup($GROUP_SEQ){
+        $this->db->where("BOARD_DEL_YN", 'Y');
+        $this->db->where("BOARD_GROUP", $GROUP_SEQ);
+        return $this->db->get("TBL_HOSKO_BOARD")->result();
+    }
+
     public function getBoardBottom($POST_SEQ, $BOARD_SEQ){
         $sql = "
         SELECT * FROM 
@@ -107,11 +113,13 @@ class BoardModel extends CI_Model{
     public function getPost($POST_SEQ){
         $this->db->where("POST_SEQ", $POST_SEQ);
         $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ");
+        $this->db->join("TBL_HOSKO_USER AS USER", "USER.USER_SEQ = POST_USER_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_ADMIN AS ADMIN", "USER.USER_SEQ = POST_ADMIN_SEQ", "LEFT");
         return $this->db->get("TBL_HOSKO_BOARD_POSTS")->row();
     }
 
     public function getPosts($BOARD_SEQ, $wheresql){
-        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.USER_NAME, count(RECOMMAND.RMD_SEQ) AS CNT, count(COMMENTS.COM_SEQ) AS COMMENTS");
+        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.USER_NAME, count(RECOMMAND.RMD_SEQ) AS CNT, count(COMMENTS.COM_SEQ) AS COMMENTS, count(ATTACH.ATTACH_SEQ) AS ATTACHS");
         $this->db->where("POST_DEL_YN", "N");
 
         if ((isset($wheresql["reg_date_start"])) && ($wheresql["reg_date_start"] != "")){
@@ -148,6 +156,7 @@ class BoardModel extends CI_Model{
         $this->db->join("TBL_HOSKO_BOARD_RECOMMAND AS RECOMMAND", "RMD_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD_COMMENT AS COMMENTS", "COM_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_BOARD_ATTACH ATTACH", "ATTACH_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->order_by("POST_NOTICE_YN", "DESC");
         $this->db->order_by("POST_REG_DATE", "DESC");
         $this->db->group_by("POST_SEQ");
@@ -157,7 +166,7 @@ class BoardModel extends CI_Model{
     }
 
     public function getPostsCnt($BOARD_SEQ, $wheresql){
-        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.USER_NAME, count(RECOMMAND.RMD_SEQ) AS CNT, count(COMMENTS.COM_SEQ) AS COMMENTS");
+        $this->db->select("TBL_HOSKO_BOARD_POSTS.*");
         $this->db->where("POST_DEL_YN", "N");
 
         if ((isset($wheresql["reg_date_start"])) && ($wheresql["reg_date_start"] != "")){
@@ -195,6 +204,7 @@ class BoardModel extends CI_Model{
         $this->db->join("TBL_HOSKO_BOARD_RECOMMAND AS RECOMMAND", "RMD_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD_COMMENT AS COMMENTS", "COM_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_BOARD_ATTACH ATTACH", "ATTACH_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->order_by("POST_NOTICE_YN", "DESC");
         $this->db->order_by("POST_REG_DATE", "DESC");
         $this->db->group_by("POST_SEQ");

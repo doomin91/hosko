@@ -63,7 +63,7 @@ class Board extends CI_Controller {
 
 		$returnMsg = array(
 			"group" => $group_info,
-			"board" => $board_info,
+			"board" => $board_info
 		);
 		echo json_encode($returnMsg);
 	}
@@ -151,8 +151,8 @@ class Board extends CI_Controller {
 			"BOARD_AUTH_MSG" => $redirect_url,
 			"BOARD_ADMIN_ID" => $board_admin,
 			"BOARD_ALIGN_IMG" => $align_img,
-			"BOARD_IMAGE_SIZE_LIST" => $thumbnail_size,
-			"BOARD_IMAGE_SIZE_VIEW" => $detail_size,
+			// "BOARD_IMAGE_SIZE_LIST" => $thumbnail_size,
+			// "BOARD_IMAGE_SIZE_VIEW" => $detail_size,
 			"BOARD_WRITE_BTN_VIEW" => $write_btn == 'Y' ? $write_btn : 'N',
 			"BOARD_ATTACH_IMG_YN" => $attach_img_view == 'Y' ? $attach_img_view : 'N',
 			"BOARD_SECRET_FLAG" => $fn_secret == 'Y' ? $fn_secret : 'N',
@@ -250,8 +250,8 @@ class Board extends CI_Controller {
 			"BOARD_AUTH_MSG" => $redirect_url,
 			"BOARD_ADMIN_ID" => $board_admin,
 			"BOARD_ALIGN_IMG" => $align_img,
-			"BOARD_IMAGE_SIZE_LIST" => $thumbnail_size,
-			"BOARD_IMAGE_SIZE_VIEW" => $detail_size,
+			// "BOARD_IMAGE_SIZE_LIST" => $thumbnail_size,
+			// "BOARD_IMAGE_SIZE_VIEW" => $detail_size,
 			"BOARD_WRITE_BTN_VIEW" => $write_btn == 'Y' ? $write_btn : 'N',
 			"BOARD_ATTACH_IMG_YN" => $attach_img_view == 'Y' ? $attach_img_view : 'N',
 			"BOARD_SECRET_FLAG" => $fn_secret == 'Y' ? $fn_secret : 'N',
@@ -647,7 +647,7 @@ class Board extends CI_Controller {
 		// if it's a positive number return it
 		// otherwise return the 2's complement
 		
-		return ($binary{0} == "0" ? bindec($binary) :
+		return ($binary[0] == "0" ? bindec($binary) :
 			-(pow(2, 31) - bindec(substr($binary, 1))));
 		
 	}

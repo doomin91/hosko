@@ -280,7 +280,7 @@
             <!-- row -->
             <div class="row" style="margin-bottom: 20px; ">
                 <div class="col-md-4 text-left">
-                    <input type="button" id="apply_view_print" class="btn btn-default" value="인쇄하기">
+                    <input type="button" data-seq="<?php echo $APPLY_INFO->APP_SEQ; ?>" id="apply_view_print" class="btn btn-default" value="인쇄하기">
                 </div>
                 <div class="col-md-8 text-right">
                     <input type="button" class="btn btn-primary" data-seq="<?php echo $APPLY_INFO->APP_SEQ; ?>" id="apply_save" value="확인">
@@ -394,7 +394,12 @@
             });
 
             $("#apply_view_print").on("click", function(){
-                alert("인쇄하기");
+                var seq = $(this).data("seq");
+                var url = "/admin/recruit/recruit_apply_view_print/"+seq;
+                var name = "PopPrint";
+                var option = "width=720,height=800,top=100,left=200,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,";
+
+                window.open(url, name, option);
             })
 
             $('#apply_start_date').datepicker({

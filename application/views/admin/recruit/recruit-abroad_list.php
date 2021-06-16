@@ -164,7 +164,7 @@
 
 						<div class="table-responsive dataTables_wrapper form-inline" role="grid" id="basicDataTable_wrapper">
 							<div class="row">
-								<div class="col-md-8">총 컨텐츠수 : <?php echo $listCount?> &nbsp&nbsp&nbsp 검색 컨텐츠수 : <?php echo $listCount ?></div>
+								<div class="col-md-8">총 컨텐츠수 : <?php echo $listCountAll?> &nbsp&nbsp&nbsp 검색 컨텐츠수 : <?php echo $listCount ?></div>
                                 <div class="col-md-4 text-right">
                                     <input type="button" id="abroad_excel_register" class="btn btn-xs btn-default" value="+ 엑셀일괄등록">
 									<input type="button" id="abroad_excel_save" class="btn btn-xs btn-default" value="+ 엑셀파일저장">
@@ -213,8 +213,8 @@
                                     <td class="text-center"><?php echo "진열순서" ?></td>
                                     <td class="text-center">
                                         <a href ="/admin/recruit/recruit_abroad_edit/<?php echo $list->REC_SEQ?>" class="btn btn-xs btn-default">수정</a>
-                                        <input type="button" data-seq="<?php echo $list->REC_SEQ?>" class="btn btn-xs btn-danger recruit-abroad-del" value="삭제">
-                                        <a href ="/admin/recruit/recruit_abroad_edit/<?php echo $list->REC_SEQ?>" class="btn btn-xs btn-primary">복사</a>
+                                        <input type="button" data-seq="<?php echo $list->REC_SEQ?>" class="btn btn-xs btn-danger recruit_abroad_del" value="삭제">
+                                        <input type="button" data-seq="<?php echo $list->REC_SEQ?>" class="btn btn-xs btn-primary recruit_abroad_copy" value="복사">
                                     </td>
 								</tr>
 						<?php
@@ -324,7 +324,7 @@
                         + "<option value=\"30\">영어권유학</option>"
                         + "<option value=\"31\">일본어 및 기타국가 유학</option>"
                         + "<option value=\"32\">해외추업교육과정</option>"
-                        + "<option value=\"32\">EMT 영어캠프</option>";
+                        + "<option value=\"33\">EMT 영어캠프</option>";
             }
             $("select[name=ctg2]").html(ctg2Html);
             $("select[name=ctg2] option[value='"+ctg2+"']").attr("selected", 'selected');
@@ -381,15 +381,72 @@
 
 
             $(".search_field").on("change", function(){
+                console.log($(this));
+                var selectedValue = $(this).val();
+                if($(this).is(".abroad_contents_first_category")){
+                    $("select[name=ctg2] option[value='']").attr("selected", 'selected');
+                    $("select[name=ctg3] option[value='']").attr("selected", 'selected');
+                }else if($(this).is(".abroad_contents_second_category")){
+                    $("select[name=ctg3] option[value='']").attr("selected", 'selected');
+                }else if($(this).is(".abroad_contents_third_category")){
+                    // if(selectedValue == ""){
+                    // }
+                }
                 $('#abroadSearchForm').attr('action','recruit_abroad_list').submit();
             });
 
             $("#abroad_select_all").on("change", function(){
+                var selects = $("input[name=abroad_select]");
 
+                if($(this).is(":checked")){
+                    console.log("지금체크");
+                    $.each(selects, function(index, element){
+                        $(element).prop("checked", true);
+                    });
+                }else{
+                    console.log("지금체크품");
+                    $.each(selects, function(index, element){
+                        $(element).prop("checked", false);
+                    });
+                }
             });
 
             $("#selected_abroad_del").on("click", function(){
-                alert("테스트 선택 삭제");
+                var selected = $("input[name=abroad_select]:checked");
+                var seqs = [];
+
+                selected.each(function(index, element){
+                    seqs.push($(this).val());
+                })
+                console.log(seqs);
+
+                if(seqs.length == 0){
+					alert("삭제할 목록을 선택해주세요");
+					return false;
+				}
+                
+                if(confirm("정말 모두 삭제하시겠습니까?")){
+                    $.ajax({
+                        url : "/admin/recruit/recruit_abroads_del",
+                        type : "post",
+                        data : {
+                            "SEQ" : seqs
+                        },
+                        dataType : "json",
+                        success : function(resultMsg){
+                            if(resultMsg.code == 200){
+                                console.log("삭제되었습니다.");
+                                alert("삭제되었습니다.");
+                                location.reload();
+                            }else{
+                                alert(resultMsg.msg)
+                            }
+                        },
+                        error : function(){
+                            console.log("삭제할 수 없습니다.");
+                        }
+                    });
+                }
             });
 
             $("#selected_abroad_move").on("click", function(){
@@ -397,7 +454,35 @@
             });
 
             $("#selected_abroad_copy").on("click", function(){
-                alert("테스트 선택 복사");
+                var selected = $("input[name=abroad_select]:checked");
+                var seqs = [];
+
+                selected.each(function(index, element){
+                    seqs.push($(this).val());
+                })
+
+                if(confirm("모두 복사하시겠습니까?")){
+                    $.ajax({
+                        url : "/admin/recruit/recruit_abroads_copy",
+                        type : "post",
+                        data : {
+                            "SEQ" : seqs
+                        },
+                        dataType : "json",
+                        success : function(resultMsg){
+                            if(resultMsg.code == 200){
+                                console.log("복사되었습니다.");
+                                alert("복사되었습니다.");
+                                location.reload();
+                            }else{
+                                alert(resultMsg.msg)
+                            }
+                        },
+                        error : function(){
+                            console.log("삭제할 수 없습니다.");
+                        }
+                    });
+                }
             });
 
             $("#abroad_excel_register").on("click", function(){
@@ -408,7 +493,7 @@
                 alert("테스트 엑셀저장");
             });
 
-            $(".recruit-abroad-del").on("click", function(){
+            $(".recruit_abroad_del").on("click", function(){
                 var ABROAD_SEQ = $(this).data("seq");
                 console.log(ABROAD_SEQ);
                 if(confirm("삭제하시겠습니까?")){
@@ -431,6 +516,35 @@
                         },
                         error : function(){
                             console.log("삭제할 수 없습니다.");
+                        }
+                    });
+                }
+            });
+
+            $(".recruit_abroad_copy").on("click", function(){
+                var ABROAD_SEQ = $(this).data("seq");
+                console.log(ABROAD_SEQ);
+                if(confirm("복사하시겠습니까?")){
+                
+                    $.ajax({
+                        url : "/admin/recruit/recruit_abroad_copy/"+ABROAD_SEQ,
+                        type : "get",
+                        // data : {
+                        //     "ABROAD_SEQ" : ABROAD_SEQ
+                        // },
+                        dataType : "json",
+                        success : function(resultMsg){
+                            if(resultMsg.code == 200){
+                                console.log("복사되었습니다.");
+                                alert("복사되었습니다.");
+                                location.reload();
+                            }else{
+                                alert(resultMsg.msg)
+                            }
+                        },
+                        error : function(e){
+                            console.log(e.responseText);
+                            // console.log(Object.values(e.responseText));
                         }
                     });
                 }
@@ -479,24 +593,6 @@
                 }                
             });
 
-
-            $("#apply_search_text").on("keypress", function(e){
-                var key = e.which;
-                
-                if (key == 13){
-                    $("#apply_search").click();
-                }
-            });
-
-            $("#apply_search").on("click", function(){
-                var row = $(this).closest("td");
-                var input = $(row).find("#apply_search_text").val();
-
-                if(input == ""){
-                    alert("검색어를 입력해주세요");
-                }
-            });
-
             $("#apply_excel_save").on("click", function(){
                 alert("엑셀 따운");
             });
@@ -530,21 +626,6 @@
         #apply_search{
             padding: 4px 10px;
         }
-
-        .applyTable .status_condition, .date_condition{
-            margin-right:3px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 2px 6px;
-            box-sizing: border-box;
-            background: grey;
-            cursor: pointer;
-        }
-
-        .applyTable .status_condition.active{
-            background: rgb(60,180,180);
-        }
-
         
     </style>
 </body>

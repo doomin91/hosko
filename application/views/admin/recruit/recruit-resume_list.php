@@ -43,16 +43,16 @@
 				<div class="col-md-12">
 					<section class="tile transparent">
 						<div class="tile-body color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyTable">
+							<table class="table table-custom dataTable reSumeTable">
 								<tbody>
 									<tr>
                                         <th class="col-sm-2">조건검색</th>
 										<td class="col-sm-10">
                                             <select id="resume_search_option" name="resume_search_option">
-                                                <option value="ALL">전체</option>
-                                                <option value="NAME">이름</option>
-                                                <option value="ID">아이디</option>
-                                                <option value="TITLE">제목</option>x
+                                                <option value="all">전체</option>
+                                                <option value="name">이름</option>
+                                                <option value="id">아이디</option>
+                                                <option value="title">제목</option>x
                                             </select>
                                             <input type="text" id="resume_search_text" name="resume_search_text" placeholder="검색어를 입력해주세요" value="">
 
@@ -80,9 +80,9 @@
 
 						<div class="table-responsive dataTables_wrapper form-inline" role="grid" id="basicDataTable_wrapper">
 							<div class="row">
-								<div class="col-md-10">총 주문수 : 100 &nbsp&nbsp&nbsp 검색 주문수 : 100</div>
+								<div class="col-md-10">총 컨텐츠수 : <?php echo $listCountAll?> &nbsp&nbsp&nbsp 검색 컨텐츠수 : <?php echo $listCount ?></div>
                                 <div class="col-md-2 text-right">
-									<input type="button" id="apply_excel_save" class="btn btn-sm btn-default" value="+ 엑셀파일저장">
+									<input type="button" id="apply_excel_save" class="btn btn-xs btn-default" value="+ 엑셀파일저장">
 								</div>
 							</div>
 
@@ -96,7 +96,7 @@
 							</colgroup>
 							<thead>
 								<tr>
-									<th class="text-center"><input type="checkbox"></th>
+									<th class="text-center"><input type="checkbox" id="resume_select_all" name="resume_select_all"></th>
 									<th class="text-center">성명</th>
 									<th class="text-center">아이디</th>
 									<th class="text-center">이력서 제목</th>
@@ -111,12 +111,12 @@
 									
 						?>
 								<tr>
-									<td class="text-center"><input type="checkbox" value=<?php echo $list->APP_SEQ?>></td>
+									<td class="text-center"><input type="checkbox" name="resume_select" value=<?php echo $list->RESUME_SEQ?>></td>
 									<td class="text-center"><?php echo $list->USER_NAME ?></td>
                                     <td class="text-center"><?php echo $list->USER_ID ?></td>
-                                    <td class="text-center"><?php echo $list->REC_TITLE ?></td>
+                                    <td class="text-center"><?php echo $list->RESUME_TITLE ?></td>
 									
-                                    <td class="text-center"><a href ="/admin/recruit/recruit_apply_view/<?php echo $list->APP_SEQ?>" class="btn btn-sm btn-default">상세보기</a></td>
+                                    <td class="text-center"><a href ="/admin/recruit/recruit_resume_view/<?php echo $list->RESUME_SEQ?>" class="btn btn-sm btn-default">상세보기</a></td>
 								</tr>
 						<?php
 								$pagenum--;
@@ -131,7 +131,7 @@
 
 							<div class="row">
                                 <div class="col-md-4 text-left">
-                                    <input type="button" id="selected_resume_del" class="btn btn-sm btn-default" value="- 선택삭제">
+                                    <input type="button" id="selected_resume_del" name="selected_resume_del" class="btn btn-xs btn-default" value="- 선택삭제">
 								</div>
 								<div class="col-md-4 text-center sm-center">
 									<div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
@@ -180,7 +180,7 @@
     <script>
         $(function(){
 
-            $("#apply_search_text").on("keypress", function(e){
+            $("#resume_search_text").on("keypress", function(e){
                 var key = e.which;
                 
                 if (key == 13){
@@ -188,7 +188,7 @@
                 }
             });
 
-            $("#apply_search").on("click", function(){
+            $("#resume_search").on("click", function(){
                 var row = $(this).closest("td");
                 var input = $(row).find("#resume_search_text").val();
 
@@ -201,26 +201,65 @@
                 alert("엑셀 따운");
             });
 
+			$("#resume_select_all").on("change", function(){
+                var selects = $("input[name=resume_select]");
+
+                if($(this).is(":checked")){
+                    console.log("지금체크");
+                    $.each(selects, function(index, element){
+                        $(element).prop("checked", true);
+                    });
+                }else{
+                    console.log("지금체크품");
+                    $.each(selects, function(index, element){
+                        $(element).prop("checked", false);
+                    });
+                }
+            });
+
+			$("#selected_resume_del").on("click", function(){
+                var selected = $("input[name=resume_select]:checked");
+                var seqs = [];
+
+                selected.each(function(index, element){
+                    seqs.push($(this).val());
+                })
+                console.log(seqs);
+
+				if(seqs.length == 0){
+					alert("이력서를 선택해주세요");
+					return false;
+				}
+                
+                if(confirm("정말 모두 삭제하시겠습니까?")){
+                    $.ajax({
+                        url : "/admin/recruit/recruit_resumes_del",
+                        type : "post",
+                        data : {
+                            "SEQ" : seqs
+                        },
+                        dataType : "json",
+                        success : function(resultMsg){
+                            if(resultMsg.code == 200){
+                                console.log("삭제되었습니다.");
+                                alert("삭제되었습니다.");
+                                location.reload();
+                            }else{
+                                alert(resultMsg.msg)
+                            }
+                        },
+                        error : function(e){
+							console.log(e.responseText);
+                            // console.log("삭제할 수 없습니다.");
+                        }
+                    });
+                }
+            });
+
 
         });
     </script>
     <style>
-        .ui-datepicker-month, .ui-datepicker-year{
-            color: black;
-        }
-        .ui-state-default {
-            color: black !important;
-        }
-
-        .applyTable .date_field{
-            border-radius:5px; 
-            margin-left: 5px;
-            margin-right: 5px;
-            padding: 8px;
-            border:0; 
-            background-color:rgba(0, 0, 0, 0.3)
-        }
-
         #resume_search_option{
             border-radius:5px; 
             margin-right: 5px;
@@ -230,16 +269,7 @@
             background-color:rgba(0, 0, 0, 0.3)
         }
 
-		.apply_status{
-            border-radius:5px; 
-            margin-right: 5px;
-            width: 50%;
-            padding: 6px;
-            border:0; 
-            background-color:rgba(0, 0, 0, 0.3)
-        }
-
-        #apply_search_text{
+        #resume_search_text{
             border-radius:5px; 
             margin-right: 5px;
             width: 20%;
@@ -248,22 +278,8 @@
             background-color:rgba(0, 0, 0, 0.3)
         }
 
-        #apply_search{
+        #resume_search{
             padding: 4px 10px;
-        }
-
-        .applyTable .status_condition, .date_condition{
-            margin-right:3px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 2px 6px;
-            box-sizing: border-box;
-            background: grey;
-            cursor: pointer;
-        }
-
-        .applyTable .status_condition.active, .date_condition.active{
-            background: rgb(60,180,180);
         }
         
     </style>

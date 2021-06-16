@@ -8,6 +8,24 @@ class RecruitModel extends CI_Model{
     }
 
     public function getRecruitApplyList($whereArr){
+        if (isset($whereArr["apply_status"]) && $whereArr["apply_status"] != 0){
+            $this->db->where("TBL_HOSKO_RECRUIT_APPLY.APP_STATUS", $whereArr["apply_status"]);
+        }
+        if (isset($whereArr["apply_start_date"]) && $whereArr["apply_start_date"] != ""){
+            $this->db->where("TBL_HOSKO_RECRUIT.REC_PERIOD_START", $whereArr["apply_start_date"]);
+        }
+        if (isset($whereArr["apply_end_date"]) && $whereArr["apply_end_date"] != ""){
+            $this->db->where("TBL_HOSKO_RECRUIT.REC_PERIOD_END", $whereArr["apply_end_date"]);
+        }
+        if (isset($whereArr["apply_search_option"]) && $whereArr["apply_search_option"] != ""){
+            if($whereArr["apply_search_option"] == "title"){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["apply_search_text"]);
+            }else if($whereArr["apply_search_option"] == "name"){
+                $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["apply_search_text"]);
+            }else if($whereArr["apply_search_option"] == "id"){
+                $this->db->like("TBL_HOSKO_USER.USER_ID", $whereArr["apply_search_text"]);
+            }
+        }
 
         $this->db->where("TBL_HOSKO_RECRUIT_APPLY.APP_DEL_YN", 'N');
 
@@ -22,6 +40,25 @@ class RecruitModel extends CI_Model{
     }
 
     public function getRecruitApplyListCount($whereArr){
+        if (isset($whereArr["apply_status"]) && $whereArr["apply_status"] != ""){
+            $this->db->where("TBL_HOSKO_RECRUIT_APPLY.APP_STATUS", $whereArr["apply_status"]);
+        }
+        if (isset($whereArr["apply_start_date"]) && $whereArr["apply_start_date"] != ""){
+            $this->db->where("TBL_HOSKO_RECRUIT.REC_PERIOD_START", $whereArr["apply_start_date"]);
+        }
+        if (isset($whereArr["apply_end_date"]) && $whereArr["apply_end_date"] != ""){
+            $this->db->where("TBL_HOSKO_RECRUIT.REC_PERIOD_END", $whereArr["apply_end_date"]);
+        }
+        if (isset($whereArr["apply_search_option"]) && $whereArr["apply_search_option"] != ""){
+            if($whereArr["apply_search_option"] == "title"){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["apply_search_text"]);
+            }else if($whereArr["apply_search_option"] == "name"){
+                $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["apply_search_text"]);
+            }else if($whereArr["apply_search_option"] == "id"){
+                $this->db->like("TBL_HOSKO_USER.USER_ID", $whereArr["apply_search_text"]);
+            }
+        }
+
         $this->db->where("TBL_HOSKO_RECRUIT_APPLY.APP_DEL_YN", 'N');
 
         $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT_APPLY.APP_USER_SEQ");
@@ -29,6 +66,12 @@ class RecruitModel extends CI_Model{
 
         $this->db->select("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ");
         $this->db->distinct();
+        $this->db->from("TBL_HOSKO_RECRUIT_APPLY");
+        return $this->db->count_All_results();
+    }
+
+    public function getRecruitApplyListCountAll(){
+        $this->db->where("TBL_HOSKO_RECRUIT_APPLY.APP_DEL_YN", 'N');
         $this->db->from("TBL_HOSKO_RECRUIT_APPLY");
         return $this->db->count_All_results();
     }
@@ -47,6 +90,12 @@ class RecruitModel extends CI_Model{
         $this->db->where("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ", $apply_seq);
 
         return $this->db->update("TBL_HOSKO_RECRUIT_APPLY", $whereArr);
+    }
+
+    public function deleteRecruitApplies($apply_seqs){
+        $this->db->where_in("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ", $apply_seqs);
+
+        return $this->db->update("TBL_HOSKO_RECRUIT_APPLY", array("APP_DEL_YN" => "Y"));
     }
 
     public function getRecruitAbroadList($whereArr){
@@ -115,6 +164,17 @@ class RecruitModel extends CI_Model{
         return $this->db->count_All_results();
     }
 
+    public function getRecruitAbroadListCountAll(){
+        $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
+        $this->db->from("TBL_HOSKO_RECRUIT");
+        return $this->db->count_All_results();
+    }
+
+    public function getRecruitAbroad($aborad_seq){
+        $this->db->where("TBL_HOSKO_RECRUIT.REC_SEQ", $aborad_seq);
+        return $this->db->get("TBL_HOSKO_RECRUIT")->row(); 
+    }
+
     public function getRecruitAbroadInfo($aborad_seq){
         $this->db->where("TBL_HOSKO_RECRUIT.REC_SEQ", $aborad_seq);
 
@@ -141,27 +201,83 @@ class RecruitModel extends CI_Model{
         return $this->db->update("TBL_HOSKO_RECRUIT", array("REC_DEL_YN" => "Y"));
     }
 
+    public function deleteRecruitAbroads($aborad_seqs){
+        $this->db->where_in("TBL_HOSKO_RECRUIT.REC_SEQ", $aborad_seqs);
+
+        return $this->db->update("TBL_HOSKO_RECRUIT", array("REC_DEL_YN" => "Y"));
+    }
+
     public function getRecruitResumeList($whereArr){
-        $this->db->where("TBL_HOSKO_RESUME.RESUME_DEL_YN", 'N');
+        $this->db->where("TBL_HOSKO_USER_RESUME.RESUME_DEL_YN", 'N');
 
-        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RESUME.USER_SEQ");
+        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_USER_RESUME.USER_SEQ");
 
-        $this->db->group_by("TBL_HOSKO_RESUME.RESUME_SEQ");
-        $this->db->order_by("TBL_HOSKO_RESUME.RESUME_SEQ");
-        $this->db->select("TBL_HOSKO_RESUME.*, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_RESUME.RESUME_TITLE");
+        $this->db->group_by("TBL_HOSKO_USER_RESUME.RESUME_SEQ");
+        $this->db->order_by("TBL_HOSKO_USER_RESUME.RESUME_SEQ");
+        $this->db->select("TBL_HOSKO_USER_RESUME.*, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_USER_RESUME.RESUME_TITLE");
         $this->db->limit(15);
-        return $this->db->get("TBL_HOSKO_RESUME")->result();
+        return $this->db->get("TBL_HOSKO_USER_RESUME")->result();
     }
 
     public function getRecruitResumeListCount($whereArr){
-        $this->db->where("TBL_HOSKO_RESUME.RESUME_DEL_YN", 'N');
+        $this->db->where("TBL_HOSKO_USER_RESUME.RESUME_DEL_YN", 'N');
 
-        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RESUME.USER_SEQ");
+        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_USER_RESUME.USER_SEQ");
 
-        $this->db->select("TBL_HOSKO_RESUME.RESUME_SEQ");
+        $this->db->select("TBL_HOSKO_USER_RESUME.RESUME_SEQ");
         $this->db->distinct();
-        $this->db->from("TBL_HOSKO_RESUME");
+        $this->db->from("TBL_HOSKO_USER_RESUME");
         return $this->db->count_All_results();
+    }
+
+    public function getRecruitResumeListCountAll(){
+        $this->db->where("TBL_HOSKO_USER_RESUME.RESUME_DEL_YN", 'N');
+        $this->db->from("TBL_HOSKO_USER_RESUME");
+        return $this->db->count_All_results();
+    }
+
+    public function getRecruitResumeInfo($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME.RESUME_SEQ", $resume_seq);
+        
+        return $this->db->get("TBL_HOSKO_USER_RESUME")->row(); 
+    }
+
+    public function getRecruitResumeAhvmnt($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME_ACHIEVEMENT.RESUME_SEQ", $resume_seq);
+
+        return $this->db->get("TBL_HOSKO_USER_RESUME_ACHIEVEMENT")->result(); 
+    }
+    public function getRecruitResumeActivity($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME_ACTIVITY.RESUME_SEQ", $resume_seq);
+
+        return $this->db->get("TBL_HOSKO_USER_RESUME_ACTIVITY")->result(); 
+    }
+    public function getRecruitResumeLanguage($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME_LANGUAGE.RESUME_SEQ", $resume_seq);
+
+        return $this->db->get("TBL_HOSKO_USER_RESUME_LANGUAGE")->result(); 
+    }
+    public function getRecruitResumeSkill($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME_SKILL.RESUME_SEQ", $resume_seq);
+
+        return $this->db->get("TBL_HOSKO_USER_RESUME_SKILL")->result(); 
+    }
+    public function getRecruitResumeWokringExp($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE.RESUME_SEQ", $resume_seq);
+
+        return $this->db->get("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE")->result(); 
+    }
+
+    public function deleteRecruitResume($resume_seq){
+        $this->db->where("TBL_HOSKO_USER_RESUME.RESUME_SEQ", $resume_seq);
+
+        return $this->db->update("TBL_HOSKO_USER_RESUME", array("RESUME_DEL_YN" => "Y"));
+    }
+
+    public function deleteRecruitResumes($resume_seqs){
+        $this->db->where_in("TBL_HOSKO_USER_RESUME.RESUME_SEQ", $resume_seqs);
+
+        return $this->db->update("TBL_HOSKO_USER_RESUME", array("RESUME_DEL_YN" => "Y"));
     }
 
     

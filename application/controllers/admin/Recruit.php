@@ -47,22 +47,21 @@ class Recruit extends CI_Controller {
 			$nowpage = $_GET["per_page"];
 		}
 
-		$ctg = isset($_GET["ctg"]) ? $_GET["ctg"] : "";
-		$ctg2 = isset($_GET["ctg2"]) ? $_GET["ctg2"] : "";
-		$ctg3 = isset($_GET["ctg3"]) ? $_GET["ctg3"] : "";
-		$searchOpt = isset($_GET["searchOpt"]) ? $_GET["searchOpt"] : "";
-		$searchGrp = isset($_GET["searchGrp"]) ? $_GET["searchGrp"] : "";
+		$apply_status = isset($_GET["apply_status"]) ? $_GET["apply_status"] : 0;
+		$search_date = isset($_GET["search_date"]) ? $_GET["search_date"] : "";
+		$apply_start_date = isset($_GET["apply_start_date"]) ? $_GET["apply_start_date"] : "";
+		$apply_end_date = isset($_GET["apply_end_date"]) ? $_GET["apply_end_date"] : "";
+		$apply_search_option = isset($_GET["apply_search_option"]) ? $_GET["apply_search_option"] : "";
+		$apply_search_text = isset($_GET["apply_search_text"]) ? $_GET["apply_search_text"] : "";
 		$coupon = isset($_GET["coupon"]) ? $_GET["coupon"] : "";
 		$display = isset($_GET["display"]) ? $_GET["display"] : "";
 
 		$wheresql = array(
-						"ctg" => $ctg,
-						"ctg2" => $ctg2,
-						"ctg3" => $ctg3,
-						"searchOpt" => $searchOpt,
-						"searchGrp" => $searchGrp,
-						"coupon" => $coupon,
-						"display" => $display,
+						"apply_status" => $apply_status,						
+						"apply_start_date" => $apply_start_date,
+						"apply_end_date" => $apply_end_date,
+						"apply_search_option" => $apply_search_option,
+						"apply_search_text" => $apply_search_text,
 						"start" => $start,
 						"limit" => $limit
 						);
@@ -71,6 +70,7 @@ class Recruit extends CI_Controller {
 		// print_r($lists);
 		// echo $this->db->last_query();
 		$listCount = $this->RecruitModel->getRecruitApplyListCount($wheresql);
+		$listCountAll = $this->RecruitModel->getRecruitApplyListCountAll();
 		// $listCount= array();
 		if ($nowpage != ""){
 			$pagenum = $listCount-(($nowpage-1)*10);
@@ -85,6 +85,13 @@ class Recruit extends CI_Controller {
 		$data = array(
 					"lists" => $lists,
 					"listCount" => $listCount,
+					"listCountAll" => $listCountAll,
+					"status" => $apply_status,
+					"searchDate" => $search_date,
+					"startDate" => $apply_start_date,
+					"endDate" => $apply_end_date,
+					"searchOption" => $apply_search_option,
+					"searchText" => $apply_search_text,
 					"pagination" => $pagination,
 					"pagenum" => $pagenum,
 					"start" => $start,
@@ -100,6 +107,14 @@ class Recruit extends CI_Controller {
 		// print_r($DATA["APPLY_INFO"]);
         
 		$this->load->view("./admin/recruit/recruit-apply_view", $DATA);
+	}
+
+	public function recruit_apply_view_print($apply_seq){
+		$DATA["APPLY_INFO"] = $this->RecruitModel->getRecruitApplyInfo($apply_seq);
+
+		// print_r($DATA["APPLY_INFO"]);
+        
+		$this->load->view("./admin/recruit/recruit-apply_view_print", $DATA);
 	}
 
 	public function recruit_apply_save(){
@@ -154,7 +169,53 @@ class Recruit extends CI_Controller {
 		}
 	}
 
-	
+	public function recruit_applies_del(){
+		$seqs = isset($_POST["SEQ"]) ? $_POST["SEQ"] : "";
+
+		$result = $this->RecruitModel->deleteRecruitApplies($seqs);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
+
+	public function update_recruit_status(){
+		$app_seq = isset($_POST["APP_SEQ"]) ? $_POST["APP_SEQ"] : "";
+		$app_status = isset($_POST["APP_STATUS"]) ? $_POST["APP_STATUS"] : "";
+
+		$where_arr = array("APP_STATUS" => $app_status);
+
+		$result = $this->RecruitModel->updateRecruitApply($app_seq, $where_arr);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
+
+	public function update_recruits_status(){
+		$app_seqs = isset($_POST["APP_SEQ"]) ? $_POST["APP_SEQ"] : "";
+		$app_status = isset($_POST["APP_STATUS"]) ? $_POST["APP_STATUS"] : "";
+
+		foreach($app_seqs as $key => $seq){
+			$where_arr = array("APP_STATUS" => $app_status[$key]);
+			
+			$result = $this->RecruitModel->updateRecruitApply($seq, $where_arr);
+
+			if(!$result){
+				break;
+			}
+		}
+
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
 
 	public function recruit_abroad_list(){
 		$limit = 15;
@@ -192,6 +253,7 @@ class Recruit extends CI_Controller {
 		// $lists = array();
 		//echo $this->db->last_query();
 		$listCount = $this->RecruitModel->getRecruitAbroadListCount($wheresql);
+		$listCountAll = $this->RecruitModel->getRecruitAbroadListCountAll();
 		// $listCount= array();
 		if ($nowpage != ""){
 			$pagenum = $listCount-(($nowpage-1)*15);
@@ -212,6 +274,7 @@ class Recruit extends CI_Controller {
 					"display" => $display,
 					"lists" => $lists,
 					"listCount" => $listCount,
+					"listCountAll" => $listCountAll,
 					"pagination" => $pagination,
 					"pagenum" => $pagenum,
 					"start" => $start,
@@ -407,10 +470,68 @@ class Recruit extends CI_Controller {
 		$this->load->view("./admin/recruit/recruit-abroad_edit", $DATA);
 	}
 
+	public function recruit_abroad_edit_print($abroad_seq){
+		$DATA["ABROAD_INFO"] = $this->RecruitModel->getRecruitAbroadInfo($abroad_seq);
+
+		// print_r($DATA["APPLY_INFO"]);
+        
+		$this->load->view("./admin/recruit/recruit-abroad_edit_print", $DATA);
+	}
+
 	public function recruit_abroad_del($abroad_seq){
 		
 		$result = $this->RecruitModel->deleteRecruitAbroad($abroad_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
+
+	public function recruit_abroads_del(){
+		$seqs = isset($_POST["SEQ"]) ? $_POST["SEQ"] : "";
+
+		$result = $this->RecruitModel->deleteRecruitAbroads($seqs);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
+
+	public function recruit_abroad_copy($abroad_seq){
+		$abroad_data = $this->RecruitModel->getRecruitAbroad($abroad_seq);
 		
+		$data_arr = get_object_vars($abroad_data);
+		unset($data_arr["REC_SEQ"]);
+
+		$result = $this->RecruitModel->insertRecruitAbroad($data_arr);
+		
+
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
+
+	public function recruit_abroads_copy(){
+		$seqs = isset($_POST["SEQ"]) ? $_POST["SEQ"] : "";
+
+		foreach($seqs as $seq){
+			$data = $this->RecruitModel->getRecruitAbroad($seq);
+
+			$data_arr = get_object_vars($data);
+			unset($data_arr["REC_SEQ"]);
+
+			$result = $this->RecruitModel->insertRecruitAbroad($data_arr);
+
+			if(!$result){
+				break;
+			}
+		}
 
 		if ($result == true){
 			echo json_encode(array("code" => "200"));
@@ -429,10 +550,10 @@ class Recruit extends CI_Controller {
 			$nowpage = $_GET["per_page"];
 		}
 
-		$ctg = isset($_GET["ctg"]) ? $_GET["ctg"] : "";
+		$search_option = isset($_GET["srchOpt"]) ? $_GET["srchOpt"] : "";
 
 		$wheresql = array(
-						"ctg" => $ctg,
+						"srchOpt" => $search_option,
 						"start" => $start,
 						"limit" => $limit
 						);
@@ -441,6 +562,7 @@ class Recruit extends CI_Controller {
 		// $lists = array();
 		//echo $this->db->last_query();
 		$listCount = $this->RecruitModel->getRecruitResumeListCount($wheresql);
+		$listCountAll = $this->RecruitModel->getRecruitResumeListCountAll();
 		// $listCount= array();
 		if ($nowpage != ""){
 			$pagenum = $listCount-(($nowpage-1)*15);
@@ -453,6 +575,7 @@ class Recruit extends CI_Controller {
 		$data = array(
 					"lists" => $lists,
 					"listCount" => $listCount,
+					"listCountAll" => $listCountAll,
 					"pagination" => $pagination,
 					"pagenum" => $pagenum,
 					"start" => $start,
@@ -462,6 +585,50 @@ class Recruit extends CI_Controller {
 		$this->load->view("./admin/recruit/recruit-resume_list", $data);
 	}
 
+	public function recruit_resume_view($resume_seq){
+		$DATA["RESUME_INFO"] = $this->RecruitModel->getRecruitResumeInfo($resume_seq);
+		$DATA["RESUME_AHIEVEMENT"] = $this->RecruitModel->getRecruitResumeAhvmnt($resume_seq);
+		$DATA["RESUME_ACTIVITY"] = $this->RecruitModel->getRecruitResumeActivity($resume_seq);
+		$DATA["RESUME_LANGUAGE"] = $this->RecruitModel->getRecruitResumeLanguage($resume_seq);
+		$DATA["RESUME_SKILL"] = $this->RecruitModel->getRecruitResumeSkill($resume_seq);
+		$DATA["RESUME_WORKING_EXP"] = $this->RecruitModel->getRecruitResumeWokringExp($resume_seq);
+        
+		$this->load->view("./admin/recruit/recruit-resume_view", $DATA);
+	}
+
+	public function recruit_resume_view_print($resume_seq){
+		$DATA["RESUME_INFO"] = $this->RecruitModel->getRecruitResumeInfo($resume_seq);
+		$DATA["RESUME_AHIEVEMENT"] = $this->RecruitModel->getRecruitResumeAhvmnt($resume_seq);
+		$DATA["RESUME_ACTIVITY"] = $this->RecruitModel->getRecruitResumeActivity($resume_seq);
+		$DATA["RESUME_LANGUAGE"] = $this->RecruitModel->getRecruitResumeLanguage($resume_seq);
+		$DATA["RESUME_SKILL"] = $this->RecruitModel->getRecruitResumeSkill($resume_seq);
+		$DATA["RESUME_WORKING_EXP"] = $this->RecruitModel->getRecruitResumeWokringExp($resume_seq);
+        
+		$this->load->view("./admin/recruit/recruit-resume_view_print", $DATA);
+	}
+
+	public function recruit_resume_del($resume_seq){
+		
+		$result = $this->RecruitModel->deleteRecruitResume($resume_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
+
+	public function recruit_resumes_del(){
+		$seqs = isset($_POST["SEQ"]) ? $_POST["SEQ"] : "";
+
+		$result = $this->RecruitModel->deleteRecruitResumes($seqs);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
 
 	public function thumbnail_del_proc(){
 		$seq = isset($_POST["seq"]) ? $_POST["seq"] : "";
