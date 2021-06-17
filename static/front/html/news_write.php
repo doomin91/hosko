@@ -32,70 +32,94 @@
                                     <h2>호스코 뉴스</h2>
                                 </div>
                                 <div class="subContSec">
-                                    <div class="boardViewTop">
-                                        <div class="type_table">
-                                            <div class="col1">
-                                                <div class="boardViewTop_item">
-                                                    <strong>번호</strong>
-                                                    <div class="type_td">
-                                                        질문합니다.										
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="boardWriteTop">
 
-                                            <div class="col3">
-                                                <div class="boardViewTop_item">
+                                        <div class="type_tableWrite">
+                                            <div class="col1 n_br">
+                                                <div class="boardWriteTop_item">
                                                     <strong>작성자</strong>
                                                     <div class="type_td">
-                                                        홍길동
+                                                        <input type="text" class="input_s1">								
                                                     </div>
                                                 </div>
-                                                <div class="boardViewTop_item">
-                                                    <strong>작성일</strong>
-                                                    <div class="type_td">
-                                                        2021-06-06
-                                                    </div>
-                                                </div>
-                                                <div class="boardViewTop_item">
-                                                    <strong>조회수</strong>
-                                                    <div class="type_td">
-                                                        222
-                                                    </div>
-                                                </div>                                                
                                             </div>
 
-                                            <div class="col1">
-                                                <div class="boardViewTop_item">
+                                            <div class="col1 n_br">
+                                                <div class="boardWriteTop_item">
+                                                    <strong>이메일</strong>
+                                                    <div class="type_td">
+                                                        <input type="email" class="input_s1">
+                                                    </div>
+                                                </div>                               
+                                            </div>
+
+
+                                            <div class="col1 n_br">
+                                                <div class="boardWriteTop_item">
+                                                    <strong>제목</strong>
+                                                    <div class="type_td">
+                                                        <div class="boardSelect">
+                                                            <select name="" id="" class="select_s1">
+                                                                <option value="">111</option>
+                                                                <option value="">222</option>
+                                                                <option value="">333</option>
+                                                                <option value="">444</option>
+
+                                                            </select>
+                                                        </div>
+                                                        <div class="boardInputText">
+                                                            <input type="text" class="input_s1">
+                                                        </div>
+                                                    </div>
+                                                </div>                               
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="boardWriteCont">
+
+                                        <div class="type_tableWrite">
+                                            <div class="col1 n_br">
+                                                <div class="boardWriteTop_item">
+                                                    <strong>내용</strong>
+                                                    <div class="type_td">
+                                                        <textarea class="textarea_s1"> </textarea>								
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col1 n_br">
+                                                <div class="boardWriteTop_item">
                                                     <strong>첨부파일</strong>
                                                     <div class="type_td">
-                                                        <ul class="fileList">
-                                                            <li class="file_item">
-                                                                <a href="/" title="파일 다운로드 하기"><em>첨부파일.txt</em></a>
-                                                            </li>
-                                                        </ul>								
+                                                        <div class="filebox file_s1">
+                                                            <label for="file">파일선택</label> 
+                                                            <input type="file" id="file" > 
+
+                                                            <input class="upload-name" value="선택된 파일 없음">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="boardViewCont">
-                                        <div class="View_cont">
-                                            <p>ddddd</p>
+                                            </div>                                            
                                         </div>
                                     </div>
 
 
 
-                                    <div class="boardViewBot">
-                                        <div class="type_table">
-
-
-
-
-                                    
+                                    <div class="boardBtnArea pb50">
+                                        <div class="btn_box f_left">
+                                            <a href="/"  class="btn_style01 ">목록보기</a>
                                         </div>
+
+                                        <div class="btn_box f_right">
+                                            <a href="/"  class="btn_style02">확인하기</a>
+                                        </div>
+
+                                        <div class="btn_box f_right">
+                                            <a href="/"  class="btn_style01">취소하기</a>
+                                        </div>
+
                                     </div>
 
 
@@ -113,6 +137,16 @@
         <?php include 'footer.php'; ?>
 
         </div>
+
+
+<script>
+$("#file").on('change',function(){
+  var fileName = $("#file").val();
+  $(".upload-name").val(fileName);
+});
+</script>
+
+
 
     </body>
 </html>

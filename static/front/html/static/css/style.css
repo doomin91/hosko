@@ -50,9 +50,23 @@ footer .footer_info .f_address li {font-size:1em;  font-family:'Noto Sans KR', s
 .type_table > div .boardViewTop_item {position: relative;width: 100%;display: flex;box-sizing:border-box;vertical-align: top;font-size: 15px;line-height: 30px;}
 .type_table > div .boardViewTop_item .type_td {flex:1;min-width:0}
 
-.type_table > div .boardViewTop_item > * {height: 100%;padding: 8px 20px;letter-spacing: -0.8px;box-sizing:border-box;line-height: 22px;min-height:62px;-ms-word-break: break-all;
-    word-break: break-all;display: flex;align-items:center}
+.type_table > div .boardViewTop_item > * {height: 100%;padding: 8px 20px;letter-spacing: -0.8px;box-sizing:border-box;line-height: 22px;min-height:62px;-ms-word-break: break-all; word-break: break-all;display: flex;align-items:center}
 
+
+.boardWriteTop {position:relative; width:100%;}
+.boardWriteCont {position:relative; width:100%;}
+
+
+.type_tableWrite {position: relative;}
+.type_tableWrite > div {position: relative;font-size: 0;border-bottom: 1px solid #dcdcdc;display: flex;}
+.type_tableWrite > div.col1 .boardWriteTop_item{width: 100%;}
+.type_tableWrite > div.col3 .boardWriteTop_item{width: 33.33333%;}
+.type_tableWrite > div .boardWriteTop_item {position: relative;width: 100%;display: flex;box-sizing:border-box;vertical-align: top;font-size: 15px;line-height: 30px;}
+.type_tableWrite > div .boardWriteTop_item .type_td {flex:1;min-width:0}
+.type_tableWrite > div .boardWriteTop_item > * {width:100px;height: 100%;padding: 8px 20px;letter-spacing: -0.8px;box-sizing:border-box;line-height: 22px;min-height:62px;-ms-word-break: break-all; word-break: break-all;display: flex;align-items:center}
+
+.boardSelect {margin-right:20px; width:200px;  }
+.boardInputtext {  width:100%;}
 
 .boardViewCont {padding:20px;border: 1px solid #cbcbca; margin:20px auto; border-radius: 5px;}
 .boardViewCont * {max-width:100%; min-height:430px;}
@@ -93,15 +107,32 @@ footer .footer_info .f_address li {font-size:1em;  font-family:'Noto Sans KR', s
 
 
 
+
+/* board btn */
+.boardBtnArea {font-size: 0;text-align: center; margin:30px 0 80px 0;}
+.boardBtnArea.type2 {max-width:450px;margin: 0 auto;margin-top: 70px;}
+.boardBtnArea.taR {margin-top: 32px;}
+.boardBtnArea.col2 > div.boardBtnItem {width: 50%;}
+.boardBtnArea > div {display: inline-block;box-sizing:border-box;vertical-align: top;padding: 0 5px;}
+.boardBtnArea > div * {display: block; }
+
+.boardBtnArea .btn_box {position:relative; }
+.boardBtnArea .btn_box a {display: inline-block;}
+
+.btn_style01 {display: inline-block;margin: 0 4px;width: 160px;line-height: 60px;font-size: 18px;font-weight: 500;color: #ffffff;box-sizing:border-box;text-align: center; background-color:#989898;}
+.btn_style02 {display: inline-block;margin: 0 4px;width: 160px;line-height: 60px;font-size: 18px;font-weight: 500;color: #ffffff;box-sizing:border-box;text-align: center; background-color:#025ca9;}
+.btn_style03 {display: inline-block;margin: 0 4px;width: 160px;line-height: 60px;font-size: 18px;font-weight: 500;color: #333333;box-sizing:border-box;text-align: center; }
+
+
+
 /* pagination */
 .pagination{position:relative; width:100%; margin-top:30px;text-align:center; display:inline-block;}
 .pagination > *{display:inline-block; min-width:38px; height:38px; box-sizing:border-box; margin:2px -2px; border:1px solid #ddd; background:#fff; color:#777; text-align:center; vertical-align:top; line-height:36px; transition:border-color 0.3s ease 0s;}
 .pagination a[class^="btn_"]{width:38px; background-repeat:no-repeat; text-indent:100%; overflow:hidden; white-space:nowrap; }
-.pagination a.btn_prev {background:url("../img/btn_prev.png") no-repeat; background-position:50% 50%; border-radius: 5px 0 0 5px;}
-.pagination a.btn_next {background:url("../img/btn_next.png") no-repeat; background-position:50% 50%; border-radius: 0 5px 5px 0;}
+.pagination a.btn_prev{background:url("../img/btn_prev.png") no-repeat; background-position:50% 50%; border-radius: 5px 0 0 5px;}
+.pagination a.btn_next{background:url("../img/btn_next.png") no-repeat; background-position:50% 50%; border-radius: 0 5px 5px 0;}
 .pagination span{background-color:#0a5da9; color:#fff;}
 
-.pagination .btn_img {top:8px; position: relative; }
 
 /* table btn */
 .subBtn_Write {position:relative; display:inline-block; background-color:#0c5ea9;}
