@@ -12,6 +12,7 @@ td a {color:#428bca !important}
 .userTable input[type="text"],.userTable input[type="number"],.userTable input[type="checkbox"],.userTable input[type="radio"],.userTable input[type="file"],.userTable input[type="password"] {padding:7px 10px; border-radius:5px; margin-bottom:5px !important; margin:5px !important; border:0; background-color:#f3f3f3; color:#555; border:1px solid #e4e4e4;}
 .userTable select {padding:7px 10px; border-radius: 5px; margin-bottom:0px !important; margin:5px !important; border:0; background-color:rgba(0, 0, 0, 0.3)}
 .userTable textarea {padding:7px 10px; width:95%; height:100px; border-radius: 5px; background-color:rgba(0, 0, 0, 0.3); background-color:#f3f3f3; color:#555; border:1px solid #e4e4e4; margin-bottom:5px !important; margin:5px !important; }
+.userTable tbody tr td {padding-left:10px !important;}
 .langLabel {display:block; width:50px;}
 
  .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {

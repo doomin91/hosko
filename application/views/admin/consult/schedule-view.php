@@ -84,7 +84,7 @@
                         </form>
                         <div class="row form-footer">
                             <div class="col-sm-offset-2 col-sm-10 text-right">
-                                <button type="button" class="btn btn-danger btn-sm" id="delSchedule">삭제</button>
+                                <button type="button" class="btn btn-danger btn-sm" id="delSchedule" data-seq="<?php echo $detail->CAL_SEQ; ?>">삭제</button>
                                 <a type="button" class="btn btn-primary btn-sm" href="/admin/consult/schedule?flag=<?php echo $flag; ?>">목록</a>
                             </div>
                         </div>
@@ -136,35 +136,31 @@
         });
         $(".datepicker").datepicker();
 
-        $(document).on("click", "#saveSchedule", function(){
-            var flag = "<?php echo $flag; ?>";
-            var cal_date = "<?php echo $nDay; ?>";
-            var cal_title = $("input[name=cal_title]").val();
-            var cal_schedule = $("textarea[name=cal_schedule]").val();
+        $(document).on("click", "#delSchedule", function(){
+            var cal_seq = $(this).data("seq");
 
-            $.ajax({
-                url:"/admin/consult/scheduleWriteProc",
-                type:"post",
-                data:{
-                    "flag" : flag,
-                    "cal_date" : cal_date,
-                    "cal_title" : cal_title,
-                    "cal_schedule" : cal_schedule,
-                },
-                dataType:"json",
-                success:function(resultMsg){
-                    console.log(resultMsg);
-                    if (resultMsg.code == "200"){
-                        alert(resultMsg.msg);
-                        document.location.href="/admin/consult/schedule?flag="+flag;
-                    }else{
-                        alert(resultMsg.msg);
+            if (confirm("삭제하시겠습니까?")){
+                $.ajax({
+                    url:"/admin/consult/scheduleDelProc",
+                    type:"post",
+                    data:{
+                        "cal_seq" : cal_seq
+                    },
+                    dataType:"json",
+                    success:function(resultMsg){
+                        console.log(resultMsg);
+                        if (resultMsg.code == "200"){
+                            alert(resultMsg.msg);
+                            document.location.href="/admin/consult/schedule?flag=<?php echo $flag; ?>";
+                        }else{
+                            alert(resultMsg.msg);
+                        }
+                    },
+                    error:function(e){
+                        console.log(e);
                     }
-                },
-                error:function(e){
-                    console.log(e);
-                }
-            })
+                })
+            }
         });
     });
 </script>

@@ -313,4 +313,16 @@ class Consult extends CI_Controller {
 
 		$this->load->view("/admin/consult/schedule-view", $data);
 	}
+
+	public function scheduleDelProc(){
+		$cal_seq = $this->input->post("cal_seq");
+
+		$result = $this->ConsultModel->delSchedule($cal_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "일정 삭제 완료되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "일정 삭제중 문제가 생겼습니다."));
+		}
+	}
 }
