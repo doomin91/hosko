@@ -106,9 +106,7 @@ class Board extends CI_Controller {
         $group_info = $this->GroupModel->getGroup($group_seq);
         $boards_info = $this->BoardModel->getBoardInGroup($group_seq);
 
-        $this->BoardModel->getBoardBottom($post_seq, $board_seq);
-        $bottom_list = $this->BoardModel->getBoardBottomCnt($post_seq, $board_seq);
-        $bottom_cnt = $this->BoardModel->getBoardSeqByPost($post_seq);
+        $bottom_list = $this->BoardModel->getFrontBoardBottom($post_seq, $board_seq);
         $comments = $this->BoardModel->getComments($post_seq);
         $recommand = $this->BoardModel->getRecommand($post_seq);
         $attach = $this->BoardModel->getPostAttach($post_seq);
@@ -117,6 +115,7 @@ class Board extends CI_Controller {
         $DATA["POST_INFO"] = $post_info;
         $DATA["BOARD_INFO"] = $board_info;
         $DATA["BOARDS_INFO"] = $boards_info;
+        $DATA["BOTTOM_LIST"] = $bottom_list;
         $DATA["ATTACH"] = $attach;
         $DATA["COMMENTS"] = $comments;
         $this->load->view("board_view", $DATA);

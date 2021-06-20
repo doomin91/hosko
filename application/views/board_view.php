@@ -104,22 +104,30 @@
                                         </div>
                                     </div>
 
+
+                                    
+                                    <?php
+                                    // 댓글 등록 기능 활성화 여부
+                                    if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'): ?>
                                     <div class="commentCont">
                                         <div class="commentList">
+                                            <?php foreach($COMMENTS as $cm):?>
                                             <div class="comment_item">
                                                 <div class="comment_sub01">
-                                                    <p class="name">홍지현</p>
-                                                    <p class="ip">(14/47/147/136)</p>
+                                                    <p class="name"><?php echo $cm->USER_ID?></p>
+                                                    <p class="ip">(<?php echo $cm->COM_REG_IP?>)</p>
                                                 </div>
                                                 <div class="comment_sub02">
-                                                    <p>댓글 테스트</p>
+                                                    <p><?php echo $cm->COM_CONTENTS?></p>
                                                 </div>
                                                 <div class="comment_sub03">
-                                                    <p class="date">2021-05-14</p>
-                                                    <p class="time">17:39:33</p>
+                                                    <p class="date"><?php echo $cm->COM_REG_DATE?></p>
+                                                    <!-- <p class="time">17:39:33</p> -->
+                                                    <p class="delete"><a href="/"><img src="/static/front/html/static/img/icon_comment_del.png" alt="댓글삭제"></a></p>
                                                     <p class="delete"><a href="/"><img src="/static/front/html/static/img/icon_comment_del.png" alt="댓글삭제"></a></p>
                                                 </div>
                                             </div>
+                                            <?php endforeach; ?>
                                         </div>
 
                                         <div class="pagination">
@@ -129,9 +137,6 @@
                                             <a href="/" class="btn_next"><span>맨마지막</span></a>
                                         </div>
 
-
-
-
                                         <div class="comment_write">
 
                                             <div class="comment_write_con">
@@ -140,7 +145,10 @@
                                                 </div>
                                                 <div class="comment_write_btn"><a href="/">등록</a></div>
                                             </div>
+
+
                                         </div>
+									<?php endif;?>
 
                                         <div class="code_box">
                                             <div class="code_td">
@@ -155,31 +163,56 @@
 
 
 
+                                    <?php if($BOARD_INFO->BOARD_BOTTOM_LIST_FLAG == "Y"): ?>
                                     <div class="boardViewBot">
                                         <div class="type_table">
-                                            <div class="cont_prev">
-                                                <div class="boardViewBot_item">
-                                                    <strong>이전글</strong>
+                                            <?php foreach($BOTTOM_LIST AS $bl):?>
+                                                <?php if($bl->TYPE == "PREV"){
+                                                        echo "<div class=\"cont_prev\">";
+                                                        echo "<div class=\"boardViewBot_item\">";
+                                                        echo "<strong>이전글</strong>";
+                                                    } else {
+                                                        echo "<div class=\"cont_next\">";
+                                                        echo "<div class=\"boardViewBot_item\">";
+                                                        echo "<strong>다음글</strong>";
+                                                    }?>
                                                     <div class="type_td">
-                                                        <a href="/" class="ellipsis">문의드립니다.</a>
-                                                        <span class="date">2021-05-14</span>
+                                                        
+                                                        <a href="/" class="ellipsis">
+                                                        <?php 
+														echo "<a href=\"/board/board_view/".$bl->POST_SEQ."\">".$bl->POST_SUBJECT."</a>";
+														if($bl->POST_SECRET_YN == "Y"){
+															echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>";
+														}
+													    ?> </a>
+                                                        <span class="date"><?php echo $bl->POST_REG_DATE?></span>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="cont_next">
-                                                <div class="boardViewBot_item">
-                                                    <strong>다음글</strong>
-                                                    <div class="type_td">
-                                                        <a href="/" class="ellipsis">문의드립니다.</a>
-                                                        <span class="date">2021-05-14</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            <?php 
+                                            echo "</div></div>";
+                                            endforeach; ?>
                                     </div>
+                                    <?php endif; ?>
 
+                                    <div class="boardBtnArea pb50">
+                                        <div class="btn_box f_left">
+                                    
 
+                                            <a href="/Board/q/<?php echo $GROUP_INFO->GP_SEQ?>?seq=<?php echo $BOARD_INFO->BOARD_SEQ?>"  class="btn_style01 ">목록보기</a>
+                                        </div>
+
+                                        <div class="btn_box f_right">
+                                            <a href="/"  class="btn_style02">수정</a>
+                                        </div>
+
+                                        <div class="btn_box f_right">
+                                            <a href="/"  class="btn_style02">답글</a>
+                                        </div>
+
+                                        <div class="btn_box f_right">
+                                            <a href="/"  class="btn_style01">삭제</a>
+                                        </div>
+
+                                    </div>
 
                                 </div>
                             </div>
@@ -199,8 +232,26 @@
     </body>
 </html>
 
+<script>
 
-
-
-
-
+function viewPost(POST_SEQ){
+			$.ajax({
+				url:"/admin/Board/post_check_auth?post_seq=" + POST_SEQ,
+				type:"get",
+				dataType:"json",
+				success: function(data){
+					let auth = data["auth"];
+					let url = data["url"];
+					let msg = data["msg"];
+					if(auth == "Y"){
+						location.href="/admin/board/post_view/" + POST_SEQ;
+					} else {
+						alert(msg);
+						// location.href=url;
+					}
+				},error: function(e){
+					console.log(e);
+				}
+			});
+		}
+</script>

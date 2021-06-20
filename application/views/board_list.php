@@ -94,7 +94,7 @@
 
                                     <div class="boardSearchWrap">
                                         <!-- <input type="hidden" name="page" value="1"> -->
-                                        <!-- <input type="hidden" name="num" value=""> -->
+                                        <input type="hidden" name="seq" value="<?php echo $_GET["seq"]?>">
                                         
                                         
                                             <div class="boardSearch">

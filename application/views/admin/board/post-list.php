@@ -176,9 +176,9 @@
 											echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>";
 										}
 
-										if(count($lt->ATTACHS) > 0){
-											echo " cjaqn파일 있다";
-										}
+										// if(count($lt->ATTACHS) > 0){
+										// 	echo " cjaqn파일 있다";
+										// }
 									?> 
 								</td>
 								<td><?php echo $lt->USER_NAME?></td>

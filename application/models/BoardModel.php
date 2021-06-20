@@ -24,6 +24,31 @@ class BoardModel extends CI_Model{
         return $this->db->get("TBL_HOSKO_BOARD")->result();
     }
 
+    public function getFrontBoardBottom($POST_SEQ, $BOARD_SEQ){
+        $sql = "
+        SELECT * FROM 
+        (
+            (
+            SELECT *, \"PREV\" AS TYPE FROM TBL_HOSKO_BOARD_POSTS
+            WHERE POST_BOARD_SEQ = " . $BOARD_SEQ . " AND POST_SEQ > " . $POST_SEQ . "
+            ORDER BY POST_SEQ DESC
+            LIMIT 1
+            ) 
+            UNION ALL
+            (
+            SELECT *, \"NEXT\" AS TYPE FROM TBL_HOSKO_BOARD_POSTS
+            WHERE POST_BOARD_SEQ = " . $BOARD_SEQ . " AND POST_SEQ < " . $POST_SEQ . "
+            ORDER BY POST_SEQ DESC
+            LIMIT 1
+            )
+        ) result
+        LEFT JOIN TBL_HOSKO_USER ON POST_USER_SEQ = USER_SEQ
+        LEFT JOIN TBL_HOSKO_ADMIN ON POST_ADMIN_SEQ = ADMIN_SEQ
+        ";
+
+        return $this->db->query($sql)->result();
+    }
+
     public function getBoardBottom($POST_SEQ, $BOARD_SEQ){
         $sql = "
         SELECT * FROM 
@@ -54,7 +79,6 @@ class BoardModel extends CI_Model{
 
         return $this->db->query($sql)->result();
     }
-
     
     public function getBoardBottomCnt($POST_SEQ, $BOARD_SEQ){
         $sql = "
