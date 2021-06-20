@@ -355,4 +355,19 @@ class UserModel extends CI_Model{
 		$this->db->order_by("TBL_HOSKO_MAILFORM.MF_SEQ", "ASC");
 		return $this->db->get("TBL_HOSKO_MAILFORM")->result();
 	}
+
+	public function getIdFind($user_name, $user_email){
+		$this->db->where("TBL_HOSKO_USER.USER_DEL_YN", "N");
+		$this->db->where("TBL_HOSKO_USER.USER_NAME", $user_name);
+		$this->db->where("TBL_HOSKO_USER.USER_EMAIL", $user_email);
+		return $this->db->get("TBL_HOSKO_USER")->row();
+	}
+
+	public function getPwFind($user_id, $user_name, $user_email){
+		$this->db->where("TBL_HOSKO_USER.USER_DEL_YN", "N");
+		$this->db->where("TBL_HOSKO_USER.USER_ID", $user_id);
+		$this->db->where("TBL_HOSKO_USER.USER_NAME", $user_name);
+		$this->db->where("TBL_HOSKO_USER.USER_EMAIL", $user_email);
+		return $this->db->get("TBL_HOSKO_USER")->row();
+	}
 }

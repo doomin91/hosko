@@ -31,17 +31,15 @@
                                             <h2>아이디 / 비밀번호 찾기</h2>
                                             <div class="inquirymenu">
                                                 <ul>
-                                                    <li class="on">아이디 찾기</li>
-                                                    <li><a href="/member/pwFind">비밀번호 찾기</a></li>
+                                                    <li><a href="idpwInquiry.php">아이디 찾기</a></li>
+                                                    <li class="on">비밀번호 찾기</li>
                                                 </ul>
                                             </div>
-                                            <!--
                                             <div class="inquiryDbox pt30">
                                                 <label>아이디</label>
                                                 <input type="text" class="inquiry_s1" name="user_id">
                                             </div>
-                                            -->
-                                            <div class="inquiryDbox">
+                                            <div class="inquiryDbox pt30">
                                                 <label>이름</label>
                                                 <input type="text" class="inquiry_s1" name="user_name">
                                             </div>
@@ -50,7 +48,9 @@
                                                 <input type="email" class="inquiry_s1" name="user_email">
                                             </div>
                                             <p class="tal pt30">위에 정보를 입력시면 가입시 작성하신 이메일로 비밀번호를 보내드립니다.</p>
-                                            <div class="inquiryBtn"><a href="#" id="idfind">확인</a></div>
+                                            <div class="inquiryBtn">
+                                                <a href="#" id="pwfind">확인</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -64,15 +64,21 @@
                 include_once dirname(__DIR__)."/footer.php";
             ?>
         </div>
-
     </body>
 </html>
 <script type="text/javascript">
 $(function(){
-    $(document).on("click", "#idfind", function(){
+    $(document).on("click", "#pwfind", function(){
+        var user_id = $("input[name=user_id]").val();
         var user_name = $("input[name=user_name]").val();
         var user_email = $("input[name=user_email]").val();
         
+        if (user_id == ""){
+            alert("이름을 입력해주세요");
+            $("input[name=user_name]").focus();
+            return false;
+        }
+
         if (user_name == ""){
             alert("이름을 입력해주세요");
             $("input[name=user_name]").focus();
@@ -86,10 +92,11 @@ $(function(){
         }
 
 		$.ajax({
-			url:"/Member/idFindProc",
+			url:"/Member/pwFindProc",
 			type:"post",
-			dataType:"json",
+			//dataType:"json",
 			data : {
+                "user_id" : user_id,
                 "user_name" : user_name,
                 "user_email" : user_email
             }, success:function(data){

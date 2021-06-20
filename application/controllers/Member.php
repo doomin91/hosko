@@ -243,4 +243,84 @@ class Member extends CI_Controller {
 	public function idFind(){
 		$this->load->view("/member/id_find");
 	}
+
+	public function idFindProc(){
+		$user_name = $this->input->post("user_name");
+		$user_email = $this->input->post("user_email");
+
+		$result = $this->UserModel->getIdFind($user_name, $user_email);
+		//echo $this->db->last_query();
+		//print_r($result);
+		if ($result == true){
+			$user_id = $result->USER_ID;
+			$str = "";
+			for ($i=3; $i<strlen($user_id); $i++){
+				$str .= "*";
+			}
+			$user_id = substr($user_id, 0, 3) . $str;
+			echo json_encode(array("code" => "200", "user_id" => $user_id));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "회원정보를 찾아볼 수 없습니다."));
+		}
+	}
+
+	public function pwFind(){
+		$this->load->view("/member/pw_find");
+	}
+
+	public function pwFindProc(){
+		$user_id = $this->input->post("user_id");
+		$user_name = $this->input->post("user_name");
+		$user_email = $this->input->post("user_email");
+
+		$result = $this->UserModel->getPwFind($user_id, $user_name, $user_email);
+		echo $this->db->last_query();
+		//print_r($result);
+		if ($result == true){
+			$mfinfo = $this->UserModel->getMailForm(14);
+			$mf_body = $mfinfo->MF_BODY;
+
+			$mail_body = str_replace("{DATE}", date("Y-m-d"), $mf_body);
+			$mail_body = str_replace("{MEM_ID}", $result->USER_ID, $mail_body);
+			$mail_body = str_replace("{MEM_PW}", $result->USER_PW, $mail_body);
+			$mail_body = str_replace("{MEM_NAME}", $result->USER_NAME, $mail_body);
+			$mail_body = str_replace("{SITE_NAME}", "호스코", $mail_body);
+			$mail_body = str_replace("{SITE_EMAIL}", "hosko-email", $mail_body);
+			$mail_body = str_replace("{SITE_TEL}", "010-0000-0000", $mail_body);
+			$mail_body = str_replace("{SITE_URL}", "http://hoskoweb.cafe24.com", $mail_body);
+
+			$this->SendMail("inho4864@withnetworks.com", $send_subject, $mail_body);
+
+			echo json_encode(array("code" => "200", "msg" => "비밀번호를 등록된 메일로 되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "회원정보를 찾아볼 수 없습니다."));
+		}
+	}
+
+	public function SendMail($mail_addr, $subject, $contents){
+		$this->load->library('email');
+
+		$config['protocol'] = 'smtp';
+		$config['wordwrap'] = TRUE;
+		$config['charset'] = 'utf-8';
+		$config['mailtype'] = "html";
+		$config['smtp_host'] = "smtp.mailplug.co.kr";
+		$config['smtp_user'] = "inho4864@withnetworks.com";
+		$config['smtp_pass'] = "with!2009";
+		$config['smtp_port'] = "465";
+		$config['newline'] = "\r\n";
+		$config['crlf'] = "\r\n";
+
+		$this->email->initialize($config);
+
+		$this->email->from('hosko@hospitalitykorea.com', '호스코 관리자');
+		$this->email->to($mail_addr);
+
+		$this->email->subject($subject);
+		$this->email->message($contents);
+
+		$this->email->send();
+
+		echo $this->email->print_debugger();
+	}
 }
