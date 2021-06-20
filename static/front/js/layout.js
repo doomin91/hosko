@@ -1,52 +1,27 @@
 /* *******************************************************
- * filename : common.js
- * description : 전체적으로 사용되는 JS
- * date : 2018-03-02
+ * filename : layout.js
+ * description : 사용자 UI 관련된 js 
+ * date : 2021-06-19
 ******************************************************** */
 
 
 jQuery(function($){
 	
-	// 임의의 영역을 만들어 스크롤바 크기 측정
-	function getScrollBarWidth(){
-		if($(document).height() > $(window).height()){
-			$('body').append('<div id="fakescrollbar" style="width:50px;height:50px;overflow:hidden;position:absolute;top:-200px;left:-200px;"></div>');
-			fakeScrollBar = $('#fakescrollbar');
-			fakeScrollBar.append('<div style="height:100px;">&nbsp;</div>');
-			var w1 = fakeScrollBar.find('div').innerWidth();
-			fakeScrollBar.css('overflow-y', 'scroll');
-			var w2 = $('#fakescrollbar').find('div').html('html is required to init new width.').innerWidth();
-			fakeScrollBar.remove();
-			return (w1-w2);
-		}
-		return 0;
-	}
-
-	/* *********************** 사이드바 FIXED ************************ */
-	$(window).scroll(function  () {
-		var scrollHeight = $(window).scrollTop();
-		var rightStartTop = $(window).height() / 2;
-
-		if ( scrollHeight > rightStartTop ) {
-			$("#rightBar").addClass("fixed");
-		}else {
-			$("#rightBar").removeClass("fixed");
-		}
+	$.datepicker.setDefaults({
+		dateFormat: 'yy-mm-dd',
+		prevText: '이전 달',
+		nextText: '다음 달',
+		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		showMonthAfterYear: true,
+		yearSuffix: '년',
+		color: "black",
+		zindex: "20000"
 	});
-
-    //탑버튼
-    $(window).scroll(function(){
-        if($(window).scrollTop() > 500){
-            $('.go_top').addClass('on');
-        } else {
-            $('.go_top').removeClass('on');
-        }
-        $('.go_top').on('click', function () {
-            $('html, body').stop().animate({
-                scrollTop: 0
-            }, 500);
-        });
-    });  
+	$(".datepicker").datepicker();
 
 });
 

@@ -197,6 +197,13 @@ class UserModel extends CI_Model{
 		return $this->db->count_all_results();
 	}
 
+	public function getMaxUserNumber(){
+		//$this->db->where("TBL_HOSKO_USER.USER_DEL_YN", "N");
+		//$this->db->from("TBL_HOSKO_USER");
+		$this->db->select_max("USER_NUMBER");
+		return $this->db->get("TBL_HOSKO_USER")->row();
+	}
+
 	public function getUserGenderStatics(){
 		$this->db->where("TBL_HOSKO_USER.USER_DEL_YN", "N");
 		$this->db->select("TBL_HOSKO_USER.USER_SEX, count(*) as CNT");

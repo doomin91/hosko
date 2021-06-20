@@ -6,35 +6,30 @@
 <html>
 
     <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="content-language" content="ko">
-	<meta http-equiv="Content-Style-Type" content="text/css">
-	<meta http-equiv="Content-Script-Type" content="text/javascript">
-	<meta http-equiv="Cache-Control" content="No-Cache">
-	<meta http-equiv="pragma" content="No-cache">
-	<meta http-equiv="expires" content="0">	
-	<meta name="viewport" content="width=1380">
-	<meta name="robots" content="all">
-	<title>대표적인 교육 훈련기관 브랜드 HOSKO</title>
-	<meta name="author" content="교육 훈련기관 브랜드 HOSKO">
-	<meta name="title" content="교육 훈련기관 브랜드 HOSKO">
-	<meta name="Description" content="교육 훈련기관 브랜드 HOSKO">
-	<meta name="Keywords" content="교육 훈련기관 브랜드 HOSKO">
-	<meta name="format-detection" content="telephone=no">
-	
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="content-language" content="ko">
+		<meta http-equiv="Content-Style-Type" content="text/css">
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+		<meta http-equiv="Cache-Control" content="No-Cache">
+		<meta http-equiv="pragma" content="No-cache">
+		<meta http-equiv="expires" content="0">
+		<meta name="viewport" content="width=1380">
+		<meta name="robots" content="all">
+		<title>대표적인 교육 훈련기관 브랜드 HOSKO</title>
+		<meta name="author" content="교육 훈련기관 브랜드 HOSKO">
+		<meta name="title" content="교육 훈련기관 브랜드 HOSKO">
+		<meta name="Description" content="교육 훈련기관 브랜드 HOSKO">
+		<meta name="Keywords" content="교육 훈련기관 브랜드 HOSKO">
+		<meta name="format-detection" content="telephone=no">
 
-	<meta id="meta_og_title" property="og:title" content="교육 훈련기관 브랜드 HOSKO">
-    <meta id="meta_og_description" property="og:description" content="교육 훈련기관 브랜드 HOSKO">
+		<meta id="meta_og_title" property="og:title" content="교육 훈련기관 브랜드 HOSKO">
+	    <meta id="meta_og_description" property="og:description" content="교육 훈련기관 브랜드 HOSKO">
 
-<!--
-    <meta id="meta_og_url" property="og:url" content="">
-    <meta id="meta_og_image" property="og:image" content="">
-
-	<link rel="shortcut icon" href="" type="image/x-icon">
--->
-
-	<link rel="stylesheet" href="\static\front\html\static\css\style.css">
-
-
+		<link rel="stylesheet" href="\static\front\html\static\css\style.css">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="/static/front/js/layout.js"></script>
     </head>
