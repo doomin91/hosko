@@ -24,6 +24,19 @@ class BoardModel extends CI_Model{
         return $this->db->get("TBL_HOSKO_BOARD")->result();
     }
 
+    public function getFrontBoardBottom($POST_SEQ, $BOARD_SEQ){
+        $sql = " SELECT * FROM (
+        SELECT *, \"NEXT\" AS TYPE FROM TBL_HOSKO_BOARD_POSTS WHERE POST_BOARD_SEQ = $BOARD_SEQ AND POST_SEQ = ( SELECT MIN(POST_SEQ) FROM TBL_HOSKO_BOARD_POSTS WHERE POST_SEQ > $POST_SEQ ) 
+        UNION ALL
+        SELECT *, \"PREV\" AS TYPE FROM TBL_HOSKO_BOARD_POSTS WHERE POST_BOARD_SEQ = $BOARD_SEQ AND POST_SEQ = ( SELECT MAX(POST_SEQ) FROM TBL_HOSKO_BOARD_POSTS WHERE POST_SEQ < $POST_SEQ ) 
+        ) result
+        LEFT JOIN TBL_HOSKO_USER ON POST_USER_SEQ = USER_SEQ
+        LEFT JOIN TBL_HOSKO_ADMIN ON POST_ADMIN_SEQ = ADMIN_SEQ
+        ";
+
+        return $this->db->query($sql)->result();
+    }
+
     public function getBoardBottom($POST_SEQ, $BOARD_SEQ){
         $sql = "
         SELECT * FROM 
@@ -54,7 +67,6 @@ class BoardModel extends CI_Model{
 
         return $this->db->query($sql)->result();
     }
-
     
     public function getBoardBottomCnt($POST_SEQ, $BOARD_SEQ){
         $sql = "
@@ -158,7 +170,7 @@ class BoardModel extends CI_Model{
         $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD_ATTACH ATTACH", "ATTACH_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->order_by("POST_NOTICE_YN", "DESC");
-        $this->db->order_by("POST_REG_DATE", "DESC");
+        $this->db->order_by("POST_SEQ", "DESC");
         $this->db->group_by("POST_SEQ");
         $this->db->limit($wheresql["limit"], $wheresql["start"]);
 
@@ -206,7 +218,7 @@ class BoardModel extends CI_Model{
         $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD_ATTACH ATTACH", "ATTACH_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->order_by("POST_NOTICE_YN", "DESC");
-        $this->db->order_by("POST_REG_DATE", "DESC");
+        $this->db->order_by("POST_SEQ", "DESC");
         $this->db->group_by("POST_SEQ");
 
         return $this->db->get("TBL_HOSKO_BOARD_POSTS")->num_rows();
@@ -276,6 +288,11 @@ class BoardModel extends CI_Model{
 
     public function setComment($DATA){
         return $this->db->insert("TBL_HOSKO_BOARD_COMMENT", $DATA);
+    }
+
+    public function delComment($SEQ){
+        $this->db->where("COM_SEQ", $SEQ);
+        return $this->db->delete("TBL_HOSKO_BOARD_COMMENT");
     }
 
 }

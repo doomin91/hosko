@@ -613,10 +613,14 @@ class Board extends CI_Controller {
 	public function comment_regist(){
 		$POST_SEQ = $this->input->post("post_seq");
 		$COMMENT = $this->input->post("comment_content");
-
+		if ($this->session->userdata("admin_seq")){
+			$USER_SEQ = $this->session->userdata("admin_seq");
+		} else {
+			$USER_SEQ = $this->session->userdata("user_seq");
+		}
 		$DATA = array(
 			"COM_POST_SEQ" => $POST_SEQ,
-			"COM_USER_SEQ" => 1,
+			"COM_USER_SEQ" => $USER_SEQ,
 			"COM_CONTENTS" => $COMMENT
 		);
 

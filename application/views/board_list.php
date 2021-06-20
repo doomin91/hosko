@@ -19,7 +19,21 @@
                         <div class="sub_category">
                             <ul>
                                 <?php foreach($BOARDS_INFO as $val){
-                                    echo "<li><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                    switch($val->BOARD_TYPE){
+                                        case 0:
+                                            // 일반 게시판
+                                            echo "<li><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            break;
+                                        case 1:
+                                            // 갤러리 게시판
+                                            echo "<li><a href=\"/Board/g/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            break;
+                                        
+                                        case 2:
+                                            // 동영상 게시판
+                                            echo "<li><a href=\"/Board/v/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            break;
+                                    }
                                 }
                                 ?>
                             </ul>
@@ -79,7 +93,7 @@
                                                 ?></span>
                                             <span class="col_name"><?php echo $lt->USER_NAME?></span>
                                             <span class="col_hit"><?php echo $lt->POST_VIEW_CNT?></span>
-                                            <span class="col_date">2021-05-14</span>                                            
+                                            <span class="col_date"><?php echo $lt->POST_REG_DATE?></span>                                            
                                         </div>
                                         <?php 
                                         $pagenum -= 1;} 
@@ -87,14 +101,14 @@
                                     </div>
 
                                     <div class="subBtn_Write f_right mt40">
-                                        <a href="/Board/board_write/<?php echo $BOARD_INFO->BOARD_SEQ?>">글쓰기</a>
+                                        <a href="/Board/board_write/<?php echo $GROUP_INFO->GP_SEQ . "?seq=" . $BOARD_INFO->BOARD_SEQ?>">글쓰기</a>
                                     </div>
 
                                         <?php echo $pagination; ?>
 
                                     <div class="boardSearchWrap">
                                         <!-- <input type="hidden" name="page" value="1"> -->
-                                        <!-- <input type="hidden" name="num" value=""> -->
+                                        <input type="hidden" name="seq" value="<?php echo $BOARD_SEQ?>">
                                         
                                         
                                             <div class="boardSearch">
