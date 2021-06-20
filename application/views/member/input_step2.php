@@ -19,7 +19,7 @@
                     <div class="sub_contents">
 
                         <div class="inner">
-                            <div class="joinWrap" style="height:3500px;">
+                            <div class="joinWrap" style="height:3900px;">
                                 <div class="joinContentTop">
                                     <h2>Sign up to be a member</h2>
                                     <h3>HOSKO에 오신것을 환영합니다.</h3>
@@ -48,20 +48,20 @@
                                         <div class="mt20">
                                             <div>아이디</div>
                                             <div>
-                                                <input type="text" name="user_id">
+                                                <input type="text" name="user_id" class="input_s1">
                                                 <div><a href="/">중복확인</a></div>    
                                             </div>
                                         </div>
                                         <div class="mt20">
                                             <div>비밀번호</div>
                                             <div>
-                                                <input type="password" name="user_pass">
+                                                <input type="password" name="user_pass" class="input_s1">
                                             </div>
                                         </div>
                                         <div class="mt20">
                                             <div>비밀번호확인</div>
                                             <div>
-                                                <input type="password" name="user_pass_chk">
+                                                <input type="password" name="user_pass_chk" class="input_s1">
                                             </div>
                                         </div> 
                                     </div>
@@ -72,14 +72,14 @@
                                         <div class="mt20">
                                             <div>이름</div>
                                             <div>
-                                                <input type="text" name="user_name">
+                                                <input type="text" name="user_name" class="input_s1">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div>사진</div>
                                             <div>
-                                                <input type="file" name="user_profile">
+                                                <input type="file" name="user_profile" class="input_s1">
                                                 <label>찾아보기</label>
                                             </div>
                                         </div>
@@ -87,9 +87,9 @@
 
                                         <div class="mt20">
                                             <div>이메일</div>
-                                            <input type="text" name="user_email1">@<input type="text" name="user_email2">
-                                            <select name="user_email_sel">
-                                            <option value="">직접입력</option>
+                                            <input type="text" name="user_email1" class="input_s1" style="width:25% !important">@<input type="text" name="user_email2" class="input_s1" style="width:25% !important">
+                                            <select name="user_email_sel" class="select_s1" style="width:25% !important">
+                                                <option value="">직접입력</option>
                                                 <option value="nate.com">nate.com</option>
                                                 <option value="naver.com">naver.com</option>
                                                 <option value="gmail.com">gmail.com</option>
@@ -119,7 +119,7 @@
                                         <div class="mt20">
                                             <div>생년월일</div>
                                             <div>
-                                                <input type="text" name="user_birthday" class="datepicker">
+                                                <input type="text" name="user_birthday" class="input_s1 datepicker">
                                             </div>
                                         </div>
 
@@ -127,14 +127,14 @@
                                         <div class="mt20">
                                             <div>집전화번호</div>
                                             <div>
-                                                <input type="number" name="tel1"> - <input type="number" name="tel2"> - <input type="number" name="tel3"> 
+                                                <input type="number" name="tel1" class="input_s1" style="width:25% !important"> - <input type="number" name="tel2" class="input_s1" style="width:25% !important"> - <input type="number" name="tel3" class="input_s1" style="width:25% !important"> 
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div>휴대전화</div>
                                             <div>
-                                                <input type="number" name="hp1"> - <input type="number" name="hp2"> - <input type="number" name="hp3"> 
+                                                <input type="number" name="hp1" class="input_s1" style="width:25% !important"> - <input type="number" name="hp2" class="input_s1" style="width:25% !important"> - <input type="number" name="hp3" class="input_s1" style="width:25% !important"> 
                                             </div>
                                         </div>
 
@@ -150,21 +150,21 @@
                                         <div class="mt20">
                                             <div>Skype ID</div>
                                             <div>
-                                                <input type="text" name="user_skype_id">
+                                                <input type="text" name="user_skype_id" class="input_s1">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div>학교명 / 직장명</div>
                                             <div>
-                                                <input type="text" name="user_company">
+                                                <input type="text" name="user_company" class="input_s1">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div>학과</div>
                                             <div>
-                                                <select name="user_department">
+                                                <select name="user_department" class="select_s1">
                                                     <option value="">학과선택</option>
                                                     <option value="1">호텔/관광</option>
                                                     <option value="3">조리</option>
@@ -176,23 +176,23 @@
                                         <div class="mt20">
                                             <div>전공 / 부서</div>
                                             <div>
-                                                <input type="text" name="user_major">
+                                                <input type="text" name="user_major" class="input_s1">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div>주소</div>
                                             <div>
-                                                <input type="text" name="user_zip" id="user_zip"><button class="btn btn-default btn-sm" type="button" id="searchZip">우편번호 검색</button><br>
-                                                <input type="text" name="user_addr1" id="user_addr1"><br>
-                                                <input type="text" name="user_addr2" id="user_addr2">
+                                                <input type="text" name="user_zip" id="user_zip" class="input_s1" style="width:30% !important"><button type="button" id="searchZip">우편번호 검색</button><br>
+                                                <input type="text" name="user_addr1" id="user_addr1" class="input_s1"><br>
+                                                <input type="text" name="user_addr2" id="user_addr2" class="input_s1">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div>희망국가</div>
                                             <div>
-                                                <select name="user_hope_nation">
+                                                <select name="user_hope_nation" class="select_s1">
                                                     <option value="">선택</option>
                                                     <option value="1">미국</option>
                                                     <option value="2">괌</option>
@@ -210,7 +210,7 @@
                                         <div class="mt20">
                                             <div>지원부서</div>
                                             <div>
-                                                <input type="text" name="user_hope_part">
+                                                <input type="text" name="user_hope_part" class="input_s1">
                                             </div>
                                         </div>
 
@@ -251,7 +251,7 @@
                                             <div>해외연수</div>
                                             <div>
                                                 <span>국가</span>
-                                                <select name="user_study_nation">
+                                                <select name="user_study_nation" class="select_s1">
                                                     <option value="">선택</option>
                                                     <option value="1">미국</option>
                                                     <option value="2">괌</option>
@@ -276,7 +276,7 @@
                                             <div>해외연수경험</div>
                                             <div>
                                                 <span>국가</span>
-                                                <select name="user_lan_study_nation">
+                                                <select name="user_lan_study_nation" class="select_s1">
                                                     <option value="">선택</option>
                                                     <option value="1">미국</option>
                                                     <option value="2">괌</option>
@@ -302,7 +302,7 @@
                                             <div>국내외근무경력1</div>
                                             <div>
                                                 <span>회사명</span>
-                                                <input type="text" name="user_work_company">
+                                                <input type="text" name="user_work_company" class="input_s1">
                                             </div>
                                             <div>
                                                 <span>기간</span>
@@ -318,7 +318,7 @@
                                             <div>국내외근무경력2</div>
                                             <div>
                                                 <span>회사명</span>
-                                                <input type="text" name="user_work_company2">
+                                                <input type="text" name="user_work_company2" class="input_s1">
                                             </div>
                                             <div>
                                                 <span>기간</span>
@@ -335,7 +335,7 @@
                                             <div>국내외근무경력3</div>
                                             <div>
                                                 <span>회사명</span>
-                                                <input type="text" name="user_work_company3">
+                                                <input type="text" name="user_work_company3" class="input_s1">
                                             </div>
                                             <div>
                                                 <span>기간</span>
@@ -352,7 +352,7 @@
                                             <div>
                                                 <input type="radio" name="user_certi_flag" value="N" checked id="ucfN"><label for="ucfN">없음</label>
                                                 <input type="radio" name="user_certi_flag" value="Y" id="ucfY"><label for="ucfY">있음</label>
-                                                <input type="text" name="user_certificate_name">
+                                                <input type="text" name="user_certificate_name" class="input_s1">
                                             </div>
                                         </div>
 
@@ -375,7 +375,7 @@
                                         <div class="mt20">
                                             <div>추천인</div>
                                             <div>
-                                                <input type="text" name="user_recomm_id">
+                                                <input type="text" name="user_recomm_id" class="input_s1">
                                             </div>
                                         </div>
 
@@ -383,7 +383,7 @@
                                         <div class="mt20">
                                             <div>이력서등록</div>
                                             <div>
-                                                <input type="file" name="user_profile_doc">
+                                                <input type="file" name="user_profile_doc" class="input_s1">
                                                 <label>찾아보기</label>
                                             </div>
                                         </div>
@@ -400,7 +400,7 @@
                                                 <span><input type="checkbox" name="user_join_route" value="7" id="ujr7"><label for="ujr7">교수님/선배소개</label></span>
                                                 <span><input type="checkbox" name="user_join_route" value="8" id="ujr8"><label for="ujr8">업체 소개</label></span>
                                                 <span><input type="checkbox" name="user_join_route" value="9" id="ujr9"><label for="ujr9">기타</label></span>
-                                                <input tyep="text" name="user_join_route_str"></span>
+                                                <input tyep="text" name="user_join_route_str" class="input_s1"></span>
                                             </div>
                                         </div>
                                     </div>

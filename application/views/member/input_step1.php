@@ -58,7 +58,7 @@
                                     </div>
 
                                     <div class="memberBtn mt50" style="text-align:center">
-                                        <div class="memberBtnOk"><a href="/member/member_input_step2">회원가입</a></div>
+                                        <div class="memberBtnOk"><a href="#" id="next">회원가입</a></div>
                                         <div class="memberBtnCancel"><a href="/">가입취소</a></div>
                                     </div>
                                 </div>
@@ -75,3 +75,20 @@
 
     </body>
 </html>
+<script type="text/javascript">
+$(function(){
+    $(document).on("click", "#next", function(){
+        if ($("#agree1").is(":checked") == false){
+            alert("이용약관에 동의 해주셔야 합니다.");
+            return false;
+        }
+
+        if ($("#agree2").is(":checked") == false){
+            alert("개인정보 수집및 이용에 동의 해주셔야 합니다.");
+            return false;
+        }
+
+        document.location.href="/member/member_input_step2";
+    });
+});
+</script>

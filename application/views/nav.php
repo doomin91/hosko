@@ -48,7 +48,7 @@
 					str += "</li>";
 				});
                     str += "<li>상담ㆍ신청</li>"
-                    str += "<li>마이페이지</li>"
+                    str += "<li><a href=\"/member/member_input_step1\">회원가입</a></li>"
 				$("#boardMenu").append(str);
 			}, error: function(e){
 				console.log(e);
