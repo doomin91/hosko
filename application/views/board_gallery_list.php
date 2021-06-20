@@ -10,7 +10,7 @@
                 <div class="layout_sub">
                     <div class="sub_visual v01">
                         <div class="sub_visual_text">
-                            <h1>공지 & 뉴스</h1>
+                            <h1><?php echo $GROUP_INFO->GP_NAME;?></h1>
                             <p>HOSPITALITY KOREA</p>
                         </div>
 
@@ -18,11 +18,24 @@
                     <div class="sub_contents">
                         <div class="sub_category">
                             <ul>
-                                <li><a href="/">호스코뉴스</a></li>
-                                <li><a href="/">해외취업후기</a></li>
-                                <li><a href="/">출국회원소식</a></li>
-                                <li><a href="/">동영상자료실</a></li>
-                                <li class="on"><a href="/">갤러리</a></li>
+                                <?php foreach($BOARDS_INFO as $val){
+                                    switch($val->BOARD_TYPE){
+                                        case 0:
+                                            // 일반 게시판
+                                            echo "<li><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            break;
+                                        case 1:
+                                            // 갤러리 게시판
+                                            echo "<li><a href=\"/Board/g/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            break;
+                                        
+                                        case 2:
+                                            // 동영상 게시판
+                                            echo "<li><a href=\"/Board/v/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            break;
+                                    }
+                                }
+                                ?>
                             </ul>
                         </div>
 
@@ -34,7 +47,7 @@
                                 <div class="subContSec">
 
                                     <div class="boardTotallist clearfix">
-                                        <p>총 88개의 이미지가 등록되었습니다.</p>
+                                        <p>총 <?php echo $listCount;?>개의 이미지가 등록 되어있습니다.</p>
                                     </div>
 
 
@@ -45,7 +58,7 @@
                                                     <div class="galleryBox">
 
                                                         <div class="galleryTopph">
-                                                            <img src="./static/img/gallery_t.jpg">
+                                                            <img src="/static/front/html/static/img/gallery_t.jpg">
                                                         </div>
 
                                                         <div class="galleryCon">
@@ -62,7 +75,7 @@
                                                     <div class="galleryBox">
 
                                                         <div class="galleryTopph">
-                                                            <img src="./static/img/gallery_t.jpg">
+                                                            <img src="/static/front/html/static/img/gallery_t.jpg">
                                                         </div>
 
                                                         <div class="galleryCon">
@@ -79,7 +92,7 @@
                                                     <div class="galleryBox">
 
                                                         <div class="galleryTopph">
-                                                            <img src="./static/img/gallery_t.jpg">
+                                                            <img src="/static/front/html/static/img/gallery_t.jpg">
                                                         </div>
 
                                                         <div class="galleryCon">
@@ -96,7 +109,7 @@
                                                     <div class="galleryBox">
 
                                                         <div class="galleryTopph">
-                                                            <img src="./static/img/gallery_t.jpg">
+                                                            <img src="/static/front/html/static/img/gallery_t.jpg">
                                                         </div>
 
                                                         <div class="galleryCon">

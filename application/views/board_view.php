@@ -123,8 +123,7 @@
                                                 <div class="comment_sub03">
                                                     <p class="date"><?php echo $cm->COM_REG_DATE?></p>
                                                     <!-- <p class="time">17:39:33</p> -->
-                                                    <p class="delete"><a href="/"><img src="/static/front/html/static/img/icon_comment_del.png" alt="댓글삭제"></a></p>
-                                                    <p class="delete"><a href="/"><img src="/static/front/html/static/img/icon_comment_del.png" alt="댓글삭제"></a></p>
+                                                    <p class="delete"><button type="button" onclick="comment_del(<?php echo $cm->COM_SEQ;?>)"><img src="/static/front/html/static/img/icon_comment_del.png" alt="댓글삭제"></button></p>
                                                 </div>
                                             </div>
                                             <?php endforeach; ?>
@@ -141,22 +140,17 @@
 
                                             <div class="comment_write_con">
                                                 <div class="write_box">
-                                                    <textarea cols="30" row="5"></textarea>
+                                                    <input type="hidden" name="board_seq" value="<?php echo $BOARD_INFO->BOARD_SEQ?>">
+                                                    <input type="hidden" name="post_seq" value="<?php echo $POST_INFO->POST_SEQ?>">
+                                                    <textarea cols="30" row="5" name="contents"></textarea>
                                                 </div>
-                                                <div class="comment_write_btn"><a href="/">등록</a></div>
+                                                <div class="comment_write_btn"><a type="button" onclick="comment_write()">등록</a></div>
                                             </div>
-
 
                                         </div>
 									<?php endif;?>
 
-                                        <div class="code_box">
-                                            <div class="code_td">
-                                                <div class="code_sub01">ec95c1</div>
-                                                <div class="code_sub02"><input type="text"></div>
-                                            </div>
-                                            <p>*왼쪽의 자동등록방지 코드를 입력하세요.</p>
-                                        </div>
+                                    
 
 
                                     </div>
@@ -171,7 +165,7 @@
                                                         echo "<div class=\"cont_prev\">";
                                                         echo "<div class=\"boardViewBot_item\">";
                                                         echo "<strong>이전글</strong>";
-                                                    } else {
+                                                } else {
                                                         echo "<div class=\"cont_next\">";
                                                         echo "<div class=\"boardViewBot_item\">";
                                                         echo "<strong>다음글</strong>";
@@ -185,7 +179,7 @@
 															echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>";
 														}
 													    ?> </a>
-                                                        <span class="date"><?php echo $bl->POST_REG_DATE?></span>
+                                                        <span class="date"><?php echo date("Y-m-d", strtotime($bl->POST_REG_DATE))?></span>
                                                     </div>
                                             <?php 
                                             echo "</div></div>";
@@ -201,15 +195,15 @@
                                         </div>
 
                                         <div class="btn_box f_right">
-                                            <a href="/"  class="btn_style02">수정</a>
+                                            <a href="#" onclick="board_delete()" class="btn_style02">수정</a>
                                         </div>
 
                                         <div class="btn_box f_right">
-                                            <a href="/"  class="btn_style02">답글</a>
+                                            <a href="#" onclick="board_reply()" class="btn_style02">답글</a>
                                         </div>
 
                                         <div class="btn_box f_right">
-                                            <a href="/"  class="btn_style01">삭제</a>
+                                            <a href="#" onclick="board_modify()" class="btn_style01">삭제</a>
                                         </div>
 
                                     </div>
@@ -233,25 +227,60 @@
 </html>
 
 <script>
+let board_seq = $("input[name=board_seq]").val();
+let post_seq = $("input[name=post_seq]").val();
 
-function viewPost(POST_SEQ){
-			$.ajax({
-				url:"/admin/Board/post_check_auth?post_seq=" + POST_SEQ,
-				type:"get",
-				dataType:"json",
-				success: function(data){
-					let auth = data["auth"];
-					let url = data["url"];
-					let msg = data["msg"];
-					if(auth == "Y"){
-						location.href="/admin/board/post_view/" + POST_SEQ;
-					} else {
-						alert(msg);
-						// location.href=url;
-					}
-				},error: function(e){
-					console.log(e);
-				}
-			});
-		}
+function board_delete(){
+    alert("1")
+}
+
+function board_reply(){
+    alert("2")
+}
+
+function board_modify(){
+    alert("3")
+}
+
+function comment_write(){
+    let contents = $("textarea[name=contents]").val();
+    if(contents == ""){
+        alert("내용을 입력해주세요.");
+        return false;
+    }
+    $.ajax({
+        url:"/admin/Board/comment_regist",
+        type:"post",
+        data:{
+            "post_seq" : post_seq,
+            "comment_content" : contents
+        }, success:function(data){
+            if(data){
+                location.reload();
+            }
+        }, error:function(e){
+            console.log(e.responseText);
+        }
+    });
+}
+
+function comment_del(seq){
+
+    if(confirm("정말로 삭제하시겠습니까?")){
+        $.ajax({
+        url:"/Board/comment_del",
+        type:"post",
+        data:{
+            "com_seq" : seq
+        },
+        dataType:"text",
+        success:function(data){
+            location.reload();
+        }, error:function(e){
+            console.log(e.responseText);
+        }
+    })
+    }
+}
+
 </script>
