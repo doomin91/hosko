@@ -191,7 +191,7 @@
                                         <div class="btn_box f_left">
                                     
 
-                                            <a href="/Board/q/<?php echo $GROUP_INFO->GP_SEQ?>?seq=<?php echo $BOARD_INFO->BOARD_SEQ?>"  class="btn_style01 ">목록보기</a>
+                                            <a href="/Board/<?php echo $BOARD_TYPE . "/" . $GROUP_INFO->GP_SEQ?>?seq=<?php echo $BOARD_INFO->BOARD_SEQ?>"  class="btn_style01 ">목록보기</a>
                                         </div>
 
                                         <div class="btn_box f_right">
