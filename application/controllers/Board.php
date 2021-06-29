@@ -139,7 +139,7 @@ class Board extends CI_Controller {
             }
     
             $queryString = "search_field=". $searchField. "&search_string=".$searchString;
-            $pagination = $this->customclass->front_pagenavi("/Board/q/$seq?seq=$board_seq&" . $queryString, $listCount, $limit, 3, $nowpage);
+            $pagination = $this->customclass->front_pagenavi("/Board/g/$seq?seq=$board_seq&" . $queryString, $listCount, $limit, 3, $nowpage);
     
             $DATA["BOARD_INFO"] = $board_info;
             $DATA["lists"] = $lists;
@@ -203,7 +203,7 @@ class Board extends CI_Controller {
             }
     
             $queryString = "search_field=". $searchField. "&search_string=".$searchString;
-            $pagination = $this->customclass->front_pagenavi("/Board/q/$seq?seq=$board_seq&" . $queryString, $listCount, $limit, 3, $nowpage);
+            $pagination = $this->customclass->front_pagenavi("/Board/v/$seq?seq=$board_seq&" . $queryString, $listCount, $limit, 3, $nowpage);
     
             $DATA["BOARD_INFO"] = $board_info;
             $DATA["lists"] = $lists;

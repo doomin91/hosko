@@ -474,26 +474,29 @@ class Board extends CI_Controller {
 		$SPAM_CHECK = $this->rpHash($this->input->post("defaultReal"));
 		$SPAM_CHECK_HASH = $this->input->post("defaultRealHash");
 		$BOARD_INFO = $this->BoardModel->getBoard($BOARD_SEQ);
+		$filepath = $_SERVER['DOCUMENT_ROOT'] . "/upload/attach/";
 		
-		if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'){
-			if($SPAM_CHECK != $SPAM_CHECK_HASH){
-				$returnMsg = array(
-					"code" => 202,
-					"msg" => "자동입력방지 값이 다릅니다."
-				);
-				echo json_encode($returnMsg);
-				exit;
-			}
-		}
 
-		if(empty($POST_SUBJECT) || empty($POST_CONTENTS)){
-			$returnMsg = array(
-				"code" => 202,
-				"msg" => "값을 입력해주세요."
-			);
-			echo json_encode($returnMsg);
-			exit;
-		}
+
+		// if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'){
+		// 	if($SPAM_CHECK != $SPAM_CHECK_HASH){
+		// 		$returnMsg = array(
+		// 			"code" => 202,
+		// 			"msg" => "자동입력방지 값이 다릅니다."
+		// 		);
+		// 		echo json_encode($returnMsg);
+		// 		exit;
+		// 	}
+		// }
+
+		// if(empty($POST_SUBJECT) || empty($POST_CONTENTS)){
+		// 	$returnMsg = array(
+		// 		"code" => 202,
+		// 		"msg" => "값을 입력해주세요."
+		// 	);
+		// 	echo json_encode($returnMsg);
+		// 	exit;
+		// }
 
 		$DATA = array(
 			"POST_BOARD_SEQ" => $BOARD_SEQ,
@@ -506,37 +509,48 @@ class Board extends CI_Controller {
 			"POST_SECRET_YN" => isset($POST_SECRET_CHK) ? "Y" : "N"
 		);
 
+		if(!empty($_FILES["thumnail_img"]["name"])){
+			$new_name = time();
+			$temp = explode(".", $_FILES["thumnail_img"]["name"]);
+			$filetype = end($temp);
+			$filename = $filepath . $new_name . "." . $filetype;
+			
+			move_uploaded_file($_FILES["thumnail_img"]["tmp_name"], $filename);
+
+			$DATA["POST_THUMB_PATH"] = "/upload/attach/" . $new_name . "." . $filetype;
+			$DATA["POST_THUMB_NAME"] = $_FILES["thumnail_img"]["name"];
+		}
+
 		$POST_SEQ = $this->BoardModel->setPost($DATA);
 
-		$filepath = $_SERVER['DOCUMENT_ROOT'] . "/upload/attach/";
 		
         // $new_name = $BOARD_INFO->BOARD_NAME . "_" . date("YmdHis");
         // $config["file_name"] = $new_name;
 		$i = 1;
+		
+		
 
-
-		if(count($_FILES) > 0){
-			foreach($_FILES as $key => $file){
-				if(!empty($file["name"])){
-					$new_name = time();
-					$temp = explode(".", $file["name"]);
-					$filetype = end($temp);
-					$filename = $filepath . $new_name . $i . "." . $filetype;
+		// if(count($_FILES) > 0){
+		// 	foreach($_FILES as $key => $file){
+		// 		if(!empty($file["name"])){
+		// 			$new_name = time();
+		// 			$temp = explode(".", $file["name"]);
+		// 			$filetype = end($temp);
+		// 			$filename = $filepath . $new_name . $i . "." . $filetype;
 					
+		// 			move_uploaded_file($file["tmp_name"], $filename);
 					
-					move_uploaded_file($file["tmp_name"], $filename);
-					
-					$insert_arr = array(
-						"ATTACH_POST_SEQ" => $POST_SEQ,
-						"ATTACH_FILE_PRIORITY" => $i,
-						"ATTACH_FILE_NAME" => $file["name"],
-						"ATTACH_FILE_PATH" => $filename
-					);
-				$result = $this->BoardModel->insertPostAttach($insert_arr);
-				}
-				$i = $i + 1;
-			}
-		}
+		// 			$insert_arr = array(
+		// 				"ATTACH_POST_SEQ" => $POST_SEQ,
+		// 				"ATTACH_FILE_PRIORITY" => $i,
+		// 				"ATTACH_FILE_NAME" => $file["name"],
+		// 				"ATTACH_FILE_PATH" => $filename
+		// 			);
+		// 		$result = $this->BoardModel->insertPostAttach($insert_arr);
+		// 		}
+		// 		$i = $i + 1;
+		// 	}
+		// }
 
 
 		if($POST_SEQ){

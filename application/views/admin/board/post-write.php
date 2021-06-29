@@ -70,15 +70,23 @@
                                 </div>
                             </div>
 
+							<?php if($BOARD_INFO->BOARD_TYPE == 1): ?>
+								<div class="form-group">
+									<label for="input01" class="col-sm-2 control-label">썸네일 이미지 등록</label>
+									<div class="col-sm-6">
+										<input type="file" class="form-control" ID="thumnail_img" name="thumnail_img">
+									</div>
+								</div>
+							<?php endif; ?>
+
 							<?php
 							for($i = 0 ; $i < $BOARD_INFO->BOARD_FILEUPLOAD_COUNT; $i++){?>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="input01" class="col-sm-2 control-label">첨부파일<?php echo ($i+1)?></label>
                                 <div class="col-sm-6">
                                     <input type="file" class="form-control" ID="post_file_name<?php echo ($i+1)?>" name="post_file_name<?php echo ($i+1)?>">
                                 </div>
-                                <!-- <div class="col-sm-4" style="font-size:12px">* 한글파일명은 사용할수 없습니다.</div> -->
-                            </div>
+                            </div> -->
 							<?php }
 							?>
 
@@ -173,9 +181,9 @@
 		// var form = $("#post_write_form").serializeArray();
 		var formData = new FormData($("#post_write_form")[0]);
 
-		<?php for($i = 0 ; $i < $BOARD_INFO->BOARD_FILEUPLOAD_COUNT; $i++){?>
-		formData.append("post_file_name<?php echo ($i+1)?>", $("#post_file_name<?php echo ($i+1)?>").prop('files')[0]);
-		<?php }	?>
+		// <?php for($i = 0 ; $i < $BOARD_INFO->BOARD_FILEUPLOAD_COUNT; $i++){?>
+		// formData.append("post_file_name<?php echo ($i+1)?>", $("#post_file_name<?php echo ($i+1)?>").prop('files')[0]);
+		// <?php }	?>
 
 		$.ajax({
 			url:"/admin/board/set_post_info?board_seq=" + board_seq,
