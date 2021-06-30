@@ -55,7 +55,7 @@
                     <div class="tile-body">
 
                         <form class="form-horizontal" role="form" id="post_write_form" method="post">
-                            
+							
                             <div class="form-group">
                                 <label for="input01" class="col-sm-2 control-label">게시글 제목</label>
                                 <div class="col-sm-10">
@@ -79,16 +79,46 @@
 								</div>
 							<?php endif; ?>
 
-							<?php
-							for($i = 0 ; $i < $BOARD_INFO->BOARD_FILEUPLOAD_COUNT; $i++){?>
-                            <!-- <div class="form-group">
-                                <label for="input01" class="col-sm-2 control-label">첨부파일<?php echo ($i+1)?></label>
-                                <div class="col-sm-6">
-                                    <input type="file" class="form-control" ID="post_file_name<?php echo ($i+1)?>" name="post_file_name<?php echo ($i+1)?>">
+							
+							<?php if($BOARD_INFO->BOARD_TYPE == 2): ?>
+								<div class="form-group" id="youtube_view">
+									<label for="input01" class="col-sm-2 control-label">미리보기</label>
+									<div class="col-sm-6">
+										<div id="player"></div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="input01" class="col-sm-2 control-label">유튜브 URL 등록</label>
+									<div class="col-sm-6">
+									<div class="input-group margin-bottom-20">
+                          				<input type="text" class="form-control" name="youtube_url">
+                          				<span class="input-group-btn">
+                            			<button class="btn btn-default" type="button" onclick="url_upload();">업로드</button>
+                          				</span>
+                        			</div>
+									</div>
+								</div>
+							<?php endif; ?>
+
+							<div class="form-group transparent-editor">
+                                <label class="col-sm-2 control-label">첨부파일</label>
+                                <div class="col-sm-10">
+									<div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-primary btn-file">
+                                                <i class="fa fa-upload"></i><input type="file" multiple="" id="apply_attach" name="apply_attach[]">
+                                            </span>
+                                        </span>
+                                    	<input type="text" class="form-control" name="file_view" readonly="">
+                                    </div>
+                                    <div class="input-group upload-area" id="uploadfile">
+										<p>파일을 이곳에 드래그 하시거나 파일첨부를 클릭하세요</p>
+										<ul class="list-type caret-right file_list">
+										</ul>
+                                    </div>
                                 </div>
-                            </div> -->
-							<?php }
-							?>
+                            </div>
 
 							<div class="form-group transparent-editor">
                                 <label class="col-sm-2 control-label">공지사항</label>
@@ -163,6 +193,7 @@
 <link rel="stylesheet" type="text/css" href="/js/captcha/jquery.realperson.css"> 
 <script type="text/javascript" src="/js/captcha/jquery.plugin.js"></script> 
 <script type="text/javascript" src="/js/captcha/jquery.realperson.js"></script>
+<script type="text/javascript" src="/static/admin/js/DragAndDrop.js"></script>
 
 	<script>
 		
@@ -172,18 +203,27 @@
 		$("#defaultReal").realperson();
 	})
 
+	let video_id = "";
 
 	function post_regist(){
 		let hash = $("#defaultReal").realperson('getHash');
 		let board_seq = <?php echo $BOARD_INFO->BOARD_SEQ?>;
 		$("#defaultRealHash").val(hash);
 		$("#post_contents").val($("#post_contents").Editor("getText"));
-		// var form = $("#post_write_form").serializeArray();
 		var formData = new FormData($("#post_write_form")[0]);
 
-		// <?php for($i = 0 ; $i < $BOARD_INFO->BOARD_FILEUPLOAD_COUNT; $i++){?>
-		// formData.append("post_file_name<?php echo ($i+1)?>", $("#post_file_name<?php echo ($i+1)?>").prop('files')[0]);
-		// <?php }	?>
+		<?php if($BOARD_INFO->BOARD_TYPE == 1): ?>
+		if($("input[name=thumnail_img]").val() == ""){
+			alert("썸네일 이미지를 등록해주세요.");
+			return false;
+		}
+		<?php endif; ?>
+		<?php if($BOARD_INFO->BOARD_TYPE == 2): ?>
+		if($("input[name=youtube_url]").val() == ""){
+			alert("동영상 링크를 등록해주세요.");
+			return false;
+		}
+		<?php endif; ?>
 
 		$.ajax({
 			url:"/admin/board/set_post_info?board_seq=" + board_seq,
@@ -207,6 +247,71 @@
 			}
 		})
 	}
+
+	function url_upload(){
+		$.ajax({
+			url : "/admin/Board/CheckUrlAndSave",
+			type : "post",
+			data : { "youtube_url" : $("input[name=youtube_url]").val() },
+			dataType : "json",
+			success : function (resultMsg){
+				let code = resultMsg["code"];
+				let msg = resultMsg["msg"];
+				if(code == 200){
+					tag.src = "https://www.youtube.com/iframe_api";
+					video_id = resultMsg["video_id"];
+					$("input[name=youtube_url]").val(video_id);
+					alert($("input[name=youtube_url]").val());
+				} else {
+					alert(msg);
+				}
+				
+			}, error : function (e){
+				console.log(e.responseText);
+			}
+		});
+	}
+
+		// 2. This code loads the IFrame Player API code asynchronously.
+		var tag = document.createElement('script');
+
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		// 3. This function creates an <iframe> (and YouTube player)
+		//    after the API code downloads.
+		var player;
+		function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+			height: '240',
+			width: '320',
+			videoId: video_id,
+			events: {
+			'onReady': onPlayerReady,
+			'onStateChange': onPlayerStateChange
+			}
+		});
+		}
+
+		// 4. The API will call this function when the video player is ready.
+		function onPlayerReady(event) {
+		event.target.playVideo();
+		}
+
+		// 5. The API calls this function when the player's state changes.
+		//    The function indicates that when playing a video (state=1),
+		//    the player should play for six seconds and then stop.
+		var done = false;
+		function onPlayerStateChange(event) {
+		if (event.data == YT.PlayerState.PLAYING && !done) {
+			setTimeout(stopVideo, 6000);
+			done = true;
+		}
+		}
+		function stopVideo() {
+		player.stopVideo();
+		}
+
 </script>
 
 </body>

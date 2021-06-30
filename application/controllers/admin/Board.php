@@ -478,25 +478,25 @@ class Board extends CI_Controller {
 		
 
 
-		// if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'){
-		// 	if($SPAM_CHECK != $SPAM_CHECK_HASH){
-		// 		$returnMsg = array(
-		// 			"code" => 202,
-		// 			"msg" => "자동입력방지 값이 다릅니다."
-		// 		);
-		// 		echo json_encode($returnMsg);
-		// 		exit;
-		// 	}
-		// }
+		if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'){
+			if($SPAM_CHECK != $SPAM_CHECK_HASH){
+				$returnMsg = array(
+					"code" => 202,
+					"msg" => "자동입력방지 값이 다릅니다."
+				);
+				echo json_encode($returnMsg);
+				exit;
+			}
+		}
 
-		// if(empty($POST_SUBJECT) || empty($POST_CONTENTS)){
-		// 	$returnMsg = array(
-		// 		"code" => 202,
-		// 		"msg" => "값을 입력해주세요."
-		// 	);
-		// 	echo json_encode($returnMsg);
-		// 	exit;
-		// }
+		if(empty($POST_SUBJECT) || empty($POST_CONTENTS)){
+			$returnMsg = array(
+				"code" => 202,
+				"msg" => "값을 입력해주세요."
+			);
+			echo json_encode($returnMsg);
+			exit;
+		}
 
 		$DATA = array(
 			"POST_BOARD_SEQ" => $BOARD_SEQ,
@@ -509,17 +509,24 @@ class Board extends CI_Controller {
 			"POST_SECRET_YN" => isset($POST_SECRET_CHK) ? "Y" : "N"
 		);
 
-		if(!empty($_FILES["thumnail_img"]["name"])){
-			$new_name = time();
-			$temp = explode(".", $_FILES["thumnail_img"]["name"]);
-			$filetype = end($temp);
-			$filename = $filepath . $new_name . "." . $filetype;
-			
-			move_uploaded_file($_FILES["thumnail_img"]["tmp_name"], $filename);
+		if($BOARD_INFO->BOARD_TYPE == 1):
+			if(!empty($_FILES["thumnail_img"]["name"])){
+				$new_name = time();
+				$temp = explode(".", $_FILES["thumnail_img"]["name"]);
+				$filetype = end($temp);
+				$filename = $filepath . $new_name . "." . $filetype;
+				
+				move_uploaded_file($_FILES["thumnail_img"]["tmp_name"], $filename);
 
-			$DATA["POST_THUMB_PATH"] = "/upload/attach/" . $new_name . "." . $filetype;
-			$DATA["POST_THUMB_NAME"] = $_FILES["thumnail_img"]["name"];
-		}
+				$DATA["POST_THUMB_PATH"] = "/upload/attach/" . $new_name . "." . $filetype;
+				$DATA["POST_THUMB_NAME"] = $_FILES["thumnail_img"]["name"];
+			}
+		endif;
+		
+		if($BOARD_INFO->BOARD_TYPE == 2):
+			$YOUTUBE_URL = $this->input->post("youtube_url");
+			$DATA["POST_YOUTUBE_URL"] = $YOUTUBE_URL;
+		endif;
 
 		$POST_SEQ = $this->BoardModel->setPost($DATA);
 
@@ -669,5 +676,50 @@ class Board extends CI_Controller {
 			-(pow(2, 31) - bindec(substr($binary, 1))));
 		
 	}
+
+	public function CheckUrlAndSave(){
+		$yurl = $this->input->post("youtube_url");
+		$video_id = $this->getUrlParameter($yurl, 'v');
+		$content = file_get_contents("https://www.youtube.com/get_video_info?video_id={$video_id}&eurl=https://youtube.googleapis.com/v/onz2k4zoLjQ&html5=1&c=TVHTML5&cver=6.20180913");
+		parse_str($content, $data);
+		if(isset($data["player_response"])) {
+			// $pData = json_decode($data["player_response"]);
+			// $videoDetails = $pData->videoDetails;
+			// $microformat = $pData->microformat;
+			// $return_arr = array(
+			// "title" => $videoDetails->title,
+			// "author" => $videoDetails->author,
+			// "upload" => $microformat->playerMicroformatRenderer->publishDate,
+			// "viewcount" => $videoDetails->viewCount,
+			// );
+			$resultMsg = array(
+				"code" => 200,
+				"msg" => "동영상 불러오기 성공",
+				"video_id" => $video_id
+			);
+		} else {
+			$resultMsg = array(
+				"code" => 201,
+				"msg" => "해당 링크의 동영상을 찾을 수 없습니다."
+			);
+		}
+
+		echo json_encode($resultMsg);
+	}
+	
+	public function getUrlParameter($url, $sch_tag) {
+		$parts = parse_url($url);
+		if(isset($parts['host'])){
+			if($parts['host'] == "www.youtube.com"){
+				if(isset($parts['query'])){
+					parse_str($parts['query'], $query);
+					return $query[$sch_tag];
+				}
+			}
+		}
+		return false;
+
+	}
+
 
 }
