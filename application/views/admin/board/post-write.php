@@ -1,7 +1,35 @@
 <?php
   include_once dirname(__DIR__)."/admin-header.php";
 ?>
+
+<style>
+
+.upload-area {
+    width: 100%;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    margin-top: 10px;
+    padding: 0 10px;
+    overflow: auto;
+}
+
+.upload-area p {
+    text-align: center;
+    line-height: 100px;
+    color: #000;
+    font-size: 16px;
+}
+
+.file_view{
+	border: 1px solid lightgray !important; 
+}
+
+</style>
+
 <script src="/ckeditor/ckeditor.js"></script>
+
   <body class="bg-1">
 
 	<!-- Preloader -->
@@ -107,16 +135,16 @@
 									<div class="input-group">
                                         <span class="input-group-btn">
                                             <span class="btn btn-primary btn-file">
-                                                <i class="fa fa-upload"></i><input type="file" multiple="" id="apply_attach" name="apply_attach[]">
+                                                <i class="fa fa-upload"></i><input type="file" multiple="multiple" id="post_attach" name="post_attach[]">
                                             </span>
-                                        </span>
-                                    	<input type="text" class="form-control" name="file_view" readonly="">
+                                        </span>										
+                                    	<input type="text" class="form-control file_view" name="file_view" readonly="">
                                     </div>
-                                    <div class="input-group upload-area" id="uploadfile">
-										<p>파일을 이곳에 드래그 하시거나 파일첨부를 클릭하세요</p>
-										<ul class="list-type caret-right file_list">
-										</ul>
-                                    </div>
+									<div class="input-group upload-area" id="uploadfile">
+                                                <p>파일을 이곳에 드래그 하시거나 파일첨부를 클릭하세요</p>
+                                                <ul class="list-type caret-right file_list">
+                                                </ul>
+                                            </div>
                                 </div>
                             </div>
 
@@ -194,6 +222,7 @@
 <script type="text/javascript" src="/js/captcha/jquery.plugin.js"></script> 
 <script type="text/javascript" src="/js/captcha/jquery.realperson.js"></script>
 <script type="text/javascript" src="/static/admin/js/DragAndDrop.js"></script>
+<script type="text/javascript" src="/js/google-player-api.js"></script>
 
 	<script>
 		
@@ -202,8 +231,6 @@
 		$("#post_contents").Editor();
 		$("#defaultReal").realperson();
 	})
-
-	let video_id = "";
 
 	function post_regist(){
 		let hash = $("#defaultReal").realperson('getHash');
@@ -272,45 +299,6 @@
 		});
 	}
 
-		// 2. This code loads the IFrame Player API code asynchronously.
-		var tag = document.createElement('script');
-
-		var firstScriptTag = document.getElementsByTagName('script')[0];
-		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-		// 3. This function creates an <iframe> (and YouTube player)
-		//    after the API code downloads.
-		var player;
-		function onYouTubeIframeAPIReady() {
-		player = new YT.Player('player', {
-			height: '240',
-			width: '320',
-			videoId: video_id,
-			events: {
-			'onReady': onPlayerReady,
-			'onStateChange': onPlayerStateChange
-			}
-		});
-		}
-
-		// 4. The API will call this function when the video player is ready.
-		function onPlayerReady(event) {
-		event.target.playVideo();
-		}
-
-		// 5. The API calls this function when the player's state changes.
-		//    The function indicates that when playing a video (state=1),
-		//    the player should play for six seconds and then stop.
-		var done = false;
-		function onPlayerStateChange(event) {
-		if (event.data == YT.PlayerState.PLAYING && !done) {
-			setTimeout(stopVideo, 6000);
-			done = true;
-		}
-		}
-		function stopVideo() {
-		player.stopVideo();
-		}
 
 </script>
 

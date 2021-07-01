@@ -123,6 +123,9 @@ td a {
 													</h2>
 													<hr>
 													<article class="content-text" itemprop="articleBody">
+														<?php if($BOARD_INFO->BOARD_TYPE == 2):?>
+															<div id="player"></div><br>
+														<?php endif;?>
 														<?php echo $POST_INFO->POST_CONTENTS;?>
 													</article>
 
@@ -286,9 +289,17 @@ td a {
 	<?php
 		include_once dirname(__DIR__)."/admin-footer.php";
 	?>
+<script type="text/javascript" src="/js/google-player-api.js"></script>
 
 	<script>
 		
+		<?php if($BOARD_INFO->BOARD_TYPE == 2):?>
+		video_id = "<?php echo $POST_INFO->POST_YOUTUBE_URL;?>";
+		video_width = "480";
+		video_height = "320";
+		tag.src = "https://www.youtube.com/iframe_api";
+		<?php endif; ?>
+
 		<?php if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'): ?>
 		$(document).ready(function () {
 			// $("#comment_content").Editor();

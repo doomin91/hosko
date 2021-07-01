@@ -476,7 +476,9 @@ class Board extends CI_Controller {
 		$BOARD_INFO = $this->BoardModel->getBoard($BOARD_SEQ);
 		$filepath = $_SERVER['DOCUMENT_ROOT'] . "/upload/attach/";
 		
-
+		print_r(count($_FILES["post_attach"]));
+		
+		exit;
 
 		if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'){
 			if($SPAM_CHECK != $SPAM_CHECK_HASH){
@@ -558,7 +560,6 @@ class Board extends CI_Controller {
 		// 		$i = $i + 1;
 		// 	}
 		// }
-
 
 		if($POST_SEQ){
 			$returnMsg = array(
@@ -683,15 +684,6 @@ class Board extends CI_Controller {
 		$content = file_get_contents("https://www.youtube.com/get_video_info?video_id={$video_id}&eurl=https://youtube.googleapis.com/v/onz2k4zoLjQ&html5=1&c=TVHTML5&cver=6.20180913");
 		parse_str($content, $data);
 		if(isset($data["player_response"])) {
-			// $pData = json_decode($data["player_response"]);
-			// $videoDetails = $pData->videoDetails;
-			// $microformat = $pData->microformat;
-			// $return_arr = array(
-			// "title" => $videoDetails->title,
-			// "author" => $videoDetails->author,
-			// "upload" => $microformat->playerMicroformatRenderer->publishDate,
-			// "viewcount" => $videoDetails->viewCount,
-			// );
 			$resultMsg = array(
 				"code" => 200,
 				"msg" => "동영상 불러오기 성공",
@@ -718,7 +710,65 @@ class Board extends CI_Controller {
 			}
 		}
 		return false;
+	}
 
+	public function FileUploadAjax()
+	{
+	    $post_attach = isset($_POST["post_attach"]) ? $_POST["post_attach"] : "";
+	    $file_name = array();
+	    $file_path = array();
+	    if (isset($_FILES["apply_attach"]) && !empty($_FILES["apply_attach"])){
+	        $no_files = count($_FILES["apply_attach"]["name"]);
+	        for ($i=0; $i<$no_files; $i++){
+	            if ($_FILES["apply_attach"]["error"][$i] > 0){
+	                $ErrMsg = "Error : " . $_FILES["apply_attach"]["error"][$i];
+	                $return  = array(
+	                    "code"=>"201",
+	                    "msg"=>$ErrMsg
+	                );
+	                echo json_encode($return);
+	            }else{
+	                if (file_exists("/upload/AppForm/".$_FILES["apply_attach"]["name"][$i])){
+	                    $ErrMsg = "동일한 이름의 파일이 존재합니다.";
+	                    $return  = array(
+	                        "code"=>"202",
+	                        "msg"=>$ErrMsg
+	                    ); 
+	                    
+	                    echo json_encode($return);
+	                }else{
+	                    $tmp = explode(".", $_FILES["apply_attach"]["name"][$i]);
+	                    $new_name = $post_attach.$i.".".end($tmp);
+	                    move_uploaded_file($_FILES["apply_attach"]["tmp_name"][$i], $_SERVER['DOCUMENT_ROOT']."/upload/AppForm/".$new_name);
+	                    //array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
+	                    array_push($file_name, $_FILES["apply_attach"]["name"][$i]);
+	                    array_push($file_path, "/upload/AppForm/".$new_name);
+	                }
+	            }
+	        }
+	        
+	        $file_data = array();
+	        for ($num=0; $num<count($file_name); $num++){
+	            $insert_attach = array(
+	                "DOC_SEQ" => $post_attach,
+	                "FILE_NAME" => $file_name[$num],
+	                "FILE_PATH" => $file_path[$num]
+	            );
+	            $this->RequestApprovalModel->insertAppAttach($insert_attach);
+	            array_push($file_data, array("file_seq"=>$this->db->insert_id(), "file_name" => $file_name[$num]));
+	        }
+	        
+	        echo json_encode(array("code" => "200", "file_list" => $file_data));
+	        
+	    }
+	}
+	
+	public function FileDeleteAjax(){
+	    $file_seq = $this->input->post("file_seq");
+	    $result = $this->RequestApprovalModel->deleteAppAttach($file_seq);
+	    if($result){
+	        echo json_encode(array("code"=>"200"));
+	    }
 	}
 
 

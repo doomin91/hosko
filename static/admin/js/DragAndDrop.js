@@ -35,7 +35,7 @@ $(function() {
         var fd = new FormData();
         for (var i=0; i<file.length; i++){
             //console.log(file[i]);
-            fd.append('apply_attach[]', file[i]);
+            fd.append('post_attach[]', file[i]);
         }
 
         uploadData(fd);
@@ -43,17 +43,17 @@ $(function() {
 
     // Open file selector on div click
     $("#uploadfile p").click(function(){
-        $("#apply_attach").click();
+        $("#post_attach").click();
     });
 
     // file selected
-    $("#apply_attach").change(function(){
+    $("#post_attach").change(function(){
         var fd = new FormData();
-        var ins = document.getElementById("apply_attach").files.length;
+        var ins = document.getElementById("post_attach").files.length;
 
         for (var i=0; i<ins; i++){
-            console.log(document.getElementById("apply_attach").files[i]);
-            fd.append("apply_attach[]", document.getElementById("apply_attach").files[i]);
+            console.log(document.getElementById("post_attach").files[i]);
+            fd.append("post_attach[]", document.getElementById("post_attach").files[i]);
         }
 
         uploadData(fd);
@@ -65,7 +65,7 @@ $(function() {
         if (confirm("해당 파일을 삭제하시겠습니까?")){
             $.ajax({
                 type : "POST",
-                url : "/RequestApproval/FileDeleteAjax",
+                url : "/Board/FileDeleteAjax",
                 dataType : "JSON",
                 data : {
                     "file_seq" : file_seq
@@ -95,7 +95,7 @@ function uploadData(formdata){
     //console.log(formdata);
     $.ajax({
         type : "POST",
-        url: '/RequestApproval/FileUploadAjax',
+        url: '/Board/FileUploadAjax',
         dataType : "JSON",
         data : formdata,
         contentType: false,
@@ -131,7 +131,6 @@ function addThumbnail(data){
     $("#uploadfile").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
     $("#thumbnail_"+num).append('<img src="'+src+'" width="100%" height="78%">');
     $("#thumbnail_"+num).append('<span class="size">'+size+'<span>');
-
 }
 
 // Bytes conversion

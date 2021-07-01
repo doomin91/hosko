@@ -4,6 +4,10 @@
 
 <style>
 
+.thumnail_img {
+	width : 160px;
+	height : 120px;
+}
 
 </style>
 
@@ -160,9 +164,9 @@
 								</td>
 
 								<?php if($BOARD_INFO->BOARD_TYPE == 1):?>
-								<td><img src="<?php echo $lt->POST_THUMB_PATH?>" style="width:100px; height:100px;"></td>
+								<td><img class="thumnail_img" src="<?php echo $lt->POST_THUMB_PATH?>"></td>
 								<?php elseif($BOARD_INFO->BOARD_TYPE == 2):?>
-								<td><?php echo "<img src=\"https://img.youtube.com/vi/$lt->POST_YOUTUBE_URL/mqdefault.jpg\">"?></td>
+								<td><img class="thumnail_img" src="https://img.youtube.com/vi/<?php echo $lt->POST_YOUTUBE_URL?>/mqdefault.jpg;?>\"></td>
 											
 								<?php endif ?>
 								<td>
