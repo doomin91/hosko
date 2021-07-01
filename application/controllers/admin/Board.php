@@ -466,6 +466,7 @@ class Board extends CI_Controller {
 
 	// 게시글 등록 함수
 	public function set_post_info(){
+		$FILE_SEQ = explode(",", $this->input->post("file_seq"));
 		$BOARD_SEQ = $this->input->get("board_seq");
 		$POST_SUBJECT = $this->input->post("post_title");
 		$POST_CONTENTS = $this->input->post("post_contents");
@@ -476,10 +477,6 @@ class Board extends CI_Controller {
 		$BOARD_INFO = $this->BoardModel->getBoard($BOARD_SEQ);
 		$filepath = $_SERVER['DOCUMENT_ROOT'] . "/upload/attach/";
 		
-		print_r(count($_FILES["post_attach"]));
-		
-		exit;
-
 		if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'){
 			if($SPAM_CHECK != $SPAM_CHECK_HASH){
 				$returnMsg = array(
@@ -531,35 +528,12 @@ class Board extends CI_Controller {
 		endif;
 
 		$POST_SEQ = $this->BoardModel->setPost($DATA);
-
-		
-        // $new_name = $BOARD_INFO->BOARD_NAME . "_" . date("YmdHis");
-        // $config["file_name"] = $new_name;
-		$i = 1;
-		
-		
-
-		// if(count($_FILES) > 0){
-		// 	foreach($_FILES as $key => $file){
-		// 		if(!empty($file["name"])){
-		// 			$new_name = time();
-		// 			$temp = explode(".", $file["name"]);
-		// 			$filetype = end($temp);
-		// 			$filename = $filepath . $new_name . $i . "." . $filetype;
-					
-		// 			move_uploaded_file($file["tmp_name"], $filename);
-					
-		// 			$insert_arr = array(
-		// 				"ATTACH_POST_SEQ" => $POST_SEQ,
-		// 				"ATTACH_FILE_PRIORITY" => $i,
-		// 				"ATTACH_FILE_NAME" => $file["name"],
-		// 				"ATTACH_FILE_PATH" => $filename
-		// 			);
-		// 		$result = $this->BoardModel->insertPostAttach($insert_arr);
-		// 		}
-		// 		$i = $i + 1;
-		// 	}
-		// }
+		foreach($FILE_SEQ as $seq){
+			$DATA = array(
+				"ATTACH_POST_SEQ" => $POST_SEQ
+			);
+			$this->BoardModel->updatePostAttach($seq, $DATA);
+		}
 
 		if($POST_SEQ){
 			$returnMsg = array(
@@ -717,18 +691,24 @@ class Board extends CI_Controller {
 	    $post_attach = isset($_POST["post_attach"]) ? $_POST["post_attach"] : "";
 	    $file_name = array();
 	    $file_path = array();
-	    if (isset($_FILES["apply_attach"]) && !empty($_FILES["apply_attach"])){
-	        $no_files = count($_FILES["apply_attach"]["name"]);
+		$new_folder = "upload/attach/" . date("Ymd", time());
+		
+		if(!file_exists($new_folder)){
+			mkdir($new_folder, 0777, true);
+		}
+
+	    if (isset($_FILES["post_attach"]) && !empty($_FILES["post_attach"])){
+	        $no_files = count($_FILES["post_attach"]["name"]);
 	        for ($i=0; $i<$no_files; $i++){
-	            if ($_FILES["apply_attach"]["error"][$i] > 0){
-	                $ErrMsg = "Error : " . $_FILES["apply_attach"]["error"][$i];
+	            if ($_FILES["post_attach"]["error"][$i] > 0){
+	                $ErrMsg = "Error : " . $_FILES["post_attach"]["error"][$i];
 	                $return  = array(
 	                    "code"=>"201",
 	                    "msg"=>$ErrMsg
 	                );
 	                echo json_encode($return);
 	            }else{
-	                if (file_exists("/upload/AppForm/".$_FILES["apply_attach"]["name"][$i])){
+	                if (file_exists("/$new_folder/".$_FILES["post_attach"]["name"][$i])){
 	                    $ErrMsg = "동일한 이름의 파일이 존재합니다.";
 	                    $return  = array(
 	                        "code"=>"202",
@@ -737,12 +717,12 @@ class Board extends CI_Controller {
 	                    
 	                    echo json_encode($return);
 	                }else{
-	                    $tmp = explode(".", $_FILES["apply_attach"]["name"][$i]);
-	                    $new_name = $post_attach.$i.".".end($tmp);
-	                    move_uploaded_file($_FILES["apply_attach"]["tmp_name"][$i], $_SERVER['DOCUMENT_ROOT']."/upload/AppForm/".$new_name);
+	                    $tmp = explode(".", $_FILES["post_attach"]["name"][$i]);
+	                    $new_name = time().$i.".".end($tmp);
+	                    move_uploaded_file($_FILES["post_attach"]["tmp_name"][$i], $_SERVER['DOCUMENT_ROOT']."/$new_folder/".$new_name);
 	                    //array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
-	                    array_push($file_name, $_FILES["apply_attach"]["name"][$i]);
-	                    array_push($file_path, "/upload/AppForm/".$new_name);
+	                    array_push($file_name, $_FILES["post_attach"]["name"][$i]);
+	                    array_push($file_path, "/$new_folder/".$new_name);
 	                }
 	            }
 	        }
@@ -750,14 +730,13 @@ class Board extends CI_Controller {
 	        $file_data = array();
 	        for ($num=0; $num<count($file_name); $num++){
 	            $insert_attach = array(
-	                "DOC_SEQ" => $post_attach,
-	                "FILE_NAME" => $file_name[$num],
-	                "FILE_PATH" => $file_path[$num]
+	                "ATTACH_SEQ" => $post_attach,
+	                "ATTACH_FILE_NAME" => $file_name[$num],
+	                "ATTACH_FILE_PATH" => $file_path[$num]
 	            );
-	            $this->RequestApprovalModel->insertAppAttach($insert_attach);
+	            $this->BoardModel->insertPostAttach($insert_attach);
 	            array_push($file_data, array("file_seq"=>$this->db->insert_id(), "file_name" => $file_name[$num]));
 	        }
-	        
 	        echo json_encode(array("code" => "200", "file_list" => $file_data));
 	        
 	    }
@@ -765,7 +744,7 @@ class Board extends CI_Controller {
 	
 	public function FileDeleteAjax(){
 	    $file_seq = $this->input->post("file_seq");
-	    $result = $this->RequestApprovalModel->deleteAppAttach($file_seq);
+	    $result = $this->BoardModel->deletePostAttach($file_seq);
 	    if($result){
 	        echo json_encode(array("code"=>"200"));
 	    }

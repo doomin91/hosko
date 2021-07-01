@@ -65,7 +65,7 @@ $(function() {
         if (confirm("해당 파일을 삭제하시겠습니까?")){
             $.ajax({
                 type : "POST",
-                url : "/Board/FileDeleteAjax",
+                url : "/admin/Board/FileDeleteAjax",
                 dataType : "JSON",
                 data : {
                     "file_seq" : file_seq
@@ -89,13 +89,9 @@ $(function() {
 
 // Sending AJAX request and upload file
 function uploadData(formdata){
-    var apply_number = $("input[name=apply_number]").val();
-    //console.log(apply_number);
-    formdata.append('apply_number', apply_number);
-    //console.log(formdata);
     $.ajax({
         type : "POST",
-        url: '/Board/FileUploadAjax',
+        url: '/admin/Board/FileUploadAjax',
         dataType : "JSON",
         data : formdata,
         contentType: false,

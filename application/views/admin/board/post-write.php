@@ -233,12 +233,23 @@
 	})
 
 	function post_regist(){
+
+		let upload_files = $(".file_list").children("li").children("i");
+		let file_seq = [];
+		console.log(upload_files);
+		$.each(upload_files, function(index, value){
+			console.log($(value).data("file_seq"));
+			file_seq.push($(value).data("file_seq"));
+		})
+
 		let hash = $("#defaultReal").realperson('getHash');
 		let board_seq = <?php echo $BOARD_INFO->BOARD_SEQ?>;
 		$("#defaultRealHash").val(hash);
 		$("#post_contents").val($("#post_contents").Editor("getText"));
 		var formData = new FormData($("#post_write_form")[0]);
+		formData.append("file_seq", file_seq);
 
+		console.log(formData);
 		<?php if($BOARD_INFO->BOARD_TYPE == 1): ?>
 		if($("input[name=thumnail_img]").val() == ""){
 			alert("썸네일 이미지를 등록해주세요.");

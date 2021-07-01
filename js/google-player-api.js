@@ -16,8 +16,8 @@ player = new YT.Player('player', {
 	width: video_width,
 	videoId: video_id,
 	events: {
-	'onReady': onPlayerReady,
-	'onStateChange': onPlayerStateChange
+	// 'onReady': onPlayerReady,
+	// 'onStateChange': onPlayerStateChange
 	}
 });
 }
