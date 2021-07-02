@@ -139,7 +139,7 @@ class Board extends CI_Controller {
             }
     
             $queryString = "search_field=". $searchField. "&search_string=".$searchString;
-            $pagination = $this->customclass->front_pagenavi("/Board/q/$seq?seq=$board_seq&" . $queryString, $listCount, $limit, 3, $nowpage);
+            $pagination = $this->customclass->front_pagenavi("/Board/g/$seq?seq=$board_seq&" . $queryString, $listCount, $limit, 3, $nowpage);
     
             $DATA["BOARD_INFO"] = $board_info;
             $DATA["lists"] = $lists;
@@ -203,7 +203,7 @@ class Board extends CI_Controller {
             }
     
             $queryString = "search_field=". $searchField. "&search_string=".$searchString;
-            $pagination = $this->customclass->front_pagenavi("/Board/q/$seq?seq=$board_seq&" . $queryString, $listCount, $limit, 3, $nowpage);
+            $pagination = $this->customclass->front_pagenavi("/Board/v/$seq?seq=$board_seq&" . $queryString, $listCount, $limit, 3, $nowpage);
     
             $DATA["BOARD_INFO"] = $board_info;
             $DATA["lists"] = $lists;
@@ -304,5 +304,49 @@ class Board extends CI_Controller {
         $result = $this->BoardModel->delComment($com_seq);
         return $result;
     }
+
+
+	public function CheckUrl(){
+		$yurl = $this->input->post("youtube_url");
+		$url_parameter = $this->getUrlParameter($yurl, 'v');
+		$content = file_get_contents("http://youtube.com/get_video_info?video_id=".$url_parameter);
+
+		parse_str($content, $data);
+		if(isset($data["player_response"])) {
+			$pData = json_decode($data["player_response"]);
+			$videoDetails = $pData->videoDetails;
+			$microformat = $pData->microformat;
+			$return_arr = array(
+			"title" => $videoDetails->title,
+			"author" => $videoDetails->author,
+			"upload" => $microformat->playerMicroformatRenderer->publishDate,
+			"viewcount" => $videoDetails->viewCount,
+			);
+			echo json_encode($return_arr);
+		} else {
+			$return_arr = array(
+				"title" => '',
+				"author" => '',
+				"upload" => '',
+				"viewcount" => '',
+				);
+			echo json_encode($return_arr);
+		}
+	}
+	
+	public function getUrlParameter($url, $sch_tag) {
+		$parts = parse_url($url);
+		if(isset($parts['host'])){
+			if($parts['host'] == "www.youtube.com"){
+				if(isset($parts['query'])){
+					parse_str($parts['query'], $query);
+					return $query[$sch_tag];
+				}
+			}
+		}
+		return false;
+
+	}
+
 
 }

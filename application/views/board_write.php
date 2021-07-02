@@ -102,6 +102,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col1 n_br">
                                                 <div class="boardWriteTop_item">
                                                     <strong>첨부파일</strong>
@@ -114,7 +115,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>    
+                                            </div>   
 
                                             <div class="col1 n_br">
                                                 <div class="boardWriteTop_item">

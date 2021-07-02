@@ -248,6 +248,16 @@ class BoardModel extends CI_Model{
         return $this->db->insert("TBL_HOSKO_BOARD_ATTACH", $DATA);
     }
 
+    public function deletePostAttach($FILE_SEQ){
+        $this->db->where("ATTACH_SEQ", $FILE_SEQ);
+        return $this->db->delete("TBL_HOSKO_BOARD_ATTACH");
+    }
+
+    public function updatePostAttach($FILE_SEQ, $DATA){
+        $this->db->where("ATTACH_SEQ", $FILE_SEQ);
+        return $this->db->update("TBL_HOSKO_BOARD_ATTACH", $DATA);
+    }
+
     public function getBoardSeqByPost($POST_SEQ){
         $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.*");
         $this->db->where("POST_SEQ", $POST_SEQ);

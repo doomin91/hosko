@@ -466,6 +466,7 @@ class Board extends CI_Controller {
 
 	// 게시글 등록 함수
 	public function set_post_info(){
+		$FILE_SEQ = explode(",", $this->input->post("file_seq"));
 		$BOARD_SEQ = $this->input->get("board_seq");
 		$POST_SUBJECT = $this->input->post("post_title");
 		$POST_CONTENTS = $this->input->post("post_contents");
@@ -474,6 +475,7 @@ class Board extends CI_Controller {
 		$SPAM_CHECK = $this->rpHash($this->input->post("defaultReal"));
 		$SPAM_CHECK_HASH = $this->input->post("defaultRealHash");
 		$BOARD_INFO = $this->BoardModel->getBoard($BOARD_SEQ);
+		$filepath = $_SERVER['DOCUMENT_ROOT'] . "/upload/attach/";
 		
 		if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'){
 			if($SPAM_CHECK != $SPAM_CHECK_HASH){
@@ -506,38 +508,32 @@ class Board extends CI_Controller {
 			"POST_SECRET_YN" => isset($POST_SECRET_CHK) ? "Y" : "N"
 		);
 
-		$POST_SEQ = $this->BoardModel->setPost($DATA);
+		if($BOARD_INFO->BOARD_TYPE == 1):
+			if(!empty($_FILES["thumnail_img"]["name"])){
+				$new_name = time();
+				$temp = explode(".", $_FILES["thumnail_img"]["name"]);
+				$filetype = end($temp);
+				$filename = $filepath . $new_name . "." . $filetype;
+				
+				move_uploaded_file($_FILES["thumnail_img"]["tmp_name"], $filename);
 
-		$filepath = $_SERVER['DOCUMENT_ROOT'] . "/upload/attach/";
-		
-        // $new_name = $BOARD_INFO->BOARD_NAME . "_" . date("YmdHis");
-        // $config["file_name"] = $new_name;
-		$i = 1;
-
-
-		if(count($_FILES) > 0){
-			foreach($_FILES as $key => $file){
-				if(!empty($file["name"])){
-					$new_name = time();
-					$temp = explode(".", $file["name"]);
-					$filetype = end($temp);
-					$filename = $filepath . $new_name . $i . "." . $filetype;
-					
-					
-					move_uploaded_file($file["tmp_name"], $filename);
-					
-					$insert_arr = array(
-						"ATTACH_POST_SEQ" => $POST_SEQ,
-						"ATTACH_FILE_PRIORITY" => $i,
-						"ATTACH_FILE_NAME" => $file["name"],
-						"ATTACH_FILE_PATH" => $filename
-					);
-				$result = $this->BoardModel->insertPostAttach($insert_arr);
-				}
-				$i = $i + 1;
+				$DATA["POST_THUMB_PATH"] = "/upload/attach/" . $new_name . "." . $filetype;
+				$DATA["POST_THUMB_NAME"] = $_FILES["thumnail_img"]["name"];
 			}
-		}
+		endif;
+		
+		if($BOARD_INFO->BOARD_TYPE == 2):
+			$YOUTUBE_URL = $this->input->post("youtube_url");
+			$DATA["POST_YOUTUBE_URL"] = $YOUTUBE_URL;
+		endif;
 
+		$POST_SEQ = $this->BoardModel->setPost($DATA);
+		foreach($FILE_SEQ as $seq){
+			$DATA = array(
+				"ATTACH_POST_SEQ" => $POST_SEQ
+			);
+			$this->BoardModel->updatePostAttach($seq, $DATA);
+		}
 
 		if($POST_SEQ){
 			$returnMsg = array(
@@ -655,5 +651,104 @@ class Board extends CI_Controller {
 			-(pow(2, 31) - bindec(substr($binary, 1))));
 		
 	}
+
+	public function CheckUrlAndSave(){
+		$yurl = $this->input->post("youtube_url");
+		$video_id = $this->getUrlParameter($yurl, 'v');
+		$content = file_get_contents("https://www.youtube.com/get_video_info?video_id={$video_id}&eurl=https://youtube.googleapis.com/v/onz2k4zoLjQ&html5=1&c=TVHTML5&cver=6.20180913");
+		parse_str($content, $data);
+		if(isset($data["player_response"])) {
+			$resultMsg = array(
+				"code" => 200,
+				"msg" => "동영상 불러오기 성공",
+				"video_id" => $video_id
+			);
+		} else {
+			$resultMsg = array(
+				"code" => 201,
+				"msg" => "해당 링크의 동영상을 찾을 수 없습니다."
+			);
+		}
+
+		echo json_encode($resultMsg);
+	}
+	
+	public function getUrlParameter($url, $sch_tag) {
+		$parts = parse_url($url);
+		if(isset($parts['host'])){
+			if($parts['host'] == "www.youtube.com"){
+				if(isset($parts['query'])){
+					parse_str($parts['query'], $query);
+					return $query[$sch_tag];
+				}
+			}
+		}
+		return false;
+	}
+
+	public function FileUploadAjax()
+	{
+	    $post_attach = isset($_POST["post_attach"]) ? $_POST["post_attach"] : "";
+	    $file_name = array();
+	    $file_path = array();
+		$new_folder = "upload/attach/" . date("Ymd", time());
+		
+		if(!file_exists($new_folder)){
+			mkdir($new_folder, 0777, true);
+		}
+
+	    if (isset($_FILES["post_attach"]) && !empty($_FILES["post_attach"])){
+	        $no_files = count($_FILES["post_attach"]["name"]);
+	        for ($i=0; $i<$no_files; $i++){
+	            if ($_FILES["post_attach"]["error"][$i] > 0){
+	                $ErrMsg = "Error : " . $_FILES["post_attach"]["error"][$i];
+	                $return  = array(
+	                    "code"=>"201",
+	                    "msg"=>$ErrMsg
+	                );
+	                echo json_encode($return);
+	            }else{
+	                if (file_exists("/$new_folder/".$_FILES["post_attach"]["name"][$i])){
+	                    $ErrMsg = "동일한 이름의 파일이 존재합니다.";
+	                    $return  = array(
+	                        "code"=>"202",
+	                        "msg"=>$ErrMsg
+	                    ); 
+	                    
+	                    echo json_encode($return);
+	                }else{
+	                    $tmp = explode(".", $_FILES["post_attach"]["name"][$i]);
+	                    $new_name = time().$i.".".end($tmp);
+	                    move_uploaded_file($_FILES["post_attach"]["tmp_name"][$i], $_SERVER['DOCUMENT_ROOT']."/$new_folder/".$new_name);
+	                    //array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
+	                    array_push($file_name, $_FILES["post_attach"]["name"][$i]);
+	                    array_push($file_path, "/$new_folder/".$new_name);
+	                }
+	            }
+	        }
+	        
+	        $file_data = array();
+	        for ($num=0; $num<count($file_name); $num++){
+	            $insert_attach = array(
+	                "ATTACH_SEQ" => $post_attach,
+	                "ATTACH_FILE_NAME" => $file_name[$num],
+	                "ATTACH_FILE_PATH" => $file_path[$num]
+	            );
+	            $this->BoardModel->insertPostAttach($insert_attach);
+	            array_push($file_data, array("file_seq"=>$this->db->insert_id(), "file_name" => $file_name[$num]));
+	        }
+	        echo json_encode(array("code" => "200", "file_list" => $file_data));
+	        
+	    }
+	}
+	
+	public function FileDeleteAjax(){
+	    $file_seq = $this->input->post("file_seq");
+	    $result = $this->BoardModel->deletePostAttach($file_seq);
+	    if($result){
+	        echo json_encode(array("code"=>"200"));
+	    }
+	}
+
 
 }

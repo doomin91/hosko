@@ -1,7 +1,35 @@
 <?php
   include_once dirname(__DIR__)."/admin-header.php";
 ?>
+
+<style>
+
+.upload-area {
+    width: 100%;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    margin-top: 10px;
+    padding: 0 10px;
+    overflow: auto;
+}
+
+.upload-area p {
+    text-align: center;
+    line-height: 100px;
+    color: #000;
+    font-size: 16px;
+}
+
+.file_view{
+	border: 1px solid lightgray !important; 
+}
+
+</style>
+
 <script src="/ckeditor/ckeditor.js"></script>
+
   <body class="bg-1">
 
 	<!-- Preloader -->
@@ -55,7 +83,7 @@
                     <div class="tile-body">
 
                         <form class="form-horizontal" role="form" id="post_write_form" method="post">
-                            
+							
                             <div class="form-group">
                                 <label for="input01" class="col-sm-2 control-label">게시글 제목</label>
                                 <div class="col-sm-10">
@@ -70,17 +98,55 @@
                                 </div>
                             </div>
 
-							<?php
-							for($i = 0 ; $i < $BOARD_INFO->BOARD_FILEUPLOAD_COUNT; $i++){?>
-                            <div class="form-group">
-                                <label for="input01" class="col-sm-2 control-label">첨부파일<?php echo ($i+1)?></label>
-                                <div class="col-sm-6">
-                                    <input type="file" class="form-control" ID="post_file_name<?php echo ($i+1)?>" name="post_file_name<?php echo ($i+1)?>">
+							<?php if($BOARD_INFO->BOARD_TYPE == 1): ?>
+								<div class="form-group">
+									<label for="input01" class="col-sm-2 control-label">썸네일 이미지 등록</label>
+									<div class="col-sm-6">
+										<input type="file" class="form-control" ID="thumnail_img" name="thumnail_img">
+									</div>
+								</div>
+							<?php endif; ?>
+
+							
+							<?php if($BOARD_INFO->BOARD_TYPE == 2): ?>
+								<div class="form-group" id="youtube_view">
+									<label for="input01" class="col-sm-2 control-label">미리보기</label>
+									<div class="col-sm-6">
+										<div id="player"></div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="input01" class="col-sm-2 control-label">유튜브 URL 등록</label>
+									<div class="col-sm-6">
+									<div class="input-group margin-bottom-20">
+                          				<input type="text" class="form-control" name="youtube_url">
+                          				<span class="input-group-btn">
+                            			<button class="btn btn-default" type="button" onclick="url_upload();">업로드</button>
+                          				</span>
+                        			</div>
+									</div>
+								</div>
+							<?php endif; ?>
+
+							<div class="form-group transparent-editor">
+                                <label class="col-sm-2 control-label">첨부파일</label>
+                                <div class="col-sm-10">
+									<div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-primary btn-file">
+                                                <i class="fa fa-upload"></i><input type="file" multiple="multiple" id="post_attach" name="post_attach[]">
+                                            </span>
+                                        </span>										
+                                    	<input type="text" class="form-control file_view" name="file_view" readonly="">
+                                    </div>
+									<div class="input-group upload-area" id="uploadfile">
+                                                <p>파일을 이곳에 드래그 하시거나 파일첨부를 클릭하세요</p>
+                                                <ul class="list-type caret-right file_list">
+                                                </ul>
+                                            </div>
                                 </div>
-                                <!-- <div class="col-sm-4" style="font-size:12px">* 한글파일명은 사용할수 없습니다.</div> -->
                             </div>
-							<?php }
-							?>
 
 							<div class="form-group transparent-editor">
                                 <label class="col-sm-2 control-label">공지사항</label>
@@ -155,6 +221,8 @@
 <link rel="stylesheet" type="text/css" href="/js/captcha/jquery.realperson.css"> 
 <script type="text/javascript" src="/js/captcha/jquery.plugin.js"></script> 
 <script type="text/javascript" src="/js/captcha/jquery.realperson.js"></script>
+<script type="text/javascript" src="/static/admin/js/DragAndDrop.js"></script>
+<script type="text/javascript" src="/js/google-player-api.js"></script>
 
 	<script>
 		
@@ -164,18 +232,36 @@
 		$("#defaultReal").realperson();
 	})
 
-
 	function post_regist(){
+
+		let upload_files = $(".file_list").children("li").children("i");
+		let file_seq = [];
+		console.log(upload_files);
+		$.each(upload_files, function(index, value){
+			console.log($(value).data("file_seq"));
+			file_seq.push($(value).data("file_seq"));
+		})
+
 		let hash = $("#defaultReal").realperson('getHash');
 		let board_seq = <?php echo $BOARD_INFO->BOARD_SEQ?>;
 		$("#defaultRealHash").val(hash);
 		$("#post_contents").val($("#post_contents").Editor("getText"));
-		// var form = $("#post_write_form").serializeArray();
 		var formData = new FormData($("#post_write_form")[0]);
+		formData.append("file_seq", file_seq);
 
-		<?php for($i = 0 ; $i < $BOARD_INFO->BOARD_FILEUPLOAD_COUNT; $i++){?>
-		formData.append("post_file_name<?php echo ($i+1)?>", $("#post_file_name<?php echo ($i+1)?>").prop('files')[0]);
-		<?php }	?>
+		console.log(formData);
+		<?php if($BOARD_INFO->BOARD_TYPE == 1): ?>
+		if($("input[name=thumnail_img]").val() == ""){
+			alert("썸네일 이미지를 등록해주세요.");
+			return false;
+		}
+		<?php endif; ?>
+		<?php if($BOARD_INFO->BOARD_TYPE == 2): ?>
+		if($("input[name=youtube_url]").val() == ""){
+			alert("동영상 링크를 등록해주세요.");
+			return false;
+		}
+		<?php endif; ?>
 
 		$.ajax({
 			url:"/admin/board/set_post_info?board_seq=" + board_seq,
@@ -199,6 +285,32 @@
 			}
 		})
 	}
+
+	function url_upload(){
+		$.ajax({
+			url : "/admin/Board/CheckUrlAndSave",
+			type : "post",
+			data : { "youtube_url" : $("input[name=youtube_url]").val() },
+			dataType : "json",
+			success : function (resultMsg){
+				let code = resultMsg["code"];
+				let msg = resultMsg["msg"];
+				if(code == 200){
+					tag.src = "https://www.youtube.com/iframe_api";
+					video_id = resultMsg["video_id"];
+					$("input[name=youtube_url]").val(video_id);
+					alert($("input[name=youtube_url]").val());
+				} else {
+					alert(msg);
+				}
+				
+			}, error : function (e){
+				console.log(e.responseText);
+			}
+		});
+	}
+
+
 </script>
 
 </body>

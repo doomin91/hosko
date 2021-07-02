@@ -4,6 +4,10 @@
 
 <style>
 
+.thumnail_img {
+	width : 160px;
+	height : 120px;
+}
 
 </style>
 
@@ -116,6 +120,10 @@
                         <thead>
                           <tr>
                             <th class="sort-numeric">No</th>
+							<?php 
+							if($BOARD_INFO->BOARD_TYPE == 1 || $BOARD_INFO->BOARD_TYPE == 2):?>
+							<th class="sort">대표이미지/영상</th>
+							<?php endif ?>
                             <th class="sort">제목</th>
 							<th class="sort">글쓴이</th>
 							<th class="sort">조회</th>
@@ -154,6 +162,13 @@
 									?>	
 								
 								</td>
+
+								<?php if($BOARD_INFO->BOARD_TYPE == 1):?>
+								<td><img class="thumnail_img" src="<?php echo $lt->POST_THUMB_PATH?>"></td>
+								<?php elseif($BOARD_INFO->BOARD_TYPE == 2):?>
+								<td><img class="thumnail_img" src="https://img.youtube.com/vi/<?php echo $lt->POST_YOUTUBE_URL?>/mqdefault.jpg;?>\"></td>
+											
+								<?php endif ?>
 								<td>
 									<?php 
 
