@@ -56,7 +56,7 @@
                                                 echo "<ul>";
                                             } ?>
                                             <li>
-                                                <a href="gallery_view.php">
+                                                <a href="/board/board_view/<?php echo $lt->POST_SEQ?>">
                                                     <div class="galleryBox">
 
                                                         <div class="galleryTopph">

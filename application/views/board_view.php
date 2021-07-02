@@ -100,6 +100,9 @@
 
                                     <div class="boardViewCont">
                                         <div class="View_cont">
+                                            <?php if($BOARD_INFO->BOARD_TYPE == 2):?>
+												<div id="player"></div><br>
+											<?php endif;?>
                                             <p><?php echo $POST_INFO->POST_CONTENTS;?></p>
                                         </div>
                                     </div>
@@ -225,10 +228,19 @@
 
     </body>
 </html>
+<script type="text/javascript" src="/js/google-player-api.js"></script>
 
 <script>
 let board_seq = $("input[name=board_seq]").val();
 let post_seq = $("input[name=post_seq]").val();
+
+<?php if($BOARD_INFO->BOARD_TYPE == 2):?>
+		video_id = "<?php echo $POST_INFO->POST_YOUTUBE_URL;?>";
+		video_width = "640";
+		video_height = "480";
+		tag.src = "https://www.youtube.com/iframe_api";
+<?php endif; ?>
+
 
 function board_delete(){
     alert("1")

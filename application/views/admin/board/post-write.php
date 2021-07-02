@@ -120,6 +120,7 @@
 									<label for="input01" class="col-sm-2 control-label">유튜브 URL 등록</label>
 									<div class="col-sm-6">
 									<div class="input-group margin-bottom-20">
+										<input type="hidden" class="form-control" name="video_id">
                           				<input type="text" class="form-control" name="youtube_url">
                           				<span class="input-group-btn">
                             			<button class="btn btn-default" type="button" onclick="url_upload();">업로드</button>
@@ -233,7 +234,6 @@
 	})
 
 	function post_regist(){
-
 		let upload_files = $(".file_list").children("li").children("i");
 		let file_seq = [];
 		console.log(upload_files);
@@ -287,29 +287,27 @@
 	}
 
 	function url_upload(){
-		$.ajax({
-			url : "/admin/Board/CheckUrlAndSave",
-			type : "post",
-			data : { "youtube_url" : $("input[name=youtube_url]").val() },
-			dataType : "json",
-			success : function (resultMsg){
-				let code = resultMsg["code"];
-				let msg = resultMsg["msg"];
-				if(code == 200){
-					tag.src = "https://www.youtube.com/iframe_api";
-					video_id = resultMsg["video_id"];
-					$("input[name=youtube_url]").val(video_id);
-					alert($("input[name=youtube_url]").val());
-				} else {
-					alert(msg);
-				}
-				
-			}, error : function (e){
-				console.log(e.responseText);
+	$.ajax({
+		url : "/admin/Board/CheckUrlAndSave",
+		type : "post",
+		data : { "youtube_url" : $("input[name=youtube_url]").val() },
+		dataType : "json",
+		success : function (resultMsg){
+			let code = resultMsg["code"];
+			let msg = resultMsg["msg"];
+			if(code == 200){
+				tag.src = "https://www.youtube.com/iframe_api";
+				video_id = resultMsg["video_id"];
+				$("input[name=video_id]").val(video_id);
+			} else {
+				alert(msg);
 			}
-		});
-	}
-
+			
+		}, error : function (e){
+			console.log(e.responseText);
+		}
+	});
+}
 
 </script>
 

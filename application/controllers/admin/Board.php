@@ -384,6 +384,7 @@ class Board extends CI_Controller {
 	}
 
 	public function upt_post_info(){
+		$FILE_SEQ = explode(",", $this->input->post("file_seq"));
 		$POST_SEQ = $this->input->get("post_seq");
 		$POST_SUBJECT = $this->input->post("post_title");
 		$POST_CONTENTS = $this->input->post("post_contents");
@@ -411,44 +412,35 @@ class Board extends CI_Controller {
 			"POST_NOTICE_YN" => isset($POST_NOTICE_CHK) ? "Y" : "N",
 			"POST_SECRET_YN" => isset($POST_SECRET_CHK) ? "Y" : "N");
 			
-        $config["upload_path"] = $_SERVER['DOCUMENT_ROOT'] . "/upload/attach/";
-        $config["allowed_types"] = "xls|xlsx|ppt|pptx|gif|jpg|png|hwp|doc|bmp|jpeg|zip|GIF|JPG|PNG|JPEG";
-        $new_name = $BOARD_INFO->BOARD_NAME . "_" . date("YmdHis");
-        $config["file_name"] = $new_name;
-        $this->load->library("upload", $config);
+		if($BOARD_INFO->BOARD_TYPE == 1):
+			if(!empty($_FILES["thumnail_img"]["name"])){
+				$new_name = time();
+				$temp = explode(".", $_FILES["thumnail_img"]["name"]);
+				$filetype = end($temp);
+				$filename = $filepath . $new_name . "." . $filetype;
+				
+				move_uploaded_file($_FILES["thumnail_img"]["tmp_name"], $filename);
 
-        $post_file_name = "";
-        $post_file_path = "";
-
-
-        if (isset($_FILES['post_file_name']['name'])) {
-            if (0 < $_FILES['post_file_name']['error']) {
-                echo 'Error during file upload' . $_FILES['post_file_name']['error'];
-            } else {
-                if (file_exists('upload/attach' . $_FILES['post_file_name']['name'])) {
-                    echo 'File already exists : upload/attach' . $_FILES['post_file_name']['name'];
-                } else {
-                    $this->load->library('upload', $config);
-                    if (!$this->upload->do_upload('post_file_name')) {
-                        echo $this->upload->display_errors();
-                    } else {
-                        //echo 'File successfully uploaded : uploads/' . $_FILES['post_thumbnail']['name'];
-                        $post_file_name = $_FILES['post_file_name']['name'];
-                        $post_file_path = "/upload/attach/".$this->upload->data("file_name");
-                    }
-                }
-            }
-        } else {
-            //echo 'Please choose a file';
-        }
-
-        $insert_arr = array(
-			"ATTACH_POST_SEQ" => $POST_SEQ,
-			"ATTACH_FILE_NAME" => $post_file_name,
-			"ATTACH_FILE_PATH" => $post_file_path
-		);
-
+				$DATA["POST_THUMB_PATH"] = "/upload/attach/" . $new_name . "." . $filetype;
+				$DATA["POST_THUMB_NAME"] = $_FILES["thumnail_img"]["name"];
+			}
+		endif;
+		
+		if($BOARD_INFO->BOARD_TYPE == 2):
+			$YOUTUBE_URL = $this->input->post("video_id");
+			if(!empty($YOUTUBE_URL)){
+				$DATA["POST_YOUTUBE_URL"] = $YOUTUBE_URL;
+			}
+		endif;
+		
 		$result = $this->BoardModel->uptPost($POST_SEQ, $DATA);
+		foreach($FILE_SEQ as $seq){
+			$DATA = array(
+				"ATTACH_POST_SEQ" => $POST_SEQ
+			);
+			$this->BoardModel->updatePostAttach($seq, $DATA);
+		}
+
 		if($result){
 			$returnMsg = array(
 				"code" => 200,
@@ -523,7 +515,7 @@ class Board extends CI_Controller {
 		endif;
 		
 		if($BOARD_INFO->BOARD_TYPE == 2):
-			$YOUTUBE_URL = $this->input->post("youtube_url");
+			$YOUTUBE_URL = $this->input->post("video_id");
 			$DATA["POST_YOUTUBE_URL"] = $YOUTUBE_URL;
 		endif;
 
@@ -684,6 +676,16 @@ class Board extends CI_Controller {
 			}
 		}
 		return false;
+	}
+
+	public function FileLoad($POST_SEQ){
+		$result = $this->BoardModel->getPostAttach($POST_SEQ);
+		$file_data = array();
+		foreach($result as $val){
+			array_push($file_data, array("file_seq"=>$val->ATTACH_SEQ, "file_name" => $val->ATTACH_FILE_NAME));
+		}
+	
+		echo json_encode(array("code" => "200", "file_list" => $file_data));
 	}
 
 	public function FileUploadAjax()
