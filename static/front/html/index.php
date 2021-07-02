@@ -14,7 +14,7 @@
                             <h2>“ HOSKO ”</h2>
                             <p>지속적인 교육훈련을 제공하는 Hospitality HR 전문기관입니다.</p>
                         </div>
-                        <!--
+
                         <div class="main_visual_menu">
                             <ul>
                                 <li>호스코 뉴스</li>
@@ -23,7 +23,7 @@
                                 <li>갤러리</li>
                             </ul>
                         </div>
--->
+
                     </div>
                     <div class="main_contents">main contents</div>
                 </div>

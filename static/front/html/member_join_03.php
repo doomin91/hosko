@@ -34,17 +34,16 @@
                                         </ul>
                                     </div>
                                     
-                                    <div>
-                                        <div>
+                                    <div class="joinBoxComplete">
+                                        <div class="joinBoxEnd">
                                             <p><img src="./static/img/member_icon01.png" /></p>
                                             <h2>회원가입완료</h2>
                                             <h3>회원가입이 완료되었습니다. 로그인 후 다양한 서비스를 이용하실 수 있습니다.</h3>
                                         </div>
                                     </div>
-
                                     <div class="memberBtn mt50">
-                                        <div class="memberBtnOk"><a href="/">LOGIN</a></div>
-                                        <div class="memberBtnCancel"><a href="/">HOME</a></div>
+                                        <button class="memberBtnOk wd48 f_left">LOGIN</button>
+                                        <button class="memberBtnCancel wd48 f_right">HOME</button>
                                     </div>
                                 </div>
                             </div>

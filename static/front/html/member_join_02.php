@@ -18,7 +18,7 @@
                     <div class="sub_contents">
 
                         <div class="inner">
-                            <div class="joinWrap" style="height:3500px;">
+                            <div class="joinWrap">
                                 <div class="joinContentTop">
                                     <h2>Sign up to be a member</h2>
                                     <h3>HOSKO에 오신것을 환영합니다.</h3>
@@ -40,135 +40,163 @@
                                         <p>단, 유료화서비스와 인증절차가 필요한 경우 해당절차를 거펴야 서비스를 이용하실 수 있습니다.</p>
                                     </div>
                                     
-                                    <div class="mt50"> 
+                                    <div class="memberJoinBox mt50"> 
                                         <h2>로그인 정보</h2>
                                         <div class="mt20">
-                                            <div>아이디</div>
-                                            <div>
-                                                <input type="text">
-                                                <div><a href="/">중복확인</a></div>    
+                                            <div class="joinBoxTitle">아이디</div>
+                                            <div class="joinBoxInput">
+                                                <input type="text" class="wd80" placeholder="4자이상 12자이하">
+                                                <button class="joinBtn01">중복확인</button>
                                             </div>
                                         </div>
+
                                         <div class="mt20">
-                                            <div>비밀번호</div>
-                                            <div>
+                                            <div class="joinBoxTitle">비밀번호</div>
+                                            <div class="joinBoxInput">
+                                                <input type="password" placeholder="영문소문자, 숫자포함 4~12자 이내 사용가능">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">비밀번호확인</div>
+                                            <div class="joinBoxInput">
                                                 <input type="password">
                                             </div>
                                         </div>
-                                        <div class="mt20">
-                                            <div>비밀번호확인</div>
-                                            <div>
-                                                <input type="password">
-                                            </div>
-                                        </div> 
+
                                     </div>
 
-
-                                    <div class="mt50">
+                                    <div class="memberJoinBox mt20">
                                         <h2>개인정보</h2>
                                         <div class="mt20">
-                                            <div>이름</div>
-                                            <div>
+                                            <div class="joinBoxTitle">이름</div>
+                                            <div class="joinBoxInput">
                                                 <input type="text">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>사진</div>
-                                            <div>
-                                                <input type="file">
-                                                <label>찾아보기</label>
+                                            <div class="joinBoxTitle">사진</div>
+                                            
+                                            <div class="joinBoxInput">
+                                                <div class="fileInputWrap">
+                                                    <input type="text" name="" id="webThumb" readonly="readonly" />
+                                                    <div class="btnFlieWrap">
+                                                        <input type="button" value="찾아보기" />
+                                                        <input type="file" name="" id="" onchange="javascript:document.getElementById('webThumb').value = this.value;" />
+                                                    </div>
+                                                </div>
                                             </div>
+
                                         </div>
 
 
                                         <div class="mt20">
-                                            <div>이메일</div>
-                                            <input type="email">@<input type="email">
-                                            <select>
-                                                <option value="dd">aaa</option>
-                                                <option>bbbb</option>
-                                                <option>ccc</option>
-                                            </select>
-                                            <p>※ 인턴십 프로그램 및 취업 정보 안내 메일의 정확한 수신을 위해<br/>한메일 이외의 수신받을 수 있는 메일주소를 기입 바랍니다.</p>                                            
-                                        </div>
-
-
-                                        <div class="mt20">
-                                            <div>이메일 수신</div>
-                                            <div>
-                                                <input type="radio">수신
-                                                <input type="radio">미수신
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>성별</div>
-                                            <div>
-                                                <input type="radio">남
-                                                <input type="radio">여
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>생년월일</div>
-                                            <div>
-                                                <select>
-                                                    <option>1111</option>
+                                            <div class="joinBoxTitle">이메일</div>
+                                            <div class="joinBoxEmail">
+                                                <input type="email" class="emailInput">@<input type="email" class="emailInput">
+                                                <select class="emailSelect">
+                                                    <option value="dd">aaa</option>
+                                                    <option>bbbb</option>
+                                                    <option>ccc</option>
                                                 </select>
-                                                년
-                                                <select>
-                                                    <option>11</option>
-                                                </select>
-                                                월
-                                                <select>
-                                                    <option>11</option>
-                                                </select>
-                                                일                                               
+                                            </div>
+                                            <p class="joinEmailText">※ 인턴십 프로그램 및 취업 정보 안내 메일의 정확한 수신을 위해<br/>한메일 이외의 수신받을 수 있는 메일주소를 기입 바랍니다.</p>                                            
+                                        </div>
+
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">이메일 수신</div>
+                                            <div class="joinBoxRadio">
+                                                <input type="radio">
+                                                <label for="">수신</label>
+                                                <input type="radio">
+                                                <label for="">미수신</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">성별</div>
+                                            <div class="joinBoxRadio">
+                                                <input type="radio">
+                                                <label for="">남</label>
+                                                <input type="radio">
+                                                <label for="">여</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">집전화번호</div>
+                                            <div class="joinBoxPhone">
+                                                <input type="tel" class="phoneInput"> - <input type="tel" class="phoneInput"> - <input type="tel" class="phoneInput"> 
+                                            </div>
+                                        </div>
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">휴대전화</div>
+                                            <div class="joinBoxPhone">
+                                                <input type="tel" class="phoneInput"> - <input type="tel" class="phoneInput"> - <input type="tel" class="phoneInput"> 
                                             </div>
                                         </div>
 
 
                                         <div class="mt20">
-                                            <div>집전화번호</div>
-                                            <div>
-                                                <input type="text"> - <input type="text"> - <input type="text"> 
+                                            <div class="joinBoxTitle">SMS 수신</div>
+                                            <div class="joinBoxRadio">
+                                                <input type="radio">
+                                                <label for="">수신</label>
+                                                <input type="radio">
+                                                <label for="">미수신</label>
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>휴대전화</div>
-                                            <div>
-                                                <input type="text"> - <input type="text"> - <input type="text"> 
-                                            </div>
-                                        </div>
-
-
-                                        <div class="mt20">
-                                            <div>SMS 수신</div>
-                                            <div>
-                                                <input type="radio">수신
-                                                <input type="radio">미수신
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>Skype ID</div>
-                                            <div>
+                                            <div class="joinBoxTitle">Skype ID</div>
+                                            <div class="joinBoxInput">
                                                 <input type="text">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>학교명 / 직장명</div>
-                                            <div>
+                                            <div class="joinBoxTitle">학교명 / 직장명</div>
+                                            <div class="joinBoxInput">
                                                 <input type="text">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>학과</div>
-                                            <div>
+                                            <div class="joinBoxTitle">학과</div>
+                                            <div class="joinBoxSelect">
+                                                <input type="text" class="f_left">
+                                                <select class="f_right">
+                                                    <option>선택</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">전공 / 부서</div>
+                                            <div class="joinBoxInput">
+                                                <input type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">주소</div>
+                                            <div class="joinBoxAdress">
+                                                <input type="text" class="adressInput"> - <input type="text" class="adressInput">
+                                                <button class="joinBtn01">우편번호</button>
+                                                <div class="joinBoxInput">
+                                                    <input type="text">
+                                                </div>
+                                                <div class="joinBoxInput">
+                                                    <input type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">희망국가</div>
+                                            <div class="joinBoxSelect">
                                                 <input type="text">
                                                 <select>
                                                     <option>선택</option>
@@ -177,34 +205,8 @@
                                         </div>
 
                                         <div class="mt20">
-                                            <div>전공 / 부서</div>
-                                            <div>
-                                                <input type="text">
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>주소</div>
-                                            <div>
-                                                <input type="text"> - <input type="text"><a href="/">우편번호</a>
-                                                <input type="text">
-                                                <input type="text">
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>희망국가</div>
-                                            <div>
-                                                <input type="text">
-                                                <select>
-                                                    <option>선택</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>지원부서</div>
-                                            <div>
+                                            <div class="joinBoxTitle">지원부서</div>
+                                            <div class="joinBoxSelect">
                                                 <input type="text">
                                                 <select>
                                                     <option>선택</option>
@@ -214,193 +216,278 @@
 
 
                                         <div class="mt20">
-                                            <div>이메일 수신</div>
-                                            <div>
-                                                <span>영어</span>
-                                                <input type="radio">5점
-                                                <input type="radio">4점
-                                                <input type="radio">3점
-                                                <input type="radio">2점
-                                                <input type="radio">1점
+                                            <div class="joinBoxTitle">이메일 수신</div>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">영어</span>
+                                                <input type="radio">
+                                                <label for="">5점</label>
+                                                <input type="radio">
+                                                <label for="">4점</label>
+                                                <input type="radio">
+                                                <label for="">3점</label>
+                                                <input type="radio">
+                                                <label for="">2점</label>
+                                                <input type="radio">
+                                                <label for="">1점</label>
                                             </div>
-                                            <div>
-                                                <span>일본어</span>
-                                                <input type="radio">5점
-                                                <input type="radio">4점
-                                                <input type="radio">3점
-                                                <input type="radio">2점
-                                                <input type="radio">1점
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">일본어</span>
+                                                <input type="radio">
+                                                <label for="">5점</label>
+                                                <input type="radio">
+                                                <label for="">4점</label>
+                                                <input type="radio">
+                                                <label for="">3점</label>
+                                                <input type="radio">
+                                                <label for="">2점</label>
+                                                <input type="radio">
+                                                <label for="">1점</label>
                                             </div>
-                                            <div>
-                                                <span>중국어</span>
-                                                <input type="radio">5점
-                                                <input type="radio">4점
-                                                <input type="radio">3점
-                                                <input type="radio">2점
-                                                <input type="radio">1점
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">중국어</span>
+                                                <input type="radio">
+                                                <label for="">5점</label>
+                                                <input type="radio">
+                                                <label for="">4점</label>
+                                                <input type="radio">
+                                                <label for="">3점</label>
+                                                <input type="radio">
+                                                <label for="">2점</label>
+                                                <input type="radio">
+                                                <label for="">1점</label>
                                             </div>
                                         </div>
 
 
                                         <div class="mt20">
-                                            <div>해외연수</div>
-                                            <div>
-                                                <span>국가</span>
+                                            <div class="joinBoxTitle">해외연수</div>
+                                            <div class="joinBoxEtc">
+                                                <span class="joinSubEtcTitle">국가</span>
+                                                <div class="joinBoxEtcSelect">
+                                                    <input type="text">
+                                                    <select>
+                                                        <option>선택</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">기간</span>
+                                                <input type="radio">
+                                                <label for="">없음</label>
+                                                <input type="radio">
+                                                <label for="">6개월미만</label>
+                                                <input type="radio">
+                                                <label for="">12개월미만</label>
+                                                <input type="radio">
+                                                <label for="">12개월이상</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">해외연수경험</div>
+                                            <div class="joinBoxEtc">
+                                                <span class="joinSubEtcTitle">국가</span>
+                                                <div class="joinBoxEtcSelect">
+                                                    <input type="text">
+                                                    <select>
+                                                        <option>선택</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">기간</span>
+                                                <input type="radio">
+                                                <label for="">없음</label>
+                                                <input type="radio">
+                                                <label for="">6개월미만</label>
+                                                <input type="radio">
+                                                <label for="">12개월미만</label>
+                                                <input type="radio">
+                                                <label for="">12개월이상</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">국내외근무경력1</div>
+                                            <div class="joinBoxEtc">
+                                                <span class="joinSubEtcTitle">회사명</span>
+                                                <div class="joinBoxEtcSelect">
+                                                    <input type="text" class="wd100">
+                                                </div>
+                                            </div>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">기간</span>
+                                                <input type="radio">
+                                                <label for="">없음</label>
+                                                <input type="radio">
+                                                <label for="">3개월미만</label>
+                                                <input type="radio">
+                                                <label for="">6개월미만</label>
+                                                <input type="radio">
+                                                <label for="">12개월미만</label>
+                                                <input type="radio">
+                                                <label for="">12개월이상</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">국내외근무경력2</div>
+                                            <div class="joinBoxEtc">
+                                                <span class="joinSubEtcTitle">회사명</span>
+                                                <div class="joinBoxEtcSelect">
+                                                    <input type="text" class="wd100">
+                                                </div>
+                                            </div>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">기간</span>
+                                                <input type="radio">
+                                                <label for="">없음</label>
+                                                <input type="radio">
+                                                <label for="">3개월미만</label>
+                                                <input type="radio">
+                                                <label for="">6개월미만</label>
+                                                <input type="radio">
+                                                <label for="">12개월미만</label>
+                                                <input type="radio">
+                                                <label for="">12개월이상</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">국내외근무경력3</div>
+                                            <div class="joinBoxEtc">
+                                                <span class="joinSubEtcTitle">회사명</span>
+                                                <div class="joinBoxEtcSelect">
+                                                    <input type="text" class="wd100">
+                                                </div>
+                                            </div>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">기간</span>
+                                                <input type="radio">
+                                                <label for="">없음</label>
+                                                <input type="radio">
+                                                <label for="">3개월미만</label>
+                                                <input type="radio">
+                                                <label for="">6개월미만</label>
+                                                <input type="radio">
+                                                <label for="">12개월미만</label>
+                                                <input type="radio">
+                                                <label for="">12개월이상</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">자격증</div>
+                                            <div class="joinBoxRadio mt20">
+                                                <input type="radio">
+                                                <label for="">없음</label>
+                                                <input type="radio">
+                                                <label for="">있음</label>
+                                                <input type="text" class="joinBoxSubInput">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">여권소지여부</div>
+                                            <div class="joinBoxRadio">
+                                                <input type="radio">
+                                                <label for="">없음</label>
+                                                <input type="radio">
+                                                <label for="">있음</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">W/H (워킹홀리데이) 비자소지유무</div>
+                                            <div class="joinBoxRadio">
+                                                <input type="radio">
+                                                <label for="">없음</label>
+                                                <input type="radio">
+                                                <label for="">있음</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">추천인</div>
+                                            <div class="joinBoxInput">
                                                 <input type="text">
-                                                <select>
-                                                    <option>선택</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <span>기간</span>
-                                                <input type="radio">없음
-                                                <input type="radio">6개월미만
-                                                <input type="radio">12개월미만
-                                                <input type="radio">12개월이상
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>해외연수경험</div>
-                                            <div>
-                                                <span>국가</span>
-                                                <input type="text">
-                                                <select>
-                                                    <option>선택</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <span>기간</span>
-                                                <input type="radio">없음
-                                                <input type="radio">6개월미만
-                                                <input type="radio">12개월미만
-                                                <input type="radio">12개월이상
                                             </div>
                                         </div>
 
 
                                         <div class="mt20">
-                                            <div>국내외근무경력1</div>
-                                            <div>
-                                                <span>회사명</span>
-                                                <input type="text">
+                                            <div class="joinBoxTitle">이력서등록</div>
+                                            <div class="joinBoxInput">
+                                                <div class="fileInputWrap">
+                                                    <input type="text" name="" id="webThumb" readonly="readonly" />
+                                                    <div class="btnFlieWrap">
+                                                        <input type="button" value="찾아보기" />
+                                                        <input type="file" name="" id="" onchange="javascript:document.getElementById('webThumb').value = this.value;" />
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <span>기간</span>
-                                                <input type="radio">없음
-                                                <input type="radio">3개월미만
-                                                <input type="radio">6개월미만
-                                                <input type="radio">12개월미만
-                                                <input type="radio">12개월이상
-                                            </div>
+
                                         </div>
 
                                         <div class="mt20">
-                                            <div>국내외근무경력2</div>
-                                            <div>
-                                                <span>회사명</span>
-                                                <input type="text">
-                                            </div>
-                                            <div>
-                                                <span>기간</span>
-                                                <input type="radio">없음
-                                                <input type="radio">3개월미만
-                                                <input type="radio">6개월미만
-                                                <input type="radio">12개월미만
-                                                <input type="radio">12개월이상
-                                            </div>
-                                        </div>
-
-
-                                        <div class="mt20">
-                                            <div>국내외근무경력3</div>
-                                            <div>
-                                                <span>회사명</span>
-                                                <input type="text">
-                                            </div>
-                                            <div>
-                                                <span>기간</span>
-                                                <input type="radio">없음
-                                                <input type="radio">3개월미만
-                                                <input type="radio">6개월미만
-                                                <input type="radio">12개월미만
-                                                <input type="radio">12개월이상
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>자격증</div>
-                                            <div>
-                                                <input type="radio">없음
-                                                <input type="radio">있음
-                                                <input type="text">
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>여권소지여부</div>
-                                            <div>
-                                                <input type="radio">없음
-                                                <input type="radio">있음
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>W/H (워킹홀리데이) 비자소지유무</div>
-                                            <div>
-                                                <input type="radio">없음
-                                                <input type="radio">있음
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>추천인</div>
-                                            <div>
-                                                <input type="text">
-                                            </div>
-                                        </div>
-
-
-                                        <div class="mt20">
-                                            <div>이력서등록</div>
-                                            <div>
-                                                <input type="file">
-                                                <label>찾아보기</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>추천경로</div>
-                                            <div>
-                                                <span><input type="checkbox">신문광고</span>
-                                                <span><input type="checkbox">SMS 매체</span>
-                                                <span><input type="checkbox">온라인검색</span>
-                                                <span><input type="checkbox">학교설명회/박람회</span>
-                                                <span><input type="checkbox">광고홍보물</span>
-                                                <span><input type="checkbox">친구/친척소개</span>
-                                                <span><input type="checkbox">교수님/선배소개</span>
-                                                <span><input type="checkbox">업체 소개</span>
-                                                <span><input type="checkbox">기타 <input tyep="text"></span>
+                                            <div class="joinBoxTitle">추천경로</div>
+                                            <div class="joinBoxCheckbox">
+                                                <ul>
+                                                    <li>
+                                                        <input type="checkbox">
+                                                        <label for="">신문광고</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox">
+                                                        <label for="">SMS매체</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox">
+                                                        <label for="">온라인검색</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox">
+                                                        <label for="">학교설명회/박람회</label>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li>
+                                                        <input type="checkbox">
+                                                        <label for="">광고홍보물</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox">
+                                                        <label for="">친구/친척소개</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox">
+                                                        <label for="">교수님/선배소개</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox">
+                                                        <label for="">업체소개</label>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li class="mt10">
+                                                        <input type="checkbox">
+                                                        <label for="">기타</label>
+                                                        <input type="text" class="TextInput">
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
 
 
 
                                     </div>
-
-
-
-
-
 
                                     <div class="memberBtn mt50">
-                                        <div class="memberBtnOk"><a href="/">회원가입</a></div>
-                                        <div class="memberBtnCancel"><a href="/">가입취소</a></div>
+                                        <button class="memberBtnOk wd48 f_left">회원가입</button>
+                                        <button class="memberBtnCancel wd48 f_right">가입취소</button>
                                     </div>
-
-
-
-
 
                                 </div>
                             </div>
@@ -411,11 +498,7 @@
             </div>
 
 
-
-            
         <?php include 'footer.php'; ?>
-
-
 
 
         </div>

@@ -135,6 +135,16 @@ input[type="search"]::-webkit-search-decoration {-webkit-appearance: none; outli
 .ph100 { padding-top:100px !important; padding-bottom:100px !important;}
 
 
+/* width */
+.wd20 {width:20% !important;}
+.wd30 {width:30% !important;}
+.wd40 {width:40% !important;}
+.wd48 {width:48% !important;}
+.wd50 {width:50% !important;}
+.wd80 {width:80% !important;}
+.wd100 {width:100% !important;}
+
+
 /* border */
 .n_br {border:none !important;}
 
@@ -153,8 +163,6 @@ input[type="search"]::-webkit-search-decoration {-webkit-appearance: none; outli
 
 .clearfix {clear:both !important;}
 .clear:after {clear:both;display:block;content:'';}
-
-
 
 
 /* input style */

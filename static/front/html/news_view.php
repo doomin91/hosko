@@ -102,6 +102,7 @@
                                                     <p class="delete"><a href="/"><img src="./static/img/icon_comment_del.png" alt="댓글삭제"></a></p>
                                                 </div>
                                             </div>
+
                                         </div>
 
                                         <div class="pagination">

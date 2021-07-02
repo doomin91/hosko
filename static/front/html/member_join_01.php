@@ -40,27 +40,28 @@
                                         <p>단, 유료화서비스와 인증절차가 필요한 경우 해당절차를 거펴야 서비스를 이용하실 수 있습니다.</p>
                                     </div>
                                     
-                                    <div>
-                                        <div>
+                                    <div class="agreecboxwrap">
+                                        <div class="agreebox_top">
                                             <input type="checkbox">
                                             <label>이용약관</label>
                                         </div>
-                                        <div>
-                                            <textarea>이용약관 텍스트</textarea>
+                                        <div class="agreebox_con">
+                                            <textarea>이용약관 테스트</textarea>
                                         </div>
-                                        <div>
+                                        <div class="agreebox_top mt30">
                                             <input type="checkbox">
                                             <label>개인정보 수집 및 이용 (필수)</label>
                                         </div>
-                                        <div>
+                                        <div class="agreebox_con">
                                             <textarea>개인정보 수집 및 이용 텍스트</textarea>
                                         </div>
                                     </div>
 
                                     <div class="memberBtn mt50">
-                                        <div class="memberBtnOk"><a href="/">회원가입</a></div>
-                                        <div class="memberBtnCancel"><a href="/">가입취소</a></div>
+                                        <button class="memberBtnOk wd48 f_left">회원가입</button>
+                                        <button class="memberBtnCancel wd48 f_right">가입취소</button>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
