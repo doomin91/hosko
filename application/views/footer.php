@@ -9,7 +9,7 @@
 
     <div class="footer_info">
         <div class="f_logo">
-            <img src="/static/front/img/f_hosko_logo.png">
+            <img src="static/img/f_hosko_logo.png">
         </div>
         <div class="f_address">
             <ul>
@@ -22,3 +22,20 @@
         </div>
     </div>
 </footer>
+
+
+<script type="text/javascript">
+        $(function(){
+        
+        $("ul.sub").hide();
+        
+        $("ul.gnb_menu li").hover(function(){
+        
+        $("ul:not(:animated)",this).slideDown("fast");
+        },
+        function(){
+            $("ul",this).slideUp("fast");
+        });
+
+    });	
+</script>

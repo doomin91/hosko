@@ -17,7 +17,7 @@
                     </div>
                     <div class="sub_contents">
 
-                        <div class="inner">
+                    <div class="inner">
                             <div class="joinWrap">
                                 <div class="joinContentTop">
                                     <h2>Sign up to be a member</h2>
@@ -34,17 +34,16 @@
                                         </ul>
                                     </div>
                                     
-                                    <div>
-                                        <div>
+                                    <div class="joinBoxComplete">
+                                        <div class="joinBoxEnd">
                                             <p><img src="/static/front/img/member_icon01.png" /></p>
                                             <h2>회원가입완료</h2>
                                             <h3>회원가입이 완료되었습니다. 로그인 후 다양한 서비스를 이용하실 수 있습니다.</h3>
                                         </div>
                                     </div>
-
                                     <div class="memberBtn mt50">
-                                        <div class="memberBtnOk"><a href="/member/login">LOGIN</a></div>
-                                        <div class="memberBtnCancel"><a href="/">HOME</a></div>
+                                        <button id="goLogin" class="memberBtnOk wd48 f_left">LOGIN</button>
+                                        <button id="goHome" class="memberBtnCancel wd48 f_right">HOME</button>
                                     </div>
                                 </div>
                             </div>
@@ -62,8 +61,14 @@
     </body>
 </html>
 
+<script type="text/javascript">
+$(function(){
+    $(document).on("click", "#goLogin", function(){
+        document.location.href="/member/login";
+    });
 
-
-
-
-
+    $(document).on("click", "#goHome", function(){
+        document.location.href="/";
+    });
+});
+</script>

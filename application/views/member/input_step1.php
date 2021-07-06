@@ -40,26 +40,32 @@
                                         <p>단, 유료화서비스와 인증절차가 필요한 경우 해당절차를 거펴야 서비스를 이용하실 수 있습니다.</p>
                                     </div>
                                     
-                                    <div>
-                                        <div>
+                                    <div class="agreeTextBox mt30">
+                                        <p>HOSKO 서비스를 이용하기 위해 이용자는 이용약관을 읽어보시고 동의하셔야 합니다.</p>
+                                        <p>일반회원등록은 무료이며, 등록 즉시 서비스 이용이 가능합니다.</p>
+                                        <p>단, 유료화서비스와 인증절차가 필요한 경우 해당절차를 거펴야 서비스를 이용하실 수 있습니다.</p>
+                                    </div>
+                                    
+                                    <div class="agreecboxwrap">
+                                        <div class="agreebox_top">
                                             <input type="checkbox" id="agree1">
                                             <label for="agree1">이용약관</label>
                                         </div>
-                                        <div>
-                                            <textarea style="width:100%; height:100px" placeholder="이용약관 텍스트"></textarea>
+                                        <div class="agreebox_con">
+                                            <textarea>이용약관 테스트</textarea>
                                         </div>
-                                        <div>
+                                        <div class="agreebox_top mt30">
                                             <input type="checkbox" id="agree2">
                                             <label for="agree2">개인정보 수집 및 이용 (필수)</label>
                                         </div>
-                                        <div>
-                                            <textarea style="width:100%; height:100px" placeholder="개인정보 수집 및 이용 텍스트"></textarea>
+                                        <div class="agreebox_con">
+                                            <textarea>개인정보 수집 및 이용 텍스트</textarea>
                                         </div>
                                     </div>
 
-                                    <div class="memberBtn mt50" style="text-align:center">
-                                        <div class="memberBtnOk"><a href="#" id="next">회원가입</a></div>
-                                        <div class="memberBtnCancel"><a href="/">가입취소</a></div>
+                                    <div class="memberBtn mt50">
+                                        <button id="next" class="memberBtnOk wd48 f_left">회원가입</button>
+                                        <button type="button" class="memberBtnCancel wd48 f_right">가입취소</button>
                                     </div>
                                 </div>
                             </div>

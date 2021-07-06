@@ -17,14 +17,14 @@
 
                     </div>
                     <div class="sub_contents">
-
                         <div class="inner">
-                            <div class="joinWrap" style="height:3900px;">
+                            <div class="joinWrap">
                                 <div class="joinContentTop">
                                     <h2>Sign up to be a member</h2>
                                     <h3>HOSKO에 오신것을 환영합니다.</h3>
                                     <p>호스코만의 특별한 멤버쉽 서비스를 만나보세요.</p>
                                 </div>
+
 
                                 <div class="joinContent">
                                 
@@ -41,130 +41,144 @@
                                         <p>일반회원등록은 무료이며, 등록 즉시 서비스 이용이 가능합니다.</p>
                                         <p>단, 유료화서비스와 인증절차가 필요한 경우 해당절차를 거펴야 서비스를 이용하실 수 있습니다.</p>
                                     </div>
-                                <form name="form1" id="form1">
-                                <input type="hidden" name="id_check"/>
-                                    <div class="mt50"> 
+                                <form name="form1" id="form1" enctype="multipart/form-data">
+                                <input type="hidden" name="id_check" value="false"/>
+                                    <div class="memberJoinBox mt50"> 
                                         <h2>로그인 정보</h2>
                                         <div class="mt20">
-                                            <div>아이디</div>
-                                            <div>
-                                                <input type="text" name="user_id" class="input_s1">
-                                                <div><a href="/">중복확인</a></div>    
+                                            <div class="joinBoxTitle">아이디</div>
+                                            <div class="joinBoxInput">
+                                                <input type="text" class="wd80" name="user_id" placeholder="4자이상 12자이하">
+                                                <button type="button" class="joinBtn01" id="idCheck">중복확인</button>
                                             </div>
                                         </div>
+
                                         <div class="mt20">
-                                            <div>비밀번호</div>
-                                            <div>
-                                                <input type="password" name="user_pass" class="input_s1">
+                                            <div class="joinBoxTitle">비밀번호</div>
+                                            <div class="joinBoxInput">
+                                                <input type="password" name="user_pass" placeholder="영문소문자, 숫자포함 4~12자 이내 사용가능">
                                             </div>
                                         </div>
+
                                         <div class="mt20">
-                                            <div>비밀번호확인</div>
-                                            <div>
-                                                <input type="password" name="user_pass_chk" class="input_s1">
+                                            <div class="joinBoxTitle">비밀번호확인</div>
+                                            <div class="joinBoxInput">
+                                                <input type="password" name="user_pass_chk">
                                             </div>
                                         </div> 
                                     </div>
 
-
-                                    <div class="mt50">
+                                    <div class="memberJoinBox mt20">
                                         <h2>개인정보</h2>
                                         <div class="mt20">
-                                            <div>이름</div>
-                                            <div>
-                                                <input type="text" name="user_name" class="input_s1">
+                                            <div class="joinBoxTitle">이름</div>
+                                            <div class="joinBoxInput">
+                                                <input type="text" name="user_name">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>사진</div>
-                                            <div>
-                                                <input type="file" name="user_profile" class="input_s1">
-                                                <label>찾아보기</label>
+                                            <div class="joinBoxTitle">사진</div>
+                                            
+                                            <div class="joinBoxInput">
+                                                <div class="fileInputWrap">
+                                                    <input type="text" name="" id="webThumb" readonly="readonly" />
+                                                    <div class="btnFlieWrap">
+                                                        <input type="button" value="찾아보기" />
+                                                        <input type="file" id="user_profile" name="user_profile" onchange="javascript:document.getElementById('webThumb').value = this.value;" />
+                                                    </div>
+                                                </div>
                                             </div>
+
                                         </div>
 
-
                                         <div class="mt20">
-                                            <div>이메일</div>
-                                            <input type="text" name="user_email1" class="input_s1" style="width:25% !important">@<input type="text" name="user_email2" class="input_s1" style="width:25% !important">
-                                            <select name="user_email_sel" class="select_s1" style="width:25% !important">
-                                                <option value="">직접입력</option>
-                                                <option value="nate.com">nate.com</option>
-                                                <option value="naver.com">naver.com</option>
-                                                <option value="gmail.com">gmail.com</option>
-                                                <option value="yahoo.com">yahoo.com</option>
-                                                <option value="hotmail.com">hotmail.com</option>
-                                            </select>
-                                            <p>※ 인턴십 프로그램 및 취업 정보 안내 메일의 정확한 수신을 위해<br/>한메일 이외의 수신받을 수 있는 메일주소를 기입 바랍니다.</p>                                            
-                                        </div>
-
-
-                                        <div class="mt20">
-                                            <div>이메일 수신</div>
-                                            <div>
-                                                <input type="radio" name="user_mail_flag" value="Y" checked id="mailY"><label for="mailY">수신</label>
-                                                <input type="radio" name="user_mail_flag" value="N" id="mailN"><label for="mailN">미수신</label>
+                                            <div class="joinBoxTitle">이메일</div>
+                                            <div class="joinBoxEmail">
+                                                <input type="email" name="user_email1" class="emailInput">@<input type="email" name="user_email2" class="emailInput">
+                                                <select name="user_email_sel" class="emailSelect">
+                                                    <option value="">직접입력</option>
+                                                    <option value="nate.com">nate.com</option>
+                                                    <option value="naver.com">naver.com</option>
+                                                    <option value="gmail.com">gmail.com</option>
+                                                    <option value="yahoo.com">yahoo.com</option>
+                                                    <option value="hotmail.com">hotmail.com</option>
+                                                </select>
                                             </div>
+                                            <p class="joinEmailText">※ 인턴십 프로그램 및 취업 정보 안내 메일의 정확한 수신을 위해<br/>한메일 이외의 수신받을 수 있는 메일주소를 기입 바랍니다.</p>                                            
                                         </div>
 
                                         <div class="mt20">
-                                            <div>성별</div>
-                                            <div>
-                                                <input type="radio" name="user_sex" value="M" checked id="sexM"><label for="sexM">남</label>
-                                                <input type="radio" name="user_sex" value="F" id="sexF"><label for="sexF">여</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div>생년월일</div>
-                                            <div>
-                                                <input type="text" name="user_birthday" class="input_s1 datepicker">
-                                            </div>
-                                        </div>
-
-
-                                        <div class="mt20">
-                                            <div>집전화번호</div>
-                                            <div>
-                                                <input type="number" name="tel1" class="input_s1" style="width:25% !important"> - <input type="number" name="tel2" class="input_s1" style="width:25% !important"> - <input type="number" name="tel3" class="input_s1" style="width:25% !important"> 
+                                            <div class="joinBoxTitle">이메일 수신</div>
+                                            <div class="joinBoxRadio">
+                                                <input type="radio" name="user_mail_flag" id="mailY" value="Y" checked>
+                                                <label for="mailY">수신</label>
+                                                <input type="radio" name="user_mail_flag" id="mailN" value="N">
+                                                <label for="mailN">미수신</label>
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>휴대전화</div>
-                                            <div>
-                                                <input type="number" name="hp1" class="input_s1" style="width:25% !important"> - <input type="number" name="hp2" class="input_s1" style="width:25% !important"> - <input type="number" name="hp3" class="input_s1" style="width:25% !important"> 
+                                            <div class="joinBoxTitle">성별</div>
+                                            <div class="joinBoxRadio">
+                                                <input type="radio" name="user_sex" value="M" checked id="sexM">
+                                                <label for="sexM">남</label>
+                                                <input type="radio" name="user_sex" value="F" id="sexF">
+                                                <label for="sexF">여</label>
                                             </div>
                                         </div>
 
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">생년월일</div>
+                                            <div class="joinBoxInput">
+                                                <input type="text" name="user_birthday" value="" class="datepicker">
+                                            </div>
+                                        </div>
 
                                         <div class="mt20">
-                                            <div>SMS 수신</div>
-                                            <div>
+                                            <div class="joinBoxTitle">집전화번호</div>
+                                            <div class="joinBoxPhone">
+                                                <input type="tel" class="phoneInput" name="tel1">
+                                                 - <input type="tel" class="phoneInput" name="tel2">
+                                                 - <input type="tel" class="phoneInput" name="tel3"> 
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">휴대전화</div>
+                                            <div class="joinBoxPhone">
+                                                <input type="tel" class="phoneInput" name="hp1">
+                                                 - <input type="tel" class="phoneInput" name="hp2">
+                                                 - <input type="tel" class="phoneInput" name="hp3"> 
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">SMS 수신</div>
+                                            <div class="joinBoxRadio">
                                                 <input type="radio" name="user_sms_flag" value="Y" checked id="smsY"><label for="smsY">수신</lebel>
                                                 <input type="radio" name="user_sms_flag" value="N" id="smsN"><label for="smsN">미수신</label>
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>Skype ID</div>
-                                            <div>
-                                                <input type="text" name="user_skype_id" class="input_s1">
+                                            <div class="joinBoxTitle">Skype ID</div>
+                                            <div class="joinBoxInput">
+                                                <input type="text" name="user_skype_id">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>학교명 / 직장명</div>
-                                            <div>
-                                                <input type="text" name="user_company" class="input_s1">
+                                            <div class="joinBoxTitle">학교명 / 직장명</div>
+                                            <div class="joinBoxInput">
+                                                <input type="text" name="user_company">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>학과</div>
-                                            <div>
-                                                <select name="user_department" class="select_s1">
+                                            <div class="joinBoxTitle">학과</div>
+                                            <div class="joinBoxSelect">
+                                                <select class="" name="user_department">
                                                     <option value="">학과선택</option>
                                                     <option value="1">호텔/관광</option>
                                                     <option value="3">조리</option>
@@ -174,25 +188,30 @@
                                         </div>
 
                                         <div class="mt20">
-                                            <div>전공 / 부서</div>
-                                            <div>
-                                                <input type="text" name="user_major" class="input_s1">
+                                            <div class="joinBoxTitle">전공 / 부서</div>
+                                            <div class="joinBoxInput">
+                                                <input type="text" name="user_major">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>주소</div>
-                                            <div>
-                                                <input type="text" name="user_zip" id="user_zip" class="input_s1" style="width:30% !important"><button type="button" id="searchZip">우편번호 검색</button><br>
-                                                <input type="text" name="user_addr1" id="user_addr1" class="input_s1"><br>
-                                                <input type="text" name="user_addr2" id="user_addr2" class="input_s1">
+                                            <div class="joinBoxTitle">주소</div>
+                                            <div class="joinBoxAdress">
+                                                <input type="text" name="user_zip" id="user_zip" class="adressInput">
+                                                <button type="button" class="joinBtn01" id="searchZip">우편번호</button>
+                                                <div class="joinBoxInput">
+                                                    <input type="text" name="user_addr1" id="user_addr1">
+                                                </div>
+                                                <div class="joinBoxInput">
+                                                    <input type="text" name="user_addr2" id="user_addr2">
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>희망국가</div>
-                                            <div>
-                                                <select name="user_hope_nation" class="select_s1">
+                                            <div class="joinBoxTitle">희망국가</div>
+                                            <div class="joinBoxSelect">
+                                                <select name="user_hope_nation">
                                                     <option value="">선택</option>
                                                     <option value="1">미국</option>
                                                     <option value="2">괌</option>
@@ -208,104 +227,127 @@
                                         </div>
 
                                         <div class="mt20">
-                                            <div>지원부서</div>
-                                            <div>
-                                                <input type="text" name="user_hope_part" class="input_s1">
+                                            <div class="joinBoxTitle">지원부서</div>
+                                            <div class="joinBoxInput">
+                                                <input type="text" name="user_hope_part">
                                             </div>
                                         </div>
-
-
+                                        
                                         <div class="mt20">
-                                            <div>회화능력</div>
-                                            <div>
-                                                <span>영어</span>
-                                                <input type="radio" name="user_skill_eng" value="5" id="eng5"><label for="eng5">5점</label>
-                                                <input type="radio" name="user_skill_eng" value="4" id="eng4"><label for="eng4">4점</label>
-                                                <input type="radio" name="user_skill_eng" value="3" id="eng3"><label for="eng3">3점</label>
-                                                <input type="radio" name="user_skill_eng" value="2" id="eng2"><label for="eng2">2점</label>
-                                                <input type="radio" name="user_skill_eng" value="1" id="eng1"><label for="eng1">1점</label>
-                                                <input type="radio" name="user_skill_eng" value="0" checked id="eng0"><label for="eng0">모름</label>
+                                            <div class="joinBoxTitle">이메일 수신</div>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">영어</span>
+                                                <input type="radio" name="user_skill_eng" value="5" id="eng5">
+                                                <label for="eng5">5점</label>
+                                                <input type="radio" name="user_skill_eng" value="4" id="eng4">
+                                                <label for="eng4">4점</label>
+                                                <input type="radio" name="user_skill_eng" value="3" id="eng3">
+                                                <label for="eng3">3점</label>
+                                                <input type="radio" name="user_skill_eng" value="2" id="eng2">
+                                                <label for="eng2">2점</label>
+                                                <input type="radio" name="user_skill_eng" value="1" id="eng1">
+                                                <label for="eng1">1점</label>
                                             </div>
-                                            <div>
-                                                <span>일본어</span>
-                                                <input type="radio" name="user_skill_jp" value="5" id="jp5"><label for="jp5">5점</label>
-                                                <input type="radio" name="user_skill_jp" value="4" id="jp4"><label for="jp4">4점</label>
-                                                <input type="radio" name="user_skill_jp" value="3" id="jp3"><label for="jp3">3점</label>
-                                                <input type="radio" name="user_skill_jp" value="2" id="jp2"><label for="jp2">2점</label>
-                                                <input type="radio" name="user_skill_jp" value="1" id="jp1"><label for="jp1">1점</label>
-                                                <input type="radio" name="user_skill_jp" value="0" checked id="jp0"><label for="jp0">모름</label>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">일본어</span>
+                                                <input type="radio" name="user_skill_jp" value="5" id="jp5">
+                                                <label for="jp5">5점</label>
+                                                <input type="radio" name="user_skill_jp" value="4" id="jp4">
+                                                <label for="jp4">4점</label>
+                                                <input type="radio" name="user_skill_jp" value="3" id="jp3">
+                                                <label for="jp3">3점</label>
+                                                <input type="radio" name="user_skill_jp" value="2" id="jp2">
+                                                <label for="jp2">2점</label>
+                                                <input type="radio" name="user_skill_jp" value="1" id="jp1">
+                                                <label for="jp1">1점</label>
                                             </div>
-                                            <div>
-                                                <span>중국어</span>
-                                                <input type="radio" name="user_skill_ch" value="5" id="ch5"><label for="ch5">5점</label>
-                                                <input type="radio" name="user_skill_ch" value="4" id="ch4"><label for="ch4">4점</label>
-                                                <input type="radio" name="user_skill_ch" value="3" id="ch3"><label for="ch3">3점</label>
-                                                <input type="radio" name="user_skill_ch" value="2" id="ch2"><label for="ch2">2점</label>
-                                                <input type="radio" name="user_skill_ch" value="1" id="ch1"><label for="ch1">1점</label>
-                                                <input type="radio" name="user_skill_ch" value="0" checked id="ch0"><label for="ch0">모름</label>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="mt20">
-                                            <div>해외연수</div>
-                                            <div>
-                                                <span>국가</span>
-                                                <select name="user_study_nation" class="select_s1">
-                                                    <option value="">선택</option>
-                                                    <option value="1">미국</option>
-                                                    <option value="2">괌</option>
-                                                    <option value="3">일본</option>
-                                                    <option value="4">호주</option>
-                                                    <option value="5">아시아</option>
-                                                    <option value="6">유럽</option>
-                                                    <option value="7">서남아시아</option>
-                                                    <option value="8">기타</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <span>기간</span>
-                                                <input type="radio" name="user_study_term" value="0" checked id="ust0"><label for="ust0">없음</label>
-                                                <input type="radio" name="user_study_term" value="1" id="ust1"><label for="ust1">6개월미만</label>
-                                                <input type="radio" name="user_study_term" value="2" id="ust2"><label for="ust2">12개월미만</label>
-                                                <input type="radio" name="user_study_term" value="3" id="ust3"><label for="ust3">12개월이상</label>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">중국어</span>
+                                                <input type="radio" name="user_skill_ch" value="5" id="ch5">
+                                                <label for="ch5">5점</label>
+                                                <input type="radio" name="user_skill_ch" value="4" id="ch4">
+                                                <label for="ch4">4점</label>
+                                                <input type="radio" name="user_skill_ch" value="3" id="ch3">
+                                                <label for="ch3">3점</label>
+                                                <input type="radio" name="user_skill_ch" value="2" id="ch2">
+                                                <label for="ch2">2점</label>
+                                                <input type="radio" name="user_skill_ch" value="1" id="ch1">
+                                                <label for="ch1">1점</label>
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>해외연수경험</div>
-                                            <div>
-                                                <span>국가</span>
-                                                <select name="user_lan_study_nation" class="select_s1">
-                                                    <option value="">선택</option>
-                                                    <option value="1">미국</option>
-                                                    <option value="2">괌</option>
-                                                    <option value="3">일본</option>
-                                                    <option value="4">호주</option>
-                                                    <option value="5">아시아</option>
-                                                    <option value="6">유럽</option>
-                                                    <option value="7">서남아시아</option>
-                                                    <option value="8">기타</option>
-                                                </select>
+                                            <div class="joinBoxTitle">해외연수</div>
+                                            <div class="joinBoxEtc">
+                                                <span class="joinSubEtcTitle">국가</span>
+                                                <div class="joinBoxEtcSelect">
+                                                    <select name="user_study_nation">
+                                                        <option value="">선택</option>
+                                                        <option value="1">미국</option>
+                                                        <option value="2">괌</option>
+                                                        <option value="3">일본</option>
+                                                        <option value="4">호주</option>
+                                                        <option value="5">아시아</option>
+                                                        <option value="6">유럽</option>
+                                                        <option value="7">서남아시아</option>
+                                                        <option value="8">기타</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <span>기간</span>
-                                                <input type="radio" name="user_lan_study_term" value="0" checked id="ulst0"><label for="ulst0">없음</label>
-                                                <input type="radio" name="user_lan_study_term" value="1" id="ulst1"><label for="ulst1">6개월미만</label>
-                                                <input type="radio" name="user_lan_study_term" value="2" id="ulst2"><label for="ulst2">12개월미만</label>
-                                                <input type="radio" name="user_lan_study_term" value="3" id="ulst3"><label for="ulst3">12개월이상</label>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">기간</span>
+                                                <input type="radio" name="user_study_term" value="0" id="ust0" checked>
+                                                <label for="ust0">없음</label>
+                                                <input type="radio" name="user_study_term" value="1" id="ust1">
+                                                <label for="ust1">6개월미만</label>
+                                                <input type="radio" name="user_study_term" value="2" id="ust2">
+                                                <label for="ust2">12개월미만</label>
+                                                <input type="radio" name="user_study_term" value="3" id="ust3">
+                                                <label for="ust3">12개월이상</label>
                                             </div>
                                         </div>
 
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">해외연수경험</div>
+                                            <div class="joinBoxEtc">
+                                                <span class="joinSubEtcTitle">국가</span>
+                                                <div class="joinBoxEtcSelect">
+                                                    <select name="user_lan_study_nation">
+                                                        <option value="">선택</option>
+                                                        <option value="1">미국</option>
+                                                        <option value="2">괌</option>
+                                                        <option value="3">일본</option>
+                                                        <option value="4">호주</option>
+                                                        <option value="5">아시아</option>
+                                                        <option value="6">유럽</option>
+                                                        <option value="7">서남아시아</option>
+                                                        <option value="8">기타</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">기간</span>
+                                                <input type="radio" name="user_lan_study_term" value="0" checked id="ulst0">
+                                                <label for="ulst0">없음</label>
+                                                <input type="radio" name="user_lan_study_term" value="1" id="ulst1">
+                                                <label for="ulst1">6개월미만</label>
+                                                <input type="radio" name="user_lan_study_term" value="2" id="ulst2">
+                                                <label for="ulst2">12개월미만</label>
+                                                <input type="radio" name="user_lan_study_term" value="3" id="ulst3">
+                                                <label for="ulst3">12개월이상</label>
+                                            </div>
+                                        </div>
 
                                         <div class="mt20">
-                                            <div>국내외근무경력1</div>
-                                            <div>
-                                                <span>회사명</span>
-                                                <input type="text" name="user_work_company" class="input_s1">
+                                            <div class="joinBoxTitle">국내외근무경력1</div>
+                                            <div class="joinBoxEtc">
+                                                <span class="joinSubEtcTitle">회사명</span>
+                                                <div class="joinBoxEtcSelect">
+                                                    <input type="text" class="wd100" name="user_work_company">
+                                                </div>
                                             </div>
-                                            <div>
-                                                <span>기간</span>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">기간</span>
                                                 <input type="radio" name="user_work_term" value="0" checked id="uwt0"><label for="uwt0">없음</label>
                                                 <input type="radio" name="user_work_term" value="1" id="uwt1"><label for="uwt1">3개월미만</label>
                                                 <input type="radio" name="user_work_term" value="2" id="uwt2"><label for="uwt2">6개월미만</label>
@@ -315,13 +357,15 @@
                                         </div>
 
                                         <div class="mt20">
-                                            <div>국내외근무경력2</div>
-                                            <div>
-                                                <span>회사명</span>
-                                                <input type="text" name="user_work_company2" class="input_s1">
+                                            <div class="joinBoxTitle">국내외근무경력2</div>
+                                            <div class="joinBoxEtc">
+                                                <span class="joinSubEtcTitle">회사명</span>
+                                                <div class="joinBoxEtcSelect">
+                                                <input type="text" name="user_work_company2">
+                                                </div>
                                             </div>
-                                            <div>
-                                                <span>기간</span>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">기간</span>
                                                 <input type="radio" name="user_work_term2" value="0" checked id="uwt20"><label for="uwt20">없음</label>
                                                 <input type="radio" name="user_work_term2" value="1" id="uwt21"><label for="uwt21">3개월미만</label>
                                                 <input type="radio" name="user_work_term2" value="2" id="uwt22"><label for="uwt22">6개월미만</label>
@@ -330,15 +374,16 @@
                                             </div>
                                         </div>
 
-
                                         <div class="mt20">
-                                            <div>국내외근무경력3</div>
-                                            <div>
-                                                <span>회사명</span>
-                                                <input type="text" name="user_work_company3" class="input_s1">
+                                            <div class="joinBoxTitle">국내외근무경력2</div>
+                                            <div class="joinBoxEtc">
+                                                <span class="joinSubEtcTitle">회사명</span>
+                                                <div class="joinBoxEtcSelect">
+                                                <input type="text" name="user_work_company3">
+                                                </div>
                                             </div>
-                                            <div>
-                                                <span>기간</span>
+                                            <div class="joinBoxRadio">
+                                                <span class="joinSubTitle">기간</span>
                                                 <input type="radio" name="user_work_term3" value="0" checked id="uwt30"><label for="uwt30">없음
                                                 <input type="radio" name="user_work_term3" value="1" id="uwt31"><label for="uwt31">3개월미만
                                                 <input type="radio" name="user_work_term3" value="2" id="uwt32"><label for="uwt32">6개월미만
@@ -348,66 +393,104 @@
                                         </div>
 
                                         <div class="mt20">
-                                            <div>자격증</div>
-                                            <div>
+                                            <div class="joinBoxTitle">자격증</div>
+                                            <div class="joinBoxRadio mt20">
                                                 <input type="radio" name="user_certi_flag" value="N" checked id="ucfN"><label for="ucfN">없음</label>
                                                 <input type="radio" name="user_certi_flag" value="Y" id="ucfY"><label for="ucfY">있음</label>
-                                                <input type="text" name="user_certificate_name" class="input_s1">
+                                                <input type="text" name="user_certificate_name" class="joinBoxSubInput">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>여권소지여부</div>
-                                            <div>
-                                                <input type="radio" name="user_passport_flag" value="N" checked id="upfN"><label for="upfN">>없음</label>
-                                                <input type="radio" name="user_passport_flag" value="Y" id="upfN"><label for="upfN">>있음</label>
+                                            <div class="joinBoxTitle">여권소지여부</div>
+                                            <div class="joinBoxRadio">
+                                                <input type="radio" name="user_passport_flag" value="N" checked id="upfN"><label for="upfN">없음</label>
+                                                <input type="radio" name="user_passport_flag" value="Y" id="upfN"><label for="upfN">있음</label>
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>W/H (워킹홀리데이) 비자소지유무</div>
-                                            <div>
+                                            <div class="joinBoxTitle">W/H (워킹홀리데이) 비자소지유무</div>
+                                            <div class="joinBoxRadio">
                                                 <input type="radio" name="user_visa_flag" value="N" checked id="uvfN"><label for="uvfN">없음
                                                 <input type="radio" name="user_visa_flag" value="Y" id="uvfY"><label for="uvfY">있음
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>추천인</div>
-                                            <div>
-                                                <input type="text" name="user_recomm_id" class="input_s1">
-                                            </div>
-                                        </div>
-
-
-                                        <div class="mt20">
-                                            <div>이력서등록</div>
-                                            <div>
-                                                <input type="file" name="user_profile_doc" class="input_s1">
-                                                <label>찾아보기</label>
+                                            <div class="joinBoxTitle">추천인</div>
+                                            <div class="joinBoxInput">
+                                                <input type="text" name="user_recomm_id">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
-                                            <div>추천경로</div>
-                                            <div>
-                                                <span><input type="checkbox" name="user_join_route" value="1" id="ujr1"><label for="ujr1">신문광고</label></span>
-                                                <span><input type="checkbox" name="user_join_route" value="2" id="ujr2"><label for="ujr2">SMS 매체</label></span>
-                                                <span><input type="checkbox" name="user_join_route" value="3" id="ujr3"><label for="ujr3">온라인검색</label></span>
-                                                <span><input type="checkbox" name="user_join_route" value="4" id="ujr4"><label for="ujr4">학교설명회/박람회</label></span>
-                                                <span><input type="checkbox" name="user_join_route" value="5" id="ujr5"><label for="ujr5">광고홍보물</label></span>
-                                                <span><input type="checkbox" name="user_join_route" value="6" id="ujr6"><label for="ujr6">친구/친척소개</label></span>
-                                                <span><input type="checkbox" name="user_join_route" value="7" id="ujr7"><label for="ujr7">교수님/선배소개</label></span>
-                                                <span><input type="checkbox" name="user_join_route" value="8" id="ujr8"><label for="ujr8">업체 소개</label></span>
-                                                <span><input type="checkbox" name="user_join_route" value="9" id="ujr9"><label for="ujr9">기타</label></span>
-                                                <input tyep="text" name="user_join_route_str" class="input_s1"></span>
+                                            <div class="joinBoxTitle">이력서등록</div>
+                                            <div class="joinBoxInput">
+                                                <div class="fileInputWrap">
+                                                    <input type="text" name="user_profile_doc_str" id="user_profile_doc_str" readonly="readonly" />
+                                                    <div class="btnFlieWrap">
+                                                        <input type="button" value="찾아보기" />
+                                                        <input type="file" name="user_profile_doc" id="user_profile_doc" onchange="javascript:document.getElementById('user_profile_doc_str').value = this.value;" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">추천경로</div>
+                                            <div class="joinBoxCheckbox">
+                                                <ul>
+                                                    <li>
+                                                        <input type="checkbox" name="user_join_route" value="1" id="ujr1">
+                                                        <label for="ujr1">신문광고</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox" name="user_join_route" value="2" id="ujr2">
+                                                        <label for="ujr2">SMS매체</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox" name="user_join_route" value="3" id="ujr3">
+                                                        <label for="ujr3">온라인검색</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox" name="user_join_route" value="4" id="ujr4">
+                                                        <label for="ujr4">학교설명회/박람회</label>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li>
+                                                        <input type="checkbox" name="user_join_route" value="5" id="ujr5">
+                                                        <label for="ujr5">광고홍보물</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox" name="user_join_route" value="6" id="ujr6">
+                                                        <label for="ujr6">친구/친척소개</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox" name="user_join_route" value="7" id="ujr7">
+                                                        <label for="ujr7">교수님/선배소개</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox" name="user_join_route" value="8" id="ujr8">
+                                                        <label for="ujr8">업체소개</label>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li class="mt10">
+                                                        <input type="checkbox" name="user_join_route" value="" id="ujr9">
+                                                        <label for="ujr9">기타</label>
+                                                        <input type="text" class="TextInput" name="user_join_route_str">
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                                     <div class="memberBtn mt50">
-                                        <div class="memberBtnOk"><a href="#" id="saveUser">회원가입</a></div>
-                                        <div class="memberBtnCancel"><a href="#">가입취소</a></div>
+                                        <button type="button" class="memberBtnOk wd48 f_left" id="saveUser">회원가입</button>
+                                        <button type="button" class="memberBtnCancel wd48 f_right">가입취소</button>
                                     </div>
 
 
@@ -425,10 +508,10 @@
             include_once dirname(__DIR__)."/footer.php";
         ?>
         </div>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
-	<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" alt="닫기 버튼">
-</div>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+            <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" alt="닫기 버튼">
+        </div>
     </body>
 </html>
 
@@ -441,7 +524,43 @@ $(function(){
         $("input[name=user_email2]").val(_val);
     });
 
+    $(document).on("click", "#idCheck", function(){
+        var user_id = $("input[name=user_id]").val();
+        
+        if (user_id == ""){
+            alert("아이디를 입력해주세요");
+            $("input[name=user_id]").focus();
+            return false;
+        }
+        console.log(user_id.length);
+        if (user_id.length > 12 || user_id.length < 4){
+            alert("아이디는 4~12자로 입력해주세요");
+            $("input[name=user_id]").focus();
+            return false;
+        }
+
+        $.ajax({
+			url:"/member/userIdCheck",
+			type:"post",
+			dataType:"json",
+			data : {
+                "user_id" : user_id
+            },
+			success:function(data){
+				if (data.code == "200"){
+                    alert(data.msg);
+                    $("input[name=id_check]").val("true");
+				}else{
+                    alert(data.msg);
+                }
+			}, error:function(e){
+				console.log(e);
+			}
+		})
+    });
+
     $(document).on("click", "#saveUser", function(){
+        var id_check = $("input[name=id_check]").val();
         var user_id = $("input[name=user_id]").val();
         var user_pass = $("input[name=user_pass]").val();
         var user_pass_chk = $("input[name=user_pass_chk]").val();
@@ -472,6 +591,12 @@ $(function(){
         var user_skill_jp = $("input:radio[name=user_skill_jp]").val();
         */
 
+        if (id_check != "true"){
+            alert("아이디 중복확인 해주세요");
+            $("input[name=user_id]").focus();
+            return false;
+        }
+
         if (user_id == ""){
             alert("아이디를 입력해주세요");
             $("input[name=user_id]").focus();
@@ -496,13 +621,69 @@ $(function(){
             return false;
         }
 
-        var formData = $("#form1").serialize();
+		var formData = new FormData();
+		formData.append("user_id", $("input[name=user_id]").val());
+		formData.append("user_pass", $("input[name=user_pass]").val());
+		formData.append("user_name", $("input[name=user_name]").val());
+		formData.append("user_eng_name", $("input[name=user_eng_name]").val());
+		formData.append("user_level", $("select[name=user_level]").val());
+		formData.append("user_sex", $("input:radio[name=user_sex]").val());
+		formData.append("user_tel", $("input[name=tel1]").val()+"-"+$("input[name=tel2]").val()+"-"+$("input[name=tel3]").val());
+		formData.append("user_hp", $("input[name=hp1]").val()+"-"+$("input[name=hp2]").val()+"-"+$("input[name=hp3]").val());
+		formData.append("user_zip", $("input[name=user_zip]").val());
+		formData.append("user_addr1", $("input[name=user_addr1]").val());
+		formData.append("user_addr2", $("input[name=user_addr2]").val());
+		formData.append("user_email", $("input[name=user_email1]").val() + "@" + $("input[name=user_email2]").val());
+		formData.append("user_skype_id", $("input[name=user_skype_id]").val());
+		formData.append("user_email_flag", $("input:radio[name=user_email_flag]").val());
+		formData.append("user_sms_flag", $("input:radio[name=user_sms_flag]").val());
+		formData.append("user_birthday", $("input[name=user_birthday]").val());
+		formData.append("user_company", $("input[name=user_company]").val());
+		formData.append("user_department", $("select[name=user_department]").val());
+		formData.append("user_major", $("input[name=user_major]").val());
+		formData.append("user_hope_nation", $("select[name=user_hope_nation]").val());
+		formData.append("user_hope_part", $("input[name=user_hope_part]").val());
+		formData.append("user_skill_eng", $("input:radio[name=user_skill_eng]").val());
+		formData.append("user_skill_jp", $("input:radio[name=user_skill_jp]").val());
+		formData.append("user_skill_ch", $("input:radio[name=user_skill_ch]").val());
+		formData.append("user_study_nation", $("select[name=user_study_nation]").val());
+		formData.append("user_study_term", $("input:radio[name=user_study_term]").val());
+		formData.append("user_lan_study_nation", $("select[name=user_lan_study_nation]").val());
+		formData.append("user_lan_study_term", $("input:radio[name=user_lan_study_term]").val());
+		formData.append("user_work_company", $("input[name=user_work_company]").val());
+		formData.append("user_work_term", $("input:radio[name=user_work_term]").val());
+		formData.append("user_work_company_2", $("input[name=user_work_company_2]").val());
+		formData.append("user_work_term_2", $("input:radio[name=user_work_term_2]").val());
+		formData.append("user_work_company_3", $("input[name=user_work_company_3]").val());
+		formData.append("user_work_term_3", $("input:radio[name=user_work_term_3]").val());
+		formData.append("user_certi_flag", $("input:radio[name=user_certi_flag]").val());
+		formData.append("user_certificate_name", $("input[name=user_certificate_name]").val());
+		formData.append("user_passport_flag", $("input:radio[name=user_passport_flag]").val());
+		formData.append("user_visa_flag", $("input:radio[name=user_visa_flag]").val());
+		formData.append("user_join_route", $("input:checkbox[name=user_join_route]").val());
+		formData.append("user_join_route_str", $("input[name=user_join_route_str]").val());
+		formData.append("user_leave_country", $("select[name=user_leave_country]").val());
+		formData.append("user_leave_hotel", $("input[name=user_leave_hotel]").val());
+		formData.append("user_manager_name", $("input[name=user_manager_name]").val());
+		formData.append("user_recomm_id", $("input[name=user_recomm_id]").val());
+		formData.append("user_memo", $("textarea[name=user_memo]").val());
+
+		formData.append("user_profile", $("#user_profile").prop('files')[0]);
+		formData.append("user_profile_doc", $("input[name=user_profile_doc]").prop('files')[0]);
+
+        //var formData = $("#form1").serialize();
+        //formData.append("user_profile", $("#user_profile").prop('files')[0]);
+        //formData.append("user_profile_doc", $("#user_profile_doc").prop('files')[0]);
+
+        //formData.append("user_profile", $("#user_profile").prop('files')[0]);
 
         $.ajax({
 			url:"/member/userInsertProc",
 			type:"post",
 			dataType:"json",
 			data : formData,
+            contentType: false,
+			processData: false,
 			success:function(data){
 				console.log(data);
 				if (data.code == "200"){

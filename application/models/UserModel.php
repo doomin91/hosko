@@ -370,4 +370,10 @@ class UserModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_USER.USER_EMAIL", $user_email);
 		return $this->db->get("TBL_HOSKO_USER")->row();
 	}
+
+	public function idCheck($user_id){
+		$this->db->where("TBL_HOSKO_USER.USER_ID", $user_id);
+		$this->db->where("TBL_HOSKO_USER.USER_DEL_YN", "N");
+		return $this->db->get("TBL_HOSKO_USER")->row();
+	}
 }

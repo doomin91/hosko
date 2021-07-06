@@ -43,25 +43,41 @@ class Member extends CI_Controller {
         $this->load->view("/member/input_step2");
     }
 
+	function userIdCheck(){
+		$user_id = $this->input->post("user_id");
+
+		$result = $this->UserModel->idCheck($user_id);
+
+		if (empty($result)){
+			echo json_encode(array("code" => "200", "msg" => "사용할 수 있는 아이디입니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "이미 가입되어 있는 아이디입니다."));
+		}
+
+	}
+
 	function userInsertProc(){
 		//print_r($this->input->post());
 		$user_id = $this->input->post("user_id");
 		$user_pass = $this->input->post("user_pass");
 		$user_name = $this->input->post("user_name");
-		$user_email1 = $this->input->post("user_email1");
-		$user_email2 = $this->input->post("user_email2");
-		$user_email = $user_email1 . "@" . $user_email2;
+		$user_email = $this->input->post("user_email");
+		//$user_email1 = $this->input->post("user_email1");
+		//$user_email2 = $this->input->post("user_email2");
+		//$user_email = $user_email1 . "@" . $user_email2;
 		$user_mail_flag = $this->input->post("user_mail_flag");
 		$user_sex = $this->input->post("user_sex");
 		$user_birthday = $this->input->post("user_birthday");
-		$tel1 = $this->input->post("tel1");
-		$tel2 = $this->input->post("tel2");
-		$tel3 = $this->input->post("tel3");
-		$user_tel = $tel1."-".$tel2."-".$tel3;
-		$hp1 = $this->input->post("hp1");
-		$hp2 = $this->input->post("hp2");
-		$hp3 = $this->input->post("hp3");
-		$user_hp = $hp1."-".$hp2."-".$hp3;
+		$user_tel = $this->input->post("user_tel");
+		//$tel1 = $this->input->post("tel1");
+		//$tel2 = $this->input->post("tel2");
+		//$tel3 = $this->input->post("tel3");
+		//$user_tel = $tel1."-".$tel2."-".$tel3;
+		$user_hp = $this->input->post("user_hp");
+		//$hp1 = $this->input->post("hp1");
+		//$hp2 = $this->input->post("hp2");
+		//$hp3 = $this->input->post("hp3");
+		//$user_hp = $hp1."-".$hp2."-".$hp3;
 		$user_sms_flag = $this->input->post("user_sms_flag");
 		$user_skype_id = $this->input->post("user_skype_id");
 		$user_company = $this->input->post("user_company");
@@ -319,8 +335,8 @@ class Member extends CI_Controller {
 		$this->email->subject($subject);
 		$this->email->message($contents);
 
-		$this->email->send();
+		//$this->email->send();
 
-		echo $this->email->print_debugger();
+		//echo $this->email->print_debugger();
 	}
 }
