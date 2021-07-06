@@ -280,6 +280,11 @@ class Member extends CI_Controller {
 		}
 	}
 
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect("/", "location");
+	}
+
 	public function pwFind(){
 		$this->load->view("/member/pw_find");
 	}

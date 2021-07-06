@@ -66,6 +66,15 @@
                         <li><a href="#">포지션&연수 지원</a></li>
                     </ul>
                 </li>
+            <?php 
+                if (($this->session->userdata("USER_ID") == "")){
+            ?>
+                <li>
+                    <a href="/member/member_input_step1">회원가입</a>                    
+                </li>
+            <?php 
+                }else{
+            ?>
                 <li>
                     <a href="#">마이페이지</a>
                     <ul class="sub">
@@ -78,16 +87,26 @@
                         <li><a href="#">취업증명서</a></li>
                     </ul>
                 </li>
+            <?php 
+                }
+            ?>
             </ul>
         </nav>
 
         <div class="header_util">
             <ul>
                 <li>
+                <?php if (($this->session->userdata("USER_ID") == "")){ ?>
                     <span class="header_login">
                         <img src="/static/front/img/header_login_icon.png">
-                        <a href="/">Login</a>
+                        <a href="/member/login">Login</a>
                     </span>
+                <?php }else{ ?>
+                    <span class="header_login">
+                        <img src="/static/front/img/header_login_icon.png">
+                        <a href="/member/logout">Logout</a>
+                    </span>
+                <?php } ?>
                 </li>
                 <li>
                     <a href="#" class="header_totalmenu"><img src="/static/front/img/header_totalmenu_icon.png"></a>    
