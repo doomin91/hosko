@@ -22,3 +22,20 @@
         </div>
     </div>
 </footer>
+
+
+<script type="text/javascript">
+        $(function(){
+        
+        $("ul.sub").hide();
+        
+        $("ul.gnb_menu li").hover(function(){
+        
+        $("ul:not(:animated)",this).slideDown("fast");
+        },
+        function(){
+            $("ul",this).slideUp("fast");
+        });
+
+    });	
+</script>

@@ -148,15 +148,19 @@ input[type="search"]::-webkit-search-decoration {-webkit-appearance: none; outli
 /* border */
 .n_br {border:none !important;}
 
+/* line */
+.hr {width:100%; height:1px; background-color:#e5e5e5;}
+
 /* text align */
 .tac {text-align:center;}
 .tal {text-align:left;}
 .tar {text-align:right;}
 
+/*bg color */
+.company_bg {background-color:#f7f7f7 !important;}
+.company_bg01 {background-color:#f3f3f3 !important;}
 
-/*
-  float Guide
-*/
+/*float Guide*/
 .f_left {float: left;}
 .f_right {float: right;}
 .f_none {float: none !important;}
@@ -187,5 +191,3 @@ input[type="search"]::-webkit-search-decoration {-webkit-appearance: none; outli
 .file_s1 {width:100%; border:1px solid #cbcbca; border-radius: 10px; padding:2px 33px; background: url("../img/icon_fileupload.png") no-repeat; } 
 
 
-
-/* button */
