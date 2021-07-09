@@ -13,13 +13,13 @@ class BoardModel extends CI_Model{
     }
 
     public function getBoards(){
-        $this->db->where("BOARD_DEL_YN", 'Y');
-        $this->db->join("TBL_HOSKO_BOARD_GROUP", "TBL_HOSKO_BOARD_GROUP.GP_SEQ = TBL_HOSKO_BOARD.BOARD_GROUP");
+        $this->db->where("BOARD_DEL_YN", 'N');
+        $this->db->join("TBL_HOSKO_BOARD_GROUP", "TBL_HOSKO_BOARD_GROUP.GP_SEQ = TBL_HOSKO_BOARD.BOARD_GROUP", "LEFT");
         return $this->db->get("TBL_HOSKO_BOARD")->result();
     }
 
     public function getBoardInGroup($GROUP_SEQ){
-        $this->db->where("BOARD_DEL_YN", 'Y');
+        $this->db->where("BOARD_DEL_YN", 'N');
         $this->db->where("BOARD_GROUP", $GROUP_SEQ);
         return $this->db->get("TBL_HOSKO_BOARD")->result();
     }
