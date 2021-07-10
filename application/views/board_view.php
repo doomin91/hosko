@@ -126,7 +126,9 @@
                                                 <div class="comment_sub03">
                                                     <p class="date"><?php echo $cm->COM_REG_DATE?></p>
                                                     <!-- <p class="time">17:39:33</p> -->
-                                                    <p class="delete"><button type="button" onclick="comment_del(<?php echo $cm->COM_SEQ;?>)"><img src="/static/front/html/static/img/icon_comment_del.png" alt="댓글삭제"></button></p>
+                                                    <?php if($cm->COM_USER_SEQ == $this->session->userdata("USER_SEQ")){?>
+                                                        <p class="delete"><button type="button" onclick="comment_del(<?php echo $cm->COM_SEQ;?>)"><img src="/static/front/html/static/img/icon_comment_del.png" alt="댓글삭제"></button></p>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                             <?php endforeach; ?>

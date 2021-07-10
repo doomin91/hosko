@@ -491,8 +491,8 @@ class Board extends CI_Controller {
 
 		$DATA = array(
 			"POST_BOARD_SEQ" => $BOARD_SEQ,
-			"POST_ADMIN_SEQ" => $BOARD_INFO->BOARD_ADMIN_ID,
-			"POST_USER_SEQ" => $this->session->userdata("admin_seq"),
+			"POST_ADMIN_SEQ" => $this->session->userdata("admin_seq"),
+			"POST_USER_SEQ" => $this->session->userdata("USER_SEQ"),
 			"POST_SUBJECT" => $POST_SUBJECT,
 			"POST_CONTENTS" => $POST_CONTENTS,
 			"POST_REG_IP" => $this->customclass->get_client_ip(),
@@ -572,7 +572,7 @@ class Board extends CI_Controller {
 	public function post_check_auth(){
 		$POST_SEQ = $this->input->get("post_seq");
 		$chk = $this->BoardModel->getPost($POST_SEQ);
-		if($chk->POST_SECRET_YN == "N" || $this->session->userdata("admin_id") || $this->session->userdata("user_id") == $chk->POST_ADMIN_SEQ){
+		if($chk->POST_SECRET_YN == "N" || $this->session->userdata("admin_id") || $this->session->userdata("USER_ID") == $chk->POST_ADMIN_SEQ){
 			$returnMsg = array(
 				"auth" => "Y",
 				"url" => "",
@@ -604,8 +604,11 @@ class Board extends CI_Controller {
 		if ($this->session->userdata("admin_seq")){
 			$USER_SEQ = $this->session->userdata("admin_seq");
 		} else {
-			$USER_SEQ = $this->session->userdata("user_seq");
+			$USER_SEQ = $this->session->userdata("USER_SEQ");
 		}
+
+		$USER_SEQ = $this->session->userdata("USER_SEQ");
+
 		$DATA = array(
 			"COM_POST_SEQ" => $POST_SEQ,
 			"COM_USER_SEQ" => $USER_SEQ,
