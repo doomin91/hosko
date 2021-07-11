@@ -86,9 +86,18 @@
                                                     }
                                                 }
 
-                                                echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
-                                                echo $lt->POST_SECRET_YN == "Y" ? "[자물쇠 ICON]" : "";
-                                                echo $lt->ATTACHS > 0 ? "[첨부파일 ICON]" : "";
+                                                if($lt->POST_SECRET_YN == "Y"){
+                                                    if($lt->POST_USER_SEQ == $this->session->userdata("USER_SEQ") || $this->session->userdata("admin_seq")){
+                                                        echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
+                                                    } else {
+                                                        echo "<a onclick=\"alert('게시글 권한이 없습니다.');\">$lt->POST_SUBJECT</a>";
+                                                    }
+                                                echo "[자물쇠 ICON]";
+                                                } else {
+                                                    echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
+                                                }
+
+                                                echo $lt->ATTACHS > 0 ? "[". $count($lt->ATTACHS) ."]" : "";
 
                                                 ?></span>
                                             <span class="col_name"><?php echo $lt->USER_NAME?></span>
