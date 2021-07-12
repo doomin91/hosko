@@ -28,7 +28,6 @@
                                             // 갤러리 게시판
                                             echo "<li><a href=\"/Board/g/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
                                             break;
-                                        
                                         case 2:
                                             // 동영상 게시판
                                             echo "<li><a href=\"/Board/v/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";

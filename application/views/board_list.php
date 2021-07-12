@@ -76,13 +76,13 @@
                                                 date_default_timezone_set('Asia/Seoul');
                                                 if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
                                                     if(time() - strtotime($lt->POST_REG_DATE) < ( 86400 * $BOARD_INFO->BOARD_PERIOD_NEW )){
-                                                        echo "[NEW ICON]";												
+                                                        echo "<img src=\"/static/front/img/new.png\" style=\"width:30px;height:30px;\">";												
                                                     };
                                                 }
                                                     
                                                 if($BOARD_INFO->BOARD_PERIOD_HOT > 0){
                                                     if($lt->POST_VIEW_CNT >= $BOARD_INFO->BOARD_PERIOD_HOT){
-                                                        echo "[HOT ICON]";
+                                                        echo "<img src=\"/static/front/img/promotional.png\" style=\"width:30px;height:30px;\">";												
                                                     }
                                                 }
 
@@ -92,7 +92,7 @@
                                                     } else {
                                                         echo "<a onclick=\"alert('게시글 권한이 없습니다.');\">$lt->POST_SUBJECT</a>";
                                                     }
-                                                echo "[자물쇠 ICON]";
+                                                    echo "<img src=\"/static/front/img/padlock.png\" style=\"width:30px;height:30px;\">";												
                                                 } else {
                                                     echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
                                                 }
