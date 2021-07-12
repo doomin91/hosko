@@ -232,7 +232,7 @@ class Board extends CI_Controller {
         $board_seq = $post_info->POST_BOARD_SEQ;
         $board_info = $this->BoardModel->getBoard($board_seq);
         if($board_info->BOARD_SECRET_FLAG == "Y" && $post_info->POST_SECRET_YN == "Y"){
-            if($this->session->userdata("admin_id") || $this->session->userdata("user_id") == $post_info->POST_USER_SEQ){
+            if($this->session->userdata("admin_id") || ($this->session->userdata("USER_SEQ") == $post_info->POST_USER_SEQ)){
             } else {
                 echo "<script>
                 alert('권한이 없습니다');
@@ -297,6 +297,81 @@ class Board extends CI_Controller {
         $DATA["GROUP_INFO"] = $group_info;
         $DATA["BOARDS_INFO"] = $boards_info;
         $this->load->view("board_write", $DATA);
+    }
+
+    function board_reply($post_seq){
+        $post_info = $this->BoardModel->getPostInfo($post_seq);
+        $board_seq = $post_info->BOARD_SEQ;
+        $group_seq =  $post_info->GP_SEQ;
+
+        $group_info = $this->GroupModel->getGroup($group_seq);
+        $boards_info = $this->BoardModel->getBoardInGroup($group_seq);
+        $board_info = $this->BoardModel->getBoard($board_seq);
+        switch($board_info->BOARD_TYPE){
+            case 0:
+                $DATA["BOARD_TYPE"] = "q";
+                break;
+            case 1:
+                $DATA["BOARD_TYPE"] = "g";
+                break;
+            case 2:
+                $DATA["BOARD_TYPE"] = "v";
+                break;
+        }
+        $DATA["BOARD_INFO"] = $board_info;
+        $DATA["GROUP_INFO"] = $group_info;
+        $DATA["BOARDS_INFO"] = $boards_info;
+        $DATA["POST_INFO"] = $post_info;
+        $this->load->view("board_reply", $DATA);
+    }
+
+    function board_modify($post_seq){
+        $post_info = $this->BoardModel->getPostInfo($post_seq);
+        // 링크 직접 호출 시 차단
+        if($post_info->POST_USER_SEQ != $this->session->userdata("USER_SEQ")){
+            echo "<script>alert('잘못된 접근입니다.');history.back();</script>";
+        }
+        $board_seq = $post_info->BOARD_SEQ;
+        $group_seq =  $post_info->GP_SEQ;
+        $group_info = $this->GroupModel->getGroup($group_seq);
+        $boards_info = $this->BoardModel->getBoardInGroup($group_seq);
+        $board_info = $this->BoardModel->getBoard($board_seq);
+        switch($board_info->BOARD_TYPE){
+            case 0:
+                $DATA["BOARD_TYPE"] = "q";
+                break;
+            case 1:
+                $DATA["BOARD_TYPE"] = "g";
+                break;
+            case 2:
+                $DATA["BOARD_TYPE"] = "v";
+                break;
+        }
+        $DATA["BOARD_INFO"] = $board_info;
+        $DATA["GROUP_INFO"] = $group_info;
+        $DATA["BOARDS_INFO"] = $boards_info;
+        $DATA["POST_INFO"] = $post_info;
+        $this->load->view("board_modify", $DATA);
+    }
+
+    function post_delete(){
+        $POST_SEQ = $this->input->post("post_seq");
+
+        $result = $this->BoardModel->delPost($POST_SEQ);
+        
+        if($result){
+            $resultMsg = array(
+                "code" => 200,
+                "msg" => "삭제 완료"
+            );
+        } else {
+            $resultMsg = array(
+                "code" => 201,
+                "msg" => "삭제 실패"
+            );
+        }
+
+        echo json_encode($resultMsg);
     }
 
     function comment_del(){

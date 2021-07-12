@@ -123,6 +123,7 @@ class BoardModel extends CI_Model{
     }
 
     public function getPost($POST_SEQ){
+        $this->db->where("POST_DEL_YN", "N");
         $this->db->where("POST_SEQ", $POST_SEQ);
         $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ");
         $this->db->join("TBL_HOSKO_USER AS USER", "USER.USER_SEQ = POST_USER_SEQ", "LEFT");
@@ -170,7 +171,8 @@ class BoardModel extends CI_Model{
         $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD_ATTACH ATTACH", "ATTACH_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->order_by("POST_NOTICE_YN", "DESC");
-        $this->db->order_by("POST_SEQ", "DESC");
+        $this->db->order_by("POST_PARENT_SEQ", "DESC");
+        $this->db->order_by("POST_DEPTH");
         $this->db->group_by("POST_SEQ");
         $this->db->limit($wheresql["limit"], $wheresql["start"]);
 
@@ -224,6 +226,13 @@ class BoardModel extends CI_Model{
         return $this->db->get("TBL_HOSKO_BOARD_POSTS")->num_rows();
     }
 
+    public function getPostInfo($POST_SEQ){
+        $this->db->where("POST_SEQ", $POST_SEQ);
+        $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ");
+        $this->db->join("TBL_HOSKO_BOARD_GROUP", "GP_SEQ = BOARD_GROUP");
+        return $this->db->get("TBL_HOSKO_BOARD_POSTS")->row();
+    }
+
     public function setPost($DATA){
         $this->db->insert("TBL_HOSKO_BOARD_POSTS", $DATA);
         return $this->db->insert_id();
@@ -232,6 +241,11 @@ class BoardModel extends CI_Model{
     public function uptPost($POST_SEQ, $DATA){
         $this->db->where("POST_SEQ", $POST_SEQ);
         return $this->db->update("TBL_HOSKO_BOARD_POSTS", $DATA);
+    }
+
+    public function delPost($POST_SEQ){
+        $this->db->where("POST_SEQ", $POST_SEQ);
+        return $this->db->update("TBL_HOSKO_BOARD_POSTS", ARRAY("POST_DEL_YN" => "Y"));
     }
 
     public function getPostAttach($POST_SEQ){

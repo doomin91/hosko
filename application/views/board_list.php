@@ -74,9 +74,16 @@
                                             <span class="col_tit">
                                             <?php 
                                                 date_default_timezone_set('Asia/Seoul');
+
+                                                if($lt->POST_PARENT_SEQ != $lt->POST_SEQ){
+                                                    for($i=0; $i<$lt->POST_DEPTH;$i++){
+                                                        echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">";												
+                                                    }
+                                                }
+
                                                 if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
                                                     if(time() - strtotime($lt->POST_REG_DATE) < ( 86400 * $BOARD_INFO->BOARD_PERIOD_NEW )){
-                                                        echo "<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">";												
+                                                        // echo "<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">";												
                                                     };
                                                 }
                                                     
@@ -97,7 +104,7 @@
                                                     echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
                                                 }
 
-                                                echo $lt->ATTACHS > 0 ? "[". $count($lt->ATTACHS) ."]" : "";
+                                                echo $lt->ATTACHS > 0 ? "[". ($lt->ATTACHS) ."]" : "";
 
                                                 ?></span>
                                             <span class="col_name"><?php echo $lt->USER_NAME?></span>

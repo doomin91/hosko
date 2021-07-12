@@ -25,6 +25,9 @@
                             </ul>
                         </div>
 
+                        <input type="hidden" name="board_seq" value="<?php echo $BOARD_INFO->BOARD_SEQ?>">
+                        <input type="hidden" name="post_seq" value="<?php echo $POST_INFO->POST_SEQ?>">
+
                         <div class="inner">
                             <div class="subContWrap">
                                 <div class="subTit">
@@ -146,8 +149,7 @@
                                             
                                             <div class="comment_write_con">
                                                 <div class="write_box">
-                                                    <input type="hidden" name="board_seq" value="<?php echo $BOARD_INFO->BOARD_SEQ?>">
-                                                    <input type="hidden" name="post_seq" value="<?php echo $POST_INFO->POST_SEQ?>">
+
                                                     <textarea cols="30" row="5" name="contents"></textarea>
                                                 </div>
                                                 <div class="comment_write_btn"><a type="button" onclick="comment_write()">등록</a></div>
@@ -204,19 +206,19 @@
 
                                         <?php if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")):?>
                                         <div class="btn_box f_right">
-                                            <a href="#" onclick="board_delete()" class="btn_style02">수정</a>
+                                            <a href="/Board/board_modify/<?php echo $POST_INFO->POST_SEQ?>" class="btn_style02">수정</a>
                                         </div>
                                         <?php endif?>
                                         
                                         <?php if($BOARD_INFO->BOARD_TYPE == 0):?>
                                         <div class="btn_box f_right">
-                                            <a href="#" onclick="board_reply()" class="btn_style02">답글</a>
+                                            <a href="/Board/board_reply/<?php echo $POST_INFO->POST_SEQ?>" class="btn_style02">답글</a>
                                         </div>
                                         <?php endif?>
                                         
                                         <?php if(($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")) || $this->session->userdata("admin_seq")): ?>
                                         <div class="btn_box f_right">
-                                            <a href="#" onclick="board_modify()" class="btn_style01">삭제</a>
+                                            <a href="#" onclick="board_delete()" class="btn_style01">삭제</a>
                                         </div>
                                         <?php endif?>
 
@@ -254,7 +256,42 @@ let post_seq = $("input[name=post_seq]").val();
 
 
 function board_delete(){
-    alert("1")
+    if(confirm("게시글을 삭제하시겠습니까? 삭제 후 복구 할 수 없습니다.")){
+        $.ajax({
+            url:"/Board/post_delete",
+            type:"post",
+            data:{
+                "post_seq" : post_seq
+            },
+            dataType:"json",
+            success:function(data){
+                let code = data["code"];
+                let msg = data["msg"]
+                alert(msg);
+                if(code == 200){
+                    <?php
+                    switch($BOARD_INFO->BOARD_TYPE){
+                                        case 0:
+                                            // 일반 게시판
+                                            echo "location.href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$BOARD_INFO->BOARD_SEQ\"";
+                                            break;
+                                        case 1:
+                                            // 갤러리 게시판
+                                            echo "location.href=\"/Board/g/$GROUP_INFO->GP_SEQ?seq=$BOARD_INFO->BOARD_SEQ\"";
+                                            break;
+                                        
+                                        case 2:
+                                            // 동영상 게시판
+                                            echo "location.href=\"/Board/v/$GROUP_INFO->GP_SEQ?seq=$BOARD_INFO->BOARD_SEQ\"";
+                                            break;
+                                    }
+                    ?>
+                }
+            }, error:function(e){
+                console.log(e.reponseText);
+            }
+        });
+    }
 }
 
 function board_reply(){
