@@ -76,7 +76,7 @@
                                                 date_default_timezone_set('Asia/Seoul');
                                                 if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
                                                     if(time() - strtotime($lt->POST_REG_DATE) < ( 86400 * $BOARD_INFO->BOARD_PERIOD_NEW )){
-                                                        echo "<img src=\"/static/front/img/new.png\" style=\"width:30px;height:30px;\">";												
+                                                        echo "<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">";												
                                                     };
                                                 }
                                                     
