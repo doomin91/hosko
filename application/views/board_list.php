@@ -92,7 +92,7 @@
                                                     } else {
                                                         echo "<a onclick=\"alert('게시글 권한이 없습니다.');\">$lt->POST_SUBJECT</a>";
                                                     }
-                                                    echo "<img src=\"/static/front/img/padlock.png\" style=\"width:30px;height:30px;\">";												
+                                                    echo "<img src=\"/static/front/img/ico_lock.png\" style=\"width:12px;height:18px;\">";												
                                                 } else {
                                                     echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
                                                 }
