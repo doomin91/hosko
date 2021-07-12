@@ -35,7 +35,6 @@
                                         <div class="type_table">
                                             <div class="col1">
                                                 <div class="boardViewTop_item">
-                                                    <strong><?php echo $POST_INFO->POST_SEQ?></strong>
                                                     <div class="type_td">
                                                         
                                                     <?php 
@@ -134,15 +133,17 @@
                                             <?php endforeach; ?>
                                         </div>
 
-                                        <div class="pagination">
+                                        <!-- <div class="pagination">
                                             <a href="/" class="btn_prev"><span>맨처음</span></a>
                                             <span>1</span>
                                             <a href="/">2</a>
                                             <a href="/" class="btn_next"><span>맨마지막</span></a>
-                                        </div>
+                                        </div> -->
+
+                                        <?php if($this->session->userdata("USER_SEQ")):?>
 
                                         <div class="comment_write">
-
+                                            
                                             <div class="comment_write_con">
                                                 <div class="write_box">
                                                     <input type="hidden" name="board_seq" value="<?php echo $BOARD_INFO->BOARD_SEQ?>">
@@ -153,6 +154,8 @@
                                             </div>
 
                                         </div>
+                                        <?php endif;?>
+
 									<?php endif;?>
 
                                     
@@ -199,17 +202,23 @@
                                             <a href="/Board/<?php echo $BOARD_TYPE . "/" . $GROUP_INFO->GP_SEQ?>?seq=<?php echo $BOARD_INFO->BOARD_SEQ?>"  class="btn_style01 ">목록보기</a>
                                         </div>
 
+                                        <?php if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")):?>
                                         <div class="btn_box f_right">
                                             <a href="#" onclick="board_delete()" class="btn_style02">수정</a>
                                         </div>
-
+                                        <?php endif?>
+                                        
+                                        <?php if($BOARD_INFO->BOARD_TYPE == 0):?>
                                         <div class="btn_box f_right">
                                             <a href="#" onclick="board_reply()" class="btn_style02">답글</a>
                                         </div>
-
+                                        <?php endif?>
+                                        
+                                        <?php if(($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")) || $this->session->userdata("admin_seq")): ?>
                                         <div class="btn_box f_right">
                                             <a href="#" onclick="board_modify()" class="btn_style01">삭제</a>
                                         </div>
+                                        <?php endif?>
 
                                     </div>
 

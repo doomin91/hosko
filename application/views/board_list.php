@@ -109,9 +109,11 @@
                                         ?>
                                     </div>
 
+                                    <?php if($this->session->userdata("USER_SEQ")): ?>
                                     <div class="subBtn_Write f_right mt40">
                                         <a href="/Board/board_write/<?php echo $GROUP_INFO->GP_SEQ . "?seq=" . $BOARD_INFO->BOARD_SEQ?>">글쓰기</a>
                                     </div>
+                                    <?php endif; ?>
 
                                         <?php echo $pagination; ?>
 
