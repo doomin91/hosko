@@ -35,37 +35,60 @@
                                 </div>
 
                                 <div class="subContSec">
-                                    <div class="subContImg">
-                                        <div>관심 프로그램 목록</div>
-                                        <input type="button" class="btn btn-xs" value="포지션 지원하기">
+                                    <div class="row" style="margin-bottom: 10px">
+                                        <div class="col-md-10">관심 프로그램 목록</div>
+                                        <div class="col-md-2 text-right">
+                                            <input type="button" id="consult_position_apply" class="btn btn-s btn-primary" value="포지션 지원하기">
+                                        </div>
                                     </div>
-                                    <table>
-                                        <tr>
-                                            <th>번호</th>
-                                            <th>제목</th>
-                                            <th>글쓴이</th>
-                                            <th>진행상황</th>
-                                            <th>조회</th>
-                                            <th>등록일</th>
-                                        </tr>
+                                    <table class="table">
+                                        <colgroup>
+                                                <col width="5%"/>
+                                                <col width="55%"/>
+                                                <col width="10%"/>
+                                                <col width="10%"/>
+                                                <col width="10%"/>
+                                                <col width="10%"/>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">번호</th>
+                                                <th class="text-center">제목</th>
+                                                <th class="text-center">글쓴이</th>
+                                                <th class="text-center">진행상황</th>
+                                                <th class="text-center">조회</th>
+                                                <th class="text-center">등록일</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
                                     </table>
                                 </div>
 
-                                <div class="hr mt80"></div>
-
                                 <div class="subContSec">
-                                    <div class="subContImg">
-                                        <div>지원 프로그램 현황</div>
-                                        <div>총 2개의 데이터가 있습니다.</div>
-                                        <div>상품정렬방식</div>
+                                    <div class="row" style="margin-bottom: 10px">
+                                        <div class="col-md-10">지원 프로그램 목록</div>
+                                        <div class="col-md-2 text-right">
+                                            <input type="button" id="consult_position_apply" class="btn btn-s btn-primary" value="포지션 지원하기">
+                                        </div>
                                     </div>
-                                    <table>
-                                        <tr>
-                                            <th>번호</th>
-                                            <th>제목</th>
-                                            <th>지원날짜</th>
-                                            <th>상세보기</th>
-                                        </tr>
+                                    <table class="table">
+                                        <colgroup>
+                                                <col width="5%"/>
+                                                <col width="65%"/>
+                                                <col width="15%"/>
+                                                <col width="15%"/>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">번호</th>
+                                                <th class="text-center">제목</th>
+                                                <th class="text-center">지원날짜</th>
+                                                <th class="text-center">상세보기</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
