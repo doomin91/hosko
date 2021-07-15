@@ -133,7 +133,7 @@
 									</tr>
 									<tr>
                                         <th class="col-sm-2">사진</th>
-                                        <td class="col-sm-10"><?php echo  $APPLY_INFO->APP_PROFILE_IMG?></td>
+                                        <td class="col-sm-10"><?php echo  $APPLY_INFO->APP_USER_IMG?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">University</th>

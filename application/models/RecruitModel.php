@@ -29,8 +29,8 @@ class RecruitModel extends CI_Model{
 
         $this->db->where("TBL_HOSKO_RECRUIT_APPLY.APP_DEL_YN", 'N');
 
-        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT_APPLY.APP_USER_SEQ");
-        $this->db->join("TBL_HOSKO_RECRUIT", "TBL_HOSKO_RECRUIT.REC_SEQ = TBL_HOSKO_RECRUIT_APPLY.APP_RECRUIT_SEQ");
+        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT_APPLY.USER_SEQ");
+        $this->db->join("TBL_HOSKO_RECRUIT", "TBL_HOSKO_RECRUIT.REC_SEQ = TBL_HOSKO_RECRUIT_APPLY.REC_SEQ");
 
         $this->db->group_by("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_RECRUIT.REC_TITLE, TBL_HOSKO_RECRUIT.REC_PAY, TBL_HOSKO_RECRUIT.REC_STATUS");
         $this->db->order_by("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ");
@@ -61,8 +61,8 @@ class RecruitModel extends CI_Model{
 
         $this->db->where("TBL_HOSKO_RECRUIT_APPLY.APP_DEL_YN", 'N');
 
-        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT_APPLY.APP_USER_SEQ");
-        $this->db->join("TBL_HOSKO_RECRUIT", "TBL_HOSKO_RECRUIT.REC_SEQ = TBL_HOSKO_RECRUIT_APPLY.APP_RECRUIT_SEQ");
+        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT_APPLY.USER_SEQ");
+        $this->db->join("TBL_HOSKO_RECRUIT", "TBL_HOSKO_RECRUIT.REC_SEQ = TBL_HOSKO_RECRUIT_APPLY.REC_SEQ");
 
         $this->db->select("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ");
         $this->db->distinct();
@@ -78,8 +78,8 @@ class RecruitModel extends CI_Model{
 
     public function getRecruitApplyInfo($apply_seq){
         $this->db->where("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ", $apply_seq);
-        $this->db->join("TBL_HOSKO_RECRUIT", "TBL_HOSKO_RECRUIT.REC_SEQ = TBL_HOSKO_RECRUIT_APPLY.APP_RECRUIT_SEQ");
-        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT_APPLY.APP_USER_SEQ");
+        $this->db->join("TBL_HOSKO_RECRUIT", "TBL_HOSKO_RECRUIT.REC_SEQ = TBL_HOSKO_RECRUIT_APPLY.REC_SEQ");
+        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT_APPLY.USER_SEQ");
 
         $this->db->select("TBL_HOSKO_RECRUIT_APPLY.*, TBL_HOSKO_RECRUIT.*, TBL_HOSKO_USER.*");
 
@@ -279,8 +279,83 @@ class RecruitModel extends CI_Model{
 
         return $this->db->update("TBL_HOSKO_USER_RESUME", array("RESUME_DEL_YN" => "Y"));
     }
-
     
+    // CustomClass
+    public function addVisitCount($rec_seq){
+        $query = "UPDATE TBL_HOSKO_RECRUIT set REC_COUNT = REC_COUNT + 1 WHERE REC_SEQ = '" . $rec_seq .  "'";
+        return $this->db->query($query);
+    }
+
+    // 상담 신청(관심 목록 및 지원현황)
+	public function getMyApplies($user_seq){
+        $this->db->where("TBL_HOSKO_RECRUIT_APPLY.USER_SEQ", $user_seq);
+        $this->db->join("TBL_HOSKO_RECRUIT", "TBL_HOSKO_RECRUIT.REC_SEQ = TBL_HOSKO_RECRUIT_APPLY.REC_SEQ");
+        $this->db->order_by("APP_REG_DATE", "DESC");
+
+        $this->db->select("TBL_HOSKO_RECRUIT_APPLY.*, TBL_HOSKO_RECRUIT.REC_TITLE AS RECRUIT_TITLE");
+        
+        return $this->db->get("TBL_HOSKO_RECRUIT_APPLY")->result();
+	}
+
+    public function getMyInterestApplies($user_seq){
+        $this->db->where("TBL_HOSKO_USER_INTEREST_RECRUIT.USER_SEQ", $user_seq);
+        
+        $this->db->join("TBL_HOSKO_USER_INTEREST_RECRUIT", "TBL_HOSKO_USER_INTEREST_RECRUIT.REC_SEQ = TBL_HOSKO_RECRUIT.REC_SEQ");
+        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ");
+
+        $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_USER.USER_NAME AS ADMIN_USER_NAME");
+        
+        return $this->db->get("TBL_HOSKO_RECRUIT")->result();
+    }
+
+    // 포지션 공고
+    public function getRecruitInternShipList(){
+        $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", 1);
+        $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
+
+        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ");
+
+        $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_USER.USER_NAME AS ADMIN_USER_NAME");
+        
+        $this->db->group_by("TBL_HOSKO_RECRUIT.REC_SEQ");
+        $this->db->order_by("TBL_HOSKO_RECRUIT.REC_SEQ");
+        $this->db->select("TBL_HOSKO_RECRUIT.*");
+        return $this->db->get("TBL_HOSKO_RECRUIT")->result();
+    }
+
+    public function getRecruitInternShipListCount(){
+        $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", 1);
+        $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
+
+        $this->db->select("TBL_HOSKO_RECRUIT.REC_SEQ");
+        $this->db->distinct();
+        $this->db->from("TBL_HOSKO_RECRUIT");
+        return $this->db->count_All_results();
+    }
+
+    public function getRecruitJobList(){
+        $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", 2);
+        $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
+
+        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ");
+
+        $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_USER.USER_NAME AS ADMIN_USER_NAME");
+        
+        $this->db->group_by("TBL_HOSKO_RECRUIT.REC_SEQ");
+        $this->db->order_by("TBL_HOSKO_RECRUIT.REC_SEQ");
+        $this->db->select("TBL_HOSKO_RECRUIT.*");
+        return $this->db->get("TBL_HOSKO_RECRUIT")->result();
+    }
+
+    public function getRecruitJobListCount(){
+        $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", 2);
+        $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
+
+        $this->db->select("TBL_HOSKO_RECRUIT.REC_SEQ");
+        $this->db->distinct();
+        $this->db->from("TBL_HOSKO_RECRUIT");
+        return $this->db->count_All_results();
+    }
 
 
 

@@ -121,31 +121,31 @@
                                     <tbody>
                                         <tr>
                                             <th class="col-sm-2">이름(아이디)</th>
-                                            <td class="col-sm-10"><?php echo $APPLY_INFO->USER_NAME."(".$APPLY_INFO->USER_ID.")"?></td>
+                                            <td class="col-sm-10"><?php echo $APPLY_INFO->APP_USER_NAME."(".$APPLY_INFO->USER_ID.")"?></td>
                                         </tr>
                                         <tr>
                                             <th class="col-sm-2">주민번호</th>
-                                            <td class="col-sm-10"><?php echo  $APPLY_INFO->USER_BIRTHDAY?></td>
+                                            <td class="col-sm-10"><?php echo  $APPLY_INFO->APP_USER_BIRTHDAY?></td>
                                         </tr>
                                         <tr>
                                             <th class="col-sm-2">전화번호</th>
-                                            <td class="col-sm-10"><?php echo  $APPLY_INFO->USER_TEL?></td>
+                                            <td class="col-sm-10"><?php echo  $APPLY_INFO->APP_USER_TEL?></td>
                                         </tr>
                                         <tr>
                                             <th class="col-sm-2">핸드폰번호</th>
-                                            <td class="col-sm-10"><?php echo  $APPLY_INFO->USER_HP?></td>
+                                            <td class="col-sm-10"><?php echo  $APPLY_INFO->APP_USER_HP?></td>
                                         </tr>
                                         <tr>
                                             <th class="col-sm-2">이메일</th>
-                                            <td class="col-sm-10"><?php echo  $APPLY_INFO->USER_EMAIL?></td>
+                                            <td class="col-sm-10"><?php echo  $APPLY_INFO->APP_USER_EMAIL?></td>
                                         </tr>
                                         <tr>
                                             <th class="col-sm-2">주소</th>
-                                            <td class="col-sm-10"><?php echo  $APPLY_INFO->USER_ADDR1." ".$APPLY_INFO->USER_ADDR1?></td>
+                                            <td class="col-sm-10"><?php echo $APPLY_INFO->USER_ADDR1." ".$APPLY_INFO->USER_ADDR1?></td>
                                         </tr>
                                         <tr>
                                             <th class="col-sm-2">사진</th>
-                                            <td class="col-sm-10"><?php echo  $APPLY_INFO->APP_PROFILE_IMG?></td>
+                                            <td class="col-sm-10"><?php echo  $APPLY_INFO->APP_APP_USER_IMG?></td>
                                         </tr>
                                         <tr>
                                             <th class="col-sm-2">University</th>

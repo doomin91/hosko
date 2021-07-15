@@ -39,4 +39,6 @@
 
 		<link rel="icon" type="image/ico" href="/static/admin/images/favicon.ico" />
 
+		<link href="/static/admin/css/custom.css" rel="stylesheet">
+
     </head>

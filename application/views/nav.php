@@ -29,10 +29,10 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">포지션 공고</a>
+                    <a href="/recruit?ctg=1">포지션 공고</a>
                     <ul class="sub">
-                        <li><a href="#">인턴십</a></li>
-                        <li><a href="#">JOB&헤드헌팅</a></li>
+                        <li><a href="/recruit?ctg=1">인턴십</a></li>
+                        <li><a href="/recruit?ctg=2">JOB&헤드헌팅</a></li>
                     </ul>
                 </li>
                 <li>
@@ -60,10 +60,10 @@
                 <li>
                     <a href="/consult/qna">상담ㆍ신청</a>
                     <ul class="sub">
-                        <li><a href="/consult/qna.php">Q&A</a></li>
-                        <li><a href="/consult/online.php">온라인 상담</a></li>
-                        <li><a href="/consult/offline.php">방문상담 신청</a></li>
-                        <li><a href="/consult/apply.php">포지션&연수 지원</a></li>
+                        <li><a href="/consult/qna">Q&A</a></li>
+                        <li><a href="/consult/online">온라인 상담</a></li>
+                        <li><a href="/consult/offline">방문상담 신청</a></li>
+                        <li><a href="/consult/apply">포지션&연수 지원</a></li>
                     </ul>
                 </li>
             <?php 

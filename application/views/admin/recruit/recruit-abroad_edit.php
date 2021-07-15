@@ -150,7 +150,7 @@
                                         <td class="col-sm-1">채용분야</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_category" id="abroad_category"><?php echo $ABROAD_INFO->REC_CATEGORY?></textarea>
+                                                <textarea class="form-control common_textarea wid100p" name="abroad_recruit_type" id="abroad_recruit_type"><?php echo $ABROAD_INFO->REC_RECRUIT_TYPE?></textarea>
                                             </div></td>
 									</tr>
 									<tr>

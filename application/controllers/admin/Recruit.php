@@ -301,7 +301,7 @@ class Recruit extends CI_Controller {
 		$REC_COUNTRY = isset($_POST["abroad_country"]) ? $_POST["abroad_country"] : "";
 		$REC_TYPE = isset($_POST["abroad_type"]) ? $_POST["abroad_type"] : "";
 		$REC_PERIOD = isset($_POST["abroad_period"]) ? $_POST["abroad_period"] : "";
-		$REC_CATEGORY = isset($_POST["abroad_category"]) ? $_POST["abroad_category"] : "";
+		$REC_RECRUIT_TYPE = isset($_POST["abroad_recruit_type"]) ? $_POST["abroad_recruit_type"] : "";
 		$REC_DEADLINE = isset($_POST["abroad_deadline"]) ? $_POST["abroad_deadline"] : "";
 		$REC_INTERVIEW_TYPE = isset($_POST["abroad_interview_type"]) ? $_POST["abroad_interview_type"] : "";
 		$REC_INTERVIEW_DATE = isset($_POST["abroad_interview_date"]) ? $_POST["abroad_interview_date"] : "";
@@ -328,7 +328,7 @@ class Recruit extends CI_Controller {
 			"REC_COUNTRY" => $REC_COUNTRY,
 			"REC_TYPE" => $REC_TYPE,
 			"REC_PERIOD" => $REC_PERIOD,
-			"REC_CATEGORY" => $REC_CATEGORY,
+			"REC_RECRUIT_TYPE" => $REC_RECRUIT_TYPE,
 			"REC_DEADLINE" => $REC_DEADLINE,
 			"REC_INTERVIEW_TYPE" => $REC_INTERVIEW_TYPE,
 			"REC_INTERVIEW_DATE" => $REC_INTERVIEW_DATE,

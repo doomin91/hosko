@@ -61,6 +61,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <?php foreach($MY_INTEREST_APPLIES as $MY_INTEREST_APPLY):?>
+                                            <tr>
+                                                <td><?php echo $MY_INTEREST_APPLY->REC_SEQ ?></td>
+                                                <td><a href ="/recruit/recruit_view/<?php echo $MY_INTEREST_APPLY->REC_CONTENTS_CATEGORY?>/<?php echo $MY_INTEREST_APPLY->REC_SEQ?>"><?php echo $MY_INTEREST_APPLY->REC_TITLE ?></a></td>
+                                                <td><?php echo $MY_INTEREST_APPLY->ADMIN_USER_NAME ?></td>
+                                                <td><?php $MY_INTEREST_APPLY->REC_STATUS==0 ? print("마감") : print("모집중") ?></td>
+                                                <td><?php echo $MY_INTEREST_APPLY->REC_COUNT ?></td>
+                                                <td><?php echo explode(" ", $MY_INTEREST_APPLY->REC_REG_DATE)[0] ?></td>
+                                            </tr>
+                                        <?php endforeach?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -88,6 +98,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <?php $num = 1;
+                                            foreach($MY_APPLIES as $MY_APPLY): ?>
+                                            <tr>
+                                                <td><?php echo $num++;?></td>
+                                                <td><?php echo $MY_APPLY->RECRUIT_TITLE;?></td>
+                                                <td><?php echo explode(" ", $MY_APPLY->APP_REG_DATE)[0];?></td>
+                                                <td><a href ="/consult/apply_view/<?php echo $MY_APPLY->APP_SEQ?>" class="btn btn-sm btn-default">상세보기</a></td>
+                                            </tr>
+                                        <?php endforeach?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -109,6 +128,12 @@
 
     </body>
 </html>
+
+<script>
+    $(function(){
+        
+    });
+</script>
 
 
 

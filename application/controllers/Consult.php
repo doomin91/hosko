@@ -31,6 +31,10 @@ class Consult extends CI_Controller {
         //$this->load->library('encrypt');
         $this->load->helper('download');
 
+        $this->load->model("UserModel");
+		$this->load->model("ConsultModel");
+        $this->load->model("RecruitModel");
+
     }
 
     public function qna(){
@@ -46,6 +50,42 @@ class Consult extends CI_Controller {
     }
 
     public function apply(){
-        $this->load->view("consult/consult_apply");
+        // $this->session->userdata("USER_SEQ")
+        $session_data = array("USER_SEQ" => 1);
+		$this->session->set_userdata($session_data);
+        $my_applies = $this->RecruitModel->getMyApplies($this->session->userdata("USER_SEQ"));
+        $my_interest_applies = $this->RecruitModel->getMyInterestApplies($this->session->userdata("USER_SEQ"));
+
+        $DATA["MY_APPLIES"] = $my_applies;
+        $DATA["MY_INTEREST_APPLIES"] = $my_interest_applies;
+        
+        $this->load->view("consult/consult_apply", $DATA);
     }
+
+    public function apply_view($app_seq){
+        $my_apply = $this->RecruitModel->getRecruitApplyInfo($app_seq);
+
+        $DATA["MY_APPLY"] = $my_apply;
+        
+        $this->load->view("consult/consult_apply_view", $DATA);
+    }
+
+    public function apply_edit($app_seq){
+        $my_apply = $this->RecruitModel->getRecruitApplyInfo($app_seq);
+
+        $DATA["MY_APPLY"] = $my_apply;
+        
+        $this->load->view("consult/consult_apply_edit", $DATA);
+
+    }
+
+    public function apply_edit_proc(){
+        $my_apply = $this->RecruitModel->getRecruitApplyInfo($app_seq);
+
+        $DATA["MY_APPLY"] = $my_apply;
+        
+        $this->load->view("consult/consult_apply_edit", $DATA);
+
+    }
+
 }
