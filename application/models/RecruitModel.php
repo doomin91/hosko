@@ -86,6 +86,10 @@ class RecruitModel extends CI_Model{
         return $this->db->get("TBL_HOSKO_RECRUIT_APPLY")->row();   
     }
 
+    public function insertRecruitApply($insertArr){
+        return $this->db->insert("TBL_HOSKO_RECRUIT_APPLY", $insertArr);
+    }
+
     public function updateRecruitApply($apply_seq, $whereArr){
         $this->db->where("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ", $apply_seq);
 

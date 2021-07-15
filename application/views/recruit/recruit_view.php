@@ -155,6 +155,12 @@
                                 
                             </div>
 
+                            <div class="subContSec">
+                                <div class="col-md-12 text-right">
+                                    <a href="/recruit/recruit_new/<?php echo $CATEGORY?>/<?php echo $RECRUIT->REC_SEQ?>" class="btn btn-s btn-primary">지원하기</a>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
