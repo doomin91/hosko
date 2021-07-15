@@ -273,7 +273,7 @@
                 }
             });
 
-        $("#recruit_apply_edit").on("click", function(){
+        $("#recruit_apply_create").on("click", function(){
             var rec_seq = $("input[name=rec_seq]").val();
             var user_seq = $("input[name=user_seq]").val();
             var fd = new FormData();
