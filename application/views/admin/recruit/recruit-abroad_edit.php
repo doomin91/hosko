@@ -387,6 +387,8 @@
 
     <script>
         $(function(){
+            var FILE = new FormData();
+            
             $("#apply_view_print").on("click", function(){
                 var seq = $(this).data("seq");
                 var url = "/admin/recruit/recruit_abroad_edit_print/"+seq;

@@ -68,14 +68,24 @@
                                                 <tr>
                                                     <th class="col-sm-2">사진</th>
                                                     <td class="col-sm-10">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_user_img" id="apply_user_img" value="<?php echo  $MY_APPLY->APP_USER_IMG?>">
+                                                        <img src="<?php echo  $MY_APPLY->APP_USER_IMG?>">
+                                                        <!-- <input type="text" class="form-control common_select wid100p" name="apply_user_img" id="apply_user_img" value="<?php echo  $MY_APPLY->APP_USER_IMG?>"> -->
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th class="col-sm-2">사진 변경</th>
-                                                    <td class="col-sm-3">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_user_img_edit" id="apply_user_img_edit" readonly>
-                                                        <input type="button" class="btn btn-s btn-primary" name="apply_user_img_edit_btn" id="apply_user_img_edit_btn" value="찾아보기"> (Size: 110x120 px)
+                                                    <td class="col-sm-10">
+                                                        <div class="input-group col-sm-12">
+                                                            <span class="input-group-btn">
+                                                                <span class="btn btn-primary btn-file">
+                                                                <i class="fa fa-upload"></i><input type="file" id="apply_user_img_edit" name="apply_user_img_edit">
+                                                                </span>
+                                                            </span>
+                                                            <!-- <input type="text" class="form-control file_view" value="" readonly=""> -->
+                                                        </div>
+
+                                                        <!-- <input type="text" class="form-control common_select wid100p" name="apply_user_img_edit" id="apply_user_img_edit" readonly>
+                                                        <input type="button" class="btn btn-s btn-primary" name="apply_user_img_edit_btn" id="apply_user_img_edit_btn" value="찾아보기"> (Size: 110x120 px) -->
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -142,7 +152,7 @@
                                                 <tr>
                                                     <th class="col-sm-2">부서명</th>
                                                     <td class="col-sm-10">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_department" id="apply_department" value="<?php echo  $MY_APPLY->APP_COMP_DEPARTMENT?>">
+                                                        <input type="text" class="form-control common_select wid100p" name="apply_comp_department" id="apply_comp_department" value="<?php echo  $MY_APPLY->APP_COMP_DEPARTMENT?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -240,33 +250,59 @@
 
 <script>
     $(function(){
+        var FILE = new FormData();
+
+        $("input[name='apply_user_img_edit']").change(function(){
+                var file = this.files[0];
+                // var parent = $(this).closest(".input-group");
+                // // $(this).val("test");
+                // console.log(parent);
+                // var input = $(parent).find(".file_view");
+                // console.log(input);
+                // $(input).val(file['name']);
+                // // console.log(file['name']);
+                // // console.log(input);
+                // console.log(file);
+                // console.log(this.id);
+
+                FILE.append(this.id, file);
+
+                for (var key of FILE.keys()) {
+                console.log(key);
+                }
+
+                // FormData의 value 확인
+                for (var value of FILE.values()) {
+                console.log(value);
+                }
+            });
+
         $("#recruit_apply_edit").on("click", function(){
             var app_seq = $("input[name=app_seq]").val();
             var fd = new FormData();
 
             var form_data = $('#myApplyEditForm').serializeArray(); // serialize 사용
-            // $.each(form_data, function (key, input) {
-            //     if(input.value==""){
-            //         alert("값을 넣어주세요");
-            //         return false;
-            //     }
-            //     fd.append(input.name, input.value);
-            // });
+            $.each(form_data, function (key, input) {
+                if(input.value=="" && input.name != "apply_user_img_edit"){
+                    alert("값을 넣어주세요");
+                    return false;
+                }
+                fd.append(input.name, input.value);
+            });
             
-            // for (var key of FILE.keys()) {
-            //     fd.append(key, FILE.get(key));
+            for (var key of FILE.keys()) {
+                fd.append(key, FILE.get(key));
+            }
+            // console.log(form_data);
+
+            // for (var key of fd.keys()) {
+            //     console.log(key);
             // }
 
-            for (var key of fd.keys()) {
-                console.log(key);
-            }
-
-            // FormData의 value 확인
-            for (var value of fd.values()) {
-                console.log(value);
-            }
-
-            return 0;
+            // // FormData의 value 확인
+            // for (var value of fd.values()) {
+            //     console.log(value);
+            // }
             
             $.ajax({
                 url: "/consult/apply_edit_proc",
@@ -276,7 +312,7 @@
                 contentType: false,
                 processData: false,
                 success: function(resultMsg){
-                    console.log(resultMsg);
+                    console.log(resultMsg.code);
                     if(resultMsg.code == 200){
                         alert("수정 되었습니다");
                         document.location.href="/consult/apply_view/"+app_seq;
