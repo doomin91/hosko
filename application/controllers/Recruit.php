@@ -147,16 +147,16 @@ class Recruit extends CI_Controller {
 
         $insert_id = $this->db->insert_id();
 
-        if (isset($_FILES["apply_user_img_edit"]) && !empty($_FILES["apply_user_img_edit"])){
+        if (isset($_FILES["apply_user_img"]) && !empty($_FILES["apply_user_img"])){
             // $_FILES["abroad_origin_pic"]["name"];
             
-			if ($_FILES["apply_user_img_edit"]["error"] > 0){
-				echo "Error : " . $_FILES["apply_user_img_edit"]["error"];
+			if ($_FILES["apply_user_img"]["error"] > 0){
+				echo "Error : " . $_FILES["apply_user_img"]["error"];
 			}else{
-				if (file_exists("/upload/apply/".$_FILES["apply_user_img_edit"]["name"])){
+				if (file_exists("/upload/apply/".$_FILES["apply_user_img"]["name"])){
 					echo "동일한 이름의 파일이 존재합니다.";
 				}else{
-					$tmp = explode(".", $_FILES["apply_user_img_edit"]["name"]);
+					$tmp = explode(".", $_FILES["apply_user_img"]["name"]);
 					$time = time();
 					$new_name = "APPLY".$time."_".$insert_id.".".end($tmp);
 					// print_r($new_name);
@@ -169,9 +169,9 @@ class Recruit extends CI_Controller {
 							)
 						tmp 경로에서 -> 실제 업로드 경로
 					*/  
-					move_uploaded_file($_FILES["apply_user_img_edit"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/upload/apply/".$new_name);
+					move_uploaded_file($_FILES["apply_user_img"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/upload/apply/".$new_name);
 					//array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
-					$file_name = $_FILES["apply_user_img_edit"]["name"];
+					$file_name = $_FILES["apply_user_img"]["name"];
 					$file_path = "./upload/apply/".$new_name;
 					// print_r($_FILES["apply_attach"]);
 				}

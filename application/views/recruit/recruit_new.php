@@ -313,7 +313,7 @@
                 success: function(resultMsg){
                     console.log(resultMsg.code);
                     if(resultMsg.code == 200){
-                        alert("수정 되었습니다");
+                        alert("지원 되었습니다");
                         document.location.href="/consult/apply";
                         
                     }else{
