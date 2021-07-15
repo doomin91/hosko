@@ -245,17 +245,17 @@
             var fd = new FormData();
 
             var form_data = $('#myApplyEditForm').serializeArray(); // serialize 사용
-            $.each(form_data, function (key, input) {
-                if(input.value==""){
-                    alert("값을 넣어주세요");
-                    return false;
-                }
-                fd.append(input.name, input.value);
-            });
+            // $.each(form_data, function (key, input) {
+            //     if(input.value==""){
+            //         alert("값을 넣어주세요");
+            //         return false;
+            //     }
+            //     fd.append(input.name, input.value);
+            // });
             
-            for (var key of FILE.keys()) {
-                fd.append(key, FILE.get(key));
-            }
+            // for (var key of FILE.keys()) {
+            //     fd.append(key, FILE.get(key));
+            // }
 
             for (var key of fd.keys()) {
                 console.log(key);
@@ -265,6 +265,8 @@
             for (var value of fd.values()) {
                 console.log(value);
             }
+
+            return 0;
             
             $.ajax({
                 url: "/consult/apply_edit_proc",
