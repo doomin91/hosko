@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Consult extends CI_Controller {
+class Recruit extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,7 +18,6 @@ class Consult extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-
 	function __construct(){
         parent::__construct();
 
@@ -28,148 +27,62 @@ class Consult extends CI_Controller {
         $this->load->library('session');
         $this->load->library('pagination');
         $this->load->library('image_lib');
+
         $this->load->library('CustomClass');
         //$this->load->library('encrypt');
         $this->load->helper('download');
-		$this->load->model('UserModel');
+
+        $this->load->model("UserModel");
 		$this->load->model("ConsultModel");
         $this->load->model("RecruitModel");
-    }
-
-    function onlineConsultList(){
-		$limit = 10;
-		$nowpage = "";
-		if (!isset($_GET["per_page"])){
-			$start = 0;
-		}else{
-			$start = ($_GET["per_page"]-1)*10;
-			$nowpage = $_GET["per_page"];
-		}
-
-		$searchField = $this->input->get("searchField");
-		$searchString = $this->input->get("searchString");
-
-		$wheresql = array(
-						"start" => $start,
-						"limit" => $limit,
-						"user_seq" => $this->session->userdata("USER_SEQ"),
-						"searchField" => $searchField,
-						"searchString" => $searchString
-						);
-		$lists = $this->ConsultModel->getOnlineConsultLists($wheresql);
-		//echo $this->db->last_query();
-		$listCount = $this->ConsultModel->getOnlineConsultListCount($wheresql);
-
-		if ($nowpage != ""){
-			$pagenum = $listCount-(($nowpage-1)*10);
-		}else{
-			$pagenum = $listCount;
-		}
-
-		$pagination = $this->customclass->pagenavi("/admin/consult/onlineConsult/", $listCount, 10, 5, $nowpage);
-
-		$data = array(
-					"lists" => $lists,
-					"listCount" => $listCount,
-					"pagination" => $pagination,
-					"pagenum" => $pagenum,
-					"start" => $start,
-					"limit" => $limit
-					);
-        $this->load->view("/consult/online-consult-list", $data);
-    }
-
-	function onlineConsultWrite(){
-		$userInfo = $this->UserModel->getUserInfo($this->session->userdata("USER_SEQ"));
-		print_r($userInfo);
-		$data = array(
-					"userInfo" => $userInfo
-					);
-        $this->load->view("/consult/online-consult-write", $data);
-    }
-
-	public function onlineConsultWriteProc(){
-		$oc_subject = $this->input->post("oc_subject");
-		$oc_user_name = $this->input->post("oc_user_name");
-		$oc_user_tel = $this->input->post("oc_user_tel");
-		$oc_user_hp = $this->input->post("oc_user_hp");
-		$oc_user_email = $this->input->post("oc_user_email");
-		$oc_contents = $this->input->post("oc_contents");
-
-		$insertArr = array(
-						"OC_SUBJECT" => $oc_subject,
-						"OC_USER_SEQ" => $this->session->userdata("USER_SEQ"),
-						"OC_USER_NAME" => $oc_user_name,
-						"OC_USER_TEL" => $oc_user_tel,
-						"OC_USER_HP" => $oc_user_hp,
-						"OC_USER_EMAIL" => $oc_user_email,
-						"OC_CONTENTS" => $oc_contents,
-						"OC_ANSWER_FLAG" => "W",
-						"OC_REG_DATE" => date("Y-m-d H:i:s"),
-						"OC_DEL_YN" => "N"
- 		);
-		$result = $this->ConsultModel->insertOnlineConsult($insertArr);
-
-		if ($result == true){
-			echo json_encode(array("code" => "200", "msg" => "문의 신청 되었습니다."));
-		}else{
-			echo json_encode(array("code" => "202", "msg" => "문의 신청중 문제가 생겼습니다."));
-		}
-	}
-
-	function onlineConsultView($oc_seq){
-		$ocInfo = $this->ConsultModel->getOnlineConsult($oc_seq);
-
-		$data = array(
-					"ocInfo" => $ocInfo
-		);
-        $this->load->view("/consult/online-consult-view", $data);
-    }
-
-    public function qna(){
-        $this->load->view("consult/consult_qna");
-    }
-
-    public function online(){
-        $this->load->view("consult/consult_online");
-    }
-
-    public function offline(){
-        $this->load->view("consult/consult_offline");
-    }
-
-    public function apply(){
-        // $this->session->userdata("USER_SEQ")
-        $session_data = array("USER_SEQ" => 1);
-		$this->session->set_userdata($session_data);
-        $my_applies = $this->RecruitModel->getMyApplies($this->session->userdata("USER_SEQ"));
-        $my_interest_applies = $this->RecruitModel->getMyInterestApplies($this->session->userdata("USER_SEQ"));
-
-        $DATA["MY_APPLIES"] = $my_applies;
-        $DATA["MY_INTEREST_APPLIES"] = $my_interest_applies;
-        
-        $this->load->view("consult/consult_apply", $DATA);
-    }
-
-    public function apply_view($app_seq){
-        $my_apply = $this->RecruitModel->getRecruitApplyInfo($app_seq);
-
-        $DATA["MY_APPLY"] = $my_apply;
-        
-        $this->load->view("consult/consult_apply_view", $DATA);
-    }
-
-    public function apply_edit($app_seq){
-        $my_apply = $this->RecruitModel->getRecruitApplyInfo($app_seq);
-
-        $DATA["MY_APPLY"] = $my_apply;
-        
-        $this->load->view("consult/consult_apply_edit", $DATA);
 
     }
 
-    public function apply_edit_proc(){   
-        $app_seq = isset($_POST["app_seq"]) ? $_POST["app_seq"] : "";
+    public function index(){
+        $CATEGORY = isset($_GET["ctg"]) ? $_GET["ctg"] : 1;
+
+        if($CATEGORY == 1){
+            $REC_LIST = $this->RecruitModel->getRecruitInternShipList();
+            $REC_LIST_COUNT = $this->RecruitModel->getRecruitInternShipListCount();
+        }else if( $CATEGORY == 2){
+            $REC_LIST = $this->RecruitModel->getRecruitJobList();
+            $REC_LIST_COUNT = $this->RecruitModel->getRecruitJobListCount();
+        }
+
+        $DATA["CATEGORY"] = $CATEGORY;
+        $DATA["REC_LIST"] = $REC_LIST;
+        $DATA["REC_LIST_COUNT"] = $REC_LIST_COUNT;
+
+        $this->load->view("recruit/recruit_list", $DATA);
+    }
+
+    public function recruit_view($category, $rec_seq){
+        $CATEGORY = $category;
+        $RECRUIT = $this->RecruitModel->getRecruitAbroad($rec_seq);
+
+        $DATA["CATEGORY"] = $CATEGORY;
+        $DATA["RECRUIT"] = $RECRUIT;
+
+        $this->customclass->addRecruitVisitCount($rec_seq);
+
+        $this->load->view("recruit/recruit_view", $DATA);
+    }
+
+    public function recruit_new($category, $rec_seq){
+        $CATEGORY = $category;
+        $USER = $this->UserModel->getUserInfo($this->session->userdata("USER_SEQ"));
+        $RECRUIT = $this->RecruitModel->getRecruitAbroad($rec_seq);
+
+        $DATA["CATEGORY"] = $CATEGORY;
+        $DATA["RECRUIT"] = $RECRUIT;
+        $DATA["USER"] = $USER;
+
+        $this->load->view("recruit/recruit_new", $DATA);
+    }
+
+    public function recruit_new_proc(){
+        $rec_seq = isset($_POST["rec_seq"]) ? $_POST["rec_seq"] : "";
+        $user_seq = isset($_POST["user_seq"]) ? $_POST["user_seq"] : "";
         $apply_user_name = isset($_POST["apply_user_name"]) ? $_POST["apply_user_name"] : "";
         $apply_user_birthday = isset($_POST["apply_user_birthday"]) ? $_POST["apply_user_birthday"] : "";
         $apply_user_tel = isset($_POST["apply_user_tel"]) ? $_POST["apply_user_tel"] : "";
@@ -198,7 +111,9 @@ class Consult extends CI_Controller {
         $apply_self_introduce = isset($_POST["apply_self_introduce"]) ? $_POST["apply_self_introduce"] : "";
         // $apply_user_img_edit = isset($_POST["apply_user_img_edit"]) ? $_POST["apply_user_img_edit"] : "";
 
-        $updateArr = array(
+        $insertArr = array(
+            "REC_SEQ" => $rec_seq,
+            "USER_SEQ" => $user_seq,
 			"APP_USER_NAME" => $apply_user_name,
 			"APP_USER_BIRTHDAY" => $apply_user_birthday,
 			"APP_USER_TEL" => $apply_user_tel,
@@ -228,20 +143,22 @@ class Consult extends CI_Controller {
 		);
 		// print_r($insertArr);
 	
-		$result = $this->RecruitModel->updateRecruitApply($app_seq, $updateArr);
+		$result = $this->RecruitModel->insertRecruitApply($insertArr);
 
-        if (isset($_FILES["apply_user_img_edit"]) && !empty($_FILES["apply_user_img_edit"])){
+        $insert_id = $this->db->insert_id();
+
+        if (isset($_FILES["apply_user_img"]) && !empty($_FILES["apply_user_img"])){
             // $_FILES["abroad_origin_pic"]["name"];
             
-			if ($_FILES["apply_user_img_edit"]["error"] > 0){
-				echo "Error : " . $_FILES["apply_user_img_edit"]["error"];
+			if ($_FILES["apply_user_img"]["error"] > 0){
+				echo "Error : " . $_FILES["apply_user_img"]["error"];
 			}else{
-				if (file_exists("/upload/apply/".$_FILES["apply_user_img_edit"]["name"])){
+				if (file_exists("/upload/apply/".$_FILES["apply_user_img"]["name"])){
 					echo "동일한 이름의 파일이 존재합니다.";
 				}else{
-					$tmp = explode(".", $_FILES["apply_user_img_edit"]["name"]);
+					$tmp = explode(".", $_FILES["apply_user_img"]["name"]);
 					$time = time();
-					$new_name = "APPLY".$time."_".$app_seq.".".end($tmp);
+					$new_name = "APPLY".$time."_".$insert_id.".".end($tmp);
 					// print_r($new_name);
 					/* 
 						$_FILES["apply_attach"]에서
@@ -252,9 +169,9 @@ class Consult extends CI_Controller {
 							)
 						tmp 경로에서 -> 실제 업로드 경로
 					*/  
-					move_uploaded_file($_FILES["apply_user_img_edit"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/upload/apply/".$new_name);
+					move_uploaded_file($_FILES["apply_user_img"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/upload/apply/".$new_name);
 					//array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
-					$file_name = $_FILES["apply_user_img_edit"]["name"];
+					$file_name = $_FILES["apply_user_img"]["name"];
 					$file_path = "./upload/apply/".$new_name;
 					// print_r($_FILES["apply_attach"]);
 				}
@@ -264,7 +181,7 @@ class Consult extends CI_Controller {
 			
             $config['image_library'] = 'gd2';
             $config['source_image'] = $file_path;
-            $config['new_image'] = "./upload/apply/"."APPLYB".$time."_".$app_seq."_USER_THUMB".".".end($tmp);
+            $config['new_image'] = "./upload/apply/"."APPLYB".$time."_".$insert_id."_USER_THUMB".".".end($tmp);
             $pathArr = explode(".",$config['new_image']);
             
             $config['width'] = 110;
@@ -283,17 +200,19 @@ class Consult extends CI_Controller {
 			
 			$this->image_lib->clear();
 
-			$result2 = $this->RecruitModel->updateRecruitApply($app_seq, array("APP_USER_IMG" => $thumb_file_path));
+			$result2 = $this->RecruitModel->updateRecruitApply($insert_id, array("APP_USER_IMG" => $thumb_file_path));
 
         }
 
 		if ($result == true && $result2 == true){
-			echo json_encode(array("code" => "200", "app_seq" => $app_seq));
+			echo json_encode(array("code" => "200"));
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
 		}
-
->>>>>>> 262224d0164866b853a8f0f55329c10fce96d5e6
     }
+
+    
+
+    
 
 }

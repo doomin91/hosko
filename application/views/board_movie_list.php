@@ -82,9 +82,11 @@
                                     </div>
 
 
-                                    <div class="subBtn_List f_right mt40">
-                                        <a href="/">목록보기</a>
+                                    <?php if($this->session->userdata("USER_SEQ")): ?>
+                                    <div class="subBtn_Write f_right mt40">
+                                        <a href="/Board/board_write/<?php echo $GROUP_INFO->GP_SEQ . "?seq=" . $BOARD_INFO->BOARD_SEQ?>">글쓰기</a>
                                     </div>
+                                    <?php endif; ?>>
 
                                     <div class="pagination">
                                         <a href="/" class="btn_prev"><span>맨처음</span></a>

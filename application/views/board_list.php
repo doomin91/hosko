@@ -74,15 +74,22 @@
                                             <span class="col_tit">
                                             <?php 
                                                 date_default_timezone_set('Asia/Seoul');
+
+                                                if($lt->POST_PARENT_SEQ != $lt->POST_SEQ){
+                                                    for($i=0; $i<$lt->POST_DEPTH;$i++){
+                                                        echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">";												
+                                                    }
+                                                }
+
                                                 if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
                                                     if(time() - strtotime($lt->POST_REG_DATE) < ( 86400 * $BOARD_INFO->BOARD_PERIOD_NEW )){
-                                                        echo "[NEW ICON]";												
+                                                        // echo "<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">";												
                                                     };
                                                 }
                                                     
                                                 if($BOARD_INFO->BOARD_PERIOD_HOT > 0){
                                                     if($lt->POST_VIEW_CNT >= $BOARD_INFO->BOARD_PERIOD_HOT){
-                                                        echo "[HOT ICON]";
+                                                        echo "<img src=\"/static/front/img/promotional.png\" style=\"width:30px;height:30px;\">";												
                                                     }
                                                 }
 
@@ -92,12 +99,12 @@
                                                     } else {
                                                         echo "<a onclick=\"alert('게시글 권한이 없습니다.');\">$lt->POST_SUBJECT</a>";
                                                     }
-                                                echo "[자물쇠 ICON]";
+                                                    echo "<img src=\"/static/front/img/ico_lock.png\" style=\"width:12px;height:18px;\">";												
                                                 } else {
                                                     echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
                                                 }
 
-                                                echo $lt->ATTACHS > 0 ? "[". $count($lt->ATTACHS) ."]" : "";
+                                                echo $lt->ATTACHS > 0 ? "[". ($lt->ATTACHS) ."]" : "";
 
                                                 ?></span>
                                             <span class="col_name"><?php echo $lt->USER_NAME?></span>
@@ -109,9 +116,11 @@
                                         ?>
                                     </div>
 
+                                    <?php if($this->session->userdata("USER_SEQ")): ?>
                                     <div class="subBtn_Write f_right mt40">
                                         <a href="/Board/board_write/<?php echo $GROUP_INFO->GP_SEQ . "?seq=" . $BOARD_INFO->BOARD_SEQ?>">글쓰기</a>
                                     </div>
+                                    <?php endif; ?>
 
                                         <?php echo $pagination; ?>
 

@@ -392,17 +392,37 @@ class Board extends CI_Controller {
 		$POST_SECRET_CHK = $this->input->post("post_secret_chk");
 		// $SPAM_CHECK = $this->rpHash($this->input->post("defaultReal"));
 		// $SPAM_CHECK_HASH = $this->input->post("defaultRealHash");
-
 		$POST_INFO = $this->BoardModel->getBoardSeqByPost($POST_SEQ);
 		$BOARD_INFO = $this->BoardModel->getBoard($POST_INFO->POST_BOARD_SEQ);
-		if(empty($POST_SUBJECT) || empty($POST_CONTENTS)){
+
+		if(empty($POST_SUBJECT)){
 			$returnMsg = array(
 				"code" => 202,
-				"msg" => "값을 입력해주세요."
+				"msg" => "제목을 입력해주세요."
 			);
 			echo json_encode($returnMsg);
 			exit;
 		}
+
+		if(empty($POST_CONTENTS)){
+			$returnMsg = array(
+				"code" => 202,
+				"msg" => "내용을 입력해주세요."
+			);
+			echo json_encode($returnMsg);
+			exit;
+		}
+
+		// if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'){
+		// 	if($SPAM_CHECK != $SPAM_CHECK_HASH){
+		// 		$returnMsg = array(
+		// 			"code" => 202,
+		// 			"msg" => "자동입력방지 값이 다릅니다."
+		// 		);
+		// 		echo json_encode($returnMsg);
+		// 		exit;
+		// 	}
+		// }
 
 		$DATA = array(
 			"POST_USER_SEQ" => $this->session->userdata("USER_SEQ"),
@@ -464,11 +484,36 @@ class Board extends CI_Controller {
 		$POST_CONTENTS = $this->input->post("post_contents");
 		$POST_NOTICE_CHK = $this->input->post("post_notice_chk");
 		$POST_SECRET_CHK = $this->input->post("post_secret_chk");
+		
+		$POST_SEQ = $this->input->post("post_seq");
+		$POST_INFO = $this->BoardModel->getPostInfo($POST_SEQ);
+		$POST_PARENT_SEQ = $POST_INFO->POST_PARENT_SEQ;
+		$POST_DEPTH = $POST_INFO->POST_DEPTH;
+		
 		$SPAM_CHECK = $this->rpHash($this->input->post("defaultReal"));
 		$SPAM_CHECK_HASH = $this->input->post("defaultRealHash");
 		$BOARD_INFO = $this->BoardModel->getBoard($BOARD_SEQ);
+		
 		$filepath = $_SERVER['DOCUMENT_ROOT'] . "/upload/attach/";
 		
+		if(empty($POST_SUBJECT)){
+			$returnMsg = array(
+				"code" => 202,
+				"msg" => "제목을 입력해주세요."
+			);
+			echo json_encode($returnMsg);
+			exit;
+		}
+
+		if(empty($POST_CONTENTS)){
+			$returnMsg = array(
+				"code" => 202,
+				"msg" => "내용을 입력해주세요."
+			);
+			echo json_encode($returnMsg);
+			exit;
+		}
+
 		if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'){
 			if($SPAM_CHECK != $SPAM_CHECK_HASH){
 				$returnMsg = array(
@@ -480,16 +525,9 @@ class Board extends CI_Controller {
 			}
 		}
 
-		if(empty($POST_SUBJECT) || empty($POST_CONTENTS)){
-			$returnMsg = array(
-				"code" => 202,
-				"msg" => "값을 입력해주세요."
-			);
-			echo json_encode($returnMsg);
-			exit;
-		}
-
 		$DATA = array(
+			"POST_PARENT_SEQ" => $POST_PARENT_SEQ,
+			"POST_DEPTH" => $POST_DEPTH + 1,
 			"POST_BOARD_SEQ" => $BOARD_SEQ,
 			"POST_ADMIN_SEQ" => $this->session->userdata("admin_seq"),
 			"POST_USER_SEQ" => $this->session->userdata("USER_SEQ"),

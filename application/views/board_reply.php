@@ -70,6 +70,7 @@
                                 <div class="subContSec">
                                     <div class="boardWriteTop">
                                 <form id="post_write_form">
+                                    <input type="hidden" name="post_seq" value="<?php echo $POST_INFO->POST_SEQ?>">
                                         <div class="type_tableWrite">
                                             <!-- <div class="col1 n_br">
                                                 <div class="boardWriteTop_item">
@@ -231,11 +232,11 @@
                                         </div> -->
 
                                         <div class="btn_box f_right">
-                                            <a type="button" onclick="post_regist()" class="btn_style02">확인하기</a>
+                                            <a type="button" onclick="post_reply()" class="btn_style02">답글쓰기</a>
                                         </div>
 
                                         <div class="btn_box f_right">
-                                            <a href="/Board/q/<?php echo $GROUP_INFO->GP_SEQ?>?seq=<?php echo $BOARD_INFO->BOARD_SEQ?>"  class="btn_style01">목록보기</a>
+                                            <a href="/Board/q/<?php echo $GROUP_INFO->GP_SEQ?>?seq=<?php echo $BOARD_INFO->BOARD_SEQ?>"  class="btn_style01">뒤로가기</a>
                                         </div>
 
                                     </div>
@@ -283,7 +284,7 @@ $("#post_attach").on('change',function(){
   $(".upload-name").val(fileName);
 });
 
-    function post_regist(){
+    function post_reply(){
 		let upload_files = $(".file_list").children("li").children("i");
 		let file_seq = [];
 		console.log(upload_files);
@@ -374,38 +375,6 @@ $("#post_attach").on('change',function(){
 		}
 	});
 }
-
-// function post_regist(){
-// 		let hash = $("#defaultReal").realperson('getHash');
-// 		let board_seq = <?php echo $BOARD_INFO->BOARD_SEQ?>;
-//         let group_seq = <?php echo $GROUP_INFO->GP_SEQ?>;
-//         let type = "<?php echo $BOARD_TYPE?>";
-// 		$("#defaultRealHash").val(hash);
-// 		// var form = $("#post_write_form").serializeArray();
-// 		var formData = new FormData($("#post_write_form")[0]);
-
-// 		$.ajax({
-// 			url:"/admin/board/set_post_info?board_seq=" + board_seq,
-// 			type:"post",
-// 			data:formData,
-// 			dataType:"json",
-// 			processData:false,
-// 			contentType:false,
-// 			success:function(resultMsg){
-// 				let code = resultMsg["code"];
-// 				let msg = resultMsg["msg"];
-// 				if(code == 200){
-// 					alert(msg);
-// 					location.href="/Board/" + type + "/" + group_seq +"?seq=" + board_seq;
-// 				} else {
-// 					alert(msg);
-// 				}
-// 			},
-// 			error:function(e){
-// 				console.log(e);
-// 			}
-// 		})
-// 	}
 
 </script>
 

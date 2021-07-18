@@ -103,7 +103,7 @@
                                                             </select>
                                                         </div> -->
                                                         <div class="boardInputText">
-                                                            <input type="text" class="input_s1" id="post_title" name="post_title" placeholder="제목을 입력해주세요">
+                                                            <input type="text" class="input_s1" id="post_title" name="post_title" placeholder="제목을 입력해주세요" value="<?php echo $POST_INFO->POST_SUBJECT?>">
                                                         </div>
                                                     </div>
                                                 </div>                               
@@ -120,7 +120,7 @@
                                                 <div class="boardWriteTop_item">
                                                     <strong>내용</strong>
                                                     <div class="type_td">
-                                                        <textarea class="textarea_s1" name="post_contents" id="post_contents"> </textarea>								
+                                                        <textarea class="textarea_s1" name="post_contents" id="post_contents"></textarea>								
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,14 +204,14 @@
                                                 <div class="boardWriteTop_item">
                                                     <strong>비밀글</strong>
                                                     <div class="type_td">
-                                                            <input class="input" type="checkbox" name="post_secret_chk" value="Y">
+                                                            <input class="input" type="checkbox" name="post_secret_chk" value="Y" <?php echo $POST_INFO->POST_SECRET_YN == "Y" ? "checked" : "";?>>
                                                     </div>
                                                 </div>
                                             </div>     
                                             <?php }?>
 
                                             <?php if($BOARD_INFO->BOARD_SPAM_CHECK_FLAG == 'Y'){?>
-                                            <div class="col1 n_br">
+                                            <!-- <div class="col1 n_br">
                                                 <div class="boardWriteTop_item">
                                                     <strong>자동입력방지</strong>
                                                     <div class="type_td">
@@ -220,7 +220,7 @@
 										                <input type="text" id="defaultReal" name="defaultReal" placeholder="문자를 입력해주세요." style="color:#000;"></p>
                                                     </div>
                                                 </div>
-                                            </div>     
+                                            </div>      -->
                                             <?php }?>
                                         </div>
                                     </div>
@@ -231,7 +231,7 @@
                                         </div> -->
 
                                         <div class="btn_box f_right">
-                                            <a type="button" onclick="post_regist()" class="btn_style02">확인하기</a>
+                                            <a type="button" onclick="post_modify()" class="btn_style02">확인하기</a>
                                         </div>
 
                                         <div class="btn_box f_right">
@@ -266,24 +266,49 @@
 
 
 <script>
+	loadAttach();
 
 		
 $(document).ready( function() {
 		$("#post_contents").Editor();
 		$("#defaultReal").realperson();
+        $("#post_contents").Editor('setText', "<?php echo $POST_INFO->POST_CONTENTS;?>");
+		tag.src = "https://www.youtube.com/iframe_api";
+		video_id = "<?php echo $POST_INFO->POST_YOUTUBE_URL?>";
+		$("input[name=youtube_url]").val("https://www.youtube.com/watch?v=" + video_id);
 	})
 
-$("#thumnail_img").on('change',function(){
-  var fileName = $("#thumnail_img").val();
-  $(".thumnail-name").val(fileName);
-});
+    $("#thumnail_img").on('change',function(){
+    var fileName = $("#thumnail_img").val();
+    $(".thumnail-name").val(fileName);
+    });
 
-$("#post_attach").on('change',function(){
-  var fileName = $("#post_attach").val();
-  $(".upload-name").val(fileName);
-});
+    $("#post_attach").on('change',function(){
+    var fileName = $("#post_attach").val();
+    $(".upload-name").val(fileName);
+    });
 
-    function post_regist(){
+    function loadAttach(){
+            $.ajax({
+            type : "GET",
+            url: '/admin/Board/FileLoad/' + <?php echo $POST_INFO->POST_SEQ;?>,
+            dataType : "JSON",
+            success: function(resultMsg){
+                console.log(resultMsg);
+                var file_list = resultMsg.file_list;
+                $(".upload-area p").addClass("hide");
+                //$(".file_list").append("<li>"+$(this).get(0).files[i].name+"</li>");
+                $.each(file_list, function(key, element){
+                    $(".file_list").append("<li>"+element.file_name+"&nbsp;<i class=\"fa fa-times file_del\" data-file_seq=\""+element.file_seq+"\"></i></li>");
+                });
+            }, error : function(e){
+                //alert(e.responseText);
+                console.log(e.responseText);
+            }
+        });
+        }
+
+    function post_modify(){
 		let upload_files = $(".file_list").children("li").children("i");
 		let file_seq = [];
 		console.log(upload_files);
@@ -293,28 +318,18 @@ $("#post_attach").on('change',function(){
 		})
 
 		let hash = $("#defaultReal").realperson('getHash');
-		let board_seq = <?php echo $BOARD_INFO->BOARD_SEQ?>;
+		let post_seq = <?php echo $POST_INFO->POST_SEQ?>;
 		$("#defaultRealHash").val(hash);
 		$("#post_contents").val($("#post_contents").Editor("getText"));
+		// let form = $("#post_write_form").serializeArray();
 		var formData = new FormData($("#post_write_form")[0]);
 		formData.append("file_seq", file_seq);
 
-		console.log(formData);
-		<?php if($BOARD_INFO->BOARD_TYPE == 1): ?>
-		if($("input[name=thumnail_img]").val() == ""){
-			alert("썸네일 이미지를 등록해주세요.");
-			return false;
-		}
-		<?php endif; ?>
-		<?php if($BOARD_INFO->BOARD_TYPE == 2): ?>
-		if($("input[name=youtube_url]").val() == ""){
-			alert("동영상 링크를 등록해주세요.");
-			return false;
-		}
-		<?php endif; ?>
+		// let formData = new FormData(form);
+		// formData.append("post_file", "D");
 
 		$.ajax({
-			url:"/admin/board/set_post_info?board_seq=" + board_seq,
+			url:"/admin/board/upt_post_info?post_seq=" + post_seq,
 			type:"post",
 			data:formData,
 			dataType:"json",
@@ -351,6 +366,8 @@ $("#post_attach").on('change',function(){
 			}
 		})
 	}
+    
+
 
 	function url_upload(){
 	$.ajax({
@@ -365,6 +382,7 @@ $("#post_attach").on('change',function(){
 				tag.src = "https://www.youtube.com/iframe_api";
 				video_id = resultMsg["video_id"];
 				$("input[name=video_id]").val(video_id);
+				alert(msg);
 			} else {
 				alert(msg);
 			}
@@ -375,37 +393,6 @@ $("#post_attach").on('change',function(){
 	});
 }
 
-// function post_regist(){
-// 		let hash = $("#defaultReal").realperson('getHash');
-// 		let board_seq = <?php echo $BOARD_INFO->BOARD_SEQ?>;
-//         let group_seq = <?php echo $GROUP_INFO->GP_SEQ?>;
-//         let type = "<?php echo $BOARD_TYPE?>";
-// 		$("#defaultRealHash").val(hash);
-// 		// var form = $("#post_write_form").serializeArray();
-// 		var formData = new FormData($("#post_write_form")[0]);
-
-// 		$.ajax({
-// 			url:"/admin/board/set_post_info?board_seq=" + board_seq,
-// 			type:"post",
-// 			data:formData,
-// 			dataType:"json",
-// 			processData:false,
-// 			contentType:false,
-// 			success:function(resultMsg){
-// 				let code = resultMsg["code"];
-// 				let msg = resultMsg["msg"];
-// 				if(code == 200){
-// 					alert(msg);
-// 					location.href="/Board/" + type + "/" + group_seq +"?seq=" + board_seq;
-// 				} else {
-// 					alert(msg);
-// 				}
-// 			},
-// 			error:function(e){
-// 				console.log(e);
-// 			}
-// 		})
-// 	}
 
 </script>
 

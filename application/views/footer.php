@@ -23,6 +23,7 @@
     </div>
 </footer>
 
+<script src="/js/editor.js"></script>
 
 <script type="text/javascript">
         $(function(){

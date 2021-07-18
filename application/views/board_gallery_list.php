@@ -28,7 +28,6 @@
                                             // 갤러리 게시판
                                             echo "<li><a href=\"/Board/g/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
                                             break;
-                                        
                                         case 2:
                                             // 동영상 게시판
                                             echo "<li><a href=\"/Board/v/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
@@ -76,11 +75,12 @@
                                         </ul>
                                     </div>
 
-
-                                    <div class="subBtn_List f_right mt40">
+                                    <?php if($this->session->userdata("USER_SEQ")): ?>
+                                    <div class="subBtn_Write f_right mt40">
                                         <a href="/Board/board_write/<?php echo $GROUP_INFO->GP_SEQ . "?seq=" . $BOARD_INFO->BOARD_SEQ?>">글쓰기</a>
                                     </div>
-
+                                    <?php endif; ?>>
+                                    
                                     <?php echo $pagination; ?>
 
 
