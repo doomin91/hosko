@@ -61,7 +61,7 @@
                     <a href="#">상담ㆍ신청</a>
                     <ul class="sub">
                         <li><a href="#">Q&A</a></li>
-                        <li><a href="#">온라인 상담</a></li>
+                        <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
                         <li><a href="#">방문상담 신청</a></li>
                         <li><a href="#">포지션&연수 지원</a></li>
                     </ul>

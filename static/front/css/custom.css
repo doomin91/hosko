@@ -1,0 +1,6 @@
+
+.type_tableWrite > div .boardWriteTop_item > * { width: 170px !important; font-weight: bold }
+.type_table > div .boardViewTop_item > strong { color:#959595 }
+.type_table > div .boardViewTop_item > * { width: 170px !important; font-weight: bold }
+
+.input_s1, .select_s1, .textarea_s1, .file_s1 {margin:0 5px}

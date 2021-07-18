@@ -10,11 +10,11 @@
                 include_once dirname(__DIR__)."/nav.php";
             ?>
 
-<div id="container">
+            <div id="container">
                 <div class="layout_sub">
                     <div class="sub_visual v01">
                         <div class="sub_visual_text">
-                            <h1>공지 & 뉴스</h1>
+                            <h1>온라인 상담</h1>
                             <p>HOSPITALITY KOREA</p>
                         </div>
 
@@ -22,43 +22,57 @@
                     <div class="sub_contents">
                         <div class="sub_category">
                             <ul>
-                                <li class="on"><a href="/">호스코뉴스</a></li>
-                                <li><a href="/">해외취업후기</a></li>
-                                <li><a href="/">출국회원소식</a></li>
-                                <li><a href="/">동영상자료실</a></li>
-                                <li><a href="/">갤러리</a></li>
+                                <li><a href="/">Q&A</a></li>
+                                <li class="on"><a href="/">온라인 상담</a></li>
+                                <li><a href="/">방문상담신청</a></li>
+                                <li><a href="/">포지션&연수 지원</a></li>
+                                <li><a href="/">설명회신청</a></li>
                             </ul>
                         </div>
 
                         <div class="inner">
                             <div class="subContWrap">
                                 <div class="subTit">
-                                    <h2>호스코 뉴스</h2>
+                                    <h2>온라인 상담</h2>
                                 </div>
                                 <div class="subContSec">
 
                                     <div class="boardTotallist clearfix">
-                                        <p>총 88개의 글이 등록 되어있습니다.</p>
+                                        <p>총 <?php echo $listCount; ?>개의 글이 등록 되어있습니다.</p>
                                     </div>
                                     <div class="tblArea boardList_flex"> 
                                         <div class="tblTop">
                                             <span class="col_num">번호</span>
                                             <span class="col_tit">제목</span>
                                             <span class="col_name">글쓴이</span>
-                                            <span class="col_hit">조회</span>
                                             <span class="col_date">작성일</span>
                                         </div>
+                                    <?php   
+                                        if (!empty($lists)){
+                                            foreach($lists as $list){
+                                    ?>
                                         <div class="tblBot-item">
-                                            <span class="col_num">1</span>
-                                            <span class="col_tit"><a href="news_view.php">공지사항입니다.</a></span>
-                                            <span class="col_name">홍길동</span>
-                                            <span class="col_hit">5</span>
-                                            <span class="col_date">2021-05-14</span>                                            
+                                            <span class="col_num"><?php echo $pagenum; ?></span>
+                                            <span class="col_tit"><a href="/consult/onlineConsultView/<?php echo $list->OC_SEQ; ?>"><?php echo $list->OC_SUBJECT; ?></a></span>
+                                            <span class="col_name"><?php echo $list->USER_NAME; ?></span>
+                                            <span class="col_date"><?php echo $list->OC_REG_DATE; ?></span>                                            
                                         </div>
+                                    <?php 
+                                            $pagenum--;
+                                            }
+                                        }else{ 
+                                    ?>
+                                        <div class="tblBot-item">      
+                                            <span class="col_name">문의한 글이 없습니다.</span>
+                                        </div>
+                                    <?php
+                                        }
+                                    ?>
                                     </div>
 
                                     <div class="subBtn_Write f_right mt40">
-                                        <a href="/">글쓰기</a>
+                                        <!--a href="/">글쓰기</a-->
+                                        <button type="button" class="memberBtnOk f_left" id="consultWrite">문의하기</button>
                                     </div>
 
                                     <div class="pagination">
@@ -77,22 +91,20 @@
                                         <input type="hidden" name="num" value="">
 
                                             <div class="boardSearch">
-                                                <select name="">
+                                            <form name="sfrom" method="get">
+                                                <select name="searchField">
                                                     <option value="all" selected="selected">전체</option>
+                                                    <option value="oc_subject" selected="selected">제목</option>
+                                                    <option value="oc_contents" selected="selected">내용</option>
                                                 </select>
                                                 <div class="inputSearch">
-                                                    <input type="text" name="" value="" maxlength="50">
+                                                    <input type="text" name="searchString" value="" maxlength="50">
                                                     <input type="submit" value="">
                                                 </div>
+                                            </form>
                                             </div>
                                         </form>
                                     </div>
-
-
-
-
-
-
 
                                 </div>
                             </div>
@@ -113,7 +125,14 @@
 
     </body>
 </html>
+<script type="text/javascript">
+    $(function(){
+        $(document).on("click", "#consultWrite", function(){
+            document.location.href="/consult/onlineConsultWrite"
+        })
 
+    });
+</script>
 
 
 

@@ -9,7 +9,7 @@
 
     <div class="footer_info">
         <div class="f_logo">
-            <img src="static/img/f_hosko_logo.png">
+            <img src="/static/front/img/f_hosko_logo.png">
         </div>
         <div class="f_address">
             <ul>

@@ -27,6 +27,7 @@
 	    <meta id="meta_og_description" property="og:description" content="교육 훈련기관 브랜드 HOSKO">
 
 		<link rel="stylesheet" href="\static\front\html\static\css\style.css">
+		<link rel="stylesheet" href="/static/front/css/custom.css">
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		
 		<script src="https://code.jquery.com/jquery.js"></script>
