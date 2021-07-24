@@ -14,7 +14,7 @@
                 <div class="layout_sub">
                     <div class="sub_visual v01">
                         <div class="sub_visual_text">
-                            <h1>온라인 상담</h1>
+                            <h1>상담ㆍ신청</h1>
                             <p>HOSPITALITY KOREA</p>
                         </div>
 

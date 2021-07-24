@@ -66,7 +66,7 @@ class Consult extends CI_Controller {
 			$pagenum = $listCount;
 		}
 
-		$pagination = $this->customclass->pagenavi("/admin/consult/onlineConsult/", $listCount, 10, 5, $nowpage);
+		$pagination = $this->customclass->front_pagenavi("/admin/consult/onlineConsult/", $listCount, 10, 5, $nowpage);
 
 		$data = array(
 					"lists" => $lists,
@@ -126,8 +126,47 @@ class Consult extends CI_Controller {
         $this->load->view("/consult/online-consult-view", $data);
     }
 
-    public function qna(){
-        $this->load->view("consult/consult_qna");
+    public function qnaList(){
+        $limit = 10;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*10;
+			$nowpage = $_GET["per_page"];
+		}
+
+		$searchField = $this->input->get("searchField");
+		$searchString = $this->input->get("searchString");
+
+		$wheresql = array(
+						"start" => $start,
+						"limit" => $limit,
+						"user_seq" => $this->session->userdata("USER_SEQ"),
+						"searchField" => $searchField,
+						"searchString" => $searchString
+						);
+		$lists = $this->ConsultModel->getQnaLists($wheresql);
+		//echo $this->db->last_query();
+		$listCount = $this->ConsultModel->getQnaListCount($wheresql);
+
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*10);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$pagination = $this->customclass->front_pagenavi("/admin/consult/onlineConsult/", $listCount, 10, 5, $nowpage);
+
+		$data = array(
+					"lists" => $lists,
+					"listCount" => $listCount,
+					"pagination" => $pagination,
+					"pagenum" => $pagenum,
+					"start" => $start,
+					"limit" => $limit
+					);
+        $this->load->view("/consult/qna-list", $data);
     }
 
     public function online(){
@@ -293,7 +332,6 @@ class Consult extends CI_Controller {
 			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
 		}
 
->>>>>>> 262224d0164866b853a8f0f55329c10fce96d5e6
     }
 
 }

@@ -22,8 +22,8 @@
                     <div class="sub_contents">
                         <div class="sub_category">
                             <ul>
-                                <li><a href="/">Q&A</a></li>
-                                <li class="on"><a href="/consult/onlineConsultList">온라인 상담</a></li>
+                                <li class="on"><a href="/consult/qnaList">Q&A</a></li>
+                                <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
                                 <li><a href="/">방문상담신청</a></li>
                                 <li><a href="/consult/apply">포지션&연수 지원</a></li>
                                 <li><a href="#">설명회신청</a></li>
@@ -33,7 +33,7 @@
                         <div class="inner">
                             <div class="subContWrap">
                                 <div class="subTit">
-                                    <h2>온라인 상담</h2>
+                                    <h2>Q&A</h2>
                                 </div>
                                 <div class="subContSec">
 
@@ -70,7 +70,11 @@
                                     ?>
                                     </div>
 
-                                    <div class="subBtn_Write f_right mt40">
+                                    <div class="f_left mt30">
+                                        <!--a href="/">글쓰기</a-->
+                                        <button type="button" class="btn_style01 f_right" id="consultList">목록보기</button>
+                                    </div>
+                                    <div class="subBtn_Write f_right mt30">
                                         <!--a href="/">글쓰기</a-->
                                         <button type="button" class="memberBtnOk f_left" id="consultWrite">문의하기</button>
                                     </div>
