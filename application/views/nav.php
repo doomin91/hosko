@@ -19,14 +19,7 @@
                     </ul>
                 </li>
                 <li id="news">
-                    <a href="#">공지 & 뉴스</a>
-                    <ul class="sub" >
-                        <li><a href="#">호스코뉴스</a></li>
-                        <li><a href="#">해외취업 후기</a></li>
-                        <li><a href="#">출국회원소식</a></li>
-                        <li><a href="#">동영상자료실</a></li>
-                        <li><a href="#">갤러리</a></li>
-                    </ul>
+
                 </li>
                 <li>
                     <a href="#">포지션 공고</a>
@@ -47,15 +40,7 @@
                     </ul>
                 </li>
                 <li id="guide">
-                    <a href="#">해외취업가이드</a>
-                    <ul class="sub" >
-                        <li><a href="#">이력서 가이드</a></li>
-                        <li><a href="#">영어인터뷰 대비</a></li>
-                        <li><a href="#">스폰서인터뷰 대비</a></li>
-                        <li><a href="#">미국대사관인터뷰 대비</a></li>
-                        <li><a href="#">해외취업 전략설명회</a></li>
-                        <li><a href="#">해외진출 성공스토리</a></li>
-                    </ul>
+
                 </li>
                 <li>
                     <a href="#">상담ㆍ신청</a>
@@ -125,7 +110,7 @@
 	function ViewBoardMenu(){
 		let str = "";
 		$.ajax({
-			url:"/admin/Board/get_boards",
+			url:"/admin/board/get_boards",
 			type:"post",
 			dataType:"json",
 			success: function(data){
