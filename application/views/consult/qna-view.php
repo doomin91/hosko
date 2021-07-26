@@ -22,18 +22,18 @@
                     <div class="sub_contents">
                         <div class="sub_category">
                             <ul>
-                                <li><a href="/consult/qnaList">Q&A</a></li>
-                                <li class="on"><a href="/consult/onlineConsultList">온라인 상담</a></li>
+                                <li class="on"><a href="/consult/qnaList">Q&A</a></li>
+                                <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
                                 <li><a href="/">방문상담신청</a></li>
-                                <li><a href="/">포지션&연수 지원</a></li>
-                                <li><a href="/">설명회신청</a></li>
+                                <li><a href="/consult/apply">포지션&연수 지원</a></li>
+                                <li><a href="#">설명회신청</a></li>
                             </ul>
                         </div>
 
                         <div class="inner">
                             <div class="subContWrap">
                                 <div class="subTit">
-                                    <h2>온라인 상담</h2>
+                                    <h2>Q&A</h2>
                                 </div>
                                 <div class="subContSec">
                                     <div class="boardViewTop">
@@ -42,36 +42,34 @@
                                                 <div class="boardViewTop_item">
                                                     <strong>제목</strong>
                                                     <div class="type_td">
-                                                        <?php echo $ocInfo->OC_SUBJECT; ?>										
+                                                        <?php echo $qnaInfo->QNA_SUBJECT; ?>										
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col1">
                                                 <div class="boardViewTop_item">
+                                                    <strong>이름</strong>
+                                                    <div class="type_td">
+                                                        <?php echo $qnaInfo->QNA_USER_NAME; ?>										
+                                                    </div>
+                                                    <strong>이메일</strong>
+                                                    <div class="type_td">
+                                                        <?php echo $qnaInfo->QNA_USER_EMAIL; ?>										
+                                                    </div>
                                                     <strong>등록일</strong>
                                                     <div class="type_td">
-                                                        <?php echo $ocInfo->OC_REG_DATE; ?>										
+                                                        <?php echo $qnaInfo->QNA_REG_DATE; ?>										
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col1">
                                                 <div class="boardViewTop_item">
-                                                    <strong>상담내용</strong>
+                                                    <strong>내용</strong>
                                                     <div class="type_td">
-                                                        <?php echo nl2br($ocInfo->OC_CONTENTS); ?>
+                                                        <?php echo nl2br($qnaInfo->QNA_CONTENTS); ?>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php if ($ocInfo->OC_ANSWER_FLAG == "Y"){ ?>
-                                            <div class="col1">
-                                                <div class="boardViewTop_item">
-                                                    <strong>답변내용</strong>
-                                                    <div class="type_td">
-                                                        <?php echo nl2br($ocInfo->OC_ANSWER); ?>		
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php } ?>
                                         </div>
                                     </div>
 
@@ -104,7 +102,7 @@
 <script type="text/javascript">
     $(function(){
         $(document).on("click", "#consultlist", function(){
-            document.location.href="/consult/onlineConsultList"
+            document.location.href="/consult/qnaList"
         })
 
     });

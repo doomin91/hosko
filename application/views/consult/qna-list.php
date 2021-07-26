@@ -53,9 +53,9 @@
                                     ?>
                                         <div class="tblBot-item">
                                             <span class="col_num"><?php echo $pagenum; ?></span>
-                                            <span class="col_tit"><a href="/consult/onlineConsultView/<?php echo $list->OC_SEQ; ?>"><?php echo $list->OC_SUBJECT; ?></a></span>
-                                            <span class="col_name"><?php echo $list->USER_NAME; ?></span>
-                                            <span class="col_date"><?php echo $list->OC_REG_DATE; ?></span>                                            
+                                            <span class="col_tit"><a href="/consult/qnaView/<?php echo $list->QNA_SEQ; ?>"><?php echo $list->QNA_SUBJECT; ?></a></span>
+                                            <span class="col_name"><?php echo $list->QNA_USER_NAME; ?></span>
+                                            <span class="col_date"><?php echo substr($list->QNA_REG_DATE, 0, 10); ?></span>                                            
                                         </div>
                                     <?php 
                                             $pagenum--;
@@ -70,16 +70,21 @@
                                     ?>
                                     </div>
 
-                                    <div class="f_left mt30">
-                                        <!--a href="/">글쓰기</a-->
-                                        <button type="button" class="btn_style01 f_right" id="consultList">목록보기</button>
-                                    </div>
-                                    <div class="subBtn_Write f_right mt30">
-                                        <!--a href="/">글쓰기</a-->
-                                        <button type="button" class="memberBtnOk f_left" id="consultWrite">문의하기</button>
+                                    <div class="row">
+                                        <div class="f_left mt30 col-lg-3">
+                                            <!--a href="/">글쓰기</a-->
+                                            <button type="button" class="btn_style01 f_left" id="qnaList">목록보기</button>
+                                        </div>
+                                        <div class="f_center mt30 col-lg-6">
+                                            <?php echo $pagination; ?>    
+                                        </div>
+                                        <div class="f_right mt30 col-lg-3">
+                                            <!--a href="/">글쓰기</a-->
+                                            <button type="button" class="btn_style02 f_right" id="qnaWrite">문의하기</button>
+                                        </div>
                                     </div>
 
-                                    <?php echo $pagination; ?>
+                                    
 
                                     <div class="boardSearchWrap">
                                         <form name="" id="" method="">
@@ -123,8 +128,8 @@
 </html>
 <script type="text/javascript">
     $(function(){
-        $(document).on("click", "#consultWrite", function(){
-            document.location.href="/consult/onlineConsultWrite"
+        $(document).on("click", "#qnaWrite", function(){
+            document.location.href="/consult/qnaWrite"
         })
 
     });

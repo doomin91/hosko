@@ -22,18 +22,18 @@
                     <div class="sub_contents">
                         <div class="sub_category">
                             <ul>
-                                <li><a href="/consult/qnaList">Q&A</a></li>
-                                <li class="on"><a href="/consult/onlineConsultList">온라인 상담</a></li>
+                                <li class="on"><a href="/consult/qnaList">Q&A</a></li>
+                                <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
                                 <li><a href="/">방문상담신청</a></li>
-                                <li><a href="/">포지션&연수 지원</a></li>
-                                <li><a href="/">설명회신청</a></li>
+                                <li><a href="/consult/apply">포지션&연수 지원</a></li>
+                                <li><a href="#">설명회신청</a></li>
                             </ul>
                         </div>
 
                         <div class="inner">
                             <div class="subContWrap">
                                 <div class="subTit">
-                                    <h2>온라인 상담</h2>
+                                    <h2>Q&A</h2>
                                 </div>
                                 <div class="subContSec">
                                     <div class="boardWriteTop">
@@ -43,7 +43,7 @@
                                                     <div class="boardViewTop_item">
                                                         <strong>제목</strong>
                                                         <div class="type_td">
-                                                            <input type="text" class="input_s1" name="oc_subject">
+                                                            <input type="text" class="input_s1" name="qna_subject">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -51,45 +51,23 @@
                                                     <div class="boardViewTop_item">
                                                         <strong>이름</strong>
                                                         <div class="type_td">
-                                                            <input type="text" name="oc_user_name" class="input_s1" value="<?php echo $userInfo->USER_NAME; ?>">
+                                                            <input type="text" name="qna_user_name" class="input_s1" value="<?php echo isset($userInfo->USER_NAME) ? $userInfo->USER_NAME : ""; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <?php
-                                                    $userTel = explode("-", $userInfo->USER_TEL);
-                                                ?>
-                                                <div class="col1">
-                                                    <div class="boardViewTop_item">
-                                                        <strong>전화번호</strong>
-                                                        <div class="type_td">
-                                                            <input name="oc_user_tel1" type="text" class="input_s1" style="width:200px !important" value="<?php echo $userTel[0]; ?>" min="1" max="9999" maxlength="4">
-                                                            <input name="oc_user_tel2" type="text" class="input_s1" style="width:200px !important" value="<?php echo $userTel[1]; ?>" min="1" max="9999" maxlength="4">
-                                                            <input name="oc_user_tel3" type="text" class="input_s1" style="width:200px !important" value="<?php echo $userTel[2]; ?>" min="1" max="9999" maxlength="4">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <?php
-                                                    $userHp = explode("-", $userInfo->USER_HP);
-                                                ?>
-                                                <div class="col1 ">
-                                                    <div class="boardViewTop_item">
-                                                        <strong>휴대폰번호</strong>
-                                                        <div class="type_td">
-                                                            <input name="oc_user_hp1" type="text" class="input_s1" style="width:200px !important" value="<?php echo $userHp[0]; ?>" maxlength="4">
-                                                            <input name="oc_user_hp2" type="text" class="input_s1" style="width:200px !important" value="<?php echo $userHp[1]; ?>" maxlength="4">
-                                                            <input name="oc_user_hp3" type="text" class="input_s1" style="width:200px !important" value="<?php echo $userHp[2]; ?>" maxlength="4">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <?php
-                                                    $userEmail = explode("@", $userInfo->USER_EMAIL);
+                                                    if (isset($userInfo->USER_EMAIL)){
+                                                        $userEmail = explode("@", $userInfo->USER_EMAIL);
+                                                    }else{
+                                                        $userEmail = ["", ""];
+                                                    }
                                                 ?>
                                                 <div class="col1">
                                                     <div class="boardViewTop_item">
                                                         <strong>이메일</strong>
                                                         <div class="type_td">
-                                                            <input type="email" name="oc_user_email1" class="input_s1" value="<?php echo $userEmail[0]; ?>">@<input type="email" name="oc_user_email2" class="input_s1" value="<?php echo $userEmail[1]; ?>">
-                                                            <select name="user_email_sel" class="select_s1">
+                                                            <input type="email" name="qna_user_email1" class="input_s1" value="<?php echo $userEmail[0]; ?>">@<input type="email" name="qna_user_email2" class="input_s1" value="<?php echo $userEmail[1]; ?>">
+                                                            <select name="email_sel" class="select_s1">
                                                                 <option value="">직접입력</option>
                                                                 <option value="nate.com">nate.com</option>
                                                                 <option value="naver.com">naver.com</option>
@@ -102,9 +80,9 @@
                                                 </div>
                                                 <div class="col1">
                                                     <div class="boardViewTop_item">
-                                                        <strong>상담 내용</strong>
+                                                        <strong>내용</strong>
                                                         <div class="type_td">
-                                                            <textarea name="oc_contents" class="textarea_s1"> </textarea>								
+                                                            <textarea name="qna_contents" class="textarea_s1"> </textarea>								
                                                         </div>
                                                     </div>
                                                 </div>
@@ -143,46 +121,42 @@
 <script type="text/javascript">
     $(function(){
         $(document).on("click", "#consultSave", function(){
-            var oc_subject = $("input[name=oc_subject]").val();
-            var oc_user_name = $("input[name=oc_user_name]").val();
-            var oc_contents = $("textarea[name=oc_contents]").val();
-            var oc_user_tel = $("input[name=oc_user_tel1]").val() + "-" + $("input[name=oc_user_tel2]").val() + "-" + $("input[name=oc_user_tel3]").val();
-            var oc_user_hp = $("input[name=oc_user_hp1]").val() + "-" + $("input[name=oc_user_hp2]").val() + "-" + $("input[name=oc_user_hp3]").val();
-            var oc_user_email = $("input[name=oc_user_email1]").val() + "@" + $("input[name=oc_user_email2]").val();
-            if (oc_subject == ""){
+            var qna_subject = $("input[name=qna_subject]").val();
+            var qna_user_name = $("input[name=qna_user_name]").val();
+            var qna_contents = $("textarea[name=qna_contents]").val();
+            var qna_user_email = $("input[name=qna_user_email1]").val() + "@" + $("input[name=qna_user_email2]").val();
+            if (qna_subject == ""){
                 alert("제목을 입력해주세요");
-                $("input[name=oc_subject]").focus();
+                $("input[name=qna_subject]").focus();
                 return false;
             }
 
-            if (oc_user_name == ""){
+            if (qna_user_name == ""){
                 alert("이름을 입력해주세요");
-                $("input[name=oc_user_name]").focus();
+                $("input[name=qna_user_name]").focus();
                 return false;
             }
 
-            if (oc_contents == ""){
+            if (qna_contents == ""){
                 alert("상담내용을 입력해주세요");
-                $("textarea[name=oc_contents]").focus();
+                $("textarea[name=qna_contents]").focus();
                 return false;
             }
 
             $.ajax({
-                url:"/Consult/onlineConsultWriteProc",
+                url:"/Consult/qnaWriteProc",
                 type:"post",
                 dataType:"json",
                 data : {
-                    "oc_subject" : oc_subject,
-                    "oc_user_name" : oc_user_name,
-                    "oc_user_tel" : oc_user_tel,
-                    "oc_user_hp" : oc_user_hp,
-                    "oc_user_email" : oc_user_email,
-                    "oc_contents" : oc_contents
+                    "qna_subject" : qna_subject,
+                    "qna_user_name" : qna_user_name,
+                    "qna_user_email" : qna_user_email,
+                    "qna_contents" : qna_contents
                 }, success:function(data){
                     console.log(data);
                     if (data.code == "200"){
                         alert(data.msg);
-                        document.location.href="/consult/onlineConsultList";
+                        document.location.href="/consult/qnaList";
                     }else{
                         alert(data.msg);
                     }
@@ -191,6 +165,11 @@
                 }
             })
 
+        })
+
+        $(document).on("change", "select[name=email_sel]", function(){
+            var _var = $(this).val();
+            $("input[name=qna_user_email2]").val(_var);
         })
 
     });

@@ -195,7 +195,7 @@ class ConsultModel extends CI_Model{
 			}
 		}
 		$this->db->where("TBL_HOSKO_QNA.QNA_DEL_YN", "N");
-		$this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_QNA.QNA_USER_SEQ = TBL_HOSKO_USER.USER_SEQ", "INNER");
+		$this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_QNA.QNA_USER_SEQ = TBL_HOSKO_USER.USER_SEQ", "LEFT OUTER");
 		$this->db->select("TBL_HOSKO_QNA.*, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_TEL, TBL_HOSKO_USER.USER_HP");
 		$this->db->order_by("TBL_HOSKO_QNA.QNA_GROUP", "DESC");
 		$this->db->order_by("TBL_HOSKO_QNA.QNA_DEPTH", "ASC");
@@ -220,5 +220,19 @@ class ConsultModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_QNA.QNA_DEL_YN", "N");
 		$this->db->from("TBL_HOSKO_QNA");
 		return $this->db->count_all_results();
+	}
+
+	public function insertQna($insertData){
+		return $this->db->insert("TBL_HOSKO_QNA", $insertData);
+	}
+
+	public function getQnaGroupMax(){
+		$this->db->select_max("QNA_GROUP");
+		return $this->db->get("TBL_HOSKO_QNA")->row();
+	}
+
+	public function getQna($qna_seq){
+		$this->db->where("TBL_HOSKO_QNA.QNA_SEQ", $qna_seq);
+		return $this->db->get("TBL_HOSKO_QNA")->row();
 	}
 }

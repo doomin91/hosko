@@ -81,7 +81,7 @@ class Consult extends CI_Controller {
 
 	function onlineConsultWrite(){
 		$userInfo = $this->UserModel->getUserInfo($this->session->userdata("USER_SEQ"));
-		print_r($userInfo);
+		//print_r($userInfo);
 		$data = array(
 					"userInfo" => $userInfo
 					);
@@ -169,9 +169,54 @@ class Consult extends CI_Controller {
         $this->load->view("/consult/qna-list", $data);
     }
 
-    public function online(){
-        $this->load->view("consult/consult_online");
+    public function qnaWrite(){
+		$userInfo = $this->UserModel->getUserInfo($this->session->userdata("USER_SEQ"));
+		$data = array(
+					"userInfo" => $userInfo
+		);
+        $this->load->view("consult/qna-write", $data);
     }
+
+	public function qnaWriteProc(){
+		$qna_subject = $this->input->post("qna_subject");
+		$qna_user_name = $this->input->post("qna_user_name");
+		$qna_user_email = $this->input->post("qna_user_email");
+		$qna_contents = $this->input->post("qna_contents");
+
+		$group = $this->ConsultModel->getQnaGroupMax();
+		if ($group->QNA_GROUP == ""){
+			$group_max = 0;
+		}else{
+			$group_max = $group->QNA_GROUP;
+		}
+		$insertArr = array(
+						"QNA_GROUP" => $group_max+1,
+						"QNA_DEPTH" => 0,
+						"QNA_SUBJECT" => $qna_subject,
+						"QNA_USER_SEQ" => $this->session->userdata("USER_SEQ"),
+						"QNA_USER_NAME" => $qna_user_name,
+						"QNA_USER_EMAIL" => $qna_user_email,
+						"QNA_CONTENTS" => $qna_contents,
+						"QNA_REG_DATE" => date("Y-m-d H:i:s"),
+						"QNA_DEL_YN" => "N"
+ 		);
+		$result = $this->ConsultModel->insertQna($insertArr);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "문의 신청 되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "문의 신청중 문제가 생겼습니다."));
+		}
+	}
+
+    public function qnaView($qna_seq){
+		$qnaInfo = $this->ConsultModel->getQna($qna_seq);
+		$data = array(
+					"qnaInfo" => $qnaInfo
+		);
+        $this->load->view("consult/qna-view", $data);
+    }
+
 
     public function offline(){
         $this->load->view("consult/consult_offline");
