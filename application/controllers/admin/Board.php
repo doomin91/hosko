@@ -527,6 +527,10 @@ class Board extends CI_Controller {
 
 		$DATA = array(
 			"POST_PARENT_SEQ" => $POST_PARENT_SEQ,
+<<<<<<< HEAD
+=======
+			"POST_DEPTH" => $POST_DEPTH + 1,
+>>>>>>> 262224d0164866b853a8f0f55329c10fce96d5e6
 			"POST_BOARD_SEQ" => $BOARD_SEQ,
 			"POST_ADMIN_SEQ" => $this->session->userdata("admin_seq"),
 			"POST_USER_SEQ" => $this->session->userdata("USER_SEQ"),

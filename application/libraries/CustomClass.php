@@ -184,5 +184,11 @@ class Customclass{
         return $result;
     }
 
+    public function addRecruitVisitCount($rec_seq){
+        $this->CI->load->model("RecruitModel");
+
+        return $this->CI->RecruitModel->addVisitCount($rec_seq);
+    }
+
     
 }

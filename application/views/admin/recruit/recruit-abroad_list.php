@@ -166,8 +166,8 @@
 							<div class="row">
 								<div class="col-md-8">총 컨텐츠수 : <?php echo $listCountAll?> &nbsp&nbsp&nbsp 검색 컨텐츠수 : <?php echo $listCount ?></div>
                                 <div class="col-md-4 text-right">
-                                    <input type="button" id="abroad_excel_register" class="btn btn-xs btn-default" value="+ 엑셀일괄등록">
-									<input type="button" id="abroad_excel_save" class="btn btn-xs btn-default" value="+ 엑셀파일저장">
+                                    <!-- <input type="button" id="abroad_excel_register" class="btn btn-xs btn-default" value="+ 엑셀일괄등록">
+									<input type="button" id="abroad_excel_save" class="btn btn-xs btn-default" value="+ 엑셀파일저장"> -->
                                     <a href="/admin/recruit/recruit_abroad_new" id="abroad_register" name="abroad_register" class="btn btn-xs btn-default">+ 컨텐츠등록</a>
 								</div>
 							</div>
@@ -461,7 +461,12 @@
                     seqs.push($(this).val());
                 })
 
-                if(confirm("모두 복사하시겠습니까?")){
+                if(seqs.length == 0){
+                    alert("복사할 컨텐츠를 선택해주세요");
+                    return false;
+                }
+
+                if(confirm("선택한 컨텐츠를 복사하시겠습니까?")){
                     $.ajax({
                         url : "/admin/recruit/recruit_abroads_copy",
                         type : "post",

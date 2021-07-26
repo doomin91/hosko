@@ -144,4 +144,6 @@ class ConsultModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_SCHEDULE.CAL_SEQ", $cal_seq);
 		return $this->db->update("TBL_HOSKO_SCHEDULE", array("CAL_DEL_YN" => "Y"));
 	}
+
+	
 }
