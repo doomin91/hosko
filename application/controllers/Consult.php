@@ -18,6 +18,7 @@ class Consult extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
 	function __construct(){
         parent::__construct();
 
@@ -27,24 +28,195 @@ class Consult extends CI_Controller {
         $this->load->library('session');
         $this->load->library('pagination');
         $this->load->library('image_lib');
-
         $this->load->library('CustomClass');
         //$this->load->library('encrypt');
         $this->load->helper('download');
-
-        $this->load->model("UserModel");
+		$this->load->model('UserModel');
 		$this->load->model("ConsultModel");
         $this->load->model("RecruitModel");
-
     }
 
-    public function qna(){
-        $this->load->view("consult/consult_qna");
+    function onlineConsultList(){
+		$limit = 10;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*10;
+			$nowpage = $_GET["per_page"];
+		}
+
+		$searchField = $this->input->get("searchField");
+		$searchString = $this->input->get("searchString");
+
+		$wheresql = array(
+						"start" => $start,
+						"limit" => $limit,
+						"user_seq" => $this->session->userdata("USER_SEQ"),
+						"searchField" => $searchField,
+						"searchString" => $searchString
+						);
+		$lists = $this->ConsultModel->getOnlineConsultLists($wheresql);
+		//echo $this->db->last_query();
+		$listCount = $this->ConsultModel->getOnlineConsultListCount($wheresql);
+
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*10);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$pagination = $this->customclass->front_pagenavi("/admin/consult/onlineConsult/", $listCount, 10, 5, $nowpage);
+
+		$data = array(
+					"lists" => $lists,
+					"listCount" => $listCount,
+					"pagination" => $pagination,
+					"pagenum" => $pagenum,
+					"start" => $start,
+					"limit" => $limit
+					);
+        $this->load->view("/consult/online-consult-list", $data);
     }
 
-    public function online(){
-        $this->load->view("consult/consult_online");
+	function onlineConsultWrite(){
+		$userInfo = $this->UserModel->getUserInfo($this->session->userdata("USER_SEQ"));
+		//print_r($userInfo);
+		$data = array(
+					"userInfo" => $userInfo
+					);
+        $this->load->view("/consult/online-consult-write", $data);
     }
+
+	public function onlineConsultWriteProc(){
+		$oc_subject = $this->input->post("oc_subject");
+		$oc_user_name = $this->input->post("oc_user_name");
+		$oc_user_tel = $this->input->post("oc_user_tel");
+		$oc_user_hp = $this->input->post("oc_user_hp");
+		$oc_user_email = $this->input->post("oc_user_email");
+		$oc_contents = $this->input->post("oc_contents");
+
+		$insertArr = array(
+						"OC_SUBJECT" => $oc_subject,
+						"OC_USER_SEQ" => $this->session->userdata("USER_SEQ"),
+						"OC_USER_NAME" => $oc_user_name,
+						"OC_USER_TEL" => $oc_user_tel,
+						"OC_USER_HP" => $oc_user_hp,
+						"OC_USER_EMAIL" => $oc_user_email,
+						"OC_CONTENTS" => $oc_contents,
+						"OC_ANSWER_FLAG" => "W",
+						"OC_REG_DATE" => date("Y-m-d H:i:s"),
+						"OC_DEL_YN" => "N"
+ 		);
+		$result = $this->ConsultModel->insertOnlineConsult($insertArr);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "문의 신청 되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "문의 신청중 문제가 생겼습니다."));
+		}
+	}
+
+	function onlineConsultView($oc_seq){
+		$ocInfo = $this->ConsultModel->getOnlineConsult($oc_seq);
+
+		$data = array(
+					"ocInfo" => $ocInfo
+		);
+        $this->load->view("/consult/online-consult-view", $data);
+    }
+
+    public function qnaList(){
+        $limit = 10;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*10;
+			$nowpage = $_GET["per_page"];
+		}
+
+		$searchField = $this->input->get("searchField");
+		$searchString = $this->input->get("searchString");
+
+		$wheresql = array(
+						"start" => $start,
+						"limit" => $limit,
+						"user_seq" => $this->session->userdata("USER_SEQ"),
+						"searchField" => $searchField,
+						"searchString" => $searchString
+						);
+		$lists = $this->ConsultModel->getQnaLists($wheresql);
+		//echo $this->db->last_query();
+		$listCount = $this->ConsultModel->getQnaListCount($wheresql);
+
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*10);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$pagination = $this->customclass->front_pagenavi("/admin/consult/onlineConsult/", $listCount, 10, 5, $nowpage);
+
+		$data = array(
+					"lists" => $lists,
+					"listCount" => $listCount,
+					"pagination" => $pagination,
+					"pagenum" => $pagenum,
+					"start" => $start,
+					"limit" => $limit
+					);
+        $this->load->view("/consult/qna-list", $data);
+    }
+
+    public function qnaWrite(){
+		$userInfo = $this->UserModel->getUserInfo($this->session->userdata("USER_SEQ"));
+		$data = array(
+					"userInfo" => $userInfo
+		);
+        $this->load->view("consult/qna-write", $data);
+    }
+
+	public function qnaWriteProc(){
+		$qna_subject = $this->input->post("qna_subject");
+		$qna_user_name = $this->input->post("qna_user_name");
+		$qna_user_email = $this->input->post("qna_user_email");
+		$qna_contents = $this->input->post("qna_contents");
+
+		$group = $this->ConsultModel->getQnaGroupMax();
+		if ($group->QNA_GROUP == ""){
+			$group_max = 0;
+		}else{
+			$group_max = $group->QNA_GROUP;
+		}
+		$insertArr = array(
+						"QNA_GROUP" => $group_max+1,
+						"QNA_DEPTH" => 0,
+						"QNA_SUBJECT" => $qna_subject,
+						"QNA_USER_SEQ" => $this->session->userdata("USER_SEQ"),
+						"QNA_USER_NAME" => $qna_user_name,
+						"QNA_USER_EMAIL" => $qna_user_email,
+						"QNA_CONTENTS" => $qna_contents,
+						"QNA_REG_DATE" => date("Y-m-d H:i:s"),
+						"QNA_DEL_YN" => "N"
+ 		);
+		$result = $this->ConsultModel->insertQna($insertArr);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "문의 신청 되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "문의 신청중 문제가 생겼습니다."));
+		}
+	}
+
+    public function qnaView($qna_seq){
+		$qnaInfo = $this->ConsultModel->getQna($qna_seq);
+		$data = array(
+					"qnaInfo" => $qnaInfo
+		);
+        $this->load->view("consult/qna-view", $data);
+    }
+
 
     public function offline(){
         $this->load->view("consult/consult_offline");

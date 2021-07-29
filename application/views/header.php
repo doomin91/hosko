@@ -28,6 +28,7 @@
 
 		<link href="/static/admin/css/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="\static\front\html\static\css\style.css">
+		<link rel="stylesheet" href="/static/front/css/custom.css">
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 

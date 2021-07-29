@@ -8,6 +8,19 @@ class ConsultModel extends CI_Model{
 	}
 
 	public function getOnlineConsultLists($whereArr){
+		if ((isset($whereArr["user_seq"])) && ($whereArr["user_seq"] != "")){
+			$this->db->where("TBL_HOSKO_ONLINE_CONSULT.OC_USER_SEQ", $whereArr["user_seq"]);
+		}
+		if ((isset($whereArr["searchString"])) && ($whereArr["searchString"] != "")){
+			if ($whereArr["searchField"] == "all"){
+				$this->db->group_start();
+				$this->db->like("TBL_HOSKO_ONLINE_CONSULT.OC_SUBJECT", $whereArr["searchString"]);	
+				$this->db->or_like("TBL_HOSKO_ONLINE_CONSULT.OC_CONTENTS", $whereArr["searchString"]);	
+				$this->db->group_end();
+			}else{
+				$this->db->like("TBL_HOSKO_ONLINE_CONSULT.".$whereArr["searchField"], $whereArr["searchString"]);	
+			}
+		}
 		$this->db->where("TBL_HOSKO_ONLINE_CONSULT.OC_DEL_YN", "N");
 		$this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_ONLINE_CONSULT.OC_USER_SEQ = TBL_HOSKO_USER.USER_SEQ", "INNER");
 		$this->db->select("TBL_HOSKO_ONLINE_CONSULT.*, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_TEL, TBL_HOSKO_USER.USER_HP");
@@ -17,6 +30,19 @@ class ConsultModel extends CI_Model{
 	}
 
 	public function getOnlineConsultListCount($whereArr){
+		if ((isset($whereArr["user_seq"])) && ($whereArr["user_seq"] != "")){
+			$this->db->where("TBL_HOSKO_ONLINE_CONSULT.OC_USER_SEQ >=", $whereArr["user_seq"]);
+		}
+		if ((isset($whereArr["searchString"])) && ($whereArr["searchString"] != "")){
+			if ($whereArr["searchField"] == "all"){
+				$this->db->group_start();
+				$this->db->like("TBL_HOSKO_ONLINE_CONSULT.OC_SUBJECT", $whereArr["searchString"]);	
+				$this->db->or_like("TBL_HOSKO_ONLINE_CONSULT.OC_CONTENTS", $whereArr["searchString"]);	
+				$this->db->group_end();
+			}else{
+				$this->db->like("TBL_HOSKO_ONLINE_CONSULT.".$whereArr["searchField"], $whereArr["searchString"]);	
+			}
+		}
 		$this->db->where("TBL_HOSKO_ONLINE_CONSULT.OC_DEL_YN", "N");
 		$this->db->from("TBL_HOSKO_ONLINE_CONSULT");
 		return $this->db->count_all_results();
@@ -145,5 +171,68 @@ class ConsultModel extends CI_Model{
 		return $this->db->update("TBL_HOSKO_SCHEDULE", array("CAL_DEL_YN" => "Y"));
 	}
 
-	
+	public function insertOnlineConsult($insertData){
+		return $this->db->insert("TBL_HOSKO_ONLINE_CONSULT", $insertData);
+	}
+
+	public function getOnlineConsult($oc_seq){
+		$this->db->where("TBL_HOSKO_ONLINE_CONSULT.OC_SEQ", $oc_seq);
+		return $this->db->get("TBL_HOSKO_ONLINE_CONSULT")->row();
+	}
+
+	public function getQnaLists($whereArr){
+		if ((isset($whereArr["user_seq"])) && ($whereArr["user_seq"] != "")){
+			$this->db->where("TBL_HOSKO_QNA.QNA_USER_SEQ", $whereArr["user_seq"]);
+		}
+		if ((isset($whereArr["searchString"])) && ($whereArr["searchString"] != "")){
+			if ($whereArr["searchField"] == "all"){
+				$this->db->group_start();
+				$this->db->like("TBL_HOSKO_QNA.QNA_SUBJECT", $whereArr["searchString"]);	
+				$this->db->or_like("TBL_HOSKO_QNA.QNA_CONTENTS", $whereArr["searchString"]);	
+				$this->db->group_end();
+			}else{
+				$this->db->like("TBL_HOSKO_QNA.".$whereArr["searchField"], $whereArr["searchString"]);	
+			}
+		}
+		$this->db->where("TBL_HOSKO_QNA.QNA_DEL_YN", "N");
+		$this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_QNA.QNA_USER_SEQ = TBL_HOSKO_USER.USER_SEQ", "LEFT OUTER");
+		$this->db->select("TBL_HOSKO_QNA.*, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_TEL, TBL_HOSKO_USER.USER_HP");
+		$this->db->order_by("TBL_HOSKO_QNA.QNA_GROUP", "DESC");
+		$this->db->order_by("TBL_HOSKO_QNA.QNA_DEPTH", "ASC");
+		$this->db->limit($whereArr["limit"], $whereArr["start"]);
+		return $this->db->get("TBL_HOSKO_QNA")->result();
+	}
+
+	public function getQnaListCount($whereArr){
+		if ((isset($whereArr["user_seq"])) && ($whereArr["user_seq"] != "")){
+			$this->db->where("TBL_HOSKO_QNA.QNA_USER_SEQ >=", $whereArr["user_seq"]);
+		}
+		if ((isset($whereArr["searchString"])) && ($whereArr["searchString"] != "")){
+			if ($whereArr["searchField"] == "all"){
+				$this->db->group_start();
+				$this->db->like("TBL_HOSKO_QNA.QNA_SUBJECT", $whereArr["searchString"]);	
+				$this->db->or_like("TBL_HOSKO_QNA.QNA_CONTENTS", $whereArr["searchString"]);	
+				$this->db->group_end();
+			}else{
+				$this->db->like("TBL_HOSKO_QNA.".$whereArr["searchField"], $whereArr["searchString"]);	
+			}
+		}
+		$this->db->where("TBL_HOSKO_QNA.QNA_DEL_YN", "N");
+		$this->db->from("TBL_HOSKO_QNA");
+		return $this->db->count_all_results();
+	}
+
+	public function insertQna($insertData){
+		return $this->db->insert("TBL_HOSKO_QNA", $insertData);
+	}
+
+	public function getQnaGroupMax(){
+		$this->db->select_max("QNA_GROUP");
+		return $this->db->get("TBL_HOSKO_QNA")->row();
+	}
+
+	public function getQna($qna_seq){
+		$this->db->where("TBL_HOSKO_QNA.QNA_SEQ", $qna_seq);
+		return $this->db->get("TBL_HOSKO_QNA")->row();
+	}
 }
