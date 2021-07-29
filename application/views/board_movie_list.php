@@ -88,15 +88,7 @@
                                     </div>
                                     <?php endif; ?>>
 
-                                    <div class="pagination">
-                                        <a href="/" class="btn_prev"><span>맨처음</span></a>
-                                        <span>1</span>
-                                        <a href="/">2</a>
-                                        <a href="/">3</a>
-                                        <a href="/">4</a>
-                                        <a href="/">5</a>
-                                        <a href="/" class="btn_next"><span>맨마지막</span></a>
-                                    </div>
+                                    <?php echo $pagination; ?>
 
                                     <div class="boardSearchWrap">
                                         <form name="" id="" method="">

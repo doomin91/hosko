@@ -210,7 +210,7 @@
                                         </div>
                                         <?php endif?>
                                         
-                                        <?php if($BOARD_INFO->BOARD_TYPE == 0):?>
+                                        <?php if($BOARD_INFO->BOARD_TYPE == 0 && $this->session->userdata("USER_SEQ")):?>
                                         <div class="btn_box f_right">
                                             <a href="/Board/board_reply/<?php echo $POST_INFO->POST_SEQ?>" class="btn_style02">답글</a>
                                         </div>

@@ -487,8 +487,12 @@ class Board extends CI_Controller {
 		
 		$POST_SEQ = $this->input->post("post_seq");
 		$POST_INFO = $this->BoardModel->getPostInfo($POST_SEQ);
-		$POST_PARENT_SEQ = $POST_INFO->POST_PARENT_SEQ;
-		$POST_DEPTH = $POST_INFO->POST_DEPTH;
+		if($POST_INFO){
+			$POST_PARENT_SEQ = $POST_INFO->POST_PARENT_SEQ;
+			$POST_DEPTH = $POST_INFO->POST_DEPTH;
+		} else {
+			$POST_DEPTH = 0;
+		}
 		
 		$SPAM_CHECK = $this->rpHash($this->input->post("defaultReal"));
 		$SPAM_CHECK_HASH = $this->input->post("defaultRealHash");
@@ -527,10 +531,7 @@ class Board extends CI_Controller {
 
 		$DATA = array(
 			"POST_PARENT_SEQ" => $POST_PARENT_SEQ,
-<<<<<<< HEAD
-=======
 			"POST_DEPTH" => $POST_DEPTH + 1,
->>>>>>> 262224d0164866b853a8f0f55329c10fce96d5e6
 			"POST_BOARD_SEQ" => $BOARD_SEQ,
 			"POST_ADMIN_SEQ" => $this->session->userdata("admin_seq"),
 			"POST_USER_SEQ" => $this->session->userdata("USER_SEQ"),
@@ -561,6 +562,9 @@ class Board extends CI_Controller {
 		endif;
 
 		$POST_SEQ = $this->BoardModel->setPost($DATA);
+
+		$DATA["POST_PARENT_SEQ"] => $POST_SEQ;
+		$DATA["POST_DEPTH"] => $POST_DEPTH + 1;
 		foreach($FILE_SEQ as $seq){
 			$DATA = array(
 				"ATTACH_POST_SEQ" => $POST_SEQ
@@ -692,6 +696,7 @@ class Board extends CI_Controller {
 		$yurl = $this->input->post("youtube_url");
 		$video_id = $this->getUrlParameter($yurl, 'v');
 		$content = file_get_contents("https://www.youtube.com/get_video_info?video_id={$video_id}&eurl=https://youtube.googleapis.com/v/onz2k4zoLjQ&html5=1&c=TVHTML5&cver=6.20180913");
+
 		parse_str($content, $data);
 		if(isset($data["player_response"])) {
 			$resultMsg = array(

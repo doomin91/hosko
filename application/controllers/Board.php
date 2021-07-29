@@ -170,7 +170,7 @@ class Board extends CI_Controller {
         if(count($boards_info) > 0){
             if(isset($_GET["seq"])){
                 $board_seq = $this->input->get("seq");
-            } else {
+            }else {
                 $board_seq = $boards_info[0]->BOARD_SEQ;
             }
 
@@ -384,8 +384,9 @@ class Board extends CI_Controller {
 	public function CheckUrl(){
 		$yurl = $this->input->post("youtube_url");
 		$url_parameter = $this->getUrlParameter($yurl, 'v');
-		$content = file_get_contents("http://youtube.com/get_video_info?video_id=".$url_parameter);
 
+		$content = file_get_contents("http://youtube.com/get_video_info?video_id=".$url_parameter);
+        // $content = http_get("http://youtube.com/get_video_info?video_id=".$url_parameter, array("timeout"=>1));   
 		parse_str($content, $data);
 		if(isset($data["player_response"])) {
 			$pData = json_decode($data["player_response"]);
