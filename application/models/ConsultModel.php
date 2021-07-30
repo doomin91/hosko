@@ -177,6 +177,8 @@ class ConsultModel extends CI_Model{
 
 	public function getOnlineConsult($oc_seq){
 		$this->db->where("TBL_HOSKO_ONLINE_CONSULT.OC_SEQ", $oc_seq);
+		$this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_ONLINE_CONSULT.OC_ANSWER_ADMIN", "LEFT OUTER");
+		$this->db->select("TBL_HOSKO_ONLINE_CONSULT.*, TBL_HOSKO_ADMIN.ADMIN_NAME");
 		return $this->db->get("TBL_HOSKO_ONLINE_CONSULT")->row();
 	}
 
@@ -234,5 +236,11 @@ class ConsultModel extends CI_Model{
 	public function getQna($qna_seq){
 		$this->db->where("TBL_HOSKO_QNA.QNA_SEQ", $qna_seq);
 		return $this->db->get("TBL_HOSKO_QNA")->row();
+	}
+
+	public function setOnlineConsultAnswer($updateData, $oc_seq){
+		$this->db->where("TBL_HOSKO_ONLINE_CONSULT.OC_SEQ", $oc_seq);
+		return $this->db->update("TBL_HOSKO_ONLINE_CONSULT", $updateData);
+
 	}
 }

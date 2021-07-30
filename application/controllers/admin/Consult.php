@@ -74,6 +74,39 @@ class Consult extends CI_Controller {
 		$this->load->view("/admin/consult/online-consult", $data);
 	}
 
+	public function onlineConsultView($oc_seq){
+		$info = $this->ConsultModel->getOnlineConsult($oc_seq);
+
+		$data = array(
+			"info" => $info
+		);
+
+		$this->load->view("/admin/consult/online-consult-view", $data);
+	}
+
+	public function onlineConsultAnswer(){
+		$oc_seq = $this->input->post("oc_seq");
+		$oc_answer = $this->input->post("oc_answer");
+
+		$updateArr = array(
+						"OC_ANSWER_ADMIN" => $this->session->userdata("admin_seq"),
+						"OC_ANSWER" => $oc_answer,
+						"OC_ANSWER_FLAG" => "Y",
+						"OC_ANSWER_DATE" => date("Y-m-d H:i:s")
+						);
+		$result = $this->ConsultModel->setOnlineConsultAnswer($updateArr, $oc_seq);
+		//echo $this->db->last_query();
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "온라인 상담 답변 저장 완료되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "온라인 상담 답변 저장중 문제가 생겼습니다."));
+		}
+	}
+
+	public function onlineconsultDel(){
+		$oc_seq = $this->input->post("oc_seq");
+	}
+
 	public function visitConsult(){
 		$limit = 10;
 		$nowpage = "";
@@ -324,5 +357,42 @@ class Consult extends CI_Controller {
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "일정 삭제중 문제가 생겼습니다."));
 		}
+	}
+
+	public function qnaList(){
+		$limit = 10;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*10;
+			$nowpage = $_GET["per_page"];
+		}
+
+		$wheresql = array(
+						"start" => $start,
+						"limit" => $limit
+						);
+		$lists = $this->ConsultModel->getOnlineConsultLists($wheresql);
+		//echo $this->db->last_query();
+		$listCount = $this->ConsultModel->getOnlineConsultListCount($wheresql);
+
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*10);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$pagination = $this->customclass->pagenavi("/admin/consult/onlineConsult/", $listCount, 10, 5, $nowpage);
+
+		$data = array(
+					"lists" => $lists,
+					"listCount" => $listCount,
+					"pagination" => $pagination,
+					"pagenum" => $pagenum,
+					"start" => $start,
+					"limit" => $limit
+					);
+		$this->load->view("/admin/consult/online-consult", $data);
 	}
 }
