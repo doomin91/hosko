@@ -43,11 +43,11 @@
 
                 </li>
                 <li>
-                    <a href="/consult/qna">상담ㆍ신청</a>
+                    <a href="/consult/qnaList">상담ㆍ신청</a>
                     <ul class="sub">
                         <li><a href="/consult/qnaList">Q&A</a></li>
                         <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
-                        <li><a href="/consult/offline">방문상담 신청</a></li>
+                        <li><a href="/consult/visitConsult">방문상담 신청</a></li>
                         <li><a href="/consult/apply">포지션&연수 지원</a></li>
                         <li><a href="#">설명회 신청</a></li>
                     </ul>

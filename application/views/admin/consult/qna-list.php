@@ -24,12 +24,12 @@
 
 		  <!-- page header -->
 		  <div class="pageheader">
-			<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b>온라인 상담</b> <span></span></h2>
+			<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b>Q&A 게시판</b> <span></span></h2>
 			<div class="breadcrumbs">
 			  <ol class="breadcrumb">
 				<li>관리자 페이지</li>
 				<li><a href="#">상담관리</a></li>
-				<li class="active">온라인 상담</li>
+				<li class="active">Q&A 게시판</li>
 			  </ol>
 			</div>
 
@@ -55,45 +55,35 @@
 
 							<colgroup>
 									<col width="5%"/>
-									<col width="5%"/>
-									<col width="5%"/>
+									<col width="15%"/>
+									<col width="15%"/>
+									<col width="45%"/>
 									<col width="10%"/>
-									<col width="10%"/>
-									<col width="25%"/>
-									<col width="10%"/>
-									<col width="5%"/>
 							</colgroup>
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
 									<th class="text-center">이름</th>
-									<th class="text-center">아이디</th>
-									<th class="text-center">연락처</th>
-									<th class="text-center">핸드폰</th>
+									<th class="text-center">이메일</th>
 									<th class="text-center">제목</th>
-									<th class="text-center">접수일</th>
-									<th class="text-center">상태</th>
+									<th class="text-center">등록일</th>
 								</tr>
 							</thead>
 							<tbody>
 						<?php
 							if (!empty($lists)){
 								foreach ($lists as $lt){
-									IF ($lt->OC_ANSWER_FLAG == "W"){
-										$answer_flag = "답변대기";
-									}else if ($lt->OC_ANSWER_FLAG == "Y"){
-										$answer_flag = "답변완료";
+									$replyStr = "";
+									for ($i=0; $i<$lt->QNA_DEPTH; $i++){
+										$replyStr .= "<i class=\"fa fa-arrow-right\"></i>&nbsp;";
 									}
 						?>
 								<tr>
 									<td align="center"><?php echo $pagenum; ?></td>
-									<td align="center"><?php echo $lt->USER_NAME; ?></td>
-									<td align="center"><?php echo $lt->USER_ID; ?></td>
-									<td align="center"><?php echo $lt->USER_TEL; ?></td>
-									<td align="center"><?php echo $lt->USER_HP; ?></td>
-									<td><a href="/admin/consult/onlineConsultView/<?php echo $lt->OC_SEQ; ?>"><?php echo $lt->OC_SUBJECT; ?></a></td>
-									<td align="center"><?php echo $lt->OC_REG_DATE; ?></td>
-									<td align="center"><?php echo $answer_flag; ?></td>
+									<td align="center"><?php echo $lt->QNA_USER_NAME; ?></td>
+									<td align="center"><?php echo $lt->QNA_USER_EMAIL; ?></td>
+									<td><?php echo $replyStr; ?><a href="/admin/consult/qnaView/<?php echo $lt->QNA_SEQ; ?>"><?php echo $lt->QNA_SUBJECT; ?></a></td>
+									<td align="center"><?php echo $lt->QNA_REG_DATE; ?></td>
 								</tr>
 						<?php
 									$pagenum--;

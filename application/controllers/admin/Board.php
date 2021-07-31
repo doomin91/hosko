@@ -563,8 +563,8 @@ class Board extends CI_Controller {
 
 		$POST_SEQ = $this->BoardModel->setPost($DATA);
 
-		$DATA["POST_PARENT_SEQ"] => $POST_SEQ;
-		$DATA["POST_DEPTH"] => $POST_DEPTH + 1;
+		$DATA["POST_PARENT_SEQ"] = $POST_SEQ;
+		$DATA["POST_DEPTH"] = $POST_DEPTH + 1;
 		foreach($FILE_SEQ as $seq){
 			$DATA = array(
 				"ATTACH_POST_SEQ" => $POST_SEQ
