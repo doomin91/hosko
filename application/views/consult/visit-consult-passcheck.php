@@ -104,7 +104,7 @@
                 }, success:function(data){
                     console.log(data);
                     if (data.code == "200"){
-                        document.location.href="/consult/visitConsultEdit";
+                        document.location.href=data.url+vcon_seq;
                     }else if(data.code == "201"){
                         alert(data.msg);
                         document.location.href="/consult/visitConsult";

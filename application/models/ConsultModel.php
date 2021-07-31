@@ -266,9 +266,10 @@ class ConsultModel extends CI_Model{
 		return $this->db->insert("TBL_HOSKO_VISIT_CONSULT", $insertData);
 	}
 
-	public function visitConsultCheck($consult_date, $consult_time){
+	public function visitConsultCheck($consult_date, $consult_time, $vcon_seq = ""){
 		$this->db->where("TBL_HOSKO_VISIT_CONSULT.VCON_CONSULT_DATE", $consult_date);
 		$this->db->where("TBL_HOSKO_VISIT_CONSULT.VCON_CONSULT_TIME", $consult_time);
+		$this->db->where("TBL_HOSKO_VISIT_CONSULT.VCON_SEQ !=", $vcon_seq);
 		$this->db->from("TBL_HOSKO_VISIT_CONSULT");
 		return $this->db->count_all_results();
 	}

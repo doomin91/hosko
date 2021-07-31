@@ -431,11 +431,12 @@ class Consult extends CI_Controller {
 	}
 
 	public function visitConsultEdit($vcon_seq){
+		$info = $this->ConsultModel->getVisitConsultInfo($vcon_seq);
 		$data = array(
-			"visit_date" => $visit_date
+			"info" => $info
 		);
 
-		$this->load->view("consult/visit-consult-write", $data);
+		$this->load->view("consult/visit-consult-edit", $data);
 	}
 
 	public function visitConsultWriteProc(){
@@ -481,6 +482,48 @@ class Consult extends CI_Controller {
 			echo json_encode(array("code" => "200", "msg" => "방문상담 신청 완료되었습니다."));
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
+
+	public function visitConsultEditProc(){
+		$user_name = $this->input->post("user_name");
+		$consult_date = $this->input->post("consult_date");
+		$consult_hour = $this->input->post("consult_hour");
+		$consult_minute = $this->input->post("consult_minute");
+		$user_age = $this->input->post("user_age");
+		$user_tel = $this->input->post("user_tel");
+		$user_email = $this->input->post("user_email");
+		$user_comp = $this->input->post("user_comp");
+		$user_depart = $this->input->post("user_depart");
+		$user_major = $this->input->post("user_major");
+		$vcon_seq = $this->input->post("vcon_seq");
+
+		$consult_time = $consult_hour . ":" . $consult_minute;
+		
+		$timeCheck = $this->ConsultModel->visitConsultCheck($consult_date, $consult_time, $vcon_seq);
+		if ($timeCheck > 0){
+			echo json_encode(array("code" => "202", "msg" => "신청할수 없는 시간입니다. 시간을 변경해주세요"));
+			exit;
+		}
+
+		$updateArr = array(
+						"VCON_USER_NAME" => $user_name,
+						"VCON_USER_AGE" => $user_age,
+						"VCON_USER_EMAIL" => $user_email,
+						"VCON_CONSULT_DATE" => $consult_date,
+						"VCON_CONSULT_TIME" => $consult_time,
+						"VCON_USER_TEL" => $user_tel,
+						"VCON_USER_COMP" => $user_comp,
+						"VCON_USER_DEPART" => $user_depart,
+						"VCON_USER_MAJOR" => $user_major,
+		);
+
+		$result = $this->ConsultModel->updateVisitConult($updateArr, $vcon_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "방문상담 신청 수정되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "수정 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
 		}
 	}
 

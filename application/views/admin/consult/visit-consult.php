@@ -158,7 +158,6 @@
                                     <col width="10%"/>
                                     <col width="10%"/>
                                     <col width="5%"/>
-                                    <col width="10%"/>
                                     <col width="5%"/>
                                     <col width="15%"/>
                                     <col width="5%"/>
@@ -171,7 +170,6 @@
                                     <th class="text-center">신청일</th>
                                     <th class="text-center">신청시간</th>
                                     <th class="text-center">점수</th>
-                                    <th class="text-center">메일수신</th>
                                     <th class="text-center">연락처</th>
                                     <th class="text-center">이메일</th>
                                     <th class="text-center"> - </th>
@@ -181,11 +179,6 @@
                         <?php
                             if (!empty($lists)){
                                 foreach ($lists as $lt){
-                                    IF ($lt->VCON_MAIL_FLAG == "N"){
-                                        $mail_flag = "미수신";
-                                    }else if ($lt->VCON_MAIL_FLAG == "Y"){
-                                        $mail_flag = "수신";
-                                    }
                         ?>
                                 <tr>
                                     <td class="text-center"><?php echo $pagenum; ?></td>
@@ -194,7 +187,6 @@
                                     <td class="text-center"><?php echo $lt->VCON_CONSULT_DATE; ?></td>
                                     <td class="text-center"><?php echo $lt->VCON_CONSULT_TIME; ?></td>
                                     <td class="text-center"><?php echo $lt->VCON_USER_GRADES; ?></td>
-                                    <td class="text-center"><?php echo $mail_flag; ?></td>
                                     <td class="text-center"><?php echo $lt->VCON_USER_TEL; ?></td>
                                     <td class="text-center"><?php echo $lt->VCON_USER_EMAIL; ?></td>
                                     <td class="text-center">

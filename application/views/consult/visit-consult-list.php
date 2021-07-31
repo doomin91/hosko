@@ -54,7 +54,6 @@
                                         ?>
                                         </div>
                                         <div class="col-lg-6">
-
                                             <button type="button" class="btn_style02 f_right" id="<?php if ($diff_str == "-"){ echo "visit_error"; }else{ echo "visit_write"; } ?>" data-date="<?php echo $visit_date; ?>">상담신청</button>
                                         </div>
                                     </div>    
@@ -116,8 +115,13 @@
 <script type="text/javascript">
     $(function(){
 
+        $(document).on("click", "#visit_write", function(){
+            var date = $(this).data("date");
+            document.location.href="/consult/visitConsultWrite/"+date;
+        });
+
         $(document).on("click", "#visit_error", function(){
-            alert("방문상담 신청할 수 없는 날짜 입니다.")
+            alert("방문상담 신청할 수 없는 날짜 입니다.");
         });
 
         $(document).on("click", ".vcon_edit", function(){
