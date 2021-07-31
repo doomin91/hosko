@@ -248,7 +248,7 @@
 /* 동영상 게시판 */
 .movieBoardList {position:relative; width:100%; margin:0 auto; padding:0;}
 .movieBoardList ul {width:100%; overflow:hidden; padding:25px 0 0; display:block;}
-.movieBoardList li {position:relative; width: calc(278px); height:358px; margin-left:22px; box-sizing: border-box; float:left;} 
+.movieBoardList li {position:relative; width: calc(253px); height:358px; margin-left:22px; box-sizing: border-box; float:left;} 
 .movieBoardList li a {display:block; height: calc(100% - 2px); color:#454545;font-size:14px; border:1px solid #ddd; box-sizing: border-box;}
 .movieBoardList li:nth-child(1) {margin-left:0;}
 
@@ -271,7 +271,7 @@
 /* 갤러리 게시판 */
 .galleryBoardList {position:relative; width:100%; margin:0 auto; padding:0;}
 .galleryBoardList ul {width:100%; overflow:hidden; padding:25px 0 0; display:block;}
-.galleryBoardList li {position:relative; width: calc(278px); height:358px; margin-left:22px; box-sizing: border-box; float:left;} 
+.galleryBoardList li {position:relative; width: calc(253px); height:358px; margin-left:22px; box-sizing: border-box; float:left;} 
 .galleryBoardList li a {display:block; height: calc(100% - 2px); color:#454545;font-size:14px; border:1px solid #ddd; box-sizing: border-box;}
 .galleryBoardList li:nth-child(1) {margin-left:0;}
 

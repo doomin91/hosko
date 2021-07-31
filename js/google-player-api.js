@@ -4,12 +4,12 @@ let video_height = '240';
 let video_width = '320';
 
 // 2. This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
-var firstScriptTag = document.getElementsByTagName('script')[0];
+let tag = document.createElement('script');
+let firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
-var player;
+let player;
 function onYouTubeIframeAPIReady() {
 player = new YT.Player('player', {
 	height: video_height,

@@ -1,5 +1,13 @@
 <?php include 'header.php'; ?>
 
+<style>
+
+.delete_post {
+    color:#999;   
+}
+
+</style>
+
     <body>
 
         <div id="wrap" class="main_wrap">
@@ -62,6 +70,7 @@
                                             <span class="col_date">작성일</span>
                                         </div>
                                         <?php
+                                        if(count($lists) > 0){
                                          foreach ($lists as $lt){ ?>
                                         <div class="tblBot-item">
                                             <span class="col_num"><?php 
@@ -76,9 +85,10 @@
                                                 date_default_timezone_set('Asia/Seoul');
 
                                                 if($lt->POST_PARENT_SEQ != $lt->POST_SEQ){
-                                                    for($i=0; $i<$lt->POST_DEPTH;$i++){
+                                                    for($i=1; $i<$lt->POST_DEPTH;$i++){
                                                         echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">";												
                                                     }
+                                                    echo " ";
                                                 }
 
                                                 if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
@@ -86,22 +96,26 @@
                                                         // echo "<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">";												
                                                     };
                                                 }
+                                                
+                                                if($lt->POST_DEL_YN == "N"){
+                                                    if($BOARD_INFO->BOARD_PERIOD_HOT > 0){
+                                                        if($lt->POST_VIEW_CNT >= $BOARD_INFO->BOARD_PERIOD_HOT){
+                                                            echo "<img src=\"/static/front/img/promotional.png\" style=\"width:30px;height:30px;\">";												
+                                                        }
+                                                    }
                                                     
-                                                if($BOARD_INFO->BOARD_PERIOD_HOT > 0){
-                                                    if($lt->POST_VIEW_CNT >= $BOARD_INFO->BOARD_PERIOD_HOT){
-                                                        echo "<img src=\"/static/front/img/promotional.png\" style=\"width:30px;height:30px;\">";												
-                                                    }
-                                                }
-
-                                                if($lt->POST_SECRET_YN == "Y"){
-                                                    if($lt->POST_USER_SEQ == $this->session->userdata("USER_SEQ") || $this->session->userdata("admin_seq")){
-                                                        echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
+                                                    if($lt->POST_SECRET_YN == "Y"){
+                                                        if($lt->POST_USER_SEQ == $this->session->userdata("USER_SEQ") || $this->session->userdata("admin_seq")){
+                                                            echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
+                                                        } else {
+                                                            echo "<a onclick=\"alert('게시글 권한이 없습니다.');\">$lt->POST_SUBJECT</a>";
+                                                        }
+                                                        echo "<img src=\"/static/front/img/ico_lock.png\" style=\"width:12px;height:18px;\">";												
                                                     } else {
-                                                        echo "<a onclick=\"alert('게시글 권한이 없습니다.');\">$lt->POST_SUBJECT</a>";
+                                                        echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
                                                     }
-                                                    echo "<img src=\"/static/front/img/ico_lock.png\" style=\"width:12px;height:18px;\">";												
                                                 } else {
-                                                    echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
+                                                    echo "<span class=\"delete_post\"><i><del>삭제된 게시글입니다.</del></i></span>";
                                                 }
 
                                                 echo $lt->ATTACHS > 0 ? "[". ($lt->ATTACHS) ."]" : "";
@@ -113,6 +127,9 @@
                                         </div>
                                         <?php 
                                         $pagenum -= 1;} 
+                                        } else {
+                                            echo "<span style=\"width:100%\">게시글이 없습니다 :(</span>";
+                                        }
                                         ?>
                                     </div>
 

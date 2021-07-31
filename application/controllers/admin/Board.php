@@ -34,6 +34,7 @@ class Board extends CI_Controller {
 		$this->load->model("GroupModel");
 		$this->load->model("UserModel");
 
+		$this->customclass->adminCheck();
 	}
 
 	/////////////////////
@@ -491,10 +492,11 @@ class Board extends CI_Controller {
 			$POST_PARENT_SEQ = $POST_INFO->POST_PARENT_SEQ;
 			$POST_DEPTH = $POST_INFO->POST_DEPTH;
 		} else {
+			$POST_PARENT_SEQ = NULL;
 			$POST_DEPTH = 0;
 		}
 		
-		$SPAM_CHECK = $this->rpHash($this->input->post("defaultReal"));
+		$SPAM_CHECK = $this->customclass->rpHash($this->input->post("defaultReal"));
 		$SPAM_CHECK_HASH = $this->input->post("defaultRealHash");
 		$BOARD_INFO = $this->BoardModel->getBoard($BOARD_SEQ);
 		
@@ -531,6 +533,7 @@ class Board extends CI_Controller {
 
 		$DATA = array(
 			"POST_PARENT_SEQ" => $POST_PARENT_SEQ,
+			"POST_GROUP_SEQ" => $POST_SEQ,
 			"POST_DEPTH" => $POST_DEPTH + 1,
 			"POST_BOARD_SEQ" => $BOARD_SEQ,
 			"POST_ADMIN_SEQ" => $this->session->userdata("admin_seq"),
@@ -562,9 +565,8 @@ class Board extends CI_Controller {
 		endif;
 
 		$POST_SEQ = $this->BoardModel->setPost($DATA);
+		if($POST_DEPTH == 0){ $this->BoardModel->initPostParentSeq($POST_SEQ); }
 
-		$DATA["POST_PARENT_SEQ"] => $POST_SEQ;
-		$DATA["POST_DEPTH"] => $POST_DEPTH + 1;
 		foreach($FILE_SEQ as $seq){
 			$DATA = array(
 				"ATTACH_POST_SEQ" => $POST_SEQ
@@ -621,7 +623,7 @@ class Board extends CI_Controller {
 			$returnMsg = array(
 				"auth" => "Y",
 				"url" => "",
-				"msg" => ""
+				"msg" => "비밀글"
 			);
 			echo json_encode($returnMsg);
 		} else {
@@ -665,55 +667,69 @@ class Board extends CI_Controller {
 		echo json_encode($result);
 	}
 
-	function rpHash($value) {
-		$hash = 5381;
-		$value = strtoupper($value);
-		for($i = 0; $i < strlen($value); $i++) {
-			$hash = ($this->leftShift32($hash, 5) + $hash) + ord(substr($value, $i));
-		}
-		return $hash;
-	}
-
-	// Perform a 32bit left shift
-	function leftShift32($number, $steps) {
-		// convert to binary (string)
-		$binary = decbin($number);
-		// left-pad with 0's if necessary
-		$binary = str_pad($binary, 32, "0", STR_PAD_LEFT);
-		// left shift manually
-		$binary = $binary.str_repeat("0", $steps);
-		// get the last 32 bits
-		$binary = substr($binary, strlen($binary) - 32);
-		// if it's a positive number return it
-		// otherwise return the 2's complement
-		
-		return ($binary[0] == "0" ? bindec($binary) :
-			-(pow(2, 31) - bindec(substr($binary, 1))));
-		
-	}
-
 	public function CheckUrlAndSave(){
 		$yurl = $this->input->post("youtube_url");
 		$video_id = $this->getUrlParameter($yurl, 'v');
-		$content = file_get_contents("https://www.youtube.com/get_video_info?video_id={$video_id}&eurl=https://youtube.googleapis.com/v/onz2k4zoLjQ&html5=1&c=TVHTML5&cver=6.20180913");
+		// $content = file_get_contents("https://www.youtube.com/get_video_info?video_id={$video_id}&eurl=https://youtube.googleapis.com/v/onz2k4zoLjQ&html5=1&c=TVHTML5&cver=6.20180913");
 
-		parse_str($content, $data);
-		if(isset($data["player_response"])) {
+		// $content = file_get_contents('http://youtube.com/get_video_info?video_id=dRNsJhEmyBs');
+		// parse_str($content, $data);
+
+		// if(isset($data["player_response"])) {
 			$resultMsg = array(
 				"code" => 200,
 				"msg" => "동영상 불러오기 성공",
 				"video_id" => $video_id
 			);
-		} else {
-			$resultMsg = array(
-				"code" => 201,
-				"msg" => "해당 링크의 동영상을 찾을 수 없습니다."
-			);
-		}
+		// } else {
+			// $resultMsg = array(
+			// 	"code" => 201,
+			// 	"msg" => "해당 링크의 동영상을 찾을 수 없습니다."
+			// );
+		// }
 
 		echo json_encode($resultMsg);
 	}
+
+	public function get_fcontent( $url,  $javascript_loop = 0, $timeout = 5 ) {
+		$url = str_replace( "&amp;", "&", urldecode(trim($url)) );
 	
+		$cookie = tempnam ("/tmp", "CURLCOOKIE");
+		$ch = curl_init();
+		curl_setopt( $ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
+		curl_setopt( $ch, CURLOPT_URL, $url );
+		curl_setopt( $ch, CURLOPT_COOKIEJAR, $cookie );
+		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
+		curl_setopt( $ch, CURLOPT_ENCODING, "" );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_AUTOREFERER, true );
+		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );    # required for https urls
+		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, $timeout );
+		curl_setopt( $ch, CURLOPT_TIMEOUT, $timeout );
+		curl_setopt( $ch, CURLOPT_MAXREDIRS, 10 );
+		$content = curl_exec( $ch );
+		$response = curl_getinfo( $ch );
+		curl_close ( $ch );
+	
+		if ($response['http_code'] == 301 || $response['http_code'] == 302) {
+			ini_set("user_agent", "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1");
+	
+			if ( $headers = get_headers($response['url']) ) {
+				foreach( $headers as $value ) {
+					if ( substr( strtolower($value), 0, 9 ) == "location:" )
+						return get_url( trim( substr( $value, 9, strlen($value) ) ) );
+				}
+			}
+		}
+	
+		if (    ( preg_match("/>[[:space:]]+window\.location\.replace\('(.*)'\)/i", $content, $value) || preg_match("/>[[:space:]]+window\.location\=\"(.*)\"/i", $content, $value) ) && $javascript_loop < 5) {
+			return get_url( $value[1], $javascript_loop+1 );
+		} else {
+			return array( $content, $response );
+		}
+	}
+	
+
 	public function getUrlParameter($url, $sch_tag) {
 		$parts = parse_url($url);
 		if(isset($parts['host'])){

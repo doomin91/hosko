@@ -314,7 +314,7 @@ $("#post_attach").on('change',function(){
 		<?php endif; ?>
 
 		$.ajax({
-			url:"/admin/board/set_post_info?board_seq=" + board_seq,
+			url:"/board/set_post_info?board_seq=" + board_seq,
 			type:"post",
 			data:formData,
 			dataType:"json",
@@ -353,59 +353,23 @@ $("#post_attach").on('change',function(){
 	}
 
 	function url_upload(){
+
 	$.ajax({
-		url : "/admin/Board/CheckUrlAndSave",
+		url : "/board/CheckUrlAndSave",
 		type : "post",
 		data : { "youtube_url" : $("input[name=youtube_url]").val() },
 		dataType : "json",
 		success : function (resultMsg){
-			let code = resultMsg["code"];
-			let msg = resultMsg["msg"];
-			if(code == 200){
-				tag.src = "https://www.youtube.com/iframe_api";
-				video_id = resultMsg["video_id"];
-				$("input[name=video_id]").val(video_id);
-			} else {
-				alert(msg);
-			}
+            console.log(resultMsg);
+			tag.src = "https://www.youtube.com/iframe_api";
+			video_id = resultMsg["video_id"];
+			$("input[name=video_id]").val(video_id);
 			
 		}, error : function (e){
 			console.log(e.responseText);
 		}
 	});
 }
-
-// function post_regist(){
-// 		let hash = $("#defaultReal").realperson('getHash');
-// 		let board_seq = <?php echo $BOARD_INFO->BOARD_SEQ?>;
-//         let group_seq = <?php echo $GROUP_INFO->GP_SEQ?>;
-//         let type = "<?php echo $BOARD_TYPE?>";
-// 		$("#defaultRealHash").val(hash);
-// 		// var form = $("#post_write_form").serializeArray();
-// 		var formData = new FormData($("#post_write_form")[0]);
-
-// 		$.ajax({
-// 			url:"/admin/board/set_post_info?board_seq=" + board_seq,
-// 			type:"post",
-// 			data:formData,
-// 			dataType:"json",
-// 			processData:false,
-// 			contentType:false,
-// 			success:function(resultMsg){
-// 				let code = resultMsg["code"];
-// 				let msg = resultMsg["msg"];
-// 				if(code == 200){
-// 					alert(msg);
-// 					location.href="/Board/" + type + "/" + group_seq +"?seq=" + board_seq;
-// 				} else {
-// 					alert(msg);
-// 				}
-// 			},
-// 			error:function(e){
-// 				console.log(e);
-// 			}
-// 		})
-// 	}
 
 </script>
 

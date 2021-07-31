@@ -86,21 +86,24 @@
                                     <div class="subBtn_Write f_right mt40">
                                         <a href="/Board/board_write/<?php echo $GROUP_INFO->GP_SEQ . "?seq=" . $BOARD_INFO->BOARD_SEQ?>">글쓰기</a>
                                     </div>
-                                    <?php endif; ?>>
+                                    <?php endif; ?>
 
                                     <?php echo $pagination; ?>
 
-                                    <div class="boardSearchWrap">
-                                        <form name="" id="" method="">
-                                        <input type="hidden" name="page" value="1">
-                                        <input type="hidden" name="num" value="">
 
+                                    <div class="boardSearchWrap">
+                                        <!-- <input type="hidden" name="page" value="1"> -->
+                                        
+                                        
                                             <div class="boardSearch">
-                                                <select name="">
-                                                    <option value="all" selected="selected">전체</option>
+                                                <select name="search_field">
+                                                    <option value="all" <?php echo $searchField == "all" ?  "selected" : "" ?>>전체</option>
+                                                    <option value="SUBJECT" <?php echo $searchField == "SUBJECT" ?  "selected" : "" ?>>제목</option>
+                                                    <option value="CONTENTS" <?php echo $searchField == "CONTENTS" ?  "selected" : "" ?>>내용</option>
+                                                    <option value="USER_NAME" <?php echo $searchField == "USER_NAME" ?  "selected" : "" ?>>글쓴이</option>
                                                 </select>
                                                 <div class="inputSearch">
-                                                    <input type="text" name="" value="" maxlength="50">
+                                                    <input type="text" name="search_string" value="<?php echo $searchString; ?>" maxlength="50">
                                                     <input type="submit" value="">
                                                 </div>
                                             </div>

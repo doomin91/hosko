@@ -173,6 +173,13 @@
 									<?php 
 
 										date_default_timezone_set('Asia/Seoul');
+
+										if($lt->POST_PARENT_SEQ != $lt->POST_SEQ){
+											for($i=1; $i<$lt->POST_DEPTH;$i++){
+												echo "ㄴ";												
+											}
+										}
+
 										if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
 											if(time() - strtotime($lt->POST_REG_DATE) < ( 86400 * $BOARD_INFO->BOARD_PERIOD_NEW )){
 												echo "<label class=\"label label-red\">new</label>";												
@@ -185,6 +192,10 @@
 											}
 										}
 										echo $lt->POST_SUBJECT;
+										
+										if($lt->POST_DEL_YN == "Y"){
+											echo "<label class=\"label label-danger\">삭제됨</label>";
+										}
 
 										// 비밀글
 										if($lt->POST_SECRET_YN == "Y"){
@@ -240,7 +251,7 @@
                                         if ($end > $listCount) $end = $listCount;
                                         if ($start == 0) $start = 1;
                                     ?>
-                                        전체 <?php echo $listCount; ?>개 중 <?php echo $listCount-$start; ?> - <?php echo $listCount-$end == 0 ? "1" : $listCount-$end ?>
+                                        전체 <?php echo $listCount; ?>개 중 <?php echo $listCount-$start+1; ?> - <?php echo $listCount-$end == 0 ? "1" : $listCount-$end-1 ?>
                                     <?php endif; ?>
                                     </div>
                                 </div>

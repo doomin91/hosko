@@ -89,7 +89,7 @@
                                                         <ul class="fileList">
                                                             <li class="file_item">
                                                                 <?php foreach($ATTACH as $at){ ?>
-                                                                <a href="/admin/Board/downalod_attach/<?php echo $at->ATTACH_SEQ?>" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
+                                                                <a href="/Board/downalod_attach/<?php echo $at->ATTACH_SEQ?>" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
                                                                 <?php } ?>
                                                             </li>
                                                         </ul>								
@@ -216,7 +216,7 @@
                                         </div>
                                         <?php endif?>
                                         
-                                        <?php if(($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")) || $this->session->userdata("admin_seq")): ?>
+                                        <?php if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")): ?>
                                         <div class="btn_box f_right">
                                             <a href="#" onclick="board_delete()" class="btn_style01">삭제</a>
                                         </div>
@@ -294,14 +294,6 @@ function board_delete(){
     }
 }
 
-function board_reply(){
-    alert("2")
-}
-
-function board_modify(){
-    alert("3")
-}
-
 function comment_write(){
     let contents = $("textarea[name=contents]").val();
     if(contents == ""){
@@ -309,7 +301,7 @@ function comment_write(){
         return false;
     }
     $.ajax({
-        url:"/admin/Board/comment_regist",
+        url:"/Board/comment_regist",
         type:"post",
         data:{
             "post_seq" : post_seq,
