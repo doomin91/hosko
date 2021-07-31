@@ -24,7 +24,7 @@
                             <ul>
                                 <li class="on"><a href="/consult/qnaList">Q&A</a></li>
                                 <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
-                                <li><a href="/">방문상담신청</a></li>
+                                <li><a href="/consult/visitConsult">방문상담신청</a></li>
                                 <li><a href="/consult/apply">포지션&연수 지원</a></li>
                                 <li><a href="#">설명회신청</a></li>
                             </ul>
@@ -50,10 +50,14 @@
                                     <?php   
                                         if (!empty($lists)){
                                             foreach($lists as $list){
+                                                $replyStr = "";
+                                                for ($i=0; $i<$list->QNA_DEPTH; $i++){
+                                                    $replyStr .= "<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">&nbsp;";
+                                                }
                                     ?>
                                         <div class="tblBot-item">
                                             <span class="col_num"><?php echo $pagenum; ?></span>
-                                            <span class="col_tit"><a href="/consult/qnaView/<?php echo $list->QNA_SEQ; ?>"><?php echo $list->QNA_SUBJECT; ?></a></span>
+                                            <span class="col_tit"><?php echo $replyStr; ?><a href="/consult/qnaView/<?php echo $list->QNA_SEQ; ?>"><?php echo $list->QNA_SUBJECT; ?></a></span>
                                             <span class="col_name"><?php echo $list->QNA_USER_NAME; ?></span>
                                             <span class="col_date"><?php echo substr($list->QNA_REG_DATE, 0, 10); ?></span>                                            
                                         </div>

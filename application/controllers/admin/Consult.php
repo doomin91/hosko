@@ -34,6 +34,7 @@ class Consult extends CI_Controller {
 		$this->load->model("UserModel");
 		$this->load->model("ConsultModel");
 
+		$this->customclass->adminCheck();
 	}
 
 
@@ -373,9 +374,9 @@ class Consult extends CI_Controller {
 						"start" => $start,
 						"limit" => $limit
 						);
-		$lists = $this->ConsultModel->getOnlineConsultLists($wheresql);
+		$lists = $this->ConsultModel->getQnaLists($wheresql);
 		//echo $this->db->last_query();
-		$listCount = $this->ConsultModel->getOnlineConsultListCount($wheresql);
+		$listCount = $this->ConsultModel->getQnaListCount($wheresql);
 
 		if ($nowpage != ""){
 			$pagenum = $listCount-(($nowpage-1)*10);
@@ -393,6 +394,65 @@ class Consult extends CI_Controller {
 					"start" => $start,
 					"limit" => $limit
 					);
-		$this->load->view("/admin/consult/online-consult", $data);
+		$this->load->view("/admin/consult/qna-list", $data);
+	}
+
+	public function qnaView($qna_seq){
+		$info = $this->ConsultModel->getQna($qna_seq);
+		$data = array(
+			"info" => $info
+		);
+		$this->load->view("/admin/consult/qna-view", $data);
+	}
+
+	public function qnaAnswer($qna_seq){
+		$info = $this->ConsultModel->getQna($qna_seq);
+		$data = array(
+			"info" => $info
+		);
+		$this->load->view("/admin/consult/qna-answer", $data);
+	}
+
+	public function qnaAnswerSave(){
+		$qna_seq = $this->input->post("qna_seq");
+		$qna_subject = $this->input->post("qna_subject");
+		$qna_contents = $this->input->post("qna_contents");
+		//print_r($this->input->post());
+
+		$info = $this->ConsultModel->getQna($qna_seq);
+		//print_r($info);
+
+		$insertArr = array(
+						"QNA_GROUP" => $info->QNA_GROUP,
+						"QNA_DEPTH" => 1,
+						"QNA_USER_NAME" => $this->session->userdata("admin_name"),
+						"QNA_USER_EMAIL" => $this->session->userdata("admin_email"),
+						"QNA_SUBJECT" => $qna_subject,
+						"QNA_CONTENTS" => $qna_contents,
+						"QNA_ADMIN_SEQ" => $this->session->userdata("admin_seq"),
+						"QNA_REG_DATE" => date("Y-m-d H:i:s"),
+						"QNA_DEL_YN" => "N",
+						"QNA_REG_IP" => $_SERVER["REMOTE_ADDR"]
+		);
+
+		$result = $this->ConsultModel->insertQna($insertArr);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "Q&A 답변 완료되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "Q&A 답변 저장중 문제가 생겼습니다."));
+		}
+	}
+
+	public function qnaAnswerDelete(){
+		$qna_seq = $this->input->post("qna_seq");
+
+		$result = $this->ConsultModel->qnaDelete($qna_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "Q&A 답변 삭제되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "Q&A 답변 삭제중 문제가 생겼습니다."));
+		}
 	}
 }

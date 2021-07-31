@@ -217,4 +217,12 @@ class Customclass{
 		
 	}
 
+    public function getVisitConsult($date){
+        $this->CI->load->model("ConsultModel");
+
+        $result = $this->CI->ConsultModel->getVisitConsultDate($date);
+
+        return $result;
+    }
+    
 }

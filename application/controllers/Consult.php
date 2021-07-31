@@ -379,4 +379,144 @@ class Consult extends CI_Controller {
 
     }
 
+	public function visitConsult(){
+		
+		$dateY = ($this->input->get("strYear")) ? $this->input->get("strYear") : date("Y");
+        $dateM = ($this->input->get("strMon")) ? $this->input->get("strMon") : date("m");
+
+		if ($dateM > 12){
+			$dateY = $dateY + 1;
+			$dateM = $dateM - 12;
+		}
+
+
+        $data["month"] = $dateM;
+        $data["year"] = $dateY;
+		$data = array(
+					"year" => $dateY,
+					"month" => $dateM,
+		);
+
+		$this->load->view("consult/visit-consult", $data);
+	}
+
+	public function visitConsultList($visit_date){
+		
+		$lists = $this->ConsultModel->getVisitConsultByDate($visit_date);
+		echo $this->db->last_query();
+		$apply_date=date_create($visit_date);
+		$cur_date=date_create(date("Y-m-d"));
+		$diff = date_diff($cur_date, $apply_date);
+
+		$pagenum = count($lists);
+		
+		$data = array(
+			"pagenum" => $pagenum,
+			"lists" => $lists,
+			"visit_date" => $visit_date,
+			"diff_str" => $diff->format("%R")
+		);
+
+		$this->load->view("consult/visit-consult-list", $data);
+	}
+
+	public function visitConsultWrite($visit_date){
+		
+
+		$data = array(
+			"visit_date" => $visit_date
+		);
+
+		$this->load->view("consult/visit-consult-write", $data);
+	}
+
+	public function visitConsultEdit($vcon_seq){
+		$data = array(
+			"visit_date" => $visit_date
+		);
+
+		$this->load->view("consult/visit-consult-write", $data);
+	}
+
+	public function visitConsultWriteProc(){
+		$user_name = $this->input->post("user_name");
+		$consult_date = $this->input->post("consult_date");
+		$consult_hour = $this->input->post("consult_hour");
+		$consult_minute = $this->input->post("consult_minute");
+		$user_age = $this->input->post("user_age");
+		$user_tel = $this->input->post("user_tel");
+		$user_email = $this->input->post("user_email");
+		$user_comp = $this->input->post("user_comp");
+		$user_depart = $this->input->post("user_depart");
+		$user_major = $this->input->post("user_major");
+		$user_pass = $this->input->post("user_pass");
+
+		$consult_time = $consult_hour . ":" . $consult_minute;
+		
+		$timeCheck = $this->ConsultModel->visitConsultCheck($consult_date, $consult_time);
+		if ($timeCheck > 0){
+			echo json_encode(array("code" => "202", "msg" => "신청할수 없는 시간입니다. 시간을 변경해주세요"));
+			exit;
+		}
+
+		$insertArr = array(
+						"VCON_USER_NAME" => $user_name,
+						"VCON_USER_AGE" => $user_age,
+						"VCON_USER_EMAIL" => $user_email,
+						"VCON_CONSULT_DATE" => $consult_date,
+						"VCON_CONSULT_TIME" => $consult_time,
+						"VCON_USER_TEL" => $user_tel,
+						"VCON_USER_COMP" => $user_comp,
+						"VCON_USER_DEPART" => $user_depart,
+						"VCON_USER_MAJOR" => $user_major,
+						"VCON_USER_PASS" => md5($user_pass),
+						"VCON_REG_DATE" => date("Y-m-d"),
+						"VCON_REG_IP" => $_SERVER["REMOTE_ADDR"],
+						"VCON_DEL_YN" => "N"
+		);
+
+		$result = $this->ConsultModel->insertVisitConsult($insertArr);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "방문상담 신청 완료되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
+
+	public function visitConsultPassCheck(){
+		$vcon_seq = $this->input->get("vcon_seq");
+		$mode = $this->input->get("mode");
+
+		$data = array(
+					"vcon_seq" => $vcon_seq,
+					"mode" => $mode
+		);
+
+		$this->load->view("consult/visit-consult-passcheck", $data);
+	}
+
+	public function VisitPassCheck(){
+		$vcon_seq = $this->input->post("vcon_seq");
+		$mode = $this->input->post("mode");
+		$password = $this->input->post("password");
+		//print_r($this->input->post());
+		$vcon_info = $this->ConsultModel->getVisitConsultInfo($vcon_seq);
+
+		if (md5($password) == $vcon_info->VCON_USER_PASS){
+			if ($mode == "edit"){
+				echo json_encode(array("code" => "200", "url" => "/consult/visitConsultEdit/"));
+			}else if ($mode == "delete"){
+				$result = $this->ConsultModel->deleteVisitConsult($vcon_seq);
+
+				if ($result == true){
+					echo json_encode(array("code" => "201", "msg" => "방문상담 신청 삭제되었습니다."));
+				}else{
+					echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+				}
+			}
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "비밀번호가 일치 하지 않습니다."));			
+		}
+	}
 }

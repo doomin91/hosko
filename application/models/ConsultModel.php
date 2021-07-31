@@ -241,6 +241,40 @@ class ConsultModel extends CI_Model{
 	public function setOnlineConsultAnswer($updateData, $oc_seq){
 		$this->db->where("TBL_HOSKO_ONLINE_CONSULT.OC_SEQ", $oc_seq);
 		return $this->db->update("TBL_HOSKO_ONLINE_CONSULT", $updateData);
+	}
 
+	public function qnaDelete($qna_seq){
+		$this->db->where("TBL_HOSKO_QNA.QNA_SEQ", $qna_seq);
+		return $this->db->update("TBL_HOSKO_QNA", array("QNA_DEL_YN" => "Y"));
+	}
+
+	public function getVisitConsultByDate($visit_date){
+		$this->db->where("TBL_HOSKO_VISIT_CONSULT.VCON_CONSULT_DATE", $visit_date);
+		$this->db->where("TBL_HOSKO_VISIT_CONSULT.VCON_DEL_YN", "N");
+		$this->db->order_by("TBL_HOSKO_VISIT_CONSULT.VCON_SEQ", "DESC");
+		return $this->db->get("TBL_HOSKO_VISIT_CONSULT")->result();
+	}
+
+	public function getVisitConsultDate($consult_date){
+		$this->db->where("TBL_HOSKO_VISIT_CONSULT.VCON_CONSULT_DATE", $consult_date);
+		$this->db->where("TBL_HOSKO_VISIT_CONSULT.VCON_DEL_YN", "N");
+		$this->db->from("TBL_HOSKO_VISIT_CONSULT");
+		return $this->db->count_all_results();
+	}
+
+	public function insertVisitConsult($insertData){
+		return $this->db->insert("TBL_HOSKO_VISIT_CONSULT", $insertData);
+	}
+
+	public function visitConsultCheck($consult_date, $consult_time){
+		$this->db->where("TBL_HOSKO_VISIT_CONSULT.VCON_CONSULT_DATE", $consult_date);
+		$this->db->where("TBL_HOSKO_VISIT_CONSULT.VCON_CONSULT_TIME", $consult_time);
+		$this->db->from("TBL_HOSKO_VISIT_CONSULT");
+		return $this->db->count_all_results();
+	}
+
+	public function deleteVisitConsult($vcon_seq){
+		$this->db->where("TBL_HOSKO_VISIT_CONSULT.VCON_SEQ", $vcon_seq);
+		return $this->db->update("TBL_HOSKO_VISIT_CONSULT", array("VCON_DEL_YN" => "Y"));
 	}
 }

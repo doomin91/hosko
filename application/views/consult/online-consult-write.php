@@ -24,7 +24,7 @@
                             <ul>
                                 <li><a href="/consult/qnaList">Q&A</a></li>
                                 <li class="on"><a href="/consult/onlineConsultList">온라인 상담</a></li>
-                                <li><a href="/">방문상담신청</a></li>
+                                <li><a href="/consult/visitConsult">방문상담신청</a></li>
                                 <li><a href="/">포지션&연수 지원</a></li>
                                 <li><a href="/">설명회신청</a></li>
                             </ul>
@@ -116,7 +116,7 @@
                                     <div class="boardBtnArea pb50">
                                         <div class="btn_box f_right">
                                             <button type="button" class="memberBtnOk f_left" id="consultSave">문의하기</button>
-                                        </div>sssss
+                                        </div>
 
                                     </div>
 
