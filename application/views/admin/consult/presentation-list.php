@@ -51,7 +51,7 @@
 				  <!-- tile body -->
 				  <div class="tile-body">
 					<div class="table-responsive"  role="grid" id="basicDataTable_wrapper">
-					  <table class="table datatable table-custom01 userTable">
+					    <table class="table datatable table-custom01 userTable">
 
 							<colgroup>
 									<col width="5%"/>
@@ -92,7 +92,7 @@
 							}
 						?>
 							</tbody>
-							</table>
+						</table>
 							<div class="row">
                                 <div class="col-md-4 text-center sm-center">
                                 </div>

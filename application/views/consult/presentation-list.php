@@ -43,7 +43,7 @@
                                         <div class="row mb20">
                                             <div class="col-md-12 TableTitle mb20 mt30">설명회 목록</div>
                                             <div class="boardTotallist clearfix mb20">
-                                                <p>총 88개의 글이 등록 되어있습니다.</p>
+                                                <p>총 <?php echo $listCount; ?>개의 글이 등록 되어있습니다.</p>
                                             </div>                                        
                                         </div>
 
@@ -67,7 +67,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            
+                                        <?php 
+                                            if (!empty($lists)){
+                                                foreach ($lists as $lt){
+                                                    $pt_status = "진행중"
+                                        ?>
+                                                <tr>
+                                                    <td><?php echo $pagenum; ?></td>
+                                                    <td><a href="/consult/presentationView/<?php echo $lt->PT_SEQ; ?>"><?php echo $lt->PT_SUBJECT; ?></a></td>
+                                                    <td><?php echo $lt->ADMIN_NAME; ?></td>
+                                                    <td><?php echo $pt_status; ?></td>
+                                                    <td><?php echo $lt->PT_READ_CNT; ?></td>
+                                                    <td><?php echo substr($lt->PT_REG_DATE, 0, 10); ?></td>
+                                                </tr>
+                                        <?php
+                                                    $pagenum--;
+                                                }
+                                            }else{
+                                        ?>
+                                                <tr><td olspan="6" align="center">등록된 설명회가 없습니다.</td></tr>
+                                        <?php 
+                                            }
+                                        ?>
                                             </tbody>
                                         </table>
 
@@ -108,7 +129,7 @@
                                     <div class="row mb20">
                                         <div class="col-md-12 TableTitle mb20 mt30">설명회 지원 현황 현황</div>
                                         <div class="boardTotallist clearfix mb20">
-                                            <p>총 88개의 글이 등록 되어있습니다.</p>
+                                            <p>총 <?php echo count($applyList); ?>개의 설명회에 신청하셨습니다..</p>
                                         </div>                                        
                                     </div>
                                     <table class="tableCont">
@@ -125,6 +146,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                    <?php 
+                                        $aCnt = count($applyList);
+                                        foreach ($applyList as $al){
+                                    ?>
+                                            <tr>
+                                                <td><?php echo $aCnt; ?></td>
+                                                <td><?php echo $al->PT_SUBJECT; ?></td>
+                                                <td><?php echo substr($al->PA_REG_DATE, 0, 10); ?></td>
+                                            </tr>
+                                    <?php
+                                            $aCnt--;
+                                        }
+                                    ?>
                                         </tbody>
                                     </table>
                                 </div>

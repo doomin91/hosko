@@ -46,12 +46,6 @@ class Mypage extends CI_Controller {
         $this->load->view("/mypage/member-edit", $data);
     }
 
-<<<<<<< HEAD
-	function memberResumeRegist(){
-
-
-		$this->load->view("/mypage/member-resume_register");
-=======
 	public function memberEditProc(){
 		$user_name = $this->input->post("user_name");
 		$user_email = $this->input->post("user_email");
@@ -210,7 +204,6 @@ class Mypage extends CI_Controller {
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "회원 정보 수정중 문제가 생겼습니다."));
 		}
->>>>>>> f3df5351c057591f0bf41bce026fcff97cdc191a
 	}
 
 }

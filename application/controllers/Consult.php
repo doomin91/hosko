@@ -564,7 +564,82 @@ class Consult extends CI_Controller {
 	}
 
 	public function presentationList(){
+		$limit = 10;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*10;
+			$nowpage = $_GET["per_page"];
+		}
 
-		$this->load->view("consult/presentation-list");
+		$wheresql = array(
+						"start" => $start,
+						"limit" => $limit
+						);
+		$lists = $this->ConsultModel->getPresentationLists($wheresql);
+		//echo $this->db->last_query();
+		$listCount = $this->ConsultModel->getPresentationCount($wheresql);
+						
+		$applyList = $this->ConsultModel->getPresentationApplyUser($this->session->userdata("USER_SEQ"));
+		//print_r($applyList);
+
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*10);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$pagination = $this->customclass->front_pagenavi("/admin/consult/onlineConsult/", $listCount, 10, 5, $nowpage);
+
+		$data = array(
+					"lists" => $lists,
+					"listCount" => $listCount,
+					"applyList" => $applyList,
+					"pagination" => $pagination,
+					"pagenum" => $pagenum,
+					"start" => $start,
+					"limit" => $limit
+					);
+		$this->load->view("consult/presentation-list", $data);
+	}
+
+	public function presentationView($pt_seq){
+		$info = $this->ConsultModel->getPresentation($pt_seq);
+
+		$this->ConsultModel->readCntPresentation($pt_seq);
+
+		$data = array(
+					"info" => $info
+		);
+
+		$this->load->view("consult/presentation-view", $data);
+	}
+
+	public function presentationApply(){
+		$pt_seq = $this->input->post("pt_seq");
+		
+		$checkCnt = $this->ConsultModel->checkPtApply($this->session->userdata("USER_SEQ"), $pt_seq);
+		if ($checkCnt > 0){
+			echo json_encode(array("code" => "202", "msg" => "이미 신청하셨습니다."));
+			exit;
+		}
+
+
+		$applyArr = array(
+						"PT_SEQ" => $pt_seq,
+						"PA_USER_SEQ" => $this->session->userdata("USER_SEQ"),
+						"PA_REG_DATE" => date("Y-m-d H:i:s"),
+						"PA_DEL_YN" => "N",
+						"PA_REG_IP" => $_SERVER["REMOTE_ADDR"]
+		);
+
+		$result = $this->ConsultModel->setPresentationApply($applyArr);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "방문상담 신청 완료되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "신청 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
 	}
 }

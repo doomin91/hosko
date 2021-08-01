@@ -496,9 +496,11 @@ class Consult extends CI_Controller {
 	public function presentationView($pt_seq){
 		$info = $this->ConsultModel->getPresentation($pt_seq);
 		//print_r($info);
-
+		$aUsers = $this->ConsultModel->getPresentationApply($pt_seq);
+		print_r($aUsers);
 		$data = array(
-					"info" => $info
+					"info" => $info,
+					"aUsers" => $aUsers
 		);
 		
 		$this->load->view("/admin/consult/presentation-view", $data);
@@ -530,6 +532,52 @@ class Consult extends CI_Controller {
 			echo json_encode(array("code" => "200", "msg" => "설명회 등록 완료 되었습니다."));
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "설명회 등록중 문제가 생겼습니다."));
+		}
+	}
+
+	public function presentationEdit($pt_seq){
+		$info = $this->ConsultModel->getPresentation($pt_seq);
+		//print_r($info);
+
+		$data = array(
+					"info" => $info
+		);
+		
+		$this->load->view("/admin/consult/presentation-edit", $data);
+	}
+
+	public function presentationEditProc(){
+		$pt_seq = $this->input->post("pt_seq");
+		$pt_subject = $this->input->post("pt_subject");
+		$pt_date = $this->input->post("pt_date");
+		$pt_apply_cnt = $this->input->post("pt_apply_cnt");
+		$pt_contents = $this->input->post("pt_contents");
+		//echo $pt_seq;
+		$updateArr = array(
+						"PT_SUBJECT" => $pt_subject,
+						"PT_CONTENTS" => $pt_contents,
+						"PT_DATE" => $pt_date,
+						"PT_APPLY_CNT" => $pt_apply_cnt,
+		);
+		//print_r($updateArr);
+		$result = $this->ConsultModel->updatePresentation($updateArr, $pt_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "설명회 수정 완료 되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "설명회 수정중 문제가 생겼습니다."));
+		}
+	}
+
+	public function presentationDelete(){
+		$pt_seq = $this->input->post("pt_seq");
+
+		$result = $this->ConsultModel->deletePresentation($pt_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "설명회 삭제 완료 되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "설명회 삭제중 문제가 생겼습니다."));
 		}
 	}
 }

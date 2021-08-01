@@ -293,7 +293,7 @@ class ConsultModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_PRESENTATION.PT_DEL_YN", "N");
 		$this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_PRESENTATION.PT_REG_ADMIN_SEQ = TBL_HOSKO_ADMIN.ADMIN_SEQ", "LEFT OUTER");
 		$this->db->select("TBL_HOSKO_PRESENTATION.*, TBL_HOSKO_ADMIN.ADMIN_NAME");
-		$this->db->order_by("TBL_HOSKO_PRESENTATION.PT_SEQ", "ASC");
+		$this->db->order_by("TBL_HOSKO_PRESENTATION.PT_SEQ", "DESC");
 		$this->db->limit($whereArr["limit"], $whereArr["start"]);
 		return $this->db->get("TBL_HOSKO_PRESENTATION")->result();
 	}
@@ -325,5 +325,47 @@ class ConsultModel extends CI_Model{
 
 	public function insertPresentation($insertData){
 		return $this->db->insert("TBL_HOSKO_PRESENTATION", $insertData);
+	}
+
+	public function updatePresentation($updateData, $pt_seq){
+		$this->db->where("TBL_HOSKO_PRESENTATION.PT_SEQ", $pt_seq);
+		return $this->db->update("TBL_HOSKO_PRESENTATION", $updateData);
+	}
+
+	public function deletePresentation($pt_seq){
+		$this->db->where("TBL_HOSKO_PRESENTATION.PT_SEQ", $pt_seq);
+		return $this->db->update("TBL_HOSKO_PRESENTATION", array("PT_DEL_YN" => "Y"));
+	}
+
+	public function setPresentationApply($applyArr){
+		return $this->db->insert("TBL_HOSKO_PRESENTATION_APPLY", $applyArr);
+	}
+
+	public function checkPtApply($user_seq, $pt_seq){
+		$this->db->where("TBL_HOSKO_PRESENTATION_APPLY.PT_SEQ", $pt_seq);
+		$this->db->where("TBL_HOSKO_PRESENTATION_APPLY.PA_USER_SEQ", $user_seq);
+		$this->db->from("TBL_HOSKO_PRESENTATION_APPLY");
+		return $this->db->count_all_results();
+	}
+
+	public function readCntPresentation($pt_seq){
+		$query = "update TBL_HOSKO_PRESENTATION set PT_READ_CNT = PT_READ_CNT +1 where PT_SEQ = '" . $pt_seq . "'";
+		$this->db->query($query);
+	}
+
+	public function getPresentationApplyUser($user_seq){
+		$this->db->where("TBL_HOSKO_PRESENTATION_APPLY.PA_USER_SEQ", $user_seq);
+		$this->db->join("TBL_HOSKO_PRESENTATION", "TBL_HOSKO_PRESENTATION.PT_SEQ = TBL_HOSKO_PRESENTATION_APPLY.PT_SEQ", "INNER");
+		$this->db->select("TBL_HOSKO_PRESENTATION_APPLY.*, TBL_HOSKO_PRESENTATION.PT_SUBJECT");
+		$this->db->order_by("TBL_HOSKO_PRESENTATION_APPLY.PA_REG_DATE", "DESC");
+		return $this->db->get("TBL_HOSKO_PRESENTATION_APPLY")->result();
+	}
+
+	public function getPresentationApply($pt_seq){
+		$this->db->where("TBL_HOSKO_PRESENTATION_APPLY.PT_SEQ", $pt_seq);
+		$this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ=TBL_HOSKO_PRESENTATION_APPLY.PA_USER_SEQ", "INNER");
+		$this->db->select("TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_USER.USER_TEL, TBL_HOSKO_USER.USER_HP, TBL_HOSKO_USER.USER_EMAIL, TBL_HOSKO_PRESENTATION_APPLY.*");
+		$this->db->order_by("TBL_HOSKO_PRESENTATION_APPLY.PA_REG_DATE", "DESC");
+		return $this->db->get("TBL_HOSKO_PRESENTATION_APPLY")->result();
 	}
 }
