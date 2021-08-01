@@ -89,7 +89,7 @@
                                                         <ul class="fileList">
                                                             <li class="file_item">
                                                                 <?php foreach($ATTACH as $at){ ?>
-                                                                <a href="/admin/Board/downalod_attach/<?php echo $at->ATTACH_SEQ?>" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
+                                                                <a href="/Board/downalod_attach/<?php echo $at->ATTACH_SEQ?>" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
                                                                 <?php } ?>
                                                             </li>
                                                         </ul>								
@@ -167,6 +167,8 @@
 
 
 
+
+                                    
                                     <?php if($BOARD_INFO->BOARD_BOTTOM_LIST_FLAG == "Y"): ?>
                                     <div class="boardViewBot">
                                         <div class="type_table">
@@ -175,18 +177,31 @@
                                                         echo "<div class=\"cont_prev\">";
                                                         echo "<div class=\"boardViewBot_item\">";
                                                         echo "<strong>이전글</strong>";
-                                                } else {
+                                                } else if($bl->TYPE == "NEXT"){
                                                         echo "<div class=\"cont_next\">";
                                                         echo "<div class=\"boardViewBot_item\">";
                                                         echo "<strong>다음글</strong>";
-                                                    }?>
+                                                } else {
+                                                        echo "<div class=\"cont_next\">";
+                                                        echo "<div class=\"boardViewBot_item\">";
+                                                        echo "<strong>현재글</strong>";
+                                                }
+                                                ?>
                                                     <div class="type_td">
                                                         
-                                                        <a href="/" class="ellipsis">
+                                                        <!-- <a href="/" class="ellipsis"> -->
                                                         <?php 
-														echo "<a href=\"/board/board_view/".$bl->POST_SEQ."\">".$bl->POST_SUBJECT."</a>";
+                                                        echo "<a class=\"ellipsis\" href=\"/board/board_view/".$bl->POST_SEQ."\">";
+
+                                                        if($bl->POST_PARENT_SEQ != $bl->POST_SEQ){
+                                                            for($i=1; $i<$bl->POST_DEPTH;$i++){
+                                                                echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;vertical-align:text-top\">";												
+                                                            }
+                                                        }
+
+														echo $bl->POST_SUBJECT;
 														if($bl->POST_SECRET_YN == "Y"){
-															echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>";
+															echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>"."</a>";
 														}
 													    ?> </a>
                                                         <span class="date"><?php echo date("Y-m-d", strtotime($bl->POST_REG_DATE))?></span>
@@ -309,7 +324,7 @@ function comment_write(){
         return false;
     }
     $.ajax({
-        url:"/admin/Board/comment_regist",
+        url:"/Board/comment_regist",
         type:"post",
         data:{
             "post_seq" : post_seq,

@@ -77,7 +77,10 @@
                                                     </div>
                                                 </a>
                                             </li>
-                                            <?php }?>
+                                            <?php 
+                                            $pagenum--;
+                                            }
+                                             ?>
                                         </ul>
                                     </div>
                                     

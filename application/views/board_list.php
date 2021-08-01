@@ -77,7 +77,7 @@
                                                 date_default_timezone_set('Asia/Seoul');
 
                                                 if($lt->POST_PARENT_SEQ != $lt->POST_SEQ){
-                                                    for($i=0; $i<$lt->POST_DEPTH;$i++){
+                                                    for($i=1; $i<$lt->POST_DEPTH;$i++){
                                                         echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">";												
                                                     }
                                                 }
@@ -94,6 +94,7 @@
                                                     }
                                                 }
 
+                                                if($lt->POST_DEL_YN == "N") {
                                                 if($lt->POST_SECRET_YN == "Y"){
                                                     if($lt->POST_USER_SEQ == $this->session->userdata("USER_SEQ") || $this->session->userdata("admin_seq")){
                                                         echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
@@ -105,7 +106,10 @@
                                                     echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
                                                 }
 
-                                                echo $lt->ATTACHS > 0 ? "[". ($lt->ATTACHS) ."]" : "";
+                                                    echo $lt->ATTACHS > 0 ? "[". ($lt->ATTACHS) ."]" : "";
+                                                } else {
+                                                    echo "삭제된 게시글 입니다.";
+                                                }
 
                                                 ?></span>
                                             <span class="col_name"><?php echo $lt->USER_NAME?></span>

@@ -125,7 +125,7 @@
 	function ViewBoardMenu(){
 		let str = "";
 		$.ajax({
-			url:"/admin/Board/get_boards",
+			url:"/Board/get_boards",
 			type:"post",
 			dataType:"json",
 			success: function(data){

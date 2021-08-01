@@ -315,7 +315,7 @@ $("#post_attach").on('change',function(){
 		<?php endif; ?>
 
 		$.ajax({
-			url:"/admin/board/set_post_info?board_seq=" + board_seq,
+			url:"/board/set_post_info?board_seq=" + board_seq,
 			type:"post",
 			data:formData,
 			dataType:"json",
@@ -355,7 +355,7 @@ $("#post_attach").on('change',function(){
 
 	function url_upload(){
 	$.ajax({
-		url : "/admin/Board/CheckUrlAndSave",
+		url : "/Board/CheckUrlAndSave",
 		type : "post",
 		data : { "youtube_url" : $("input[name=youtube_url]").val() },
 		dataType : "json",

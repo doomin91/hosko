@@ -25,17 +25,54 @@ class BoardModel extends CI_Model{
     }
 
     public function getFrontBoardBottom($POST_SEQ, $BOARD_SEQ){
-        $sql = " SELECT * FROM (
-        SELECT *, \"NEXT\" AS TYPE FROM TBL_HOSKO_BOARD_POSTS WHERE POST_BOARD_SEQ = $BOARD_SEQ AND POST_SEQ = ( SELECT MIN(POST_SEQ) FROM TBL_HOSKO_BOARD_POSTS WHERE POST_SEQ > $POST_SEQ ) 
-        UNION ALL
-        SELECT *, \"PREV\" AS TYPE FROM TBL_HOSKO_BOARD_POSTS WHERE POST_BOARD_SEQ = $BOARD_SEQ AND POST_SEQ = ( SELECT MAX(POST_SEQ) FROM TBL_HOSKO_BOARD_POSTS WHERE POST_SEQ < $POST_SEQ ) 
-        ) result
-        LEFT JOIN TBL_HOSKO_USER ON POST_USER_SEQ = USER_SEQ
-        LEFT JOIN TBL_HOSKO_ADMIN ON POST_ADMIN_SEQ = ADMIN_SEQ
-        ";
+            $sql = "
+                SELECT * FROM 
+                (
+                    (
+                    SELECT *, \"NEXT\" AS TYPE FROM TBL_HOSKO_BOARD_POSTS
+                    WHERE POST_BOARD_SEQ = " . $BOARD_SEQ . " AND POST_SEQ > " . $POST_SEQ . "
+                    AND POST_DEL_YN = 'N'
+                    ORDER BY POST_NOTICE_YN DESC, POST_PARENT_SEQ DESC, POST_DEPTH, POST_SEQ
+                    LIMIT 5
+                    ) 
+                    UNION ALL
+                    (
+                    SELECT *, \"NOW\" AS TYPE FROM TBL_HOSKO_BOARD_POSTS
+                    WHERE POST_BOARD_SEQ = " . $BOARD_SEQ . " AND POST_SEQ = " . $POST_SEQ . "
+                    AND POST_DEL_YN = 'N'
+                    ORDER BY POST_NOTICE_YN DESC, POST_PARENT_SEQ DESC, POST_DEPTH, POST_SEQ
+                    )
+                    UNION ALL
+                    (
+                    SELECT *, \"PREV\" AS TYPE FROM TBL_HOSKO_BOARD_POSTS
+                    WHERE POST_BOARD_SEQ = " . $BOARD_SEQ . " AND POST_SEQ < " . $POST_SEQ . "
+                    AND POST_DEL_YN = 'N'
+                    ORDER BY POST_NOTICE_YN DESC, POST_PARENT_SEQ DESC, POST_DEPTH, POST_SEQ
+                    LIMIT 5
+                    )
+                ) result
+                
+                LEFT JOIN TBL_HOSKO_USER ON POST_USER_SEQ = USER_SEQ
+                LEFT JOIN TBL_HOSKO_ADMIN ON POST_ADMIN_SEQ = ADMIN_SEQ
+                
+                ";
 
         return $this->db->query($sql)->result();
     }
+
+
+    // public function getFrontBoardBottom($POST_SEQ, $BOARD_SEQ){
+    //     $sql = " SELECT * FROM (
+    //     SELECT *, \"NEXT\" AS TYPE FROM TBL_HOSKO_BOARD_POSTS WHERE POST_BOARD_SEQ = $BOARD_SEQ AND POST_SEQ = ( SELECT MIN(POST_SEQ) FROM TBL_HOSKO_BOARD_POSTS WHERE POST_SEQ > $POST_SEQ ) 
+    //     UNION ALL
+    //     SELECT *, \"PREV\" AS TYPE FROM TBL_HOSKO_BOARD_POSTS WHERE POST_BOARD_SEQ = $BOARD_SEQ AND POST_SEQ = ( SELECT MAX(POST_SEQ) FROM TBL_HOSKO_BOARD_POSTS WHERE POST_SEQ < $POST_SEQ ) 
+    //     ) result
+    //     LEFT JOIN TBL_HOSKO_USER ON POST_USER_SEQ = USER_SEQ
+    //     LEFT JOIN TBL_HOSKO_ADMIN ON POST_ADMIN_SEQ = ADMIN_SEQ
+    //     ";
+
+    //     return $this->db->query($sql)->result();
+    // }
 
     public function getBoardBottom($POST_SEQ, $BOARD_SEQ){
         $sql = "
@@ -62,7 +99,6 @@ class BoardModel extends CI_Model{
         ) result
         LEFT JOIN TBL_HOSKO_USER ON POST_USER_SEQ = USER_SEQ
         LEFT JOIN TBL_HOSKO_ADMIN ON POST_ADMIN_SEQ = ADMIN_SEQ
-
         ";
 
         return $this->db->query($sql)->result();
