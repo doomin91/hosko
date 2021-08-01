@@ -278,4 +278,52 @@ class ConsultModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_VISIT_CONSULT.VCON_SEQ", $vcon_seq);
 		return $this->db->update("TBL_HOSKO_VISIT_CONSULT", array("VCON_DEL_YN" => "Y"));
 	}
+
+	public function getPresentationLists($whereArr){
+		if ((isset($whereArr["searchString"])) && ($whereArr["searchString"] != "")){
+			if ($whereArr["searchField"] == "all"){
+				$this->db->group_start();
+				$this->db->like("TBL_HOSKO_PRESENTATION.PT_SUBJECT", $whereArr["searchString"]);	
+				$this->db->or_like("TBL_HOSKO_PRESENTATION.PT_CONTENTS", $whereArr["searchString"]);	
+				$this->db->group_end();
+			}else{
+				$this->db->like("TBL_HOSKO_PRESENTATION.".$whereArr["searchField"], $whereArr["searchString"]);	
+			}
+		}
+		$this->db->where("TBL_HOSKO_PRESENTATION.PT_DEL_YN", "N");
+		$this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_PRESENTATION.PT_REG_ADMIN_SEQ = TBL_HOSKO_ADMIN.ADMIN_SEQ", "LEFT OUTER");
+		$this->db->select("TBL_HOSKO_PRESENTATION.*, TBL_HOSKO_ADMIN.ADMIN_NAME");
+		$this->db->order_by("TBL_HOSKO_PRESENTATION.PT_SEQ", "ASC");
+		$this->db->limit($whereArr["limit"], $whereArr["start"]);
+		return $this->db->get("TBL_HOSKO_PRESENTATION")->result();
+	}
+
+	public function getPresentationCount($whereArr){
+		if ((isset($whereArr["searchString"])) && ($whereArr["searchString"] != "")){
+			if ($whereArr["searchField"] == "all"){
+				$this->db->group_start();
+				$this->db->like("TBL_HOSKO_PRESENTATION.PT_SUBJECT", $whereArr["searchString"]);	
+				$this->db->or_like("TBL_HOSKO_PRESENTATION.PT_CONTENTS", $whereArr["searchString"]);	
+				$this->db->group_end();
+			}else{
+				$this->db->like("TBL_HOSKO_PRESENTATION.".$whereArr["searchField"], $whereArr["searchString"]);	
+			}
+		}
+		$this->db->where("TBL_HOSKO_PRESENTATION.PT_DEL_YN", "N");
+		$this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_PRESENTATION.PT_REG_ADMIN_SEQ = TBL_HOSKO_ADMIN.ADMIN_SEQ", "LEFT OUTER");
+		$this->db->from("TBL_HOSKO_PRESENTATION");
+		return $this->db->count_all_results();
+	}
+
+	public function getPresentation($pt_seq){
+		$this->db->where("TBL_HOSKO_PRESENTATION.PT_DEL_YN", "N");
+		$this->db->where("TBL_HOSKO_PRESENTATION.PT_SEQ", $pt_seq);
+		$this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_PRESENTATION.PT_REG_ADMIN_SEQ = TBL_HOSKO_ADMIN.ADMIN_SEQ", "LEFT OUTER");
+		$this->db->select("TBL_HOSKO_PRESENTATION.*, TBL_HOSKO_ADMIN.ADMIN_NAME");
+		return $this->db->get("TBL_HOSKO_PRESENTATION")->row();
+	}
+
+	public function insertPresentation($insertData){
+		return $this->db->insert("TBL_HOSKO_PRESENTATION", $insertData);
+	}
 }

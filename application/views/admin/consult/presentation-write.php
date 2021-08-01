@@ -26,15 +26,16 @@
 
           <!-- page header -->
           <div class="pageheader">
-            <h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b><?php echo $flag_string; ?></b> <span></span></h2>
-            <div class="breadcrumbs">
-              <ol class="breadcrumb">
-                <li>관리자 페이지</li>
-                <li><a href="#">상담관리</a></li>
-                <li class="active"><?php echo $flag_string; ?></li>
-              </ol>
-            </div>
-          </div>
+			<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b>설명회 관리</b> <span></span></h2>
+			<div class="breadcrumbs">
+			  <ol class="breadcrumb">
+				<li>관리자 페이지</li>
+				<li><a href="#">상담관리</a></li>
+				<li class="active">설명회 관리</li>
+			  </ol>
+			</div>
+
+		  </div>
           <!-- /page header -->
 
           <!-- content main container -->
@@ -58,25 +59,27 @@
                                 <col width="15%"/>
                                 <col width="35%"/>
                             </colgroup>
-                            <tbody>
+                            <tbody> 
                                 <tr>
-                                    <th>이름</th>
-                                    <td><?php echo $detail->ADMIN_NAME; ?></td>
-                                    <th>이메일</th>
-                                    <td><?php echo $detail->ADMIN_EMAIL; ?></td>
-                                </tr>
-                                <tr>
-                                    <th>일정 날짜</th>
-                                    <td colspan="3"><?php echo $detail->CAL_DATE; ?></td>
-                                </tr>
-                                <tr>
-                                    <th>일정 제목</th>
-                                    <td colspan="3"><?php echo $detail->CAL_TITLE; ?></td>
-                                </tr>
-                                <tr>
-                                    <th>일정 내용</th>
+                                    <th>제목</th>
                                     <td colspan="3">
-                                        <?php echo nl2br($detail->CAL_TITLE); ?>
+                                        <input type="text" name="pt_subject" class="wid90p">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>설명회 날짜</th>
+                                    <td>
+                                        <input type="text" name="pt_date" class="wid90p datepicker">
+                                    </td>
+                                    <th>신청자 제한</th>
+                                    <td>
+                                        <input type="text" name="pt_apply_cnt" class="wid90p">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>설명회 내용</th>
+                                    <td colspan="3" style="padding-right:10px !important">
+                                        <textarea name="qna_contents" class="wid90p" id="post_contents" style="height:350px"></textarea>
                                     </td>
                                 </tr>
                             </tbody>
@@ -84,8 +87,8 @@
                         </form>
                         <div class="row form-footer">
                             <div class="col-sm-offset-2 col-sm-10 text-right">
-                                <button type="button" class="btn btn-danger btn-sm" id="delSchedule" data-seq="<?php echo $detail->CAL_SEQ; ?>">삭제</button>
-                                <a type="button" class="btn btn-primary btn-sm" href="/admin/consult/schedule?flag=<?php echo $flag; ?>">목록</a>
+                                <button type="button" class="btn btn-primary btn-sm" id="seveBtn">설명회 등록</button>
+                                <a href="/admin/consult/presentationList" class="btn btn-default btn-sm">취소</a>
                             </div>
                         </div>
 
@@ -120,6 +123,8 @@
 </html>
 <script type="text/javascript">
     $(function(){
+        $("#post_contents").Editor();
+
         $.datepicker.setDefaults({
             dateFormat: 'yy-mm-dd',
             prevText: '이전 달',
@@ -136,31 +141,35 @@
         });
         $(".datepicker").datepicker();
 
-        $(document).on("click", "#delSchedule", function(){
-            var cal_seq = $(this).data("seq");
+        $(document).on("click", "#seveBtn", function(){
+            var pt_subject = $("input[name=pt_subject]").val();
+            var pt_date = $("input[name=pt_date]").val();
+            var pt_apply_cnt = $("input[name=pt_apply_cnt]").val();
+            var pt_contents = $("#post_contents").Editor("getText");
 
-            if (confirm("삭제하시겠습니까?")){
-                $.ajax({
-                    url:"/admin/consult/scheduleDelProc",
-                    type:"post",
-                    data:{
-                        "cal_seq" : cal_seq
-                    },
-                    dataType:"json",
-                    success:function(resultMsg){
-                        console.log(resultMsg);
-                        if (resultMsg.code == "200"){
-                            alert(resultMsg.msg);
-                            document.location.href="/admin/consult/schedule?flag=<?php echo $flag; ?>";
-                        }else{
-                            alert(resultMsg.msg);
-                        }
-                    },
-                    error:function(e){
-                        console.log(e);
+            $.ajax({
+                url:"/admin/consult/presentationWriteProc",
+                type:"post",
+                data:{
+                    "pt_subject" : pt_subject,
+                    "pt_date" : pt_date,
+                    "pt_apply_cnt" : pt_apply_cnt,
+                    "pt_contents" : pt_contents
+                },
+                dataType:"json",
+                success:function(resultMsg){
+                    console.log(resultMsg);
+                    if (resultMsg.code == "200"){ 
+                        alert(resultMsg.msg);
+                        document.location.href="/admin/consult/presentationList";
+                    }else{
+                        alert(resultMsg.msg);
                     }
-                })
-            }
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            })
         });
     });
 </script>
