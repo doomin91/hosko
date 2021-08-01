@@ -155,8 +155,7 @@ td a {
 													<button class="btn btn-danger btn-sm" onclick="board_delete()" class="btn_style01" >삭제</button>
 
 													<?php if($BOARD_INFO->BOARD_TYPE == 0):?>
-													<button type="button" class="btn btn-default btn-sm"
-														id="btnRepost">답글</button>
+													<a href="/admin/board/post_reply/<?php echo $POST_INFO->POST_SEQ?>" class="btn btn-default btn-sm">답글</a>
 													<?php endif;?>
 													<a href="/admin/board/post_modify/<?php echo $POST_INFO->POST_SEQ?>"
 														class="btn btn-default btn-sm">수정</a>
