@@ -258,7 +258,23 @@ class Board extends CI_Controller {
         $group_info = $this->GroupModel->getGroup($group_seq);
         $boards_info = $this->BoardModel->getBoardInGroup($group_seq);
 
-        $bottom_list = $this->BoardModel->getFrontBoardBottom($post_seq, $board_seq);
+        $bottom_list = $this->BoardModel->getFrontBoardBottom($board_seq);
+		$index = 0;
+		$next = [];
+		$prev = [];
+		foreach($bottom_list as $key => $bl){
+			if($bl->POST_SEQ == $post_seq){
+				if($key == 0){
+					$prev = $bottom_list[$key+1];
+				} else if($key == (count($bottom_list) - 1)){
+					$next = $bottom_list[$key-1];
+				} else {
+					$next = $bottom_list[$key-1];
+					$prev = $bottom_list[$key+1];
+				}
+			}
+		}
+
         $comments = $this->BoardModel->getComments($post_seq);
         $recommand = $this->BoardModel->getRecommand($post_seq);
         $attach = $this->BoardModel->getPostAttach($post_seq);
@@ -278,7 +294,8 @@ class Board extends CI_Controller {
         $DATA["POST_INFO"] = $post_info;
         $DATA["BOARD_INFO"] = $board_info;
         $DATA["BOARDS_INFO"] = $boards_info;
-        $DATA["BOTTOM_LIST"] = $bottom_list;
+        $DATA["BOTTOM_NEXT"] = $next;
+		$DATA["BOTTOM_PREV"] = $prev;
         $DATA["ATTACH"] = $attach;
         $DATA["COMMENTS"] = $comments;
         $this->load->view("board_view", $DATA);

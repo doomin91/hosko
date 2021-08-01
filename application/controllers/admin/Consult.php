@@ -455,4 +455,129 @@ class Consult extends CI_Controller {
 			echo json_encode(array("code" => "202", "msg" => "Q&A 답변 삭제중 문제가 생겼습니다."));
 		}
 	}
+
+	public function presentationList(){
+		$limit = 10;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*10;
+			$nowpage = $_GET["per_page"];
+		}
+
+		$wheresql = array(
+						"start" => $start,
+						"limit" => $limit
+						);
+		$lists = $this->ConsultModel->getPresentationLists($wheresql);
+		//echo $this->db->last_query();
+		$listCount = $this->ConsultModel->getPresentationCount($wheresql);
+
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*10);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$pagination = $this->customclass->pagenavi("/admin/consult/onlineConsult/", $listCount, 10, 5, $nowpage);
+
+		$data = array(
+					"lists" => $lists,
+					"listCount" => $listCount,
+					"pagination" => $pagination,
+					"pagenum" => $pagenum,
+					"start" => $start,
+					"limit" => $limit
+					);
+		$this->load->view("/admin/consult/presentation-list", $data);
+	}
+
+	public function presentationView($pt_seq){
+		$info = $this->ConsultModel->getPresentation($pt_seq);
+		//print_r($info);
+		$aUsers = $this->ConsultModel->getPresentationApply($pt_seq);
+		print_r($aUsers);
+		$data = array(
+					"info" => $info,
+					"aUsers" => $aUsers
+		);
+		
+		$this->load->view("/admin/consult/presentation-view", $data);
+	}
+
+	public function presentationWrite(){
+		$this->load->view("/admin/consult/presentation-write");
+	}
+
+	public function presentationWriteProc(){
+		$pt_subject = $this->input->post("pt_subject");
+		$pt_date = $this->input->post("pt_date");
+		$pt_apply_cnt = $this->input->post("pt_apply_cnt");
+		$pt_contents = $this->input->post("pt_contents");
+
+		$insertArr = array(
+						"PT_SUBJECT" => $pt_subject,
+						"PT_CONTENTS" => $pt_contents,
+						"PT_DATE" => $pt_date,
+						"PT_REG_DATE" => date("Y-m-d H:i:s"),
+						"PT_DEL_YN" => "N",
+						"PT_REG_ADMIN_SEQ" => $this->session->userdata("admin_seq"),
+						"PT_APPLY_CNT" => $pt_apply_cnt,
+		);
+
+		$result = $this->ConsultModel->insertPresentation($insertArr);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "설명회 등록 완료 되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "설명회 등록중 문제가 생겼습니다."));
+		}
+	}
+
+	public function presentationEdit($pt_seq){
+		$info = $this->ConsultModel->getPresentation($pt_seq);
+		//print_r($info);
+
+		$data = array(
+					"info" => $info
+		);
+		
+		$this->load->view("/admin/consult/presentation-edit", $data);
+	}
+
+	public function presentationEditProc(){
+		$pt_seq = $this->input->post("pt_seq");
+		$pt_subject = $this->input->post("pt_subject");
+		$pt_date = $this->input->post("pt_date");
+		$pt_apply_cnt = $this->input->post("pt_apply_cnt");
+		$pt_contents = $this->input->post("pt_contents");
+		//echo $pt_seq;
+		$updateArr = array(
+						"PT_SUBJECT" => $pt_subject,
+						"PT_CONTENTS" => $pt_contents,
+						"PT_DATE" => $pt_date,
+						"PT_APPLY_CNT" => $pt_apply_cnt,
+		);
+		//print_r($updateArr);
+		$result = $this->ConsultModel->updatePresentation($updateArr, $pt_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "설명회 수정 완료 되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "설명회 수정중 문제가 생겼습니다."));
+		}
+	}
+
+	public function presentationDelete(){
+		$pt_seq = $this->input->post("pt_seq");
+
+		$result = $this->ConsultModel->deletePresentation($pt_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "설명회 삭제 완료 되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "설명회 삭제중 문제가 생겼습니다."));
+		}
+	}
 }

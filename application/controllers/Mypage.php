@@ -45,7 +45,6 @@ class Mypage extends CI_Controller {
 
         $this->load->view("/mypage/member-edit", $data);
     }
-	
 	public function memberEditProc(){
 		$user_name = $this->input->post("user_name");
 		$user_email = $this->input->post("user_email");

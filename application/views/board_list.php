@@ -105,7 +105,6 @@
                                                 } else {
                                                     echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
                                                 }
-
                                                     echo $lt->ATTACHS > 0 ? "[". ($lt->ATTACHS) ."]" : "";
                                                 } else {
                                                     echo "삭제된 게시글 입니다.";

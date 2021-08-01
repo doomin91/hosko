@@ -110,11 +110,10 @@ input[type=text]{
 										<button type="button" class="btn btn-xs btn-slategray">카테고리관리</button>
 									</td>
 								</tr> -->
-								<tr>
+								<!-- <tr>
 									<td>게시판관리자</td>
 									<td colspan=3><input type="text" name="board_admin">아이디를 쉼표를 분리(admin,admin1,admin2)</td>
-									
-								</tr>
+								</tr> -->
 								<tr>
 									<td>자동 비밀글</td>
 									<td colspan=3><label for="fn_secret"><input type="checkbox" id="fn_secret" name="fn_secret" value="Y"> 작성자와 운영자만 열람가능</label></td>

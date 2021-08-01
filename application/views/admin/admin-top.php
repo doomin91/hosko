@@ -130,7 +130,7 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li>
-					<a href="#">
+					<a href="/admin/consult/qnaList">
 						<i class="fa fa-caret-right"></i> QnA 게시판
 					</a>
 				</li>
@@ -162,6 +162,11 @@
 				<li>
 					<a href="/admin/consult/schedule?flag=presentation">
 						<i class="fa fa-caret-right"></i> 설명회 일정
+					</a>
+				</li>
+				<li>
+					<a href="/admin/consult/presentationList">
+						<i class="fa fa-caret-right"></i> 설명회 관리
 					</a>
 				</li>
 			</ul>
