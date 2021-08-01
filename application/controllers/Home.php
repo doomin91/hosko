@@ -18,6 +18,7 @@ class Home extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
 	function __construct(){
         parent::__construct();
 
@@ -29,10 +30,14 @@ class Home extends CI_Controller {
         $this->load->library('CustomClass');
         //$this->load->library('encrypt');
         $this->load->helper('download');
+		$this->load->model("BoardModel");
 
     }
 
     function index(){
-        $this->load->view("index");
+		$DATA["NEWS"] = $this->BoardModel->getNews();
+		$DATA["NOTICES"] = $this->BoardModel->getNotice();
+
+        $this->load->view("index", $DATA);
     }
 }

@@ -133,18 +133,14 @@
 
                                         <div class="main_news_box">
                                             <ul>
+                                                <?php foreach($NEWS as $val): ?>
                                                 <li class="f_left">
                                                     <div class="news_box_item">
-                                                        <p class="text">새로운 뉴스 내용이 들어갈 자리입니다.</p>
-                                                        <p class="date">2021.05.12</p>
+                                                        <p class="text"><?php echo $val->POST_SUBJECT?></p>
+                                                        <p class="date"><?php echo $val->POST_REG_DATE?></p>
                                                     </div>
                                                 </li>
-                                                <li class="f_right">
-                                                <div class="news_box_item">
-                                                        <p class="text">새로운 뉴스 내용이 들어갈 자리입니다.</p>
-                                                        <p class="date">2021.05.12</p>
-                                                    </div>
-                                                </li>
+                                                <?php endforeach; ?>
                                             </ul>
                                         </div>
 
@@ -158,28 +154,19 @@
 
                                         <div class="main_notice_box">
                                             <ul>
+                                                <?php foreach($NOTICES as $val): ?>
                                                 <li class="f_left">
                                                     <div class="notice_box_item">
-                                                        <p class="title">제목이 들어갈 자리입니다.</p>
-                                                        <p class="text">콘텐츠 내용이 들어갈 자리입니다. 콘텐츠 내용이 들어갈 자리입니다.</p>
+                                                        <p class="title" onclick="viewNotice(<?php echo$val->POST_SEQ?>)"><?php echo $val->POST_SUBJECT?></p>
+                                                        <p class="text"><?php echo $val->POST_CONTENTS?></p>
                                                         <span class="notice_icon">
-                                                            <a href="/">
+                                                            <a href="/board/board_view/<?php echo$val->POST_SEQ?>">
                                                                 <img src="/static/front/img/main_plus_icon01.jpg">
                                                             </a>
                                                         </span>
                                                     </div>
                                                 </li>
-                                                <li class="f_right">
-                                                    <div class="notice_box_item">
-                                                        <p class="title">제목이 들어갈 자리입니다.</p>
-                                                        <p class="text">콘텐츠 내용이 들어갈 자리입니다. 콘텐츠 내용이 들어갈 자리입니다.</p>
-                                                        <span class="notice_icon">
-                                                            <a href="/">
-                                                                <img src="/static/front/img/main_plus_icon01.jpg">
-                                                            </a>
-                                                        </span>
-                                                    </div>
-                                                </li>
+                                                <?php endforeach; ?>
                                             </ul>
                                         </div>
 
@@ -197,11 +184,16 @@
             <?php include 'footer.php'; ?>
         </div>
 
+<script>
+
+function viewNotice(post_seq){
+    window.location = "/board/board_view/" + post_seq;
+}
+</script>
+
+
     </body>
 </html>
-
-
-
 
 
 

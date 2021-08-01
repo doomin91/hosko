@@ -148,6 +148,15 @@ td a {
 													<?php if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
 													<button type="button" class="btn btn-primary btn-sm"
 														id="btnRecommand">추천</button>
+<<<<<<< HEAD
+													<?php endif;?> -->
+													
+													<button class="btn btn-danger btn-sm" onclick="board_delete()" class="btn_style01" >삭제</button>
+
+													<?php if($BOARD_INFO->BOARD_TYPE == 0):?>
+													<a href="/admin/board/post_reply/<?php echo $POST_INFO->POST_SEQ?>" class="btn btn-default btn-sm">답글</a>
+=======
+>>>>>>> f3df5351c057591f0bf41bce026fcff97cdc191a
 													<?php endif;?>
 													<button type="button" class="btn btn-primary btn-sm"
 														id="btnRepost">답글</button>
