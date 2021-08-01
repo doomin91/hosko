@@ -61,13 +61,8 @@
                     <a href="/consult/qnaList">상담ㆍ신청</a>
                     <ul class="sub">
                         <li><a href="/consult/qnaList">Q&A</a></li>
-<<<<<<< HEAD
-                        <li><a href="/consult/online">온라인 상담</a></li>
-                        <li><a href="/consult/offline">방문상담 신청</a></li>
-=======
                         <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
                         <li><a href="/consult/visitConsult">방문상담 신청</a></li>
->>>>>>> dbbfc16b8ca74ddcd8a5f1a6454a01248cf9e384
                         <li><a href="/consult/apply">포지션&연수 지원</a></li>
                         <li><a href="/consult/presentationList">설명회 신청</a></li>
                     </ul>

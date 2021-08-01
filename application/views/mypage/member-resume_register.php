@@ -577,9 +577,55 @@
             $.each($("input[name='redu_date[]']"), function(key, element){
                 redu_date.push($(element).val());
             });
-            console.log(redu_date);
-
-
+            var redu_description = [];
+            $.each($("input[name='redu_description[]']"), function(key, element){
+                redu_description.push($(element).val());
+            });
+            var rwexp_date = [];
+            $.each($("input[name='rwexp_date[]']"), function(key, element){
+                rwexp_date.push($(element).val());
+            });
+            var rwexp_description = [];
+            $.each($("input[name='rwexp_description[]']"), function(key, element){
+                rwexp_description.push($(element).val());
+            });
+            var ract_date = [];
+            $.each($("input[name='ract_date[]']"), function(key, element){
+                ract_date.push($(element).val());
+            });
+            var ract_description = [];
+            $.each($("input[name='ract_description[]']"), function(key, element){
+                ract_description.push($(element).val());
+            });
+            var rahcv_title = [];
+            $.each($("input[name='rahcv_title[]']"), function(key, element){
+                rahcv_title.push($(element).val());
+            });
+            var rahcv_description = [];
+            $.each($("input[name='rahcv_description[]']"), function(key, element){
+                rahcv_description.push($(element).val());
+            });
+            var rskil_date = [];
+            $.each($("input[name='rskil_date[]']"), function(key, element){
+                rskil_date.push($(element).val());
+            });
+            var rskil_description = [];
+            $.each($("input[name='rskil_description[]']"), function(key, element){
+                rskil_description.push($(element).val());
+            });
+            var rlang_name = [];
+            $.each($("input[name='rlang_name[]']"), function(key, element){
+                rlang_name.push($(element).val());
+            });
+            var rlang_speaking = [];
+            $.each($("input[name='rlang_speaking[]']"), function(key, element){
+                rlang_speaking.push($(element).val());
+            });
+            var rlang_writing = [];
+            $.each($("input[name='rlang_writing[]']"), function(key, element){
+                rlang_writing.push($(element).val());
+            });
+            
             $.each(form_data, function (key, input) {
                 // console.log(input);
                 if(input.value=="" && input.name != "resume_img"){
