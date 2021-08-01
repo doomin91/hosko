@@ -291,7 +291,7 @@ $(document).ready( function() {
     function loadAttach(){
             $.ajax({
             type : "GET",
-            url: '/Board/FileLoad/' + <?php echo $POST_INFO->POST_SEQ;?>,
+            url: '/admin/Board/FileLoad/' + <?php echo $POST_INFO->POST_SEQ;?>,
             dataType : "JSON",
             success: function(resultMsg){
                 console.log(resultMsg);
@@ -329,7 +329,7 @@ $(document).ready( function() {
 		// formData.append("post_file", "D");
 
 		$.ajax({
-			url:"/board/upt_post_info?post_seq=" + post_seq,
+			url:"/admin/board/upt_post_info?post_seq=" + post_seq,
 			type:"post",
 			data:formData,
 			dataType:"json",
@@ -371,7 +371,7 @@ $(document).ready( function() {
 
 	function url_upload(){
 	$.ajax({
-		url : "/Board/CheckUrlAndSave",
+		url : "/admin/Board/CheckUrlAndSave",
 		type : "post",
 		data : { "youtube_url" : $("input[name=youtube_url]").val() },
 		dataType : "json",
