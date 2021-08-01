@@ -97,10 +97,10 @@ class Member extends CI_Controller {
 		$user_lan_study_term = $this->input->post("user_lan_study_term");
 		$user_work_company = $this->input->post("user_work_company");
 		$user_work_term = $this->input->post("user_work_term");
-		$user_work_company2 = $this->input->post("user_work_company2");
-		$user_work_term2 = $this->input->post("user_work_term2");
-		$user_work_company3 = $this->input->post("user_work_company3");
-		$user_work_term3 = $this->input->post("user_work_term3");
+		$user_work_company2 = $this->input->post("user_work_company_2");
+		$user_work_term2 = $this->input->post("user_work_term_2");
+		$user_work_company3 = $this->input->post("user_work_company_3");
+		$user_work_term3 = $this->input->post("user_work_term_3");
 		$user_certi_flag = $this->input->post("user_certi_flag");
 		$user_certificate_name = $this->input->post("user_certificate_name");
 		$user_passport_flag = $this->input->post("user_passport_flag");
@@ -144,8 +144,8 @@ class Member extends CI_Controller {
 			if (0 < $_FILES['user_profile_doc']['error']) {
 				echo 'Error during file upload' . $_FILES['user_profile_doc']['error'];
 			} else {
-				if (file_exists('upload/attach' . $_FILES['user_profile_doc']['name'])) {
-					echo 'File already exists : upload/attach' . $_FILES['user_profile_doc']['name'];
+				if (file_exists('upload/profile' . $_FILES['user_profile_doc']['name'])) {
+					echo 'File already exists : upload/profile' . $_FILES['user_profile_doc']['name'];
 				} else {
 					$this->load->library('upload', $config);
 					if (!$this->upload->do_upload('user_profile_doc')) {
@@ -153,7 +153,7 @@ class Member extends CI_Controller {
 					} else {
 						//echo 'File successfully uploaded : uploads/' . $_FILES['post_thumbnail']['name'];
 						$user_profile_doc = $_FILES['user_profile_doc']['name'];
-						$user_profile_doc_path = "/upload/attach/".$this->upload->data("file_name");
+						$user_profile_doc_path = "/upload/profile/".$this->upload->data("file_name");
 					}
 				}
 			}

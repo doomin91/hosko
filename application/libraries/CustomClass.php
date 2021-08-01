@@ -81,6 +81,7 @@ class Customclass{
         // $config['last_link'] = "<img src='/_images/_sub/_ui/btn_end.gif' width='27' height='26' alt='마지막페이지' />";
         // $config['last_tag_open'] = "<span>맨마지막";
         // $config['last_tag_close'] = "</span>";
+        //$config['next_link'] = "<img class=\"btn_img\" src=\"/static/front/html/static/img/btn_next.png\">";
         $config['next_link'] = "<img class=\"btn_img\" src=\"/static/front/html/static/img/btn_next.png\">";
         // $config['next_tag_open'] = "<div class=\"btn_next\">";
         // $config['next_tag_close'] = "</div>";
@@ -160,6 +161,14 @@ class Customclass{
 
         if ($this->CI->session->userdata("admin_id") == ""){
              redirect('/admin', 'refresh');
+        }
+    }
+
+    public function userCheck(){
+        $this->CI->load->library('session');
+
+        if ($this->CI->session->userdata("USER_SEQ") == ""){
+             redirect('/member/login', 'refresh');
         }
     }
 

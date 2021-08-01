@@ -22,9 +22,9 @@
                     <div class="sub_contents">
                         <div class="sub_category">
                             <ul>
-                                <li class="on"><a href="/mypage/memberEdit">Mypage</a></li>
-                                <li><a href="#">온라인 상담</a></li>
-                                <li><a href="/">방문상담신청</a></li>
+                                <li class="on"><a href="/mypage/memberEdit">정보관리</a></li>
+                                <li><a href="#">이력서 작성</a></li>
+                                <li><a href="#">제출서류 관리</a></li>
                             </ul>
                         </div>
 
@@ -44,13 +44,12 @@
                                         <div class="mt20">
                                             <div class="joinBoxTitle">이름</div>
                                             <div class="joinBoxInput">
-                                                <input type="text" name="user_name">
+                                                <input type="text" name="user_name" value="<?php echo $info->USER_NAME; ?>">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div class="joinBoxTitle">사진</div>
-                                            
                                             <div class="joinBoxInput">
                                                 <div class="fileInputWrap">
                                                     <input type="text" name="" id="webThumb" readonly="readonly" />
@@ -60,13 +59,18 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-
+                                        <?php 
+                                            if (isset($info->USER_EMAIL)){
+                                                $mail = explode("@", $info->USER_EMAIL);
+                                            }else{
+                                                $mail = ["", ""];
+                                            }
+                                        ?>
                                         <div class="mt20">
                                             <div class="joinBoxTitle">이메일</div>
                                             <div class="joinBoxEmail">
-                                                <input type="email" name="user_email1" class="emailInput">@<input type="email" name="user_email2" class="emailInput">
+                                                <input type="email" name="user_email1" class="emailInput" value="<?php echo $mail[0]; ?>">@<input type="email" name="user_email2" class="emailInput" value="<?php echo $mail[1]; ?>">
                                                 <select name="user_email_sel" class="emailSelect">
                                                     <option value="">직접입력</option>
                                                     <option value="nate.com">nate.com</option>
@@ -82,9 +86,9 @@
                                         <div class="mt20">
                                             <div class="joinBoxTitle">이메일 수신</div>
                                             <div class="joinBoxRadio">
-                                                <input type="radio" name="user_mail_flag" id="mailY" value="Y" checked>
+                                                <input type="radio" name="user_mail_flag" id="mailY" value="Y" <?php if ($info->USER_EMAIL_FLAG == "Y" || $info->USER_EMAIL_FLAG == "") echo "checked"; ?>>
                                                 <label for="mailY">수신</label>
-                                                <input type="radio" name="user_mail_flag" id="mailN" value="N">
+                                                <input type="radio" name="user_mail_flag" id="mailN" value="N" <?php if ($info->USER_EMAIL_FLAG == "N") echo "checked"; ?>>
                                                 <label for="mailN">미수신</label>
                                             </div>
                                         </div>
@@ -92,9 +96,9 @@
                                         <div class="mt20">
                                             <div class="joinBoxTitle">성별</div>
                                             <div class="joinBoxRadio">
-                                                <input type="radio" name="user_sex" value="M" checked id="sexM">
+                                                <input type="radio" name="user_sex" value="M" checked id="sexM" <?php if ($info->USER_SEX == "M" || $info->USER_SEX == "") echo "checked"; ?>>
                                                 <label for="sexM">남</label>
-                                                <input type="radio" name="user_sex" value="F" id="sexF">
+                                                <input type="radio" name="user_sex" value="F" id="sexF" <?php if ($info->USER_SEX == "F") echo "checked"; ?>>
                                                 <label for="sexF">여</label>
                                             </div>
                                         </div>
@@ -102,47 +106,59 @@
                                         <div class="mt20">
                                             <div class="joinBoxTitle">생년월일</div>
                                             <div class="joinBoxInput">
-                                                <input type="text" name="user_birthday" value="" class="datepicker">
+                                                <input type="text" name="user_birthday" value="" class="datepicker" value="<?php echo $info->USER_BIRTHDAY; ?>">
                                             </div>
                                         </div>
-
+                                        <?php 
+                                            if (isset($info->USER_TEL)){
+                                                $tel = explode("-", $info->USER_TEL);
+                                            }else{
+                                                $tel = ["", "", ""];
+                                            }
+                                        ?>
                                         <div class="mt20">
                                             <div class="joinBoxTitle">집전화번호</div>
                                             <div class="joinBoxPhone">
-                                                <input type="tel" class="phoneInput" name="tel1">
-                                                - <input type="tel" class="phoneInput" name="tel2">
-                                                - <input type="tel" class="phoneInput" name="tel3"> 
+                                                <input type="tel" class="phoneInput" name="tel1" value="<?php echo $tel[0]; ?>">
+                                                - <input type="tel" class="phoneInput" name="tel2" value="<?php echo $tel[1]; ?>">
+                                                - <input type="tel" class="phoneInput" name="tel3" value="<?php echo $tel[2]; ?>"> 
                                             </div>
                                         </div>
-                                        
+                                        <?php 
+                                            if (isset($info->USER_HP)){
+                                                $hp = explode("-", $info->USER_HP);
+                                            }else{
+                                                $hp = ["", "", ""];
+                                            }
+                                        ?>
                                         <div class="mt20">
                                             <div class="joinBoxTitle">휴대전화</div>
                                             <div class="joinBoxPhone">
-                                                <input type="tel" class="phoneInput" name="hp1">
-                                                - <input type="tel" class="phoneInput" name="hp2">
-                                                - <input type="tel" class="phoneInput" name="hp3"> 
+                                                <input type="tel" class="phoneInput" name="hp1"  value="<?php echo $hp[0]; ?>">
+                                                - <input type="tel" class="phoneInput" name="hp2"  value="<?php echo $hp[1]; ?>">
+                                                - <input type="tel" class="phoneInput" name="hp3"  value="<?php echo $hp[2]; ?>"> 
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div class="joinBoxTitle">SMS 수신</div>
                                             <div class="joinBoxRadio">
-                                                <input type="radio" name="user_sms_flag" value="Y" checked id="smsY"><label for="smsY">수신</lebel>
-                                                <input type="radio" name="user_sms_flag" value="N" id="smsN"><label for="smsN">미수신</label>
+                                                <input type="radio" name="user_sms_flag" value="Y" id="smsY" <?php if ($info->USER_SMS_FLAG == "Y") echo "checked"; ?>><label for="smsY">수신</lebel>
+                                                <input type="radio" name="user_sms_flag" value="N" id="smsN" <?php if ($info->USER_SMS_FLAG == "N") echo "checked"; ?>><label for="smsN">미수신</label>
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div class="joinBoxTitle">Skype ID</div>
                                             <div class="joinBoxInput">
-                                                <input type="text" name="user_skype_id">
+                                                <input type="text" name="user_skype_id" value="<?php echo $info->USER_SKYPE_ID; ?>">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div class="joinBoxTitle">학교명 / 직장명</div>
                                             <div class="joinBoxInput">
-                                                <input type="text" name="user_company">
+                                                <input type="text" name="user_company" value="<?php echo $info->USER_COMPANY; ?>">
                                             </div>
                                         </div>
 
@@ -151,9 +167,9 @@
                                             <div class="joinBoxSelect">
                                                 <select class="" name="user_department">
                                                     <option value="">학과선택</option>
-                                                    <option value="1">호텔/관광</option>
-                                                    <option value="3">조리</option>
-                                                    <option value="4">기타/외국어</option>
+                                                    <option value="1" <?php if ($info->USER_DEPARTMENT == "1") echo "selected"; ?>>호텔/관광</option>
+                                                    <option value="3" <?php if ($info->USER_DEPARTMENT == "3") echo "selected"; ?>>조리</option>
+                                                    <option value="4" <?php if ($info->USER_DEPARTMENT == "4") echo "selected"; ?>>기타/외국어</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -161,20 +177,20 @@
                                         <div class="mt20">
                                             <div class="joinBoxTitle">전공 / 부서</div>
                                             <div class="joinBoxInput">
-                                                <input type="text" name="user_major">
+                                                <input type="text" name="user_major" value="<?php $info->USER_MAJOR; ?>">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div class="joinBoxTitle">주소</div>
                                             <div class="joinBoxAdress">
-                                                <input type="text" name="user_zip" id="user_zip" class="adressInput">
+                                                <input type="text" name="user_zip" id="user_zip" class="adressInput" value="<?php echo $info->USER_ZIPCODE; ?>">
                                                 <button type="button" class="joinBtn01" id="searchZip">우편번호</button>
                                                 <div class="joinBoxInput">
-                                                    <input type="text" name="user_addr1" id="user_addr1">
+                                                    <input type="text" name="user_addr1" id="user_addr1" value="<?php echo $info->USER_ADDR1; ?>">
                                                 </div>
                                                 <div class="joinBoxInput">
-                                                    <input type="text" name="user_addr2" id="user_addr2">
+                                                    <input type="text" name="user_addr2" id="user_addr2" value="<?php echo $info->USER_ADDR2; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -184,15 +200,15 @@
                                             <div class="joinBoxSelect">
                                                 <select name="user_hope_nation">
                                                     <option value="">선택</option>
-                                                    <option value="1">미국</option>
-                                                    <option value="2">괌</option>
-                                                    <option value="3">일본</option>
-                                                    <option value="9">싱가포르</option>
-                                                    <option value="5">중국</option>
-                                                    <option value="4">호주</option>
-                                                    <option value="6">유럽</option>
-                                                    <option value="7">중동</option>
-                                                    <option value="8">기타</option>
+                                                    <option value="1" <?php if ($info->USER_HOPE_NATION == "1") echo "selected"; ?>>미국</option>
+                                                    <option value="2" <?php if ($info->USER_HOPE_NATION == "2") echo "selected"; ?>>괌</option>
+                                                    <option value="3" <?php if ($info->USER_HOPE_NATION == "3") echo "selected"; ?>>일본</option>
+                                                    <option value="9" <?php if ($info->USER_HOPE_NATION == "9") echo "selected"; ?>>싱가포르</option>
+                                                    <option value="5" <?php if ($info->USER_HOPE_NATION == "5") echo "selected"; ?>>중국</option>
+                                                    <option value="4" <?php if ($info->USER_HOPE_NATION == "4") echo "selected"; ?>>호주</option>
+                                                    <option value="6" <?php if ($info->USER_HOPE_NATION == "6") echo "selected"; ?>>유럽</option>
+                                                    <option value="7" <?php if ($info->USER_HOPE_NATION == "7") echo "selected"; ?>>중동</option>
+                                                    <option value="8" <?php if ($info->USER_HOPE_NATION == "8") echo "selected"; ?>>기타</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -200,49 +216,49 @@
                                         <div class="mt20">
                                             <div class="joinBoxTitle">지원부서</div>
                                             <div class="joinBoxInput">
-                                                <input type="text" name="user_hope_part">
+                                                <input type="text" name="user_hope_part" value="<?php echo $info->USER_HOPE_PART; ?>">
                                             </div>
                                         </div>
                                         
                                         <div class="mt20">
-                                            <div class="joinBoxTitle">이메일 수신</div>
+                                            <div class="joinBoxTitle">회화능력</div>
                                             <div class="joinBoxRadio">
                                                 <span class="joinSubTitle">영어</span>
-                                                <input type="radio" name="user_skill_eng" value="5" id="eng5">
+                                                <input type="radio" name="user_skill_eng" value="5" id="eng5" <?php if ($info->USER_SKILL_ENG == "5") echo "checked"; ?>>
                                                 <label for="eng5">5점</label>
-                                                <input type="radio" name="user_skill_eng" value="4" id="eng4">
+                                                <input type="radio" name="user_skill_eng" value="4" id="eng4" <?php if ($info->USER_SKILL_ENG == "4") echo "checked"; ?>>
                                                 <label for="eng4">4점</label>
-                                                <input type="radio" name="user_skill_eng" value="3" id="eng3">
+                                                <input type="radio" name="user_skill_eng" value="3" id="eng3" <?php if ($info->USER_SKILL_ENG == "3") echo "checked"; ?>>
                                                 <label for="eng3">3점</label>
-                                                <input type="radio" name="user_skill_eng" value="2" id="eng2">
+                                                <input type="radio" name="user_skill_eng" value="2" id="eng2" <?php if ($info->USER_SKILL_ENG == "2") echo "checked"; ?>>
                                                 <label for="eng2">2점</label>
-                                                <input type="radio" name="user_skill_eng" value="1" id="eng1">
+                                                <input type="radio" name="user_skill_eng" value="1" id="eng1" <?php if ($info->USER_SKILL_ENG == "1") echo "checked"; ?>>
                                                 <label for="eng1">1점</label>
                                             </div>
                                             <div class="joinBoxRadio">
                                                 <span class="joinSubTitle">일본어</span>
-                                                <input type="radio" name="user_skill_jp" value="5" id="jp5">
+                                                <input type="radio" name="user_skill_jp" value="5" id="jp5" <?php if ($info->USER_SKILL_JP == "5") echo "checked"; ?>>
                                                 <label for="jp5">5점</label>
-                                                <input type="radio" name="user_skill_jp" value="4" id="jp4">
+                                                <input type="radio" name="user_skill_jp" value="4" id="jp4" <?php if ($info->USER_SKILL_JP == "4") echo "checked"; ?>>
                                                 <label for="jp4">4점</label>
-                                                <input type="radio" name="user_skill_jp" value="3" id="jp3">
+                                                <input type="radio" name="user_skill_jp" value="3" id="jp3" <?php if ($info->USER_SKILL_JP == "3") echo "checked"; ?>>
                                                 <label for="jp3">3점</label>
-                                                <input type="radio" name="user_skill_jp" value="2" id="jp2">
+                                                <input type="radio" name="user_skill_jp" value="2" id="jp2" <?php if ($info->USER_SKILL_JP == "2") echo "checked"; ?>>
                                                 <label for="jp2">2점</label>
-                                                <input type="radio" name="user_skill_jp" value="1" id="jp1">
+                                                <input type="radio" name="user_skill_jp" value="1" id="jp1" <?php if ($info->USER_SKILL_JP == "1") echo "checked"; ?>>
                                                 <label for="jp1">1점</label>
                                             </div>
                                             <div class="joinBoxRadio">
                                                 <span class="joinSubTitle">중국어</span>
-                                                <input type="radio" name="user_skill_ch" value="5" id="ch5">
+                                                <input type="radio" name="user_skill_ch" value="5" id="ch5" <?php if ($info->USER_SKILL_CH == "5") echo "checked"; ?>>
                                                 <label for="ch5">5점</label>
-                                                <input type="radio" name="user_skill_ch" value="4" id="ch4">
+                                                <input type="radio" name="user_skill_ch" value="4" id="ch4" <?php if ($info->USER_SKILL_CH == "4") echo "checked"; ?>>
                                                 <label for="ch4">4점</label>
-                                                <input type="radio" name="user_skill_ch" value="3" id="ch3">
+                                                <input type="radio" name="user_skill_ch" value="3" id="ch3" <?php if ($info->USER_SKILL_CH == "3") echo "checked"; ?>>
                                                 <label for="ch3">3점</label>
-                                                <input type="radio" name="user_skill_ch" value="2" id="ch2">
+                                                <input type="radio" name="user_skill_ch" value="2" id="ch2" <?php if ($info->USER_SKILL_CH == "2") echo "checked"; ?>>
                                                 <label for="ch2">2점</label>
-                                                <input type="radio" name="user_skill_ch" value="1" id="ch1">
+                                                <input type="radio" name="user_skill_ch" value="1" id="ch1" <?php if ($info->USER_SKILL_CH == "1") echo "checked"; ?>>
                                                 <label for="ch1">1점</label>
                                             </div>
                                         </div>
@@ -254,26 +270,26 @@
                                                 <div class="joinBoxEtcSelect">
                                                     <select name="user_study_nation">
                                                         <option value="">선택</option>
-                                                        <option value="1">미국</option>
-                                                        <option value="2">괌</option>
-                                                        <option value="3">일본</option>
-                                                        <option value="4">호주</option>
-                                                        <option value="5">아시아</option>
-                                                        <option value="6">유럽</option>
-                                                        <option value="7">서남아시아</option>
-                                                        <option value="8">기타</option>
+                                                        <option value="1" <?php if ($info->USER_STUDY_NATION == "1") echo "selected"; ?>>미국</option>
+                                                        <option value="2" <?php if ($info->USER_STUDY_NATION == "2") echo "selected"; ?>>괌</option>
+                                                        <option value="3" <?php if ($info->USER_STUDY_NATION == "3") echo "selected"; ?>>일본</option>
+                                                        <option value="4" <?php if ($info->USER_STUDY_NATION == "4") echo "selected"; ?>>호주</option>
+                                                        <option value="5" <?php if ($info->USER_STUDY_NATION == "5") echo "selected"; ?>>아시아</option>
+                                                        <option value="6" <?php if ($info->USER_STUDY_NATION == "6") echo "selected"; ?>>유럽</option>
+                                                        <option value="7" <?php if ($info->USER_STUDY_NATION == "7") echo "selected"; ?>>서남아시아</option>
+                                                        <option value="8" <?php if ($info->USER_STUDY_NATION == "8") echo "selected"; ?>>기타</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="joinBoxRadio">
                                                 <span class="joinSubTitle">기간</span>
-                                                <input type="radio" name="user_study_term" value="0" id="ust0" checked>
+                                                <input type="radio" name="user_study_term" value="0" id="ust0" <?php if ($info->USER_STUDY_TERM == "0") echo "checked"; ?>>
                                                 <label for="ust0">없음</label>
-                                                <input type="radio" name="user_study_term" value="1" id="ust1">
+                                                <input type="radio" name="user_study_term" value="1" id="ust1" <?php if ($info->USER_STUDY_TERM == "1") echo "checked"; ?>>
                                                 <label for="ust1">6개월미만</label>
-                                                <input type="radio" name="user_study_term" value="2" id="ust2">
+                                                <input type="radio" name="user_study_term" value="2" id="ust2" <?php if ($info->USER_STUDY_TERM == "2") echo "checked"; ?>>
                                                 <label for="ust2">12개월미만</label>
-                                                <input type="radio" name="user_study_term" value="3" id="ust3">
+                                                <input type="radio" name="user_study_term" value="3" id="ust3" <?php if ($info->USER_STUDY_TERM == "3") echo "checked"; ?>>
                                                 <label for="ust3">12개월이상</label>
                                             </div>
                                         </div>
@@ -285,26 +301,26 @@
                                                 <div class="joinBoxEtcSelect">
                                                     <select name="user_lan_study_nation">
                                                         <option value="">선택</option>
-                                                        <option value="1">미국</option>
-                                                        <option value="2">괌</option>
-                                                        <option value="3">일본</option>
-                                                        <option value="4">호주</option>
-                                                        <option value="5">아시아</option>
-                                                        <option value="6">유럽</option>
-                                                        <option value="7">서남아시아</option>
-                                                        <option value="8">기타</option>
+                                                        <option value="1" <?php if ($info->USER_LAN_STUDY_NATION == "1") echo "selected"; ?>>미국</option>
+                                                        <option value="2" <?php if ($info->USER_LAN_STUDY_NATION == "2") echo "selected"; ?>>괌</option>
+                                                        <option value="3" <?php if ($info->USER_LAN_STUDY_NATION == "3") echo "selected"; ?>>일본</option>
+                                                        <option value="4" <?php if ($info->USER_LAN_STUDY_NATION == "4") echo "selected"; ?>>호주</option>
+                                                        <option value="5" <?php if ($info->USER_LAN_STUDY_NATION == "5") echo "selected"; ?>>아시아</option>
+                                                        <option value="6" <?php if ($info->USER_LAN_STUDY_NATION == "6") echo "selected"; ?>>유럽</option>
+                                                        <option value="7" <?php if ($info->USER_LAN_STUDY_NATION == "7") echo "selected"; ?>>서남아시아</option>
+                                                        <option value="8" <?php if ($info->USER_LAN_STUDY_NATION == "8") echo "selected"; ?>>기타</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="joinBoxRadio">
                                                 <span class="joinSubTitle">기간</span>
-                                                <input type="radio" name="user_lan_study_term" value="0" checked id="ulst0">
+                                                <input type="radio" name="user_lan_study_term" value="0" checked id="ulst0" <?php if ($info->USER_LAN_STUDY_TERM == "0") echo "checked"; ?>>
                                                 <label for="ulst0">없음</label>
-                                                <input type="radio" name="user_lan_study_term" value="1" id="ulst1">
+                                                <input type="radio" name="user_lan_study_term" value="1" id="ulst1" <?php if ($info->USER_LAN_STUDY_TERM == "1") echo "checked"; ?>>
                                                 <label for="ulst1">6개월미만</label>
-                                                <input type="radio" name="user_lan_study_term" value="2" id="ulst2">
+                                                <input type="radio" name="user_lan_study_term" value="2" id="ulst2" <?php if ($info->USER_LAN_STUDY_TERM == "2") echo "checked"; ?>>
                                                 <label for="ulst2">12개월미만</label>
-                                                <input type="radio" name="user_lan_study_term" value="3" id="ulst3">
+                                                <input type="radio" name="user_lan_study_term" value="3" id="ulst3" <?php if ($info->USER_LAN_STUDY_TERM == "3") echo "checked"; ?>>
                                                 <label for="ulst3">12개월이상</label>
                                             </div>
                                         </div>
@@ -314,16 +330,16 @@
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">회사명</span>
                                                 <div class="joinBoxEtcSelect">
-                                                    <input type="text" class="wd100" name="user_work_company">
+                                                    <input type="text" class="wd100" name="user_work_company" value="<?php echo $info->USER_WORK_COMPANY; ?>">
                                                 </div>
                                             </div>
                                             <div class="joinBoxRadio">
                                                 <span class="joinSubTitle">기간</span>
-                                                <input type="radio" name="user_work_term" value="0" checked id="uwt0"><label for="uwt0">없음</label>
-                                                <input type="radio" name="user_work_term" value="1" id="uwt1"><label for="uwt1">3개월미만</label>
-                                                <input type="radio" name="user_work_term" value="2" id="uwt2"><label for="uwt2">6개월미만</label>
-                                                <input type="radio" name="user_work_term" value="3" id="uwt3"><label for="uwt3">12개월미만</label>
-                                                <input type="radio" name="user_work_term" value="4" id="uwt4"><label for="uwt4">12개월이상</label>
+                                                <input type="radio" name="user_work_term" value="0" id="uwt0" <?php if ($info->USER_WORK_TERM == "0") echo "checked"; ?>><label for="uwt0">없음</label>
+                                                <input type="radio" name="user_work_term" value="1" id="uwt1" <?php if ($info->USER_WORK_TERM == "1") echo "checked"; ?>><label for="uwt1">3개월미만</label>
+                                                <input type="radio" name="user_work_term" value="2" id="uwt2" <?php if ($info->USER_WORK_TERM == "2") echo "checked"; ?>><label for="uwt2">6개월미만</label>
+                                                <input type="radio" name="user_work_term" value="3" id="uwt3" <?php if ($info->USER_WORK_TERM == "3") echo "checked"; ?>><label for="uwt3">12개월미만</label>
+                                                <input type="radio" name="user_work_term" value="4" id="uwt4" <?php if ($info->USER_WORK_TERM == "4") echo "checked"; ?>><label for="uwt4">12개월이상</label>
                                             </div>
                                         </div>
 
@@ -332,16 +348,16 @@
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">회사명</span>
                                                 <div class="joinBoxEtcSelect">
-                                                <input type="text" name="user_work_company2">
+                                                <input type="text" name="user_work_company2" value="<?php echo $info->USER_WORK_COMPANY_2; ?>">
                                                 </div>
                                             </div>
                                             <div class="joinBoxRadio">
                                                 <span class="joinSubTitle">기간</span>
-                                                <input type="radio" name="user_work_term2" value="0" checked id="uwt20"><label for="uwt20">없음</label>
-                                                <input type="radio" name="user_work_term2" value="1" id="uwt21"><label for="uwt21">3개월미만</label>
-                                                <input type="radio" name="user_work_term2" value="2" id="uwt22"><label for="uwt22">6개월미만</label>
-                                                <input type="radio" name="user_work_term2" value="3" id="uwt23"><label for="uwt23">12개월미만</label>
-                                                <input type="radio" name="user_work_term2" value="4" id="uwt24"><label for="uwt24">12개월이상</label>
+                                                <input type="radio" name="user_work_term2" value="0" id="uwt20" <?php if ($info->USER_WORK_TERM_2 == "0") echo "checked"; ?>><label for="uwt20">없음</label>
+                                                <input type="radio" name="user_work_term2" value="1" id="uwt21" <?php if ($info->USER_WORK_TERM_2 == "1") echo "checked"; ?>><label for="uwt21">3개월미만</label>
+                                                <input type="radio" name="user_work_term2" value="2" id="uwt22" <?php if ($info->USER_WORK_TERM_2 == "2") echo "checked"; ?>><label for="uwt22">6개월미만</label>
+                                                <input type="radio" name="user_work_term2" value="3" id="uwt23" <?php if ($info->USER_WORK_TERM_2 == "3") echo "checked"; ?>><label for="uwt23">12개월미만</label>
+                                                <input type="radio" name="user_work_term2" value="4" id="uwt24" <?php if ($info->USER_WORK_TERM_2 == "4") echo "checked"; ?>><label for="uwt24">12개월이상</label>
                                             </div>
                                         </div>
 
@@ -350,48 +366,48 @@
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">회사명</span>
                                                 <div class="joinBoxEtcSelect">
-                                                <input type="text" name="user_work_company3">
+                                                <input type="text" name="user_work_company3" value="<?php echo $info->USER_WORK_COMPANY_3; ?>">
                                                 </div>
                                             </div>
                                             <div class="joinBoxRadio">
                                                 <span class="joinSubTitle">기간</span>
-                                                <input type="radio" name="user_work_term3" value="0" checked id="uwt30"><label for="uwt30">없음
-                                                <input type="radio" name="user_work_term3" value="1" id="uwt31"><label for="uwt31">3개월미만
-                                                <input type="radio" name="user_work_term3" value="2" id="uwt32"><label for="uwt32">6개월미만
-                                                <input type="radio" name="user_work_term3" value="3" id="uwt33"><label for="uwt33">12개월미만
-                                                <input type="radio" name="user_work_term3" value="4" id="uwt34"><label for="uwt34">12개월이상
+                                                <input type="radio" name="user_work_term3" value="0" id="uwt30" <?php if ($info->USER_WORK_TERM_3 == "0") echo "checked"; ?>><label for="uwt30">없음
+                                                <input type="radio" name="user_work_term3" value="1" id="uwt31" <?php if ($info->USER_WORK_TERM_3 == "1") echo "checked"; ?>><label for="uwt31">3개월미만
+                                                <input type="radio" name="user_work_term3" value="2" id="uwt32" <?php if ($info->USER_WORK_TERM_3 == "2") echo "checked"; ?>><label for="uwt32">6개월미만
+                                                <input type="radio" name="user_work_term3" value="3" id="uwt33" <?php if ($info->USER_WORK_TERM_3 == "3") echo "checked"; ?>><label for="uwt33">12개월미만
+                                                <input type="radio" name="user_work_term3" value="4" id="uwt34" <?php if ($info->USER_WORK_TERM_3 == "4") echo "checked"; ?>><label for="uwt34">12개월이상
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div class="joinBoxTitle">자격증</div>
                                             <div class="joinBoxRadio mt20">
-                                                <input type="radio" name="user_certi_flag" value="N" checked id="ucfN"><label for="ucfN">없음</label>
-                                                <input type="radio" name="user_certi_flag" value="Y" id="ucfY"><label for="ucfY">있음</label>
-                                                <input type="text" name="user_certificate_name" class="joinBoxSubInput">
+                                                <input type="radio" name="user_certi_flag" value="N" id="ucfN" <?php if ($info->USER_CERTI_FLAG == "N") echo "checked"; ?>><label for="ucfN">없음</label>
+                                                <input type="radio" name="user_certi_flag" value="Y" id="ucfY" <?php if ($info->USER_CERTI_FLAG == "Y") echo "checked"; ?>><label for="ucfY">있음</label>
+                                                <input type="text" name="user_certificate_name" class="joinBoxSubInput" value="<?php echo $info->USER_CERTIFICATE_NAME; ?>">
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div class="joinBoxTitle">여권소지여부</div>
                                             <div class="joinBoxRadio">
-                                                <input type="radio" name="user_passport_flag" value="N" checked id="upfN"><label for="upfN">없음</label>
-                                                <input type="radio" name="user_passport_flag" value="Y" id="upfN"><label for="upfN">있음</label>
+                                                <input type="radio" name="user_passport_flag" value="N" id="upfN" <?php if ($info->USER_PASSPORT_FLAG == "N") echo "checked"; ?>><label for="upfN">없음</label>
+                                                <input type="radio" name="user_passport_flag" value="Y" id="upfN" <?php if ($info->USER_PASSPORT_FLAG == "Y") echo "checked"; ?>><label for="upfN">있음</label>
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div class="joinBoxTitle">W/H (워킹홀리데이) 비자소지유무</div>
                                             <div class="joinBoxRadio">
-                                                <input type="radio" name="user_visa_flag" value="N" checked id="uvfN"><label for="uvfN">없음
-                                                <input type="radio" name="user_visa_flag" value="Y" id="uvfY"><label for="uvfY">있음
+                                                <input type="radio" name="user_visa_flag" value="N" id="uvfN" <?php if ($info->USER_VISA_FLAG == "N") echo "checked"; ?>><label for="uvfN">없음
+                                                <input type="radio" name="user_visa_flag" value="Y" id="uvfY" <?php if ($info->USER_VISA_FLAG == "Y") echo "checked"; ?>><label for="uvfY">있음
                                             </div>
                                         </div>
 
                                         <div class="mt20">
                                             <div class="joinBoxTitle">추천인</div>
                                             <div class="joinBoxInput">
-                                                <input type="text" name="user_recomm_id">
+                                                <input type="text" name="user_recomm_id" value="<?php echo $info->USER_RECOMM_ID; ?>">
                                             </div>
                                         </div>
 
@@ -408,51 +424,57 @@
                                             </div>
 
                                         </div>
-
+                                        <?php
+                                            if (isset($info->USER_JOIN_ROUTE)){
+                                                $routes = explode(",", $info->USER_JOIN_ROUTE);
+                                            }else{
+                                                $routes = array();
+                                            }
+                                        ?>
                                         <div class="mt20">
                                             <div class="joinBoxTitle">추천경로</div>
                                             <div class="joinBoxCheckbox">
                                                 <ul>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="1" id="ujr1">
+                                                        <input type="checkbox" name="user_join_route" value="1" id="ujr1" <?php if (array_search("1", $routes) != "") echo "checked"; ?>>
                                                         <label for="ujr1">신문광고</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="2" id="ujr2">
+                                                        <input type="checkbox" name="user_join_route" value="2" id="ujr2" <?php if (array_search("2", $routes) != "") echo "checked"; ?>>
                                                         <label for="ujr2">SMS매체</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="3" id="ujr3">
+                                                        <input type="checkbox" name="user_join_route" value="3" id="ujr3" <?php if (array_search("3", $routes) != "") echo "checked"; ?>>
                                                         <label for="ujr3">온라인검색</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="4" id="ujr4">
+                                                        <input type="checkbox" name="user_join_route" value="4" id="ujr4" <?php if (array_search("4", $routes) != "") echo "checked"; ?>>
                                                         <label for="ujr4">학교설명회/박람회</label>
                                                     </li>
                                                 </ul>
                                                 <ul>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="5" id="ujr5">
+                                                        <input type="checkbox" name="user_join_route" value="5" id="ujr5"<?php if (array_search("5", $routes) != "") echo "checked"; ?>>
                                                         <label for="ujr5">광고홍보물</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="6" id="ujr6">
+                                                        <input type="checkbox" name="user_join_route" value="6" id="ujr6" <?php if (array_search("6", $routes) != "") echo "checked"; ?>>
                                                         <label for="ujr6">친구/친척소개</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="7" id="ujr7">
+                                                        <input type="checkbox" name="user_join_route" value="7" id="ujr7" <?php if (array_search("7", $routes) != "") echo "checked"; ?>>
                                                         <label for="ujr7">교수님/선배소개</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="8" id="ujr8">
+                                                        <input type="checkbox" name="user_join_route" value="8" id="ujr8" <?php if (array_search("8", $routes) != "") echo "checked"; ?>>
                                                         <label for="ujr8">업체소개</label>
                                                     </li>
                                                 </ul>
                                                 <ul>
                                                     <li class="mt10">
-                                                        <input type="checkbox" name="user_join_route" value="" id="ujr9">
+                                                        <input type="checkbox" name="user_join_route" value="9" id="ujr9" <?php if (array_search("9", $routes) != "") echo "checked"; ?>>
                                                         <label for="ujr9">기타</label>
-                                                        <input type="text" class="TextInput" name="user_join_route_str">
+                                                        <input type="text" class="TextInput" name="user_join_route_str" value="<?php echo $info->USER_JOIN_ROUTE_STR; ?>">
                                                     </li>
                                                 </ul>
                                             </div>
@@ -476,14 +498,20 @@
         ?>
 
         </div>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+            <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" alt="닫기 버튼">
+        </div>
     </body>
 </html>
 <script type="text/javascript">
 $(function(){
+    $(document).on("change", "select[name=user_email_sel]", function(){
+        var _var = $(this).val();
+        $("input[name=user_email2]").val(_var);
+    })
+    
     $(document).on("click", "#editUser", function(){
-
-        var user_pass = $("input[name=user_pass]").val();
-        var user_pass_chk = $("input[name=user_pass_chk]").val();
         var user_name = $("input[name=user_name]").val();
         var user_email1 = $("input[name=user_email1]").val();
         var user_email2 = $("input[name=user_email2]").val();
@@ -510,30 +538,6 @@ $(function(){
         var user_skill_eng = $("input:radio[name=user_skill_eng]").val();
         var user_skill_jp = $("input:radio[name=user_skill_jp]").val();
         */
-
-        if (id_check != "true"){
-            alert("아이디 중복확인 해주세요");
-            $("input[name=user_id]").focus();
-            return false;
-        }
-
-        if (user_id == ""){
-            alert("아이디를 입력해주세요");
-            $("input[name=user_id]").focus();
-            return false;
-        }
-
-        if (user_pass == ""){
-            alert("비밀번호를 입력해주세요");
-            $("input[name=user_pass]").focus();
-            return false;
-        }
-
-        if (user_pass_chk != user_pass){
-            alert("비밀번호를 동일하게 입력해주세요");
-            $("input[name=user_pass_chk]").focus();
-            return false;
-        }
         
         if (user_name == ""){
             alert("이름을 입력해주세요");
@@ -541,9 +545,14 @@ $(function(){
             return false;
         }
 
+        var user_join_route = [];
+        $.each($("input:checkbox[name=user_join_route]"), function(){
+            if ($(this).is(":checked")){
+                user_join_route.push($(this).val());
+            }
+        })
+
 		var formData = new FormData();
-		formData.append("user_id", $("input[name=user_id]").val());
-		formData.append("user_pass", $("input[name=user_pass]").val());
 		formData.append("user_name", $("input[name=user_name]").val());
 		formData.append("user_eng_name", $("input[name=user_eng_name]").val());
 		formData.append("user_level", $("select[name=user_level]").val());
@@ -555,32 +564,32 @@ $(function(){
 		formData.append("user_addr2", $("input[name=user_addr2]").val());
 		formData.append("user_email", $("input[name=user_email1]").val() + "@" + $("input[name=user_email2]").val());
 		formData.append("user_skype_id", $("input[name=user_skype_id]").val());
-		formData.append("user_email_flag", $("input:radio[name=user_email_flag]").val());
-		formData.append("user_sms_flag", $("input:radio[name=user_sms_flag]").val());
+		formData.append("user_email_flag", $("input:radio[name=user_email_flag]:checked").val());
+		formData.append("user_sms_flag", $("input:radio[name=user_sms_flag]:checked").val());
 		formData.append("user_birthday", $("input[name=user_birthday]").val());
 		formData.append("user_company", $("input[name=user_company]").val());
 		formData.append("user_department", $("select[name=user_department]").val());
 		formData.append("user_major", $("input[name=user_major]").val());
 		formData.append("user_hope_nation", $("select[name=user_hope_nation]").val());
 		formData.append("user_hope_part", $("input[name=user_hope_part]").val());
-		formData.append("user_skill_eng", $("input:radio[name=user_skill_eng]").val());
-		formData.append("user_skill_jp", $("input:radio[name=user_skill_jp]").val());
-		formData.append("user_skill_ch", $("input:radio[name=user_skill_ch]").val());
+		formData.append("user_skill_eng", $("input:radio[name=user_skill_eng]:checked").val());
+		formData.append("user_skill_jp", $("input:radio[name=user_skill_jp]:checked").val());
+		formData.append("user_skill_ch", $("input:radio[name=user_skill_ch]:checked").val());
 		formData.append("user_study_nation", $("select[name=user_study_nation]").val());
-		formData.append("user_study_term", $("input:radio[name=user_study_term]").val());
+		formData.append("user_study_term", $("input:radio[name=user_study_term]:checked").val());
 		formData.append("user_lan_study_nation", $("select[name=user_lan_study_nation]").val());
-		formData.append("user_lan_study_term", $("input:radio[name=user_lan_study_term]").val());
+		formData.append("user_lan_study_term", $("input:radio[name=user_lan_study_term]:checked").val());
 		formData.append("user_work_company", $("input[name=user_work_company]").val());
-		formData.append("user_work_term", $("input:radio[name=user_work_term]").val());
-		formData.append("user_work_company_2", $("input[name=user_work_company_2]").val());
-		formData.append("user_work_term_2", $("input:radio[name=user_work_term_2]").val());
-		formData.append("user_work_company_3", $("input[name=user_work_company_3]").val());
-		formData.append("user_work_term_3", $("input:radio[name=user_work_term_3]").val());
-		formData.append("user_certi_flag", $("input:radio[name=user_certi_flag]").val());
+		formData.append("user_work_term", $("input:radio[name=user_work_term]:checked").val());
+		formData.append("user_work_company_2", $("input[name=user_work_company2]").val());
+		formData.append("user_work_term_2", $("input:radio[name=user_work_term2]:checked").val());
+		formData.append("user_work_company_3", $("input[name=user_work_company3]").val());
+		formData.append("user_work_term_3", $("input:radio[name=user_work_term3]:checked").val());
+		formData.append("user_certi_flag", $("input:radio[name=user_certi_flag]:checked").val());
 		formData.append("user_certificate_name", $("input[name=user_certificate_name]").val());
-		formData.append("user_passport_flag", $("input:radio[name=user_passport_flag]").val());
-		formData.append("user_visa_flag", $("input:radio[name=user_visa_flag]").val());
-		formData.append("user_join_route", $("input:checkbox[name=user_join_route]").val());
+		formData.append("user_passport_flag", $("input:radio[name=user_passport_flag]:checked").val());
+		formData.append("user_visa_flag", $("input:radio[name=user_visa_flag]:checked").val());
+		formData.append("user_join_route", user_join_route);
 		formData.append("user_join_route_str", $("input[name=user_join_route_str]").val());
 		formData.append("user_leave_country", $("select[name=user_leave_country]").val());
 		formData.append("user_leave_hotel", $("input[name=user_leave_hotel]").val());
@@ -598,7 +607,7 @@ $(function(){
         //formData.append("user_profile", $("#user_profile").prop('files')[0]);
 
         $.ajax({
-			url:"/member/userInsertProc",
+			url:"/mypage/memberEditProc",
 			type:"post",
 			dataType:"json",
 			data : formData,
@@ -608,7 +617,7 @@ $(function(){
 				console.log(data);
 				if (data.code == "200"){
 					alert(data.msg);
-					document.location.href="/Member/member_input_step3";
+					document.location.href="/Mypage/memberEdit";
 				}else{
                     alert(data.msg);
                 }
