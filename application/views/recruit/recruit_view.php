@@ -19,7 +19,7 @@
 
                     </div>
                     <div class="sub_contents">
-                        <div class="sub_category01">
+                        <div class="sub_category02">
                             <ul>
                                 <li <?php $CATEGORY==1 ? print("class='on'") : "" ?> ><a href="/recruit_?ctg=1">인턴쉽</a></li>
                                 <li <?php $CATEGORY==2 ? print("class='on'") : "" ?>><a href="/recruit_?ctg=2">JOB·헤드헌팅</a></li>
@@ -33,133 +33,150 @@
                                 </div>
 
                                 <div class="subContSec">
-                                    <table class="table table-custom dataTable applyViewTable">
+                                    <table class="tableCont01 dataTable applyViewTable">
+                                        <colgroup>
+                                            <col width="10%"/>
+                                            <col width="90%"/>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>제 목</th>
+                                                <th class="tal pl20">[해외인턴쉽] 미국 네브레스카 'A'복합 리조트 인턴채용</th>
+                                            </tr>
+                                        </thead>
                                         <tbody>
                                             <tr>
-                                                <th class="col-sm-3" rowspan="12">컨텐츠 정보</th>
-                                                <td class="col-sm-1">국가/도시</td>
-                                                <td class="col-sm-8">
-                                                    <div class="col-sm-11">
-                                                        <div class="wid100p" name="recruit_country" id="recruit_country"><?php echo $RECRUIT->REC_COUNTRY?></div>
-                                                    </div></td>
+                                                <td class="table_tit">국가/도시</td>
+                                                <td>
+                                                    <div class="table_con">
+                                                        <div name="recruit_country" id="recruit_country"><?php echo $RECRUIT->REC_COUNTRY?></div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="col-sm-1">유학분류</td>
-                                                <td class="col-sm-8">
-                                                    <div class="col-sm-11">
-                                                        <div class="wid100p" name="recruit_type" id="recruit_type"><?php echo $RECRUIT->REC_TYPE?></div>
-                                                    </div></td>
+                                                <td class="table_tit">유학분류</td>
+                                                <td >
+                                                    <div class="table_con">
+                                                        <div name="recruit_type" id="recruit_type"><?php echo $RECRUIT->REC_TYPE?></div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="col-sm-1">기간</td>
-                                                <td class="col-sm-8">
-                                                    <div class="col-sm-11">
-                                                        <div class="wid100p" name="recruit_period" id="recruit_period"><?php echo $RECRUIT->REC_PERIOD?></div>
-                                                    </div></td>
+                                                <td class="table_tit">기간</td>
+                                                <td >
+                                                    <div class="table_con">
+                                                        <div  name="recruit_period" id="recruit_period"><?php echo $RECRUIT->REC_PERIOD?></div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="col-sm-1">채용분야</td>
-                                                <td class="col-sm-8">
-                                                    <div class="col-sm-11">
-                                                        <div class="wid100p" name="recruit_recruit__type" id="recruit_recruit__type"><?php echo $RECRUIT->REC_RECRUIT_TYPE?></div>
-                                                    </div></td>
+                                                <td class="table_tit" >채용분야</td>
+                                                <td >
+                                                    <div class="table_con">
+                                                        <div name="recruit_recruit__type" id="recruit_recruit__type"><?php echo $RECRUIT->REC_RECRUIT_TYPE?></div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="col-sm-1">채용마감</td>
-                                                <td class="col-sm-8">
-                                                    <div class="col-sm-11">
-                                                        <div class="wid100p" name="recruit_deadline" id="recruit_deadline"><?php echo $RECRUIT->REC_DEADLINE?></div>
-                                                    </div></td>
+                                                <td class="table_tit">채용마감</td>
+                                                <td>
+                                                    <div class="table_con">
+                                                        <div name="recruit_deadline" id="recruit_deadline"><?php echo $RECRUIT->REC_DEADLINE?></div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="col-sm-1">면접방식</td>
-                                                <td class="col-sm-8">
-                                                    <div class="col-sm-11">
+                                                <td class="table_tit">면접방식</td>
+                                                <td >
+                                                    <div class="table_con">
                                                         <div class="wid100p" name="recruit_interview_type" id="recruit_interview_type"><?php echo $RECRUIT->REC_INTERVIEW_TYPE?></div>
-                                                    </div></td>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="col-sm-1">면접일자</td>
-                                                <td class="col-sm-8">
-                                                    <div class="col-sm-11">
-                                                        <div class="wid100p" name="recruit_interview_date" id="recruit_interview_date"><?php echo $RECRUIT->REC_INTERVIEW_DATE?></div>
-                                                    </div></td>
+                                                <td class="table_tit">면접일자</td>
+                                                <td>
+                                                    <div class="table_con">
+                                                        <div name="recruit_interview_date" id="recruit_interview_date"><?php echo $RECRUIT->REC_INTERVIEW_DATE?></div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="col-sm-1">자격요건</td>
-                                                <td class="col-sm-8">
-                                                    <div class="col-sm-11">
-                                                        <div class="wid100p" name="recruit_prerequisite" id="recruit_prerequisite"><?php echo $RECRUIT->REC_PREREQUISITE?></div>
-                                                    </div></td>
+                                                <td class="table_tit">자격요건</td>
+                                                <td>
+                                                    <div class="table_con">
+                                                        <div name="recruit_prerequisite" id="recruit_prerequisite"><?php echo $RECRUIT->REC_PREREQUISITE?></div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="col-sm-1">급여</td>
-                                                <td class="col-sm-8">
-                                                    <div class="col-sm-11">
-                                                        <div class="wid100p" name="recruit_pay" id="recruit_pay"><?php echo $RECRUIT->REC_PAY?></div>
-                                                    </div></td>
+                                                <td class="table_tit">급여</td>
+                                                <td>
+                                                    <div class="table_con">
+                                                        <div name="recruit_pay" id="recruit_pay"><?php echo $RECRUIT->REC_PAY?></div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="col-sm-1">숙소</td>
-                                                <td class="col-sm-8">
-                                                    <div class="col-sm-11">
-                                                        <div class="wid100p" name="recruit_accomdation" id="recruit_accomdation"><?php echo $RECRUIT->REC_LODGIN?></div>
-                                                    </div></td>
+                                                <td class="table_tit">숙소</td>
+                                                <td>
+                                                    <div class="table_con">
+                                                        <div name="recruit_accomdation" id="recruit_accomdation"><?php echo $RECRUIT->REC_LODGIN?></div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="col-sm-1">복지</td>
-                                                <td class="col-sm-8">
-                                                    <div class="col-sm-11">
-                                                        <div class="wid100p" name="recruit_welfare" id="recruit_welfare"><?php echo $RECRUIT->REC_WELFARE?></div>
-                                                    </div></td>
+                                                <td class="table_tit">복지</td>
+                                                <td>
+                                                    <div class="table_con">
+                                                        <div name="recruit_welfare" id="recruit_welfare"><?php echo $RECRUIT->REC_WELFARE?></div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="col-sm-1">비자</td>
-                                                <td class="col-sm-8">
-                                                    <div class="col-sm-11">
-                                                        <div class="wid100p" name="recruit_visa" id="recruit_visa"><?php echo $RECRUIT->REC_VISA?></div>
-                                                    </div></td>
+                                                <td class="table_tit">비자</td>
+                                                <td >
+                                                    <div class="table_con">
+                                                        <div name="recruit_visa" id="recruit_visa"><?php echo $RECRUIT->REC_VISA?></div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
 
 
-                            <div class="subContSec">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                    <section class="tile transparent">
-                                            <!-- tile header -->
-                                            <div class="header-text">
-                                                <p class="apply_detail_view"><strong>상세정보</strong></p>
-                                            </div>
-                                            <!-- tile body -->
-                                            <div class="tile-body color transparent-black rounded-corners">
-                                                <table class="table table-custom dataTable applyTopViewTable">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="col-sm-12">
-                                                                <div class="col-sm-12 transparent-editor">
-                                                                <?php echo $RECRUIT->REC_CONTENTS?>
-                                                                </div>
-                                                                
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </section>
+                                <div class="subContSec mb50">
+                                    <div class="recruit_detail">
+                                        <div class="page_tab_title">
+                                            <div class="tab_title_text">상세정보</div>
+                                        </div>
+
+                                        <div class="detail_view">
+                                            <?php echo $RECRUIT->REC_CONTENTS?>
+                                        </div>
+
+                                        <div class="detail_footer">
+                                            <button class="recruit_btn01 mr20">지원하기</button>
+                                            <button class="recruit_btn02">목록가기</button>
+                                        </div>
+
+                                        <!-- 
+                                        <div class="col-md-12 text-right">
+                                            <a href="/recruit/recruit_new/<?php echo $CATEGORY?>/<?php echo $RECRUIT->REC_SEQ?>" class="btn btn-s btn-primary">지원하기</a>
+                                        </div>
+                                        -->
+
                                     </div>
+
                                 </div>
-                                
+
+
+
+
                             </div>
 
-                            <div class="subContSec">
-                                <div class="col-md-12 text-right">
-                                    <a href="/recruit/recruit_new/<?php echo $CATEGORY?>/<?php echo $RECRUIT->REC_SEQ?>" class="btn btn-s btn-primary">지원하기</a>
-                                </div>
-                            </div>
+
 
                         </div>
 

@@ -145,21 +145,16 @@ td a {
 
 											<div class="row form-footer" style="margin-right:0px;margin-bottom:10px;">
 												<div class="col-sm-offset-2 col-sm-10 text-right">
-													<a href="/admin/board/post_list/<?php echo $BOARD_INFO->BOARD_SEQ?>"
-														class="btn btn-default btn-sm">목록</a>
-													<!-- <?php if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
+													<?php if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
 													<button type="button" class="btn btn-primary btn-sm"
 														id="btnRecommand">추천</button>
-													<?php endif;?> -->
-													
-													<button class="btn btn-danger btn-sm" onclick="board_delete()" class="btn_style01" >삭제</button>
-
-													<?php if($BOARD_INFO->BOARD_TYPE == 0):?>
-													<button type="button" class="btn btn-default btn-sm"
-														id="btnRepost">답글</button>
 													<?php endif;?>
+													<button type="button" class="btn btn-primary btn-sm"
+														id="btnRepost">답글</button>
 													<a href="/admin/board/post_modify/<?php echo $POST_INFO->POST_SEQ?>"
-														class="btn btn-default btn-sm">수정</a>
+														class="btn btn-primary btn-sm">수정</a>
+													<a href="/admin/board/post_list/<?php echo $BOARD_INFO->BOARD_SEQ?>"
+														class="btn btn-primary btn-sm">목록</a>
 												</div>
 											</div>
 											
@@ -298,8 +293,6 @@ td a {
 
 	<script>
 		
-
-		
 		<?php if($BOARD_INFO->BOARD_TYPE == 2):?>
 		video_id = "<?php echo $POST_INFO->POST_YOUTUBE_URL;?>";
 		video_width = "480";
@@ -374,29 +367,4 @@ td a {
 			})
 		}
 
-
-		function board_delete(){
-			if(confirm("게시글을 삭제하시겠습니까? 삭제 후 복구 할 수 없습니다.")){
-				$.ajax({
-					url:"/Board/post_delete",
-					type:"post",
-					data:{
-						"post_seq" : post_seq
-					},
-					dataType:"json",
-					success:function(data){
-						let code = data["code"];
-						let msg = data["msg"]
-						alert(msg);
-						if(code == 200){
-							
-						}
-					}, error:function(e){
-						console.log(e.reponseText);
-					}
-				});
-			}
-		}
-
-		
 	</script>

@@ -19,7 +19,14 @@
                     </ul>
                 </li>
                 <li id="news">
-
+                    <a href="#">공지 & 뉴스</a>
+                    <ul class="sub" >
+                        <li><a href="#">호스코뉴스</a></li>
+                        <li><a href="#">해외취업 후기</a></li>
+                        <li><a href="#">출국회원소식</a></li>
+                        <li><a href="#">동영상자료실</a></li>
+                        <li><a href="#">갤러리</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="/recruit?ctg=1">포지션 공고</a>
@@ -40,16 +47,23 @@
                     </ul>
                 </li>
                 <li id="guide">
-
+                    <a href="#">해외취업가이드</a>
+                    <ul class="sub" >
+                        <li><a href="#">이력서 가이드</a></li>
+                        <li><a href="#">영어인터뷰 대비</a></li>
+                        <li><a href="#">스폰서인터뷰 대비</a></li>
+                        <li><a href="#">미국대사관인터뷰 대비</a></li>
+                        <li><a href="#">해외취업 전략설명회</a></li>
+                        <li><a href="#">해외진출 성공스토리</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="/consult/qnaList">상담ㆍ신청</a>
+                    <a href="/consult/qna">상담ㆍ신청</a>
                     <ul class="sub">
-                        <li><a href="/consult/qnaList">Q&A</a></li>
-                        <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
-                        <li><a href="/consult/visitConsult">방문상담 신청</a></li>
+                        <li><a href="/consult/qna">Q&A</a></li>
+                        <li><a href="/consult/online">온라인 상담</a></li>
+                        <li><a href="/consult/offline">방문상담 신청</a></li>
                         <li><a href="/consult/apply">포지션&연수 지원</a></li>
-                        <li><a href="#">설명회 신청</a></li>
                     </ul>
                 </li>
             <?php 
@@ -64,15 +78,13 @@
                 <li>
                     <a href="#">마이페이지</a>
                     <ul class="sub">
-                        <li><a href="/mypage/memberEdit">정보 관리</a></li>
+                        <li><a href="#">정보 관리</a></li>
                         <li><a href="#">이력서 작성</a></li>
-                        <li><a href="#">제출서류 관리</a></li>
-                        <!--
+                        <li><a href="#">제출서류 현황</a></li>
                         <li><a href="#">관심프로그램</a></li>
                         <li><a href="#">지원현황관리</a></li>
                         <li><a href="#">수료현황</a></li>
                         <li><a href="#">취업증명서</a></li>
-                        -->
                     </ul>
                 </li>
             <?php 
@@ -113,7 +125,7 @@
 	function ViewBoardMenu(){
 		let str = "";
 		$.ajax({
-			url:"/board/get_boards",
+			url:"/admin/Board/get_boards",
 			type:"post",
 			dataType:"json",
 			success: function(data){

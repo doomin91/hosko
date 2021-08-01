@@ -295,3 +295,16 @@
 
 .company_contact {position:relative; width:100%; margin:0 auto; padding:0;}
 
+
+/* 포지션 연수지원 */
+
+.consultCont {
+    position:relative;
+    width:100%;
+}
+.TableTitle {
+    font-size:16px;
+    font-weight:600;
+
+}
+
