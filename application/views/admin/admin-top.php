@@ -130,7 +130,7 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li>
-					<a href="/admin/consult/qnaList">
+					<a href="#">
 						<i class="fa fa-caret-right"></i> QnA 게시판
 					</a>
 				</li>

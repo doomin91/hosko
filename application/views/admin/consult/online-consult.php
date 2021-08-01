@@ -62,6 +62,7 @@
 									<col width="25%"/>
 									<col width="10%"/>
 									<col width="5%"/>
+									<col width="5%"/>
 							</colgroup>
 							<thead>
 								<tr>
@@ -70,30 +71,35 @@
 									<th class="text-center">아이디</th>
 									<th class="text-center">연락처</th>
 									<th class="text-center">핸드폰</th>
-									<th class="text-center">제목</th>
+									<th class="text-center">내용</th>
 									<th class="text-center">접수일</th>
 									<th class="text-center">상태</th>
+									<th class="text-center"> - </th>
 								</tr>
 							</thead>
 							<tbody>
 						<?php
 							if (!empty($lists)){
 								foreach ($lists as $lt){
-									IF ($lt->OC_ANSWER_FLAG == "W"){
+									IF ($lt->OC_ANSWER_FLAG == "N"){
 										$answer_flag = "답변대기";
 									}else if ($lt->OC_ANSWER_FLAG == "Y"){
 										$answer_flag = "답변완료";
 									}
 						?>
 								<tr>
-									<td align="center"><?php echo $pagenum; ?></td>
-									<td align="center"><?php echo $lt->USER_NAME; ?></td>
-									<td align="center"><?php echo $lt->USER_ID; ?></td>
-									<td align="center"><?php echo $lt->USER_TEL; ?></td>
-									<td align="center"><?php echo $lt->USER_HP; ?></td>
-									<td><a href="/admin/consult/onlineConsultView/<?php echo $lt->OC_SEQ; ?>"><?php echo $lt->OC_SUBJECT; ?></a></td>
-									<td align="center"><?php echo $lt->OC_REG_DATE; ?></td>
-									<td align="center"><?php echo $answer_flag; ?></td>
+									<td><?php echo $pagenum; ?></td>
+									<td><?php echo $lt->USER_NAME; ?></td>
+									<td><?php echo $lt->USER_ID; ?></td>
+									<td><?php echo $lt->USER_TEL; ?></td>
+									<td><?php echo $lt->USER_HP; ?></td>
+									<td><?php echo $lt->OC_CONTENRTS; ?></td>
+									<td><?php echo $answer_flag; ?></td>
+									<td><?php echo $lt->OC_REGDATE; ?></td>
+									<td>
+										<button class="btn btn-default btn-xs clogView">보기</button>
+                                        <button class="btn btn-danger btn-xs clogDel">삭제</button>
+									</td>
 								</tr>
 						<?php
 									$pagenum--;
@@ -136,6 +142,63 @@
 
 	</div>
 	<!-- Wrap all page content end -->
+
+	<!-- 모달 팝업 -->
+	<div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button>
+					<h3 class="modal-title" id="modalConfirmLabel">회원 통화내역 저장</h3>
+				</div>
+				<div class="modal-body">
+					<form role="wform" id="wform">
+
+					<table class="table datatable table-custom01 userTable">
+						<colgroup>
+							<col width="15%"/>
+							<col width="35%"/>
+							<col width="15%"/>
+							<col width="35%"/>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th>상담자</td>
+								<td></td>
+								<th>아이디</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>연락처</td>
+								<td></td>
+								<th>핸드폰</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>접수일</td>
+								<td></td>
+								<th>상태</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>상담내용</td>
+								<td colspan="3"></td>
+							</tr>
+							<tr>
+								<th>답변</td>
+								<td colspan="3"></td>
+							</tr>
+						</tbody>
+					</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-red" data-dismiss="modal" aria-hidden="true">취소</button>
+					<button id="saveMessage" class="btn btn-green">저장하기</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 
 	<?php
 		include_once dirname(__DIR__)."/admin-footer.php";
@@ -247,12 +310,12 @@
 			})
 		})
 
-		$(document).on("click", ".ocDel", function(){
+		$(document).on("click", ".clogDel", function(){
 			 var seq = $(this).data("seq");
 
-			if (confirm("상담내역을 삭제하시겠습니까?")){
+			if (confirm("통화내역을 삭제하시겠습니까?")){
 				$.ajax({
-					url:"/admin/consult/onlineconsultDel",
+					url:"/admin/user/deleteCallMsg",
 					type:"post",
 					data:{
 						"clog_seq" : seq

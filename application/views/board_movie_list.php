@@ -80,7 +80,7 @@
                                             <?php }?>
                                         </ul>
                                     </div>
-
+                                    
 
                                     <?php if($this->session->userdata("USER_SEQ")): ?>
                                     <div class="subBtn_Write f_right mt40">
@@ -88,22 +88,27 @@
                                     </div>
                                     <?php endif; ?>
 
-                                    <?php echo $pagination; ?>
-
+                                    <div class="pagination">
+                                        <a href="/" class="btn_prev"><span>맨처음</span></a>
+                                        <span>1</span>
+                                        <a href="/">2</a>
+                                        <a href="/">3</a>
+                                        <a href="/">4</a>
+                                        <a href="/">5</a>
+                                        <a href="/" class="btn_next"><span>맨마지막</span></a>
+                                    </div>
 
                                     <div class="boardSearchWrap">
-                                        <!-- <input type="hidden" name="page" value="1"> -->
-                                        
-                                        
+                                        <form name="" id="" method="">
+                                        <input type="hidden" name="page" value="1">
+                                        <input type="hidden" name="num" value="">
+
                                             <div class="boardSearch">
-                                                <select name="search_field">
-                                                    <option value="all" <?php echo $searchField == "all" ?  "selected" : "" ?>>전체</option>
-                                                    <option value="SUBJECT" <?php echo $searchField == "SUBJECT" ?  "selected" : "" ?>>제목</option>
-                                                    <option value="CONTENTS" <?php echo $searchField == "CONTENTS" ?  "selected" : "" ?>>내용</option>
-                                                    <option value="USER_NAME" <?php echo $searchField == "USER_NAME" ?  "selected" : "" ?>>글쓴이</option>
+                                                <select name="">
+                                                    <option value="all" selected="selected">전체</option>
                                                 </select>
                                                 <div class="inputSearch">
-                                                    <input type="text" name="search_string" value="<?php echo $searchString; ?>" maxlength="50">
+                                                    <input type="text" name="" value="" maxlength="50">
                                                     <input type="submit" value="">
                                                 </div>
                                             </div>
