@@ -74,7 +74,7 @@
                                     <td colspan="3"><input type="text" name="cal_title" value="" size="100"></td>
                                 </tr>
                                 <tr>
-                                    <th>일정 날짜</th>
+                                    <th>일정 내용</th>
                                     <td colspan="3">
                                         <textarea name="cal_schedule"></textarea>
                                     </td>

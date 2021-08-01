@@ -62,7 +62,6 @@
 									<col width="25%"/>
 									<col width="10%"/>
 									<col width="5%"/>
-									<col width="5%"/>
 							</colgroup>
 							<thead>
 								<tr>
@@ -74,14 +73,13 @@
 									<th class="text-center">내용</th>
 									<th class="text-center">접수일</th>
 									<th class="text-center">상태</th>
-									<th class="text-center"> - </th>
 								</tr>
 							</thead>
 							<tbody>
 						<?php
 							if (!empty($lists)){
 								foreach ($lists as $lt){
-									IF ($lt->OC_ANSWER_FLAG == "N"){
+									if ($lt->OC_ANSWER_FLAG == "W"){
 										$answer_flag = "답변대기";
 									}else if ($lt->OC_ANSWER_FLAG == "Y"){
 										$answer_flag = "답변완료";
@@ -93,13 +91,9 @@
 									<td><?php echo $lt->USER_ID; ?></td>
 									<td><?php echo $lt->USER_TEL; ?></td>
 									<td><?php echo $lt->USER_HP; ?></td>
-									<td><?php echo $lt->OC_CONTENRTS; ?></td>
+									<td><a href="/admin/consult/onlineConsultView/<?php echo $lt->OC_SEQ; ?>"><?php echo $lt->OC_SUBJECT; ?></a></td>
 									<td><?php echo $answer_flag; ?></td>
-									<td><?php echo $lt->OC_REGDATE; ?></td>
-									<td>
-										<button class="btn btn-default btn-xs clogView">보기</button>
-                                        <button class="btn btn-danger btn-xs clogDel">삭제</button>
-									</td>
+									<td><?php echo substr($lt->OC_REG_DATE, 0, 10); ?></td>
 								</tr>
 						<?php
 									$pagenum--;

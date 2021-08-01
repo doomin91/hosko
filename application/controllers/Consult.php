@@ -562,4 +562,9 @@ class Consult extends CI_Controller {
 			echo json_encode(array("code" => "202", "msg" => "비밀번호가 일치 하지 않습니다."));			
 		}
 	}
+
+	public function presentationList(){
+
+		$this->load->view("consult/presentation-list");
+	}
 }
