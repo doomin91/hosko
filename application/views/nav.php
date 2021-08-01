@@ -129,8 +129,8 @@
 			success: function(data){
 				let board = data["board"];
 				let group = data["group"];
-                console.log(group);
-                console.log(board);
+                // console.log(group);
+                // console.log(board);
                 let news = "";
                 let guide = "";
 

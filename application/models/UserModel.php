@@ -376,4 +376,32 @@ class UserModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_USER.USER_DEL_YN", "N");
 		return $this->db->get("TBL_HOSKO_USER")->row();
 	}
+
+	// 이력서 부분
+	public function createUserResume($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME", $insertArr);
+	}
+	public function updateUserResume($updateArr, $resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME.RESUME_SEQ", $resume_seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME", $updateArr);
+	}
+
+	public function createUserResumeEducation($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_EDUCATION", $insertArr);
+	}
+	public function createUserResumeWorkExp($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE", $insertArr);
+	}
+	public function createUserResumeActivity($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_ACTIVITY", $insertArr);
+	}
+	public function createUserResumeAchiv($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_ACHIEVEMENT", $insertArr);
+	}
+	public function createUserResumeSkill($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_SKILL", $insertArr);
+	}
+	public function createUserResumeLanguage($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_LANGUAGE", $insertArr);
+	}
 }

@@ -1395,7 +1395,14 @@
   box-sizing: border-box;
   margin-bottom: 10px;
 }
+.resumeJoinBoxWider {
+  height: 100px;
+}
 
 .resumeBox_label {
   margin-bottom: 40px;
+}
+
+.box_content {
+  display: flex;
 }

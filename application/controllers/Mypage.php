@@ -45,10 +45,6 @@ class Mypage extends CI_Controller {
 
         $this->load->view("/mypage/member-edit", $data);
     }
-
-	function memberResumeRegist(){
-		$this->load->view("/mypage/member-resume_register");
-	}
 	
 	public function memberEditProc(){
 		$user_name = $this->input->post("user_name");
@@ -208,6 +204,179 @@ class Mypage extends CI_Controller {
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "회원 정보 수정중 문제가 생겼습니다."));
 		}
+	}
+
+	public function memberResumeRegist(){
+		$DATA["MY_INFO"] = $this->UserModel->getUserInfo($this->session->userdata("USER_SEQ"));
+
+		$this->load->view("/mypage/member-resume_register", $DATA);
+	}
+	
+	public function memberResumeRegistProc(){
+		$user_seq = isset($_POST["user_seq"]) ? $_POST["user_seq"] : "";
+		$resume_title = isset($_POST["resume_title"]) ? $_POST["resume_title"] : "";
+		$resume_user_name = isset($_POST["resume_user_name"]) ? $_POST["resume_user_name"] : "";
+		$resume_user_zipcode = isset($_POST["resume_user_zipcode"]) ? $_POST["resume_user_zipcode"] : "";
+		$resume_user_addr1 = isset($_POST["resume_user_addr1"]) ? $_POST["resume_user_addr1"] : "";
+		$resume_user_addr2 = isset($_POST["resume_user_addr2"]) ? $_POST["resume_user_addr2"] : "";
+		$resume_user_phone = isset($_POST["resume_user_phone"]) ? $_POST["resume_user_phone"] : "";
+		$resume_user_email = isset($_POST["resume_user_email"]) ? $_POST["resume_user_email"] : "";
+		$resume_user_skype_id = isset($_POST["resume_user_skype_id"]) ? $_POST["resume_user_skype_id"] : "";
+		$resume_user_age = isset($_POST["resume_user_age"]) ? $_POST["resume_user_age"] : "";
+		$resume_user_dob = isset($_POST["resume_user_dob"]) ? $_POST["resume_user_dob"] : "";
+		$resume_user_nationality = isset($_POST["resume_user_nationality"]) ? $_POST["resume_user_nationality"] : "";
+		$resume_user_martial_status = isset($_POST["resume_user_martial_status"]) ? $_POST["resume_user_martial_status"] : "";
+		$resume_user_ic_number = isset($_POST["resume_user_ic_number"]) ? $_POST["resume_user_ic_number"] : "";
+		$resume_user_permanent_residence = isset($_POST["resume_user_permanent_residence"]) ? $_POST["resume_user_permanent_residence"] : "";
+		$resume_user_religion = isset($_POST["resume_user_religion"]) ? $_POST["resume_user_religion"] : "";
+		$resume_user_dog = isset($_POST["resume_user_dog"]) ? $_POST["resume_user_dog"] : "";
+		$resume_user_height = isset($_POST["resume_user_height"]) ? $_POST["resume_user_height"] : "";
+		$resume_user_weight = isset($_POST["resume_user_weight"]) ? $_POST["resume_user_weight"] : "";
+		$resume_user_hobby = isset($_POST["resume_user_hobby"]) ? $_POST["resume_user_hobby"] : "";
+		$resume_user_criminal_record = isset($_POST["resume_user_criminal_record"]) ? $_POST["resume_user_criminal_record"] : "";
+		$redu_date = isset($_POST["redu_date"]) ? $_POST["redu_date"] : array();
+		$redu_description = isset($_POST["redu_description"]) ? $_POST["redu_description"] : array();
+		$rwexp_date = isset($_POST["rwexp_date"]) ? $_POST["rwexp_date"] : array();
+		$rwexp_description = isset($_POST["rwexp_description"]) ? $_POST["rwexp_description"] : array();
+		$ract_date = isset($_POST["ract_date"]) ? $_POST["ract_date"] : array();
+		$ract_description = isset($_POST["ract_description"]) ? $_POST["ract_description"] : array();
+		$rahcv_title = isset($_POST["rahcv_title"]) ? $_POST["rahcv_title"] : array();
+		$rahcv_description = isset($_POST["rahcv_description"]) ? $_POST["rahcv_description"] : array();
+		$rskil_date = isset($_POST["rskil_date"]) ? $_POST["rskil_date"] : array();
+		$rskil_description = isset($_POST["rskil_description"]) ? $_POST["rskil_description"] : array();
+		$rlang_name = isset($_POST["rlang_name"]) ? $_POST["rlang_name"] : array();
+		$rlang_speaking = isset($_POST["rlang_speaking"]) ? $_POST["rlang_speaking"] : array();
+		$rlang_writing = isset($_POST["rlang_writing"]) ? $_POST["rlang_writing"] : array();
+		$resume_user_computer_skill = isset($_POST["resume_user_computer_skill"]) ? $_POST["resume_user_computer_skill"] : "";
+
+		$insertArr = array(
+			"USER_SEQ" => $user_seq,
+			"RESUME_TITLE" => $resume_title,
+			"RESUME_USER_NAME" => $resume_user_name,
+			"RESUME_USER_ZIPCODE" => $resume_user_zipcode,
+			"RESUME_USER_ADDR1" => $resume_user_addr1,
+			"RESUME_USER_ADDR2" => $resume_user_addr2,
+			"RESUME_USER_PHONE" => $resume_user_phone,
+			"RESUME_USER_EMAIL" => $resume_user_email,
+			"RESUME_USER_SKYPE_ID" => $resume_user_skype_id,
+			"RESUME_USER_AGE" => $resume_user_age,
+			"RESUME_USER_DOB" => $resume_user_dob,
+			"RESUME_USER_NATIONALITY" => $resume_user_nationality,
+			"RESUME_USER_MARITAL_STATUS" => $resume_user_martial_status,
+			"RESUME_USER_IC_NUMBER" => $resume_user_ic_number,
+			"RESUME_USER_PERMANENT_RESIDENCE" => $resume_user_permanent_residence,
+			"RESUME_USER_RELIGION" => $resume_user_religion,
+			"RESUME_USER_DOG" => $resume_user_dog,
+			"RESUME_USER_HEIGHT" => $resume_user_height,
+			"RESUME_USER_WEIGHT" => $resume_user_weight,
+			"RESUME_USER_HOBBY" => $resume_user_hobby,
+			"RESUME_USER_CRIMINAL_RECORD" => $resume_user_criminal_record,
+			"RESUME_USER_COMPUTER_SKILL" => $resume_user_computer_skill
+		);
+
+		print_r($insertArr);
+		print_r(json_decode($redu_date));
+
+		exit;
+
+		$result = $this->UserModel->createUserResume($insertArr);
+		
+		$resume_id = $this->db->insert_id();
+
+		foreach ($redu_date as $key => $edu_date){
+			$insertArr = array(
+							"REDU_DATE" => $edu_date,
+							"REDUT_DESCRIPTION" => $redu_description[$key]
+						);
+
+			$this->UserModel->createUserResumeEducation($insertArr);
+		}
+		foreach ($rwexp_date as $key => $exp_date){
+			$insertArr = array(
+				"RWEXP_DATE" => $exp_date,
+				"RWEXP_DESCRIPTION" => $rwexp_description[$key]
+			);
+			
+			$this->UserModel->createUserResumeWorkExp($insertArr);
+		}
+		foreach ($ract_date as $key => $act_date){
+			$insertArr = array(
+				"RACT_DATE" => $act_date,
+				"RACT_DESCRIPTION" => $ract_description[$key]	
+			);
+
+			$this->UserModel->createUserResumeActivity($insertArr);
+		}
+		foreach ($rahcv_title as $key => $ahcv_title){
+			$insertArr = array(
+				"RACHV_TITLE" => $ahcv_title,
+				"RACHV_DESCRIPTION" => $rahcv_description[$key]
+			);
+
+			$this->UserModel->createUserResumeAchiv($insertArr);
+		}
+		foreach ($rskil_date as $key => $skill_date){
+			$insertArr = array(
+				"RSKL_DATE" => $skill_date,
+				"RSKL_DESCRIPTION" => $rskil_description[$key]
+			);
+
+			$this->UserModel->createUserResumeSkill($insertArr);
+		}
+		foreach ($rlang_name as $key => $lang_date){
+			$insertArr = array(
+				"RLANG_NAME" => $lang_date,
+				"RLANG_SPEAKING" => $rlang_speaking[$key],
+				"RLANG_WRITING" => $rlang_writing[$key]
+			);
+
+			$this->UserModel->createUserResumeLanguage($insertArr);
+		}
+
+		$config["upload_path"] = $_SERVER['DOCUMENT_ROOT'] . "/upload/resume/";
+		$config["allowed_types"] = "jpg|png|jpeg|JPG|PNG|JPEG";
+		$new_name = "resume_". $resume_id . "_img_" . date("YmdHis");
+		$config["file_name"] = $new_name;
+		$this->load->library("upload", $config);
+
+		$resume_img = "";
+		$resume_img_path = "";
+		if (isset($_FILES['resume_img']['name'])) {
+			if (0 < $_FILES['resume_img']['error']) {
+				echo 'Error during file upload' . $_FILES['resume_img']['error'];
+			} else {
+				if (file_exists('upload/resume' . $_FILES['resume_img']['name'])) {
+					echo 'File already exists : upload/resume' . $_FILES['resume_img']['name'];
+				} else {
+					$this->load->library('upload', $config);
+					if (!$this->upload->do_upload('resume_img')) {
+						echo $this->upload->display_errors();
+					} else {
+						//echo 'File successfully uploaded : uploads/' . $_FILES['post_thumbnail']['name'];
+						$resume_img = $_FILES['resume_img']['name'];
+						$resume_img_path = "/upload/resume/".$this->upload->data("file_name");
+					}
+				}
+			}
+		} else {
+			//echo 'Please choose a file';
+		}
+
+		$updateAr = array(
+						"RESUME_USER_PHOTO" => $resume_img_path
+					);
+
+		$result = $this->UserModel->updateUserResume($updateArr, $resume_seq);
+		
+		//echo $this->db->last_query();
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "이력서가 작성되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "이력서 작성중 문제가 생겼습니다."));
+		}
+
+
 	}
 
 }
