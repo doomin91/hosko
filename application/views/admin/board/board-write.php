@@ -119,7 +119,7 @@ input[type=text]{
 									<td>자동 비밀글</td>
 									<td colspan=3><label for="fn_secret"><input type="checkbox" id="fn_secret" name="fn_secret" value="Y"> 작성자와 운영자만 열람가능</label></td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td>권한</td>
 									<td colspan=3>
 										<table style="width:100%; text-align:center;">
@@ -175,7 +175,7 @@ input[type=text]{
 											</tr>
 										</table>
 									</td>
-								</tr>
+								</tr> -->
 								<tr>
 									<td>권한이 없을경우</td>
 									<td colspan=3>

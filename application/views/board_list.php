@@ -62,6 +62,7 @@
                                             <span class="col_date">작성일</span>
                                         </div>
                                         <?php
+                                        if(count($lists) > 0){
                                          foreach ($lists as $lt){ ?>
                                         <div class="tblBot-item">
                                             <span class="col_num"><?php 
@@ -113,6 +114,11 @@
                                         </div>
                                         <?php 
                                         $pagenum -= 1;} 
+                                            } else {
+                                                echo "<div class=\"tblBot-item\">";
+                                                echo "<span>게시글이 없습니다 :( </span>";
+                                                echo "</div>";
+                                            }
                                         ?>
                                     </div>
 

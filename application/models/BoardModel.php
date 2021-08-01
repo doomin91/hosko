@@ -325,4 +325,22 @@ class BoardModel extends CI_Model{
         return $this->db->delete("TBL_HOSKO_BOARD_COMMENT");
     }
 
+    public function getNews(){
+        $this->db->where("POST_DEL_YN", 'N');
+        $this->db->where("POST_BOARD_SEQ = 1");
+        $this->db->join("TBL_HOSKO_BOARD", "POST_BOARD_SEQ = BOARD_SEQ");
+        $this->db->order_by("POST_REG_DATE", "DESC");
+        $this->db->limit(2);
+        return $this->db->get("TBL_HOSKO_BOARD_POSTS")->result();
+    }
+
+    public function getNotice(){
+        $this->db->where("POST_DEL_YN", 'N');
+        $this->db->where("POST_BOARD_SEQ = 3");
+        $this->db->join("TBL_HOSKO_BOARD", "POST_BOARD_SEQ = BOARD_SEQ");
+        $this->db->order_by("POST_REG_DATE", "DESC");
+        $this->db->limit(2);
+        return $this->db->get("TBL_HOSKO_BOARD_POSTS")->result();
+    }
+
 }

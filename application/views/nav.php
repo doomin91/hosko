@@ -5,7 +5,7 @@
         <nav class="gnb">
             <ul class="gnb_menu">
                 <li>
-                    <a href="#">HOME</a>
+                    <a href="/">HOME</a>
                 </li>
                 <li>
                     <a href="/company/introduce">HOSKO</a>
@@ -35,7 +35,7 @@
                         <li><a href="/recruit?ctg=2">JOB&헤드헌팅</a></li>
                     </ul>
                 </li>
-                <li>
+                <li id="abroad">
                     <a href="#">해외연수</a>
                     <ul class="sub">
                         <li><a href="#">해외연수</a></li>
@@ -146,12 +146,18 @@
                         case "2":
                             guide = "<a href=\"/board/q/" + value["GP_SEQ"] + "\">" + value["GP_NAME"] + "</a>";
                             break;
+                        case "3":
+                            abroad = "<a href=\"/board/q/" + value["GP_SEQ"] + "\">" + value["GP_NAME"] + "</a>";
+                            break;
+                            
                     }
 				});
                 
                 news += "<ul class=\"sub\" style=\"display:none;\">";
                 guide += "<ul class=\"sub\" style=\"display:none;\">";
+                abroad += "<ul class=\"sub\" style=\"display:none;\">";
 
+/** 나중에 함수형으로 수정 */
                 $.each(board, function(index, value){
                     switch(value["GP_SEQ"]){
                         case "1":
@@ -180,16 +186,30 @@
                                     break;
                             }
                             break;
+                        case "3":
+                            switch(value["BOARD_TYPE"]){
+                                case "0": 
+                                    abroad += "<li><a href=\"/Board/q/" + value["GP_SEQ"] + "?seq="+ value["BOARD_SEQ"]+"\">" + value["BOARD_KOR_NAME"] + "</a></li>";
+                                    break;
+                                case "1":
+                                    abroad += "<li><a href=\"/Board/g/" + value["GP_SEQ"] + "?seq="+ value["BOARD_SEQ"]+"\">" + value["BOARD_KOR_NAME"] + "</a></li>";
+                                    break;
+                                case "2":
+                                    abroad += "<li><a href=\"/Board/v/" + value["GP_SEQ"] + "?seq="+ value["BOARD_SEQ"]+"\">" + value["BOARD_KOR_NAME"] + "</a></li>";
+                                    break;
+                            }
+                            break;
                     }  
                 })
 
                 news += "</ul>";
                 guide += "</ul>";
+                abroad += "</ul>";
 
 
                 $("#news").html(news);
                 $("#guide").html(guide);
-
+                $("#abroad").html(abroad);
 
                 //$("#boardMenu").append(str);
 			}, error: function(e){
