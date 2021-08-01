@@ -27,7 +27,7 @@
 
                                 <form name="myApplyCreateForm" id="myApplyCreateForm" class="form-horizontal" role="form">
                                     <!-- <input type="hidden" id="user_seq" name="user_seq" value="<?php echo $USER->USER_SEQ?>"/> -->
-                                    <div class="subContSec">
+                                    <div class="">
                                         <div class="col-md-12 text-center resume_img_frame">
                                             <img src="https://7wdata.be/wp-content/uploads/2016/05/icon-user-default.png">
                                         </div>
@@ -41,7 +41,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="subContSec">
+                                    <div class="">
                                         <table class="table table-custom dataTable">
                                             <tbody>
                                                 <tr>
@@ -56,7 +56,7 @@
                                                     <td class="col-sm-10">
                                                         <div>
                                                             <div class="wid50p">
-                                                                <div class="resumeZipCodeForm">
+                                                                <div class="resume_zip_form">
                                                                     <input type="text" name="resume_user_addr0" id="resume_user_addr0" class="form-control">
                                                                 </div>
                                                                 <div>
@@ -94,7 +94,7 @@
                                         </table>
                                     </div>
 
-                                    <div class="subContSec">
+                                    <div class="">
                                         <div class="row" style="margin-bottom: 10px">
                                             <div class="col-md-10">Personal Particulars</div>
                                         </div>
@@ -109,25 +109,7 @@
                                                 <tr>
                                                     <th class="col-sm-2">Date of Birth</th>
                                                     <td class="col-sm-10">
-                                                        <div class="col-sm-2">
-                                                            <select name="ctg" class="chosen-select chosen-transparent chosen-single form-control" >
-                                                                <option value="" >:: 대분류 ::</option>
-                                                                <option value="1" >인턴쉽</option>
-                                                                <option value="2" >채용&헤드헌팅</option>
-                                                                <option value="3" >유학</option>
-                                                            </select>
-                                                            
-                                                            </div>
-                                                        <div class="col-sm-2">
-                                                            <select name="ctg2" class="chosen-select chosen-transparent form-control">
-                                                                <option value="" selected>:: 중분류 ::</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <select name="ctg3" class="chosen-select chosen-transparent form-control">
-                                                                <option value="" selected>:: 소분류 ::</option>
-                                                            </select>
-                                                        </div>
+                                                        <input type="text" id="resume_user_dob" name="resume_user_dob" class="form-control" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -157,25 +139,7 @@
                                                 <tr>
                                                     <th class="col-sm-2">Graduation Date<br>(mm/dd/yyyy)</th>
                                                     <td class="col-sm-10">
-                                                        <div class="col-sm-2 ctg_select_form">
-                                                            <select name="ctg" class="chosen-select chosen-transparent chosen-single form-control ctg_select search_field" >
-                                                                <option value="" >:: 대분류 ::</option>
-                                                                <option value="1" >인턴쉽</option>
-                                                                <option value="2" >채용&헤드헌팅</option>
-                                                                <option value="3" >유학</option>
-                                                            </select>
-                                                            
-                                                            </div>
-                                                        <div class="col-sm-2 ctg_select_form ">
-                                                            <select name="ctg2" class="chosen-select chosen-transparent form-control ctg_select search_field">
-                                                                <option value="" selected>:: 중분류 ::</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-sm-2 ctg_select_form">
-                                                            <select name="ctg3" class="chosen-select chosen-transparent form-control ctg_select search_field">
-                                                                <option value="" selected>:: 소분류 ::</option>
-                                                            </select>
-                                                        </div>
+                                                        <input type="text" id="resume_user_god" name="resume_user_god" class="form-control" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -209,144 +173,169 @@
                                         </table>
                                     </div>
 
-                                    <div class="subContSec">
+                                    <div class="">
                                         <div class="row" style="margin-bottom: 10px">
                                             <div class="col-md-10">Education</div>
                                         </div>
-                                        <div class="memberJoinBox mt20">
+                                        <div class="resumeJoinBox">
                                             <div class="resumeBox">
-                                                <div>
-                                                    <input type="text" name="redu_date[]" value="">
-                                                    <input type="text" name="redu_description[]" value="">
+                                                <div class="box_content">
+                                                    <div class="wid25p resume_activity_box">
+                                                        <input type="text" class="form-control" name="redu_date[]" value="">
+                                                    </div>
+                                                    <div class="wid70p resume_activity_box">
+                                                        <input type="text" class="form-control" name="redu_description[]" value="">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 text-right">
-                                                <input type="button" class="btn btn-default" value="삭제" id="del_resume_edu">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_edu">
-                                            <div>
-                                        <div>
+                                            
+                                        </div>
+                                        <div class="col-sm-12 text-right">
+                                            <input type="button" class="btn btn-default" value="삭제" id="del_resume_edu" data-which="redu">
+                                            <input type="button" class="btn btn-primary" value="추가" id="add_resume_edu" data-which="redu">
+                                        </div>
                                     </div>
 
-                                    <div class="subContSec">
+                                    <div class="">
                                         <div class="row" style="margin-bottom: 10px">
                                             <div class="col-md-10">Working Experience</div>
                                         </div>
-                                        <div class="memberJoinBox mt20">
+                                        <div class="resumeJoinBox">
                                             <div class="resumeBox">
-                                                <div>
-                                                    <input type="text" name="rwexp_date[]" value="">
-                                                    <input type="text" name="rwexp_description[]" value="">
+                                                <div class="box_content">
+                                                    <div class="wid25p resume_activity_box">
+                                                        <input type="text" class="form-control" name="rwexp_date[]" value="">
+                                                    </div>
+                                                    <div class="wid70p resume_activity_box">
+                                                        <input type="text" class="form-control" name="rwexp_description[]" value="">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 text-right">
-                                                <input type="button" class="btn btn-default" value="삭제" id="del_resume_wexp">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_wexp">
-                                            <div>
-                                        <div>
+                                        </div>
+                                        <div class="col-sm-12 text-right">
+                                            <input type="button" class="btn btn-default" value="삭제" id="del_resume_wexp" data-which="rwexp">
+                                            <input type="button" class="btn btn-primary" value="추가" id="add_resume_wexp" data-which="rwexp">
+                                        </div>
                                     </div>
 
-                                    <div class="subContSec">
+                                    <div class="">
                                         <div class="row" style="margin-bottom: 10px">
                                             <div class="col-md-10">Activities</div>
                                         </div>
-                                        <div class="memberJoinBox mt20">
+                                        <div class="resumeJoinBox">
                                             <div class="resumeBox">
-                                                <div>
-                                                    <input type="text" name="ract_date[]" value="">
-                                                    <input type="text" name="ract_description[]" value="">
+                                                <div class="box_content">
+                                                    <div class="wid25p resume_activity_box">
+                                                        <input type="text" class="form-control" name="ract_date[]" value="">
+                                                    </div>
+                                                    <div class="wid70p resume_activity_box">
+                                                        <input type="text" class="form-control" name="ract_description[]" value="">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 text-right">
-                                                <input type="button" class="btn btn-default" value="삭제" id="del_resume_ract">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_ract">
-                                            <div>
-                                        <div>
+                                        </div>
+                                        <div class="col-sm-12 text-right">
+                                            <input type="button" class="btn btn-default" value="삭제" id="del_resume_ract" data-which="ract">
+                                            <input type="button" class="btn btn-primary" value="추가" id="add_resume_ract" data-which="ract">
+                                        </div>
                                     </div>
 
-                                    <div class="subContSec">
+                                    <div class="">
                                         <div class="row" style="margin-bottom: 10px">
                                             <div class="col-md-10">Achievements</div>
                                         </div>
-                                        <div class="memberJoinBox mt20">
+                                        <div class="resumeJoinBox">
                                             <div class="resumeBox">
-                                                <div>
-                                                    <input type="text" name="rahcv_date[]" value="">
-                                                    <input type="text" name="rahcv_description[]" value="">
+                                                <div class="box_content">
+                                                    <div class="wid25p resume_activity_box">
+                                                        <input type="text" class="form-control" name="rahcv_date[]" value="">
+                                                    </div>
+                                                    <div class="wid70p resume_activity_box">
+                                                        <input type="text" class="form-control" name="rahcv_description[]" value="">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 text-right">
-                                                <input type="button" class="btn btn-default" value="삭제" id="del_resume_rahcv">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rahcv">
-                                            <div>
-                                        <div>
+                                        </div>
+                                        <div class="col-sm-12 text-right">
+                                            <input type="button" class="btn btn-default" value="삭제" id="del_resume_rahcv" data-which="rahcv">
+                                            <input type="button" class="btn btn-primary" value="추가" id="add_resume_rahcv" data-which="rahcv">
+                                        </div>
                                     </div>
 
-                                    <div class="subContSec">
+                                    <div class="">
                                         <div class="row" style="margin-bottom: 10px">
                                             <div class="col-md-10">Professional Skills</div>
                                         </div>
-                                        <div class="memberJoinBox mt20">
+                                        <div class="resumeJoinBox">
                                             <div class="resumeBox">
-                                                <div>
-                                                    <input type="text" name="rskil_date[]" value="">
-                                                    <input type="text" name="rskil_description[]" value="">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 text-right">
-                                                <input type="button" class="btn btn-default" value="삭제" id="del_resume_rskil">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rskil">
-                                            <div>
-                                        <div>
-                                    </div>
-
-                                    <div class="subContSec">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Professional Skills</div>
-                                        </div>
-                                        <div class="memberJoinBox mt20">
-                                            <div class="resumeBox">
-                                                <div>
-                                                    <div>Language</div>
-                                                    <div>Speak</div>
-                                                    <div>Written</div>
-                                                </div>
-                                                <div class="resume_lang_select">
+                                                <div class="box_content">
                                                     <div>
+                                                        <div class="wid25p resume_activity_box">
+                                                            <input type="text" class="form-control" name="rskil_date[]" value="">
+                                                        </div>
+                                                        <div class="wid70p resume_activity_box">
+                                                            <input type="text" class="form-control" name="rskil_description[]" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 text-right">
+                                            <input type="button" class="btn btn-default" value="삭제" id="del_resume_rskil" data-which="rskil">
+                                            <input type="button" class="btn btn-primary" value="추가" id="add_resume_rskil" data-which="rskil">
+                                        </div>
+                                    </div>
+
+                                    <div class="">
+                                        <div class="row" style="margin-bottom: 10px">
+                                            <div class="col-md-10">Languange Skills</div>
+                                        </div>
+                                        <div class="resumeJoinBox">
+                                            <div class="resumeBox_label" >
+                                                <div class="resume_activity_box wid25p">Language</div>
+                                                <div class="resume_activity_box wid25p">Speak</div>
+                                                <div class="resume_activity_box wid25p">Written</div>
+                                            </div>
+                                            <div class="resumeBox">
+                                                <div class="box_content">
+                                                    <div class="resume_activity_box wid25p">
                                                         <input type="text" name="rlang_name[]" value="">
                                                     </div>
-                                                    <div>
-                                                        <select>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_speaking[]">
                                                             <option value="0" selected>BASIC</option>
-                                                            <option value="1" selected>GOOD</option>
-                                                            <option value="2" selected>EXCELLENT</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
                                                         </select>
                                                     </div>
-                                                    <div>
-                                                        <option value="0" selected>BASIC</option>
-                                                        <option value="1" selected>GOOD</option>
-                                                        <option value="2" selected>EXCELLENT</option>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_writing[]">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
                                                     </div>
-                                                <div>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-12 text-right">
-                                                <input type="button" class="btn btn-default" value="삭제" id="del_resume_rskil">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rskil">
-                                            <div>
-                                        <div>
+                                        </div>
+                                        <div class="col-sm-12 text-right">
+                                            <input type="button" class="btn btn-default" value="삭제" id="del_resume_lskil" data-which="lskil">
+                                            <input type="button" class="btn btn-primary" value="추가" id="add_resume_lskil" data-which="lskil">
+                                        </div>
                                     </div>
 
-                                    <div class="subContSec">
+                                    <div class="">
                                         <div class="row" style="margin-bottom: 10px">
                                             <div class="col-md-10">Computer Skills</div>
                                         </div>
-                                        <div class="memberJoinBox mt20">
+                                        <div class="resumeJoinBox">
                                             <input type="text" name="resume_user_computer_skill" value="">
-                                        <div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
 
-                            <div class="subContSec">
+                            <div class="">
                                 <div class="col-md-12 text-right">
                                     <input type="button" id="recruit_apply_create" name="recruit_apply_create" class="btn btn-s btn-primary" value="지원하기">
                                         <a href="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $RECRUIT->REC_SEQ?>" class="btn btn-s btn-default">취소하기</a>
@@ -471,6 +460,87 @@
             element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
             element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
         }
+
+        $("#resume_user_dob, #resume_user_god").datepicker({
+            dateFormat : "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            closeText:'취소',
+            //minDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+            showButtonPanel:true,
+            beforeShow: function(input) {
+                var i_offset= $(input).offset(); //클릭된 input의 위치값 체크
+
+                setTimeout(function(){
+                    $('#ui-datepicker-div').css({'top':i_offset.top, 'bottom':'', 'left':i_offset.left});      //datepicker의 div의 포지션을 강제로 input 위치에 그리고 좌측은 모바일이여서 작기때문에 무조건 10px에 놓았다.
+                })
+            }       
+        });
+
+        $("#del_resume_edu, #del_resume_wexp, #del_resume_ract, #del_resume_rahcv, #del_resume_rskil, #del_resume_lskil").on("click", function(){
+            const Flag = $(this).data("which");
+            console.log(Flag);
+            if(Flag =="lskil"){
+
+            }else{
+                const Frame = $(this).closest("div")[0].previousElementSibling;
+                const Box = $(Frame).find(".resumeBox");
+                console.log(Box);
+                const Count = $(Box).find(".box_content").length;
+                console.log(Count);
+                const LastOne = $(Box).find(".box_content")[Count-1];
+                $(LastOne).remove();
+                $(Frame).height($(Frame).height()-45);
+            }
+            
+        })
+
+        $("#add_resume_edu, #add_resume_wexp, #add_resume_ract, #add_resume_rahcv, #add_resume_rskil, #add_resume_lskil").on("click", function(){
+            const Flag = $(this).data("which");
+            console.log(Flag);
+
+            const Frame = $(this).closest("div")[0].previousElementSibling;
+            console.log(Frame);
+            const Box = $(Frame).find(".resumeBox");
+            console.log(Box);
+            let html = "";
+            if(Flag =="lskil"){
+                const Box = $(this).closest("div")[0].previousElementSibling;
+                html = `<div class="box_content">
+                                <div class="resume_activity_box wid25p">
+                                    <input type="text" name="lskil_name[]" value="">
+                                </div>
+                                <div class="resume_activity_box wid25p">
+                                    <select name="lskil_speaking[]">
+                                        <option value="0" selected>BASIC</option>
+                                        <option value="1" >GOOD</option>
+                                        <option value="2" >EXCELLENT</option>
+                                    </select>
+                                </div>
+                                <div class="resume_activity_box wid25p">
+                                    <select name="lskil_writing[]">
+                                        <option value="0" selected>BASIC</option>
+                                        <option value="1" >GOOD</option>
+                                        <option value="2" >EXCELLENT</option>
+                                    </select>
+                                </div>
+                            </div>`;
+                $(Frame).height($(Frame).height()+45);
+            }else{
+                html = `<div class="box_content">
+                                <div class="wid25p resume_activity_box">
+                                    <input type="text" class="form-control" name="${Flag}_date[]" value="">
+                                </div>
+                                <div class="wid70p resume_activity_box">
+                                    <input type="text" class="form-control" name="${Flag}_description[]" value="">
+                                </div>
+                            </div>`;
+                $(Frame).height($(Frame).height()+45);
+            }
+            $(Box).append(html);
+            
+        })
+        
     });
 </script>
 

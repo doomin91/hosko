@@ -87,11 +87,20 @@ html .ui-button.ui-state-disabled:active {
 .wid80p {
   width: 80% !important;
 }
+.wid75p {
+  width: 75% !important;
+}
+.wid70p {
+  width: 70% !important;
+}
 .wid50p {
   width: 50% !important;
 }
 .wid30p {
   width: 30% !important;
+}
+.wid25p {
+  width: 25% !important;
 }
 .modal {
   z-index: 1050 !important;
