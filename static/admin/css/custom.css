@@ -84,6 +84,12 @@ html .ui-button.ui-state-disabled:active {
 .wid90p {
   width: 90% !important;
 }
+.wid80p {
+  width: 80% !important;
+}
+.wid50p {
+  width: 50% !important;
+}
 .wid30p {
   width: 30% !important;
 }

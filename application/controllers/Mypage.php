@@ -38,4 +38,10 @@ class Mypage extends CI_Controller {
         $this->load->view("/mypage/member-edit");
     }
 
+	function memberResumeRegist(){
+
+
+		$this->load->view("/mypage/member-resume_register");
+	}
+
 }

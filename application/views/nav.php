@@ -64,8 +64,8 @@
                 <li>
                     <a href="#">마이페이지</a>
                     <ul class="sub">
-                        <li><a href="#">정보 관리</a></li>
-                        <li><a href="#">이력서 작성</a></li>
+                        <li><a href="/mypage/memberEdit">정보 관리</a></li>
+                        <li><a href="/mypage/memberResumeRegist">이력서 작성</a></li>
                         <li><a href="#">제출서류 현황</a></li>
                         <li><a href="#">관심프로그램</a></li>
                         <li><a href="#">지원현황관리</a></li>
