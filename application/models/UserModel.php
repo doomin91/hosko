@@ -378,12 +378,41 @@ class UserModel extends CI_Model{
 	}
 
 	// 이력서 부분
+	public function getUserResume($user_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME.USER_SEQ", $user_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME")->row();
+	}
 	public function createUserResume($insertArr){
 		return $this->db->insert("TBL_HOSKO_USER_RESUME", $insertArr);
 	}
 	public function updateUserResume($updateArr, $resume_seq){
 		$this->db->where("TBL_HOSKO_USER_RESUME.RESUME_SEQ", $resume_seq);
 		return $this->db->update("TBL_HOSKO_USER_RESUME", $updateArr);
+	}
+
+	public function getUserResumeEducation($resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_EDUCATION.RESUME_SEQ", $resume_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_EDUCATION")->result();
+	}
+	public function getUserResumeWorkExp($resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE.RESUME_SEQ", $resume_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE")->result();
+	}
+	public function getUserResumeActivity($resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_ACTIVITY.RESUME_SEQ", $resume_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_ACTIVITY")->result();
+	}
+	public function getUserResumeAchiv($resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_ACHIEVEMENT.RESUME_SEQ", $resume_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_ACHIEVEMENT")->result();
+	}
+	public function getUserResumeSkill($resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_SKILL.RESUME_SEQ", $resume_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_SKILL")->result();
+	}
+	public function getUserResumeLanguage($resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_LANGUAGE.RESUME_SEQ", $resume_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_LANGUAGE")->result();
 	}
 
 	public function createUserResumeEducation($insertArr){
@@ -404,4 +433,31 @@ class UserModel extends CI_Model{
 	public function createUserResumeLanguage($insertArr){
 		return $this->db->insert("TBL_HOSKO_USER_RESUME_LANGUAGE", $insertArr);
 	}
+
+	public function updateUserResumeEducation($updateArr, $seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_EDUCATION.SEQ", $seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_EDUCATION", $updateArr);
+	}
+	public function updateUserResumeWorkExp($updateArr, $seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE.SEQ", $seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE", $updateArr);
+	}
+	public function updateUserResumeActivity($updateArr, $seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_ACTIVITY.SEQ", $seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_ACTIVITY", $updateArr);
+	}
+	public function updateUserResumeAchiv($updateArr, $seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_ACHIEVEMENT.SEQ", $seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_ACHIEVEMENT", $updateArr);
+	}
+	public function updateUserResumeSkill($updateArr, $seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_SKILL.SEQ", $seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_SKILL", $updateArr);
+	}
+	public function updateUserResumeLanguage($updateArr, $seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_LANGUAGE.SEQ", $seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_LANGUAGE", $updateArr);
+	}
+
+	
 }
