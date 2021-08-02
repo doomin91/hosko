@@ -313,7 +313,21 @@ class RecruitModel extends CI_Model{
     }
 
     // 포지션 공고
-    public function getRecruitInternShipList(){
+    public function getRecruitInternShipList($whereArr){
+        // print_r($whereArr);
+        if($whereArr["searchString"] != "" && $whereArr["searchString"] != ""){
+            $this->db->group_start();
+            if($whereArr["searchField"] == "title" && $whereArr["searchString"] != ""){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
+            }else if($whereArr["searchField"] == "writer" && $whereArr["searchString"] != ""){
+                $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["searchString"]);
+            }else if($whereArr["searchField"] == "all" && $whereArr["searchString"] != ""){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
+                $this->db->or_like("TBL_HOSKO_USER.USER_NAME", $whereArr["searchString"]);
+            }
+            $this->db->group_end();
+        }
+
         $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", 1);
         $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
 
@@ -323,21 +337,51 @@ class RecruitModel extends CI_Model{
         
         $this->db->group_by("TBL_HOSKO_RECRUIT.REC_SEQ");
         $this->db->order_by("TBL_HOSKO_RECRUIT.REC_SEQ");
+        $this->db->limit($whereArr["limit"], $whereArr["start"]);
         $this->db->select("TBL_HOSKO_RECRUIT.*");
         return $this->db->get("TBL_HOSKO_RECRUIT")->result();
     }
 
-    public function getRecruitInternShipListCount(){
+    public function getRecruitInternShipListCount($whereArr){
+        if($whereArr["searchString"] != "" && $whereArr["searchString"] != ""){
+            $this->db->group_start();
+            if($whereArr["searchField"] == "title" && $whereArr["searchString"] != ""){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
+            }else if($whereArr["searchField"] == "writer" && $whereArr["searchString"] != ""){
+                $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["searchString"]);
+            }else if($whereArr["searchField"] == "all" && $whereArr["searchString"] != ""){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
+                $this->db->or_like("TBL_HOSKO_USER.USER_NAME", $whereArr["searchString"]);
+            }
+            $this->db->group_end();
+        }
+
         $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", 1);
         $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
 
+        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ");
+
         $this->db->select("TBL_HOSKO_RECRUIT.REC_SEQ");
         $this->db->distinct();
+        $this->db->limit($whereArr["limit"], $whereArr["start"]);
         $this->db->from("TBL_HOSKO_RECRUIT");
         return $this->db->count_All_results();
     }
 
-    public function getRecruitJobList(){
+    public function getRecruitJobList($whereArr){
+        if($whereArr["searchString"] != "" && $whereArr["searchString"] != ""){
+            $this->db->group_start();
+            if($whereArr["searchField"] == "title" && $whereArr["searchString"] != ""){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
+            }else if($whereArr["searchField"] == "writer" && $whereArr["searchString"] != ""){
+                $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["searchString"]);
+            }else if($whereArr["searchField"] == "all" && $whereArr["searchString"] != ""){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
+                $this->db->or_like("TBL_HOSKO_USER.USER_NAME", $whereArr["searchString"]);
+            }
+            $this->db->group_end();
+        }
+
         $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", 2);
         $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
 
@@ -348,15 +392,32 @@ class RecruitModel extends CI_Model{
         $this->db->group_by("TBL_HOSKO_RECRUIT.REC_SEQ");
         $this->db->order_by("TBL_HOSKO_RECRUIT.REC_SEQ");
         $this->db->select("TBL_HOSKO_RECRUIT.*");
+        $this->db->limit($whereArr["limit"], $whereArr["start"]);
         return $this->db->get("TBL_HOSKO_RECRUIT")->result();
     }
 
-    public function getRecruitJobListCount(){
+    public function getRecruitJobListCount($whereArr){
+        if($whereArr["searchString"] != "" && $whereArr["searchString"] != ""){
+            $this->db->group_start();
+            if($whereArr["searchField"] == "title" && $whereArr["searchString"] != ""){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
+            }else if($whereArr["searchField"] == "writer" && $whereArr["searchString"] != ""){
+                $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["searchString"]);
+            }else if($whereArr["searchField"] == "all" && $whereArr["searchString"] != ""){
+                $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
+                $this->db->or_like("TBL_HOSKO_USER.USER_NAME", $whereArr["searchString"]);
+            }
+            $this->db->group_end();
+        }
+
         $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", 2);
         $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
 
+        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ");
+
         $this->db->select("TBL_HOSKO_RECRUIT.REC_SEQ");
         $this->db->distinct();
+        $this->db->limit($whereArr["limit"], $whereArr["start"]);
         $this->db->from("TBL_HOSKO_RECRUIT");
         return $this->db->count_All_results();
     }

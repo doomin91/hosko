@@ -35,7 +35,7 @@
                                 <div class="subContSec">
                                     <div class="row mb20">
                                         <div class="boardTotallist clearfix mb20">
-                                            <p>총 88개의 글이 등록 되어있습니다.</p>
+                                            <p>총 <?php echo $REC_LIST_COUNT?>개의 글이 등록 되어있습니다.</p>
                                         </div>                                        
                                     </div>                                    
                                     <table class="tableCont">
@@ -71,30 +71,21 @@
                                         </tbody>
                                     </table>
 
-
-                                    <div class="pagination">
-                                        <a href="/" class="btn_prev"><span>맨처음</span></a>
-                                        <span>1</span>
-                                        <a href="/">2</a>
-                                        <a href="/">3</a>
-                                        <a href="/">4</a>
-                                        <a href="/">5</a>
-                                        <a href="/" class="btn_next"><span>맨마지막</span></a>
-                                    </div>
-
-
+                                    <?php echo $pagination; ?>
 
                                     <div class="boardSearchWrap">
-                                        <form name="" id="" method="">
-                                        <input type="hidden" name="page" value="1">
-                                        <input type="hidden" name="num" value="">
+                                        <form name="boardSearchForm" id="boardSearchForm" method="get">
+                                        <input type="hidden" name="ctg" value="<?php echo $CATEGORY ?>">
+                                        <!-- <input type="hidden" name="num" value=""> -->
 
                                             <div class="boardSearch">
-                                                <select name="">
-                                                    <option value="all" selected="selected">전체</option>
+                                                <select name="search_field">
+                                                    <option value="all" <?php echo $searchField == "all" ?  "selected" : "" ?>>전체</option>
+                                                    <option value="title" <?php echo $searchField == "title" ?  "selected" : "" ?>>제목</option>
+                                                    <option value="writer" <?php echo $searchField == "writer" ?  "selected" : "" ?>>글쓴이</option>
                                                 </select>
                                                 <div class="inputSearch">
-                                                    <input type="text" name="" value="" maxlength="50">
+                                                    <input type="text" name="search_string" value="<?php echo $searchString; ?>" maxlength="50">
                                                     <input type="submit" value="">
                                                 </div>
                                             </div>

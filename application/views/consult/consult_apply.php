@@ -43,7 +43,7 @@
                                         <div class="row mb20">
                                             <div class="col-md-8 TableTitle">관심 프로그램 목록</div>
                                             <div class="col-md-4 tar">
-                                            <button class="subBtn01" id="consult_position_apply">포지션 지원하기</button>
+                                            <!-- <button class="subBtn01" id="consult_position_apply">포지션 지원하기</button> -->
                                             </div>
                                         </div>
 
@@ -70,7 +70,7 @@
                                             <?php foreach($MY_INTEREST_APPLIES as $MY_INTEREST_APPLY):?>
                                                 <tr>
                                                     <td><?php echo $MY_INTEREST_APPLY->REC_SEQ ?></td>
-                                                    <td><span class="thumImg"><!--<img src="">--></span><a class="fontcb" href ="/recruit/recruit_view/<?php echo $MY_INTEREST_APPLY->REC_CONTENTS_CATEGORY?>/<?php echo $MY_INTEREST_APPLY->REC_SEQ?>"><?php echo $MY_INTEREST_APPLY->REC_TITLE ?></a></td>
+                                                    <td><span class="thumImg"><img src="<?php echo $MY_INTEREST_APPLY->REC_THUMBNAIL?>"></span><a class="fontcb" href ="/recruit/recruit_view/<?php echo $MY_INTEREST_APPLY->REC_CONTENTS_CATEGORY?>/<?php echo $MY_INTEREST_APPLY->REC_SEQ?>"><?php echo $MY_INTEREST_APPLY->REC_TITLE ?></a></td>
                                                     <td><?php echo $MY_INTEREST_APPLY->ADMIN_USER_NAME ?></td>
                                                     <td><!-- <span class="deadlineIcon">마감</span> <span class="recuitIcon">모집중</span> --><?php $MY_INTEREST_APPLY->REC_STATUS==0 ? print("마감") : print("모집중") ?></td>
                                                     <td><?php echo $MY_INTEREST_APPLY->REC_COUNT ?></td>
@@ -86,7 +86,7 @@
                                     <div class="row mb20">
                                         <div class="col-md-12 TableTitle mb20 mt30">지원 프로그램 현황</div>
                                         <div class="boardTotallist clearfix mb20">
-                                            <p>총 88개의 글이 등록 되어있습니다.</p>
+                                            <p>총 <?php echo count($MY_APPLIES)?>개의 글이 등록 되어있습니다.</p>
                                         </div>                                        
                                     </div>
                                     <table class="tableCont">
@@ -104,7 +104,8 @@
                                                 <th>상세보기</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                    
+                                        
                                         <?php $num = 1;
                                             foreach($MY_APPLIES as $MY_APPLY): ?>
                                             <tr>
@@ -115,6 +116,7 @@
                                             </tr>
                                         <?php endforeach?>
                                         </tbody>
+                                        
                                     </table>
                                 </div>
                             </div>

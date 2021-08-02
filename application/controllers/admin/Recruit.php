@@ -375,7 +375,7 @@ class Recruit extends CI_Controller {
 					move_uploaded_file($_FILES["abroad_origin_pic"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/upload/recruit/".$new_name);
 					//array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
 					$file_name = $_FILES["abroad_origin_pic"]["name"];
-					$file_path = "./upload/recruit/".$new_name;
+					$file_path = "/upload/recruit/".$new_name;
 					// print_r($_FILES["apply_attach"]);
 				}
 			}

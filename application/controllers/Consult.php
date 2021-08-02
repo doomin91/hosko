@@ -224,8 +224,8 @@ class Consult extends CI_Controller {
 
     public function apply(){
         // $this->session->userdata("USER_SEQ")
-        $session_data = array("USER_SEQ" => 1);
-		$this->session->set_userdata($session_data);
+        // $session_data = array("USER_SEQ" => 1);
+		// $this->session->set_userdata($session_data);
         $my_applies = $this->RecruitModel->getMyApplies($this->session->userdata("USER_SEQ"));
         $my_interest_applies = $this->RecruitModel->getMyInterestApplies($this->session->userdata("USER_SEQ"));
 
@@ -339,7 +339,7 @@ class Consult extends CI_Controller {
 					move_uploaded_file($_FILES["apply_user_img_edit"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/upload/apply/".$new_name);
 					//array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
 					$file_name = $_FILES["apply_user_img_edit"]["name"];
-					$file_path = "./upload/apply/".$new_name;
+					$file_path = "/upload/apply/".$new_name;
 					// print_r($_FILES["apply_attach"]);
 				}
 			}

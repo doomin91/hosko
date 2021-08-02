@@ -23,35 +23,69 @@ class Recruit extends CI_Controller {
 
         $this->load->helper('url');
         $this->load->helper('form');
+        $this->load->helper('download');
 
         $this->load->library('session');
         $this->load->library('pagination');
+        $this->load->library('customclass');
         $this->load->library('image_lib');
-
-        $this->load->library('CustomClass');
-        //$this->load->library('encrypt');
-        $this->load->helper('download');
 
         $this->load->model("UserModel");
 		$this->load->model("ConsultModel");
         $this->load->model("RecruitModel");
-
     }
 
     public function index(){
         $CATEGORY = isset($_GET["ctg"]) ? $_GET["ctg"] : 1;
 
-        if($CATEGORY == 1){
-            $REC_LIST = $this->RecruitModel->getRecruitInternShipList();
-            $REC_LIST_COUNT = $this->RecruitModel->getRecruitInternShipListCount();
-        }else if( $CATEGORY == 2){
-            $REC_LIST = $this->RecruitModel->getRecruitJobList();
-            $REC_LIST_COUNT = $this->RecruitModel->getRecruitJobListCount();
+        $limit = 10;
+        $nowpage = "";
+        // print_r($_GET);
+        if (!isset($_GET["per_page"])){
+            $start = 0;
+        }else{
+            $start = ($_GET["per_page"]-1)*$limit;
+            $nowpage = $_GET["per_page"];
         }
+
+        $searchField = isset($_GET["search_field"]) ? $_GET["search_field"] : "";
+        $searchString = isset($_GET["search_string"]) ? $_GET["search_string"] : "";
+
+        $wheresql = array(
+            "searchField" => $searchField,
+            "searchString" => $searchString,
+            "start" => $start,
+            "limit" => $limit
+        );
+
+        if($CATEGORY == 1){
+            $REC_LIST = $this->RecruitModel->getRecruitInternShipList($wheresql);
+            // print_r($this->db->last_query());
+            $REC_LIST_COUNT = $this->RecruitModel->getRecruitInternShipListCount($wheresql);
+        }else if( $CATEGORY == 2){
+            $REC_LIST = $this->RecruitModel->getRecruitJobList($wheresql);
+            // print_r($this->db->last_query());
+            $REC_LIST_COUNT = $this->RecruitModel->getRecruitJobListCount($wheresql);
+        }
+
+        if ($nowpage != ""){
+            $pagenum = $REC_LIST_COUNT-(($nowpage-1)*$limit);
+        }else{
+            $pagenum = $REC_LIST_COUNT;
+        }
+
+        $queryString = "&search_field=". $searchField. "&search_string=".$searchString;
+        $pagination = $this->customclass->front_pagenavi("/recruit?ctg=".$CATEGORY.$queryString, $REC_LIST_COUNT, $limit, 3, $nowpage);
 
         $DATA["CATEGORY"] = $CATEGORY;
         $DATA["REC_LIST"] = $REC_LIST;
         $DATA["REC_LIST_COUNT"] = $REC_LIST_COUNT;
+        $DATA["searchField"] = $searchField;
+        $DATA["searchString"] = $searchString;
+        $DATA["pagination"] = $pagination;
+        $DATA["pagenum"] = $pagenum;
+        $DATA["start"] = $start;
+        $DATA["limit"] = $limit;
 
         $this->load->view("recruit/recruit_list", $DATA);
     }
