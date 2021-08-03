@@ -40,6 +40,7 @@
 		  <div class="main">
             <input type='hidden' id='ctg2' name='ctg2' value="<?php echo $ctg2?>">
             <input type='hidden' id='ctg3' name='ctg3' value="<?php echo $ctg3?>">
+            <input type='hidden' id='totalCount' name='totalCount' value="<?php echo $listCountAll?>">
             <form name="abroadSearchForm" id="abroadSearchForm" class="form-horizontal" method="get" role="form">
             <div class="row">
 				<div class="col-md-6">
@@ -123,7 +124,7 @@
 										<th class="col-sm-2">쿠폰적용</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-3">
-                                                <select name="coupon" class="chosen-select chosen-transparent form-control abroad_apply_coupon common_select search_field">
+                                                <select name="coupon" class="form-control common_select search_field">
                                                     <option value=""  <?php if($coupon == "") echo "selected"; ?>>:: 선택 ::</option>
                                                     <option value="Y" <?php if($coupon == "Y") echo "selected"; ?>>예</option>
                                                     <option value="N" <?php if($coupon == "N") echo "selected"; ?>>아니오</option>
@@ -200,7 +201,7 @@
 							<tbody>
 						<?php
 							if (!empty($lists)) :
-								foreach ($lists as $list) :
+								foreach ($lists as $key => $list) : 
 									
 						?>
 								<tr>
@@ -210,7 +211,7 @@
                                     <td class="text-center"><a href="/admin/recruit/recruit_abroad_edit/<?php echo $list->REC_SEQ ?>"><?php echo $list->REC_TITLE ?></a></td>
                                     <td class="text-center"><?php echo $list->REC_PAY ?></td>
                                     <td class="text-center"><?php echo $list->REC_COUNT ?></td>
-                                    <td class="text-center"><?php echo "진열순서" ?></td>
+                                    <td class="text-center"><span class="recruit_abroad_display_up" data-prev="<?php $key>0 ? print($lists[$key-1]->REC_SEQ) : "" ?>" data-seq="<?php echo $list->REC_SEQ?>" data-order="<?php echo $list->REC_DISPLAY_ORDER?>"> 위 </span><span class="recruit_abroad_display_down" data-after="<?php count($lists)-1>$key ? print($lists[$key+1]->REC_SEQ) : "" ?>" data-seq="<?php echo $list->REC_SEQ?>" data-order="<?php echo $list->REC_DISPLAY_ORDER?>"> 아래 </span></td>
                                     <td class="text-center">
                                         <a href ="/admin/recruit/recruit_abroad_edit/<?php echo $list->REC_SEQ?>" class="btn btn-xs btn-default">수정</a>
                                         <input type="button" data-seq="<?php echo $list->REC_SEQ?>" class="btn btn-xs btn-danger recruit_abroad_del" value="삭제">
@@ -598,9 +599,75 @@
                 }                
             });
 
-            $("#apply_excel_save").on("click", function(){
-                alert("엑셀 따운");
-            });
+            $(".recruit_abroad_display_up").on("click", function(){
+                const RecruitSeq = $(this).data("seq");
+                const RecruitDisplayOrder = $(this).data("order");
+                const RecruitPrevSeq = $(this).data("prev");
+
+                if(RecruitDisplayOrder == 1){
+                    alert("가장 상단의 컨텐츠입니다");
+                    return false;
+                }
+                // console.log(RecruitSeq);
+                // return 0;
+                $.ajax({
+                        url : "/admin/recruit/recruit_abroad_display_up",
+                        type : "post",
+                        data : {
+                            "RecruitSeq" : RecruitSeq,
+                            "RecruitDisplayOrder" : RecruitDisplayOrder,
+                            "RecruitPrevSeq" : RecruitPrevSeq
+                        },
+                        dataType : "json",
+                        success : function(resultMsg){
+                            if(resultMsg.code == 200){
+                                location.reload();
+                            }else{
+                                alert(resultMsg.msg)
+                            }
+                        },
+                        error : function(e){
+                            console.log(e.responseText);
+                            // console.log(Object.values(e.responseText));
+                        }
+                    });
+            })
+
+            $(".recruit_abroad_display_down").on("click", function(){
+                const RecruitSeq = $(this).data("seq");
+                const RecruitDisplayOrder = $(this).data("order");
+                const TotalCount = $("input[name=totalCount]").val();
+                const RecruitAfterSeq = $(this).data("after");
+                if(RecruitDisplayOrder == TotalCount){
+                    alert("가장 하단의 컨텐츠입니다.");
+                    return false;
+                }
+                
+                // console.log(RecruitDisplayOrder);
+                // console.log(TotalCount);
+                // return 0;
+                $.ajax({
+                        url : "/admin/recruit/recruit_abroad_display_down",
+                        type : "post",
+                        data : {
+                            "RecruitSeq" : RecruitSeq,
+                            "RecruitDisplayOrder" : RecruitDisplayOrder,
+                            "RecruitAfterSeq" : RecruitAfterSeq
+                        },
+                        dataType : "json",
+                        success : function(resultMsg){
+                            if(resultMsg.code == 200){
+                                location.reload();
+                            }else{
+                                alert(resultMsg.msg)
+                            }
+                        },
+                        error : function(e){
+                            console.log(e.responseText);
+                            // console.log(Object.values(e.responseText));
+                        }
+                    });
+            })
 
         });
     </script>
@@ -617,15 +684,6 @@
         }
         #abroad_search{
             margin-left: -20px !important;
-        }
-
-        #apply_search_text{
-            border-radius:5px; 
-            margin-right: 5px;
-            width: 20%;
-            padding: 6px;
-            border:0; 
-            background-color:rgba(0, 0, 0, 0.3)
         }
 
         #apply_search{

@@ -614,8 +614,24 @@ class Mypage extends CI_Controller {
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "이력서 수정중 문제가 생겼습니다."));
 		}
+	}
 
+	public function memberResumeManage(){
+		$my_resume = $this->UserModel->getAdminUserResume($this->session->userdata("USER_SEQ"));
+		$DATA = array();
 
+		if($my_resume){
+			// print_r($my_resume);
+			$DATA["RESUME_INFO"] = $my_resume;
+			$DATA["RESUME_EDU"] = $this->UserModel->getUserResumeEducation($my_resume->RESUME_SEQ);
+			$DATA["RESUME_WEXP"] = $this->UserModel->getUserResumeWorkExp($my_resume->RESUME_SEQ);
+			$DATA["RESUME_ACT"] = $this->UserModel->getUserResumeActivity($my_resume->RESUME_SEQ);
+			$DATA["RESUME_ACHV"] = $this->UserModel->getUserResumeAchiv($my_resume->RESUME_SEQ);
+			$DATA["RESUME_SKIL"] = $this->UserModel->getUserResumeSkill($my_resume->RESUME_SEQ);
+			$DATA["RESUME_LANG"] = $this->UserModel->getUserResumeLanguage($my_resume->RESUME_SEQ);
+		}
+
+		$this->load->view("/mypage/member-resume_manage", $DATA);
 	}
 
 }

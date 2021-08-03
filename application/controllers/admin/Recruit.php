@@ -315,6 +315,8 @@ class Recruit extends CI_Controller {
 
 		$MANAGER = $this->BasicModel->getManagerById($REC_ADMIN_ID);
 
+		$DISPLAY_ORDER = $this->RecruitModel->getRecruitAbroadListCountAll();
+
 		$REC_ADMIN_SEQ = isset($MANAGER->ADMIN_SEQ) ? $MANAGER->ADMIN_SEQ : "";
 
 		$insertArr = array(
@@ -336,7 +338,8 @@ class Recruit extends CI_Controller {
 			"REC_LODGIN" => $REC_LODGIN,
 			"REC_WELFARE" => $REC_WELFARE,
 			"REC_VISA" => $REC_VISA,
-			"REC_CONTENTS" => $REC_CONTENTS
+			"REC_CONTENTS" => $REC_CONTENTS,
+			"REC_DISPLAY_ORDER" => $DISPLAY_ORDER+1
 		);
 
 		// print_r($insertArr);
@@ -375,7 +378,7 @@ class Recruit extends CI_Controller {
 					move_uploaded_file($_FILES["abroad_origin_pic"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/upload/recruit/".$new_name);
 					//array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
 					$file_name = $_FILES["abroad_origin_pic"]["name"];
-					$file_path = "/upload/recruit/".$new_name;
+					$file_path = "./upload/recruit/".$new_name;
 					// print_r($_FILES["apply_attach"]);
 				}
 			}
@@ -401,6 +404,7 @@ class Recruit extends CI_Controller {
 
 				// $this->load->library('image_lib', $config);
 				$this->image_lib->initialize($config);
+				// print_r($config);
 
 				if($this->image_lib->resize() == false){
 					echo json_encode(array("code" => "202", "error" => $this->image_lib->display_errors()));
@@ -587,6 +591,7 @@ class Recruit extends CI_Controller {
 
 	public function recruit_resume_view($resume_seq){
 		$DATA["RESUME_INFO"] = $this->RecruitModel->getRecruitResumeInfo($resume_seq);
+		$DATA["RESUME_EDUCATION"] = $this->RecruitModel->getRecruitResumeEducation($resume_seq);
 		$DATA["RESUME_AHIEVEMENT"] = $this->RecruitModel->getRecruitResumeAhvmnt($resume_seq);
 		$DATA["RESUME_ACTIVITY"] = $this->RecruitModel->getRecruitResumeActivity($resume_seq);
 		$DATA["RESUME_LANGUAGE"] = $this->RecruitModel->getRecruitResumeLanguage($resume_seq);
@@ -596,8 +601,21 @@ class Recruit extends CI_Controller {
 		$this->load->view("./admin/recruit/recruit-resume_view", $DATA);
 	}
 
+	public function recruit_resume_admin_edit($resume_seq){
+		$DATA["RESUME_INFO"] = $this->RecruitModel->getRecruitResumeInfo($resume_seq);
+		$DATA["RESUME_EDUCATION"] = $this->RecruitModel->getRecruitResumeEducation($resume_seq);
+		$DATA["RESUME_AHIEVEMENT"] = $this->RecruitModel->getRecruitResumeAhvmnt($resume_seq);
+		$DATA["RESUME_ACTIVITY"] = $this->RecruitModel->getRecruitResumeActivity($resume_seq);
+		$DATA["RESUME_LANGUAGE"] = $this->RecruitModel->getRecruitResumeLanguage($resume_seq);
+		$DATA["RESUME_SKILL"] = $this->RecruitModel->getRecruitResumeSkill($resume_seq);
+		$DATA["RESUME_WORKING_EXP"] = $this->RecruitModel->getRecruitResumeWokringExp($resume_seq);
+        
+		$this->load->view("./admin/recruit/recruit-resume_admin_edit", $DATA);
+	}
+
 	public function recruit_resume_view_print($resume_seq){
 		$DATA["RESUME_INFO"] = $this->RecruitModel->getRecruitResumeInfo($resume_seq);
+		$DATA["RESUME_EDUCATION"] = $this->RecruitModel->getRecruitResumeEducation($resume_seq);
 		$DATA["RESUME_AHIEVEMENT"] = $this->RecruitModel->getRecruitResumeAhvmnt($resume_seq);
 		$DATA["RESUME_ACTIVITY"] = $this->RecruitModel->getRecruitResumeActivity($resume_seq);
 		$DATA["RESUME_LANGUAGE"] = $this->RecruitModel->getRecruitResumeLanguage($resume_seq);
@@ -642,4 +660,47 @@ class Recruit extends CI_Controller {
 			echo json_encode(array("code" => "202", "msg" => $logs));
 		}
 	}
+
+	public function recruit_abroad_display_up(){
+		$RecruitSeq = isset($_POST["RecruitSeq"]) ? $_POST["RecruitSeq"] : "";
+		$RecruitDisplayOrder = isset($_POST["RecruitDisplayOrder"]) ? $_POST["RecruitDisplayOrder"] : "";
+		$RecruitPrevSeq = isset($_POST["RecruitPrevSeq"]) ? $_POST["RecruitPrevSeq"] : "";
+
+		$current = $this->RecruitModel->getRecruitAbroad($RecruitSeq);
+		$prev = $this->RecruitModel->getRecruitAbroad($RecruitPrevSeq);
+
+		$currentOrder = $current->REC_DISPLAY_ORDER;
+		$prevOrder = $prev->REC_DISPLAY_ORDER;
+
+		$result = $this->RecruitModel->updateRecruitAbroad($RecruitSeq, array("REC_DISPLAY_ORDER" => $prevOrder));
+		$result = $this->RecruitModel->updateRecruitAbroad($RecruitPrevSeq, array("REC_DISPLAY_ORDER" => $currentOrder));
+
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "다시 시도해주세요"));
+		}
+	}
+
+	public function recruit_abroad_display_down(){
+		$RecruitSeq = isset($_POST["RecruitSeq"]) ? $_POST["RecruitSeq"] : "";
+		$RecruitDisplayOrder = isset($_POST["RecruitDisplayOrder"]) ? $_POST["RecruitDisplayOrder"] : "";
+		$RecruitAfterSeq = isset($_POST["RecruitAfterSeq"]) ? $_POST["RecruitAfterSeq"] : "";
+
+		$current = $this->RecruitModel->getRecruitAbroad($RecruitSeq);
+		$after = $this->RecruitModel->getRecruitAbroad($RecruitAfterSeq);
+
+		$currentOrder = $current->REC_DISPLAY_ORDER;
+		$afterOrder = $after->REC_DISPLAY_ORDER;
+
+		$result = $this->RecruitModel->updateRecruitAbroad($RecruitSeq, array("REC_DISPLAY_ORDER" => $afterOrder));
+		$result = $this->RecruitModel->updateRecruitAbroad($RecruitAfterSeq, array("REC_DISPLAY_ORDER" => $currentOrder));
+
+		if ($result == true){
+			echo json_encode(array("code" => "200"));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "다시 시도해주세요"));
+		}
+	}
 }
+

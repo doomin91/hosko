@@ -382,6 +382,10 @@ class UserModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_USER_RESUME.USER_SEQ", $user_seq);
 		return $this->db->get("TBL_HOSKO_USER_RESUME")->row();
 	}
+	public function getAdminUserResume($user_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_ADMIN.USER_SEQ", $user_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_ADMIN")->row();
+	}
 	public function createUserResume($insertArr){
 		return $this->db->insert("TBL_HOSKO_USER_RESUME", $insertArr);
 	}
@@ -432,6 +436,50 @@ class UserModel extends CI_Model{
 	}
 	public function createUserResumeLanguage($insertArr){
 		return $this->db->insert("TBL_HOSKO_USER_RESUME_LANGUAGE", $insertArr);
+	}
+
+	public function getAdminUserResumeEducation($resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_EDUCATION_ADMIN.RESUME_SEQ", $resume_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_EDUCATION_ADMIN")->result();
+	}
+	public function getAdminUserResumeWorkExp($resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE_ADMIN.RESUME_SEQ", $resume_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE_ADMIN")->result();
+	}
+	public function getAdminUserResumeActivity($resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_ACTIVITY_ADMIN.RESUME_SEQ", $resume_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_ACTIVITY_ADMIN")->result();
+	}
+	public function getAdminUserResumeAchiv($resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_ACHIEVEMENT_ADMIN.RESUME_SEQ", $resume_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_ACHIEVEMENT_ADMIN")->result();
+	}
+	public function getAdminUserResumeSkill($resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_SKILL_ADMIN.RESUME_SEQ", $resume_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_SKILL_ADMIN")->result();
+	}
+	public function getAdminUserResumeLanguage($resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_LANGUAGE_ADMIN.RESUME_SEQ", $resume_seq);
+		return $this->db->get("TBL_HOSKO_USER_RESUME_LANGUAGE_ADMIN")->result();
+	}
+
+	public function createAdminUserResumeEducation($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_EDUCATION_ADMIN", $insertArr);
+	}
+	public function createAdminUserResumeWorkExp($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE_ADMIN", $insertArr);
+	}
+	public function createAdminUserResumeActivity($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_ACTIVITY_ADMIN", $insertArr);
+	}
+	public function createAdminUserResumeAchiv($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_ACHIEVEMENT_ADMIN", $insertArr);
+	}
+	public function createAdminUserResumeSkill($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_SKILL_ADMIN", $insertArr);
+	}
+	public function createAdminUserResumeLanguage($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_LANGUAGE_ADMIN", $insertArr);
 	}
 
 	public function updateUserResumeEducation($updateArr, $seq){

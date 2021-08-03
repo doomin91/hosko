@@ -133,3 +133,30 @@ html .ui-button.ui-state-disabled:active {
   padding-top: 10px;
   display: block;
 }
+
+/** 이력서 **/
+.resume_activity_box {
+  float: left;
+  margin-left: 5px;
+}
+
+.resumeJoinBox {
+  position: relative;
+  width: 100%;
+  height: 85px;
+  border: 1px solid #e5e5e5;
+  padding: 25px 20px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+.resumeJoinBoxWider {
+  height: 100px;
+}
+
+.resumeBox_label {
+  margin-bottom: 40px;
+}
+
+.box_content {
+  display: flex;
+}
