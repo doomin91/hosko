@@ -1047,16 +1047,18 @@
             $.each(form_data, function (key, input) {
                 // console.log(input);
                 if(input.value=="" && input.name != "resume_img"){
-                    // alert("값을 넣어주세요");
+                    alert("값을 넣어주세요");
+                    var ip = $(`input[name=${input.name}]`);
+                    $(ip).focus();
                     is_blank = true;
                     return false;
                 }
                 fd.append(input.name, input.value);
             });
             
-            // if(is_blank){
-            //     return false;
-            // }
+            if(is_blank){
+                return false;
+            }
 
             fd.append("redu_seq", JSON.stringify(redu_seq));
             fd.append("redu_date", JSON.stringify(redu_date));
@@ -1181,16 +1183,18 @@
             $.each(form_data, function (key, input) {
                 // console.log(input);
                 if(input.value=="" && input.name != "resume_img"){
-                    // alert("값을 넣어주세요");
+                    alert("값을 넣어주세요");
+                    var ip = $(`input[name=${input.name}]`);
+                    $(ip).focus();
                     is_blank = true;
                     return false;
                 }
                 fd.append(input.name, input.value);
             });
             
-            // if(is_blank){
-            //     return false;
-            // }
+            if(is_blank){
+                return false;
+            }
 
             fd.append("redu_date", JSON.stringify(redu_date));
             fd.append("redu_description", JSON.stringify(redu_description));

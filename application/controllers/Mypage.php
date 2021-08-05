@@ -617,18 +617,18 @@ class Mypage extends CI_Controller {
 	}
 
 	public function memberResumeManage(){
-		$my_resume = $this->UserModel->getAdminUserResume($this->session->userdata("USER_SEQ"));
+		$my_admin_resume = $this->UserModel->getAdminUserResume($this->session->userdata("USER_SEQ"));
 		$DATA = array();
 
-		if($my_resume){
+		if($my_admin_resume){
 			// print_r($my_resume);
-			$DATA["RESUME_INFO"] = $my_resume;
-			$DATA["RESUME_EDU"] = $this->UserModel->getUserResumeEducation($my_resume->RESUME_SEQ);
-			$DATA["RESUME_WEXP"] = $this->UserModel->getUserResumeWorkExp($my_resume->RESUME_SEQ);
-			$DATA["RESUME_ACT"] = $this->UserModel->getUserResumeActivity($my_resume->RESUME_SEQ);
-			$DATA["RESUME_ACHV"] = $this->UserModel->getUserResumeAchiv($my_resume->RESUME_SEQ);
-			$DATA["RESUME_SKIL"] = $this->UserModel->getUserResumeSkill($my_resume->RESUME_SEQ);
-			$DATA["RESUME_LANG"] = $this->UserModel->getUserResumeLanguage($my_resume->RESUME_SEQ);
+			$DATA["RESUME_INFO"] = $my_admin_resume;
+			$DATA["RESUME_EDU"] = $this->UserModel->getUserResumeEducation($my_admin_resume->ADMIN_RESUME_SEQ);
+			$DATA["RESUME_WEXP"] = $this->UserModel->getUserResumeWorkExp($my_admin_resume->ADMIN_RESUME_SEQ);
+			$DATA["RESUME_ACT"] = $this->UserModel->getUserResumeActivity($my_admin_resume->ADMIN_RESUME_SEQ);
+			$DATA["RESUME_ACHV"] = $this->UserModel->getUserResumeAchiv($my_admin_resume->ADMIN_RESUME_SEQ);
+			$DATA["RESUME_SKIL"] = $this->UserModel->getUserResumeSkill($my_admin_resume->ADMIN_RESUME_SEQ);
+			$DATA["RESUME_LANG"] = $this->UserModel->getUserResumeLanguage($my_admin_resume->ADMIN_RESUME_SEQ);
 		}
 
 		$this->load->view("/mypage/member-resume_manage", $DATA);

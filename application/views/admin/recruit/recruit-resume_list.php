@@ -118,7 +118,7 @@
 									
                                     <td class="text-center">
 										<a href ="/admin/recruit/recruit_resume_view/<?php echo $list->RESUME_SEQ?>" class="btn btn-xs btn-default">상세보기</a>
-										<a href ="/admin/recruit/recruit_resume_admin_edit/<?php echo $list->RESUME_SEQ?>" class="btn btn-xs btn-default">첨삭하기</a>
+										<a href ="/admin/recruit/recruit_resume_admin_create/<?php echo $list->RESUME_SEQ?>/<?php echo $list->USER_SEQ?>" class="btn btn-xs btn-default">첨삭하기</a>
 									</td>
 								</tr>
 						<?php

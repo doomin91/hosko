@@ -389,9 +389,16 @@ class UserModel extends CI_Model{
 	public function createUserResume($insertArr){
 		return $this->db->insert("TBL_HOSKO_USER_RESUME", $insertArr);
 	}
+	public function createAdminUserResume($insertArr){
+		return $this->db->insert("TBL_HOSKO_USER_RESUME_ADMIN", $insertArr);
+	}
 	public function updateUserResume($updateArr, $resume_seq){
 		$this->db->where("TBL_HOSKO_USER_RESUME.RESUME_SEQ", $resume_seq);
 		return $this->db->update("TBL_HOSKO_USER_RESUME", $updateArr);
+	}
+	public function updateAdminUserResume($updateArr, $resume_seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_ADMIN.ADMIN_RESUME_SEQ", $resume_seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_ADMIN", $updateArr);
 	}
 
 	public function getUserResumeEducation($resume_seq){
@@ -505,6 +512,30 @@ class UserModel extends CI_Model{
 	public function updateUserResumeLanguage($updateArr, $seq){
 		$this->db->where("TBL_HOSKO_USER_RESUME_LANGUAGE.SEQ", $seq);
 		return $this->db->update("TBL_HOSKO_USER_RESUME_LANGUAGE", $updateArr);
+	}
+	public function updateAdminUserResumeEducation($updateArr, $seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_EDUCATION_ADMIN.SEQ", $seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_EDUCATION_ADMIN", $updateArr);
+	}
+	public function updateAdminUserResumeWorkExp($updateArr, $seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE_ADMIN.SEQ", $seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_WORKING_EXPERIENCE_ADMIN", $updateArr);
+	}
+	public function updateAdminUserResumeActivity($updateArr, $seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_ACTIVITY_ADMIN.SEQ", $seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_ACTIVITY_ADMIN", $updateArr);
+	}
+	public function updateAdminUserResumeAchiv($updateArr, $seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_ACHIEVEMENT_ADMIN.SEQ", $seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_ACHIEVEMENT_ADMIN", $updateArr);
+	}
+	public function updateAdminUserResumeSkill($updateArr, $seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_SKILL_ADMIN.SEQ", $seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_SKILL_ADMIN", $updateArr);
+	}
+	public function updateAdminUserResumeLanguage($updateArr, $seq){
+		$this->db->where("TBL_HOSKO_USER_RESUME_LANGUAGE_ADMIN.SEQ", $seq);
+		return $this->db->update("TBL_HOSKO_USER_RESUME_LANGUAGE_ADMIN", $updateArr);
 	}
 
 	
