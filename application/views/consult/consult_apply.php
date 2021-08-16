@@ -21,13 +21,15 @@
                     <div class="sub_contents">
                         <div class="sub_category">
                             <ul>
-                                <li><a href="/consult/qna">Q&A</a></li>
-                                <li><a href="/consult/online">온라인 상담</a></li>
-                                <li><a href="/consult/offline">방문신청 상담</a></li>
-                                <li class="on"><a href="/consult/apply">포지션ㆍ연수 지원</a></li>
-                                <li><a href="/">설명회 신청</a></li>
+                                <li><a href="/consult/qnaList">Q&A</a></li>
+                                <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
+                                <li><a href="/consult/consult/visitConsult">방문신청 상담</a></li>
+                                <li class="on"><a href="/consult/apply">포지션&연수 지원</a></li>
+                                <li><a href="/consult/presentationList">설명회신청</a></li>
                             </ul>
                         </div>
+
+
 
                         <div class="inner">
                             <div class="subContWrap">

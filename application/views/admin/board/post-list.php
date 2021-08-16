@@ -173,12 +173,6 @@
 									<?php 
 
 										date_default_timezone_set('Asia/Seoul');
-
-                                        if($lt->POST_PARENT_SEQ != $lt->POST_SEQ){
-                                            for($i=1; $i<$lt->POST_DEPTH;$i++){
-                                                echo "ㄴ<label class=\"label label-primary\">re</label>";                                                
-                                            }
-                                        }
 										if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
 											if(time() - strtotime($lt->POST_REG_DATE) < ( 86400 * $BOARD_INFO->BOARD_PERIOD_NEW )){
 												echo "<label class=\"label label-red\">new</label>";												
@@ -191,10 +185,6 @@
 											}
 										}
 										echo $lt->POST_SUBJECT;
-                                        
-                                        if($lt->POST_DEL_YN == "Y"){
-                                            echo "<label class=\"label label-danger\">삭제됨</label>";
-                                        }
 
 										// 비밀글
 										if($lt->POST_SECRET_YN == "Y"){
@@ -212,7 +202,7 @@
 								// 댓글 기능
 								if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
 								<td style="text-align:center;">
-								<?php echo $lt->COMMENTS?>
+								<span class="badge badge-danger"><?php echo $lt->COMMENTS?></span>
 								</td>
 								<?php
 								endif;
@@ -221,7 +211,7 @@
 								<?php 
 								// 추천 표시
 								if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
-								<td style="text-align:center;"><?php ?><?php echo $lt->CNT?></td>
+								<td style="text-align:center;"><i class="fa fa-heart" aria-hidden="true"></i> <?php ?><?php echo $lt->CNT?></td>
 								<?php endif;?>
 								<td style="text-align:center;"><?php echo $lt->POST_REG_DATE?></td>
 								<?php 
@@ -250,6 +240,7 @@
                                         if ($end > $listCount) $end = $listCount;
                                         if ($start == 0) $start = 1;
                                     ?>
+                                        전체 <?php echo $listCount; ?>개 중 <?php echo $listCount-$start; ?> - <?php echo $listCount-$end == 0 ? "1" : $listCount-$end ?>
                                     <?php endif; ?>
                                     </div>
                                 </div>

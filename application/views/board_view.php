@@ -165,56 +165,50 @@
 
                                     </div>
 
+
+
+
+                                    
                                     <?php if($BOARD_INFO->BOARD_BOTTOM_LIST_FLAG == "Y"): ?>
                                     <div class="boardViewBot">
                                         <div class="type_table">
-                                            <?php if($BOTTOM_NEXT): ?>
-                                            <div class="cont_next">
-                                                <div class="boardViewBot_item">
-                                                    <strong>다음글</strong>
+                                            <?php foreach($BOTTOM_LIST AS $bl):?>
+                                                <?php if($bl->TYPE == "PREV"){
+                                                        echo "<div class=\"cont_prev\">";
+                                                        echo "<div class=\"boardViewBot_item\">";
+                                                        echo "<strong>이전글</strong>";
+                                                } else if($bl->TYPE == "NEXT"){
+                                                        echo "<div class=\"cont_next\">";
+                                                        echo "<div class=\"boardViewBot_item\">";
+                                                        echo "<strong>다음글</strong>";
+                                                } else {
+                                                        echo "<div class=\"cont_next\">";
+                                                        echo "<div class=\"boardViewBot_item\">";
+                                                        echo "<strong>현재글</strong>";
+                                                }
+                                                ?>
                                                     <div class="type_td">
-                                                        <?php if($BOTTOM_NEXT->POST_DEL_YN == 'N'):?>
-                                                        <a class="ellipsis" href="/board/board_view/<?php echo $BOTTOM_NEXT->POST_SEQ?>">
-                                                            <?php for($i=1; $i < $BOTTOM_NEXT->POST_DEPTH; $i++): ?>
-                                                            ㄴ<img src="/static/front/img/ico_reply.png" style="width:34px;height:20px;vertical-align:text-top">
-                                                            <?php endfor; ?>
-                                                            <?php echo $BOTTOM_NEXT->POST_SUBJECT?>
-                                                            <?php if($BOTTOM_NEXT->POST_SECRET_YN == "Y"): ?>
-                                                            <img src="/static/front/img/ico_lock.png" style="width:12px;height:18px;vertical-align:text-top">
-                                                            <?php endif; ?>
-                                                        </a>
-                                                        <?php else:?>
-                                                            삭제된 게시글입니다.
-                                                        <?php endif;?>
-                                                        <span class="date"><?php echo date("Y-m-d", strtotime($BOTTOM_NEXT->POST_REG_DATE))?></span>
+                                                        
+                                                        <!-- <a href="/" class="ellipsis"> -->
+                                                        <?php 
+                                                        echo "<a class=\"ellipsis\" href=\"/board/board_view/".$bl->POST_SEQ."\">";
+
+                                                        if($bl->POST_PARENT_SEQ != $bl->POST_SEQ){
+                                                            for($i=1; $i<$bl->POST_DEPTH;$i++){
+                                                                echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;vertical-align:text-top\">";												
+                                                            }
+                                                        }
+
+														echo $bl->POST_SUBJECT;
+														if($bl->POST_SECRET_YN == "Y"){
+															echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>"."</a>";
+														}
+													    ?> </a>
+                                                        <span class="date"><?php echo date("Y-m-d", strtotime($bl->POST_REG_DATE))?></span>
                                                     </div>
-                                                </div> 
-                                            </div>
-                                            <?php endif;
-                                            if($BOTTOM_PREV): ?>
-                                            <div class="cont_prev">
-                                                <div class="boardViewBot_item">
-                                                    <strong>이전글</strong>
-                                                    <div class="type_td">
-                                                        <?php if($BOTTOM_PREV->POST_DEL_YN == 'N'):?>
-                                                        <a class="ellipsis" href="/board/board_view/<?php echo $BOTTOM_PREV->POST_SEQ?>">
-                                                            <?php for($i=1; $i < $BOTTOM_PREV->POST_DEPTH; $i++): ?>
-                                                            ㄴ<img src="/static/front/img/ico_reply.png" style="width:34px;height:20px;vertical-align:text-top">
-                                                            <?php endfor; ?>
-                                                            <?php echo $BOTTOM_PREV->POST_SUBJECT?>
-                                                            <?php if($BOTTOM_PREV->POST_SECRET_YN == "Y"): ?>
-                                                            <img src="/static/front/img/ico_lock.png" style="width:12px;height:18px;vertical-align:text-top">
-                                                            <?php endif; ?>
-                                                        </a>
-                                                        <?php else:?>
-                                                            삭제된 게시글입니다.
-                                                        <?php endif;?>
-                                                        <span class="date"><?php echo date("Y-m-d", strtotime($BOTTOM_PREV->POST_REG_DATE))?></span>
-                                                    </div>
-                                                </div> 
-                                            </div>
-                                            <?php endif; ?>
-                                        </div>
+                                            <?php 
+                                            echo "</div></div>";
+                                            endforeach; ?>
                                     </div>
                                     <?php endif; ?>
 
