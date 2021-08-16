@@ -42,7 +42,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<section class="tile transparent">
-						<div class="tile-body color transparent-black rounded-corners">
+						<div class="tile color transparent-black rounded-corners">
 							<table class="table table-custom dataTable reSumeTable">
 								<tbody>
 									<tr>
@@ -76,7 +76,7 @@
 				<section class="tile transparent">
 
 					<!-- tile body -->
-					<div class="tile-body color transparent-black rounded-corners">
+					<div class="tile color transparent-black rounded-corners">
 
 						<div class="table-responsive dataTables_wrapper form-inline" role="grid" id="basicDataTable_wrapper">
 							<div class="row">
@@ -116,7 +116,10 @@
                                     <td class="text-center"><?php echo $list->USER_ID ?></td>
                                     <td class="text-center"><?php echo $list->RESUME_TITLE ?></td>
 									
-                                    <td class="text-center"><a href ="/admin/recruit/recruit_resume_view/<?php echo $list->RESUME_SEQ?>" class="btn btn-sm btn-default">상세보기</a></td>
+                                    <td class="text-center">
+										<a href ="/admin/recruit/recruit_resume_view/<?php echo $list->RESUME_SEQ?>" class="btn btn-xs btn-default">상세보기</a>
+										<a href ="/admin/recruit/recruit_resume_admin_create/<?php echo $list->RESUME_SEQ?>/<?php echo $list->USER_SEQ?>" class="btn btn-xs btn-default">첨삭하기</a>
+									</td>
 								</tr>
 						<?php
 								$pagenum--;
@@ -261,21 +264,32 @@
     </script>
     <style>
         #resume_search_option{
-            border-radius:5px; 
+			padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
+
+            /* border-radius:5px; 
             margin-right: 5px;
             width: 15%;
             padding: 6px;
             border:0; 
-            background-color:rgba(0, 0, 0, 0.3)
+            background-color:rgba(0, 0, 0, 0.3) */
         }
 
         #resume_search_text{
-            border-radius:5px; 
-            margin-right: 5px;
-            width: 20%;
-            padding: 6px;
-            border:0; 
-            background-color:rgba(0, 0, 0, 0.3)
+            padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
         }
 
         #resume_search{

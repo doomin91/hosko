@@ -47,7 +47,7 @@
                             <p class="apply_detail_view"><strong>기본정보</strong></p>
                         </div>
                         <!-- tile body -->
-						<div class="tile-body color transparent-black rounded-corners">
+						<div class="tile color transparent-black rounded-corners">
 							<table class="table table-custom dataTable applyTopViewTable">
 								<tbody>
 									<tr>
@@ -121,89 +121,89 @@
                             <p class="apply_detail_view"><strong>컨텐츠정보</strong></p>
                         </div>
                         <!-- tile body -->
-						<div class="tile-body color transparent-black rounded-corners">
+						<div class="tile color transparent-black rounded-corners">
 							<table class="table table-custom dataTable applyViewTable">
 								<tbody>
                                     <tr>
-										<th class="col-sm-3" rowspan="12">컨텐츠 정보</th>
-                                        <td class="col-sm-1">국가/도시</td>
+										<th class="col-sm-2" rowspan="12">컨텐츠 정보</th>
+                                        <td class="col-sm-1 text-center">국가/도시</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
                                                 <textarea class="form-control common_textarea wid100p" name="abroad_country" id="abroad_country"><?php echo $ABROAD_INFO->REC_COUNTRY?></textarea>
                                             </div></td>
 									</tr>
 									<tr>
-                                        <td class="col-sm-1">유학분류</td>
+                                        <td class="col-sm-1 text-center">유학분류</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
                                                 <textarea class="form-control common_textarea wid100p" name="abroad_type" id="abroad_type"><?php echo $ABROAD_INFO->REC_TYPE?></textarea>
                                             </div></td>
 									</tr>
 									<tr>
-                                        <td class="col-sm-1">기간</td>
+                                        <td class="col-sm-1 text-center">기간</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
                                                 <textarea class="form-control common_textarea wid100p" name="abroad_period" id="abroad_period"><?php echo $ABROAD_INFO->REC_PERIOD?></textarea>
                                             </div></td>
 									</tr>
 									<tr>
-                                        <td class="col-sm-1">채용분야</td>
+                                        <td class="col-sm-1 text-center">채용분야</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
                                                 <textarea class="form-control common_textarea wid100p" name="abroad_recruit_type" id="abroad_recruit_type"><?php echo $ABROAD_INFO->REC_RECRUIT_TYPE?></textarea>
                                             </div></td>
 									</tr>
 									<tr>
-                                        <td class="col-sm-1">채용마감</td>
+                                        <td class="col-sm-1 text-center">채용마감</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
                                                 <textarea class="form-control common_textarea wid100p" name="abroad_deadline" id="abroad_deadline"><?php echo $ABROAD_INFO->REC_DEADLINE?></textarea>
                                             </div></td>
 									</tr>
 									<tr>
-                                        <td class="col-sm-1">면접방식</td>
+                                        <td class="col-sm-1 text-center">면접방식</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
                                                 <textarea class="form-control common_textarea wid100p" name="abroad_interview_type" id="abroad_interview_type"><?php echo $ABROAD_INFO->REC_INTERVIEW_TYPE?></textarea>
                                             </div></td>
 									</tr>
 									<tr>
-                                        <td class="col-sm-1">면접일자</td>
+                                        <td class="col-sm-1 text-center">면접일자</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
                                                 <textarea class="form-control common_textarea wid100p" name="abroad_interview_date" id="abroad_interview_date"><?php echo $ABROAD_INFO->REC_INTERVIEW_DATE?></textarea>
                                             </div></td>
 									</tr>
 									<tr>
-                                        <td class="col-sm-1">자격요건</td>
+                                        <td class="col-sm-1 text-center">자격요건</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
                                                 <textarea class="form-control common_textarea wid100p" name="abroad_prerequisite" id="abroad_prerequisite"><?php echo $ABROAD_INFO->REC_PREREQUISITE?></textarea>
                                             </div></td>
 									</tr>
 									<tr>
-                                        <td class="col-sm-1">급여</td>
+                                        <td class="col-sm-1 text-center">급여</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
                                                 <textarea class="form-control common_textarea wid100p" name="abroad_pay" id="abroad_pay"><?php echo $ABROAD_INFO->REC_PAY?></textarea>
                                             </div></td>
 									</tr>
 									<tr>
-                                        <td class="col-sm-1">숙소</td>
+                                        <td class="col-sm-1 text-center">숙소</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
                                                 <textarea class="form-control common_textarea wid100p" name="abroad_accomdation" id="abroad_accomdation"><?php echo $ABROAD_INFO->REC_LODGIN?></textarea>
                                             </div></td>
 									</tr>
 									<tr>
-                                        <td class="col-sm-1">복지</td>
+                                        <td class="col-sm-1 text-center">복지</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
                                                 <textarea class="form-control common_textarea wid100p" name="abroad_welfare" id="abroad_welfare"><?php echo $ABROAD_INFO->REC_WELFARE?></textarea>
                                             </div></td>
 									</tr>
 									<tr>
-                                        <td class="col-sm-1">비자</td>
+                                        <td class="col-sm-1 text-center">비자</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
                                                 <textarea class="form-control common_textarea wid100p" name="abroad_visa" id="abroad_visa"><?php echo $ABROAD_INFO->REC_VISA?></textarea>
@@ -225,7 +225,7 @@
                             <p class="apply_detail_view"><strong>컨텐츠사진</strong></p>
                         </div>
                         <!-- tile body -->
-						<div class="tile-body color transparent-black rounded-corners">
+						<div class="tile color transparent-black rounded-corners">
 							<table class="table table-custom dataTable applyTopViewTable">
 								<tbody>
 									<tr>
@@ -336,8 +336,8 @@
                             <p class="apply_detail_view"><strong>컨텐츠설명</strong></p>
                         </div>
                         <!-- tile body -->
-						<div class="tile-body color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyTopViewTable">`~
+						<div class="tile color transparent-black rounded-corners">
+							<table class="table table-custom dataTable applyTopViewTable">
 								<tbody>
 									<tr>
 										<th class="col-sm-12 text-center">상세설명</th>
@@ -400,15 +400,27 @@
 
             $("#abroad_modify").on("click", function(){
                 var fd = new FormData();
+                var is_blank = false;
 
                 var form_data = $('#abroadRegisterForm').serializeArray(); // serialize 사용
                 $.each(form_data, function (key, input) {
-                    if(input.value==""){
-                        alert("값을 넣어주세요");
+                    if(input.value=="" && input.name != "abroad_detail"){
+                        // console.log($(input));
+                        var ip = $(`input[name=${input.name}]`);
+                        // console.log(ip);
+                        $(ip).focus();
+                        is_blank = true;
                         return false;
+                    }
+                    if(input.name=="abroad_detail"){
+                        input.value = $("#abroad_detail").code();
                     }
                     fd.append(input.name, input.value);
                 });
+
+                if(is_blank){
+                    return false;
+                }
                 
                 for (var key of FILE.keys()) {
                     fd.append(key, FILE.get(key));
@@ -543,6 +555,7 @@
             });
             
             $("input[name='abroad_pics[]']").change(function(){
+                FILE = new FormData();
                 var file = this.files[0];
                 var parent = $(this).closest(".input-group");
                 // $(this).val("test");

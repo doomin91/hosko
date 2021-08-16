@@ -50,6 +50,7 @@ class Customclass{
         $config['num_tag_open'] = "<li>";
         $config['num_tag_close'] = "</li>";
         $this->CI->pagination->initialize($config);
+        
 
         return $this->CI->pagination->create_links();
     }
@@ -58,7 +59,6 @@ class Customclass{
         //$PAGINATION
         //게시물 전체 수
         $config['total_rows'] = $total_cnt;
-
 
         //패아장 설정
         $config['base_url'] = $url; // 페이징 연결 주소
@@ -93,7 +93,7 @@ class Customclass{
         // $config['num_tag_open'] = "<li>";
         // $config['num_tag_close'] = "</li>";
         $this->CI->pagination->initialize($config);
-
+        
         return $this->CI->pagination->create_links();
     }
 
