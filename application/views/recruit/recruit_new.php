@@ -19,7 +19,7 @@
 
                     </div>
                     <div class="sub_contents">
-                        <div class="sub_category01">
+                        <div class="sub_category02">
                             <ul>
                                 <li <?php $CATEGORY==1 ? print("class='on'") : "" ?> ><a href="/recruit_?ctg=1">인턴쉽</a></li>
                                 <li <?php $CATEGORY==2 ? print("class='on'") : "" ?>><a href="/recruit_?ctg=2">JOB·헤드헌팅</a></li>
@@ -36,39 +36,44 @@
                                     <input type="hidden" id="rec_seq" name="rec_seq" value="<?php echo $RECRUIT->REC_SEQ?>"/>
                                     <input type="hidden" id="user_seq" name="user_seq" value="<?php echo $USER->USER_SEQ?>"/>
                                     <div class="subContSec">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">지원자 기본정보</div>
+                                        <div class="row">
+                                            <div class="TableTitle">지원자 기본정보</div>
                                         </div>
-                                        <table class="table table-custom dataTable">
+
+                                        <table class="tableCont03 dataTable">
+                                            <colgroup>
+                                                <col width="15%"/>
+                                                <col width="85%"/>
+                                            </colgroup>
                                             <tbody>
                                                 <tr>
-                                                    <th class="col-sm-2">이름</th>
-                                                    <td class="col-sm-10">
+                                                    <th>이름</th>
+                                                    <td>
                                                         <input type="text" class="form-control common_select wid100p" name="apply_user_name" id="apply_user_name" value="<?php echo  $USER->USER_NAME?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">주민번호</th>
-                                                    <td class="col-sm-10">
+                                                    <th>주민번호</th>
+                                                    <td>
                                                         <input type="text" class="form-control common_select wid100p" name="apply_user_birthday" id="apply_user_birthday" value="<?php echo  $USER->USER_BIRTHDAY?>">    
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">전화번호</th>
-                                                    <td class="col-sm-10">
+                                                    <th>전화번호</th>
+                                                    <td>
                                                         <input type="text" class="form-control common_select wid100p" name="apply_user_tel" id="apply_user_tel" value="<?php echo  $USER->USER_HP?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">이메일</th>
-                                                    <td class="col-sm-10">
+                                                    <th>이메일</th>
+                                                    <td>
                                                         <input type="text" class="form-control common_select wid100p" name="apply_user_email" id="apply_user_email" value="<?php echo  $USER->USER_EMAIL?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">사진</th>
-                                                    <td class="col-sm-10">
-                                                        <div class="input-group col-sm-12">
+                                                    <th>사진</th>
+                                                    <td>
+                                                        <div class="input-group">
                                                             <span class="input-group-btn">
                                                                 <span class="btn btn-primary btn-file">
                                                                 <i class="fa fa-upload"></i><input type="file" id="apply_user_img" name="apply_user_img">

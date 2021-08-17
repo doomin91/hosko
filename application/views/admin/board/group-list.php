@@ -70,7 +70,7 @@
 											<td><?php echo $gp->GP_NAME;?></td>
 											<td>
 											<a href="/admin/group/group_modify/<?php echo $gp->GP_SEQ?>" class="btn btn-xs btn-default">수정</a> 
-											<!-- <button class="btn btn-xs btn-default" onclick="groupDelete(<?php echo $gp->GP_SEQ?>);">삭제</button> -->
+											<button class="btn btn-xs btn-default" onclick="groupDelete(<?php echo $gp->GP_SEQ?>);">삭제</button>
 											</td>
 										</tr>
 										<?php } ?>

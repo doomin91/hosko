@@ -21,7 +21,7 @@
                     </div>
                     <div class="sub_contents">
                         <div class="sub_category">
-                        <ul>
+                            <ul>
                                 <li><a href="/consult/qnaList">Q&A</a></li>
                                 <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
                                 <li class="on"><a href="/consult/consult/visitConsult">방문신청 상담</a></li>

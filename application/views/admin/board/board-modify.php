@@ -109,15 +109,16 @@
 										<button type="button" class="btn btn-xs btn-slategray">카테고리관리</button>
 									</td>
 								</tr> -->
-								<!-- <tr>
+								<tr>
 									<td>게시판관리자</td>
 									<td colspan=3><input type="text" name="board_admin" value="<?php echo $BOARD->BOARD_ADMIN_ID?>">아이디를 쉼표를 분리(admin,admin1,admin2)</td>
-								</tr> -->
+									
+								</tr>
 								<tr>
 									<td>자동 비밀글</td>
 									<td colspan=3><label for="fn_secret"><input type="checkbox" id="fn_secret" name="fn_secret" value="Y" <?php echo $BOARD->BOARD_SECRET_FLAG == 'Y' ? "checked" : ""?>> 작성자와 운영자만 열람가능</label></td>
 								</tr>
-								<!-- <tr>
+								<tr>
 									<td>권한</td>
 									<td colspan=3>
 										<table style="width:100%; text-align:center;">
@@ -196,7 +197,7 @@
 											</tr>
 										</table>
 									</td>
-								</tr> -->
+								</tr>
 								<tr>
 									<td>권한이 없을경우</td>
 									<td colspan=3>

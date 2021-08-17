@@ -19,12 +19,13 @@
 
                     </div>
                     <div class="sub_contents">
-                        <div class="sub_category01">
+                        <div class="sub_category">
                             <ul>
-                                <li><a href="/consult/qna">Q&A</a></li>
-                                <li><a href="/consult/online">온라인 상담</a></li>
-                                <li><a href="/consult/offline">방문신청 상담</a></li>
+                                <li><a href="/consult/qnaList">Q&A</a></li>
+                                <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
+                                <li><a href="/consult/consult/visitConsult">방문신청 상담</a></li>
                                 <li class="on"><a href="/consult/apply">포지션&연수 지원</a></li>
+                                <li><a href="/consult/presentationList">설명회신청</a></li>
                             </ul>
                         </div>
 
@@ -34,64 +35,67 @@
                                     <h2>지원내용 보기</h2>
                                 </div>
 
-                                <div class="subContSec">
-                                    <div class="row" style="margin-bottom: 10px">
-                                        <div class="col-md-10">지원자 기본정보</div>
-                                    </div>
-                                    <table class="table table-custom dataTable applyViewTable">
+                                <div class="subContSec mb80">
+                                    <div class="TableTitle">지원자 기본정보</div>
+
+                                    <table class="tableCont02 dataTable applyViewTable">
+                                        <colgroup>
+                                            <col width="15%"/>
+                                            <col width="85%"/>
+                                        </colgroup>                                        
                                         <tbody>
                                             <tr>
-                                                <th class="col-sm-2">이름(아이디)</th>
-                                                <td class="col-sm-10"><?php echo $MY_APPLY->APP_USER_NAME."(".$MY_APPLY->USER_ID.")"?></td>
+                                                <th>이름(아이디)</th>
+                                                <td><?php echo $MY_APPLY->APP_USER_NAME."(".$MY_APPLY->USER_ID.")"?></td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">주민번호</th>
-                                                <td class="col-sm-10"><?php echo  $MY_APPLY->APP_USER_BIRTHDAY?></td>
+                                                <th>주민번호</th>
+                                                <td><?php echo  $MY_APPLY->APP_USER_BIRTHDAY?></td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">전화번호</th>
-                                                <td class="col-sm-10"><?php echo  $MY_APPLY->APP_USER_TEL?></td>
+                                                <th>전화번호</th>
+                                                <td><?php echo  $MY_APPLY->APP_USER_TEL?></td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">이메일</th>
-                                                <td class="col-sm-10"><?php echo  $MY_APPLY->APP_USER_EMAIL?></td>
+                                                <th>이메일</th>
+                                                <td><?php echo  $MY_APPLY->APP_USER_EMAIL?></td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">주소</th>
-                                                <td class="col-sm-10"><?php echo  $MY_APPLY->USER_ADDR1." ".$MY_APPLY->USER_ADDR1?></td>
+                                                <th>주소</th>
+                                                <td><?php echo  $MY_APPLY->USER_ADDR1." ".$MY_APPLY->USER_ADDR1?></td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">사진</th>
-                                                <td class="col-sm-10"><?php echo  $MY_APPLY->APP_USER_IMG?></td>
+                                                <th>사진</th>
+                                                <td><?php echo  $MY_APPLY->APP_USER_IMG?></td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    
-                                </div>
 
-                                <div class="subContSec">
-                                    <div class="row" style="margin-bottom: 10px">
-                                        <div class="col-md-10">지원자 상세정보</div>
-                                    </div>
-                                    <table class="table table-custom dataTable applyViewTable">
+                                    <div class="TableTitle mt50">지원자 상세정보</div>
+
+                                    <table class="tableCont02 dataTable applyViewTable">
+                                        <colgroup>
+                                            <col width="15%"/>
+                                            <col width="85%"/>
+                                        </colgroup>  
                                         <tbody>
                                             <tr>
-                                                <th class="col-sm-2">지원프로그램</th>
-                                                <td class="col-sm-10">
+                                                <th>지원프로그램</th>
+                                                <td>
                                                     <?php echo $MY_APPLY->REC_TITLE?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">University</th>
-                                                <td class="col-sm-10">
-                                                    <div class="col-sm-3">
+                                                <th>University</th>
+                                                <td>
+                                                    <div>
                                                         <?php echo  $MY_APPLY->APP_UNIVERSITY?>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">Major</th>
-                                                <td class="col-sm-10">
+                                                <th>Major</th>
+                                                <td>
                                                     <?php echo  $MY_APPLY->APP_MAJOR?>
                                                     <!-- <div class="col-sm-3">
                                                         <label for="apply_uni_status_1"><input type="radio" name="apply_uni_status" id="apply_uni_status_1" value="1" <?php if($MY_APPLY->APP_GRADE_TYPE == 1) echo "checked"?>> 재학 </label>
@@ -101,14 +105,14 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">Minor/Double Major</th>
-                                                <td class="col-sm-10">
+                                                <th>Minor/Double Major</th>
+                                                <td>
                                                     <?php echo  $MY_APPLY->APP_DOUBLEMAJOR?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">Grade</th>
-                                                <td class="col-sm-10">
+                                                <th>Grade</th>
+                                                <td>
                                                     <?php echo  $MY_APPLY->APP_GRADE?>
                                                     /
                                                     <?php if($MY_APPLY->APP_GRADE_TYPE == 1) echo "재학"?>
@@ -117,36 +121,36 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">회사명</th>
-                                                <td class="col-sm-10"><?php echo  $MY_APPLY->APP_COMP_NAME?></td>
+                                                <th>회사명</th>
+                                                <td><?php echo  $MY_APPLY->APP_COMP_NAME?></td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">재직기간</th>
-                                                <td class="col-sm-10"><?php echo  $MY_APPLY->APP_WORK_START_YEAR.".".$MY_APPLY->APP_WORK_START_MONTH." ~ ".$MY_APPLY->APP_WORK_END_YEAR.".".$MY_APPLY->APP_WORK_END_MONTH ?></td>
+                                                <th>재직기간</th>
+                                                <td><?php echo  $MY_APPLY->APP_WORK_START_YEAR.".".$MY_APPLY->APP_WORK_START_MONTH." ~ ".$MY_APPLY->APP_WORK_END_YEAR.".".$MY_APPLY->APP_WORK_END_MONTH ?></td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">부서명</th>
-                                                <td class="col-sm-10">
+                                                <th>부서명</th>
+                                                <td>
                                                     <?php echo  $MY_APPLY->APP_COMP_DEPARTMENT?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">Date you wish to begin<br>yourdesired program</th>
-                                                <td class="col-sm-10">
+                                                <th>Date you wish to begin<br>yourdesired program</th>
+                                                <td>
                                                     <?php echo  $MY_APPLY->APP_START_DATE?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">(Language Skill) English</th>
-                                                <td class="col-sm-10">
+                                                <th>(Language Skill) English</th>
+                                                <td>
                                                     <?php if($MY_APPLY->APP_ENG_SKILL == 1) echo "Fluent"?>
                                                     <?php if($MY_APPLY->APP_ENG_SKILL == 2) echo "Fair"?>
                                                     <?php if($MY_APPLY->APP_ENG_SKILL == 3) echo "Poor"?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">기타 외국어 : <?php echo $MY_APPLY->APP_ETC_LANG_NAME?></th>
-                                                <td class="col-sm-10">
+                                                <th>기타 외국어 : <?php echo $MY_APPLY->APP_ETC_LANG_NAME?></th>
+                                                <td>
                                                     <?php if($MY_APPLY->APP_ETC_LANG_SKILL == 1) echo "Fluent"?>
                                                     <?php if($MY_APPLY->APP_ETC_LANG_SKILL == 2) echo "Fair"?>
                                                     <?php if($MY_APPLY->APP_ETC_LANG_SKILL == 3) echo "Poor"?>
@@ -154,47 +158,54 @@
                                             </tr>
                                             
                                             <tr>
-                                                <th class="col-sm-2">TOEIC Score</th>
-                                                <td class="col-sm-10">
+                                                <th>TOEIC Score</th>
+                                                <td>
                                                     <?php echo  $MY_APPLY->APP_TOEIC_SCORE?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">TOEFL Score</th>
-                                                <td class="col-sm-10">
+                                                <th>TOEFL Score</th>
+                                                <td>
                                                     <?php echo  $MY_APPLY->APP_TOEFL_SCORE?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">경력사항</th>
-                                                <td class="col-sm-10">
+                                                <th>경력사항</th>
+                                                <td>
                                                     <?php echo  $MY_APPLY->APP_CAREER?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">여권보유여부</th>
-                                                <td class="col-sm-10">
+                                                <th>여권보유여부</th>
+                                                <td>
                                                     <?php if($MY_APPLY->APP_PASSPORT_FLAG == 'Y') echo "Yes"?>
                                                     <?php if($MY_APPLY->APP_PASSPORT_FLAG == 'N') echo "No"?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">미국비자발급거절여뷰</th>
-                                                <td class="col-sm-10">
+                                                <th>미국비자발급거절여뷰</th>
+                                                <td>
                                                     <?php if($MY_APPLY->APP_VISA_FLAG == 'Y') echo "Yes"?>
                                                     <?php if($MY_APPLY->APP_VISA_FLAG == 'N') echo "No"?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="col-sm-2">Self Introduction and goal<br>and motivation</th>
-                                                <td class="col-sm-10">
+                                                <th>Self Introduction and goal<br>and motivation</th>
+                                                <td>
                                                     <?php echo  $MY_APPLY->APP_INTRODUCE?>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
+
+                                    <div class="subBtn_wrap">
+                                        <button type="button" onclick="location.href='/consult/apply';" class="subBtn03 f_left">목록보기</button>
+                                        <button type="button" onclick="location.href='/'" class="subBtn04 f_right">수정하기</button>
+                                    </div>
+
                                 </div>
 
+<!--
                                 <div class="subContSec">
                                     <div class="col-md-10">
                                         <a href="/consult/apply" class="btn btn-s btn-default">목록보기</a>
@@ -203,6 +214,9 @@
                                         <a href="/consult/apply_edit/<?php echo $MY_APPLY->APP_SEQ?>" class="btn btn-s btn-primary">수정하기</a>
                                     </div>
                                 </div>
+
+-->
+
 
                             </div>
 
