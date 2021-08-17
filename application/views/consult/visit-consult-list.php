@@ -22,11 +22,11 @@
                     <div class="sub_contents">
                         <div class="sub_category">
                             <ul>
-                                <li class="on"><a href="/consult/qnaList">Q&A</a></li>
+                                <li><a href="/consult/qnaList">Q&A</a></li>
                                 <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
-                                <li><a href="/">방문상담신청</a></li>
+                                <li class="on"><a href="/consult/consult/visitConsult">방문신청 상담</a></li>
                                 <li><a href="/consult/apply">포지션&연수 지원</a></li>
-                                <li><a href="#">설명회신청</a></li>
+                                <li><a href="/consult/presentationList">설명회신청</a></li>
                             </ul>
                         </div>
 
@@ -35,7 +35,7 @@
                                 <div class="subTit">
                                     <h2>방문상담 신청</h2>
                                 </div>
-                                <div>
+                                <div class="VisitTopText mb30">
                                     <p>방문상담 셀프신청 이용안내</p>
                                     <p>STEP1 일정을 확인하고 상담을 원하는 날짜를 클릭해주세요</p>
                                     <p>STEP2 '상담신청' 버튼을 눌러 신청을 진행해주세요</p>
@@ -45,27 +45,27 @@
                                     <p>TIP** 방문상담 전에 홈페이지 회원가입을 진행해주세요. 기본적인 이력과 분야를 미리 분석하여 좀 더 정확하고 많은 정보를 제공해드립니다.</p>
                                 </div>
                                 
-                                <div class="subContSec">
-                                    <div class="col-lg-12">
-                                        <div class="col-lg-6">
+                                <div class="subContSec mb60">
+                                    <div class="col-lg-12 mb40">
+                                        <div class="col-lg-6 datapaging">
                                         <?php
                                             $dateArr = explode("-", $visit_date);
                                             echo $dateArr[0]."년 ".$dateArr[1]."월 ".$dateArr[2]."일 예약목록";
                                         ?>
                                         </div>
                                         <div class="col-lg-6">
-                                            <button type="button" class="btn_style02 f_right" id="<?php if ($diff_str == "-"){ echo "visit_error"; }else{ echo "visit_write"; } ?>" data-date="<?php echo $visit_date; ?>">상담신청</button>
+                                            <button type="button" class="btn_style04 f_right" id="<?php if ($diff_str == "-"){ echo "visit_error"; }else{ echo "visit_write"; } ?>" data-date="<?php echo $visit_date; ?>">상담신청</button>
                                         </div>
                                     </div>    
-                                    <div class="tblArea boardList_flex"> 
+                                    <div class="tblArea01 boardList_flex"> 
                                         <div class="tblTop">
-                                            <span class="col_num">번호</span>
-                                            <span class="col_name">신청자</span>
-                                            <span class="col_name">테스트시간</span>
-                                            <span class="col_date">연락처</span>
-                                            <span class="col_date">예약구분</span>
-                                            <span class="col_date">수정</span>
-                                            <span class="col_date">삭제</span>
+                                            <span style="width:8%;">번호</span>
+                                            <span style="width:19%;">신청자</span>
+                                            <span style="width:19%;">테스트시간</span>
+                                            <span style="width:19%;">연락처</span>
+                                            <span style="width:19%;">예약구분</span>
+                                            <span style="width:8%;">수정</span>
+                                            <span style="width:8%;" class="last">삭제</span>
                                         </div>
                                     
                                     <?php 
@@ -73,16 +73,16 @@
                                         foreach ($lists as $list){
                                     ?>
                                         <div class="tblBot-item">  
-                                            <span class="col_num"><?php echo $pagenum; ?></span>
-                                            <span class="col_name"><?php echo $list->VCON_USER_NAME; ?></span>
-                                            <span class="col_name"><?php echo $list->VCON_CONSULT_TIME; ?></span>
-                                            <span class="col_date"><?php echo $list->VCON_USER_TEL; ?></span>
-                                            <span class="col_date">완료</span>
-                                            <span class="col_date">
-                                                <button type="button" class="btn btn-info btn-sm vcon_edit" data-seq="<?php echo $list->VCON_SEQ; ?>">수정</button>
+                                            <span style="width:8%;"><?php echo $pagenum; ?></span>
+                                            <span style="width:19%;"><?php echo $list->VCON_USER_NAME; ?></span>
+                                            <span style="width:19%;"><?php echo $list->VCON_CONSULT_TIME; ?></span>
+                                            <span style="width:19%;"><?php echo $list->VCON_USER_TEL; ?></span>
+                                            <span style="width:19%;">완료</span>
+                                            <span style="width:8%;">
+                                                <button type="button" class="btn_style vcon_edit" data-seq="<?php echo $list->VCON_SEQ; ?>">수정</button>
                                             </span>
-                                            <span class="col_date">
-                                                <button type="button" class="btn btn-danger btn-sm vcon_delete" data-seq="<?php echo $list->VCON_SEQ; ?>">삭제</button>
+                                            <span style="width:8%;">
+                                                <button type="button" class="btn_style vcon_delete" data-seq="<?php echo $list->VCON_SEQ; ?>">삭제</button>
                                             </span>
                                         </div>
                                     <?php

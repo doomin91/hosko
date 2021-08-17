@@ -20,7 +20,7 @@
 
                     </div>
                     <div class="sub_contents">
-                        <div class="sub_category">
+                        <div class="sub_category03">
                             <ul>
                                 <li class="on"><a href="/mypage/memberEdit">정보관리</a></li>
                                 <li><a href="/mypage/memberResumeRegist">이력서 작성</a></li>
@@ -30,13 +30,8 @@
 
                         <div class="inner">
                             <div class="subContWrap">
-                                <div class="joinContent">
-                                    
-                                    <div class="agreeTextBox mt30">
-                                        <p>HOSKO 서비스를 이용하기 위해 이용자는 이용약관을 읽어보시고 동의하셔야 합니다.</p>
-                                        <p>일반회원등록은 무료이며, 등록 즉시 서비스 이용이 가능합니다.</p>
-                                        <p>단, 유료화서비스와 인증절차가 필요한 경우 해당절차를 거펴야 서비스를 이용하실 수 있습니다.</p>
-                                    </div>
+
+                                <div class="joinContent mb60">
                                 <form name="form1" id="form1" enctype="multipart/form-data">
 
                                     <div class="memberJoinBox mt20">

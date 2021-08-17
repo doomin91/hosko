@@ -634,4 +634,11 @@ class Mypage extends CI_Controller {
 		$this->load->view("/mypage/member-resume_manage", $DATA);
 	}
 
+	public function submissionDoc(){
+
+		$DATA = array();
+
+		$this->load->view("/mypage/submission-doc", $DATA);
+	}
+
 }

@@ -62,6 +62,8 @@ input[type="search"]::-webkit-search-decoration {-webkit-appearance: none; outli
 .mt80 { margin-top:80px !important;}
 .mt90 { margin-top:90px !important;}
 .mt100 { margin-top:100px !important;}
+.mt200 { margin-top:200px !important;}
+
 
 .mb0 { margin-bottom:0 !important;}
 .mb5 { margin-bottom:5px !important;}
@@ -116,6 +118,9 @@ input[type="search"]::-webkit-search-decoration {-webkit-appearance: none; outli
 .pt80 { padding-top:80px !important;}
 .pt100 { padding-top:100px !important;}
 .pt110 { padding-top:110px !important;}
+.pt200 { padding-top:200px !important;}
+
+
 
 .pb0 { padding-bottom:0 !important;}
 .pb5 { padding-bottom:5px !important;}
@@ -128,6 +133,10 @@ input[type="search"]::-webkit-search-decoration {-webkit-appearance: none; outli
 .pb60 { padding-bottom:60px !important;}
 .pb70 { padding-bottom:70px !important;}
 .pb100 { padding-bottom:100px !important;}
+.pb200 { padding-bottom:200px !important;}
+
+
+
 .ph20 { padding-top:20px !important; padding-bottom:20px !important;}
 .ph40 { padding-top:40px !important; padding-bottom:40px !important;}
 .ph50 { padding-top:50px !important; padding-bottom:50px !important;}
@@ -166,6 +175,12 @@ input[type="search"]::-webkit-search-decoration {-webkit-appearance: none; outli
 .tal {text-align:left !important;}
 .tar {text-align:right !important;}
 
+/* vertical align*/
+.vtm {vertical-align: middle !important;}
+.vtb {vertical-align:baseline !important;}
+
+
+
 /*bg color */
 .company_bg {background-color:#f7f7f7 !important;}
 .company_bg01 {background-color:#f3f3f3 !important;}
@@ -181,12 +196,14 @@ input[type="search"]::-webkit-search-decoration {-webkit-appearance: none; outli
 
 /* input style */
 .input_s1 {width:100%; border:1px solid #cbcbca; border-radius: 10px; padding:10px 33px;  }
+.input_s2 {width:100%; border:1px solid #e5e5e5; border-radius: 3px; padding:10px 20px; margin:0 !important;  }
 .login_s1 {width:438px; border:1px solid #cbcbca; padding:10px; margin:5px 0; }
 .inquiry_s1 {width:100%; border:1px solid #cbcbca; padding:10px; margin:5px 0; }
 
 
 /* select style */
 .select_s1 {width:100%; border:1px solid #cbcbca; border-radius: 10px; padding:10px ; }
+.select_s2 {border:1px solid #e5e5e5; border-radius: 3px; padding:10px 20px;}
 
 
 /* textarea style */

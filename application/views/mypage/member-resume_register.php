@@ -20,15 +20,18 @@
                     </div>
                     <?php if(isset($MY_INFO)) : ?>
                     <div class="sub_contents">
-                        <div class="sub_category">
+                        <div class="sub_category03">
                             <ul>
                                 <li><a href="/mypage/memberEdit">정보관리</a></li>
                                 <li class="on"><a href="/mypage/memberResumeRegist">이력서 작성</a></li>
-                                <li><a href="/mypage/memberResumeManage">제출서류 관리</a></li>
+                                <li><a href="/mypage/submissionDoc">제출서류 관리</a></li>
                             </ul>
                         </div>
                         <div class="inner">
                             <div class="subContWrap">
+                                <div class="ContTopresumeBtn">
+                                    <button class="resumadminbtn" onclick="location.href='/mypage/memberResumeManage' ">이력서 첨삭보기</button>
+                                </div>
                                 <div class="subTit">
                                     <h2><?php echo "이력서 작성" ?></h2>
                                 </div>
@@ -36,11 +39,18 @@
                                 <form name="myResumeCreateForm" id="myResumeCreateForm" class="form-horizontal" role="form">
                                     <input type="hidden" id="user_seq" name="user_seq" value="<?php echo $MY_INFO->USER_SEQ ?>"/>
                                     
-                                    <div class="">
-                                        <div class="col-md-12 text-center resume_img_frame">
-                                            <img src="https://7wdata.be/wp-content/uploads/2016/05/icon-user-default.png">
+                                    <div class="ResumeWrap">
+                                        <div class="resume_img_frame">
+                                            <img src="../static/front/img/resume_noimg.jpg">
                                         </div>
-                                        
+
+                                        <div class="resumefile">
+                                            <span class="filetitle">사진</span>
+                                            <input type="text" readonly="readonly" class="filename" />
+                                            <label for="resume_img" class="filelabel">파일 업로드</label>
+                                            <input type="file" name="resume_img" id="resume_img" class="fileupload" />
+                                        </div>
+                                        <!--
                                         <div class="input-group text-center col-sm-12">
                                             <span class="input-group-btn">
                                                 <span class="btn btn-primary btn-file">
@@ -48,143 +58,145 @@
                                                 </span>
                                             </span>
                                         </div>
+                                        -->
+
                                     </div>
 
-                                    <div class="">
-                                        <table class="table table-custom dataTable">
+                                    <div class="ResumeCont">
+                                        <table class="ResumeTable dataTable">
                                             <tbody>
                                                 <tr>
-                                                    <th class="col-sm-2">Title</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_title" id="resume_title" value="">
+                                                    <th class="col-sm-3">Title</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_title" id="resume_title" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Name (영문)</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_name" id="resume_user_name" value="<?php echo $MY_INFO->USER_ENG_NAME?>">
-                                                        <div> * 영문 이름은 반드시 여권 이름과 동일하게 작성 되어야 합니다. </div>
+                                                    <th class="col-sm-3">Name (영문)</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_name" id="resume_user_name" value="<?php echo $MY_INFO->USER_ENG_NAME?>">
+                                                        <div class="resumetext01"> * 영문 이름은 반드시 여권 이름과 동일하게 작성 되어야 합니다. </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Address</th>
-                                                    <td class="col-sm-10">
+                                                    <th class="col-sm-3">Address</th>
+                                                    <td class="col-sm-9">
                                                         <div>
-                                                            <div class="wid50p">
-                                                                <div class="resume_zip_form">
-                                                                    <input type="text" name="resume_user_zipcode" id="resume_user_zipcode" class="form-control" value="<?php echo $MY_INFO->USER_ZIPCODE?>" readonly>
+                                                            <div class="wid100p">
+                                                                <div class="resume_zip_form mb10">
+                                                                    <input type="text" name="resume_user_zipcode" id="resume_user_zipcode" class="resumeform" value="<?php echo $MY_INFO->USER_ZIPCODE?>" readonly>
                                                                 </div>
-                                                                <div>
+                                                                <div class="resume_zip_btn">
                                                                     <input type="button" class="btn btn-default" value="우편번호" id="searchZip">
                                                                 </div>
                                                             </div>
-                                                            <div>
-                                                                <input type="text" name="resume_user_addr1" id="resume_user_addr1" class="form-control" value="<?php echo $MY_INFO->USER_ADDR1?>" readonly>
+                                                            <div class="mb10">
+                                                                <input type="text" name="resume_user_addr1" id="resume_user_addr1" class="resumeform" value="<?php echo $MY_INFO->USER_ADDR1?>" readonly>
                                                             </div>
-                                                            <div>
-                                                                <input type="text" name="resume_user_addr2" id="resume_user_addr2" class="form-control" value="<?php echo $MY_INFO->USER_ADDR2?>">
+                                                            <div class="mb10">
+                                                                <input type="text" name="resume_user_addr2" id="resume_user_addr2" class="resumeform" value="<?php echo $MY_INFO->USER_ADDR2?>">
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Phone No.</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_phone" id="resume_user_phone" value="<?php echo $MY_INFO->USER_HP?>">
+                                                    <th class="col-sm-3">Phone No.</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_phone" id="resume_user_phone" value="<?php echo $MY_INFO->USER_HP?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">E-mail</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_email" id="resume_user_email" value="<?php echo $MY_INFO->USER_EMAIL?>">
+                                                    <th class="col-sm-3">E-mail</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_email" id="resume_user_email" value="<?php echo $MY_INFO->USER_EMAIL?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">SkypeID</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_skype_id" id="resume_user_skype_id" value="<?php echo $MY_INFO->USER_SKYPE_ID?>">
+                                                    <th class="col-sm-3">SkypeID</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_skype_id" id="resume_user_skype_id" value="<?php echo $MY_INFO->USER_SKYPE_ID?>">
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Personal Particulars</div>
+                                        <div class="resumetitle">
+                                            <h2>Personal Particulars</h2>
                                         </div>
-                                        <table class="table table-custom dataTable">
+
+
+                                        <table class="ResumeTable dataTable">
                                             <tbody>
                                                 <tr>
-                                                    <th class="col-sm-2">Age</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_age" id="resume_user_age" value="">
+                                                    <th class="col-sm-3">Age</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_age" id="resume_user_age" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Date of Birth</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" id="resume_user_dob" name="resume_user_dob" class="form-control" value="<?php echo $MY_INFO->USER_BIRTHDAY?>">
+                                                    <th class="col-sm-3">Date of Birth</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" id="resume_user_dob" name="resume_user_dob" class="resumeform" value="<?php echo $MY_INFO->USER_BIRTHDAY?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Nationality</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_nationality" id="resume_user_nationality" value="">
+                                                    <th class="col-sm-3">Nationality</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_nationality" id="resume_user_nationality" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Martial Status</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_martial_status" id="resume_user_martial_status" value="">
+                                                    <th class="col-sm-3">Martial Status</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_martial_status" id="resume_user_martial_status" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">I/C Number<br>(여권번호)</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_ic_number" id="resume_user_ic_number" value="">
+                                                    <th class="col-sm-3">I/C Number<br>(여권번호)</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_ic_number" id="resume_user_ic_number" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Permanent<br>Residence</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_permanent_residence" id="resume_user_permanent_residence" value="">
+                                                    <th class="col-sm-3">Permanent<br>Residence</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_permanent_residence" id="resume_user_permanent_residence" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Religion</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_religion" id="resume_user_religion" value="">
+                                                    <th class="col-sm-3">Religion</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_religion" id="resume_user_religion" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Graduation Date<br>(yyyy/mm/dd)</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" id="resume_user_dog" name="resume_user_dog" class="form-control" value="">
+                                                    <th class="col-sm-3">Graduation Date<br>(yyyy/mm/dd)</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" id="resume_user_dog" name="resume_user_dog" class="resumeform" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Height</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_height" id="resume_user_height" value=""> cm
+                                                    <th class="col-sm-3">Height</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_height" id="resume_user_height" value=""> cm
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Weight</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_weight" id="resume_user_weight" value=""> Kg
+                                                    <th class="col-sm-3">Weight</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_weight" id="resume_user_weight" value=""> Kg
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Hobbies</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_hobby" id="resume_user_hobby" value="">
+                                                    <th class="col-sm-3">Hobbies</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_hobby" id="resume_user_hobby" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Criminal Record</th>
-                                                    <td class="col-sm-10">
-                                                        <select name="resume_user_criminal_record" class="chosen-select chosen-transparent form-control">
+                                                    <th class="col-sm-3">Criminal Record</th>
+                                                    <td class="col-sm-9">
+                                                        <select name="resume_user_criminal_record" class="chosen-select chosen-transparent resumeform">
                                                             <option value="N" selected>No</option>
                                                             <option value="Y" >Yes</option>
                                                         </select>
@@ -192,123 +204,118 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Education</div>
+                                        <div class="resumetitle">
+                                            <h2>Education</h2>
                                         </div>
+
+                                        <div class="resumeAcbox resumeJoinBox">
+                                            <div class="resumeBox">
+                                                <div class="box_content">
+                                                    <div class="wid25p resume_activity_box">
+                                                        <input type="text" class="resumeform" name="redu_date[]" value="">
+                                                    </div>
+                                                    <div class="wid70p resume_activity_box">
+                                                        <input type="text" class="resumeform" name="redu_description[]" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 text-right">
+                                                <input type="button" class="btn btn-default" value="삭제" id="del_resume_edu" data-which="redu">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_edu" data-which="redu_date">
+                                            </div>
+                                        </div>
+
+                                        <div class="resumetitle">
+                                            <h2>Working Experience</h2>
+                                        </div>
+
+
                                         <div class="resumeJoinBox">
                                             <div class="resumeBox">
                                                 <div class="box_content">
                                                     <div class="wid25p resume_activity_box">
-                                                        <input type="text" class="form-control" name="redu_date[]" value="">
+                                                        <input type="text" class="resumeform" name="rwexp_date[]" value="">
                                                     </div>
                                                     <div class="wid70p resume_activity_box">
-                                                        <input type="text" class="form-control" name="redu_description[]" value="">
+                                                        <input type="text" class="resumeform" name="rwexp_description[]" value="">
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+                                            <div class="col-sm-12 text-right">
+                                                <input type="button" class="btn btn-default" value="삭제" id="del_resume_wexp" data-which="rwexp">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_wexp" data-which="rwexp_date">
+                                            </div>
                                         </div>
-                                        <div class="col-sm-12 text-right">
-                                            <input type="button" class="btn btn-default" value="삭제" id="del_resume_edu" data-which="redu">
-                                            <input type="button" class="btn btn-primary" value="추가" id="add_resume_edu" data-which="redu_date">
-                                        </div>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Working Experience</div>
+                                        <div class="resumetitle">
+                                            <h2>Activities</h2>
                                         </div>
+
                                         <div class="resumeJoinBox">
                                             <div class="resumeBox">
                                                 <div class="box_content">
                                                     <div class="wid25p resume_activity_box">
-                                                        <input type="text" class="form-control" name="rwexp_date[]" value="">
+                                                        <input type="text" class="resumeform" name="ract_date[]" value="">
                                                     </div>
                                                     <div class="wid70p resume_activity_box">
-                                                        <input type="text" class="form-control" name="rwexp_description[]" value="">
+                                                        <input type="text" class="resumeform" name="ract_description[]" value="">
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-12 text-right">
+                                                <input type="button" class="btn btn-default" value="삭제" id="del_resume_ract" data-which="ract">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_ract" data-which="ract_date">
+                                            </div>                                            
                                         </div>
-                                        <div class="col-sm-12 text-right">
-                                            <input type="button" class="btn btn-default" value="삭제" id="del_resume_wexp" data-which="rwexp">
-                                            <input type="button" class="btn btn-primary" value="추가" id="add_resume_wexp" data-which="rwexp_date">
-                                        </div>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Activities</div>
+                                        <div class="resumetitle">
+                                            <h2>Achievements</h2>
                                         </div>
+
                                         <div class="resumeJoinBox">
                                             <div class="resumeBox">
                                                 <div class="box_content">
                                                     <div class="wid25p resume_activity_box">
-                                                        <input type="text" class="form-control" name="ract_date[]" value="">
+                                                        <input type="text" class="resumeform" name="rahcv_title[]" value="">
                                                     </div>
                                                     <div class="wid70p resume_activity_box">
-                                                        <input type="text" class="form-control" name="ract_description[]" value="">
+                                                        <input type="text" class="resumeform" name="rahcv_description[]" value="">
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-12 text-right">
+                                                <input type="button" class="btn btn-default" value="삭제" id="del_resume_rahcv" data-which="rahcv">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rahcv" data-which="rahcv_title">
+                                            </div>
                                         </div>
-                                        <div class="col-sm-12 text-right">
-                                            <input type="button" class="btn btn-default" value="삭제" id="del_resume_ract" data-which="ract">
-                                            <input type="button" class="btn btn-primary" value="추가" id="add_resume_ract" data-which="ract_date">
-                                        </div>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Achievements</div>
+                                        <div class="resumetitle">
+                                            <h2>Professional Skills</h2>
                                         </div>
+
                                         <div class="resumeJoinBox">
                                             <div class="resumeBox">
                                                 <div class="box_content">
                                                     <div class="wid25p resume_activity_box">
-                                                        <input type="text" class="form-control" name="rahcv_title[]" value="">
+                                                        <input type="text" class="resumeform" name="rskil_date[]" value="">
                                                     </div>
                                                     <div class="wid70p resume_activity_box">
-                                                        <input type="text" class="form-control" name="rahcv_description[]" value="">
+                                                        <input type="text" class="resumeform" name="rskil_description[]" value="">
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-12 text-right">
-                                            <input type="button" class="btn btn-default" value="삭제" id="del_resume_rahcv" data-which="rahcv">
-                                            <input type="button" class="btn btn-primary" value="추가" id="add_resume_rahcv" data-which="rahcv_title">
-                                        </div>
-                                    </div>
-
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Professional Skills</div>
-                                        </div>
-                                        <div class="resumeJoinBox">
-                                            <div class="resumeBox">
-                                                <div class="box_content">
-                                                    <div class="wid25p resume_activity_box">
-                                                        <input type="text" class="form-control" name="rskil_date[]" value="">
-                                                    </div>
-                                                    <div class="wid70p resume_activity_box">
-                                                        <input type="text" class="form-control" name="rskil_description[]" value="">
-                                                    </div>
-                                                </div>
+                                            <div class="col-sm-12 text-right">
+                                                <input type="button" class="btn btn-default" value="삭제" id="del_resume_rskil" data-which="rskil">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rskil" data-which="rskil_date">
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 text-right">
-                                            <input type="button" class="btn btn-default" value="삭제" id="del_resume_rskil" data-which="rskil">
-                                            <input type="button" class="btn btn-primary" value="추가" id="add_resume_rskil" data-which="rskil_date">
-                                        </div>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Languange Skills</div>
+                                        <div class="resumetitle">
+                                            <h2>Languange Skills</h2>
                                         </div>
+
+
                                         <div class="resumeJoinBox resumeJoinBoxWider">
                                             <div class="resumeBox_label">
                                                 <div class="resume_activity_box wid25p">Language</div>
@@ -336,44 +343,46 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-12 text-right">
-                                            <input type="button" class="btn btn-default" value="삭제" id="del_resume_lskil" data-which="lskil">
-                                            <input type="button" class="btn btn-primary" value="추가" id="add_resume_lskil" data-which="lskil">
-                                        </div>
-                                    </div>
+                                            <div class="col-sm-12 text-right">
+                                                <input type="button" class="btn btn-default" value="삭제" id="del_resume_lskil" data-which="lskil">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_lskil" data-which="lskil">
+                                            </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Computer Skills</div>
+                                        </div>
+
+                                        <div class="resumetitle">
+                                            <h2>Computer Skills</h2>
                                         </div>
                                         <div class="resumeJoinBox">
-                                            <input type="text" class="form-control wid100p" name="resume_user_computer_skill" id="resume_user_computer_skill" value="">
+                                            <input type="text" class="resumeform wid100p" name="resume_user_computer_skill" id="resume_user_computer_skill" value="">
                                         </div>
+
                                     </div>
                                 </form>
                             </div>
 
-                            <div class="">
-                                <div class="col-md-12 text-center">
-                                    <input type="button" id="create_resume" name="create_resume" class="btn btn-s btn-primary" value="완료하기">
-                                </div>
+                            <div class="resumebtnwrap">
+                                <input type="button" id="create_resume" name="create_resume" class="resumebtn" value="완료하기">
                             </div>
 
                         </div>
 
                     </div>
                     <?php else : ?>
+
                     <div class="sub_contents">
-                        <div class="sub_category">
+                        <div class="sub_category03">
                             <ul>
                                 <li><a href="/mypage/memberEdit">정보관리</a></li>
                                 <li class="on"><a href="/mypage/memberResumeRegist">이력서 작성</a></li>
-                                <li><a href="/mypage/memberResumeManage">제출서류 관리</a></li>
+                                <li><a href="/mypage/submissionDoc">제출서류 관리</a></li>
                             </ul>
                         </div>
                         <div class="inner">
                             <div class="subContWrap">
+                                <div class="ContTopresumeBtn">
+                                    <button class="resumadminbtn" onclick="location.href='/mypage/memberResumeManage' ">이력서 첨삭보기</button>
+                                </div>
                                 <div class="subTit">
                                     <h2><?php echo "이력서 수정" ?></h2>
                                 </div>
@@ -381,155 +390,165 @@
                                 <form name="myResumeUpdateForm" id="myResumeUpdateForm" class="form-horizontal" role="form">
                                     <input type="hidden" id="resume_seq" name="resume_seq" value="<?php echo $RESUME_INFO->RESUME_SEQ ?>"/>
 
-                                    <div class="">
-                                        <div class="col-md-12 text-center resume_img_frame">
+
+                                    <div class="ResumeWrap">
+                                        <div class="resume_img_frame">
                                             <img src="<?php echo $RESUME_INFO->RESUME_USER_PHOTO?>">
                                         </div>
-                                        
-                                        <div class="input-group text-center col-sm-12">
+                                        <div class="resumefile">
+                                            <span class="filetitle">사진</span>
+                                            <input type="text" readonly="readonly" class="filename" />
+                                            <label for="resume_img" class="filelabel">파일 업로드</label>
+                                            <input type="file" name="resume_img" id="resume_img" class="fileupload" />
+                                        </div>
+
+                                        <!--
+                                        <div class="input-group col-sm-12">
                                             <span class="input-group-btn">
                                                 <span class="btn btn-primary btn-file">
                                                 <i class="fa fa-upload"></i><input type="file" id="resume_img" name="resume_img">
                                                 </span>
                                             </span>
                                         </div>
+                                        -->
                                     </div>
 
-                                    <div class="">
-                                        <table class="table table-custom dataTable">
+                                    <div class="ResumeCont">
+                                        <table class="ResumeTable dataTable">
                                             <tbody>
                                                 <tr>
-                                                    <th class="col-sm-2">Title</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_title" id="resume_title" value="<?php echo $RESUME_INFO->RESUME_TITLE ?>">
+                                                    <th class="col-sm-3">Title</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_title" id="resume_title" value="<?php echo $RESUME_INFO->RESUME_TITLE ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Name (영문)</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_name" id="resume_user_name" value="<?php echo $RESUME_INFO->RESUME_USER_NAME ?>">
-                                                        <div> * 영문 이름은 반드시 여권 이름과 동일하게 작성 되어야 합니다. </div>
+                                                    <th class="col-sm-3">Name (영문)</th>
+                                                    <td class="col-sm-9 vtb">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_name" id="resume_user_name" value="<?php echo $RESUME_INFO->RESUME_USER_NAME ?>">
+                                                        <div class="resumetext01"> * 영문 이름은 반드시 여권 이름과 동일하게 작성 되어야 합니다. </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Address</th>
-                                                    <td class="col-sm-10">
+                                                    <th class="col-sm-3">Address</th>
+                                                    <td class="col-sm-9">
                                                         <div>
-                                                            <div class="wid50p">
-                                                                <div class="resume_zip_form">
-                                                                    <input type="text" name="resume_user_zipcode" id="resume_user_zipcode" class="form-control" value="<?php echo $RESUME_INFO->RESUME_USER_ZIPCODE ?>" readonly>
+                                                            <div class="wid100p">
+                                                                <div class="resume_zip_form mb10">
+                                                                    <input type="text" name="resume_user_zipcode" id="resume_user_zipcode" class="resumeform" value="<?php echo $RESUME_INFO->RESUME_USER_ZIPCODE ?>" readonly>
                                                                 </div>
-                                                                <div>
+                                                                <div class="resume_zip_btn">
                                                                     <input type="button" class="btn btn-default" value="우편번호" id="searchZip">
                                                                 </div>
                                                             </div>
-                                                            <div>
-                                                                <input type="text" name="resume_user_addr1" id="resume_user_addr1" class="form-control" value="<?php echo $RESUME_INFO->RESUME_USER_ADDR1 ?>" readonly>
+                                                            <div class="mb10">
+                                                                <input type="text" name="resume_user_addr1" id="resume_user_addr1" class="resumeform" value="<?php echo $RESUME_INFO->RESUME_USER_ADDR1 ?>" readonly>
                                                             </div>
-                                                            <div>
-                                                                <input type="text" name="resume_user_addr2" id="resume_user_addr2" class="form-control" value="<?php echo $RESUME_INFO->RESUME_USER_ADDR2 ?>">
+                                                            <div class="mb10">
+                                                                <input type="text" name="resume_user_addr2" id="resume_user_addr2" class="resumeform" value="<?php echo $RESUME_INFO->RESUME_USER_ADDR2 ?>">
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Phone No.</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_phone" id="resume_user_phone" value="<?php echo $RESUME_INFO->RESUME_USER_PHONE ?>">
+                                                    <th class="col-sm-3">Phone No.</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_phone" id="resume_user_phone" value="<?php echo $RESUME_INFO->RESUME_USER_PHONE ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">E-mail</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_email" id="resume_user_email" value="<?php echo $RESUME_INFO->RESUME_USER_EMAIL ?>">
+                                                    <th class="col-sm-3">E-mail</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_email" id="resume_user_email" value="<?php echo $RESUME_INFO->RESUME_USER_EMAIL ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">SkypeID</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_skype_id" id="resume_user_skype_id" value="<?php echo $RESUME_INFO->RESUME_USER_SKYPE_ID ?>">
+                                                    <th class="col-sm-3">SkypeID</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_skype_id" id="resume_user_skype_id" value="<?php echo $RESUME_INFO->RESUME_USER_SKYPE_ID ?>">
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Personal Particulars</div>
+                                        <div class="resumetitle">
+                                            <h2>Personal Particulars</h2>
                                         </div>
-                                        <table class="table table-custom dataTable">
+
+                                        <table class="ResumeTable dataTable">
                                             <tbody>
                                                 <tr>
-                                                    <th class="col-sm-2">Age</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_age" id="resume_user_age" value="<?php echo $RESUME_INFO->RESUME_USER_AGE ?>">
+                                                    <th class="col-sm-3">Age</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_age" id="resume_user_age" value="<?php echo $RESUME_INFO->RESUME_USER_AGE ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Date of Birth</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" id="resume_user_dob" name="resume_user_dob" class="form-control" value="<?php echo $RESUME_INFO->RESUME_USER_DOB ?>">
+                                                    <th class="col-sm-3">Date of Birth</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" id="resume_user_dob" name="resume_user_dob" class="resumeform" value="<?php echo $RESUME_INFO->RESUME_USER_DOB ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Nationality</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_nationality" id="resume_user_nationality" value="<?php echo $RESUME_INFO->RESUME_USER_NATIONALITY ?>">
+                                                    <th class="col-sm-3">Nationality</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_nationality" id="resume_user_nationality" value="<?php echo $RESUME_INFO->RESUME_USER_NATIONALITY ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Martial Status</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_martial_status" id="resume_user_martial_status" value="<?php echo $RESUME_INFO->RESUME_USER_MARTIAL_STATUS ?>">
+                                                    <th class="col-sm-3">Martial Status</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_martial_status" id="resume_user_martial_status" value="<?php echo $RESUME_INFO->RESUME_USER_MARTIAL_STATUS ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">I/C Number<br>(여권번호)</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_ic_number" id="resume_user_ic_number" value="<?php echo $RESUME_INFO->RESUME_USER_IC_NUMBER ?>">
+                                                    <th class="col-sm-3">I/C Number<br>(여권번호)</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_ic_number" id="resume_user_ic_number" value="<?php echo $RESUME_INFO->RESUME_USER_IC_NUMBER ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Permanent<br>Residence</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_permanent_residence" id="resume_user_permanent_residence" value="<?php echo $RESUME_INFO->RESUME_USER_PERMANENT_RESIDENCE ?>">
+                                                    <th class="col-sm-3">Permanent<br>Residence</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_permanent_residence" id="resume_user_permanent_residence" value="<?php echo $RESUME_INFO->RESUME_USER_PERMANENT_RESIDENCE ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Religion</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_religion" id="resume_user_religion" value="<?php echo $RESUME_INFO->RESUME_USER_RELIGION ?>">
+                                                    <th class="col-sm-3">Religion</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_religion" id="resume_user_religion" value="<?php echo $RESUME_INFO->RESUME_USER_RELIGION ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Graduation Date<br>(yyyy/mm/dd)</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" id="resume_user_dog" name="resume_user_dog" class="form-control" value="<?php echo $RESUME_INFO->RESUME_USER_DOG ?>">
+                                                    <th class="col-sm-3">Graduation Date<br>(yyyy/mm/dd)</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" id="resume_user_dog" name="resume_user_dog" class="resumeform" value="<?php echo $RESUME_INFO->RESUME_USER_DOG ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Height</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_height" id="resume_user_height" value="<?php echo $RESUME_INFO->RESUME_USER_HEIGHT ?>"> cm
+                                                    <th class="col-sm-3">Height</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid50p" name="resume_user_height" id="resume_user_height" value="<?php echo $RESUME_INFO->RESUME_USER_HEIGHT ?>">
+                                                        <span class="">cm</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Weight</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_weight" id="resume_user_weight" value="<?php echo $RESUME_INFO->RESUME_USER_WEIGHT ?>"> Kg
+                                                    <th class="col-sm-3">Weight</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid50p" name="resume_user_weight" id="resume_user_weight" value="<?php echo $RESUME_INFO->RESUME_USER_WEIGHT ?>">
+                                                        <span class="">Kg</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Hobbies</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control wid100p" name="resume_user_hobby" id="resume_user_hobby" value="<?php echo $RESUME_INFO->RESUME_USER_HOBBY ?>">
+                                                    <th class="col-sm-3">Hobbies</th>
+                                                    <td class="col-sm-9">
+                                                        <input type="text" class="resumeform wid100p" name="resume_user_hobby" id="resume_user_hobby" value="<?php echo $RESUME_INFO->RESUME_USER_HOBBY ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Criminal Record</th>
-                                                    <td class="col-sm-10">
-                                                        <select name="resume_user_criminal_record" class="chosen-select chosen-transparent form-control">
+                                                    <th class="col-sm-3">Criminal Record</th>
+                                                    <td class="col-sm-9">
+                                                        <select name="resume_user_criminal_record" class="chosen-select chosen-transparent resumeform">
                                                             <option value="N" <?php if($RESUME_INFO->RESUME_USER_CRIMINAL_RECORD == 'N') echo 'selected' ?> >No</option>
                                                             <option value="Y" <?php if($RESUME_INFO->RESUME_USER_CRIMINAL_RECORD == 'Y') echo 'selected' ?> >Yes</option>
                                                         </select>
@@ -537,23 +556,22 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Education</div>
+                                        <div class="resumetitle">
+                                            <h2>Education</h2>
                                         </div>
-                                        <div class="resumeJoinBox">
+
+                                        <div class="resumeAcbox resumeJoinBox">
                                             <div class="resumeBox">
                                                 <?php if(isset($RESUME_EDU)) : ?>
                                                     <?php foreach($RESUME_EDU as $EDU): ?>
                                                         <div class="box_content">
                                                             <input type="hidden" name="redu_seq[]" value="<?php echo $EDU->SEQ ?>">
-                                                            <div class="wid25p resume_activity_box">
-                                                                <input type="text" class="form-control" name="redu_date[]" value="<?php echo $EDU->REDU_DATE ?>">
+                                                            <div class="wid25p resume_activity_box ">
+                                                                <input type="text" class="resumeform" name="redu_date[]" value="<?php echo $EDU->REDU_DATE ?>">
                                                             </div>
-                                                            <div class="wid70p resume_activity_box">
-                                                                <input type="text" class="form-control" name="redu_description[]" value="<?php echo $EDU->REDU_DESCRIPTION ?>">
+                                                            <div class="wid70p resume_activity_box ">
+                                                                <input type="text" class="resumeform" name="redu_description[]" value="<?php echo $EDU->REDU_DESCRIPTION ?>">
                                                             </div>
                                                         </div>
                                                     <?php endforeach ?>
@@ -564,12 +582,13 @@
                                                 <input type="button" class="btn btn-primary" value="추가" id="add_resume_edu" data-which="redu_date">
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Working Experience</div>
+
+
+                                        <div class="resumetitle">
+                                            <h2>Working Experience</h2>
                                         </div>
+
                                         <div class="resumeJoinBox">
                                             <div class="resumeBox">
                                                 <?php if(isset($RESUME_WEXP)) : ?>
@@ -577,10 +596,10 @@
                                                         <div class="box_content">
                                                             <input type="hidden" name="rwexp_seq[]" value="<?php echo $WEXP->SEQ ?>">
                                                             <div class="wid25p resume_activity_box">
-                                                                <input type="text" class="form-control" name="rwexp_date[]" value="<?php echo $WEXP->RWEXP_DATE?>">
+                                                                <input type="text" class="resumeform" name="rwexp_date[]" value="<?php echo $WEXP->RWEXP_DATE?>">
                                                             </div>
                                                             <div class="wid70p resume_activity_box">
-                                                                <input type="text" class="form-control" name="rwexp_description[]" value="<?php echo $WEXP->RWEXP_DESCRIPTION?>">
+                                                                <input type="text" class="resumeform" name="rwexp_description[]" value="<?php echo $WEXP->RWEXP_DESCRIPTION?>">
                                                             </div>
                                                         </div>
                                                     <?php endforeach ?>
@@ -591,12 +610,12 @@
                                                 <input type="button" class="btn btn-primary" value="추가" id="add_resume_wexp" data-which="rwexp_date">
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Activities</div>
+                                        <div class="resumetitle">
+                                            <h2>Activities</h2>
                                         </div>
+
+
                                         <div class="resumeJoinBox">
                                             <div class="resumeBox">
                                                 <?php if(isset($RESUME_ACT)) : ?>
@@ -604,10 +623,10 @@
                                                         <div class="box_content">
                                                             <input type="hidden" name="ract_seq[]" value="<?php echo $ACT->SEQ ?>">
                                                             <div class="wid25p resume_activity_box">
-                                                                <input type="text" class="form-control" name="ract_date[]" value="<?php echo $ACT->RACT_DATE?>">
+                                                                <input type="text" class="resumeform" name="ract_date[]" value="<?php echo $ACT->RACT_DATE?>">
                                                             </div>
                                                             <div class="wid70p resume_activity_box">
-                                                                <input type="text" class="form-control" name="ract_description[]" value="<?php echo $ACT->RACT_DESCRIPTION?>">
+                                                                <input type="text" class="resumeform" name="ract_description[]" value="<?php echo $ACT->RACT_DESCRIPTION?>">
                                                             </div>
                                                         </div>
                                                     <?php endforeach ?>
@@ -618,12 +637,12 @@
                                                 <input type="button" class="btn btn-primary" value="추가" id="add_resume_ract" data-which="ract_date">
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Achievements</div>
+                                        <div class="resumetitle">
+                                            <h2>Achievements</h2>
                                         </div>
+
+
                                         <div class="resumeJoinBox">
                                             <div class="resumeBox">
                                                 <?php if(isset($RESUME_ACHV)) : ?>
@@ -631,10 +650,10 @@
                                                         <div class="box_content">
                                                             <input type="hidden" name="rahcv_seq[]" value="<?php echo $ACHV->SEQ ?>">
                                                             <div class="wid25p resume_activity_box">
-                                                                <input type="text" class="form-control" name="rahcv_title[]" value="<?php echo $ACHV->RACHV_TITLE?>">
+                                                                <input type="text" class="resumeform" name="rahcv_title[]" value="<?php echo $ACHV->RACHV_TITLE?>">
                                                             </div>
                                                             <div class="wid70p resume_activity_box">
-                                                                <input type="text" class="form-control" name="rahcv_description[]" value="<?php echo $ACHV->RACHV_DESCRIPTION?>">
+                                                                <input type="text" class="resumeform" name="rahcv_description[]" value="<?php echo $ACHV->RACHV_DESCRIPTION?>">
                                                             </div>
                                                         </div>
                                                     <?php endforeach ?>
@@ -645,12 +664,13 @@
                                                 <input type="button" class="btn btn-primary" value="추가" id="add_resume_rahcv" data-which="rahcv_title">
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Professional Skills</div>
+
+
+                                        <div class="resumetitle">
+                                            <h2>Professional Skills</h2>
                                         </div>
+
                                         <div class="resumeJoinBox">
                                             <div class="resumeBox">
                                                 <?php if(isset($RESUME_SKIL)) : ?>
@@ -658,10 +678,10 @@
                                                         <div class="box_content">
                                                             <input type="hidden" name="rskil_seq[]" value="<?php echo $SKIL->SEQ ?>">
                                                             <div class="wid25p resume_activity_box">
-                                                                <input type="text" class="form-control" name="rskil_date[]" value="<?php echo $SKIL->RSKL_DATE?>">
+                                                                <input type="text" class="resumeform" name="rskil_date[]" value="<?php echo $SKIL->RSKL_DATE?>">
                                                             </div>
                                                             <div class="wid70p resume_activity_box">
-                                                                <input type="text" class="form-control" name="rskil_description[]" value="<?php echo $SKIL->RSKL_DESCRIPTION?>">
+                                                                <input type="text" class="resumeform" name="rskil_description[]" value="<?php echo $SKIL->RSKL_DESCRIPTION?>">
                                                             </div>
                                                         </div>
                                                     <?php endforeach ?>
@@ -672,13 +692,11 @@
                                                 <input type="button" class="btn btn-primary" value="추가" id="add_resume_rskil" data-which="rskil_date">
                                             </div>
                                         </div>
-                                        
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Languange Skills</div>
+                                        <div class="resumetitle">
+                                            <h2>Languange Skills</h2>
                                         </div>
+
                                         <div class="resumeJoinBox resumeJoinBoxWider">
                                             <div class="resumeBox_label">
                                                 <div class="resume_activity_box wid25p">Language</div>
@@ -691,17 +709,17 @@
                                                         <div class="box_content">
                                                             <input type="hidden" name="rlang_seq[]" value="<?php echo $LANG->SEQ ?>">
                                                             <div class="resume_activity_box wid25p">
-                                                                <input type="text" name="rlang_name[]" value="<?php echo $LANG->RLANG_NAME?>">
+                                                                <input type="text" name="rlang_name[]" value="<?php echo $LANG->RLANG_NAME?>" class="wid100p">
                                                             </div>
                                                             <div class="resume_activity_box wid25p">
-                                                                <select name="rlang_speaking[]">
+                                                                <select name="rlang_speaking[]" class="wid100p">
                                                                     <option value="0" <?php if($LANG->RLANG_SPEAKING == "0") echo "selected" ?>>BASIC</option>
                                                                     <option value="1" <?php if($LANG->RLANG_SPEAKING == "1") echo "selected" ?>>GOOD</option>
                                                                     <option value="2" <?php if($LANG->RLANG_SPEAKING == "2") echo "selected" ?>>EXCELLENT</option>
                                                                 </select>
                                                             </div>
                                                             <div class="resume_activity_box wid25p">
-                                                                <select name="rlang_writing[]">
+                                                                <select name="rlang_writing[]" class="wid100p">
                                                                     <option value="0" <?php if($LANG->RLANG_WRITING == "0") echo "selected" ?>>BASIC</option>
                                                                     <option value="1" <?php if($LANG->RLANG_WRITING == "1") echo "selected" ?>>GOOD</option>
                                                                     <option value="2" <?php if($LANG->RLANG_WRITING == "2") echo "selected" ?>>EXCELLENT</option>
@@ -711,30 +729,30 @@
                                                     <?php endforeach ?>
                                                 <?php endif?>
                                             </div>
+                                            
                                             <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_lskil" data-which="lskil">
                                                 <input type="button" class="btn btn-primary" value="추가" id="add_resume_lskil" data-which="lskil">
                                             </div>
                                         </div>
-                                        
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Computer Skills</div>
+                                        <div class="resumetitle">
+                                            <h2>Computer Skills</h2>
                                         </div>
+
                                         <div class="resumeJoinBox">
-                                            <input type="text" class="form-control wid100p" name="resume_user_computer_skill" id="resume_user_computer_skill" value="<?php echo $RESUME_INFO->RESUME_USER_COMPUTER_SKILL?>">
+                                            <input type="text" class="resumeform wid100p" name="resume_user_computer_skill" id="resume_user_computer_skill" value="<?php echo $RESUME_INFO->RESUME_USER_COMPUTER_SKILL?>">
                                         </div>
+
                                     </div>
                                 </form>
                             </div>
 
-                            <div class="">
-                                <div class="col-md-12 text-center">
-                                    <input type="button" id="update_resume" name="update_resume" class="btn btn-s btn-primary" value="수정하기">
-                                </div>
+                            <div class="resumebtnwrap">
+                                <input type="button" id="update_resume" name="update_resume" class="resumebtn" value="수정하기">
                             </div>
+
+
 
                         </div>
 
@@ -907,17 +925,17 @@
             if(Flag[0] == "lskil"){
                 html = `<div class="box_content">
                             <div class="resume_activity_box wid25p">
-                                <input type="text" name="rlang_name[]" value="">
+                                <input type="text" name="rlang_name[]" value="" class="wid100p">
                             </div>
                             <div class="resume_activity_box wid25p">
-                                <select name="rlang_speaking[]">
+                                <select name="rlang_speaking[]" class="wid100p">
                                     <option value="0" selected>BASIC</option>
                                     <option value="1" >GOOD</option>
                                     <option value="2" >EXCELLENT</option>
                                 </select>
                             </div>
                             <div class="resume_activity_box wid25p">
-                                <select name="rlang_writing[]">
+                                <select name="rlang_writing[]" class="wid100p">
                                     <option value="0" selected>BASIC</option>
                                     <option value="1" >GOOD</option>
                                     <option value="2" >EXCELLENT</option>
@@ -928,10 +946,10 @@
             }else{
                 html = `<div class="box_content">
                                 <div class="wid25p resume_activity_box">
-                                    <input type="text" class="form-control" name="${Flag[0]}_${Flag[1]}[]" value="">
+                                    <input type="text" class="resumeform" name="${Flag[0]}_${Flag[1]}[]" value="">
                                 </div>
                                 <div class="wid70p resume_activity_box">
-                                    <input type="text" class="form-control" name="${Flag[0]}_description[]" value="">
+                                    <input type="text" class="resumeform" name="${Flag[0]}_description[]" value="">
                                 </div>
                             </div>`;
                 $(Frame).height($(Frame).height()+45);

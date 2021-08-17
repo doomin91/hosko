@@ -22,11 +22,11 @@
                     <div class="sub_contents">
                         <div class="sub_category">
                             <ul>
-                                <li class="on"><a href="/consult/qnaList">Q&A</a></li>
+                                <li><a href="/consult/qnaList">Q&A</a></li>
                                 <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
-                                <li><a href="/">방문상담신청</a></li>
+                                <li class="on"><a href="/consult/consult/visitConsult">방문신청 상담</a></li>
                                 <li><a href="/consult/apply">포지션&연수 지원</a></li>
-                                <li><a href="#">설명회신청</a></li>
+                                <li><a href="/consult/presentationList">설명회신청</a></li>
                             </ul>
                         </div>
 
@@ -35,7 +35,7 @@
                             <div class="subTit">
                                     <h2>방문상담 신청</h2>
                                 </div>
-                                <div>
+                                <div class="VisitTopText">
                                     <p>방문상담 셀프신청 이용안내</p>
                                     <p>STEP1 일정을 확인하고 상담을 원하는 날짜를 클릭해주세요</p>
                                     <p>STEP2 '상담신청' 버튼을 눌러 신청을 진행해주세요</p>
@@ -44,17 +44,17 @@
                                     <p>STEP3 상담 신청완료를 진행하시면, HOSKO에서 확인전화를 통해 에약을 확정해드립니다.</p>
                                     <p>TIP** 방문상담 전에 홈페이지 회원가입을 진행해주세요. 기본적인 이력과 분야를 미리 분석하여 좀 더 정확하고 많은 정보를 제공해드립니다.</p>
                                 </div>
-                                <div>* 신청하시는 분의 입력사항을 정확히 입력해 주세요.</div>
+                                <div class="visit_text01">* 신청하시는 분의 입력사항을 정확히 입력해 주세요.</div>
                                 <div class="subContSec">
                                     <div class="boardWriteTop">
                                         <div class="boardViewTop">
-                                            <div class="type_table">
+                                            <div class="type_table01">
                                                 <input type="hidden" name="vcon_seq" value="<?php echo $info->VCON_SEQ; ?>">
                                                 <div class="col1">
                                                     <div class="boardViewTop_item">
                                                         <strong>신청자명</strong>
                                                         <div class="type_td">
-                                                            <input type="text" class="input_s1" name="user_name" value="<?php echo $info->VCON_USER_NAME; ?>">
+                                                            <input type="text" class="input_s2" name="user_name" value="<?php echo $info->VCON_USER_NAME; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -65,20 +65,20 @@
                                                     <div class="boardViewTop_item">
                                                         <strong>일시</strong>
                                                         <div class="type_td">
-                                                            <input type="text" class="input_s1" name="consult_date" readonly value="<?php echo $info->VCON_CONSULT_DATE; ?>">
-                                                            <select name="consult_hour" class="select_s1">
+                                                            <input type="text" class="input_s2" style="width:200px;" name="consult_date" readonly value="<?php echo $info->VCON_CONSULT_DATE; ?>">
+                                                            <select name="consult_hour" class="select_s2" style="width:100px; margin:0 0 0 20px;">
                                                                 <option value="10" <?php if ($consultTime[0] == "10") echo "selected"; ?>>10</option>
                                                                 <option value="11" <?php if ($consultTime[0] == "11") echo "selected"; ?>>11</option>
                                                                 <option value="13" <?php if ($consultTime[0] == "13") echo "selected"; ?>>13</option>
                                                                 <option value="14" <?php if ($consultTime[0] == "14") echo "selected"; ?>>14</option>
                                                                 <option value="15" <?php if ($consultTime[0] == "15") echo "selected"; ?>>15</option>
                                                                 <option value="16" <?php if ($consultTime[0] == "16") echo "selected"; ?>>16</option>
-                                                            </select>시
-                                                            <select name="consult_minute" class="select_s1">
+                                                            </select>&nbsp;&nbsp;시
+                                                            <select name="consult_minute" class="select_s2" style="width:100px; margin:0 0 0 20px;">
                                                                 <option value="00" <?php if ($consultTime[1] == "00") echo "selected"; ?>>00</option>
                                                                 <option value="20" <?php if ($consultTime[1] == "20") echo "selected"; ?>>20</option>
                                                                 <option value="40" <?php if ($consultTime[1] == "40") echo "selected"; ?>>40</option>
-                                                            </select>분
+                                                            </select>&nbsp;&nbsp;분
                                                         </div>
                                                     </div>
                                                 </div>
@@ -86,8 +86,8 @@
                                                     <div class="boardViewTop_item">
                                                         <strong>나이</strong>
                                                         <div class="type_td">
-                                                            <input type="text" class="input_s1" name="user_age" style="width:100px !important" maxlength="2" value="<?php echo $info->VCON_USER_AGE; ?>">
-                                                            세
+                                                            <input type="text" class="input_s2" name="user_age" style="width:100px !important " maxlength="2" value="<?php echo $info->VCON_USER_AGE; ?>">
+                                                            &nbsp;&nbsp;세
                                                         </div>
                                                     </div>
                                                 </div>
@@ -102,9 +102,9 @@
                                                     <div class="boardViewTop_item">
                                                         <strong>연락처</strong>
                                                         <div class="type_td">
-                                                            <input type="text" class="input_s1" name="user_tel1" style="width:150px !important" maxlength="3" value="<?php echo $tel[0]; ?>">-
-                                                            <input type="text" class="input_s1" name="user_tel2" style="width:150px !important" maxlength="4" value="<?php echo $tel[1]; ?>">-
-                                                            <input type="text" class="input_s1" name="user_tel3" style="width:150px !important" maxlength="4" value="<?php echo $tel[2]; ?>">
+                                                            <input type="text" class="input_s2" name="user_tel1" style="width:200px !important" maxlength="3" value="<?php echo $tel[0]; ?>">&nbsp; - &nbsp; 
+                                                            <input type="text" class="input_s2" name="user_tel2" style="width:200px !important" maxlength="4" value="<?php echo $tel[1]; ?>">&nbsp; - &nbsp;
+                                                            <input type="text" class="input_s2" name="user_tel3" style="width:200px !important" maxlength="4" value="<?php echo $tel[2]; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -119,8 +119,8 @@
                                                     <div class="boardViewTop_item">
                                                         <strong>이메일</strong>
                                                         <div class="type_td">
-                                                            <input type="email" name="user_email1" class="input_s1" value="<?php echo $userEmail[0]; ?>">@<input type="email" name="user_email2" class="input_s1" value="<?php echo $userEmail[1]; ?>">
-                                                            <select name="email_sel" class="select_s1">
+                                                            <input type="email" name="user_email1" class="input_s2" style="width:200px;" value="<?php echo $userEmail[0]; ?>">&nbsp; @ &nbsp;<input type="email" name="user_email2" class="input_s2" style="width:200px;" value="<?php echo $userEmail[1]; ?>">
+                                                            <select name="email_sel" class="select_s2" style="width:140px; margin:0 0 0 20px;">
                                                                 <option value="">직접입력</option>
                                                                 <option value="nate.com">nate.com</option>
                                                                 <option value="naver.com">naver.com</option>
@@ -135,7 +135,7 @@
                                                     <div class="boardViewTop_item">
                                                         <strong>학교명/직장명</strong>
                                                         <div class="type_td">
-                                                            <input type="text" name="user_comp" class="input_s1" value="<?php echo isset($info->VCON_USER_COMP) ? $info->VCON_USER_COMP : ""; ?>">
+                                                            <input type="text" name="user_comp" class="input_s2" value="<?php echo isset($info->VCON_USER_COMP) ? $info->VCON_USER_COMP : ""; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -143,7 +143,7 @@
                                                     <div class="boardViewTop_item">
                                                         <strong>학과</strong>
                                                         <div class="type_td">
-                                                            <select name="user_depart" class="select_s1">
+                                                            <select name="user_depart" class="select_s2">
                                                                 <option value="">선택</option>
                                                                 <option value="1" <?php if ($info->VCON_USER_DEPART == "1") echo "selected"; ?>>호텔</option>
                                                                 <option value="2" <?php if ($info->VCON_USER_DEPART == "2") echo "selected"; ?>>관광</option>
@@ -153,11 +153,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col1">
+                                                <div class="col1 npbd">
                                                     <div class="boardViewTop_item">
                                                         <strong>전공부서</strong>
                                                         <div class="type_td">
-                                                            <input type="text" name="user_major" class="input_s1" value="<?php echo isset($info->VCON_USER_MAJOR) ? $info->VCON_USER_MAJOR : ""; ?>">
+                                                            <input type="text" name="user_major" class="input_s2" value="<?php echo isset($info->VCON_USER_MAJOR) ? $info->VCON_USER_MAJOR : ""; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -168,8 +168,8 @@
 
                                     <div class="boardBtnArea pb50">
                                         <div class="btn_box f_right">
-                                            <button type="button" class="btn_style02 f_left" id="consultSave">수정하기</button>
-                                            <button type="button" class="btn_style01 f_left" id="consultCancel">취소하기</button>
+                                            <button type="button" class="btn_style05 f_left" id="consultSave">수정하기</button>
+                                            <button type="button" class="btn_style06 f_left" id="consultCancel">취소하기</button>
                                         </div>
 
                                     </div>

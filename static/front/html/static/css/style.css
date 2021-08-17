@@ -32,9 +32,8 @@ ul.gnb_menu{zoom: 1; }
 ul.gnb_menu:after{ height: 0; visibility: hidden; content: "."; display: block; clear: both; }
 
 
-
-footer {z-index:300; width:100%;position:relative; background-color:#111110; clear:both;}
-footer .footer_menu {position: relative; width:100%; height:58px; border-bottom:1px solid #454444; }
+footer {z-index:300; width:100%;position:relative; background-color:#ffffff; clear:both;}
+footer .footer_menu {position: relative; width:100%; height:58px; border-bottom:1px solid #e5e5e5; border-top:1px solid #e5e5e5;  }
 footer .footer_menu ul {position:relative; width:1180px; margin:0 auto; }
 footer .footer_menu li {float:left; padding:0 20px 0 0; line-height:58px; }
 footer .footer_menu li a {font-size:1em;  font-family:'Noto Sans KR', sans-serif; font-weight:400; color:#777;}
@@ -74,8 +73,6 @@ footer .footer_info .f_address li {font-size:1em;  font-family:'Noto Sans KR', s
 .tableCont01 .table_con {color:#424242; text-align:left; padding-left:15px;} 
 
 
-
-
 .tblArea {border-top: 2px solid #005baa;}
 .tblArea .tblTop, .tblArea .tblBot-item {display: table;width: 100%;}
 .tblArea .tblTop > span, .tblArea .tblBot-item > span {display: table-cell;text-align: center;padding: 15px 10px; font-size: 1em;font-weight: 300;vertical-align: middle;box-sizing:border-box;}
@@ -84,13 +81,37 @@ footer .footer_info .f_address li {font-size:1em;  font-family:'Noto Sans KR', s
 .tblArea .tblTop span {font-weight:500;border-bottom: 1px solid #dcdcdc;}
 .tblBot-item {border-bottom: 1px solid #dcdcdc;}
 
+
+.tblArea01 {width:100%;}
+.tblArea01 .tblTop, .tblArea01 .tblBot-item {display: table;width: 100%;}
+.tblArea01 .tblTop > span, .tblArea01 .tblBot-item > span {display: table-cell;text-align: center;padding: 15px 10px; font-size: 1em;font-weight: 300;vertical-align: middle;box-sizing:border-box;}
+.tblArea01 .tblBot-item > span {font-size:0.96em;  font-family:'Noto Sans KR', sans-serif; font-weight:400;}
+.tblArea01 .tblTop {background-color: #f7f8f8; border-top:1px solid #045da9;}
+.tblArea01 .tblTop span {font-weight:500; border-right: 1px solid #dcdcdc;}
+.tblArea01 .tblTop span.last {border-right:0px;}
+.tblBot-item {border-bottom: 1px solid #dcdcdc;}
+
+
 .type_table {position: relative;border-top: 1px solid #005baa;}
 .type_table > div {position: relative;font-size: 0;border-bottom: 1px solid #dcdcdc;display: flex;}
 .type_table > div.col3 .boardViewTop_item{width: 33.33333%;}
 .type_table > div .boardViewTop_item {position: relative;width: 100%;display: flex;box-sizing:border-box;vertical-align: top;font-size: 15px;line-height: 30px;}
 .type_table > div .boardViewTop_item .type_td {flex:1;min-width:0}
-
 .type_table > div .boardViewTop_item > * {height: 100%;padding: 8px 20px;letter-spacing: -0.8px;box-sizing:border-box;line-height: 22px;min-height:62px;-ms-word-break: break-all; word-break: break-all;display: flex;align-items:center}
+
+.type_table01 {position: relative; border:1px solid #e5e5e5;}
+.type_table01 > div {position: relative;font-size: 0;border-bottom: 1px solid #dcdcdc;display: flex;}
+.type_table01 > div.col3 .boardViewTop_item{width: 33.33333%;}
+.type_table01 > div .boardViewTop_item {position: relative;width: 100%;display: flex;box-sizing:border-box;vertical-align: top;font-size: 15px;line-height: 30px;}
+.type_table01 > div .boardViewTop_item .type_td {flex:1;min-width:0}
+.type_table01 > div .boardViewTop_item > * {height: 100%;padding: 8px 20px;letter-spacing: -0.8px;box-sizing:border-box;line-height: 22px;min-height:50px;-ms-word-break: break-all; word-break: break-all;display: flex;align-items:center}
+.type_table01 > div .boardViewTop_item strong {width:15%; background-color:#f9f5f2; font-size:16px; font-weight:500; color:#2f2f2e; }
+.type_table01 > div .boardViewTop_item .type_td input {font-size:15px; font-weight:500;}
+.type_table01 > div .boardViewTop_item .type_td select {font-size:15px; font-weight:500;}
+.type_table01 > div .boardViewTop_item .type_td p {font-size:15px; font-weight:500;}
+.type_table01 > div.npbd {border:0 !important;}
+
+
 
 .thum_text {position:relative; width:100%;}
 .thum_text .img {display:inline-block;}
@@ -131,6 +152,7 @@ footer .footer_info .f_address li {font-size:1em;  font-family:'Noto Sans KR', s
 .boardList_flex .tblBot-item .col_tit {text-align: left;}
 .boardList_flex .tblBot-item .col_tit:hover {text-decoration:underline;}
 
+
 .boardTotallist {width:100%; padding:14px 20px; background-color:#fbfcfd; border:1px solid #d7d7d7; box-sizing: border-box; margin:50px auto; border-radius: 5px;}
 .boardTotallist p {color:#343434; vertical-align: middle; font-size:1em; font-weight:500; }
 
@@ -162,7 +184,16 @@ footer .footer_info .f_address li {font-size:1em;  font-family:'Noto Sans KR', s
 .btn_style01 {display: inline-block;margin: 0 4px;width: 160px;line-height: 60px;font-size: 18px;font-weight: 500;color: #ffffff;box-sizing:border-box;text-align: center; background-color:#989898;}
 .btn_style02 {display: inline-block;margin: 0 4px;width: 160px;line-height: 60px;font-size: 18px;font-weight: 500;color: #ffffff;box-sizing:border-box;text-align: center; background-color:#025ca9;}
 .btn_style03 {display: inline-block;margin: 0 4px;width: 160px;line-height: 60px;font-size: 18px;font-weight: 500;color: #333333;box-sizing:border-box;text-align: center; }
+.btn_style04 {display: inline-block;margin: 0 4px;width: 120px;line-height: 44px;font-size: 16px;font-weight: 500;color: #ffffff;box-sizing:border-box;text-align: center; background-color:#025ca9;}
+.btn_style05 {display: inline-block;margin: 0 4px;width: 120px;line-height: 44px;font-size: 16px;font-weight: 500;color: #ffffff;box-sizing:border-box;text-align: center; background-color:#025ca9;}
+.btn_style06 {display: inline-block;margin: 0 4px;width: 120px;line-height: 44px;font-size: 16px;font-weight: 500;color: #ffffff;box-sizing:border-box;text-align: center; background-color:#989898;}
 
+
+
+
+
+.btn_style.vcon_edit{display:inline-block; background-color:#989898; box-sizing: border-box; padding:10px 15px; border-radius: 3px; color:#fff; font-size:15px; font-weight:400; text-align:center;}
+.btn_style.vcon_delete{display:inline-block; background-color:#085ea9; box-sizing: border-box; padding:10px 15px; border-radius: 3px; color:#fff; font-size:15px; font-weight:400; text-align:center;}
 
 
 /* pagination */
@@ -213,3 +244,201 @@ footer .footer_info .f_address li {font-size:1em;  font-family:'Noto Sans KR', s
 .code_td .code_sub02 {width:180px; height:48px; display:inline-block;}
 .code_td .code_sub02 input {width:180px; height:48px; border:1px solid #cbcbca; border-radius: 3px; padding:0 10px;}
 .code_box p {font-size:1em; color:#222; font-weight:400; padding-top:10px;}
+
+
+/* calendarTable */ 
+.CalendarTable {
+    position:relative;
+    width:100%;
+
+}
+.CalendarTable th {
+    background-color:#f9f5f2;
+    height:60px;
+    text-align:center;
+    line-height:60px;
+    color:#2f2f2e;
+    font-weight:500;
+    font-size:14px;
+    border:1px solid #e5e5e5;
+}
+
+.CalendarTable td {
+    border:1px solid #e5e5e5;
+    padding:10px;
+    height:20px;
+    box-sizing: border-box;
+}
+.CalendarTable td a {
+    color:#444444 !important;
+    font-weight:500;
+    font-size:15px;
+}
+.CalendarTable .schedule-item {
+    text-align:center;
+    font-size:16px;
+    font-weight:600;
+    line-height:26px;
+    box-sizing: border-box;
+    padding-top:25px !important;
+}
+
+
+.ResumeTable {
+    position:relative;
+    width:100%;
+}
+.ResumeTable th {
+    font-size:15px;
+    font-weight:500;
+    color:#383838;
+    padding:20px 0;
+    height:30px;
+}
+.ResumeTable tr {
+    height:50px;
+}
+.ResumeTable td  {
+    vertical-align: middle;
+}
+.ResumeTable td input{
+    margin-bottom:0;
+}
+
+.resumeform {
+    display:inline-block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight:400;
+    line-height: 1.42857143;
+    color: #848484;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.resumemanagertable {
+    position:relative;
+    width:100%;
+    border:1px solid #e5e5e5;
+}
+.resumemanagertable th {
+    font-size:16px;
+    font-weight:500;
+    color:#222222;
+    text-align:left;
+    padding-left:20px !important;
+    box-sizing: border-box;
+    border:1px solid #e5e5e5;
+    height:70px;
+    line-height:70px;
+}
+.resumemanagertable td {
+    border:1px solid #e5e5e5;
+    font-size:16px;
+    font-weight:500;
+    text-align:left;
+    padding-left:20px !important;
+    color:#f30100;
+    height:70px;
+    line-height:70px;    
+}
+
+.managertabletitle {
+    font-size:20px !important;
+    font-weight:500;
+}
+.managercolor01 {
+    color:#222 !important;
+}
+.managercolor02 {
+    color:#f30100;
+}
+.languangeText {
+    font-size:18px;
+    font-weight:500;
+    border-bottom:1px solid #4f4f4f;
+
+}
+
+
+
+/* 서류 제출 */
+.missiontable {
+    position: relative;
+    width:100%;
+    border:1px solid #e9e9e8;
+    font-size:15px;
+    font-weight:500;
+    color:#202020;
+}
+
+.missiontable th {
+    text-align:center;
+    background-color:#fff;
+    height:60px;
+    line-height:60px;
+    border:1px solid #e5e5e5;
+}
+.missiontable td {
+    text-align:center;
+    height:60px;
+    vertical-align: middle;
+    border:1px solid #e5e5e5;
+}
+.missiontable .doctablebtn01 {
+    width: 100px;
+    height: 40px;
+    background-color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #202020;
+    float: right;
+    line-height: 40px;
+    margin: 10px;
+}
+.missiontable .doctablebtn02 {
+    width: 100px;
+    height: 40px;
+    background-color: #0062a9;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    float: right;
+    line-height: 40px;
+    margin: 10px;
+}
+.missiontable .doctablefont01 {
+    font-size:18px;
+    font-weight:500;
+    color:#202020;
+}
+.missiontable .doctablefont02 {
+    font-size:18px;
+    font-weight:500;
+    color:#0061a9;
+}
+.missiontable .doctablefont03 {
+    font-size:18px;
+    font-weight:500;
+    color:#e51d25;
+}
+.missiontable .doctablefont04 {
+    font-size:14px;
+    font-weight:500;
+    color:#0061a9;
+    display:block;
+    text-align:left;
+    margin-left:40px;
+}
+.missiontable .doctableline {
+    line-height:60px;
+}
+
+.missiontable .bg01 {
+    background-color:#f7f8f8;
+}
+

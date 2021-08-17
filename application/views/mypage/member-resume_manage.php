@@ -19,151 +19,296 @@
 
                     </div>
                     <div class="sub_contents">
-                        <div class="sub_category">
+                        <div class="sub_category03">
                             <ul>
                                 <li><a href="/mypage/memberEdit">정보관리</a></li>
-                                <li><a href="/mypage/memberResumeRegist">이력서 작성</a></li>
-                                <li class="on"><a href="/mypage/memberResumeManage">제출서류 관리</a></li>
+                                <li class="on"><a href="/mypage/memberResumeRegist">이력서 작성</a></li>
+                                <li ><a href="/mypage/submissionDoc">제출서류 관리</a></li>
                             </ul>
                         </div>
                         <?php if(isset($RESUME_INFO)) :?>
                             <div class="inner">
                                 <div class="subContWrap">
+                                    <div class="ContTopresumeBtn">
+                                        <button class="resumadminbtn01" onclick="location.href='/mypage/memberResumeRegist' ">이력서 작성</button>
+                                    </div>                                    
+                                    <div class="resumetoptext">
+                                        <p>- 붉은 칸에 자세히 기재하되, 적합한 영어단어가 없으면 한글로 기재바랍니다.</p>
+                                        <p>- 완성 후 본인 영문이름으로 파일을 만들고 보내주시기 바랍니다.</p>
+                                        <p>- 취미와 운동, 아르바이트 경험, 장학금 등은 많이 기재하시는 것이 좋습니다.</p>
+                                        <p>- 군복무 이력은 Working Experience에 기재하시기 바랍니다.</p>
+                                    </div>                                    
                                     <div class="subTit">
                                         <h2><?php echo "이력서 첨삭보기" ?></h2>
                                     </div>
-
-                                    <div class="">
-                                        <div class="col-md-12 text-center resume_img_frame">
+                                    <div class="ResumeWrap">
+                                        <div class="resume_img_frame mb40">
                                             <img src="<?php echo $RESUME_INFO->RESUME_USER_PHOTO?>">
                                         </div>
-                                    </div>
 
-                                    <div class="">
-                                        <table class="table table-custom dataTable">
+
+                                        <table class="resumemanagertable dataTable">
+                                            <colgroup>
+                                                <col width="25%">
+                                                <col width="75%">
+                                            </colgroup>
                                             <tbody>
                                                 <tr>
-                                                    <th class="col-sm-2">Title</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Title</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_TITLE ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Name (영문)</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Name (영문)</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_NAME ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Address</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Address</th>
+                                                    <td>
                                                         <?php echo "(.".$RESUME_INFO->RESUME_USER_ZIPCODE.") " ?> <?php echo $RESUME_INFO->RESUME_USER_ADDR1." " ?><?php echo $RESUME_INFO->RESUME_USER_ADDR2 ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Phone No.</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Phone No.</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_PHONE ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">E-mail</th>
-                                                    <td class="col-sm-10">
+                                                    <th>E-mail</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_EMAIL ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">SkypeID</th>
-                                                    <td class="col-sm-10">
+                                                    <th>SkypeID</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_SKYPE_ID ?>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
 
-                                    <div class="">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">Personal Particulars</div>
-                                        </div>
-                                        <table class="table table-custom dataTable">
+
+                                        <table class="resumemanagertable dataTable mt50">
+                                            <colgroup>
+                                                <col width="25%">
+                                                <col width="25%">
+                                                <col width="25%">
+                                                <col width="25%">
+                                            </colgroup>
                                             <tbody>
                                                 <tr>
-                                                    <th class="col-sm-2">Age</th>
-                                                    <td class="col-sm-10">
-                                                        <?php echo $RESUME_INFO->RESUME_USER_AGE ?>
-                                                    </td>
+                                                    <th colspan="4" class="managertabletitle">Personal Particulars</th>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Date of Birth</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Age</th>
+                                                    <td>
+                                                        <?php echo $RESUME_INFO->RESUME_USER_AGE ?>
+                                                    </td>
+                                                    <th>Date of Birth</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_DOB ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Nationality</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Nationality</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_NATIONALITY ?>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="col-sm-2">Martial Status</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Martial Status</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_MARTIAL_STATUS ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">I/C Number<br>(여권번호)</th>
-                                                    <td class="col-sm-10">
+                                                    <th>I/C Number (여권번호)</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_IC_NUMBER ?>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="col-sm-2">Permanent<br>Residence</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Permanent Residence</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_PERMANENT_RESIDENCE ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Religion</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Religion</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_RELIGION ?>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="col-sm-2">Graduation Date<br>(yyyy/mm/dd)</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Graduation Date (yyyy/mm/dd)</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_DOG ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Height</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Height</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_HEIGHT ?> Cm
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="col-sm-2">Weight</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Weight</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_WEIGHT ?> Kg
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Hobbies</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Hobbies</th>
+                                                    <td>
                                                         <?php echo $RESUME_INFO->RESUME_USER_HOBBY ?>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="col-sm-2">Criminal Record</th>
-                                                    <td class="col-sm-10">
+                                                    <th>Criminal Record</th>
+                                                    <td>
                                                         <?php  echo $RESUME_INFO->RESUME_USER_CRIMINAL_RECORD ?>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
+
+
+
+                                        <table class="resumemanagertable dataTable mt50">
+                                            <colgroup>
+                                                <col width="25%">
+                                                <col width="75%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="2" class="managertabletitle">Education</th>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <td>
+                                                        
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="resumemanagertable dataTable mt50">
+                                            <colgroup>
+                                                <col width="25%">
+                                                <col width="75%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="2" class="managertabletitle">Working Experience</th>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <td>
+                                                        
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+
+                                        <table class="resumemanagertable dataTable mt50">
+                                            <colgroup>
+                                                <col width="25%">
+                                                <col width="75%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="2" class="managertabletitle">Activities</th>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <td>
+                                                        
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="resumemanagertable dataTable mt50">
+                                            <colgroup>
+                                                <col width="75%">
+                                                <col width="25%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="2" class="managertabletitle">Achievements</th>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <td>
+                                                        
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="resumemanagertable dataTable mt50">
+                                            <colgroup>
+                                                <col width="33.333%">
+                                                <col width="33.333%">
+                                                <col width="33.333%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="3" class="managertabletitle">Professional Skills</th>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="resumemanagertable dataTable mt50">
+                                            <colgroup>
+                                                <col width="33.333%">
+                                                <col width="33.333%">
+                                                <col width="33.333%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="3" class="managertabletitle">Languange Skills</th>
+                                                </tr>
+                                                <tr>
+                                                    <th><span class="languangeText">Laguage</span></th>
+                                                    <th><span class="languangeText">Spoken</span></th>
+                                                    <th><span class="languangeText">Written</span></th>
+                                                </tr>
+                                                <tr>
+                                                    <td class="managercolor01">English</td>
+                                                    <td class="managercolor02">Basic</td>
+                                                    <td class="managercolor02">Basic</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+
+
+                                        <table class="resumemanagertable dataTable mt50">
+                                            <colgroup>
+                                                <col width="100%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="3" class="managertabletitle"> Computer Skills</th>
+                                                </tr>
+                                                <tr>
+                                                    <td> <?php echo $RESUME_INFO->RESUME_USER_COMPUTER_SKILL?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+
+
                                     </div>
 
+                                    <div class="resumebtnwrap">
+                                        <input type="button" id="" name="" class="resumebtn01 mw10" value="취소하기">
+                                        <input type="button" id="" name="" class="resumebtn mw10" value="저장하기">
+                                    </div>
+
+<!--
                                     <div class="">
                                         <div class="row" style="margin-bottom: 10px">
                                             <div class="col-md-10">Education</div>
@@ -337,6 +482,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                                                -->
+
 
                             </div>
                         <?php else :?>

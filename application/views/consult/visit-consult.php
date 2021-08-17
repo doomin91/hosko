@@ -19,14 +19,15 @@
                         </div>
 
                     </div>
+
                     <div class="sub_contents">
                         <div class="sub_category">
                             <ul>
-                                <li class="on"><a href="/consult/qnaList">Q&A</a></li>
+                            <li><a href="/consult/qnaList">Q&A</a></li>
                                 <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
-                                <li><a href="/">방문상담신청</a></li>
+                                <li class="on"><a href="/consult/consult/visitConsult">방문신청 상담</a></li>
                                 <li><a href="/consult/apply">포지션&연수 지원</a></li>
-                                <li><a href="#">설명회신청</a></li>
+                                <li><a href="/consult/presentationList">설명회신청</a></li>
                             </ul>
                         </div>
 
@@ -35,7 +36,8 @@
                                 <div class="subTit">
                                     <h2>방문상담 신청</h2>
                                 </div>
-                                <div>
+
+                                <div class="VisitTopText">
                                     <p>방문상담 셀프신청 이용안내</p>
                                     <p>STEP1 일정을 확인하고 상담을 원하는 날짜를 클릭해주세요</p>
                                     <p>STEP2 '상담신청' 버튼을 눌러 신청을 진행해주세요</p>
@@ -44,14 +46,16 @@
                                     <p>STEP3 상담 신청완료를 진행하시면, HOSKO에서 확인전화를 통해 에약을 확정해드립니다.</p>
                                     <p>TIP** 방문상담 전에 홈페이지 회원가입을 진행해주세요. 기본적인 이력과 분야를 미리 분석하여 좀 더 정확하고 많은 정보를 제공해드립니다.</p>
                                 </div>
-                                <div class="subContSec">
-                                    <div class="col-lg-12 align-left">
+                                <div class="subContSec mt30">
+
+                                    <div class="col-lg-12 align-left datapaging">
                                         <A href="/consult/visitConsult/?strYear=<?php echo $year; ?>&strMon=<?php echo $month-1; ?>"><i class="fa fa-caret-left"></i></a>
                                         &nbsp;&nbsp;&nbsp;<?php echo $year; ?>년 <?php echo $month; ?>월 &nbsp;&nbsp;&nbsp;
                                         <a href="/consult/visitConsult/?strYear=<?php echo $year; ?>&strMon=<?php echo $month+1; ?>"><i class="fa fa-caret-right"></i></a>
                                     </div>
-                                    <div class="table-responsive"  role="grid" id="basicDataTable_wrapper">
-                                        <table class="table datatable table-custom01" id="calendarTable">
+
+                                    <div class="table-responsive mb60"  role="grid" id="basicDataTable_wrapper">
+                                        <table class="datatable CalendarTable" id="calendarTable">
                                         <colgroup>
                                                 <col width="14%"/>
                                                 <col width="14%"/>

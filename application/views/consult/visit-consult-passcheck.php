@@ -35,7 +35,7 @@
                                 <div class="subTit">
                                     <h2>방문상담 신청</h2>
                                 </div>
-                                <div>
+                                <div class="VisitTopText mb30">
                                     <p>방문상담 셀프신청 이용안내</p>
                                     <p>STEP1 일정을 확인하고 상담을 원하는 날짜를 클릭해주세요</p>
                                     <p>STEP2 '상담신청' 버튼을 눌러 신청을 진행해주세요</p>
@@ -47,15 +47,15 @@
                                 
                                 <div class="subContSec">
                                     <div class="col-lg-12">
-                                        <div>
+                                        <div class="VisitPassbox mb80 mt20">
                                             <form name="form">
                                             <input type="hidden" name="mode" value="<?php echo $mode; ?>">
                                             <input type="hidden" name="vcon_seq" value="<?php echo $vcon_seq; ?>">
-                                            <div>비밀번호 확인</div>
-                                            <div><input type="password" name="password"></div>
-                                            <div>
-                                                <button type="button" class="btn_style02 f_left" id="consultSave">확인</button>
-                                                <button type="button" class="btn_style01 f_left" id="consultCancel">취소</button>
+                                            <div class="VisitPassbox_Title">비밀번호 확인</div>
+                                            <div class="VisitPassbox_Input"><input type="password" name="password"></div>
+                                            <div class="VisitPassbox_Button">
+                                                <button type="button" class="visitpwbtn01" id="consultSave">확인</button>
+                                                <button type="button" class="visitpwbtn02" id="consultCancel">취소</button>
                                             </div>
                                         </div>
                                     </div>
