@@ -479,8 +479,6 @@ footer .footer_info .f_address li {font-size:1em;  font-family:'Noto Sans KR', s
     margin-bottom:0;
 }
 
-
-
 .recruitform {
     display:inline-block;
     width: 100%;
@@ -492,4 +490,61 @@ footer .footer_info .f_address li {font-size:1em;  font-family:'Noto Sans KR', s
     color: #848484;
     background-color: #fff;
     border: 1px solid #ccc;
+}
+
+
+/* apply table */
+.applyViewTitle {
+    font-size:20px;
+    font-weight:500;
+    color:#222;
+    padding-bottom:10px;
+}
+.applyViewTable {
+    position:relative;
+    width:100%;
+}
+.applyViewTable tr {
+    border-top:1px solid #e5e5e5;
+    border-bottom:1px solid #e5e5e5;
+}
+.applyViewTable th {
+    font-size:15px;
+    font-weight:500;
+    color:#222;
+    background-color:#f9f5f2;
+    padding-left:10px;
+    box-sizing: border-box;
+    height:50px;
+    line-height:50px;
+}
+.applyViewTable td {
+    font-size:15px;
+    font-weight:500;
+    color:#222;
+    padding-left:10px;
+}
+
+.ApplyBtnWrap {
+    position:relative;
+    width:100%;
+    display:inline-block;
+}
+.applybtn01 {
+    background-color:#e5e5e5;
+    color:#222;
+    width:120px;
+    height:40px;
+    text-align:center;
+    font-size:15px;
+    font-weight:400;
+}
+.applybtn02 {
+    background-color:#0e5fa9;
+    color:#fff;
+    width:120px;
+    height:40px;
+    text-align:center;
+    font-size:15px;
+    font-weight:400;
 }
