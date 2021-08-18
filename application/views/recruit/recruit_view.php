@@ -157,8 +157,8 @@
                                         </div>
 
                                         <div class="detail_footer">
-                                            <button class="recruit_btn01 mr20">지원하기</button>
-                                            <button class="recruit_btn02">목록가기</button>
+                                            <button class="recruit_btn01 mr20"><a href="/recruit/recruit_new/<?php echo $CATEGORY?>/<?php echo $RECRUIT->REC_SEQ?>" class="btn btn-s btn-primary">지원하기</a></button>
+                                            <button class="recruit_btn02"><a href="/recruit?ctg=<?php echo $CATEGORY?>" class="btn btn-s btn-primary">목록가기</a></button>
                                         </div>
 
                                         <!-- 

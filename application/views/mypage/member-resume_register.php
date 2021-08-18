@@ -325,17 +325,17 @@
                                             <div class="resumeBox">
                                                 <div class="box_content">
                                                     <div class="resume_activity_box wid25p">
-                                                        <input type="text" name="rlang_name[]" value="">
+                                                        <input type="text" name="rlang_name[]" value="" class="wid100p">
                                                     </div>
                                                     <div class="resume_activity_box wid25p">
-                                                        <select name="rlang_speaking[]">
+                                                        <select name="rlang_speaking[]" class="wid100p">
                                                             <option value="0" selected>BASIC</option>
                                                             <option value="1" >GOOD</option>
                                                             <option value="2" >EXCELLENT</option>
                                                         </select>
                                                     </div>
                                                     <div class="resume_activity_box wid25p">
-                                                        <select name="rlang_writing[]">
+                                                        <select name="rlang_writing[]" class="wid100p">
                                                             <option value="0" selected>BASIC</option>
                                                             <option value="1" >GOOD</option>
                                                             <option value="2" >EXCELLENT</option>
@@ -963,13 +963,14 @@
             FILE.append(this.id, file);
 
             for (var key of FILE.keys()) {
-            console.log(key);
+                console.log(key);
             }
 
             // FormData의 value 확인
             for (var value of FILE.values()) {
-            console.log(value);
+                console.log(value);
             }
+            $(".filename").val(file.name);
         });
 
         $("#update_resume").on("click", function(){

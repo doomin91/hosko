@@ -61,7 +61,7 @@
                                         <?php foreach($REC_LIST as $REC):?>
                                             <tr>
                                                 <td><?php echo $REC->REC_SEQ ?></td>
-                                                <td><span class="thumImg"><!--<img src="">--></span><a class="fontcb" href ="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $REC->REC_SEQ?>"><?php echo $REC->REC_TITLE ?></a></td>
+                                                <td><span class="thumImg"><img src="<?php echo $REC->REC_THUMBNAIL?>"></span><a class="fontcb" href ="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $REC->REC_SEQ?>"><?php echo $REC->REC_TITLE ?></a></td>
                                                 <td><?php echo $REC->ADMIN_USER_NAME ?></td>
                                                 <td><!-- <span class="deadlineIcon">마감</span> <span class="recuitIcon">모집중</span> --><?php $REC->REC_STATUS==0 ? print("마감") : print("모집중") ?></td>
                                                 <td><?php echo $REC->REC_COUNT ?></td>
