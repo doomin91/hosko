@@ -442,3 +442,54 @@ footer .footer_info .f_address li {font-size:1em;  font-family:'Noto Sans KR', s
     background-color:#f7f8f8;
 }
 
+/* recruit table */
+
+.RecruitTable {
+    position:relative;
+    width:100%;
+}
+.RecruitTable th {
+    height:45px;
+    line-height:45px;
+    font-size:15px;
+    font-weight:500;
+    color:#3c3c3c;
+    padding:5px 0;
+}
+.RecruitTable td {
+    vertical-align: middle;
+    font-size:15px;
+    font-weight:400;
+    color:#222;
+}
+
+.RecruitTable td input {
+    margin:0;
+}
+.recruitRadio {
+    width:100%;
+}
+.recruitRadio [type="radio"] {
+    margin: 0 2px 2px 10px;
+    vertical-align:middle;
+}
+.recruit_textarea {
+    resize:none;
+    height:100px !important;
+    margin-bottom:0;
+}
+
+
+
+.recruitform {
+    display:inline-block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight:400;
+    line-height: 1.42857143;
+    color: #848484;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}

@@ -36,202 +36,228 @@
                                     <input type="hidden" id="rec_seq" name="rec_seq" value="<?php echo $RECRUIT->REC_SEQ?>"/>
                                     <input type="hidden" id="user_seq" name="user_seq" value="<?php echo $USER->USER_SEQ?>"/>
                                     <div class="subContSec">
-                                        <div class="row">
-                                            <div class="TableTitle">지원자 기본정보</div>
+
+                                        <div class="row RecruitTitle">
+                                            <h2>지원자 기본정보</h2>
                                         </div>
 
-                                        <table class="tableCont03 dataTable">
+                                        <table class="RecruitTable dataTable mb30">
                                             <colgroup>
-                                                <col width="15%"/>
-                                                <col width="85%"/>
+                                                <col width="20%"/>
+                                                <col width="80%"/>
                                             </colgroup>
                                             <tbody>
                                                 <tr>
                                                     <th>이름</th>
                                                     <td>
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_user_name" id="apply_user_name" value="<?php echo  $USER->USER_NAME?>">
+                                                        <input type="text" class="recruitform common_select wid100p" name="apply_user_name" id="apply_user_name" value="<?php echo  $USER->USER_NAME?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>주민번호</th>
                                                     <td>
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_user_birthday" id="apply_user_birthday" value="<?php echo  $USER->USER_BIRTHDAY?>">    
+                                                        <input type="text" class="recruitform common_select wid100p" name="apply_user_birthday" id="apply_user_birthday" value="<?php echo  $USER->USER_BIRTHDAY?>">    
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>전화번호</th>
                                                     <td>
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_user_tel" id="apply_user_tel" value="<?php echo  $USER->USER_HP?>">
+                                                        <input type="text" class="recruitform common_select wid100p" name="apply_user_tel" id="apply_user_tel" value="<?php echo  $USER->USER_HP?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>이메일</th>
                                                     <td>
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_user_email" id="apply_user_email" value="<?php echo  $USER->USER_EMAIL?>">
+                                                        <input type="text" class="recruitform common_select wid100p" name="apply_user_email" id="apply_user_email" value="<?php echo  $USER->USER_EMAIL?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>사진</th>
                                                     <td>
+                                                        <input type="text" class="recruitform file_view" value="" readonly="">
+                                                        <!--
                                                         <div class="input-group">
                                                             <span class="input-group-btn">
                                                                 <span class="btn btn-primary btn-file">
                                                                 <i class="fa fa-upload"></i><input type="file" id="apply_user_img" name="apply_user_img">
                                                                 </span>
                                                             </span>
-                                                            <!-- <input type="text" class="form-control file_view" value="" readonly=""> -->
                                                         </div>
 
                                                         <!-- <input type="text" class="form-control common_select wid100p" name="apply_user_img_edit" id="apply_user_img_edit" readonly>
                                                         <input type="button" class="btn btn-s btn-primary" name="apply_user_img_edit_btn" id="apply_user_img_edit_btn" value="찾아보기"> (Size: 110x120 px) -->
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <th>사진교체</th>
+                                                    <td>
+                                                        <div class="recruitfile">
+                                                            <input type="text" readonly="readonly" class="filename" />
+                                                            <label for="resume_img" class="filelabel">파일 업로드</label>
+                                                            <input type="file" name="resume_img" id="resume_img" class="fileupload" />
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         
-                                    </div>
 
-                                    <div class="subContSec">
-                                        <div class="row" style="margin-bottom: 10px">
-                                            <div class="col-md-10">지원자 상세정보</div>
+
+                                        <div class="row RecruitTitle">
+                                            <h2>지원자 상세정보</h2>
                                         </div>
-                                        <table class="table table-custom dataTable">
+
+
+
+                                        <table class="RecruitTable dataTable">
+                                            <colgroup>
+                                                <col width="20%"/>
+                                                <col width="80%"/>
+                                            </colgroup>                                            
                                             <tbody>
                                                 <tr>
-                                                    <th class="col-sm-2">지원 프로그램</th>
-                                                    <td class="col-sm-10">
+                                                    <th>지원 프로그램</th>
+                                                    <td>
                                                     <?php echo  $RECRUIT->REC_TITLE?>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">University</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_uni" id="apply_uni" value="">
+                                                    <th>University</th>
+                                                    <td>
+                                                        <input type="text" class="recruitform common_select wid100p" name="apply_uni" id="apply_uni" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Major</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_major" id="apply_major" value="">
+                                                    <th>Major</th>
+                                                    <td>
+                                                        <input type="text" class="recruitform common_select wid100p" name="apply_major" id="apply_major" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Minor/Double Major</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_doublemajor" id="apply_doublemajor" value="">
+                                                    <th>Minor/Double Major</th>
+                                                    <td>
+                                                        <input type="text" class="recruitform common_select wid100p" name="apply_doublemajor" id="apply_doublemajor" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Grade</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_grade" id="apply_grade" value="">
+                                                    <th>Grade</th>
+                                                    <td>
+                                                        <input type="text" class="recruitform common_select wid25p" name="apply_grade" id="apply_grade" value="">
+                                                        <span class="ml10">학년</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2"></th>
-                                                    <td class="col-sm-10">
+                                                    <th></th>
+                                                    <td class="recruitRadio">
                                                         <label for="apply_uni_status_1"><input type="radio" name="apply_uni_status" id="apply_uni_status_1" value="1"> 재학 </label>
                                                         <label for="apply_uni_status_2"><input type="radio" name="apply_uni_status" id="apply_uni_status_2" value="2"> 휴학 </label>
-                                                        <label for="apply_uni_status_3"><input type="radio" name="apply_uni_status" id="apply_uni_status_3" value="3"> 졸업 </label>
-                                                        <input type="text" class="form-control common_select" name="apply_grade_year" id="apply_grade_year" value="">
+                                                        <label for="apply_uni_status_3"><input type="radio" name="apply_uni_status" id="apply_uni_status_3" value="3"> 졸업/졸업년도 </label>
+                                                        <input type="text" class="recruitform common_select wid25p" name="apply_grade_year" id="apply_grade_year" value="">
 
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">회사명</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_comp_name" id="apply_comp_name" value="">
+                                                    <th>회사명</th>
+                                                    <td>
+                                                        <input type="text" class="recruitform common_select wid100p" name="apply_comp_name" id="apply_comp_name" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">재직기간</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_work_start_year" id="apply_work_start_year" value=""> 년
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_work_start_month" id="apply_work_start_month" value=""> 월
-                                                        ~
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_work_end_year" id="apply_work_end_year" value=""> 년
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_work_end_month" id="apply_work_end_month" value=""> 월
+                                                    <th>재직기간</th>
+                                                    <td>
+                                                        <input type="text" class="recruitform common_select" style="width:120px;" name="apply_work_start_year" id="apply_work_start_year" value=""> &nbsp;년
+                                                        <input type="text" class="recruitform common_select" style="width:120px;" name="apply_work_start_month" id="apply_work_start_month" value=""> &nbsp;월
+                                                        &nbsp; ~ &nbsp;
+                                                        <input type="text" class="recruitform common_select" style="width:120px;" name="apply_work_end_year" id="apply_work_end_year" value=""> &nbsp;년
+                                                        <input type="text" class="recruitform common_select" style="width:120px;" name="apply_work_end_month" id="apply_work_end_month" value=""> &nbsp;월
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">부서명</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_comp_department" id="apply_comp_department" value="">
+                                                    <th>부서명</th>
+                                                    <td>
+                                                        <input type="text" class="recruitform common_select wid100p" name="apply_comp_department" id="apply_comp_department" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Date you wish to begin<br>your desired program</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_start_date" id="apply_start_date" value="">
+                                                    <th>Date you wish to begin<br>your desired program</th>
+                                                    <td>
+                                                        <input type="text" class="recruitform common_select wid100p" name="apply_start_date" id="apply_start_date" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">(Language Skill) English</th>
-                                                    <td class="col-sm-10">
+                                                    <th>(Language Skill) English</th>
+                                                    <td class="recruitRadio">
                                                         <label for="apply_eng_skill_1"><input type="radio" name="apply_eng_skill" id="apply_eng_skill_1" value="1"> Fluent</label>
                                                         <label for="apply_eng_skill_2"><input type="radio" name="apply_eng_skill" id="apply_eng_skill_2" value="2"> Fair</label>
                                                         <label for="apply_eng_skill_3"><input type="radio" name="apply_eng_skill" id="apply_eng_skill_3" value="3"> Poor</label>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">기타외국어</th>
-                                                    <td class="col-sm-10">
+                                                    <th>기타외국어</th>
+                                                    <td class="recruitRadio">
                                                         <label for="apply_another_skill_1"><input type="radio" name="apply_another_skill" id="apply_another_skill_1" value="1"> Fluent</label>
                                                         <label for="apply_another_skill_2"><input type="radio" name="apply_another_skill" id="apply_another_skill_2" value="2"> Fair</label>
                                                         <label for="apply_another_skill_3"><input type="radio" name="apply_another_skill" id="apply_another_skill_3" value="3"> Poor</label>
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_another_skill_name" id="apply_another_skill_name" value="">
+                                                        <input type="text" class="recruitform common_select wid25p ml10" name="apply_another_skill_name" id="apply_another_skill_name" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">TOEIC Score</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_toeic_score" id="apply_toeic_score" value="">
+                                                    <th>TOEIC Score</th>
+                                                    <td>
+                                                        <input type="text" class="recruitform common_select wid100p" name="apply_toeic_score" id="apply_toeic_score" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">TOEFL Score</th>
-                                                    <td class="col-sm-10">
-                                                        <input type="text" class="form-control common_select wid100p" name="apply_toefl_score" id="apply_toefl_score" value="">
+                                                    <th>TOEFL Score</th>
+                                                    <td>
+                                                        <input type="text" class="recruitform common_select wid100p" name="apply_toefl_score" id="apply_toefl_score" value="">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">경력사항</th>
-                                                    <td class="col-sm-10">
-                                                        <textarea class="form-control common_textarea wid100p" name="apply_career" id="apply_career"></textarea>
+                                                    <th>경력사항</th>
+                                                    <td>
+                                                        <textarea class="recruitform common_textarea wid100p recruit_textarea" name="apply_career" id="apply_career"></textarea>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">여권보유여부</th>
-                                                    <td class="col-sm-10">
+                                                    <th>여권보유여부</th>
+                                                    <td>
                                                         <label for="apply_passport_flag_y"><input type="radio" name="apply_passport_flag" id="apply_passport_flag_y" value="Y" > Yes</label>
                                                         <label for="apply_passport_flag_n"><input type="radio" name="apply_passport_flag" id="apply_passport_flag_n" value="N" > No</label>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">미국비자발급거절여뷰</th>
-                                                    <td class="col-sm-10">
+                                                    <th>미국비자발급거절여뷰</th>
+                                                    <td>
                                                         <label for="apply_visa_flag_y"><input type="radio" name="apply_visa_flag" id="apply_visa_flag_y" value="Y" > Yes</label>
                                                         <label for="apply_visa_flag_n"><input type="radio" name="apply_visa_flag" id="apply_visa_flag_n" value="N" > No</label>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="col-sm-2">Self Introduction and goal<br>and motivation</th>
-                                                    <td class="col-sm-10">
-                                                        <textarea class="form-control common_textarea wid100p" name="apply_self_introduce" id="apply_self_introduce"></textarea>
+                                                    <th>Self Introduction and goal<br>and motivation</th>
+                                                    <td>
+                                                        <textarea class="recruitform common_textarea wid100p recruit_textarea" name="apply_self_introduce" id="apply_self_introduce"></textarea>
                                                     </td>
                                                 </tr>
 
                                             </tbody>
                                         </table>
-                                    </div>
-                                </form>
-                            </div>
 
-                            <div class="subContSec">
-                                <div class="col-md-12 text-right">
-                                    <input type="button" id="recruit_apply_create" name="recruit_apply_create" class="btn btn-s btn-primary" value="지원하기">
+                                    </div>
+
+                                </form>
+
+                                <div class="detail_footer mb60">
+                                    <button class="recruit_btn01 mr20"><a href="/recruit/recruit_new/<?php echo $CATEGORY?>/<?php echo $RECRUIT->REC_SEQ?>">지원하기</a></button>
+                                    <button class="recruit_btn02"><a href="/recruit?ctg=<?php echo $CATEGORY?>">취소하기</a></button>
+                                    
+                                    <!--
+                                        <input type="button" id="recruit_apply_create" name="recruit_apply_create" class="btn btn-s btn-primary" value="지원하기">
                                         <a href="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $RECRUIT->REC_SEQ?>" class="btn btn-s btn-default">취소하기</a>
+                                    -->
                                 </div>
+
+
                             </div>
 
                         </div>
