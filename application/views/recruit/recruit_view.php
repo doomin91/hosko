@@ -156,10 +156,18 @@
                                             <?php echo $RECRUIT->REC_CONTENTS?>
                                         </div>
 
+                                    <?php if($this->session->userdata("USER_SEQ")) : ?>
                                         <div class="detail_footer">
                                             <button class="recruit_btn01 mr20"><a href="/recruit/recruit_new/<?php echo $CATEGORY?>/<?php echo $RECRUIT->REC_SEQ?>">지원하기</a></button>
                                             <button class="recruit_btn02"><a href="/recruit?ctg=<?php echo $CATEGORY?>">목록가기</a></button>
                                         </div>
+                                    <?php else: ?>
+                                        <div class="detail_footer">
+                                            <button class="recruit_btn02"><a href="/recruit?ctg=<?php echo $CATEGORY?>">목록가기</a></button>
+                                        </div>
+                                    <?php endif ?>
+
+                                        
 
                                         <!-- 
                                         <div class="col-md-12 text-right">

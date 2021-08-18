@@ -215,7 +215,7 @@ class Recruit extends CI_Controller {
 			
             $config['image_library'] = 'gd2';
             $config['source_image'] = $file_path;
-            $config['new_image'] = "./upload/apply/"."APPLYB".$time."_".$insert_id."_USER_THUMB".".".end($tmp);
+            $config['new_image'] = "./upload/apply/"."APPLY".$time."_".$insert_id."_USER_THUMB".".".end($tmp);
             $pathArr = explode(".",$config['new_image']);
             
             $config['width'] = 110;
@@ -235,10 +235,41 @@ class Recruit extends CI_Controller {
 			$this->image_lib->clear();
 
 			$result2 = $this->RecruitModel->updateRecruitApply($insert_id, array("APP_USER_IMG" => $thumb_file_path));
+            
+        }else{
+            $user_info = $this->UserModel->getUserInfo($this->session->userdata("USER_SEQ"));
+            // print_r($user_info);
+            $time = time();
+            $tmp = explode(".", $user_info->USER_PROFILE);
+
+            $thumb_file_path = "";
+			
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = ".".$user_info->USER_PROFILE;
+            $config['new_image'] = "./upload/apply/"."APPLY".$time."_".$insert_id."_USER_THUMB".".".end($tmp);
+            $pathArr = explode(".",$config['new_image']);
+            
+            $config['width'] = 110;
+            $config['height'] = 120;
+
+            // $this->load->library('image_lib', $config);
+            $this->image_lib->initialize($config);
+
+            if($this->image_lib->resize() == false){
+                echo json_encode(array("code" => "202", "error" => $this->image_lib->display_errors()));
+                // print_r($this->image_lib->display_errors());
+            }else{
+                // array_push($thumb_file_path, $pathArr[1].".".$pathArr[2]);
+                $thumb_file_path = $pathArr[1].".".$pathArr[2];
+            }
+			
+			$this->image_lib->clear();
+
+            $result2 = $this->RecruitModel->updateRecruitApply($insert_id, array("APP_USER_IMG" => $thumb_file_path));
 
         }
 
-		if ($result == true && $result2 == true){
+		if ($result == true){
 			echo json_encode(array("code" => "200"));
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));

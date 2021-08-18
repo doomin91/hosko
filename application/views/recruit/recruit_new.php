@@ -47,6 +47,11 @@
                                                 <col width="80%"/>
                                             </colgroup>
                                             <tbody>
+                                                <?php 
+                                                    $img_path = explode("/", $USER->USER_PROFILE);
+                                                    $path_count = count($img_path);
+                                                    $img_name = $img_path[$path_count-1];
+                                                ?>
                                                 <tr>
                                                     <th>이름</th>
                                                     <td>
@@ -74,7 +79,7 @@
                                                 <tr>
                                                     <th>사진</th>
                                                     <td>
-                                                        <input type="text" class="recruitform file_view" value="" readonly="">
+                                                        <input type="text" class="recruitform file_view" value="<?php echo $img_name?> (기존 회원 이미지)" readonly="">
                                                         <!--
                                                         <div class="input-group">
                                                             <span class="input-group-btn">
@@ -93,8 +98,8 @@
                                                     <td>
                                                         <div class="recruitfile">
                                                             <input type="text" readonly="readonly" class="filename" />
-                                                            <label for="resume_img" class="filelabel">파일 업로드</label>
-                                                            <input type="file" name="resume_img" id="resume_img" class="fileupload" />
+                                                            <label for="apply_user_img" class="filelabel">파일 업로드</label>
+                                                            <input type="file" name="apply_user_img" id="apply_user_img" class="fileupload" />
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -248,8 +253,8 @@
                                 </form>
 
                                 <div class="detail_footer mb60">
-                                    <button class="recruit_btn01 mr20"><a href="/recruit/recruit_new/<?php echo $CATEGORY?>/<?php echo $RECRUIT->REC_SEQ?>">지원하기</a></button>
-                                    <button class="recruit_btn02"><a href="/recruit?ctg=<?php echo $CATEGORY?>">취소하기</a></button>
+                                    <button class="recruit_btn01 mr20" id="recruit_apply_create" name="recruit_apply_create">지원하기</button>
+                                    <button class="recruit_btn02"><a href="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $RECRUIT->REC_SEQ?>">취소하기</a></button>
                                     
                                     <!--
                                         <input type="button" id="recruit_apply_create" name="recruit_apply_create" class="btn btn-s btn-primary" value="지원하기">
@@ -280,29 +285,32 @@
         var FILE = new FormData();
 
         $("input[name='apply_user_img']").change(function(){
-                var file = this.files[0];
-                // var parent = $(this).closest(".input-group");
-                // // $(this).val("test");
-                // console.log(parent);
-                // var input = $(parent).find(".file_view");
-                // console.log(input);
-                // $(input).val(file['name']);
-                // // console.log(file['name']);
-                // // console.log(input);
-                // console.log(file);
-                // console.log(this.id);
+            FILE = new FormData();
+            var file = this.files[0];
+            // var parent = $(this).closest(".input-group");
+            // // $(this).val("test");
+            // console.log(parent);
+            // var input = $(parent).find(".file_view");
+            // console.log(input);
+            // $(input).val(file['name']);
+            // // console.log(file['name']);
+            // // console.log(input);
+            // console.log(file);
+            // console.log(this.id);
 
-                FILE.append(this.id, file);
+            FILE.append(this.id, file);
 
-                for (var key of FILE.keys()) {
-                console.log(key);
-                }
+            for (var key of FILE.keys()) {
+            console.log(key);
+            }
 
-                // FormData의 value 확인
-                for (var value of FILE.values()) {
-                console.log(value);
-                }
-            });
+            // FormData의 value 확인
+            for (var value of FILE.values()) {
+            console.log(value);
+            }
+            
+            $(".filename").val(file.name);
+        });
 
         $("#recruit_apply_create").on("click", function(){
             var rec_seq = $("input[name=rec_seq]").val();
@@ -310,7 +318,7 @@
             var fd = new FormData();
             fd.append("rec_seq", rec_seq);
             fd.append("user_seq", user_seq);
-
+            
             var form_data = $('#myApplyCreateForm').serializeArray(); // serialize 사용
             $.each(form_data, function (key, input) {
                 if(input.value=="" && input.name != "apply_user_img"){
@@ -320,9 +328,12 @@
                 fd.append(input.name, input.value);
             });
             
-            for (var key of FILE.keys()) {
-                fd.append(key, FILE.get(key));
+            if($(".filename").val() != ""){
+                for (var key of FILE.keys()) {
+                    fd.append(key, FILE.get(key));
+                }
             }
+            
             // console.log(form_data);
 
             // for (var key of fd.keys()) {
@@ -351,7 +362,9 @@
                         console.log("문제 발생");
                     }
                 },
-                error: function (request, status, error){        
+                error: function (request, status, error){      
+                    console.log(request);
+                    console.log(status);
                     console.log(error);
                 }
             });
