@@ -66,7 +66,11 @@
                                             </tr>
                                             <tr>
                                                 <th>사진</th>
-                                                <td><?php echo  $MY_APPLY->APP_USER_IMG?></td>
+                                                <td class="applyphoto">
+                                                    <img src="<?php echo  $MY_APPLY->APP_USER_IMG?>">
+                                                    <!-- <input type="text" class="applyform common_select wid100p" name="apply_user_img" id="apply_user_img" value="<?php echo  $MY_APPLY->APP_USER_IMG?>"> -->
+                                                </td>
+                                                <!-- <td><?php echo  $MY_APPLY->APP_USER_IMG?></td> -->
                                             </tr>
                                         </tbody>
                                     </table>

@@ -339,7 +339,7 @@ class Consult extends CI_Controller {
 					move_uploaded_file($_FILES["apply_user_img_edit"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/upload/apply/".$new_name);
 					//array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
 					$file_name = $_FILES["apply_user_img_edit"]["name"];
-					$file_path = "/upload/apply/".$new_name;
+					$file_path = "./upload/apply/".$new_name;
 					// print_r($_FILES["apply_attach"]);
 				}
 			}
@@ -368,10 +368,9 @@ class Consult extends CI_Controller {
 			$this->image_lib->clear();
 
 			$result2 = $this->RecruitModel->updateRecruitApply($app_seq, array("APP_USER_IMG" => $thumb_file_path));
-
         }
 
-		if ($result == true && $result2 == true){
+		if ($result == true){
 			echo json_encode(array("code" => "200", "app_seq" => $app_seq));
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));

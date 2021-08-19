@@ -80,8 +80,8 @@
                                                     <td>
                                                         <div class="recruitfile">
                                                             <input type="text" readonly="readonly" class="filename" />
-                                                            <label for="apply_user_img" class="filelabel">파일 업로드</label>
-                                                            <input type="file" name="apply_user_img" id="apply_user_img" class="fileupload" />
+                                                            <label for="apply_user_img_edit" class="filelabel">파일 업로드</label>
+                                                            <input type="file" name="apply_user_img_edit" id="apply_user_img_edit" class="fileupload" />
                                                         </div>
 
                                                         <!-- <input type="text" class="applyform common_select wid100p" name="apply_user_img_edit" id="apply_user_img_edit" readonly>
@@ -226,7 +226,7 @@
 
                                 <div class="ApplyBtnWrap mt30 mb30">
                                     <button type="button" onclick="location.href='/consult/apply';" class="applybtn01 f_left">취소하기</button>
-                                    <button type="button" id="recruit_apply_edit" class="applybtn02 f_right">수정하기</button>
+                                    <button type="button" id="recruit_apply_edit" class="applybtn02 f_right" data_seq="<?php echo $MY_APPLY->APP_SEQ?>">수정하기</button>
                                 </div>
 
 
@@ -264,29 +264,32 @@
         var FILE = new FormData();
 
         $("input[name='apply_user_img_edit']").change(function(){
-                var file = this.files[0];
-                // var parent = $(this).closest(".input-group");
-                // // $(this).val("test");
-                // console.log(parent);
-                // var input = $(parent).find(".file_view");
-                // console.log(input);
-                // $(input).val(file['name']);
-                // // console.log(file['name']);
-                // // console.log(input);
-                // console.log(file);
-                // console.log(this.id);
+            FILE = new FormData();
+            var file = this.files[0];
+            // var parent = $(this).closest(".input-group");
+            // // $(this).val("test");
+            // console.log(parent);
+            // var input = $(parent).find(".file_view");
+            // console.log(input);
+            // $(input).val(file['name']);
+            // // console.log(file['name']);
+            // // console.log(input);
+            // console.log(file);
+            // console.log(this.id);
 
-                FILE.append(this.id, file);
+            FILE.append(this.id, file);
 
-                for (var key of FILE.keys()) {
-                console.log(key);
-                }
+            for (var key of FILE.keys()) {
+            console.log(key);
+            }
 
-                // FormData의 value 확인
-                for (var value of FILE.values()) {
-                console.log(value);
-                }
-            });
+            // FormData의 value 확인
+            for (var value of FILE.values()) {
+            console.log(value);
+            }
+            
+            $(".filename").val(file.name);
+        });
 
         $("#recruit_apply_edit").on("click", function(){
             var app_seq = $("input[name=app_seq]").val();
@@ -300,9 +303,11 @@
                 }
                 fd.append(input.name, input.value);
             });
-            
-            for (var key of FILE.keys()) {
-                fd.append(key, FILE.get(key));
+
+            if($(".filename").val() != ""){
+                for (var key of FILE.keys()) {
+                    fd.append(key, FILE.get(key));
+                }
             }
             // console.log(form_data);
 
@@ -333,6 +338,7 @@
                     }
                 },
                 error: function (request, status, error){        
+                    console.log(request);
                     console.log(error);
                 }
             });
