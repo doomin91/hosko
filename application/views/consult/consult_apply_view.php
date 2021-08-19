@@ -200,7 +200,7 @@
 
                                     <div class="ApplyBtnWrap mt30 mb30">
                                         <button type="button" onclick="location.href='/consult/apply';" class="applybtn01 f_left">목록보기</button>
-                                        <button type="button" onclick="location.href='/'" class="applybtn02 f_right">수정하기</button>
+                                        <button type="button" onclick="location.href='/consult/apply_edit/<?php echo $MY_APPLY->APP_SEQ?>'" class="applybtn02 f_right">수정하기</button>
                                     </div>
 
                                 </div>
