@@ -36,9 +36,9 @@
                                 </div>
 
                                 <div class="subContSec mb80">
-                                    <div class="TableTitle">지원자 기본정보</div>
+                                    <div class="applyViewTitle">지원자 기본정보</div>
 
-                                    <table class="tableCont02 dataTable applyViewTable">
+                                    <table class="dataTable applyViewTable">
                                         <colgroup>
                                             <col width="15%"/>
                                             <col width="85%"/>
@@ -71,9 +71,9 @@
                                         </tbody>
                                     </table>
 
-                                    <div class="TableTitle mt50">지원자 상세정보</div>
+                                    <div class="applyViewTitle mt50">지원자 상세정보</div>
 
-                                    <table class="tableCont02 dataTable applyViewTable">
+                                    <table class=" dataTable applyViewTable">
                                         <colgroup>
                                             <col width="15%"/>
                                             <col width="85%"/>
@@ -198,9 +198,9 @@
                                         </tbody>
                                     </table>
 
-                                    <div class="subBtn_wrap">
-                                        <button type="button" onclick="location.href='/consult/apply';" class="subBtn03 f_left">목록보기</button>
-                                        <button type="button" onclick="location.href='/'" class="subBtn04 f_right">수정하기</button>
+                                    <div class="ApplyBtnWrap mt30 mb30">
+                                        <button type="button" onclick="location.href='/consult/apply';" class="applybtn01 f_left">목록보기</button>
+                                        <button type="button" onclick="location.href='/'" class="applybtn02 f_right">수정하기</button>
                                     </div>
 
                                 </div>
