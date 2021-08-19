@@ -69,7 +69,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <?php foreach($MY_INTEREST_APPLIES as $MY_INTEREST_APPLY):?>
+                                            <?php if(count($MY_INTEREST_APPLIES) > 0):?>
+                                                <?php foreach($MY_INTEREST_APPLIES as $MY_INTEREST_APPLY):?>
                                                 <tr>
                                                     <td><?php echo $MY_INTEREST_APPLY->REC_SEQ ?></td>
                                                     <td><span class="thumImg"><img src="<?php echo $MY_INTEREST_APPLY->REC_THUMBNAIL?>"></span><a class="fontcb" href ="/recruit/recruit_view/<?php echo $MY_INTEREST_APPLY->REC_CONTENTS_CATEGORY?>/<?php echo $MY_INTEREST_APPLY->REC_SEQ?>"><?php echo $MY_INTEREST_APPLY->REC_TITLE ?></a></td>
@@ -78,7 +79,13 @@
                                                     <td><?php echo $MY_INTEREST_APPLY->REC_COUNT ?></td>
                                                     <td><?php echo explode(" ", $MY_INTEREST_APPLY->REC_REG_DATE)[0] ?></td>
                                                 </tr>
-                                            <?php endforeach?>
+                                                <?php endforeach?>
+                                            <?php else:?>
+                                                <tr>
+                                                    <td colspan="6">목록이 없습니다</td>
+                                                </tr>
+                                            <?php endif?>
+                                            
                                             </tbody>
                                         </table>
                                     </div>
@@ -106,9 +113,10 @@
                                                 <th>상세보기</th>
                                             </tr>
                                         </thead>
-                                    
                                         
-                                        <?php $num = 1;
+                                        <tbody>
+                                        <?php if(count($MY_APPLIES) > 0):?>
+                                            <?php $num = 1;
                                             foreach($MY_APPLIES as $MY_APPLY): ?>
                                             <tr>
                                                 <td><?php echo $num++;?></td>
@@ -117,6 +125,12 @@
                                                 <td><a href ="/consult/apply_view/<?php echo $MY_APPLY->APP_SEQ?>" class="btn btn-sm subBtn02">상세보기</a></td>
                                             </tr>
                                         <?php endforeach?>
+                                        <?php else:?>
+                                            <tr>
+                                                <td colspan="4">목록이 없습니다</td>
+                                            </tr>
+                                        <?php endif?>
+                                        
                                         </tbody>
                                         
                                     </table>
