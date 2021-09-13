@@ -165,55 +165,57 @@
 
                                     </div>
 
-
-
-
-                                    
-                                    <?php if($BOARD_INFO->BOARD_BOTTOM_LIST_FLAG == "Y"): ?>
+                                    <?php if($BOARD_INFO->BOARD_BOTTOM_LIST_FLAG == "Y"):  ?>
+                                    <?php if($NEXT): ?>
                                     <div class="boardViewBot">
                                         <div class="type_table">
-                                            <?php 
-                                                if($BOTTOM_LIST):
-                                                foreach($BOTTOM_LIST AS $bl):?>
-                                                <?php if($bl->TYPE == "PREV"){
-                                                        echo "<div class=\"cont_prev\">";
-                                                        echo "<div class=\"boardViewBot_item\">";
-                                                        echo "<strong>이전글</strong>";
-                                                } else if($bl->TYPE == "NEXT"){
-                                                        echo "<div class=\"cont_next\">";
-                                                        echo "<div class=\"boardViewBot_item\">";
-                                                        echo "<strong>다음글</strong>";
-                                                } else {
-                                                        echo "<div class=\"cont_next\">";
-                                                        echo "<div class=\"boardViewBot_item\">";
-                                                        echo "<strong>현재글</strong>";
-                                                }
-                                                ?>
-                                                    <div class="type_td">
-                                                        
-                                                        <!-- <a href="/" class="ellipsis"> -->
-                                                        <?php 
-                                                        echo "<a class=\"ellipsis\" href=\"/board/board_view/".$bl->POST_SEQ."\">";
-
-                                                        if($bl->POST_PARENT_SEQ != $bl->POST_SEQ){
-                                                            for($i=1; $i<$bl->POST_DEPTH;$i++){
-                                                                echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;vertical-align:text-top\">";												
-                                                            }
+                                            <div class="cont_next">
+                                                <div class="boardViewBot_item">
+                                                <strong>다음글</strong>
+                                                <div class="type_td">
+                                                    <?php 
+                                                    echo "<a class=\"ellipsis\" href=\"/board/board_view/".$NEXT->POST_SEQ."\">";
+                                                    if($NEXT->POST_PARENT_SEQ != $NEXT->POST_SEQ){
+                                                        for($i=1; $i<$NEXT->POST_DEPTH;$i++){
+                                                            echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;vertical-align:text-top\">";												
                                                         }
-
-														echo $bl->POST_SUBJECT;
-														if($bl->POST_SECRET_YN == "Y"){
-															echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>"."</a>";
-														}
-													    ?> </a>
-                                                        <span class="date"><?php echo date("Y-m-d", strtotime($bl->POST_REG_DATE))?></span>
-                                                    </div>
-                                            <?php 
-                                            echo "</div></div>";
-                                            endforeach; 
-                                            endif;
-                                        ?>
+                                                    }
+													echo $NEXT->POST_SUBJECT;
+													if($NEXT->POST_SECRET_YN == "Y"){
+														echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>"."</a>";
+													}
+													?> </a>
+                                                    <span class="date"><?php echo date("Y-m-d", strtotime($NEXT->POST_REG_DATE))?></span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <?php endif; ?>
+                                    <?php if($PREV): ?>
+                                    <div class="boardViewBot">
+                                        <div class="type_table">
+                                            <div class="cont_next">
+                                                <div class="boardViewBot_item">
+                                                <strong>이전글</strong>
+                                                <div class="type_td">
+                                                    <?php 
+                                                    echo "<a class=\"ellipsis\" href=\"/board/board_view/".$PREV->POST_SEQ."\">";
+                                                    if($PREV->POST_PARENT_SEQ != $PREV->POST_SEQ){
+                                                        for($i=1; $i<$PREV->POST_DEPTH;$i++){
+                                                            echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;vertical-align:text-top\">";												
+                                                        }
+                                                    }
+													echo $PREV->POST_SUBJECT;
+													if($PREV->POST_SECRET_YN == "Y"){
+														echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>"."</a>";
+													}
+													?> </a>
+                                                    <span class="date"><?php echo date("Y-m-d", strtotime($PREV->POST_REG_DATE))?></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
                                     <?php endif; ?>
 
                                     <div class="boardBtnArea pb50">

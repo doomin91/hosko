@@ -262,6 +262,8 @@ class Board extends CI_Controller {
 		$index = 0;
 		$next = [];
 		$prev = [];
+
+		// 현재글 다음글 구하는 로직
 		foreach($bottom_list as $key => $bl){
 			if($bl->POST_SEQ == $post_seq){
 				if($key == 0){
@@ -290,7 +292,8 @@ class Board extends CI_Controller {
                 $DATA["BOARD_TYPE"] = "v";
                 break;
         }
-		$DATA["BOTTOM_LIST"] = $bottom_list;
+		$DATA["NEXT"] = $next;
+		$DATA["PREV"] = $prev;
         $DATA["GROUP_INFO"] = $group_info;
         $DATA["POST_INFO"] = $post_info;
         $DATA["BOARD_INFO"] = $board_info;
