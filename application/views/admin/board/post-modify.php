@@ -218,7 +218,7 @@
 	$(document).ready( function() {
 		$("#post_contents").Editor();
 		$("#defaultReal").realperson();
-		$("#post_contents").Editor('setText', "<?php echo $POST_INFO->POST_CONTENTS;?>");
+		$("#post_contents").Editor('setText', '<?php echo $POST_INFO->POST_CONTENTS;?>');
 		tag.src = "https://www.youtube.com/iframe_api";
 		video_id = "<?php echo $POST_INFO->POST_YOUTUBE_URL?>";
 		$("input[name=youtube_url]").val("https://www.youtube.com/watch?v=" + video_id);

@@ -92,8 +92,7 @@ td a {
 													<div class="avatar-info">
 														<a class="nickname" href="/user/info/71755"
 															title="fluke"><?php echo $POST_INFO->USER_NAME;?></a>
-														<div class="date-created"><span class="timeago"
-																title="2018-07-25T15:25:28"><?php echo $POST_INFO->POST_REG_DATE;?></span>
+														<div class="date-created"><span class="timeago"><?php echo $POST_INFO->POST_REG_DATE;?></span>
 														</div>
 													</div>
 												</div>
@@ -114,9 +113,6 @@ td a {
 													<div class="content-tags">
 														<span
 															class="list-group-item-text article-id">#<?php echo $POST_INFO->POST_SEQ;?></span>
-														<a href="/articles/tech-qna"
-															class="list-group-item-text item-tag label label-info"><i
-																class="fa fa-database"></i> Tech Q&amp;A</a>
 													</div>
 													<h2 class="panel-title">
 														<?php echo $POST_INFO->POST_SUBJECT;?>
@@ -148,15 +144,6 @@ td a {
 													<?php if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
 													<button type="button" class="btn btn-primary btn-sm"
 														id="btnRecommand">추천</button>
-<<<<<<< HEAD
-													<?php endif;?> -->
-													
-													<button class="btn btn-danger btn-sm" onclick="board_delete()" class="btn_style01" >삭제</button>
-
-													<?php if($BOARD_INFO->BOARD_TYPE == 0):?>
-													<a href="/admin/board/post_reply/<?php echo $POST_INFO->POST_SEQ?>" class="btn btn-default btn-sm">답글</a>
-=======
->>>>>>> f3df5351c057591f0bf41bce026fcff97cdc191a
 													<?php endif;?>
 													<button type="button" class="btn btn-primary btn-sm"
 														id="btnRepost">답글</button>

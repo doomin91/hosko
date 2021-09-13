@@ -105,7 +105,7 @@
                                             <?php if($BOARD_INFO->BOARD_TYPE == 2):?>
 												<div id="player"></div><br>
 											<?php endif;?>
-                                            <p><?php echo $POST_INFO->POST_CONTENTS;?></p>
+                                            <?php echo $POST_INFO->POST_CONTENTS;?>
                                         </div>
                                     </div>
 
@@ -172,7 +172,9 @@
                                     <?php if($BOARD_INFO->BOARD_BOTTOM_LIST_FLAG == "Y"): ?>
                                     <div class="boardViewBot">
                                         <div class="type_table">
-                                            <?php foreach($BOTTOM_LIST AS $bl):?>
+                                            <?php 
+                                                if($BOTTOM_LIST):
+                                                foreach($BOTTOM_LIST AS $bl):?>
                                                 <?php if($bl->TYPE == "PREV"){
                                                         echo "<div class=\"cont_prev\">";
                                                         echo "<div class=\"boardViewBot_item\">";
@@ -208,7 +210,9 @@
                                                     </div>
                                             <?php 
                                             echo "</div></div>";
-                                            endforeach; ?>
+                                            endforeach; 
+                                            endif;
+                                        ?>
                                     </div>
                                     <?php endif; ?>
 

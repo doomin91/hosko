@@ -132,7 +132,7 @@ footer .footer_info .f_address li {font-size:1em;  font-family:'Noto Sans KR', s
 .boardInputtext {  width:100%;}
 
 .boardViewCont {padding:20px;border: 1px solid #cbcbca; margin:20px auto; border-radius: 5px;}
-.boardViewCont * {max-width:100%; min-height:430px;}
+.boardViewCont * {max-width:100%; /*min-height:430px;*/}
 
 .boardViewBot {margin-bottom:60px;}
 .boardViewBot .type_table {border:1px solid #cbcbca; border-bottom:none; }

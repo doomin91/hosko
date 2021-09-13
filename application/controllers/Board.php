@@ -290,6 +290,7 @@ class Board extends CI_Controller {
                 $DATA["BOARD_TYPE"] = "v";
                 break;
         }
+		$DATA["BOTTOM_LIST"] = $bottom_list;
         $DATA["GROUP_INFO"] = $group_info;
         $DATA["POST_INFO"] = $post_info;
         $DATA["BOARD_INFO"] = $board_info;
@@ -686,7 +687,7 @@ class Board extends CI_Controller {
 			"COM_POST_SEQ" => $POST_SEQ,
 			"COM_USER_SEQ" => $USER_SEQ,
 			"COM_CONTENTS" => $COMMENT,
-            "COM_IP" => $this->customclass->get_client_ip()
+            "COM_REG_IP" => $this->customclass->get_client_ip()
 		);
 
 		$result = $this->BoardModel->setComment($DATA);
