@@ -789,7 +789,7 @@ class Board extends CI_Controller {
 	                    move_uploaded_file($_FILES["post_attach"]["tmp_name"][$i], $_SERVER['DOCUMENT_ROOT']."/$new_folder/".$new_name);
 	                    //array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
 	                    array_push($file_name, $_FILES["post_attach"]["name"][$i]);
-	                    array_push($file_path, "/$new_folder/".$new_name);
+	                    array_push($file_path, "$new_folder/".$new_name);
 	                }
 	            }
 	        }
