@@ -321,6 +321,7 @@ class Recruit extends CI_Controller {
 		$REC_ADMIN_SEQ = isset($MANAGER->ADMIN_SEQ) ? $MANAGER->ADMIN_SEQ : "";
 
 		$insertArr = array(
+			"USER_SEQ" => $this->session->userdata("admin_seq"),
 			"REC_CONTENTS_CATEGORY" => $REC_CONTENTS_CATEGORY,
 			"REC_CONTENTS_SUB1_CATEGORY" => $REC_CONTENTS_SUB1_CATEGORY,
 			"REC_CONTENTS_SUB2_CATEGORY" => $REC_CONTENTS_SUB2_CATEGORY,
@@ -429,7 +430,7 @@ class Recruit extends CI_Controller {
         }
 
 		if ($result == true){
-			echo json_encode(array("code" => "200", "abraod_seq" => $insert_id));
+			echo json_encode(array("code" => "200", "abroad_seq" => $insert_id));
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
 		}
@@ -458,7 +459,7 @@ class Recruit extends CI_Controller {
             echo json_encode(array("code" => "200", "image_url" => "/upload/recruit/contents/".$data["upload_data"]["file_name"]));
         }
 	}
-
+	//http://ww4.test.com/admin/recruit/recruit_abroad_view/64
 	public function recruit_abroad_view($abroad_seq){
 		$DATA["ABROAD_INFO"] = $this->RecruitModel->getRecruitAbroadInfo($abroad_seq);
 
@@ -473,6 +474,151 @@ class Recruit extends CI_Controller {
 		// print_r($DATA["APPLY_INFO"]);
         
 		$this->load->view("./admin/recruit/recruit-abroad_edit", $DATA);
+	}
+
+	public function recruit_abroad_modify_proc(){
+		$REC_SEQ = isset($_POST["REC_SEQ"]) ? $_POST["REC_SEQ"] : "";
+		$REC_CONTENTS_CATEGORY = isset($_POST["ctg"]) ? $_POST["ctg"] : "";
+		$REC_CONTENTS_SUB1_CATEGORY = isset($_POST["ctg2"]) ? $_POST["ctg2"] : "";
+		$REC_CONTENTS_SUB2_CATEGORY = isset($_POST["ctg3"]) ? $_POST["ctg3"] : "";
+		$REC_TITLE = isset($_POST["abroad_contents_title"]) ? $_POST["abroad_contents_title"] : "";
+		$REC_STATUS = isset($_POST["abroad_status"]) ? $_POST["abroad_status"] : "";
+		$REC_COUNT = isset($_POST["abroad_hit_count"]) ? $_POST["abroad_hit_count"] : "";
+		$REC_ADMIN_ID = isset($_POST["abroad_manager"]) ? $_POST["abroad_manager"] : "";
+		$REC_COUNTRY = isset($_POST["abroad_country"]) ? $_POST["abroad_country"] : "";
+		$REC_TYPE = isset($_POST["abroad_type"]) ? $_POST["abroad_type"] : "";
+		$REC_PERIOD = isset($_POST["abroad_period"]) ? $_POST["abroad_period"] : "";
+		$REC_RECRUIT_TYPE = isset($_POST["abroad_recruit_type"]) ? $_POST["abroad_recruit_type"] : "";
+		$REC_DEADLINE = isset($_POST["abroad_deadline"]) ? $_POST["abroad_deadline"] : "";
+		$REC_INTERVIEW_TYPE = isset($_POST["abroad_interview_type"]) ? $_POST["abroad_interview_type"] : "";
+		$REC_INTERVIEW_DATE = isset($_POST["abroad_interview_date"]) ? $_POST["abroad_interview_date"] : "";
+		$REC_PREREQUISITE = isset($_POST["abroad_prerequisite"]) ? $_POST["abroad_prerequisite"] : "";
+		$REC_PAY = isset($_POST["abroad_pay"]) ? $_POST["abroad_pay"] : "";
+		$REC_LODGIN = isset($_POST["abroad_accomdation"]) ? $_POST["abroad_accomdation"] : "";
+		$REC_WELFARE = isset($_POST["abroad_welfare"]) ? $_POST["abroad_welfare"] : "";
+		$REC_VISA = isset($_POST["abroad_visa"]) ? $_POST["abroad_visa"] : "";
+		$REC_CONTENTS = isset($_POST["abroad_detail"]) ? $_POST["abroad_detail"] : "";
+		// $REC_THUMBNAIL = isset($_POST["abroad_origin_pic"]) ? $_POST["abroad_origin_pic"] : "";
+
+		$MANAGER = $this->BasicModel->getManagerById($REC_ADMIN_ID);
+
+		$DISPLAY_ORDER = $this->RecruitModel->getRecruitAbroadListCountAll();
+
+		$REC_ADMIN_SEQ = isset($MANAGER->ADMIN_SEQ) ? $MANAGER->ADMIN_SEQ : "";
+
+		$updateArr = array(
+			"REC_CONTENTS_CATEGORY" => $REC_CONTENTS_CATEGORY,
+			"REC_CONTENTS_SUB1_CATEGORY" => $REC_CONTENTS_SUB1_CATEGORY,
+			"REC_CONTENTS_SUB2_CATEGORY" => $REC_CONTENTS_SUB2_CATEGORY,
+			"REC_TITLE" => $REC_TITLE,
+			"REC_STATUS" => $REC_STATUS,
+			"REC_COUNT" => $REC_COUNT,
+			"REC_ADMIN_SEQ" => $REC_ADMIN_SEQ,
+			"REC_COUNTRY" => $REC_COUNTRY,
+			"REC_TYPE" => $REC_TYPE,
+			"REC_PERIOD" => $REC_PERIOD,
+			"REC_RECRUIT_TYPE" => $REC_RECRUIT_TYPE,
+			"REC_DEADLINE" => $REC_DEADLINE,
+			"REC_INTERVIEW_TYPE" => $REC_INTERVIEW_TYPE,
+			"REC_INTERVIEW_DATE" => $REC_INTERVIEW_DATE,
+			"REC_PREREQUISITE" => $REC_PREREQUISITE,
+			"REC_PAY" => $REC_PAY,
+			"REC_LODGIN" => $REC_LODGIN,
+			"REC_WELFARE" => $REC_WELFARE,
+			"REC_VISA" => $REC_VISA,
+			"REC_CONTENTS" => $REC_CONTENTS,
+			"REC_DISPLAY_ORDER" => $DISPLAY_ORDER+1
+		);
+
+		// print_r($insertArr);
+	
+		$result = $this->RecruitModel->updateRecruitAbroad($REC_SEQ, $updateArr);
+
+        $file_name = array();
+        $file_path = array();
+		// print_r($_FILES["abroad_origin_pic"]);
+		// exit;
+        if (isset($_FILES["abroad_origin_pic"]) && !empty($_FILES["abroad_origin_pic"])){
+            // $_FILES["abroad_origin_pic"]["name"];
+            
+			if ($_FILES["abroad_origin_pic"]["error"] > 0){
+				echo "Error : " . $_FILES["abroad_origin_pic"]["error"];
+			}else{
+				if (file_exists("/upload/recruit/".$_FILES["abroad_origin_pic"]["name"])){
+					echo "동일한 이름의 파일이 존재합니다.";
+				}else{
+					$tmp = explode(".", $_FILES["abroad_origin_pic"]["name"]);
+					// print_r($tmp);
+					$time = time();
+					$new_name = "recruit".$time."_".$REC_SEQ.".".end($tmp);
+					// print_r($new_name);
+					/* 
+						$_FILES["apply_attach"]에서
+
+						[tmp_name] => Array
+							(
+								[0] => C:\xampp\tmp\phpA57A.tmp
+							)
+						tmp 경로에서 -> 실제 업로드 경로
+					*/  
+					move_uploaded_file($_FILES["abroad_origin_pic"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/upload/recruit/".$new_name);
+					//array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
+					$file_name = $_FILES["abroad_origin_pic"]["name"];
+					$file_path = "./upload/recruit/".$new_name;
+					// print_r($_FILES["apply_attach"]);
+				}
+			}
+
+			$thumb_file_path = array();
+			$thumb_name = array("R", "S", "M", "L");
+
+			for($i = 0 ; $i < 4 ; $i++){
+				$config['image_library'] = 'gd2';
+				$config['source_image'] = $file_path;
+				$config['new_image'] = "./upload/recruit/"."recruit".$time."_".$REC_SEQ."_".$thumb_name[$i].".".end($tmp);
+				$pathArr = explode(".",$config['new_image']);
+				
+				// $config['create_thumb'] = TRUE;
+				// $config['maintain_ratio'] = TRUE;
+				if($thumb_name[$i] == "R"){
+					$config['width']         = 75;
+					$config['height']       = 75;
+				}else{
+					$config['width']         = 200;
+					$config['height']       = 200;
+				}
+
+				// $this->load->library('image_lib', $config);
+				$this->image_lib->initialize($config);
+				// print_r($config);
+
+				if($this->image_lib->resize() == false){
+					echo json_encode(array("code" => "202", "error" => $this->image_lib->display_errors()));
+					// print_r($this->image_lib->display_errors());
+				}else{
+					array_push($thumb_file_path, $pathArr[1].".".$pathArr[2]);
+				}
+			}
+
+			$this->image_lib->clear();
+
+			$update_arr = array(
+				"REC_THUMBNAIL" => $file_path,
+				"REC_THUMBNAIL_R" => $thumb_file_path[0],
+				"REC_THUMBNAIL_S" => $thumb_file_path[1],
+				"REC_THUMBNAIL_M" => $thumb_file_path[2],
+				"REC_THUMBNAIL_L" => $thumb_file_path[3],
+			);
+			$result = $this->RecruitModel->updateRecruitAbroad($REC_SEQ, $update_arr);
+
+        }
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "abroad_seq" => $REC_SEQ));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "삭제 중 문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+
 	}
 
 	public function recruit_abroad_edit_print($abroad_seq){

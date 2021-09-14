@@ -41,6 +41,7 @@
 
           <form name="abroadRegisterForm" id="abroadRegisterForm" class="form-horizontal" method="post" action="/admin/recruit/recruit_abroad_new_proc" role="form">
             <input type="hidden" name="user_ip" value="<?php echo $USER_IP?>">
+            <input type="hidden" name="user_id" value="<?php echo $this->session->userdata("admin_id")?>">
 			<div class="row">
 				<div class="col-md-12">
 					<section class="tile transparent">
@@ -103,7 +104,7 @@
                                         <th class="col-sm-2">담당</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-2">
-                                                <input type="text" class="form-control" id="abroad_manager" name="abroad_manager" value="">
+                                                <input type="text" class="form-control" id="abroad_manager" name="abroad_manager" value="<?php echo $this->session->userdata("admin_id")?>">
                                             </div>
                                         </td>
 									</tr>
@@ -403,8 +404,9 @@
                 $.each(form_data, function (key, input) {
                     if(input.value=="" && input.name != "abroad_detail"){
                         // console.log($(input));
-                        var ip = $(`input[name=${input.name}]`);
-                        // console.log(ip);
+                        alert("빈 값을 넣어주세요");
+                        var ip = $(`textarea[name=${input.name}]`);
+                        console.log(ip);
                         $(ip).focus();
                         is_blank = true;
                         return false;
@@ -443,7 +445,7 @@
                         console.log(resultMsg);
                         if(resultMsg.code == "200"){
                             alert("생성 되었습니다");
-                            document.location.href="/admin/recruit/recruit_abroad_view/"+abraod_seq;
+                            document.location.href="/admin/recruit/recruit_abroad_list";
                         }else{
                             console.log("문제 발생");
                         }
