@@ -264,15 +264,17 @@ class Board extends CI_Controller {
 		$prev = [];
 
 		// 현재글 다음글 구하는 로직
-		foreach($bottom_list as $key => $bl){
-			if($bl->POST_SEQ == $post_seq){
-				if($key == 0){
-					$prev = $bottom_list[$key+1];
-				} else if($key == (count($bottom_list) - 1)){
-					$next = $bottom_list[$key-1];
-				} else {
-					$next = $bottom_list[$key-1];
-					$prev = $bottom_list[$key+1];
+		if(count($bottom_list) > 1){
+			foreach($bottom_list as $key => $bl){
+				if($bl->POST_SEQ == $post_seq){
+					if($key == 0){
+						$prev = $bottom_list[$key+1];
+					} else if($key == (count($bottom_list) - 1)){
+						$next = $bottom_list[$key-1];
+					} else {
+						$next = $bottom_list[$key-1];
+						$prev = $bottom_list[$key+1];
+					}
 				}
 			}
 		}
@@ -306,6 +308,8 @@ class Board extends CI_Controller {
     }
 
     function board_write($group_seq){
+		$this->customclass->userCheck();
+		
         $board_seq = $this->input->get("seq");
         $group_info = $this->GroupModel->getGroup($group_seq);
         $boards_info = $this->BoardModel->getBoardInGroup($group_seq);
@@ -328,6 +332,8 @@ class Board extends CI_Controller {
     }
 
     function board_reply($post_seq){
+		$this->customclass->userCheck();
+		
         $post_info = $this->BoardModel->getPostInfo($post_seq);
         $board_seq = $post_info->BOARD_SEQ;
         $group_seq =  $post_info->GP_SEQ;
@@ -354,6 +360,8 @@ class Board extends CI_Controller {
     }
 
     function board_modify($post_seq){
+		$this->customclass->userCheck();
+
         $post_info = $this->BoardModel->getPostInfo($post_seq);
         // 링크 직접 호출 시 차단
         if($post_info->POST_USER_SEQ != $this->session->userdata("USER_SEQ")){
@@ -669,6 +677,7 @@ class Board extends CI_Controller {
 	}
     
 	public function downalod_attach($SEQ){
+		$this->customclass->userCheck();
 		$attach = $this->BoardModel->getPostAttachByAttachSeq($SEQ);
 		$name = $attach->ATTACH_FILE_NAME;
 		$data = file_get_contents($attach->ATTACH_FILE_PATH);
@@ -768,7 +777,7 @@ class Board extends CI_Controller {
 	                    move_uploaded_file($_FILES["post_attach"]["tmp_name"][$i], $_SERVER['DOCUMENT_ROOT']."/$new_folder/".$new_name);
 	                    //array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
 	                    array_push($file_name, $_FILES["post_attach"]["name"][$i]);
-	                    array_push($file_path, "/$new_folder/".$new_name);
+	                    array_push($file_path, "$new_folder/".$new_name);
 	                }
 	            }
 	        }

@@ -194,7 +194,7 @@
                                     <?php if($PREV): ?>
                                     <div class="boardViewBot">
                                         <div class="type_table">
-                                            <div class="cont_next">
+                                            <div class="cont_prev">
                                                 <div class="boardViewBot_item">
                                                 <strong>이전글</strong>
                                                 <div class="type_td">
@@ -231,13 +231,15 @@
                                         </div>
                                         <?php endif?>
                                         
+                                        <?php if($this->session->userdata("USER_SEQ")):?>
                                         <?php if($BOARD_INFO->BOARD_TYPE == 0):?>
                                         <div class="btn_box f_right">
                                             <a href="/Board/board_reply/<?php echo $POST_INFO->POST_SEQ?>" class="btn_style02">답글</a>
                                         </div>
                                         <?php endif?>
+                                        <?php endif?>
                                         
-                                        <?php if(($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")) || $this->session->userdata("admin_seq")): ?>
+                                        <?php if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")): ?>
                                         <div class="btn_box f_right">
                                             <a href="#" onclick="board_delete()" class="btn_style01">삭제</a>
                                         </div>
