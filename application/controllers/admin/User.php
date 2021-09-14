@@ -466,7 +466,7 @@ class User extends CI_Controller {
 						"limit" => $limit
 						);
 		$lists = $this->UserModel->getUsers($wheresql);
-		echo $this->db->last_query();
+		//echo $this->db->last_query();
 		$listCount = $this->UserModel->getUsersCount($wheresql);
 		if ($nowpage != ""){
 			$pagenum = $listCount-(($nowpage-1)*10);
@@ -503,7 +503,7 @@ class User extends CI_Controller {
 		$search_string = $this->input->post("search_string");
 		$user_email_flag = $this->input->post("user_email_flag");
 		$send_message = $this->input->post("send_message");
-		//print_r($this->input->post());
+		print_r($this->input->post());
 		$wheresql = array(
 						"reg_date_start" => $reg_date_start,
 						"reg_date_end" => $reg_date_end,
@@ -516,9 +516,13 @@ class User extends CI_Controller {
 		$lists = $this->UserModel->getUserAll($wheresql);
 		//echo $this->db->last_query();
 		//print_r(count($lists));
-		//exit;
+		//exit; 
 		if (!empty($lists)){
+			
 			foreach ($lists as $list){
+				print_r($list);
+				/*
+				//카카오톡
 				$sendArr = array(
 								"SENDER_KEY" => "testSendKey",
 								"PHONE" => $list->USER_HP,
@@ -529,7 +533,43 @@ class User extends CI_Controller {
 								"SMS_TYPE" => "S"
 								);
 				print_r($sendArr);
-				$this->UserModel->setMsgData($sendArr);
+				
+				*/
+
+				// SMS 전송
+				if (strlen($send_message) <= 80){
+					$sendArr = array(
+									"CUR_STATE" => 0,
+									"REQ_DATE" => date("y-m-d h:i:s"),
+									"CALL_TO" => "02-2052-9700",
+									"CALL_FROM" => $list->USER_HP,
+									"SMS_TXT" => $send_message,
+									"MSG_TYPE" => 4
+					);
+					$this->UserModel->setMsgData($sendArr);
+				}else{
+					$sendArr = array(
+									"FILE_CNT" => 1,
+									"MMS_BODY" => $send_message,
+									"MMS_SUBJECRT" => substr($send_message, 0, 10)
+					);
+					$this->UserModel->setMMSData($sendArr);
+					$cont_seq = $this->db->last_id();
+
+					$smsArr = array(
+									"CUR_STATE" => 0,
+									"REQ_DATE" => date("y-m-d h:i:s"),
+									"CALL_TO" => "02-2052-9700",
+									"CALL_FROM" => $list->USER_HP,
+									"SMS_TXT" => $send_message,
+									"MSG_TYPE" => 4,
+									"CONT_SEQ" => $cont_seq
+					);
+
+					$this->UserModel->setMsgData($sendArr);
+				}
+				
+				
 			}
 		}
 
