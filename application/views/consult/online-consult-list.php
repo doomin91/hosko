@@ -24,7 +24,7 @@
                             <ul>
                                 <li><a href="/consult/qnaList">Q&A</a></li>
                                 <li class="on"><a href="/consult/onlineConsultList">온라인 상담</a></li>
-                                <li><a href="/consult/consult/visitConsult">방문신청 상담</a></li>
+                                <li><a href="/consult/visitConsult">방문신청 상담</a></li>
                                 <li><a href="/consult/apply">포지션&연수 지원</a></li>
                                 <li><a href="/consult/presentationList">설명회신청</a></li>
                             </ul>
@@ -72,7 +72,7 @@
 
                                     <div class="subBtn_Write f_right mt40">
                                         <!--a href="/">글쓰기</a-->
-                                        <button type="button" class="memberBtnOk f_left" id="consultWrite">문의하기</button>
+                                        <button type="button" class="btn_style02 f_right" id="consultWrite">문의하기</button>
                                     </div>
 
                                     <?php echo $pagination; ?>
