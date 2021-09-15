@@ -82,15 +82,15 @@
                                             <div class="col-md-2">
                                                 <select name="search_field" class="wid100p">
                                                     <option value="all">전체</option>
-                                                    <option value="USER_ID">아이디</option>
-                                                    <option value="USER_NAME">이름</option>
-                                                    <option value="USER_NUMBER">회원번호</option>
-                                                    <option value="USER_HP">연락처</option>
-                                                    <option value="USER_EMAIL">이메일주소</option>
+                                                    <option value="USER_ID" <?php if ($search_field == "USER_ID") echo "selected"; ?>>아이디</option>
+                                                    <option value="USER_NAME" <?php if ($search_field == "USER_NAME") echo "selected"; ?>>이름</option>
+                                                    <option value="USER_NUMBER" <?php if ($search_field == "USER_NUMBER") echo "selected"; ?>>회원번호</option>
+                                                    <option value="USER_HP" <?php if ($search_field == "USER_HP") echo "selected"; ?>>연락처</option>
+                                                    <option value="USER_EMAIL" <?php if ($search_field == "USER_EMAIL") echo "selected"; ?>>이메일주소</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-8">
-                                                <input type="text" name="search_string" class="wid100p" placeholder="검색어를 입력해주세요">
+                                                <input type="text" name="search_string" class="wid100p" placeholder="검색어를 입력해주세요" value="<?php echo $search_string; ?>">
                                             </div>
                                         </td>
                                     </tr>
