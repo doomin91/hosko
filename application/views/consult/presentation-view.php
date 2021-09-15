@@ -88,10 +88,6 @@
 </html>
 <script type="text/javascript">
     $(function(){
-        $(document).on("click", "#consultlist", function(){
-            document.location.href="/consult/qnaList"
-        })
-
         $(document).on("click", "#pt_apply", function(){
             var pt_seq = "<?php echo $info->PT_SEQ; ?>";
             
@@ -106,7 +102,7 @@
                         console.log(data);
                         if (data.code == "200"){
                             alert(data.msg);
-                            document.location.href="/consult/qnaList";
+                            document.location.href="/consult/presentationList";
                         }else{
                             alert(data.msg);
                         }
