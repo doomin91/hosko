@@ -25,6 +25,7 @@
                                 <li class="on"><a href="/consult/online">온라인 상담</a></li>
                                 <li><a href="/consult/offline">방문신청 상담</a></li>
                                 <li><a href="/consult/apply">포지션&연수 지원</a></li>
+                                <li><a href="/consult/presentationList">설명회신청</a></li>
                             </ul>
                         </div>
 
