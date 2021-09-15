@@ -51,6 +51,18 @@
                             </ul>
                         </div>
 
+                        <div class="right_sidemenu">
+                            <ul>
+                                <li>
+                                    <a href="http://pf.kakao.com/_ZrXjxl/chat" target="_blank"><div class="sidemenu_item01"></div></a>
+                                </li>
+                                <li>
+                                    <a href="/consult/onlineConsultList"><div class="sidemenu_item02"></div></a>
+                                </li>                                
+                            </ul>
+                        </div>
+
+
                     </div>
 
                     <div class="main_contents">
@@ -123,7 +135,7 @@
                         </div>
 
                         <div class="mid_section05 mb80">
-                            <div class="inner">
+                            <div class="inner pd0">
                                 <div class="mid_board">
                                     <div class="main_news">
                                         <div class="main_news_title">
@@ -134,7 +146,7 @@
                                         <div class="main_news_box">
                                             <ul>
                                                 <?php foreach($NEWS as $val): ?>
-                                                <li class="f_left">
+                                                <li>
                                                     <div class="news_box_item">
                                                         <p class="text"><?php echo $val->POST_SUBJECT?></p>
                                                         <p class="date"><?php echo $val->POST_REG_DATE?></p>
@@ -143,7 +155,6 @@
                                                 <?php endforeach; ?>
                                             </ul>
                                         </div>
-
                                     </div>
 
                                     <div class="main_notice">
@@ -155,21 +166,20 @@
                                         <div class="main_notice_box">
                                             <ul>
                                                 <?php foreach($NOTICES as $val): ?>
-                                                <li class="f_left">
+                                                <li>
                                                     <div class="notice_box_item">
                                                         <p class="title" onclick="viewNotice(<?php echo$val->POST_SEQ?>)"><?php echo $val->POST_SUBJECT?></p>
                                                         <p class="text"><?php echo $val->POST_CONTENTS?></p>
-                                                        <span class="notice_icon">
-                                                            <a href="/board/board_view/<?php echo$val->POST_SEQ?>">
-                                                                <img src="/static/front/img/main_plus_icon01.jpg">
-                                                            </a>
-                                                        </span>
                                                     </div>
+                                                    <span class="notice_icon">
+                                                        <a href="/board/board_view/<?php echo$val->POST_SEQ?>">
+                                                            <img src="/static/front/img/main_plus_icon01.jpg">
+                                                        </a>
+                                                    </span>                                                    
                                                 </li>
                                                 <?php endforeach; ?>
                                             </ul>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
