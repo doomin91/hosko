@@ -524,6 +524,7 @@ class Consult extends CI_Controller {
 						"PT_DEL_YN" => "N",
 						"PT_REG_ADMIN_SEQ" => $this->session->userdata("admin_seq"),
 						"PT_APPLY_CNT" => $pt_apply_cnt,
+						"PT_READ_CNT" => 0
 		);
 
 		$result = $this->ConsultModel->insertPresentation($insertArr);

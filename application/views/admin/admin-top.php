@@ -53,11 +53,13 @@
 			<i class="fa fa-circle-o" aria-hidden="true"></i> 기본설정 <b class="fa fa-plus dropdown-plus"></b>
 		  </a>
 		  <ul class="dropdown-menu">
-			<li>
+			<!--
+		 	<li>
 			  <a href="/administrator/en/notice">
 				<i class="fa fa-caret-right"></i> 대시보드
 			  </a>
 			</li>
+			-->
 			<li>
 			  <a href="/admin/basic/siteInfo">
 				<i class="fa fa-caret-right"></i> 사이트정보

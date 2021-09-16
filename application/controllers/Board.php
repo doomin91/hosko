@@ -308,6 +308,8 @@ class Board extends CI_Controller {
     }
 
     function board_write($group_seq){
+		$this->customclass->userCheck();
+		
         $board_seq = $this->input->get("seq");
         $group_info = $this->GroupModel->getGroup($group_seq);
         $boards_info = $this->BoardModel->getBoardInGroup($group_seq);
@@ -358,6 +360,8 @@ class Board extends CI_Controller {
     }
 
     function board_modify($post_seq){
+		$this->customclass->userCheck();
+
         $post_info = $this->BoardModel->getPostInfo($post_seq);
         // 링크 직접 호출 시 차단
         if($post_info->POST_USER_SEQ != $this->session->userdata("USER_SEQ")){
@@ -673,6 +677,7 @@ class Board extends CI_Controller {
 	}
     
 	public function downalod_attach($SEQ){
+		$this->customclass->userCheck();
 		$attach = $this->BoardModel->getPostAttachByAttachSeq($SEQ);
 		$name = $attach->ATTACH_FILE_NAME;
 		$data = file_get_contents($attach->ATTACH_FILE_PATH);

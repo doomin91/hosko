@@ -239,7 +239,7 @@
                                         <?php endif?>
                                         <?php endif?>
                                         
-                                        <?php if(($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")) || $this->session->userdata("admin_seq")): ?>
+                                        <?php if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")): ?>
                                         <div class="btn_box f_right">
                                             <a href="#" onclick="board_delete()" class="btn_style01">삭제</a>
                                         </div>

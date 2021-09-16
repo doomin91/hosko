@@ -538,5 +538,7 @@ class UserModel extends CI_Model{
 		return $this->db->update("TBL_HOSKO_USER_RESUME_LANGUAGE_ADMIN", $updateArr);
 	}
 
-	
+	public function setMMSData($insertData){
+		return $this->db->insert("MMS_CONTENTS_INFO", $insertData);
+	}	
 }
