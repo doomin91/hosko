@@ -231,7 +231,7 @@
 							<div class="row">
                                 <div class="col-md-4 text-left">
                                     <input type="button" id="selected_abroad_del" class="btn btn-xs btn-default" value="- 선택삭제">
-                                    <input type="button" id="selected_abroad_move" class="btn btn-xs btn-default" value="+ 컨텐츠이동">
+                                    <!-- <input type="button" id="selected_abroad_move" class="btn btn-xs btn-default" value="+ 컨텐츠이동"> -->
                                     <input type="button" id="selected_abroad_copy" class="btn btn-xs btn-default" value="+ 컨텐츠복사">
 								</div>
 								<div class="col-md-4 text-center sm-center">

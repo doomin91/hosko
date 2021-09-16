@@ -38,7 +38,7 @@
 
 		  <!-- content main container -->
 		  <div class="main">
-
+		  <form name="resumeSearchForm" id="resumeSearchForm" class="form-horizontal" method="get" role="form">
 			<div class="row">
 				<div class="col-md-12">
 					<section class="tile transparent">
@@ -49,14 +49,14 @@
                                         <th class="col-sm-2">조건검색</th>
 										<td class="col-sm-10">
                                             <select id="resume_search_option" name="resume_search_option">
-                                                <option value="all">전체</option>
-                                                <option value="name">이름</option>
-                                                <option value="id">아이디</option>
-                                                <option value="title">제목</option>x
+                                                <option value="all" <?php if($search_option == "all") echo "selected"?>)>전체</option>
+                                                <option value="name" <?php if($search_option == "name") echo "selected"?>>이름</option>
+                                                <option value="id" <?php if($search_option == "id") echo "selected"?>>아이디</option>
+                                                <option value="title <?php if($search_option == "title") echo "selected"?>">제목</option>x
                                             </select>
-                                            <input type="text" id="resume_search_text" name="resume_search_text" placeholder="검색어를 입력해주세요" value="">
+                                            <input type="text" id="resume_search_text" name="resume_search_text" placeholder="검색어를 입력해주세요" value="<?php  echo $search_text ?>">
 
-                                            <input type="button" class="btn btn-success" id="resume_search" value="검색"></input>
+                                            <input type="submit" class="btn btn-success" id="resume_search" value="검색"></input>
                                             
 										</td>
 									</tr>
@@ -164,7 +164,7 @@
 
 			</div>
 			<!-- /row -->
-
+		  </form>
 		  </div>
 		  <!-- /content container -->
 
@@ -191,14 +191,17 @@
                 }
             });
 
-            $("#resume_search").on("click", function(){
-                var row = $(this).closest("td");
-                var input = $(row).find("#resume_search_text").val();
+            // $("#resume_search").on("click", function(e){
+            //     var input = $("#resume_search_text").val();
+			// 	console.log(input);
+            //     if(input == ""){
+            //         alert("검색어를 입력해주세요");
+			// 		e.preventDefault();
+			// 		return;
+            //     }
 
-                if(input == ""){
-                    alert("검색어를 입력해주세요");
-                }
-            });
+
+            // });
 
             $("#apply_excel_save").on("click", function(){
                 alert("엑셀 따운");

@@ -21,8 +21,8 @@
                     <div class="sub_contents">
                         <div class="sub_category02">
                             <ul>
-                                <li <?php $CATEGORY==1 ? print("class='on'") : "" ?> ><a href="/recruit_?ctg=1">인턴쉽</a></li>
-                                <li <?php $CATEGORY==2 ? print("class='on'") : "" ?>><a href="/recruit_?ctg=2">JOB·헤드헌팅</a></li>
+                                <li <?php $CATEGORY==1 ? print("class='on'") : "" ?> ><a href="/recruit?ctg=1">인턴쉽</a></li>
+                                <li <?php $CATEGORY==2 ? print("class='on'") : "" ?>><a href="/recruit?ctg=2">JOB·헤드헌팅</a></li>
                             </ul>
                         </div>
 
@@ -89,7 +89,7 @@
                                                             </span>
                                                         </div>
 
-                                                        <!-- <input type="text" class="form-control common_select wid100p" name="apply_user_img_edit" id="apply_user_img_edit" readonly>
+                                                        <input type="text" class="form-control common_select wid100p" name="apply_user_img_edit" id="apply_user_img_edit" readonly>
                                                         <input type="button" class="btn btn-s btn-primary" name="apply_user_img_edit_btn" id="apply_user_img_edit_btn" value="찾아보기"> (Size: 110x120 px) -->
                                                     </td>
                                                 </tr>
@@ -154,7 +154,7 @@
                                                 <tr>
                                                     <th></th>
                                                     <td class="recruitRadio">
-                                                        <label for="apply_uni_status_1"><input type="radio" name="apply_uni_status" id="apply_uni_status_1" value="1"> 재학 </label>
+                                                        <label for="apply_uni_status_1"><input type="radio" name="apply_uni_status" id="apply_uni_status_1" value="1" checked = "checked"> 재학 </label>
                                                         <label for="apply_uni_status_2"><input type="radio" name="apply_uni_status" id="apply_uni_status_2" value="2"> 휴학 </label>
                                                         <label for="apply_uni_status_3"><input type="radio" name="apply_uni_status" id="apply_uni_status_3" value="3"> 졸업/졸업년도 </label>
                                                         <input type="text" class="recruitform common_select wid25p" name="apply_grade_year" id="apply_grade_year" value="">
@@ -192,7 +192,7 @@
                                                 <tr>
                                                     <th>(Language Skill) English</th>
                                                     <td class="recruitRadio">
-                                                        <label for="apply_eng_skill_1"><input type="radio" name="apply_eng_skill" id="apply_eng_skill_1" value="1"> Fluent</label>
+                                                        <label for="apply_eng_skill_1"><input type="radio" name="apply_eng_skill" id="apply_eng_skill_1" value="1" checked = "checked"> Fluent</label>
                                                         <label for="apply_eng_skill_2"><input type="radio" name="apply_eng_skill" id="apply_eng_skill_2" value="2"> Fair</label>
                                                         <label for="apply_eng_skill_3"><input type="radio" name="apply_eng_skill" id="apply_eng_skill_3" value="3"> Poor</label>
                                                     </td>
@@ -200,7 +200,7 @@
                                                 <tr>
                                                     <th>기타외국어</th>
                                                     <td class="recruitRadio">
-                                                        <label for="apply_another_skill_1"><input type="radio" name="apply_another_skill" id="apply_another_skill_1" value="1"> Fluent</label>
+                                                        <label for="apply_another_skill_1"><input type="radio" name="apply_another_skill" id="apply_another_skill_1" value="1" checked = "checked"> Fluent</label>
                                                         <label for="apply_another_skill_2"><input type="radio" name="apply_another_skill" id="apply_another_skill_2" value="2"> Fair</label>
                                                         <label for="apply_another_skill_3"><input type="radio" name="apply_another_skill" id="apply_another_skill_3" value="3"> Poor</label>
                                                         <input type="text" class="recruitform common_select wid25p ml10" name="apply_another_skill_name" id="apply_another_skill_name" value="">
@@ -227,7 +227,7 @@
                                                 <tr>
                                                     <th>여권보유여부</th>
                                                     <td>
-                                                        <label for="apply_passport_flag_y"><input type="radio" name="apply_passport_flag" id="apply_passport_flag_y" value="Y" > Yes</label>
+                                                        <label for="apply_passport_flag_y"><input type="radio" name="apply_passport_flag" id="apply_passport_flag_y" value="Y" checked = "checked"> Yes</label>
                                                         <label for="apply_passport_flag_n"><input type="radio" name="apply_passport_flag" id="apply_passport_flag_n" value="N" > No</label>
                                                     </td>
                                                 </tr>
@@ -235,7 +235,7 @@
                                                     <th>미국비자발급거절여뷰</th>
                                                     <td>
                                                         <label for="apply_visa_flag_y"><input type="radio" name="apply_visa_flag" id="apply_visa_flag_y" value="Y" > Yes</label>
-                                                        <label for="apply_visa_flag_n"><input type="radio" name="apply_visa_flag" id="apply_visa_flag_n" value="N" > No</label>
+                                                        <label for="apply_visa_flag_n"><input type="radio" name="apply_visa_flag" id="apply_visa_flag_n" value="N" checked = "checked"> No</label>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -319,14 +319,43 @@
             fd.append("rec_seq", rec_seq);
             fd.append("user_seq", user_seq);
             
+            var is_blank = false;
+            
             var form_data = $('#myApplyCreateForm').serializeArray(); // serialize 사용
+
             $.each(form_data, function (key, input) {
-                if(input.value=="" && input.name != "apply_user_img"){
-                    alert("값을 넣어주세요");
+                var ip = "";
+                console.log(input);
+                if(input.name == "apply_career" || input.name == "apply_self_introduce"){
+                    ip = $(`textarea[name=${input.name}]`);
+                }else{
+                    ip = $(`input[name=${input.name}]`);
+                }
+                
+                console.log(ip);
+                if($(ip).val() == ""){
+                    alert("빈 값을 넣어주세요");
+                    $(ip).focus();
+                    is_blank = true;
                     return false;
                 }
+                
+                
                 fd.append(input.name, input.value);
             });
+
+            for (var key of fd.keys()) {
+                console.log(key);
+            }
+
+            // FormData의 value 확인
+            for (var value of fd.values()) {
+                console.log(value);
+            }
+
+            if(is_blank){
+                return false;
+            }
             
             if($(".filename").val() != ""){
                 for (var key of FILE.keys()) {

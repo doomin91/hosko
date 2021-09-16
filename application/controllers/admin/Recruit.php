@@ -701,17 +701,19 @@ class Recruit extends CI_Controller {
 			$nowpage = $_GET["per_page"];
 		}
 
-		$search_option = isset($_GET["srchOpt"]) ? $_GET["srchOpt"] : "";
+		$search_text = isset($_GET["resume_search_text"]) ? $_GET["resume_search_text"] : "";
+		$search_option = isset($_GET["resume_search_option"]) ? $_GET["resume_search_option"] : "";
 
 		$wheresql = array(
-						"srchOpt" => $search_option,
+						"search_text" => $search_text,
+						"search_option" => $search_option,
 						"start" => $start,
 						"limit" => $limit
-						);
+					);
 		// print_r($searchTxt);
 		$lists = $this->RecruitModel->getRecruitResumeList($wheresql);
 		// $lists = array();
-		//echo $this->db->last_query();
+		// echo $this->db->last_query();
 		$listCount = $this->RecruitModel->getRecruitResumeListCount($wheresql);
 		$listCountAll = $this->RecruitModel->getRecruitResumeListCountAll();
 		// $listCount= array();
@@ -721,7 +723,9 @@ class Recruit extends CI_Controller {
 			$pagenum = $listCount;
 		}
 
-		$pagination = $this->customclass->pagenavi("/admin/recurit/recruit_resume_list", $listCount, 15, 5, $nowpage);
+		$queryString = "?search_option=".$search_option."&search_text=".$search_text;
+
+		$pagination = $this->customclass->pagenavi("/admin/recurit/recruit_resume_list".$queryString, $listCount, 15, 5, $nowpage);
 		//print_r($listCount);
 		$data = array(
 					"lists" => $lists,
@@ -730,7 +734,9 @@ class Recruit extends CI_Controller {
 					"pagination" => $pagination,
 					"pagenum" => $pagenum,
 					"start" => $start,
-					"limit" => $limit
+					"limit" => $limit,
+					"search_text" => $search_text,
+					"search_option" => $search_option
 					);
 
 		$this->load->view("./admin/recruit/recruit-resume_list", $data);

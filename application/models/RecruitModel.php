@@ -212,6 +212,21 @@ class RecruitModel extends CI_Model{
     }
 
     public function getRecruitResumeList($whereArr){
+
+        if(isset($whereArr["search_option"]) && $whereArr["search_option"] != "all"){
+            if($whereArr["search_option"] == "name"){
+                $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["search_text"]);
+            }else if($whereArr["search_option"] == "id"){
+                $this->db->like("TBL_HOSKO_USER.USER_ID", $whereArr["search_text"]);
+            }else if($whereArr["search_option"] == "title"){
+                $this->db->like("TBL_HOSKO_USER_RESUME.RESUME_TITLE", $whereArr["search_text"]);
+            }
+        }else if(isset($whereArr["search_option"]) && $whereArr["search_option"] == "all"){
+            $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["search_text"]);
+            $this->db->or_like("TBL_HOSKO_USER.USER_ID", $whereArr["search_text"]);
+            $this->db->or_like("TBL_HOSKO_USER_RESUME.RESUME_TITLE", $whereArr["search_text"]);
+        }
+
         $this->db->where("TBL_HOSKO_USER_RESUME.RESUME_DEL_YN", 'N');
 
         $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_USER_RESUME.USER_SEQ");
@@ -224,6 +239,20 @@ class RecruitModel extends CI_Model{
     }
 
     public function getRecruitResumeListCount($whereArr){
+        if(isset($whereArr["search_option"]) && $whereArr["search_option"] != "all"){
+            if($whereArr["search_option"] == "name"){
+                $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["search_text"]);
+            }else if($whereArr["search_option"] == "id"){
+                $this->db->like("TBL_HOSKO_USER.USER_ID", $whereArr["search_text"]);
+            }else if($whereArr["search_option"] == "title"){
+                $this->db->like("TBL_HOSKO_USER_RESUME.RESUME_TITLE", $whereArr["search_text"]);
+            }
+        }else if(isset($whereArr["search_option"]) && $whereArr["search_option"] == "all"){
+            $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["search_text"]);
+            $this->db->or_like("TBL_HOSKO_USER.USER_ID", $whereArr["search_text"]);
+            $this->db->or_like("TBL_HOSKO_USER_RESUME.RESUME_TITLE", $whereArr["search_text"]);
+        }        
+
         $this->db->where("TBL_HOSKO_USER_RESUME.RESUME_DEL_YN", 'N');
 
         $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_USER_RESUME.USER_SEQ");

@@ -294,21 +294,42 @@
         $("#recruit_apply_edit").on("click", function(){
             var app_seq = $("input[name=app_seq]").val();
             var fd = new FormData();
+            fd.append("app_seq", app_seq);
+
+            var is_blank = false;
 
             var form_data = $('#myApplyEditForm').serializeArray(); // serialize 사용
             $.each(form_data, function (key, input) {
-                if(input.value=="" && input.name != "apply_user_img_edit"){
-                    alert("값을 넣어주세요");
+                var ip = "";
+                console.log(input);
+                if(input.name == "apply_career" || input.name == "apply_self_introduce"){
+                    ip = $(`textarea[name=${input.name}]`);
+                }else{
+                    ip = $(`input[name=${input.name}]`);
+                }
+                
+                console.log(ip);
+                if($(ip).val() == ""){
+                    alert("빈 값을 넣어주세요");
+                    $(ip).focus();
+                    is_blank = true;
                     return false;
                 }
+                
+                
                 fd.append(input.name, input.value);
             });
+
+            if(is_blank){
+                return false;
+            }
 
             if($(".filename").val() != ""){
                 for (var key of FILE.keys()) {
                     fd.append(key, FILE.get(key));
                 }
             }
+   
             // console.log(form_data);
 
             // for (var key of fd.keys()) {
