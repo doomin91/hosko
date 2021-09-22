@@ -498,7 +498,7 @@
   float: left;
   line-height: 59px;
   text-align: center;
-  font-size: 1em;
+  font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 400;
   display: table-cell;
@@ -529,7 +529,7 @@
   float: left;
   line-height: 59px;
   text-align: center;
-  font-size: 1em;
+  font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 400;
   display: table-cell;
@@ -560,7 +560,7 @@
   float: left;
   line-height: 59px;
   text-align: center;
-  font-size: 1em;
+  font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 400;
   display: table-cell;
@@ -592,7 +592,7 @@
   float: left;
   line-height: 59px;
   text-align: center;
-  font-size: 1em;
+  font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 400;
   display: table-cell;
@@ -763,17 +763,22 @@
   background-color: #055ca9;
   border: 1px solid #055ca9;
   box-sizing: border-box;
-  padding: 10px 30px;
-  font-size: 20px;
+  font-size: 14px;
+  font-weight:400;
+  width:100px;
+  height:38px;
 }
+
 .memberBtnCancel {
   display: inline-block;
   color: #055ca9;
   background-color: #fff;
-  padding: 10px 30px;
   border: 1px solid #055ca9;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 14px;
+  font-weight:400;
+  width:100px;
+  height:38px;  
 }
 
 .memberJoinBox {
@@ -791,7 +796,7 @@
 }
 
 .joinBoxTitle {
-  font-size: 18px;
+  font-size: 16px;
   color: #222;
   font-weight: 500;
   display: block;
@@ -805,6 +810,8 @@
   width: 100%;
   padding: 10px;
   border: 1px solid #e5e5e5;
+  font-size:14px;
+  font-weight:400;
 }
 
 .joinBoxRadio {
@@ -915,6 +922,7 @@
   padding: 10px;
   border: 1px solid #e5e5e5;
   cursor: pointer;
+  height:43px;
 }
 
 .joinEmailText {
@@ -976,6 +984,7 @@
   color: #055ca9;
   display: inline-block;
   float: right;
+  font-weight:400;
 }
 .joinSubTitle {
   color: #055ca9;
@@ -1310,20 +1319,22 @@
   font-family: "Noto Sans KR", sans-serif;
 }
 .movieCon .description {
-  font-size: 1.2em;
+  font-size: 14px;
   font-weight: 500;
   padding: 10px;
-  height: 70px;
+  height: 85px;
+  overflow:hidden;
+
 }
 .movieCon .name {
-  font-size: 1em;
+  font-size: 14px;
   font-weight: 400;
   text-align: left;
   padding-left: 10px;
 }
 .movieCon .movieConfoot {
   position: absolute;
-  bottom: 0;
+  bottom: 1px;
   left: 0;
   width: 100%;
   height: 40px;
@@ -1415,7 +1426,7 @@
   font-family: "Noto Sans KR", sans-serif;
 }
 .galleryCon .description {
-  font-size: 1.2em;
+  font-size: 14px;
   font-weight: 500;
   padding: 10px;
   height: 95px;
@@ -1482,14 +1493,17 @@
 /* 인턴쉽 */
 .recruit_detail {position: relative; width:100%; margin:0;}
 .recruit_detail .page_tab_title {width:100%; border-bottom:2px solid #212020; }
-.recruit_detail .tab_title_text {background-color:#065da8; color:#fff; text-align:center; width:234px; height:57px; line-height:57px; font-size:18px; font-weight:400;}
-.recruit_detail .detail_view {position:relative; width:100%; padding:15px 0; text-align:center;}
+.recruit_detail .tab_title_text {background-color:#065da8; color:#fff; text-align:center; width:200px; height:50px; line-height:50px; font-size:16px; font-weight:400;}
+.recruit_detail .detail_view {position:relative; width:100%; padding:15px 0; text-align:center; font-size:14px; font-weight:500;}
 
 .detail_footer {text-align:right; display:block; margin-top:20px;}
-.detail_footer .recruit_btn01 {width:110px; height:50px; background-color:#0c5ea9; color:#fff; line-height:50px; font-size:18px; font-weight:400; }
-.detail_footer .recruit_btn01 a {color:#fff; font-size:16px; font-weight:400;}
-.detail_footer .recruit_btn02 {width:110px; height:50px; background-color:#e5e5e5; color:#444444; line-height:50px; font-size:18px; font-weight:400;}
-.detail_footer .recruit_btn02 a {color:#444; font-size:16px; font-weight:400;}
+.detail_footer .recruit_btn01 {width:100px; height:38px; background-color:#0c5ea9; color:#fff; line-height:38px; font-weight:400; }
+.detail_footer .recruit_btn01 a {color:#fff; font-size:14px; font-weight:400; padding: 8px 24px;}
+.detail_footer .recruit_btn02 {width:100px; height:38px; background-color:#e5e5e5; color:#444444; line-height:38px; font-weight:400;}
+.detail_footer .recruit_btn02 a {color:#444; font-size:14px; font-weight:400; padding: 8px 24px;}
+
+
+
 
 .recuit_img {width:136px; height:73px; overflow:hidden;}
 .recuit_img img {width:100%;}
@@ -1801,8 +1815,8 @@
   line-height:40px;
   text-align:center;
   color:#fff;
-  font-size:16px;
-  font-weight:500;
+  font-size:14px;
+  font-weight:400;
   border:0;
 }
 .resumebtnwrap .resumebtn01 {
@@ -1812,8 +1826,8 @@
   line-height:40px;
   text-align:center;
   color:#222;
-  font-size:16px;
-  font-weight:500;
+  font-size:14px;
+  font-weight:400;
   border:0;
 }
 
@@ -1892,6 +1906,7 @@
   text-align:center
 }
 
+
 .MissionTableWrap {
   position:relative;
   width:100%;
@@ -1951,6 +1966,70 @@
 }
 
 
+/* agreement */
+.agreement_wrap {
+    position: relative;
+    width:100%;
+    margin-bottom:30px;    
+}
 
+.agreement_wrap h2 {
+    font-size:15px;
+    font-weight:500;
+    line-height: 20px;
+    padding:20px 0 10px 0;
+}
 
+.agreement_wrap p {
+    font-size:15px;
+    font-weight:400;
+    line-height:22px;
+}
 
+.membermission_cont {
+    position:relative;
+    width:100%;
+}
+.membermission_title {
+    width:100%;
+    margin-top:30px;
+}
+.membermission_title li {
+    display:inline-block;
+    width:16.4%;
+    margin:0 auto;
+    text-align: center;
+}
+
+.membermission_title li > span {
+    display:inline-block;
+    background-color:#ddd;
+    color:#000;
+    text-align:center;
+    font-size:14px;
+    font-weight:400;
+    border-radius:20px;
+    padding:5px 15px;
+    box-sizing: border-box;
+}
+
+.membermission_title .on{
+    display:inline-block;
+    background-color:#0c5ea9;
+    color:#fff;
+}
+.memebermission_step {
+    width:100%;
+    font-size:16px;
+    font-weight:400;
+    margin-top:50px;
+    color:#202020;
+}
+.memebermission_step > span {
+    background-color:#0c5ea9;
+    color:#fff;
+    padding:0 10px;
+    border-radius: 20px;
+    font-size:15px;
+    font-weight:400;
+}

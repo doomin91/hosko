@@ -56,4 +56,12 @@ class Company extends CI_Controller {
     public function vision(){
         $this->load->view("company/company_vision");
     }
+
+    public function agreement(){
+        $this->load->view("company/agreement");
+    }
+
+    public function privacy(){
+        $this->load->view("company/privacy");
+    }
 }

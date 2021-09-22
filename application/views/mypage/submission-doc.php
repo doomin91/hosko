@@ -50,7 +50,20 @@
                                     </div>
 
                                     <div class="MissionDocimg mt100">
-                                        <img src="../static/front/img/missiondoc_img03.jpg">
+                                        <img src="../static/front/img/missiondoc_img03.jpg" style="width:100%;">
+                                    </div>
+                                    <div class="membermission_cont">
+                                        <ul class="membermission_title">
+                                            <li><span>일반</span></li>
+                                            <li><span>상담진행</span></li>
+                                            <li><span>참가 계약확정</span></li>
+                                            <li><span class="on">멘토링 서비스</span></li>
+                                            <li><span>비자수속</span></li>
+                                            <li><span>출국</span></li>
+                                        </ul>
+                                        <div class="memebermission_step">
+                                            *** 회원님은 현재 <span>참가계약 확정</span> 단계입니다.
+                                        </div>
                                     </div>
                                 </div>
 

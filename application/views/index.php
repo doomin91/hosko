@@ -147,10 +147,12 @@
                                             <ul>
                                                 <?php foreach($NEWS as $val): ?>
                                                 <li>
-                                                    <div class="news_box_item">
-                                                        <p class="text"><?php echo $val->POST_SUBJECT?></p>
-                                                        <p class="date"><?php echo $val->POST_REG_DATE?></p>
-                                                    </div>
+                                                    <a href="/">
+                                                        <div class="news_box_item">
+                                                            <p class="text"><?php echo $val->POST_SUBJECT?></p>
+                                                            <p class="date"><?php echo $val->POST_REG_DATE?></p>
+                                                        </div>
+                                                    </a>
                                                 </li>
                                                 <?php endforeach; ?>
                                             </ul>
@@ -160,7 +162,7 @@
                                     <div class="main_notice">
                                         <div class="main_notice_title">
                                             <h2>NOTICE</h2>
-                                            <span><img src="/static/front/img/main_plus_icon.jpg"></span>
+                                            <span><a href="/"><img src="/static/front/img/main_plus_icon.jpg"></a></span>
                                         </div>
 
                                         <div class="main_notice_box">

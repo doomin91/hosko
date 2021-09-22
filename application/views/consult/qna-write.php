@@ -66,8 +66,8 @@
                                                     <div class="boardViewTop_item">
                                                         <strong>이메일</strong>
                                                         <div class="type_td">
-                                                            <input type="email" name="qna_user_email1" class="input_s1" value="<?php echo $userEmail[0]; ?>">@<input type="email" name="qna_user_email2" class="input_s1" value="<?php echo $userEmail[1]; ?>">
-                                                            <select name="email_sel" class="select_s1">
+                                                            <input type="email" name="qna_user_email1" class="input_s2 mr5 mb0" value="<?php echo $userEmail[0]; ?>">@<input type="email" name="qna_user_email2" class="input_s2 ml5 mb0" value="<?php echo $userEmail[1]; ?>">
+                                                            <select name="email_sel" class="select_s2">
                                                                 <option value="">직접입력</option>
                                                                 <option value="nate.com">nate.com</option>
                                                                 <option value="naver.com">naver.com</option>

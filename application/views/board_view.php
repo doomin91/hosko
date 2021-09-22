@@ -227,7 +227,7 @@
 
                                         <?php if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")):?>
                                         <div class="btn_box f_right">
-                                            <a href="/Board/board_modify/<?php echo $POST_INFO->POST_SEQ?>" class="btn_style02">수정</a>
+                                            <a href="/Board/board_modify/<?php echo $POST_INFO->POST_SEQ?>" class="btn_style02 ml5">수정</a>
                                         </div>
                                         <?php endif?>
                                         
