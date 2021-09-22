@@ -39,22 +39,34 @@
 
                     </div>
                     <div class="sub_contents">
-                        <div class="sub_category">
-                        <ul>
+                        <div class="<?php echo count($BOARDS_INFO) > 5 ? "sub_category01" : "sub_category" ?>">    
+                            <ul>
                                 <?php foreach($BOARDS_INFO as $val){
                                     switch($val->BOARD_TYPE){
                                         case 0:
                                             // 일반 게시판
-                                            echo "<li><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            if($BOARD_INFO->BOARD_SEQ == $val->BOARD_SEQ){
+                                                echo "<li class=\"on\"><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }else{
+                                                echo "<li><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }
                                             break;
                                         case 1:
                                             // 갤러리 게시판
-                                            echo "<li><a href=\"/Board/g/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            if($BOARD_INFO->BOARD_SEQ == $val->BOARD_SEQ){
+                                                echo "<li class=\"on\"><a href=\"/Board/g/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }else{
+                                                echo "<li><a href=\"/Board/g/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }
                                             break;
                                         
                                         case 2:
                                             // 동영상 게시판
-                                            echo "<li><a href=\"/Board/v/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            if($BOARD_INFO->BOARD_SEQ == $val->BOARD_SEQ){
+                                                echo "<li class=\"on\"><a href=\"/Board/v/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }else{
+                                                echo "<li><a href=\"/Board/v/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }
                                             break;
                                     }
                                 }

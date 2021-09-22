@@ -16,15 +16,40 @@
 
                     </div>
                     <div class="sub_contents">
-                        <div class="sub_category">
+                        <div class="<?php echo count($BOARDS_INFO) > 5 ? "sub_category01" : "sub_category" ?>">    
                             <ul>
                                 <?php foreach($BOARDS_INFO as $val){
-                                    echo "<li><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                    switch($val->BOARD_TYPE){
+                                        case 0:
+                                            // 일반 게시판
+                                            if($BOARD_INFO->BOARD_SEQ == $val->BOARD_SEQ){
+                                                echo "<li class=\"on\"><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }else{
+                                                echo "<li><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }
+                                            break;
+                                        case 1:
+                                            // 갤러리 게시판
+                                            if($BOARD_INFO->BOARD_SEQ == $val->BOARD_SEQ){
+                                                echo "<li class=\"on\"><a href=\"/Board/g/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }else{
+                                                echo "<li><a href=\"/Board/g/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }
+                                            break;
+                                        
+                                        case 2:
+                                            // 동영상 게시판
+                                            if($BOARD_INFO->BOARD_SEQ == $val->BOARD_SEQ){
+                                                echo "<li class=\"on\"><a href=\"/Board/v/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }else{
+                                                echo "<li><a href=\"/Board/v/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }
+                                            break;
+                                    }
                                 }
                                 ?>
                             </ul>
                         </div>
-
                         <input type="hidden" name="board_seq" value="<?php echo $BOARD_INFO->BOARD_SEQ?>">
                         <input type="hidden" name="post_seq" value="<?php echo $POST_INFO->POST_SEQ?>">
 
