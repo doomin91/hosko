@@ -40,6 +40,9 @@ input[type="checkbox"],
 input[type="radio"] {width: 14px; height: 14px; line-height: 14px; box-sizing: border-box;}
 input[type="search"] {-webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box;}
 input[type="search"]::-webkit-search-decoration {-webkit-appearance: none; outline-color:#00305b;}
+input[type=radio], input[type=checkbox] {margin:0 !important;}
+
+
 
 /* 
   Margin 

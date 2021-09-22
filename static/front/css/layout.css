@@ -738,6 +738,8 @@
   border-right: 1px solid #e5e5e5;
   padding: 10px;
   box-sizing: border-box;
+  font-size:14px;
+  font-weight:400;
 }
 .agreebox_con {
   position: relative;
@@ -750,6 +752,8 @@
   border: 1px solid #e5e5e5;
   padding: 10px;
   box-sizing: border-box;
+  font-size:14px;
+  font-weight:400;
 }
 
 .memberBtn {
