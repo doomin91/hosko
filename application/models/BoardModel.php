@@ -137,12 +137,12 @@ class BoardModel extends CI_Model{
         $this->db->where("POST_SEQ", $POST_SEQ);
         $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ");
         $this->db->join("TBL_HOSKO_USER AS USER", "USER.USER_SEQ = POST_USER_SEQ", "LEFT");
-        $this->db->join("TBL_HOSKO_ADMIN AS ADMIN", "USER.USER_SEQ = POST_ADMIN_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_ADMIN AS ADMIN", "ADMIN.ADMIN_SEQ = POST_ADMIN_SEQ", "LEFT");
         return $this->db->get("TBL_HOSKO_BOARD_POSTS")->row();
     }
 
     public function getPosts($BOARD_SEQ, $wheresql){
-        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.USER_NAME, count(RECOMMAND.RMD_SEQ) AS CNT, count(COMMENTS.COM_SEQ) AS COMMENTS, count(ATTACH.ATTACH_SEQ) AS ATTACHS");
+        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.USER_NAME, ADMIN.ADMIN_NAME, count(RECOMMAND.RMD_SEQ) AS CNT, count(COMMENTS.COM_SEQ) AS COMMENTS, count(ATTACH.ATTACH_SEQ) AS ATTACHS");
         // $this->db->where("POST_DEL_YN", "N");
 
         if ((isset($wheresql["reg_date_start"])) && ($wheresql["reg_date_start"] != "")){
@@ -175,7 +175,7 @@ class BoardModel extends CI_Model{
 
         $this->db->where("TBL_HOSKO_BOARD_POSTS.POST_BOARD_SEQ", $BOARD_SEQ);
         $this->db->join("TBL_HOSKO_USER AS USER", "USER.USER_SEQ = POST_USER_SEQ", "LEFT");
-        $this->db->join("TBL_HOSKO_USER AS ADMIN", "USER.USER_SEQ = POST_ADMIN_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_ADMIN AS ADMIN", "ADMIN.ADMIN_SEQ = POST_ADMIN_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD_RECOMMAND AS RECOMMAND", "RMD_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD_COMMENT AS COMMENTS", "COM_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ", "LEFT");
@@ -224,7 +224,7 @@ class BoardModel extends CI_Model{
 
         $this->db->where("TBL_HOSKO_BOARD_POSTS.POST_BOARD_SEQ", $BOARD_SEQ);
         $this->db->join("TBL_HOSKO_USER AS USER", "USER.USER_SEQ = POST_USER_SEQ", "LEFT");
-        $this->db->join("TBL_HOSKO_USER AS ADMIN", "USER.USER_SEQ = POST_ADMIN_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_ADMIN AS ADMIN", "ADMIN.ADMIN_SEQ = POST_ADMIN_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD_RECOMMAND AS RECOMMAND", "RMD_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD_COMMENT AS COMMENTS", "COM_POST_SEQ = POST_SEQ", "LEFT");
         $this->db->join("TBL_HOSKO_BOARD", "BOARD_SEQ = POST_BOARD_SEQ", "LEFT");
@@ -289,9 +289,10 @@ class BoardModel extends CI_Model{
     }
 
     public function getBoardSeqByPost($POST_SEQ){
-        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.*");
+        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.*, ADMIN.*");
         $this->db->where("POST_SEQ", $POST_SEQ);
         $this->db->join("TBL_HOSKO_USER AS USER", "USER.USER_SEQ = POST_USER_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_ADMIN AS ADMIN", "ADMIN.ADMIN_SEQ = POST_ADMIN_SEQ", "LEFT");
         return $this->db->get("TBL_HOSKO_BOARD_POSTS")->row();
     }
 
