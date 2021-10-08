@@ -31,6 +31,8 @@ class Group extends CI_Controller {
 		//$this->load->library('encrypt');
 		$this->load->helper('download');
 		$this->load->model("GroupModel");
+
+		date_default_timezone_set('Asia/Seoul');
 	}
 
 	/////////////////////

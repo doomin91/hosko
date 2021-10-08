@@ -364,15 +364,13 @@
                     "user_email_flag" : user_email_flag,
                     "send_message" : send_message
                 },
-                //dataType:"json",
+                dataType:"json",
                 success:function(resultMsg){
-                    console.log(resultMsg);
-                    console.log(":ASDFASDFASDFASDFASD");
-                    return false;
                     if (resultMsg.code == "200"){
-                        alert(resultMsg.msg);
+                        //alert(resultMsg.msg);
+                        alert("SMS 발송 완료되었습니다.")
                         //document.location.href="/admin/user/managers";
-                        //document.location.reload();
+                        document.location.reload();
                     }else{
                         alert(resultMsg.msg);
                     }

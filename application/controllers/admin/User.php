@@ -35,6 +35,9 @@ class User extends CI_Controller {
 		//$this->load->model("CodeModel");
 
 		$this->customclass->adminCheck();
+
+		date_default_timezone_set('Asia/Seoul');
+
 	}
 
 	public function index(){
@@ -503,7 +506,7 @@ class User extends CI_Controller {
 		$search_string = $this->input->post("search_string");
 		$user_email_flag = $this->input->post("user_email_flag");
 		$send_message = $this->input->post("send_message");
-		print_r($this->input->post());
+		#print_r($this->input->post());
 		$wheresql = array(
 						"reg_date_start" => $reg_date_start,
 						"reg_date_end" => $reg_date_end,
@@ -520,7 +523,7 @@ class User extends CI_Controller {
 		if (!empty($lists)){
 			
 			foreach ($lists as $list){
-				print_r($list);
+				#print_r($list);
 				/*
 				//카카오톡
 				$sendArr = array(
@@ -540,9 +543,9 @@ class User extends CI_Controller {
 				if (strlen($send_message) <= 80){
 					$sendArr = array(
 									"CUR_STATE" => 0,
-									"REQ_DATE" => date("y-m-d h:i:s"),
-									"CALL_TO" => "02-2052-9700",
-									"CALL_FROM" => $list->USER_HP,
+									"REQ_DATE" => date("Y-m-d H:i:s"),
+									"CALL_FROM" => "0220529700",
+									"CALL_TO" => str_replace("-", "", $list->USER_HP),
 									"SMS_TXT" => $send_message,
 									"MSG_TYPE" => 4
 					);
@@ -559,8 +562,8 @@ class User extends CI_Controller {
 					$smsArr = array(
 									"CUR_STATE" => 0,
 									"REQ_DATE" => date("y-m-d h:i:s"),
-									"CALL_TO" => "02-2052-9700",
-									"CALL_FROM" => $list->USER_HP,
+									"CALL_FROM" => "0220529700",
+									"CALL_TO" => str_replace("-", "", $list->USER_HP),
 									"SMS_TXT" => $send_message,
 									"MSG_TYPE" => 4,
 									"CONT_SEQ" => $cont_seq

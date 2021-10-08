@@ -156,7 +156,7 @@
 				</div>
 				<div class="modal-body">
 					<form role="wform" id="wform">
-                        <input type="hidden" name="user_seq" value="<?php echo $user_info->USER_SEQ; ?>">
+                        <input type="hidden" name="user_seq" value="">
                         <input type="hidden" name="clog_seq" value="">
                         <input type="hidden" name="clog_mode" value="">
 					<table class="table datatable table-custom01 userTable">
@@ -171,16 +171,15 @@
                             </tr>
                             <tr>
                                 <th>회원명</td>
-                                <td><input type="text" class="form-control" id="user_name" name="user_name" value="<?php echo $user_info->USER_NAME; ?>"></td>
+                                <td><input type="text" class="form-control" id="user_name" name="user_name" value=""></td>
                             </tr>
                             <tr>
                                 <th>학교명/직장명</td>
-                                <td><input type="text" class="form-control" id="user_company" name="user_company" value="<?php echo $user_info->USER_COMPANY; ?>"></td>
+                                <td><input type="text" class="form-control" id="user_company" name="user_company" value=""></td>
                             </tr>
                             <tr>
                                 <th>상담날짜</td>
                                 <td>
-                                    <!--<input type="text" class="form-control datepicker" id="consult_date" name="consult_date" value="<?php echo date("Y-m-d"); ?>">-->
                                     <input name="consult_date" id="consult_date" type="text" class="wid100p datepicker">
                                 </td>
                             </tr>
