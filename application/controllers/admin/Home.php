@@ -32,7 +32,7 @@ class Home extends CI_Controller {
 		$this->load->helper('download');
 
 		$this->load->model("BasicModel");
-
+		date_default_timezone_set('Asia/Seoul');
 	}
 
 	public function index(){

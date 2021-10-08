@@ -35,6 +35,7 @@ class Board extends CI_Controller {
 		$this->load->model("UserModel");
 
 		$this->customclass->adminCheck();
+		date_default_timezone_set('Asia/Seoul');
 	}
 
 	/////////////////////
