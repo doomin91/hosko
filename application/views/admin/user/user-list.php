@@ -52,6 +52,7 @@
 									<col width="35%"/>
 								</colgroup>
 								<tbody>
+								<form name="sform" method="get">
 									<tr>
 										<th>가입일자</th>
 										<td>
@@ -241,6 +242,7 @@
 											<button class="btn btn-primary">검색하기</button>
 										</td>
 									</tr>
+								</form>
 								</tbody>
 							</table>
 						</div>
