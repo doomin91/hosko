@@ -97,6 +97,7 @@ class Board extends CI_Controller {
 		$detail_size = $this->input->post("detail_size");
 		$attach_img_view = $this->input->post("attach_img_view");
 		$fn_secret = $this->input->post("fn_secret");
+		$fn_admin = $this->input->post("fn_admin");
 		$fn_recommand = $this->input->post("fn_recommand");
 		$fn_viewpage = $this->input->post("fn_viewpage");
 		$fn_spamcheck = $this->input->post("fn_spamcheck");
@@ -157,6 +158,7 @@ class Board extends CI_Controller {
 			"BOARD_WRITE_BTN_VIEW" => $write_btn == 'Y' ? $write_btn : 'N',
 			"BOARD_ATTACH_IMG_YN" => $attach_img_view == 'Y' ? $attach_img_view : 'N',
 			"BOARD_SECRET_FLAG" => $fn_secret == 'Y' ? $fn_secret : 'N',
+			"BOARD_ADMIN_FLAG" => $fn_admin == 'Y' ? $fn_admin : 'N',
 			"BOARD_RECOMMAND_FLAG" => $fn_recommand == 'Y' ? $fn_recommand : 'N',
 			"BOARD_BOTTOM_LIST_FLAG" => $fn_viewpage == 'Y' ? $fn_viewpage : 'N',
 			"BOARD_SPAM_CHECK_FLAG" => $fn_spamcheck == 'Y' ? $fn_spamcheck : 'N',
@@ -206,6 +208,7 @@ class Board extends CI_Controller {
 		$detail_size = $this->input->post("detail_size");
 		$attach_img_view = $this->input->post("attach_img_view");
 		$fn_secret = $this->input->post("fn_secret");
+		$fn_admin = $this->input->post("fn_admin");
 		$fn_recommand = $this->input->post("fn_recommand");
 		$fn_viewpage = $this->input->post("fn_viewpage");
 		$fn_spamcheck = $this->input->post("fn_spamcheck");
@@ -256,6 +259,7 @@ class Board extends CI_Controller {
 			"BOARD_WRITE_BTN_VIEW" => $write_btn == 'Y' ? $write_btn : 'N',
 			"BOARD_ATTACH_IMG_YN" => $attach_img_view == 'Y' ? $attach_img_view : 'N',
 			"BOARD_SECRET_FLAG" => $fn_secret == 'Y' ? $fn_secret : 'N',
+			"BOARD_ADMIN_FLAG" => $fn_admin == 'Y' ? $fn_admin : 'N',
 			"BOARD_RECOMMAND_FLAG" => $fn_recommand == 'Y' ? $fn_recommand : 'N',
 			"BOARD_BOTTOM_LIST_FLAG" => $fn_viewpage == 'Y' ? $fn_viewpage : 'N',
 			"BOARD_SPAM_CHECK_FLAG" => $fn_spamcheck == 'Y' ? $fn_spamcheck : 'N',

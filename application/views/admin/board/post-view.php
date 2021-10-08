@@ -141,12 +141,14 @@ td a {
 
 											<div class="row form-footer" style="margin-right:0px;margin-bottom:10px;">
 												<div class="col-sm-offset-2 col-sm-10 text-right">
-													<?php if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
+													<!-- <?php if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
 													<button type="button" class="btn btn-primary btn-sm"
 														id="btnRecommand">추천</button>
-													<?php endif;?>
+													<?php endif;?> -->
 													<button type="button" class="btn btn-primary btn-sm"
 														id="btnRepost">답글</button>
+														<button type="button" class="btn btn-primary btn-sm"
+														onclick="postDelete(<?php echo $POST_INFO->POST_SEQ?>)">삭제</button>
 													<a href="/admin/board/post_modify/<?php echo $POST_INFO->POST_SEQ?>"
 														class="btn btn-primary btn-sm">수정</a>
 													<a href="/admin/board/post_list/<?php echo $BOARD_INFO->BOARD_SEQ?>"
@@ -305,8 +307,9 @@ td a {
 			}
 			);
 		})
-		<?php endif;?>		
+		<?php endif;?>
 		let post_seq = <?php echo $POST_INFO->POST_SEQ ?>;
+		let board_seq = <?php echo $BOARD_INFO->BOARD_SEQ ?>;
 		$("#btnRecommand").click(function () {
 			$.ajax({
 				url: "/admin/board/post_recommand?post_seq=" + post_seq,
@@ -322,6 +325,30 @@ td a {
 				}
 			})
 		});
+
+		function postDelete(POST_SEQ){
+			console.log(POST_SEQ);
+			if(confirm("삭제하시겠습니까?")){
+				$.ajax({
+					url:"/Board/post_delete",
+					type: "post",
+					data: {
+						"post_seq" : POST_SEQ
+					},
+					dataType:"json",
+					success: function(resultMsg){
+						if(resultMsg["code"] == 200){
+							alert("삭제되었습니다.");
+							location.href="/admin/board/post_list/" + board_seq;
+						}else {
+							alert("삭제 실패");
+						}
+					},error: function(e){
+						console.log(e)
+					}
+				})
+			}
+		}
 
 		function viewPost(POST_SEQ){
 			$.ajax({

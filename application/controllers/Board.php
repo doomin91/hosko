@@ -394,7 +394,8 @@ class Board extends CI_Controller {
         $POST_SEQ = $this->input->post("post_seq");
 
         $result = $this->BoardModel->delPost($POST_SEQ);
-        
+        $childPost = $this->BoardModel->delChildPost($POST_SEQ);
+		
         if($result){
             $resultMsg = array(
                 "code" => 200,
@@ -678,9 +679,11 @@ class Board extends CI_Controller {
     
 	public function downalod_attach($SEQ){
 		$this->customclass->userCheck();
+		echo "1";
 		$attach = $this->BoardModel->getPostAttachByAttachSeq($SEQ);
 		$name = $attach->ATTACH_FILE_NAME;
-		$data = file_get_contents($attach->ATTACH_FILE_PATH);
+		$data = file_get_contents($server.$attach->ATTACH_FILE_PATH);
+
 		force_download($name, $data);
 	}
 
