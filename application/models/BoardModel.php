@@ -346,7 +346,7 @@ class BoardModel extends CI_Model{
         $this->db->where("POST_BOARD_SEQ = 1");
         $this->db->join("TBL_HOSKO_BOARD", "POST_BOARD_SEQ = BOARD_SEQ");
         $this->db->order_by("POST_REG_DATE", "DESC");
-        $this->db->limit(2);
+        $this->db->limit(5);
         return $this->db->get("TBL_HOSKO_BOARD_POSTS")->result();
     }
 
@@ -355,7 +355,7 @@ class BoardModel extends CI_Model{
         $this->db->where("POST_BOARD_SEQ = 3");
         $this->db->join("TBL_HOSKO_BOARD", "POST_BOARD_SEQ = BOARD_SEQ");
         $this->db->order_by("POST_REG_DATE", "DESC");
-        $this->db->limit(2);
+        $this->db->limit(5);
         return $this->db->get("TBL_HOSKO_BOARD_POSTS")->result();
     }
 

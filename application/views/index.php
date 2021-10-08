@@ -147,12 +147,10 @@
                                             <ul>
                                                 <?php foreach($NEWS as $val): ?>
                                                 <li>
-                                                    <a href="/">
                                                         <div class="news_box_item">
-                                                            <p class="text"><?php echo $val->POST_SUBJECT?></p>
-                                                            <p class="date"><?php echo $val->POST_REG_DATE?></p>
+                                                            <p class="text" onclick="viewPage(<?php echo $val->POST_SEQ?>)"><?php echo $this->customclass->strcut(strip_tags($val->POST_SUBJECT), 30)?></p>
+                                                            <p class="date"><?php echo date("Y-d-m", strtotime($val->POST_REG_DATE))?></p>
                                                         </div>
-                                                    </a>
                                                 </li>
                                                 <?php endforeach; ?>
                                             </ul>
@@ -170,8 +168,8 @@
                                                 <?php foreach($NOTICES as $val): ?>
                                                 <li>
                                                     <div class="notice_box_item">
-                                                        <p class="text" onclick="viewNotice(<?php echo$val->POST_SEQ?>)"><?php echo $val->POST_SUBJECT?></p>
-                                                        <p class="date"><?php echo $val->POST_CONTENTS?></p>
+                                                        <p class="text" onclick="viewPage(<?php echo $val->POST_SEQ?>)"><?php echo $this->customclass->strcut(strip_tags($val->POST_SUBJECT), 30)?></p>
+                                                        <p class="date"><?php echo date("Y-d-m", strtotime($val->POST_REG_DATE))?></p>
                                                     </div>                                                 
                                                 </li>
                                                 <?php endforeach; ?>
@@ -193,9 +191,10 @@
 
 <script>
 
-function viewNotice(post_seq){
+function viewPage(post_seq){
     window.location = "/board/board_view/" + post_seq;
 }
+
 </script>
 
 
