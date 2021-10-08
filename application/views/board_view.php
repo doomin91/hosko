@@ -113,9 +113,18 @@
                                                     <div class="type_td">
                                                         <ul class="fileList">
                                                             <li class="file_item">
-                                                                <?php foreach($ATTACH as $at){ ?>
-                                                                <a href="/Board/downalod_attach/<?php echo $at->ATTACH_SEQ?>" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
-                                                                <?php } ?>
+                                                                <?php
+                                                                 foreach($ATTACH as $at){ 
+                                                                     if($this->session->userdata("USER_SEQ")):
+                                                                     ?>
+                                                                    <a href="/Board/downalod_attach/<?php echo $at->ATTACH_SEQ?>" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
+                                                                <?php else: ?>
+                                                                    <a onclick="alert('로그인 후 다운로드 가능합니다.')" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
+                                                                <?php endif; ?>
+
+                                                                <?php 
+                                                                    }
+                                                                ?>
                                                             </li>
                                                         </ul>								
                                                     </div>
@@ -249,8 +258,8 @@
 
                                             <a href="/Board/<?php echo $BOARD_TYPE . "/" . $GROUP_INFO->GP_SEQ?>?seq=<?php echo $BOARD_INFO->BOARD_SEQ?>"  class="btn_style01 ">목록보기</a>
                                         </div>
-
-                                        <?php if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")):?>
+                                        <?php if($BOARD_INFO->BOARD_ADMIN_FLAG == 'N'): ?>
+                                        <?php if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")  && $POST_INFO->USER_SEQ != NULL):?>
                                         <div class="btn_box f_right">
                                             <a href="/Board/board_modify/<?php echo $POST_INFO->POST_SEQ?>" class="btn_style02 ml5">수정</a>
                                         </div>
@@ -264,10 +273,13 @@
                                         <?php endif?>
                                         <?php endif?>
                                         
-                                        <?php if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")): ?>
+                                        <?php 
+                                        if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ") && $POST_INFO->USER_SEQ != NULL):?>
                                         <div class="btn_box f_right">
+                                            
                                             <a href="#" onclick="board_delete()" class="btn_style01">삭제</a>
                                         </div>
+                                        <?php endif?>
                                         <?php endif?>
 
                                     </div>

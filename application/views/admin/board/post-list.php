@@ -132,12 +132,6 @@
 							if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
 							<th class="sort">댓글수</th>
 							<?php endif;?>
-
-							<?php
-							// 추천 표시
-							if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
-							<th class="sort">추천수</th>
-							<?php endif;?>
 							<th class="sort">등록일</th>
 							
 							<?php 
@@ -196,23 +190,19 @@
 										// }
 									?> 
 								</td>
-								<td><?php echo $lt->USER_NAME?></td>
+								<td><?php echo !empty($lt->ADMIN_NAME)? $lt->ADMIN_NAME : $lt->USER_NAME ?></td>
+
 								<td style="text-align:center;"><?php echo $lt->POST_VIEW_CNT?></td>
 								<?php
 								// 댓글 기능
 								if($BOARD_INFO->BOARD_COMMENT_FLAG == 'Y'):?>
 								<td style="text-align:center;">
-								<span class="badge badge-danger"><?php echo $lt->COMMENTS?></span>
+								<span><?php echo $lt->COMMENTS?></span>
 								</td>
 								<?php
 								endif;
 								?>
 								
-								<?php 
-								// 추천 표시
-								if($BOARD_INFO->BOARD_RECOMMAND_FLAG == 'Y'):?>
-								<td style="text-align:center;"><i class="fa fa-heart" aria-hidden="true"></i> <?php ?><?php echo $lt->CNT?></td>
-								<?php endif;?>
 								<td style="text-align:center;"><?php echo $lt->POST_REG_DATE?></td>
 								<?php 
 								// 게시판 관리자 혹은 마스터 계정인 경우

@@ -116,6 +116,10 @@ input[type=text]{
 									
 								</tr>
 								<tr>
+									<td>관리자 전용게시판</td>
+									<td colspan=3><label for="fn_admin"><input type="checkbox" id="fn_admin" name="fn_admin" value="Y"> 관리자만 작성 가능</label></td>
+								</tr>
+								<tr>
 									<td>자동 비밀글</td>
 									<td colspan=3><label for="fn_secret"><input type="checkbox" id="fn_secret" name="fn_secret" value="Y"> 작성자와 운영자만 열람가능</label></td>
 								</tr>

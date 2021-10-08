@@ -143,7 +143,7 @@ class BoardModel extends CI_Model{
 
     public function getPosts($BOARD_SEQ, $wheresql){
         $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.USER_NAME, ADMIN.ADMIN_NAME, count(RECOMMAND.RMD_SEQ) AS CNT, count(COMMENTS.COM_SEQ) AS COMMENTS, count(ATTACH.ATTACH_SEQ) AS ATTACHS");
-        // $this->db->where("POST_DEL_YN", "N");
+        $this->db->where("POST_DEL_YN", "N");
 
         if ((isset($wheresql["reg_date_start"])) && ($wheresql["reg_date_start"] != "")){
 			$this->db->where("DATE(TBL_HOSKO_BOARD_POSTS.POST_REG_DATE) >=", $wheresql["reg_date_start"]);
@@ -261,6 +261,11 @@ class BoardModel extends CI_Model{
 
     public function delPost($POST_SEQ){
         $this->db->where("POST_SEQ", $POST_SEQ);
+        return $this->db->update("TBL_HOSKO_BOARD_POSTS", ARRAY("POST_DEL_YN" => "Y"));
+    }
+
+    public function delChildPost($POST_SEQ){
+        $this->db->where("POST_PARENT_SEQ", $POST_SEQ);
         return $this->db->update("TBL_HOSKO_BOARD_POSTS", ARRAY("POST_DEL_YN" => "Y"));
     }
 
