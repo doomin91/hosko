@@ -51,12 +51,16 @@
                                                     <div class="boardViewTop_item">
                                                         <strong>이름</strong>
                                                         <div class="type_td">
-                                                            <input type="text" name="oc_user_name" class="input_s1" value="<?php echo $userInfo->USER_NAME; ?>">
+                                                            <input type="text" name="oc_user_name" class="input_s1" value="<?php if (!empty($userInfo)) echo $userInfo->USER_NAME; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <?php
+                                                if (!empty($userInfo)){
                                                     $userTel = explode("-", $userInfo->USER_TEL);
+                                                }else{
+                                                    $userTel = ["","",""];
+                                                }
                                                 ?>
                                                 <div class="col1">
                                                     <div class="boardViewTop_item">
@@ -69,7 +73,11 @@
                                                     </div>
                                                 </div>
                                                 <?php
+                                                if (!empty($userInfo)){
                                                     $userHp = explode("-", $userInfo->USER_HP);
+                                                }else{
+                                                    $userHp = ["","",""];
+                                                }
                                                 ?>
                                                 <div class="col1 ">
                                                     <div class="boardViewTop_item">
@@ -82,7 +90,11 @@
                                                     </div>
                                                 </div>
                                                 <?php
+                                                if (!empty($userInfo)){
                                                     $userEmail = explode("@", $userInfo->USER_EMAIL);
+                                                }else{
+                                                    $userEmail = ["", ""];
+                                                }
                                                 ?>
                                                 <div class="col1">
                                                     <div class="boardViewTop_item">

@@ -280,7 +280,7 @@ class UserModel extends CI_Model{
 	}
 
 	public function setMsgData($sendData){
-		return $this->db->insert("MSG_DATA", $sendData);
+		return $this->db->insert("MSG_DATA_SMS", $sendData);
 	}
 
 	public function getUserCallMsg($whereArr){
@@ -539,7 +539,7 @@ class UserModel extends CI_Model{
 	}
 
 	public function setMMSData($insertData){
-		return $this->db->insert("MMS_CONTENTS_INFO", $insertData);
+		return $this->db->insert("MMS_CONTENTS_INFO_SMS", $insertData);
 	}	
 
 

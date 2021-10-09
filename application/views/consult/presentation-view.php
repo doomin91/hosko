@@ -58,11 +58,11 @@
                              
                                     <div class="boardBtnArea pb50">
                                         <div class="btn_box f_right">
-                                            <a href="/consult/presentationList" type="button" class="btn_style01 f_left" >목록보기</a>
+                                            <button type="button" class="btn_style01 mr10" onclick="location.href='/consult/presentationList'">목록보기</button>
                                         <?php if ($this->session->userdata("USER_SEQ") == ""){ ?>
-                                            <button type="button" class="btn_style02 f_left" onclick="alert('로그인 해주세요');">바로신청</button>
+                                            <button type="button" class="btn_style02 " onclick="alert('로그인 해주세요');">바로신청</button>
                                         <?php }else{ ?>
-                                            <button type="button" class="btn_style02 f_left" id="pt_apply">바로신청</button>
+                                            <button type="button" class="btn_style02" id="pt_apply">바로신청</button>
                                         <?php } ?>
                                         </div>
                                     </div>

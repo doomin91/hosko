@@ -90,7 +90,7 @@
 
                                                 if($lt->POST_PARENT_SEQ != $lt->POST_SEQ){
                                                     for($i=1; $i<$lt->POST_DEPTH;$i++){
-                                                        echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">";												
+                                                        echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:30px;height:17px;vertical-align: middle;margin: 0 5px;\">";												
                                                     }
                                                 }
 
@@ -113,7 +113,7 @@
                                                     } else {
                                                         echo "<a onclick=\"alert('게시글 권한이 없습니다.');\">$lt->POST_SUBJECT</a>";
                                                     }
-                                                    echo "<img src=\"/static/front/img/ico_lock.png\" style=\"width:12px;height:18px;\">";												
+                                                    echo "<img src=\"/static/front/img/ico_lock.png\" style=\"width:12px;height:18px;margin: 0 5px;\">";												
                                                 } else {
                                                     echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
                                                 }
@@ -124,7 +124,8 @@
                                                 }
 
                                                 ?></span>
-                                            <span class="col_name"><?php echo $lt->USER_NAME?></span>
+                                            <span class="col_name"><?php echo !empty($lt->ADMIN_NAME)? $lt->ADMIN_NAME : $lt->USER_NAME ?></span>
+                                            
                                             <span class="col_hit"><?php echo $lt->POST_VIEW_CNT?></span>
                                             <span class="col_date"><?php echo $lt->POST_REG_DATE?></span>                                            
                                         </div>

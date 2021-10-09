@@ -81,7 +81,7 @@
                     <ul class="sub">
                         <li><a href="/mypage/memberEdit">정보 관리</a></li>
                         <li><a href="/mypage/memberResumeRegist">이력서 작성</a></li>
-                        <li><a href="/mypage/memberResumeManage">제출서류 관리</a></li>
+                        <li><a href="/mypage/submissionDoc">제출서류 관리</a></li>
                     </ul>
                 </li>
             <?php 

@@ -41,6 +41,8 @@ class Notice extends CI_Controller {
 			//-->
 			</script>";
 		}
+
+        date_default_timezone_set('Asia/Seoul');
     }
 
     public function index(){

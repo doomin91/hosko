@@ -1,9 +1,8 @@
 <footer>
     <div class="footer_menu">
         <ul>
-            <li><a href="/">개인정보정책</a></li>
-            <li><a href="/">이용약관</a></li>
-            <li><a href="/">이메일무단수집거부</a></li>
+            <li><a href="/company/agreement">이용약관</a></li>
+            <li><a href="/company/privacy">개인정보정책</a></li>
         </ul>
     </div>
 

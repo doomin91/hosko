@@ -16,15 +16,40 @@
 
                     </div>
                     <div class="sub_contents">
-                        <div class="sub_category">
+                        <div class="<?php echo count($BOARDS_INFO) > 5 ? "sub_category01" : "sub_category" ?>">    
                             <ul>
                                 <?php foreach($BOARDS_INFO as $val){
-                                    echo "<li><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                    switch($val->BOARD_TYPE){
+                                        case 0:
+                                            // 일반 게시판
+                                            if($BOARD_INFO->BOARD_SEQ == $val->BOARD_SEQ){
+                                                echo "<li class=\"on\"><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }else{
+                                                echo "<li><a href=\"/Board/q/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }
+                                            break;
+                                        case 1:
+                                            // 갤러리 게시판
+                                            if($BOARD_INFO->BOARD_SEQ == $val->BOARD_SEQ){
+                                                echo "<li class=\"on\"><a href=\"/Board/g/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }else{
+                                                echo "<li><a href=\"/Board/g/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }
+                                            break;
+                                        
+                                        case 2:
+                                            // 동영상 게시판
+                                            if($BOARD_INFO->BOARD_SEQ == $val->BOARD_SEQ){
+                                                echo "<li class=\"on\"><a href=\"/Board/v/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }else{
+                                                echo "<li><a href=\"/Board/v/$GROUP_INFO->GP_SEQ?seq=$val->BOARD_SEQ\">$val->BOARD_KOR_NAME</a></li>";
+                                            }
+                                            break;
+                                    }
                                 }
                                 ?>
                             </ul>
                         </div>
-
                         <input type="hidden" name="board_seq" value="<?php echo $BOARD_INFO->BOARD_SEQ?>">
                         <input type="hidden" name="post_seq" value="<?php echo $POST_INFO->POST_SEQ?>">
 
@@ -88,9 +113,18 @@
                                                     <div class="type_td">
                                                         <ul class="fileList">
                                                             <li class="file_item">
-                                                                <?php foreach($ATTACH as $at){ ?>
-                                                                <a href="/Board/downalod_attach/<?php echo $at->ATTACH_SEQ?>" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
-                                                                <?php } ?>
+                                                                <?php
+                                                                 foreach($ATTACH as $at){ 
+                                                                     if($this->session->userdata("USER_SEQ")):
+                                                                     ?>
+                                                                    <a href="/Board/downalod_attach/<?php echo $at->ATTACH_SEQ?>" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
+                                                                <?php else: ?>
+                                                                    <a onclick="alert('로그인 후 다운로드 가능합니다.')" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
+                                                                <?php endif; ?>
+
+                                                                <?php 
+                                                                    }
+                                                                ?>
                                                             </li>
                                                         </ul>								
                                                     </div>
@@ -224,10 +258,10 @@
 
                                             <a href="/Board/<?php echo $BOARD_TYPE . "/" . $GROUP_INFO->GP_SEQ?>?seq=<?php echo $BOARD_INFO->BOARD_SEQ?>"  class="btn_style01 ">목록보기</a>
                                         </div>
-
-                                        <?php if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")):?>
+                                        <?php if($BOARD_INFO->BOARD_ADMIN_FLAG == 'N'): ?>
+                                        <?php if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")  && $POST_INFO->USER_SEQ != NULL):?>
                                         <div class="btn_box f_right">
-                                            <a href="/Board/board_modify/<?php echo $POST_INFO->POST_SEQ?>" class="btn_style02">수정</a>
+                                            <a href="/Board/board_modify/<?php echo $POST_INFO->POST_SEQ?>" class="btn_style02 ml5">수정</a>
                                         </div>
                                         <?php endif?>
                                         
@@ -239,10 +273,13 @@
                                         <?php endif?>
                                         <?php endif?>
                                         
-                                        <?php if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ")): ?>
+                                        <?php 
+                                        if($POST_INFO->USER_SEQ == $this->session->userdata("USER_SEQ") && $POST_INFO->USER_SEQ != NULL):?>
                                         <div class="btn_box f_right">
+                                            
                                             <a href="#" onclick="board_delete()" class="btn_style01">삭제</a>
                                         </div>
+                                        <?php endif?>
                                         <?php endif?>
 
                                     </div>

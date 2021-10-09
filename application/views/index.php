@@ -17,7 +17,7 @@
                         <div class="main_visual_menu">
                             <ul>
                                 <li>
-                                    <a href="/">
+                                    <a href="/Board/q/1?seq=1">
                                         <div class="visual_menu">
                                             <p><img src="/static/front/img/main_visual_icon01.png"></p>
                                             <h1>호스코 뉴스</h1>
@@ -25,7 +25,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/">
+                                    <a href="/recruit?ctg=1">
                                         <div class="visual_menu">
                                             <p><img src="/static/front/img/main_visual_icon02.png"></p>
                                             <h1>포지션 공고</h1>
@@ -33,7 +33,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/">
+                                    <a href="/Board/q/1?seq=2">
                                         <div class="visual_menu">
                                             <p><img src="/static/front/img/main_visual_icon03.png"></p>
                                             <h1>해외취업 후기</h1>
@@ -41,7 +41,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/">
+                                    <a href="/Board/q/1?seq=5">
                                         <div class="visual_menu">
                                             <p><img src="/static/front/img/main_visual_icon04.png"></p>
                                             <h1>갤러리</h1>
@@ -78,7 +78,7 @@
                                         완벽한 당신을 위해 호스코와 함께 달리세요.
                                     </div>
                                     <div class="mid_banner_btn">
-                                        <a href="/">Learn More</a>
+                                        <a href="/company/introduce">Learn More</a>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                                 <div class="mid_board">
                                     <div class="main_news">
                                         <div class="main_news_title">
-                                            <h2>NEWS</h2>
+                                            <h2>호스코 뉴스</h2>
                                             <span><a href="/"><img src="/static/front/img/main_plus_icon.jpg"></a></span>
                                         </div>
 
@@ -147,10 +147,10 @@
                                             <ul>
                                                 <?php foreach($NEWS as $val): ?>
                                                 <li>
-                                                    <div class="news_box_item">
-                                                        <p class="text"><?php echo $val->POST_SUBJECT?></p>
-                                                        <p class="date"><?php echo $val->POST_REG_DATE?></p>
-                                                    </div>
+                                                        <div class="news_box_item">
+                                                            <p class="text" onclick="viewPage(<?php echo $val->POST_SEQ?>)"><?php echo $this->customclass->strcut(strip_tags($val->POST_SUBJECT), 30)?></p>
+                                                            <p class="date"><?php echo date("Y-d-m", strtotime($val->POST_REG_DATE))?></p>
+                                                        </div>
                                                 </li>
                                                 <?php endforeach; ?>
                                             </ul>
@@ -159,8 +159,8 @@
 
                                     <div class="main_notice">
                                         <div class="main_notice_title">
-                                            <h2>NOTICE</h2>
-                                            <span><img src="/static/front/img/main_plus_icon.jpg"></span>
+                                            <h2>질문과 답변</h2>
+                                            <span><a href="/"><img src="/static/front/img/main_plus_icon.jpg"></a></span>
                                         </div>
 
                                         <div class="main_notice_box">
@@ -168,14 +168,9 @@
                                                 <?php foreach($NOTICES as $val): ?>
                                                 <li>
                                                     <div class="notice_box_item">
-                                                        <p class="title" onclick="viewNotice(<?php echo$val->POST_SEQ?>)"><?php echo $val->POST_SUBJECT?></p>
-                                                        <p class="text"><?php echo $val->POST_CONTENTS?></p>
-                                                    </div>
-                                                    <span class="notice_icon">
-                                                        <a href="/board/board_view/<?php echo$val->POST_SEQ?>">
-                                                            <img src="/static/front/img/main_plus_icon01.jpg">
-                                                        </a>
-                                                    </span>                                                    
+                                                        <p class="text" onclick="viewPage(<?php echo $val->POST_SEQ?>)"><?php echo $this->customclass->strcut(strip_tags($val->POST_SUBJECT), 30)?></p>
+                                                        <p class="date"><?php echo date("Y-d-m", strtotime($val->POST_REG_DATE))?></p>
+                                                    </div>                                                 
                                                 </li>
                                                 <?php endforeach; ?>
                                             </ul>
@@ -196,9 +191,10 @@
 
 <script>
 
-function viewNotice(post_seq){
+function viewPage(post_seq){
     window.location = "/board/board_view/" + post_seq;
 }
+
 </script>
 
 

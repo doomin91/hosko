@@ -35,6 +35,7 @@ class Consult extends CI_Controller {
 		$this->load->model("ConsultModel");
 
 		$this->customclass->adminCheck();
+		date_default_timezone_set('Asia/Seoul');
 	}
 
 
@@ -221,7 +222,7 @@ class Consult extends CI_Controller {
 	}
 
 	public function callConsultList(){
-		$limit = 5;
+		$limit = 15;
 		$nowpage = "";
 		if (!isset($_GET["per_page"])){
 			$start = 0;
@@ -244,7 +245,7 @@ class Consult extends CI_Controller {
 			$pagenum = $listCount;
 		}
 
-		$pagination = $this->customclass->pagenavi("/admin/consult/callConsultList/", $listCount, 10, 5, $nowpage);
+		$pagination = $this->customclass->pagenavi("/admin/consult/callConsultList/", $listCount, 15, 5, $nowpage);
 
 		$data = array(
 			"lists" => $lists,

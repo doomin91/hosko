@@ -115,88 +115,12 @@
 									
 								</tr>
 								<tr>
-									<td>자동 비밀글</td>
-									<td colspan=3><label for="fn_secret"><input type="checkbox" id="fn_secret" name="fn_secret" value="Y" <?php echo $BOARD->BOARD_SECRET_FLAG == 'Y' ? "checked" : ""?>> 작성자와 운영자만 열람가능</label></td>
+									<td>관리자 전용게시판</td>
+									<td colspan=3><label for="fn_admin"><input type="checkbox" id="fn_admin" name="fn_admin" value="Y" <?php echo $BOARD->BOARD_ADMIN_FLAG == 'Y' ? "checked" : ""?>> 관리자만 작성 가능</label></td>
 								</tr>
 								<tr>
-									<td>권한</td>
-									<td colspan=3>
-										<table style="width:100%; text-align:center;">
-											<tr>
-												<td>목록보기</td>
-												<td>내용보기</td>
-												<td>글쓰기</td>
-												<td>답글쓰기</td>
-												<td>코멘트쓰기</td>
-											</tr>
-
-											<?php
-												$AUTH = explode(",", $BOARD->BOARD_AUTH);
-											?>
-											<tr>
-												<td>
-													<select name="auth_list">
-														<option value=0>전체</option>
-														<?php foreach($USER_LEVEL AS $ul){
-															if($ul->LEVEL_SEQ == $AUTH[0]){
-																echo "<option value=" . $ul->LEVEL_SEQ . " selected>" . $ul->LEVEL_NAME . "</option>";
-															} else {
-																echo "<option value=" . $ul->LEVEL_SEQ . ">" . $ul->LEVEL_NAME . "</option>";
-															}
-														}?>
-													</select>
-												</td>
-												<td>
-													<select name="auth_content">
-													<option value="all">전체</option>
-													<?php foreach($USER_LEVEL AS $ul){
-															if($ul->LEVEL_SEQ == $AUTH[1]){
-																echo "<option value=" . $ul->LEVEL_SEQ . " selected>" . $ul->LEVEL_NAME . "</option>";
-															} else {
-																echo "<option value=" . $ul->LEVEL_SEQ . ">" . $ul->LEVEL_NAME . "</option>";
-															}
-														}?>
-													</select>
-												</td>
-												<td>
-													<select name="auth_write">
-													<option value="all">전체</option>
-													<?php foreach($USER_LEVEL AS $ul){
-															if($ul->LEVEL_SEQ == $AUTH[2]){
-																echo "<option value=" . $ul->LEVEL_SEQ . " selected>" . $ul->LEVEL_NAME . "</option>";
-															} else {
-																echo "<option value=" . $ul->LEVEL_SEQ . ">" . $ul->LEVEL_NAME . "</option>";
-															}
-														}?>
-													</select>
-												</td>
-												<td>
-													<select name="auth_repost">
-													<option value="all">전체</option>
-													<?php foreach($USER_LEVEL AS $ul){
-															if($ul->LEVEL_SEQ == $AUTH[3]){
-																echo "<option value=" . $ul->LEVEL_SEQ . " selected>" . $ul->LEVEL_NAME . "</option>";
-															} else {
-																echo "<option value=" . $ul->LEVEL_SEQ . ">" . $ul->LEVEL_NAME . "</option>";
-															}
-														}?>
-													</select>
-												</td>
-												<td>
-													<select name="auth_reply">
-													<option value="all">전체</option>
-													<?php foreach($USER_LEVEL AS $ul){
-															if($ul->LEVEL_SEQ == $AUTH[4]){
-																echo "<option value=" . $ul->LEVEL_SEQ . " selected>" . $ul->LEVEL_NAME . "</option>";
-															} else {
-																echo "<option value=" . $ul->LEVEL_SEQ . ">" . $ul->LEVEL_NAME . "</option>";
-															}
-														}?>
-													</select>
-												</td>
-											</tr>
-										</table>
-									</td>
+									<td>자동 비밀글</td>
+									<td colspan=3><label for="fn_secret"><input type="checkbox" id="fn_secret" name="fn_secret" value="Y" <?php echo $BOARD->BOARD_SECRET_FLAG == 'Y' ? "checked" : ""?>> 작성자와 운영자만 열람가능</label></td>
 								</tr>
 								<tr>
 									<td>권한이 없을경우</td>
