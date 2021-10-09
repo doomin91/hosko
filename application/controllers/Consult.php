@@ -66,7 +66,7 @@ class Consult extends CI_Controller {
 			$pagenum = $listCount;
 		}
 
-		$pagination = $this->customclass->front_pagenavi("/admin/consult/onlineConsult/", $listCount, 10, 5, $nowpage);
+		$pagination = $this->customclass->front_pagenavi("/consult/onlineConsultList/", $listCount, 10, 5, $nowpage);
 
 		$data = array(
 					"lists" => $lists,
@@ -142,7 +142,7 @@ class Consult extends CI_Controller {
 		$wheresql = array(
 						"start" => $start,
 						"limit" => $limit,
-						"user_seq" => $this->session->userdata("USER_SEQ"),
+						//"user_seq" => $this->session->userdata("USER_SEQ"),
 						"searchField" => $searchField,
 						"searchString" => $searchString
 						);
@@ -156,7 +156,7 @@ class Consult extends CI_Controller {
 			$pagenum = $listCount;
 		}
 
-		$pagination = $this->customclass->front_pagenavi("/admin/consult/onlineConsult/", $listCount, 10, 5, $nowpage);
+		$pagination = $this->customclass->front_pagenavi("/consult/qnaList/", $listCount, 10, 5, $nowpage);
 
 		$data = array(
 					"lists" => $lists,

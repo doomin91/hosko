@@ -70,6 +70,7 @@
 				<i class="fa fa-caret-right"></i> 관리자 설정
 			  </a>
 			</li>
+			<!--
 			<li>
 			  <a href="/administrator/en/brochure">
 				<i class="fa fa-caret-right"></i> 접속통계
@@ -80,6 +81,7 @@
 				<i class="fa fa-caret-right"></i> 회원접속 현황
 			  </a>
 			</li>
+			-->
 		  </ul>
 		</li>
 

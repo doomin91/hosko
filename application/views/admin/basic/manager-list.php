@@ -45,13 +45,13 @@
 			<div class="col-md-12">
 
 				<!-- tile -->
-				<section class="tile transparent">
+				<section class="tile color transparent-black">
 
 				  <!-- tile body -->
-					<div class="tile-body color transparent-black rounded-corners">
+				  	<div class="tile-body">
 
-						<div class="table-responsive dataTables_wrapper form-inline" role="grid" id="basicDataTable_wrapper">
-							<table class="table table-customdataTable ">
+						<div class="table-responsive"  role="grid" id="basicDataTable_wrapper">
+							<table class="table datatable table-custom01 userTable">
 								<colgroup>
 									<col width="5%"/>
 									<col width="40%"/>
@@ -96,23 +96,23 @@
 								</tbody>
 							</table>
 							<div class="row">
-							<div class="col-md-4 sm-center">
-								<div class="dataTables_info">
-								<?php if ($listCount > 0) :
-									$end = ($start+$limit)-1;
-									if ($end > $listCount) $end = $listCount;
-								?>
-									Showing <?php echo $start; ?> to <?php echo $end; ?> of <?php echo $listCount; ?> entries
-								<?php endif; ?>
+								<div class="col-md-4 sm-center">
+									<div class="dataTables_info">
+									<?php if ($listCount > 0) :
+										$end = ($start+$limit)-1;
+										if ($end > $listCount) $end = $listCount;
+									?>
+										Showing <?php echo $start; ?> to <?php echo $end; ?> of <?php echo $listCount; ?> entries
+									<?php endif; ?>
+									</div>
 								</div>
-							</div>
-							<div class="col-md-4 text-center sm-center">
-								<div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
-									<?php echo $pagination; ?>
+								<div class="col-md-4 text-center sm-center">
+									<div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
+										<?php echo $pagination; ?>
+									</div>
 								</div>
-							</div>
-							<div class="col-md-4 text-right">
-								<a href="/admin/basic/managerWrite" type="button" class="btn btn-primary"> 관리자 등록하기</a>
+								<div class="col-md-4 text-right">
+									<a href="/admin/basic/managerWrite" type="button" class="btn btn-primary"> 관리자 등록하기</a>
 								</div>
 							</div>
 						</div>

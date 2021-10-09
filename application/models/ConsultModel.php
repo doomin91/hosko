@@ -31,7 +31,7 @@ class ConsultModel extends CI_Model{
 
 	public function getOnlineConsultListCount($whereArr){
 		if ((isset($whereArr["user_seq"])) && ($whereArr["user_seq"] != "")){
-			$this->db->where("TBL_HOSKO_ONLINE_CONSULT.OC_USER_SEQ >=", $whereArr["user_seq"]);
+			$this->db->where("TBL_HOSKO_ONLINE_CONSULT.OC_USER_SEQ", $whereArr["user_seq"]);
 		}
 		if ((isset($whereArr["searchString"])) && ($whereArr["searchString"] != "")){
 			if ($whereArr["searchField"] == "all"){
@@ -207,7 +207,7 @@ class ConsultModel extends CI_Model{
 
 	public function getQnaListCount($whereArr){
 		if ((isset($whereArr["user_seq"])) && ($whereArr["user_seq"] != "")){
-			$this->db->where("TBL_HOSKO_QNA.QNA_USER_SEQ >=", $whereArr["user_seq"]);
+			$this->db->where("TBL_HOSKO_QNA.QNA_USER_SEQ", $whereArr["user_seq"]);
 		}
 		if ((isset($whereArr["searchString"])) && ($whereArr["searchString"] != "")){
 			if ($whereArr["searchField"] == "all"){
@@ -367,5 +367,11 @@ class ConsultModel extends CI_Model{
 		$this->db->select("TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_USER.USER_TEL, TBL_HOSKO_USER.USER_HP, TBL_HOSKO_USER.USER_EMAIL, TBL_HOSKO_PRESENTATION_APPLY.*");
 		$this->db->order_by("TBL_HOSKO_PRESENTATION_APPLY.PA_REG_DATE", "DESC");
 		return $this->db->get("TBL_HOSKO_PRESENTATION_APPLY")->result();
+	}
+
+	public function getQuestionInfo($group_key){
+		$this->db->where("TBL_HOSKO_QNA.QNA_GROUP", $group_key);
+		$this->db->where("TBL_HOSKO_QNA.QNA_DEPTH", 0);
+		return $this->db->get("TBL_HOSKO_QNA")->row();
 	}
 }
