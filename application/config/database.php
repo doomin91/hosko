@@ -95,9 +95,9 @@ $query_builder = TRUE;
 // );
 
 $db['default'] = array(
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => '210.114.22.16',
+	'username' => 'hoskoweb',
+	'password' => 'hosko1004!@#$',
 	'database' => 'HOSKOWEB',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

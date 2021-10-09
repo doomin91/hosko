@@ -258,7 +258,7 @@
                     var i_offset= $(input).offset(); //클릭된 input의 위치값 체크
 
                     setTimeout(function(){
-                        $('#ui-datepicker-div').css({'top':i_offset.top, 'bottom':'', 'left':i_offset.left});      //datepicker의 div의 포지션을 강제로 input 위치에 그리고 좌측은 모바일이여서 작기때문에 무조건 10px에 놓았다.
+                        $('#ui-datepicker-div').css({'top':i_offset.top-20, 'bottom':'', 'left':i_offset.left});      //datepicker의 div의 포지션을 강제로 input 위치에 그리고 좌측은 모바일이여서 작기때문에 무조건 10px에 놓았다.
                     })
                 },
                 onClose: function( selectedDate ) {    
@@ -283,7 +283,7 @@
                     var i_offset= $(input).offset(); //클릭된 input의 위치값 체크
 
                     setTimeout(function(){
-                        $('#ui-datepicker-div').css({'top':i_offset.top, 'bottom':'', 'left':i_offset.left});      //datepicker의 div의 포지션을 강제로 input 위치에 그리고 좌측은 모바일이여서 작기때문에 무조건 10px에 놓았다.
+                        $('#ui-datepicker-div').css({'top':i_offset.top-20, 'bottom':'', 'left':i_offset.left});      //datepicker의 div의 포지션을 강제로 input 위치에 그리고 좌측은 모바일이여서 작기때문에 무조건 10px에 놓았다.
                     })
                 },
                 onClose: function( selectedDate ) {

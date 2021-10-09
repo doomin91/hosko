@@ -668,7 +668,7 @@ class Mypage extends CI_Controller {
 		$my_document = $this->UserModel->getUserDocument($this->session->userdata("USER_SEQ"));
 
 		if($my_document){
-			$doc_seq = $my_document->SEQ;
+			$doc_seq = $my_document->DOC_SEQ;
 		}else{
 			$insertArr = array(
 				"USER_SEQ" => $user_seq
@@ -724,6 +724,7 @@ class Mypage extends CI_Controller {
 						$flag => 1,
 						$date => date("YmdHis"),
 						$name => $docfile,
+						"DOC_LAST_UPDATE_DATE" => date("YmdHis")
 					);
 
 		$result = $this->UserModel->updateUserDocument($updateArr, $doc_seq);

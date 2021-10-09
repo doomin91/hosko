@@ -547,11 +547,15 @@ class UserModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_USER_DOCUMENT.USER_SEQ", $user_seq);
 		return $this->db->get("TBL_HOSKO_USER_DOCUMENT")->row();
 	}
+	public function getUserDocumentByDocSeq($doc_seq){
+		$this->db->where("TBL_HOSKO_USER_DOCUMENT.DOC_SEQ", $doc_seq);
+		return $this->db->get("TBL_HOSKO_USER_DOCUMENT")->row();
+	}
 	public function createUserDocument($insertData){
 		return $this->db->insert("TBL_HOSKO_USER_DOCUMENT", $insertData);
 	}
 	public function updateUserDocument($updateArr, $doc_seq){
-		$this->db->where("TBL_HOSKO_USER_DOCUMENT.SEQ", $doc_seq);
+		$this->db->where("TBL_HOSKO_USER_DOCUMENT.DOC_SEQ", $doc_seq);
 		return $this->db->update("TBL_HOSKO_USER_DOCUMENT", $updateArr);
 	}
 
@@ -559,6 +563,87 @@ class UserModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_USER_CERTIFICATE.USER_SEQ", $user_seq);
 		return $this->db->get("TBL_HOSKO_USER_CERTIFICATE")->row();
 	}
+
+	public function getUserWithDocument($whereArr){
+		if(isset($whereArr["search_option"]) && $whereArr["search_option"] != "all"){
+            if($whereArr["search_option"] == "name"){
+                $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["search_text"]);
+            }else if($whereArr["search_option"] == "id"){
+                $this->db->like("TBL_HOSKO_USER.USER_ID", $whereArr["search_text"]);
+            }
+        }else if(isset($whereArr["search_option"]) && $whereArr["search_option"] == "all"){
+            $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["search_text"]);
+            $this->db->or_like("TBL_HOSKO_USER.USER_ID", $whereArr["search_text"]);
+        }
+
+		if(isset($whereArr["start_date"]) && $whereArr["start_date"] != ""){
+            $this->db->like("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE >=", $whereArr["start_date"]);
+		}
+
+		if(isset($whereArr["end_date"]) && $whereArr["end_date"] != ""){
+            $this->db->like("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE <=", $whereArr["end_date"]);
+		}
+
+		if(isset($whereArr["user_level"]) && $whereArr["user_level"] != ""){
+			$this->db->like("TBL_HOSKO_USER.USER_LEVEL", $whereArr["user_level"]);
+		}
+        
+
+        $this->db->where("TBL_HOSKO_USER.USER_DEL_YN", 'N');
+
+        $this->db->join("TBL_HOSKO_USER_DOCUMENT", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_USER_DOCUMENT.USER_SEQ", "LEFT");
+
+		$this->db->group_by("TBL_HOSKO_USER.USER_SEQ, TBL_HOSKO_USER_DOCUMENT.DOC_SEQ");
+        $this->db->order_by("TBL_HOSKO_USER.USER_SEQ");
+        $this->db->select("TBL_HOSKO_USER.*, TBL_HOSKO_USER_DOCUMENT.*");
+        $this->db->limit(15);
+        return $this->db->get("TBL_HOSKO_USER")->result();
+	}
+
+	public function getUserWithDocumentCount($whereArr){
+		if(isset($whereArr["search_option"]) && $whereArr["search_option"] != "all"){
+            if($whereArr["search_option"] == "name"){
+                $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["search_text"]);
+            }else if($whereArr["search_option"] == "id"){
+                $this->db->like("TBL_HOSKO_USER.USER_ID", $whereArr["search_text"]);
+            }
+        }else if(isset($whereArr["search_option"]) && $whereArr["search_option"] == "all"){
+            $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["search_text"]);
+            $this->db->or_like("TBL_HOSKO_USER.USER_ID", $whereArr["search_text"]);
+        }
+
+		if(isset($whereArr["start_date"]) && $whereArr["start_date"] != ""){
+            $this->db->like("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE >=", $whereArr["start_date"]);
+		}
+
+		if(isset($whereArr["end_date"]) && $whereArr["end_date"] != ""){
+            $this->db->like("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE <=", $whereArr["end_date"]);
+		}
+
+		if(isset($whereArr["user_level"]) && $whereArr["user_level"] != ""){
+			$this->db->like("TBL_HOSKO_USER.USER_LEVEL", $whereArr["user_level"]);
+		}
+
+        $this->db->where("TBL_HOSKO_USER.USER_DEL_YN", 'N');
+
+        $this->db->join("TBL_HOSKO_USER_DOCUMENT", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_USER_DOCUMENT.USER_SEQ", "LEFT");
+	
+		$this->db->select("TBL_HOSKO_USER.USER_SEQ");
+		$this->db->distinct();
+		$this->db->from("TBL_HOSKO_USER");
+		return $this->db->count_All_results();
+	}
+
+	public function getUserWithDocumentCountAll(){
+		$this->db->where("TBL_HOSKO_USER.USER_DEL_YN", 'N');
+        $this->db->join("TBL_HOSKO_USER_DOCUMENT", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_USER_DOCUMENT.USER_SEQ", "LEFT");
+        $this->db->select("TBL_HOSKO_USER.USER_SEQ");
+		$this->db->distinct();
+		$this->db->from("TBL_HOSKO_USER");
+		return $this->db->count_All_results();
+    }
+
+	
 
 	
 }

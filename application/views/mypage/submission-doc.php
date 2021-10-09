@@ -517,7 +517,7 @@
                                     </div>
                                     
                                     <div class="MissionDocTextbox">
-                                        <p>수료증 발급이 필요하시면 호스코로 문의주세요.</p>
+                                        <p>수료증 발급이 필요하시면 호스코로 문의주세요</p>
                                     </div>
 
                                     <div class="MissionDocbox">
@@ -525,7 +525,9 @@
                                             <div class="Docboxname"><?php echo $USER->USER_NAME ?>님 수료증</div>
                                             <div class="Docboxbtn">Certificate.pdf</div>
                                         <?php else : ?>
-                                            <div class="Docboxname">아직 등록된 수료증이 없습니다.</div>
+                                            <div class="MissionDocTitle">
+                                                <h3>등록된 수료증이 없습니다</h3>
+                                            </div>
                                         <?php endif ?>
                                         
                                     </div>
@@ -556,7 +558,7 @@
     var FILE = new FormData();
 
     $(function(){
-        $("#docEqBtn, #docClBtn ,#docEcBtn ,#docPassportBtn ,#docScBtn ,#docPhotoBtn ,#docRodBtn ,#docTranscriptBtn ,#docRecBtn ,#docRec2 ,#docMsBtn").on("click", function(){
+        $("#docEqBtn, #docClBtn ,#docEcBtn ,#docPassportBtn ,#docScBtn ,#docPhotoBtn ,#docRodBtn ,#docTranscriptBtn ,#docRecBtn ,#docRec2Btn ,#docMsBtn").on("click", function(){
             if($(this).is("#docEqBtn")){
                 $("#docEq").click();
             }else if($(this).is("#docClBtn")){
@@ -575,8 +577,8 @@
                 $("#docTranscript").click();
             }else if($(this).is("#docRecBtn")){
                 $("#docRec").click();
-            }else if($(this).is("#docRec2")){
-                $("#docR").click();
+            }else if($(this).is("#docRec2Btn")){
+                $("#docRec2").click();
             }else if($(this).is("#docMsBtn")){
                 $("#docMs").click();
             }

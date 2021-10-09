@@ -1264,5 +1264,166 @@ class Recruit extends CI_Controller {
 			echo json_encode(array("code" => "202", "msg" => "다시 시도해주세요"));
 		}
 	}
+
+	public function recruit_document_list(){
+		$limit = 15;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*15;
+			$nowpage = $_GET["per_page"];
+		}
+
+		$search_text = isset($_GET["document_search_text"]) ? $_GET["document_search_text"] : "";
+		$search_option = isset($_GET["document_search_option"]) ? $_GET["document_search_option"] : "";
+		$start_date = isset($_GET["start_date"]) ? $_GET["start_date"] : "";
+		$end_date = isset($_GET["end_date"]) ? $_GET["end_date"] : "";
+		$user_level = isset($_GET["user_level"]) ? $_GET["user_level"] : "";
+
+
+		$wheresql = array(
+						"search_text" => $search_text,
+						"search_option" => $search_option,
+						"start_date" => $start_date,
+						"end_date" => $end_date,
+						"user_level" => $user_level,
+						"start" => $start,
+						"limit" => $limit
+					);
+		// print_r($searchTxt);
+		$lists = $this->UserModel->getUserWithDocument($wheresql);
+		// $lists = array();
+		// echo $this->db->last_query();
+		$listCount = $this->UserModel->getUserWithDocumentCount($wheresql);
+		$listCountAll = $this->UserModel->getUserWithDocumentCountAll($wheresql);
+
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*15);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$queryString = "?search_option=".$search_option."&search_text=".$search_text."&start_date=".$start_date."&end_date=".$end_date."&user_level=".$user_level;
+
+		$pagination = $this->customclass->pagenavi("/admin/recruit/recruit_document_list".$queryString, $listCount, 15, 5, $nowpage);
+		//print_r($listCount);
+		$data = array(
+					"lists" => $lists,
+					"listCount" => $listCount,
+					"listCountAll" => $listCountAll,
+					"pagination" => $pagination,
+					"pagenum" => $pagenum,
+					"start" => $start,
+					"limit" => $limit,
+					"search_text" => $search_text,
+					"search_option" => $search_option,
+					"start_date" => $start_date,
+					"end_date" => $end_date,
+					"user_level" => $user_level,
+					);
+
+		$this->load->view("./admin/recruit/recruit-document_list", $data);
+	}
+	
+	public function getUserDocument(){
+		$seq = isset($_POST["DOC_SEQ"]) ? $_POST["DOC_SEQ"] : "";
+
+		$document = $this->UserModel->getUserDocumentByDocSeq($seq);
+
+		if ($document){
+			echo json_encode(array("code" => "200", "document" => $document ));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
+
+	public function saveUserDocument(){
+		$seq = isset($_POST["DOC_SEQ"]) ? $_POST["DOC_SEQ"] : "";
+		$eq = isset($_POST["DOC_EQ_FLAG"]) ? $_POST["DOC_EQ_FLAG"] : "";
+		$cl = isset($_POST["DOC_CL_FLAG"]) ? $_POST["DOC_CL_FLAG"] : "";
+		$ec = isset($_POST["DOC_EC_FLAG"]) ? $_POST["DOC_EC_FLAG"] : "";
+		$pp = isset($_POST["DOC_PASSPORT_FLAG"]) ? $_POST["DOC_PASSPORT_FLAG"] : "";
+		$sc = isset($_POST["DOC_SC_FLAG"]) ? $_POST["DOC_SC_FLAG"] : "";
+		$ph = isset($_POST["DOC_PHOTO_FLAG"]) ? $_POST["DOC_PHOTO_FLAG"] : "";
+		$rod = isset($_POST["DOC_ROD_FLAG"]) ? $_POST["DOC_ROD_FLAG"] : "";
+		$tran = isset($_POST["DOC_TRANSCRIPT_FLAG"]) ? $_POST["DOC_TRANSCRIPT_FLAG"] : "";
+		$rec = isset($_POST["DOC_RECOMMENDATION_FLAG"]) ? $_POST["DOC_RECOMMENDATION_FLAG"] : "";
+		$rec2 = isset($_POST["DOC_RECOMMENDATION2_FLAG"]) ? $_POST["DOC_RECOMMENDATION2_FLAG"] : "";
+		$ms = isset($_POST["DOC_MS_FLAG"]) ? $_POST["DOC_MS_FLAG"] : "";
+
+		$updateArr = array(
+			"DOC_EQ_FLAG" => $eq,
+			"DOC_CL_FLAG" => $cl,
+			"DOC_EC_FLAG" => $ec,
+			"DOC_PASSPORT_FLAG" => $pp,
+			"DOC_SC_FLAG" => $sc,
+			"DOC_PHOTO_FLAG" => $ph,
+			"DOC_ROD_FLAG" => $rod,
+			"DOC_TRANSCRIPT_FLAG" => $tran,
+			"DOC_RECOMMENDATION_FLAG" => $rec,
+			"DOC_RECOMMENDATION2_FLAG" => $rec2,
+			"DOC_MS_FLAG" => $ms,
+		);
+
+		$result = $this->UserModel->updateUserDocument($updateArr, $seq);
+
+		if ($result){
+			echo json_encode(array("code" => "200", "msg" => "저장되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
+	}
+
+	public function recruit_certificate_list(){
+		$limit = 15;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*15;
+			$nowpage = $_GET["per_page"];
+		}
+
+		$search_text = isset($_GET["resume_search_text"]) ? $_GET["resume_search_text"] : "";
+		$search_option = isset($_GET["resume_search_option"]) ? $_GET["resume_search_option"] : "";
+
+		$wheresql = array(
+						"search_text" => $search_text,
+						"search_option" => $search_option,
+						"start" => $start,
+						"limit" => $limit
+					);
+		// print_r($searchTxt);
+		$lists = $this->RecruitModel->getRecruitResumeList($wheresql);
+		// $lists = array();
+		// echo $this->db->last_query();
+		$listCount = $this->RecruitModel->getRecruitResumeListCount($wheresql);
+		$listCountAll = $this->RecruitModel->getRecruitResumeListCountAll();
+		// $listCount= array();
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*15);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$queryString = "?search_option=".$search_option."&search_text=".$search_text;
+
+		$pagination = $this->customclass->pagenavi("/admin/recurit/recruit_resume_list".$queryString, $listCount, 15, 5, $nowpage);
+		//print_r($listCount);
+		$data = array(
+					"lists" => $lists,
+					"listCount" => $listCount,
+					"listCountAll" => $listCountAll,
+					"pagination" => $pagination,
+					"pagenum" => $pagenum,
+					"start" => $start,
+					"limit" => $limit,
+					"search_text" => $search_text,
+					"search_option" => $search_option
+					);
+
+		$this->load->view("./admin/recruit/recruit-document_list", $data);
+	}
 }
 
