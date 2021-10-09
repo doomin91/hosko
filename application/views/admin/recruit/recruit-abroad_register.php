@@ -52,7 +52,7 @@
                         <!-- tile body -->
                         
 						<div class="tile color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyTopViewTable">
+							<table class="table datatable table-custom applyTopViewTable">
 								<tbody>
 									<tr>
 										<th class="col-sm-2">컨텐츠분류</th>

@@ -636,9 +636,107 @@ class Mypage extends CI_Controller {
 
 	public function submissionDoc(){
 
+		$user_info = $this->UserModel->getUserInfo($this->session->userdata("USER_SEQ"));
+		$my_document = $this->UserModel->getUserDocument($this->session->userdata("USER_SEQ"));
+		$my_certificate = $this->UserModel->getUserCertificate($this->session->userdata("USER_SEQ"));
+		// print_r($my_document);
 		$DATA = array();
 
+		$DATA["USER"] = $user_info;
+		if($my_document){
+			// print_r($my_resume);
+			$DATA["DOCUMENT"] = $my_document;
+		}
+
+		if($my_certificate){
+			// print_r($my_resume);
+			$DATA["CERTIFICATE"] = $my_certificate;
+		}
+
 		$this->load->view("/mypage/submission-doc", $DATA);
+	}
+
+	public function submissionDocProc(){
+		$user_seq = $this->session->userdata("USER_SEQ");
+
+		$img = isset($_POST["img"]) ? $_POST["img"] : "";
+		$type = isset($_POST["type"]) ? $_POST["type"] : "";
+		$flag = isset($_POST["flag"]) ? $_POST["flag"] : "";
+		$date = isset($_POST["date"]) ? $_POST["date"] : "";
+		$name = isset($_POST["name"]) ? $_POST["name"] : "";
+
+		$my_document = $this->UserModel->getUserDocument($this->session->userdata("USER_SEQ"));
+
+		if($my_document){
+			$doc_seq = $my_document->SEQ;
+		}else{
+			$insertArr = array(
+				"USER_SEQ" => $user_seq
+			);
+			$result = $this->UserModel->createUserDocument($insertArr);
+			$doc_seq = $this->db->insert_id();
+		}
+
+		// print_r($doc_seq);
+		// print_r("<br>");
+		// print_r($type);
+		// print_r("<br>");
+		// print_r($flag);
+		// print_r("<br>");
+		// print_r($date);
+		// print_r("<br>");
+		// print_r($_FILES[$img]);
+		// print_r("<br>");
+
+		$config["upload_path"] = $_SERVER['DOCUMENT_ROOT'] . "/upload/document/";
+		$config["allowed_types"] = '*';
+		$new_name = "doc_". $user_seq . $type . date("YmdHis");
+		$config["file_name"] = $new_name;
+		$this->load->library("upload", $config);
+
+		$this->upload->initialize($config);
+
+		$docfile = "";
+		$docfile_path = "";
+		if (isset($_FILES[$img]['name'])) {
+			if (0 < $_FILES[$img]['error']) {
+				echo 'Error during file upload' . $_FILES[$img]['error'];
+			} else {
+				if (file_exists('upload/document/' . $_FILES[$img]['name'])) {
+					echo 'File already exists : upload/document/' . $_FILES[$img]['name'];
+				} else {
+					$this->load->library('upload', $config);
+					if (!$this->upload->do_upload($img)) {
+						echo $this->upload->display_errors();
+					} else {
+						//echo 'File successfully uploaded : uploads/' . $_FILES['post_thumbnail']['name'];
+						$docfile = $_FILES[$img]['name'];
+						$docfile_path = "/upload/document/".$this->upload->data("file_name");
+					}
+				}
+			}
+		} else {
+			//echo 'Please choose a file';
+		}
+
+		$updateArr = array(
+						$type => $docfile_path,
+						$flag => 1,
+						$date => date("YmdHis"),
+						$name => $docfile,
+					);
+
+		$result = $this->UserModel->updateUserDocument($updateArr, $doc_seq);
+
+		//echo $this->db->last_query();
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "서류 제출이 완료되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "서류 제출이 중 문제가 생겼습니다.\n 관리자에게 문의해주세요."));
+		}
+
+
 	}
 
 }

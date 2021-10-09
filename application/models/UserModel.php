@@ -541,4 +541,24 @@ class UserModel extends CI_Model{
 	public function setMMSData($insertData){
 		return $this->db->insert("MMS_CONTENTS_INFO", $insertData);
 	}	
+
+
+	public function getUserDocument($user_seq){
+		$this->db->where("TBL_HOSKO_USER_DOCUMENT.USER_SEQ", $user_seq);
+		return $this->db->get("TBL_HOSKO_USER_DOCUMENT")->row();
+	}
+	public function createUserDocument($insertData){
+		return $this->db->insert("TBL_HOSKO_USER_DOCUMENT", $insertData);
+	}
+	public function updateUserDocument($updateArr, $doc_seq){
+		$this->db->where("TBL_HOSKO_USER_DOCUMENT.SEQ", $doc_seq);
+		return $this->db->update("TBL_HOSKO_USER_DOCUMENT", $updateArr);
+	}
+
+	public function getUserCertificate($user_seq){
+		$this->db->where("TBL_HOSKO_USER_CERTIFICATE.USER_SEQ", $user_seq);
+		return $this->db->get("TBL_HOSKO_USER_CERTIFICATE")->row();
+	}
+
+	
 }
