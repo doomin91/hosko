@@ -59,22 +59,19 @@
                                                 <th class="col-sm-2">컨텐츠분류</th>
                                                 
                                                 <td class="col-sm-10">
-                                                    <div class="col-sm-2 ctg_select_form">
-                                                        <select name="ctg" class="chosen-select chosen-transparent chosen-single form-control ctg_select search_field" >
+                                                    <div class="col-sm-6">
+                                                        <select name="ctg" class="ctg_select common_select" >
                                                             <option value="" >:: 대분류 ::</option>
                                                             <option value="1" <?php if($ABROAD_INFO->REC_CONTENTS_CATEGORY == 1) echo "selected" ?> >인턴쉽</option>
                                                             <option value="2" <?php if($ABROAD_INFO->REC_CONTENTS_CATEGORY == 2) echo "selected" ?> >채용&헤드헌팅</option>
                                                             <option value="3" <?php if($ABROAD_INFO->REC_CONTENTS_CATEGORY == 3) echo "selected" ?> >유학</option>
                                                         </select>
                                                         
-                                                        </div>
-                                                    <div class="col-sm-2 ctg_select_form ">
-                                                        <select name="ctg2" class="chosen-select chosen-transparent form-control ctg_select search_field">
+                                                        <select name="ctg2" class="ctg_select common_select">
                                                             <option value="" selected>:: 중분류 ::</option>
                                                         </select>
-                                                    </div>
-                                                    <div class="col-sm-2 ctg_select_form">
-                                                        <select name="ctg3" class="chosen-select chosen-transparent form-control ctg_select search_field">
+                                                        
+                                                        <select name="ctg3" class=" common_select">
                                                             <option value="" selected>:: 소분류 ::</option>
                                                         </select>
                                                     </div>
@@ -83,8 +80,8 @@
                                             <tr>
                                                 <th class="col-sm-2">컨텐츠명</th>
                                                 <td class="col-sm-10">
-                                                    <div class="col-sm-6">
-                                                        <input type="text" class="form-control" id="abroad_contents_title" name="abroad_contents_title" value="<?php echo $ABROAD_INFO->REC_TITLE?>">
+                                                    <div class="col-sm-4">
+                                                        <input type="text" style="width: 100%" class="common_input" id="abroad_contents_title" name="abroad_contents_title" value="<?php echo $ABROAD_INFO->REC_TITLE?>">
                                                     </div></td>
                                             </tr>
                                             <tr>
@@ -99,14 +96,14 @@
                                                 <th class="col-sm-2">조회수</th>
                                                 <td class="col-sm-10">
                                                     <div class="col-sm-2">
-                                                        <input type="text" class="form-control" id="abroad_hit_count" name="abroad_hit_count" value="<?php echo $ABROAD_INFO->REC_COUNT?>">
+                                                        <input type="text" class="common_input" id="abroad_hit_count" name="abroad_hit_count" value="<?php echo $ABROAD_INFO->REC_COUNT?>">
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <th class="col-sm-2">담당</th>
                                                 <td class="col-sm-10">
                                                     <div class="col-sm-2">
-                                                        <input type="text" class="form-control" id="abroad_manager" name="abroad_manager" value="<?php echo $ABROAD_INFO->ADMIN_USER_ID?>">
+                                                        <input type="text" class="common_input" id="abroad_manager" name="abroad_manager" value="<?php echo $ABROAD_INFO->ADMIN_USER_ID?>">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -134,84 +131,84 @@
                                                 <td class="col-sm-1 text-center">국가/도시</td>
                                                 <td class="col-sm-8">
                                                     <div class="col-sm-11">
-                                                        <textarea class="form-control common_textarea wid100p" name="abroad_country" id="abroad_country"><?php echo $ABROAD_INFO->REC_COUNTRY?></textarea>
+                                                        <textarea class="common_input wid100p" name="abroad_country" id="abroad_country"><?php echo $ABROAD_INFO->REC_COUNTRY?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">유학분류</td>
                                                 <td class="col-sm-8">
                                                     <div class="col-sm-11">
-                                                        <textarea class="form-control common_textarea wid100p" name="abroad_type" id="abroad_type"><?php echo $ABROAD_INFO->REC_TYPE?></textarea>
+                                                        <textarea class="common_input wid100p" name="abroad_type" id="abroad_type"><?php echo $ABROAD_INFO->REC_TYPE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">기간</td>
                                                 <td class="col-sm-8">
                                                     <div class="col-sm-11">
-                                                        <textarea class="form-control common_textarea wid100p" name="abroad_period" id="abroad_period"><?php echo $ABROAD_INFO->REC_PERIOD?></textarea>
+                                                        <textarea class="common_input wid100p" name="abroad_period" id="abroad_period"><?php echo $ABROAD_INFO->REC_PERIOD?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">채용분야</td>
                                                 <td class="col-sm-8">
                                                     <div class="col-sm-11">
-                                                        <textarea class="form-control common_textarea wid100p" name="abroad_recruit_type" id="abroad_recruit_type"><?php echo $ABROAD_INFO->REC_RECRUIT_TYPE?></textarea>
+                                                        <textarea class="common_input wid100p" name="abroad_recruit_type" id="abroad_recruit_type"><?php echo $ABROAD_INFO->REC_RECRUIT_TYPE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">채용마감</td>
                                                 <td class="col-sm-8">
                                                     <div class="col-sm-11">
-                                                        <textarea class="form-control common_textarea wid100p" name="abroad_deadline" id="abroad_deadline"><?php echo $ABROAD_INFO->REC_DEADLINE?></textarea>
+                                                        <textarea class="common_input wid100p" name="abroad_deadline" id="abroad_deadline"><?php echo $ABROAD_INFO->REC_DEADLINE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">면접방식</td>
                                                 <td class="col-sm-8">
                                                     <div class="col-sm-11">
-                                                        <textarea class="form-control common_textarea wid100p" name="abroad_interview_type" id="abroad_interview_type"><?php echo $ABROAD_INFO->REC_INTERVIEW_TYPE?></textarea>
+                                                        <textarea class="common_input wid100p" name="abroad_interview_type" id="abroad_interview_type"><?php echo $ABROAD_INFO->REC_INTERVIEW_TYPE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">면접일자</td>
                                                 <td class="col-sm-8">
                                                     <div class="col-sm-11">
-                                                        <textarea class="form-control common_textarea wid100p" name="abroad_interview_date" id="abroad_interview_date"><?php echo $ABROAD_INFO->REC_INTERVIEW_DATE?></textarea>
+                                                        <textarea class="common_input wid100p" name="abroad_interview_date" id="abroad_interview_date"><?php echo $ABROAD_INFO->REC_INTERVIEW_DATE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">자격요건</td>
                                                 <td class="col-sm-8">
                                                     <div class="col-sm-11">
-                                                        <textarea class="form-control common_textarea wid100p" name="abroad_prerequisite" id="abroad_prerequisite"><?php echo $ABROAD_INFO->REC_PREREQUISITE?></textarea>
+                                                        <textarea class="common_input wid100p" name="abroad_prerequisite" id="abroad_prerequisite"><?php echo $ABROAD_INFO->REC_PREREQUISITE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">급여</td>
                                                 <td class="col-sm-8">
                                                     <div class="col-sm-11">
-                                                        <textarea class="form-control common_textarea wid100p" name="abroad_pay" id="abroad_pay"><?php echo $ABROAD_INFO->REC_PAY?></textarea>
+                                                        <textarea class="common_input wid100p" name="abroad_pay" id="abroad_pay"><?php echo $ABROAD_INFO->REC_PAY?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">숙소</td>
                                                 <td class="col-sm-8">
                                                     <div class="col-sm-11">
-                                                        <textarea class="form-control common_textarea wid100p" name="abroad_accomdation" id="abroad_accomdation"><?php echo $ABROAD_INFO->REC_LODGIN?></textarea>
+                                                        <textarea class="common_input wid100p" name="abroad_accomdation" id="abroad_accomdation"><?php echo $ABROAD_INFO->REC_LODGIN?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">복지</td>
                                                 <td class="col-sm-8">
                                                     <div class="col-sm-11">
-                                                        <textarea class="form-control common_textarea wid100p" name="abroad_welfare" id="abroad_welfare"><?php echo $ABROAD_INFO->REC_WELFARE?></textarea>
+                                                        <textarea class="common_input wid100p" name="abroad_welfare" id="abroad_welfare"><?php echo $ABROAD_INFO->REC_WELFARE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">비자</td>
                                                 <td class="col-sm-8">
                                                     <div class="col-sm-11">
-                                                        <textarea class="form-control common_textarea wid100p" name="abroad_visa" id="abroad_visa"><?php echo $ABROAD_INFO->REC_VISA?></textarea>
+                                                        <textarea class="common_input wid100p" name="abroad_visa" id="abroad_visa"><?php echo $ABROAD_INFO->REC_VISA?></textarea>
                                                     </div></td>
                                             </tr>
                                         </tbody>
@@ -711,21 +708,42 @@
         .applyTopViewTable{
             height: 90px;
         }
-        .apply_status_option{
-            border-radius:5px; 
-            margin-right: 5px;
-            padding: 6px;
-            border:0; 
-            background-color:rgba(0, 0, 0, 0.3)
+
+        .common_select{
+            padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
         }
 
-        .common_select, .common_input{
-            min-height: 30px;
-            font-size: 12px !important;
+        .common_input{
+            padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
         }
         
         .note-editable{
             overflow-y: auto;
+            background-color: #f3f3f3 !important;
+			color: #555 !important;
+        }
+
+        .file_view{
+            background-color: #e4e4e4 !important;
+        }
+
+        .ui-tooltip{
+            background: #f3f3f3;
+            opacity: 1;
         }
         
     </style>

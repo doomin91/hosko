@@ -44,7 +44,11 @@
 					<section class="tile transparent">
 						<div class="tile color transparent-black rounded-corners">
                             <span id="resume_title" class="col-sm-offset-4 col-sm-4 text-center"> <?php echo $RESUME_INFO->RESUME_USER_NAME ?> </span>
-                            <div id="resume_photo" class="col-sm-offset-4 col-sm-4 text-center"> <img src='<?php echo $RESUME_INFO->RESUME_USER_PHOTO ?>'/> </div>
+							<?php if($RESUME_INFO->RESUME_USER_PHOTO): ?>
+								<div id="resume_photo" class="col-sm-offset-4 col-sm-4 text-center"> <img src='<?php echo $RESUME_INFO->RESUME_USER_PHOTO ?>'/> </div>
+							<?php else : ?>
+								<div id="resume_photo" class="col-sm-offset-4 col-sm-4 text-center"> <img src='/upload/user_default.jpg'/> </div>
+							<?php endif?>
 						</div>
 					</section>
 				</div>

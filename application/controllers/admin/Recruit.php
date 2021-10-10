@@ -39,12 +39,12 @@ class Recruit extends CI_Controller {
 	}
 
 	public function index(){
-		$limit = 20;
+		$limit = 10;
 		$nowpage = "";
 		if (!isset($_GET["per_page"])){
 			$start = 0;
 		}else{
-			$start = ($_GET["per_page"]-1)*20;
+			$start = ($_GET["per_page"]-1)*10;
 			$nowpage = $_GET["per_page"];
 		}
 
@@ -219,12 +219,12 @@ class Recruit extends CI_Controller {
 	}
 
 	public function recruit_abroad_list(){
-		$limit = 15;
+		$limit = 10;
 		$nowpage = "";
 		if (!isset($_GET["per_page"])){
 			$start = 0;
 		}else{
-			$start = ($_GET["per_page"]-1)*15;
+			$start = ($_GET["per_page"]-1)*10;
 			$nowpage = $_GET["per_page"];
 		}
 
@@ -262,7 +262,7 @@ class Recruit extends CI_Controller {
 			$pagenum = $listCount;
 		}
 
-		$pagination = $this->customclass->pagenavi("/admin/recurit/recruit-abroad_list", $listCount, 15, 5, $nowpage);
+		$pagination = $this->customclass->pagenavi("/admin/recruit/recruit_abroad_list", $listCount, 10, 5, $nowpage);
 		//print_r($listCount);
 		$data = array(
 					"ctg" => $ctg,
