@@ -24,12 +24,12 @@
 
 		  <!-- page header -->
 		  <div class="pageheader">
-			<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b>수속서류 관리</b> <span></span></h2>
+			<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b>출국 및 증명서</b> <span></span></h2>
 			<div class="breadcrumbs">
 			  <ol class="breadcrumb">
 				<li>관리자 페이지</li>
 				<li><a href="#">수속관리</a></li>
-				<li class="active">수속서류 관리</li>
+				<li class="active">출국 및 증명서</li>
 			  </ol>
 			</div>
 
@@ -45,7 +45,7 @@
                 <section class="tile color transparent-black">
                   <!-- tile body -->
                   <div class="tile-body">
-                      <table class="table datatable table-custom applyTopViewTable">
+                        <table class="table datatable table-custom applyTopViewTable">
 								<tbody>
 									<tr>
 										<th class="col-sm-2">회원 분류</th>
@@ -73,14 +73,6 @@
                                             </div> -->
                                         </td>
 
-									</tr>
-									<tr>
-                                        <th class="col-sm-2">서류 등록 날짜</th>
-                                        <td class="col-sm-10">
-                                            <input type="text" id="start_date" name="start_date" class="date_field" value="<?php if(isset($start_date)) echo $start_date?>">
-                                            ~
-                                            <input type="text" id="end_date" name="end_date" class="date_field" value="<?php if(isset($end_date)) echo $end_date?>">
-										</td>
 									</tr>
                                     <tr>
                                         <th class="col-sm-2">검색</th>
@@ -135,9 +127,9 @@
 									<th class="text-center">이름</th>
 									<th class="text-center">아이디</th>
 									<th class="text-center">회원등급</th>
-									<th class="text-center">최근 제출일</th>
-                                    <th class="text-center">최근 확인일</th>
-									<th class="text-center">서류확인</th>
+									<th class="text-center">등록일</th>
+                                    <th class="text-center">인증서</th>
+									<th class="text-center">파일첨부</th>
 									
 								</tr>
 							</thead>
@@ -172,9 +164,12 @@
                                             탈퇴회원
                                         <?php endif ?>
                                     </td>
-                                    <td class="text-center"><?php echo $list->DOC_LAST_UPDATE_DATE ?></td>
-                                    <td class="text-center"><?php echo $list->DOC_LAST_CHECK_DATE ?></td>
-                                    <td class="text-center"><input type="button" class="btn btn-xs btn-primary showDocument" data-doc_seq="<?php echo $list->DOC_SEQ?>" value="서류보기"></td>
+                                    <td class="text-center"><?php echo $list->CERT_REG_DATE ?></td>
+                                    <td class="text-center">
+                                        <?php echo "<a href=\"/admin/recruit/CertificateDown/".$list->CERT_SEQ."\">".$list->CERT_NAME."</a>"; ?>
+                                    </td>
+                                    <input type="file" name="certificate" id="certificate" class="hide" />
+                                    <td class="text-center"><input type="button" class="btn btn-xs btn-primary uploadCertificate" data-cert_seq="<?php echo $list->CERT_SEQ ?>" data-user_seq="<?php echo $list->USER_USER_SEQ ?>" value="인증서 등록"></td>
 								</tr>
 						<?php
 								$pagenum--;
@@ -229,552 +224,69 @@
 
 	</div>
 	<!-- Wrap all page content end -->
-    <!-- 모달 팝업 -->
-	<div class="modal fade" id="modalDocument" tabindex="-1" role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button>
-					<h3 class="modal-title" id="modalConfirmLabel">제출 서류 목록</h3>
-				</div>
-				<div class="modal-body">
-                    <form id="documentModalForm">
-                        <table class="table datatable table-custom01">
-                            <colgroup>
-                                <col width="30%"/>
-                                <col width="40%"/>
-                                <col width="30%"/>
-                            </colgroup>
-                            <tbody>
-                                
-                                <!-- <tr>
-                                    <th>- 영문에세이</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>- 영문커버레터</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>- 비상연락처</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>- 여권전면상하사본</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>- 학생증 사본</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>- 비자용 사진</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>- 영문 재학/졸업 증명서</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>- 영문 성적 증명서</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>- 영문 추천서1</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>- 영문 추천서2</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>- 영문 건강진단서</td>
-                                    <td></td>
-                                </tr> -->
-                                
-                            </tbody>
-                        </form>
-                    </table>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-red" data-dismiss="modal" aria-hidden="true">취소</button>
-					<button id="saveDocument" class="btn btn-green">저장하기</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
+    
 	<?php
 		include_once dirname(__DIR__)."/admin-footer.php";
 	?>
 
     <script>
         $(function(){
-            $(".showDocument").on("click", function(){
-                var doc_seq = $(this).data("doc_seq");
-                console.log(doc_seq);
-                if(doc_seq){
-                    
-                    $.ajax({
-                        url: "/admin/recruit/getUserDocument",
-                        type: "POST",
-                        data: {
-                            "DOC_SEQ": doc_seq
-                        },
-                        dataType: "json",
-                        success: function(resultMsg){
-                            console.log(resultMsg.code);
-                            var document = resultMsg.document;
-                            if(resultMsg.code == 200){
-                                // alert(resultMsg.msg);
-                                // console.log(resultMsg.msg);
-                                var tbody = $("#modalDocument").find("tbody");
-                                console.log(tbody);
-                                var html = "<tr>" +
-                                                "<th>- 영문에세이</td>" +
-                                                "<td>"+document["DOC_EQ_FILE_NAME"]+"</td>" +
-                                                "<td>"+
-                                                    "<select id=\"DOC_EQ_FLAG\" class=\"document_search_option\">"+
-                                                        "<option value=\"-1\" ";
-                                                        if(document["DOC_EQ_FLAG"] == -1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">반송</option>";
-
-                                    html +=             "<option value=\"0\" ";
-                                                        if(document["DOC_EQ_FLAG"] == 0){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미제출</option>";
-                                    
-                                    html +=             "<option value=\"1\" ";
-                                                        if(document["DOC_EQ_FLAG"] == 1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미확인</option>";
-
-                                    html +=             "<option value=\"2\" ";
-                                                        if(document["DOC_EQ_FLAG"] == 2){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">OK</option>";
-                                    html +=         "</select>"+
-                                                "</td>" +
-                                            "</tr>" +
-                                           " <tr>" +
-                                                "<th>- 영문커버레터</td>" +
-                                               " <td>"+document["DOC_CL_FILE_NAME"]+"</td>" +
-                                               "<td>"+
-                                                    "<select id=\"DOC_CL_FLAG\" class=\"document_search_option\">"+
-                                                        "<option value=\"-1\" ";
-                                                        if(document["DOC_CL_FLAG"] == -1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">반송</option>";
-
-                                    html +=             "<option value=\"0\" ";
-                                                        if(document["DOC_CL_FLAG"] == 0){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미제출</option>";
-                                    
-                                    html +=             "<option value=\"1\" ";
-                                                        if(document["DOC_CL_FLAG"] == 1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미확인</option>";
-
-                                    html +=             "<option value=\"2\" ";
-                                                        if(document["DOC_CL_FLAG"] == 2){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">OK</option>";
-                                    html +=         "</select>"+
-                                                "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                                "<th>- 비상연락처</td>" +
-                                                "<td>"+document["DOC_EC_FILE_NAME"]+"</td>" +
-                                                "<td>"+
-                                                    "<select id=\"DOC_EC_FLAG\" class=\"document_search_option\">"+
-                                                        "<option value=\"-1\" ";
-                                                        if(document["DOC_EC_FLAG"] == -1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">반송</option>";
-
-                                    html +=             "<option value=\"0\" ";
-                                                        if(document["DOC_EC_FLAG"] == 0){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미제출</option>";
-                                    
-                                    html +=             "<option value=\"1\" ";
-                                                        if(document["DOC_EC_FLAG"] == 1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미확인</option>";
-
-                                    html +=             "<option value=\"2\" ";
-                                                        if(document["DOC_EC_FLAG"] == 2){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">OK</option>";
-                                    html +=         "</select>"+
-                                                "</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                                "<th>- 여권전면상하사본</td>"+
-                                                "<td>"+document["DOC_PASSPORT_FILE_NAME"]+"</td>"+
-                                                "<td>"+
-                                                    "<select id=\"DOC_PASSPORT_FLAG\" class=\"document_search_option\">"+
-                                                        "<option value=\"-1\" ";
-                                                        if(document["DOC_PASSPORT_FLAG"] == -1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">반송</option>";
-
-                                    html +=             "<option value=\"0\" ";
-                                                        if(document["DOC_PASSPORT_FLAG"] == 0){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미제출</option>";
-                                    
-                                    html +=             "<option value=\"1\" ";
-                                                        if(document["DOC_PASSPORT_FLAG"] == 1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미확인</option>";
-
-                                    html +=             "<option value=\"2\" ";
-                                                        if(document["DOC_PASSPORT_FLAG"] == 2){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">OK</option>";
-                                    html +=         "</select>"+
-                                                "</td>" +
-                                            "</tr>"+
-                                            "<tr>"+
-                                                "<th>- 학생증 사본</td>"+
-                                                "<td>"+document["DOC_SC_FILE_NAME"]+"</td>"+
-                                                "<td>"+
-                                                    "<select id=\"DOC_SC_FLAG\" class=\"document_search_option\">"+
-                                                        "<option value=\"-1\" ";
-                                                        if(document["DOC_SC_FLAG"] == -1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">반송</option>";
-
-                                    html +=             "<option value=\"0\" ";
-                                                        if(document["DOC_SC_FLAG"] == 0){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미제출</option>";
-                                    
-                                    html +=             "<option value=\"1\" ";
-                                                        if(document["DOC_SC_FLAG"] == 1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미확인</option>";
-
-                                    html +=             "<option value=\"2\" ";
-                                                        if(document["DOC_SC_FLAG"] == 2){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">OK</option>";
-                                    html +=         "</select>"+
-                                                "</td>" +
-                                            "</tr>"+
-                                            "<tr>"+
-                                               " <th>- 비자용 사진</td>"+
-                                                "<td>"+document["DOC_PHOTO_FILE_NAME"]+"</td>"+
-                                                "<td>"+
-                                                    "<select id=\"DOC_PHOTO_FLAG\" class=\"document_search_option\">"+
-                                                        "<option value=\"-1\" ";
-                                                        if(document["DOC_PHOTO_FLAG"] == -1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">반송</option>";
-
-                                    html +=             "<option value=\"0\" ";
-                                                        if(document["DOC_PHOTO_FLAG"] == 0){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미제출</option>";
-                                    
-                                    html +=             "<option value=\"1\" ";
-                                                        if(document["DOC_PHOTO_FLAG"] == 1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미확인</option>";
-
-                                    html +=             "<option value=\"2\" ";
-                                                        if(document["DOC_PHOTO_FLAG"] == 2){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">OK</option>";
-                                    html +=         "</select>"+
-                                                "</td>" +
-                                            "</tr>"+
-                                            "<tr>"+
-                                                "<th>- 영문 재학/졸업 증명서</td>"+
-                                                "<td>"+document["DOC_ROD_FILE_NAME"]+"</td>"+
-                                                "<td>"+
-                                                    "<select id=\"DOC_ROD_FLAG\" class=\"document_search_option\">"+
-                                                        "<option value=\"-1\" ";
-                                                        if(document["DOC_ROD_FLAG"] == -1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">반송</option>";
-
-                                    html +=             "<option value=\"0\" ";
-                                                        if(document["DOC_ROD_FLAG"] == 0){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미제출</option>";
-                                    
-                                    html +=             "<option value=\"1\" ";
-                                                        if(document["DOC_ROD_FLAG"] == 1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미확인</option>";
-
-                                    html +=             "<option value=\"2\" ";
-                                                        if(document["DOC_ROD_FLAG"] == 2){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">OK</option>";
-                                    html +=         "</select>"+
-                                                "</td>" +
-                                            "</tr>"+
-                                            "<tr>"+
-                                                "<th>- 영문 성적 증명서</td>"+
-                                                "<td>"+document["DOC_TRANSCRIPT_FILE_NAME"]+"</td>"+
-                                                "<td>"+
-                                                    "<select id=\"DOC_TRANSCRIPT_FLAG\" class=\"document_search_option\">"+
-                                                        "<option value=\"-1\" ";
-                                                        if(document["DOC_TRANSCRIPT_FLAG"] == -1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">반송</option>";
-
-                                    html +=             "<option value=\"0\" ";
-                                                        if(document["DOC_TRANSCRIPT_FLAG"] == 0){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미제출</option>";
-                                    
-                                    html +=             "<option value=\"1\" ";
-                                                        if(document["DOC_TRANSCRIPT_FLAG"] == 1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미확인</option>";
-
-                                    html +=             "<option value=\"2\" ";
-                                                        if(document["DOC_TRANSCRIPT_FLAG"] == 2){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">OK</option>";
-                                    html +=         "</select>"+
-                                                "</td>" +
-                                            "</tr>"+
-                                            "<tr>"+
-                                                "<th>- 영문 추천서1</td>"+
-                                                "<td>"+document["DOC_RECOMMENDATION_FILE_NAME"]+"</td>"+
-                                                "<td>"+
-                                                    "<select id=\"DOC_RECOMMENDATION_FLAG\" class=\"document_search_option\">"+
-                                                        "<option value=\"-1\" ";
-                                                        if(document["DOC_RECOMMENDATION_FLAG"] == -1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">반송</option>";
-
-                                    html +=             "<option value=\"0\" ";
-                                                        if(document["DOC_RECOMMENDATION_FLAG"] == 0){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미제출</option>";
-                                    
-                                    html +=             "<option value=\"1\" ";
-                                                        if(document["DOC_RECOMMENDATION_FLAG"] == 1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미확인</option>";
-
-                                    html +=             "<option value=\"2\" ";
-                                                        if(document["DOC_RECOMMENDATION_FLAG"] == 2){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">OK</option>";
-                                    html +=         "</select>"+
-                                                "</td>" +
-                                            "</tr>"+
-                                            "<tr>"+
-                                                "<th>- 영문 추천서2</td>"+
-                                                "<td>"+document["DOC_RECOMMENDATION2_FILE_NAME"]+"</td>"+
-                                                "<td>"+
-                                                    "<select id=\"DOC_RECOMMENDATION2_FLAG\" class=\"document_search_option\">"+
-                                                        "<option value=\"-1\" ";
-                                                        if(document["DOC_RECOMMENDATION2_FLAG"] == -1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">반송</option>";
-
-                                    html +=             "<option value=\"0\" ";
-                                                        if(document["DOC_RECOMMENDATION2_FLAG"] == 0){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미제출</option>";
-                                    
-                                    html +=             "<option value=\"1\" ";
-                                                        if(document["DOC_RECOMMENDATION2_FLAG"] == 1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미확인</option>";
-
-                                    html +=             "<option value=\"2\" ";
-                                                        if(document["DOC_RECOMMENDATION2_FLAG"] == 2){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">OK</option>";
-                                    html +=         "</select>"+
-                                                "</td>" +
-                                            "</tr>"+
-                                            "<tr>"+
-                                                "<th>- 영문 건강진단서</td>"+
-                                                "<td>"+document["DOC_MS_FILE_NAME"]+"</td>"+
-                                                "<td>"+
-                                                    "<select id=\"DOC_MS_FLAG\" class=\"document_search_option\">"+
-                                                        "<option value=\"-1\" ";
-                                                        if(document["DOC_MS_FLAG"] == -1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">반송</option>";
-
-                                    html +=             "<option value=\"0\" ";
-                                                        if(document["DOC_MS_FLAG"] == 0){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미제출</option>";
-                                    
-                                    html +=             "<option value=\"1\" ";
-                                                        if(document["DOC_MS_FLAG"] == 1){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">미확인</option>";
-
-                                    html +=             "<option value=\"2\" ";
-                                                        if(document["DOC_MS_FLAG"] == 2){
-                                                            html += "selected"
-                                                        }
-                                    html +=             ">OK</option>";
-                                    html +=         "</select>"+
-                                                "</td>" +
-                                            "</tr>";
-                                $(tbody).html(html);
-                                $("#saveDocument").data("doc_seq", document["DOC_SEQ"]);
-                                $("#modalDocument").modal("show");
-                            }else{
-                                alert(resultMsg.msg);
-                                console.log(resultMsg.msg);
-                            }
-                        },
-                        error: function (request, status, error){  
-                            console.log(request);
-                            console.log(request["responseText"]);    
-                            console.log(status);
-                            console.log(error);
-                        }
-                    });
-                    
-                }else{
-                    alert("아직 제출 서류가 없습니다");
-                    return false;
-                }
+            var FILE = new FormData();
+            $(".uploadCertificate").on("click", function(){
+                File = new FormData();
+                var cert_seq = $(this).data("cert_seq");
+                var user_seq = $(this).data("user_seq");
+                FILE.append("USER_SEQ", user_seq);
+            
                 
-            })
+                if(cert_seq){
+                    alert("이미 등록된 증명서가 있습니다.\n 다시 등록하면 새로운 파일로 대체됩니다.");
+                }else{
 
-            $("#saveDocument").on("click", function(){
-                //documentModalForm
-                var doc_seq = $("#saveDocument").data("doc_seq");
-                var select = $('#documentModalForm').find("select");
-                console.log(select);
-                var data = {};
-                data["DOC_SEQ"] = doc_seq;
-                $.each(select, function(index, form){
-                    var value = $(form).val();
-                    var key= $(form).attr('id');
-                    data[key] = value;
-                })
+                }
+
+                $("#certificate").click();
+            });
+
+            $("#certificate").on("change", function(){
+                var file = this.files[0];
+                FILE.append(this.id, file);
+
+                for (var key of FILE.keys()) {
+                    console.log(key);
+                }
+
+                // FormData의 value 확인
+                for (var value of FILE.values()) {
+                    console.log(value);
+                }
 
                 $.ajax({
-                        url: "/admin/recruit/saveUserDocument",
-                        type: "POST",
-                        data: data,
-                        dataType: "json",
-                        success: function(resultMsg){
-                            console.log(resultMsg.code);
-                            if(resultMsg.code == 200){
-                                alert(resultMsg.msg);
-                                console.log(resultMsg.msg);
-                                
-                                $("#modalDocument").modal("hide");
-                            }else{
-                                alert(resultMsg.msg);
-                                console.log(resultMsg.msg);
-                            }
-                        },
-                        error: function (request, status, error){  
-                            console.log(request);
-                            console.log(request["responseText"]);    
-                            console.log(status);
-                            console.log(error);
+                    url: "/admin/recruit/uploadUserCertificate",
+                    type: "POST",
+                    data: FILE,
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function(resultMsg){
+                        console.log(resultMsg.code);
+                        if(resultMsg.code == 200){
+                            alert(resultMsg.msg);
+                            console.log(resultMsg.msg);
+                            location.reload();
+                        }else{
+                            alert(resultMsg.msg);
+                            console.log(resultMsg.msg);
                         }
-                    });
+                    },
+                    error: function (request, status, error){  
+                        console.log(request);
+                        console.log(request["responseText"]);    
+                        console.log(status);
+                        console.log(error);
+                    }
+                });
             })
-
-            $('#start_date').datepicker({
-                dateFormat : "yy-mm-dd",
-                changeMonth: true,
-                changeYear: true,
-                closeText:'취소',
-                //minDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
-                showButtonPanel:true,
-                beforeShow: function(input) {
-                    var i_offset= $(input).offset(); //클릭된 input의 위치값 체크
-
-                    setTimeout(function(){
-                        $('#ui-datepicker-div').css({'top':i_offset.top-20, 'bottom':'', 'left':i_offset.left});      //datepicker의 div의 포지션을 강제로 input 위치에 그리고 좌측은 모바일이여서 작기때문에 무조건 10px에 놓았다.
-                    })
-                },
-                onClose: function( selectedDate ) {    
-                    // 시작일(fromDate) datepicker가 닫힐때
-                    // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-                    $("#end_date").datepicker( "option", "minDate", selectedDate );
-                }                
-            });
-
-            //종료일
-            $('#end_date').datepicker({
-                dateFormat : "yy-mm-dd",
-                changeMonth: true,
-                changeYear: true,
-                closeText:'취소',
-                //minDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
-                showButtonPanel:true,
-                beforeShow: function(input) {
-                    var i_offset= $(input).offset(); //클릭된 input의 위치값 체크
-
-                    setTimeout(function(){
-                        $('#ui-datepicker-div').css({'top':i_offset.top-20, 'bottom':'', 'left':i_offset.left});      //datepicker의 div의 포지션을 강제로 input 위치에 그리고 좌측은 모바일이여서 작기때문에 무조건 10px에 놓았다.
-                    })
-                },
-                onClose: function( selectedDate ) {
-                    // 종료일(toDate) datepicker가 닫힐때
-                    // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-                    $("#start_date").datepicker( "option", "maxDate", selectedDate );
-                }                
-            });
 
         });
     </script>

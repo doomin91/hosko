@@ -114,7 +114,7 @@
                                                                 <span class="doctablefont01">확인전</span>
                                                             <?php elseif($DOCUMENT->DOC_EQ_FLAG == 2): ?>
                                                                 <span class="doctablefont02">OK</span>
-                                                            <?php elseif($DOCUMENT->DOC_EQ_FLAG == 1): ?>
+                                                            <?php elseif($DOCUMENT->DOC_EQ_FLAG == -1): ?>
                                                                 <span class="doctablefont03">반송</span>
                                                             <?php endif ?>
                                                         <?php else: ?>
@@ -148,7 +148,7 @@
                                                                 <span class="doctablefont01">확인전</span>
                                                             <?php elseif($DOCUMENT->DOC_CL_FLAG == 2): ?>
                                                                 <span class="doctablefont02">OK</span>
-                                                            <?php elseif($DOCUMENT->DOC_CL_FLAG == 1): ?>
+                                                            <?php elseif($DOCUMENT->DOC_CL_FLAG == -1): ?>
                                                                 <span class="doctablefont03">반송</span>
                                                             <?php endif ?>
                                                         <?php else: ?>
@@ -182,7 +182,7 @@
                                                                 <span class="doctablefont01">확인전</span>
                                                             <?php elseif($DOCUMENT->DOC_EC_FLAG == 2): ?>
                                                                 <span class="doctablefont02">OK</span>
-                                                            <?php elseif($DOCUMENT->DOC_EC_FLAG == 1): ?>
+                                                            <?php elseif($DOCUMENT->DOC_EC_FLAG == -1): ?>
                                                                 <span class="doctablefont03">반송</span>
                                                             <?php endif ?>
                                                         <?php else: ?>
@@ -237,7 +237,7 @@
                                                                 <span class="doctablefont01">확인전</span>
                                                             <?php elseif($DOCUMENT->DOC_PASSPORT_FLAG == 2): ?>
                                                                 <span class="doctablefont02">OK</span>
-                                                            <?php elseif($DOCUMENT->DOC_PASSPORT_FLAG == 1): ?>
+                                                            <?php elseif($DOCUMENT->DOC_PASSPORT_FLAG == -1): ?>
                                                                 <span class="doctablefont03">반송</span>
                                                             <?php endif ?>
                                                         <?php else: ?>
@@ -271,7 +271,7 @@
                                                                 <span class="doctablefont01">확인전</span>
                                                             <?php elseif($DOCUMENT->DOC_SC_FLAG == 2): ?>
                                                                 <span class="doctablefont02">OK</span>
-                                                            <?php elseif($DOCUMENT->DOC_SC_FLAG == 1): ?>
+                                                            <?php elseif($DOCUMENT->DOC_SC_FLAG == -1): ?>
                                                                 <span class="doctablefont03">반송</span>
                                                             <?php endif ?>
                                                         <?php else: ?>
@@ -305,7 +305,7 @@
                                                                 <span class="doctablefont01">확인전</span>
                                                             <?php elseif($DOCUMENT->DOC_PHOTO_FLAG == 2): ?>
                                                                 <span class="doctablefont02">OK</span>
-                                                            <?php elseif($DOCUMENT->DOC_PHOTO_FLAG == 1): ?>
+                                                            <?php elseif($DOCUMENT->DOC_PHOTO_FLAG == -1): ?>
                                                                 <span class="doctablefont03">반송</span>
                                                             <?php endif ?>
                                                         <?php else: ?>
@@ -360,7 +360,7 @@
                                                                 <span class="doctablefont01">확인전</span>
                                                             <?php elseif($DOCUMENT->DOC_ROD_FLAG == 2): ?>
                                                                 <span class="doctablefont02">OK</span>
-                                                            <?php elseif($DOCUMENT->DOC_ROD_FLAG == 1): ?>
+                                                            <?php elseif($DOCUMENT->DOC_ROD_FLAG == -1): ?>
                                                                 <span class="doctablefont03">반송</span>
                                                             <?php endif ?>
                                                         <?php else: ?>
@@ -394,7 +394,7 @@
                                                                 <span class="doctablefont01">확인전</span>
                                                             <?php elseif($DOCUMENT->DOC_TRANSCRIPT_FLAG == 2): ?>
                                                                 <span class="doctablefont02">OK</span>
-                                                            <?php elseif($DOCUMENT->DOC_TRANSCRIPT_FLAG == 1): ?>
+                                                            <?php elseif($DOCUMENT->DOC_TRANSCRIPT_FLAG == -1): ?>
                                                                 <span class="doctablefont03">반송</span>
                                                             <?php endif ?>
                                                         <?php else: ?>
@@ -428,7 +428,7 @@
                                                                 <span class="doctablefont01">확인전</span>
                                                             <?php elseif($DOCUMENT->DOC_RECOMMENDATION_FLAG == 2): ?>
                                                                 <span class="doctablefont02">OK</span>
-                                                            <?php elseif($DOCUMENT->DOC_RECOMMENDATION_FLAG == 1): ?>
+                                                            <?php elseif($DOCUMENT->DOC_RECOMMENDATION_FLAG == -1): ?>
                                                                 <span class="doctablefont03">반송</span>
                                                             <?php endif ?>
                                                         <?php else: ?>
@@ -462,7 +462,7 @@
                                                                 <span class="doctablefont01">확인전</span>
                                                             <?php elseif($DOCUMENT->DOC_RECOMMENDATION2_FLAG == 2): ?>
                                                                 <span class="doctablefont02">OK</span>
-                                                            <?php elseif($DOCUMENT->DOC_RECOMMENDATION2_FLAG == 1): ?>
+                                                            <?php elseif($DOCUMENT->DOC_RECOMMENDATION2_FLAG == -1): ?>
                                                                 <span class="doctablefont03">반송</span>
                                                             <?php endif ?>
                                                         <?php else: ?>
@@ -496,7 +496,7 @@
                                                                 <span class="doctablefont01">확인전</span>
                                                             <?php elseif($DOCUMENT->DOC_MS_FLAG == 2): ?>
                                                                 <span class="doctablefont02">OK</span>
-                                                            <?php elseif($DOCUMENT->DOC_MS_FLAG == 1): ?>
+                                                            <?php elseif($DOCUMENT->DOC_MS_FLAG == -1): ?>
                                                                 <span class="doctablefont03">반송</span>
                                                             <?php endif ?>
                                                         <?php else: ?>
@@ -523,7 +523,9 @@
                                     <div class="MissionDocbox">
                                         <?php if(isset($CERTIFICATE)): ?>
                                             <div class="Docboxname"><?php echo $USER->USER_NAME ?>님 수료증</div>
-                                            <div class="Docboxbtn">Certificate.pdf</div>
+                                            <div class="Docboxbtn" id="certDown">
+                                                <?php echo "<a href=\"/mypage/CertificateDown/".$CERTIFICATE->CERT_SEQ."\">".$CERTIFICATE->CERT_NAME."</a>"; ?>
+                                            </div>
                                         <?php else : ?>
                                             <div class="MissionDocTitle">
                                                 <h3>등록된 수료증이 없습니다</h3>

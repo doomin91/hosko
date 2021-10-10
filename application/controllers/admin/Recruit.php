@@ -1280,7 +1280,7 @@ class Recruit extends CI_Controller {
 		$start_date = isset($_GET["start_date"]) ? $_GET["start_date"] : "";
 		$end_date = isset($_GET["end_date"]) ? $_GET["end_date"] : "";
 		$user_level = isset($_GET["user_level"]) ? $_GET["user_level"] : "";
-
+		$doc_status = isset($_GET["doc_status"]) ? $_GET["doc_status"] : "";
 
 		$wheresql = array(
 						"search_text" => $search_text,
@@ -1288,6 +1288,7 @@ class Recruit extends CI_Controller {
 						"start_date" => $start_date,
 						"end_date" => $end_date,
 						"user_level" => $user_level,
+						"doc_status" => $doc_status,
 						"start" => $start,
 						"limit" => $limit
 					);
@@ -1304,7 +1305,7 @@ class Recruit extends CI_Controller {
 			$pagenum = $listCount;
 		}
 
-		$queryString = "?search_option=".$search_option."&search_text=".$search_text."&start_date=".$start_date."&end_date=".$end_date."&user_level=".$user_level;
+		$queryString = "?document_search_option=".$search_option."&document_search_text=".$search_text."&start_date=".$start_date."&end_date=".$end_date."&user_level=".$user_level."&doc_status=".$doc_status;
 
 		$pagination = $this->customclass->pagenavi("/admin/recruit/recruit_document_list".$queryString, $listCount, 15, 5, $nowpage);
 		//print_r($listCount);
@@ -1321,6 +1322,7 @@ class Recruit extends CI_Controller {
 					"start_date" => $start_date,
 					"end_date" => $end_date,
 					"user_level" => $user_level,
+					"doc_status" => $doc_status,
 					);
 
 		$this->load->view("./admin/recruit/recruit-document_list", $data);
@@ -1340,6 +1342,7 @@ class Recruit extends CI_Controller {
 
 	public function saveUserDocument(){
 		$seq = isset($_POST["DOC_SEQ"]) ? $_POST["DOC_SEQ"] : "";
+		$status = isset($_POST["DOC_STATUS"]) ? $_POST["DOC_STATUS"] : "";
 		$eq = isset($_POST["DOC_EQ_FLAG"]) ? $_POST["DOC_EQ_FLAG"] : "";
 		$cl = isset($_POST["DOC_CL_FLAG"]) ? $_POST["DOC_CL_FLAG"] : "";
 		$ec = isset($_POST["DOC_EC_FLAG"]) ? $_POST["DOC_EC_FLAG"] : "";
@@ -1353,6 +1356,7 @@ class Recruit extends CI_Controller {
 		$ms = isset($_POST["DOC_MS_FLAG"]) ? $_POST["DOC_MS_FLAG"] : "";
 
 		$updateArr = array(
+			"DOC_STATUS" => $status,
 			"DOC_EQ_FLAG" => $eq,
 			"DOC_CL_FLAG" => $cl,
 			"DOC_EC_FLAG" => $ec,
@@ -1375,6 +1379,48 @@ class Recruit extends CI_Controller {
 		}
 	}
 
+	public function DocumentDown($doc_seq, $flag){
+		$doc_info = $this->UserModel->getUserDocumentByDocSeq($doc_seq);
+		if($flag == "eq"){
+			$path = $doc_info->DOC_EQ;
+			$name = $doc_info->DOC_EQ_FILE_NAME;
+		}else if($flag == "cl"){
+			$path = $doc_info->DOC_CL;
+			$name = $doc_info->DOC_CL_FILE_NAME;
+		}else if($flag == "ec"){
+			$path = $doc_info->DOC_EC;	
+			$name = $doc_info->DOC_EC_FILE_NAME;
+		}else if($flag == "pp"){
+			$path = $doc_info->DOC_PASSPORT;
+			$name = $doc_info->DOC_PASSPORT_FILE_NAME;
+		}else if($flag == "sc"){
+			$path = $doc_info->DOC_SC;
+			$name = $doc_info->DOC_SC_FILE_NAME;
+		}else if($flag == "ph"){
+			$path = $doc_info->DOC_PHOTO;
+			$name = $doc_info->DOC_PHOTO_FILE_NAME;
+		}else if($flag == "rod"){
+			$path = $doc_info->DOC_ROD;
+			$name = $doc_info->DOC_ROD_FILE_NAME;
+		}else if($flag == "tran"){
+			$path = $doc_info->DOC_TRANSCRIPT;
+			$name = $doc_info->DOC_TRANSCRIPT_FILE_NAME;
+		}else if($flag == "rec"){
+			$path = $doc_info->DOC_RECOMMENDATION;
+			$name = $doc_info->DOC_RECOMMENDATION_FILE_NAME;
+		}else if($flag == "rec2"){
+			$path = $doc_info->DOC_RECOMMENDATION2;
+			$name = $doc_info->DOC_RECOMMENDATION2_FILE_NAME;
+		}else if($flag == "ms"){
+			$path = $doc_info->DOC_MS;
+			$name = $doc_info->DOC_MS_FILE_NAME;
+		}
+		
+        $data = file_get_contents($_SERVER['DOCUMENT_ROOT'].$path);
+        // force_download($atach_info->FILE_NAME, $data);
+        force_download(mb_convert_encoding($name, 'euc-kr', 'utf-8'), $data);
+    }
+
 	public function recruit_certificate_list(){
 		$limit = 15;
 		$nowpage = "";
@@ -1385,31 +1431,34 @@ class Recruit extends CI_Controller {
 			$nowpage = $_GET["per_page"];
 		}
 
-		$search_text = isset($_GET["resume_search_text"]) ? $_GET["resume_search_text"] : "";
-		$search_option = isset($_GET["resume_search_option"]) ? $_GET["resume_search_option"] : "";
+		$search_text = isset($_GET["document_search_text"]) ? $_GET["document_search_text"] : "";
+		$search_option = isset($_GET["document_search_option"]) ? $_GET["document_search_option"] : "";
+		$user_level = isset($_GET["user_level"]) ? $_GET["user_level"] : "";
+
 
 		$wheresql = array(
 						"search_text" => $search_text,
 						"search_option" => $search_option,
+						"user_level" => $user_level,
 						"start" => $start,
 						"limit" => $limit
 					);
 		// print_r($searchTxt);
-		$lists = $this->RecruitModel->getRecruitResumeList($wheresql);
+		$lists = $this->UserModel->getUserWithCertifiCate($wheresql);
 		// $lists = array();
 		// echo $this->db->last_query();
-		$listCount = $this->RecruitModel->getRecruitResumeListCount($wheresql);
-		$listCountAll = $this->RecruitModel->getRecruitResumeListCountAll();
-		// $listCount= array();
+		$listCount = $this->UserModel->getUserWithCertificatetCount($wheresql);
+		$listCountAll = $this->UserModel->getUserWithCertificateCountAll($wheresql);
+
 		if ($nowpage != ""){
 			$pagenum = $listCount-(($nowpage-1)*15);
 		}else{
 			$pagenum = $listCount;
 		}
 
-		$queryString = "?search_option=".$search_option."&search_text=".$search_text;
+		$queryString = "?search_option=".$search_option."&search_text=".$search_text."&user_level=".$user_level;
 
-		$pagination = $this->customclass->pagenavi("/admin/recurit/recruit_resume_list".$queryString, $listCount, 15, 5, $nowpage);
+		$pagination = $this->customclass->pagenavi("/admin/recruit/recruit_certificate_list".$queryString, $listCount, 15, 5, $nowpage);
 		//print_r($listCount);
 		$data = array(
 					"lists" => $lists,
@@ -1420,10 +1469,82 @@ class Recruit extends CI_Controller {
 					"start" => $start,
 					"limit" => $limit,
 					"search_text" => $search_text,
-					"search_option" => $search_option
+					"search_option" => $search_option,
+					"user_level" => $user_level,
 					);
 
-		$this->load->view("./admin/recruit/recruit-document_list", $data);
+			$this->load->view("./admin/recruit/recruit-certificate_list", $data);
+		}
+	public function uploadUserCertificate(){
+		$user_seq = isset($_POST["USER_SEQ"]) ? $_POST["USER_SEQ"] : "";
+
+		$cert_info = $this->UserModel->getUserCertificate($user_seq);
+
+		if($cert_info){
+			$cert_seq = $cert_info->CERT_SEQ;
+		}else{
+			$insertArr = array(
+				"USER_SEQ" => $user_seq
+			);
+			$this->UserModel->createUserCertificate($insertArr);
+			$cert_seq = $this->db->insert_id();
+		}
+
+		$config["upload_path"] = $_SERVER['DOCUMENT_ROOT'] . "/upload/certificate/";
+		$config["allowed_types"] = '*';
+		$new_name = "cert_". $user_seq . "_" . date("YmdHis");
+		$config["file_name"] = $new_name;
+		$this->load->library("upload", $config);
+
+		$this->upload->initialize($config);
+
+		$certfile = "";
+		$certfile_path = "";
+		if (isset($_FILES['certificate']['name'])) {
+			if (0 < $_FILES['certificate']['error']) {
+				echo 'Error during file upload' . $_FILES['certificate']['error'];
+			} else {
+				if (file_exists('upload/certificate/' . $_FILES['certificate']['name'])) {
+					echo 'File already exists : upload/certificate/' . $_FILES['certificate']['name'];
+				} else {
+					$this->load->library('upload', $config);
+					if (!$this->upload->do_upload('certificate')) {
+						echo $this->upload->display_errors();
+					} else {
+						//echo 'File successfully uploaded : uploads/' . $_FILES['post_thumbnail']['name'];
+						$certfile = $_FILES['certificate']['name'];
+						$certfile_path = "/upload/certificate/".$this->upload->data("file_name");
+					}
+				}
+			}
+		} else {
+			echo 'Please choose a file';
+		}
+
+		$updateArr = array(
+						'CERT_PATH' => $certfile_path,
+						"CERT_NAME" => $certfile,
+						"CERT_REG_DATE" => date("YmdHis")
+					);
+
+		$result = $this->UserModel->updateUserCertificate($updateArr, $cert_seq);
+		
+
+		if ($result){
+			echo json_encode(array("code" => "200", "msg" => "저장되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "문제가 생겼습니다. 관리자에게 문의해주세요."));
+		}
 	}
+
+	public function CertificateDown($cert_seq){
+		$cert_info = $this->UserModel->getUserCertificateByCertSeq($cert_seq);
+        $data = file_get_contents($_SERVER['DOCUMENT_ROOT'].$cert_info->CERT_PATH);
+        // force_download($atach_info->FILE_NAME, $data);
+        force_download(mb_convert_encoding($cert_info->CERT_NAME, 'euc-kr', 'utf-8'), $data);
+    }
+
+
+	
 }
 

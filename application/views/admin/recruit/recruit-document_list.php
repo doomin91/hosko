@@ -63,14 +63,13 @@
                                                 <option value="8" <?php if($user_level == 8) echo "selected"; ?>>파기회원</option>
                                                 <option value="9" <?php if($user_level == 9) echo "selected"; ?>>탈퇴회원</option>
                                             </select>
-                                            <!-- <div class="col-sm-4">
-                                                <select name="ctg" class="chosen-select chosen-transparent chosen-single form-control documentSearchUserLevel common_select" >
-                                                    <option value="" <?php if($user_level == "") echo "selected"; ?>>컨펌상태(전체)</option>
-                                                    <option value="1" <?php if($user_level == 1) echo "selected"; ?>>미확인</option>
-                                                    <option value="2" <?php if($user_level == 2) echo "selected"; ?>>반송</option>
-                                                    <option value="2" <?php if($user_level == 2) echo "selected"; ?>>완료</option>
-                                                </select>
-                                            </div> -->
+                                            <select name="doc_status" class="documentSearchUserLevel document_search_option" >
+                                                <option value="" <?php if($doc_status == "") echo "selected"; ?>>컨펌상태(전체)</option>
+                                                <option value="0" <?php if($doc_status == 1) echo "selected"; ?>>미확인</option>
+                                                <option value="-1" <?php if($doc_status == -1) echo "selected"; ?>>반송</option>
+                                                <option value="1" <?php if($doc_status == 2) echo "selected"; ?>>완료</option>
+                                            </select>
+                                            
                                         </td>
 
 									</tr>
@@ -137,6 +136,7 @@
 									<th class="text-center">회원등급</th>
 									<th class="text-center">최근 제출일</th>
                                     <th class="text-center">최근 확인일</th>
+                                    <th class="text-center">컨펌상태</th>
 									<th class="text-center">서류확인</th>
 									
 								</tr>
@@ -174,6 +174,15 @@
                                     </td>
                                     <td class="text-center"><?php echo $list->DOC_LAST_UPDATE_DATE ?></td>
                                     <td class="text-center"><?php echo $list->DOC_LAST_CHECK_DATE ?></td>
+                                    <td class="text-center">
+                                        <?php if($list->DOC_STATUS == 0): ?>
+                                            미확인
+                                        <?php elseif($list->DOC_STATUS == 1): ?>
+                                            OK
+                                        <?php elseif($list->DOC_STATUS == -1): ?>
+                                            반송
+                                        <?php endif ?>
+                                    </td>
                                     <td class="text-center"><input type="button" class="btn btn-xs btn-primary showDocument" data-doc_seq="<?php echo $list->DOC_SEQ?>" value="서류보기"></td>
 								</tr>
 						<?php
@@ -332,7 +341,7 @@
                                 console.log(tbody);
                                 var html = "<tr>" +
                                                 "<th>- 영문에세이</td>" +
-                                                "<td>"+document["DOC_EQ_FILE_NAME"]+"</td>" +
+                                                "<td><a href=\"/admin/recruit/DocumentDown/" + document['DOC_SEQ'] + "/eq\">" +document["DOC_EQ_FILE_NAME"] + "</a></td>" +
                                                 "<td>"+
                                                     "<select id=\"DOC_EQ_FLAG\" class=\"document_search_option\">"+
                                                         "<option value=\"-1\" ";
@@ -363,7 +372,7 @@
                                             "</tr>" +
                                            " <tr>" +
                                                 "<th>- 영문커버레터</td>" +
-                                               " <td>"+document["DOC_CL_FILE_NAME"]+"</td>" +
+                                                "<td><a href=\"/admin/recruit/DocumentDown/" + document['DOC_SEQ'] + "/cl\">" +document["DOC_CL_FILE_NAME"] + "</a></td>" +
                                                "<td>"+
                                                     "<select id=\"DOC_CL_FLAG\" class=\"document_search_option\">"+
                                                         "<option value=\"-1\" ";
@@ -394,7 +403,7 @@
                                             "</tr>" +
                                             "<tr>" +
                                                 "<th>- 비상연락처</td>" +
-                                                "<td>"+document["DOC_EC_FILE_NAME"]+"</td>" +
+                                                "<td><a href=\"/admin/recruit/DocumentDown/" + document['DOC_SEQ'] + "/ec\">" +document["DOC_EC_FILE_NAME"] + "</a></td>" +
                                                 "<td>"+
                                                     "<select id=\"DOC_EC_FLAG\" class=\"document_search_option\">"+
                                                         "<option value=\"-1\" ";
@@ -425,7 +434,7 @@
                                             "</tr>" +
                                             "<tr>" +
                                                 "<th>- 여권전면상하사본</td>"+
-                                                "<td>"+document["DOC_PASSPORT_FILE_NAME"]+"</td>"+
+                                                "<td><a href=\"/admin/recruit/DocumentDown/" + document['DOC_SEQ'] + "/pp\">" +document["DOC_PASSPORT_FILE_NAME"] + "</a></td>" +
                                                 "<td>"+
                                                     "<select id=\"DOC_PASSPORT_FLAG\" class=\"document_search_option\">"+
                                                         "<option value=\"-1\" ";
@@ -456,7 +465,7 @@
                                             "</tr>"+
                                             "<tr>"+
                                                 "<th>- 학생증 사본</td>"+
-                                                "<td>"+document["DOC_SC_FILE_NAME"]+"</td>"+
+                                                "<td><a href=\"/admin/recruit/DocumentDown/" + document['DOC_SEQ'] + "/sc\">" +document["DOC_SC_FILE_NAME"] + "</a></td>" +
                                                 "<td>"+
                                                     "<select id=\"DOC_SC_FLAG\" class=\"document_search_option\">"+
                                                         "<option value=\"-1\" ";
@@ -487,7 +496,7 @@
                                             "</tr>"+
                                             "<tr>"+
                                                " <th>- 비자용 사진</td>"+
-                                                "<td>"+document["DOC_PHOTO_FILE_NAME"]+"</td>"+
+                                               "<td><a href=\"/admin/recruit/DocumentDown/" + document['DOC_SEQ'] + "/ph\">" +document["DOC_PHOTO_FILE_NAME"] + "</a></td>" +
                                                 "<td>"+
                                                     "<select id=\"DOC_PHOTO_FLAG\" class=\"document_search_option\">"+
                                                         "<option value=\"-1\" ";
@@ -518,7 +527,7 @@
                                             "</tr>"+
                                             "<tr>"+
                                                 "<th>- 영문 재학/졸업 증명서</td>"+
-                                                "<td>"+document["DOC_ROD_FILE_NAME"]+"</td>"+
+                                                "<td><a href=\"/admin/recruit/DocumentDown/" + document['DOC_SEQ'] + "/rod\">" +document["DOC_ROD_FILE_NAME"] + "</a></td>" +
                                                 "<td>"+
                                                     "<select id=\"DOC_ROD_FLAG\" class=\"document_search_option\">"+
                                                         "<option value=\"-1\" ";
@@ -549,7 +558,7 @@
                                             "</tr>"+
                                             "<tr>"+
                                                 "<th>- 영문 성적 증명서</td>"+
-                                                "<td>"+document["DOC_TRANSCRIPT_FILE_NAME"]+"</td>"+
+                                                "<td><a href=\"/admin/recruit/DocumentDown/" + document['DOC_SEQ'] + "/tran\">" +document["DOC_TRANSCRIPT_FILE_NAME"] + "</a></td>" +
                                                 "<td>"+
                                                     "<select id=\"DOC_TRANSCRIPT_FLAG\" class=\"document_search_option\">"+
                                                         "<option value=\"-1\" ";
@@ -580,7 +589,7 @@
                                             "</tr>"+
                                             "<tr>"+
                                                 "<th>- 영문 추천서1</td>"+
-                                                "<td>"+document["DOC_RECOMMENDATION_FILE_NAME"]+"</td>"+
+                                                "<td><a href=\"/admin/recruit/DocumentDown/" + document['DOC_SEQ'] + "/rec\">" +document["DOC_RECOMMENDATION_FILE_NAME"] + "</a></td>" +
                                                 "<td>"+
                                                     "<select id=\"DOC_RECOMMENDATION_FLAG\" class=\"document_search_option\">"+
                                                         "<option value=\"-1\" ";
@@ -611,7 +620,7 @@
                                             "</tr>"+
                                             "<tr>"+
                                                 "<th>- 영문 추천서2</td>"+
-                                                "<td>"+document["DOC_RECOMMENDATION2_FILE_NAME"]+"</td>"+
+                                                "<td><a href=\"/admin/recruit/DocumentDown/" + document['DOC_SEQ'] + "/rec2\">" +document["DOC_RECOMMENDATION2_FILE_NAME"] + "</a></td>" +
                                                 "<td>"+
                                                     "<select id=\"DOC_RECOMMENDATION2_FLAG\" class=\"document_search_option\">"+
                                                         "<option value=\"-1\" ";
@@ -642,7 +651,7 @@
                                             "</tr>"+
                                             "<tr>"+
                                                 "<th>- 영문 건강진단서</td>"+
-                                                "<td>"+document["DOC_MS_FILE_NAME"]+"</td>"+
+                                                "<td><a href=\"/admin/recruit/DocumentDown/" + document['DOC_SEQ'] + "/ms\">" +document["DOC_MS_FILE_NAME"] + "</a></td>" +
                                                 "<td>"+
                                                     "<select id=\"DOC_MS_FLAG\" class=\"document_search_option\">"+
                                                         "<option value=\"-1\" ";
@@ -665,6 +674,31 @@
 
                                     html +=             "<option value=\"2\" ";
                                                         if(document["DOC_MS_FLAG"] == 2){
+                                                            html += "selected"
+                                                        }
+                                    html +=             ">OK</option>";
+                                    html +=         "</select>"+
+                                                "</td>" +
+                                            "</tr>"+
+                                            "<tr>"+
+                                                // "<th></td>"+
+                                                "<td colspan=2 style='text-align: center; font-size: 20px; font-weight: 700'>"+"컨펌 상태"+"</td>"+
+                                                "<td>"+
+                                                    "<select id=\"DOC_STATUS\" class=\"document_search_option\">"+
+                                                        "<option value=\"-1\" ";
+                                                        if(document["DOC_STATUS"] == -1){
+                                                            html += "selected"
+                                                        }
+                                    html +=             ">반송</option>";
+
+                                    html +=             "<option value=\"0\" ";
+                                                        if(document["DOC_STATUS"] == 0){
+                                                            html += "selected"
+                                                        }
+                                    html +=             ">미확인</option>";
+                                    
+                                    html +=             "<option value=\"1\" ";
+                                                        if(document["DOC_STATUS"] == 1){
                                                             html += "selected"
                                                         }
                                     html +=             ">OK</option>";
@@ -716,9 +750,9 @@
                             console.log(resultMsg.code);
                             if(resultMsg.code == 200){
                                 alert(resultMsg.msg);
-                                console.log(resultMsg.msg);
-                                
+                                console.log(resultMsg.msg);                                    
                                 $("#modalDocument").modal("hide");
+                                location.reload();
                             }else{
                                 alert(resultMsg.msg);
                                 console.log(resultMsg.msg);

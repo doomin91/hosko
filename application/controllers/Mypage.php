@@ -690,7 +690,7 @@ class Mypage extends CI_Controller {
 
 		$config["upload_path"] = $_SERVER['DOCUMENT_ROOT'] . "/upload/document/";
 		$config["allowed_types"] = '*';
-		$new_name = "doc_". $user_seq . $type . date("YmdHis");
+		$new_name = "doc_". $user_seq . $type . "_" . date("YmdHis");
 		$config["file_name"] = $new_name;
 		$this->load->library("upload", $config);
 
@@ -737,7 +737,13 @@ class Mypage extends CI_Controller {
 			echo json_encode(array("code" => "202", "msg" => "서류 제출이 중 문제가 생겼습니다.\n 관리자에게 문의해주세요."));
 		}
 
-
 	}
+
+	public function CertificateDown($cert_seq){
+		$cert_info = $this->UserModel->getUserCertificateByCertSeq($cert_seq);
+        $data = file_get_contents($_SERVER['DOCUMENT_ROOT'].$cert_info->CERT_PATH);
+        // force_download($atach_info->FILE_NAME, $data);
+        force_download(mb_convert_encoding($cert_info->CERT_NAME, 'euc-kr', 'utf-8'), $data);
+    }
 
 }
