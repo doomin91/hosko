@@ -75,8 +75,9 @@ class Recruit extends CI_Controller {
         }
 
         $queryString = "&search_field=". $searchField. "&search_string=".$searchString;
-        $pagination = $this->customclass->front_pagenavi("/recruit?ctg=".$CATEGORY.$queryString, $REC_LIST_COUNT, $limit, 3, $nowpage);
-
+        // $pagination = $this->customclass->pagenavi("/admin/recruit/recruit_certificate_list".$queryString, $listCount, 15, 5, $nowpage);
+        $pagination = $this->customclass->front_pagenavi("/recruit?ctg=".$CATEGORY.$queryString, $REC_LIST_COUNT, $limit, 5, $nowpage);
+        print_r($pagination);
         $DATA["CATEGORY"] = $CATEGORY;
         $DATA["REC_LIST"] = $REC_LIST;
         $DATA["REC_LIST_COUNT"] = $REC_LIST_COUNT;

@@ -35,7 +35,7 @@ class RecruitModel extends CI_Model{
         $this->db->group_by("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_RECRUIT.REC_TITLE, TBL_HOSKO_RECRUIT.REC_PAY, TBL_HOSKO_RECRUIT.REC_STATUS");
         $this->db->order_by("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ");
         $this->db->select("TBL_HOSKO_RECRUIT_APPLY.*, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_RECRUIT.REC_TITLE, TBL_HOSKO_RECRUIT.REC_PAY, TBL_HOSKO_RECRUIT.REC_STATUS");
-        $this->db->limit(20);
+        $this->db->limit($whereArr["limit"], $whereArr["start"]);
         return $this->db->get("TBL_HOSKO_RECRUIT_APPLY")->result();
     }
 
@@ -136,7 +136,7 @@ class RecruitModel extends CI_Model{
         $this->db->group_by("TBL_HOSKO_RECRUIT.REC_SEQ");
         $this->db->order_by("TBL_HOSKO_RECRUIT.REC_DISPLAY_ORDER");
         $this->db->select("TBL_HOSKO_RECRUIT.*");
-        $this->db->limit(20);
+        $this->db->limit($whereArr["limit"], $whereArr["start"]);
         return $this->db->get("TBL_HOSKO_RECRUIT")->result();
     }
 
@@ -234,7 +234,7 @@ class RecruitModel extends CI_Model{
         $this->db->group_by("TBL_HOSKO_USER_RESUME.RESUME_SEQ");
         $this->db->order_by("TBL_HOSKO_USER_RESUME.RESUME_SEQ");
         $this->db->select("TBL_HOSKO_USER_RESUME.*, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_USER_RESUME.RESUME_TITLE");
-        $this->db->limit(15);
+        $this->db->limit($whereArr["limit"], $whereArr["start"]);
         return $this->db->get("TBL_HOSKO_USER_RESUME")->result();
     }
 
@@ -365,7 +365,7 @@ class RecruitModel extends CI_Model{
         $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", 1);
         $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
 
-        $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.USER_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ", "LEFT");
 
         $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_ADMIN.ADMIN_NAME AS ADMIN_USER_NAME");
         
@@ -393,11 +393,10 @@ class RecruitModel extends CI_Model{
         $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", 1);
         $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
 
-        $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.USER_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ", "LEFT");
 
         $this->db->select("TBL_HOSKO_RECRUIT.REC_SEQ");
         $this->db->distinct();
-        $this->db->limit($whereArr["limit"], $whereArr["start"]);
         $this->db->from("TBL_HOSKO_RECRUIT");
         return $this->db->count_All_results();
     }
@@ -419,7 +418,7 @@ class RecruitModel extends CI_Model{
         $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", 2);
         $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
 
-        $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.USER_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ", "LEFT");
 
         $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_ADMIN.ADMIN_NAME AS ADMIN_USER_NAME", "LEFT");
         
@@ -447,11 +446,10 @@ class RecruitModel extends CI_Model{
         $this->db->where("TBL_HOSKO_RECRUIT.REC_CONTENTS_CATEGORY", 2);
         $this->db->where("TBL_HOSKO_RECRUIT.REC_DEL_YN", 'N');
 
-        $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.USER_SEQ", "LEFT");
+        $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ", "LEFT");
 
         $this->db->select("TBL_HOSKO_RECRUIT.REC_SEQ");
         $this->db->distinct();
-        $this->db->limit($whereArr["limit"], $whereArr["start"]);
         $this->db->from("TBL_HOSKO_RECRUIT");
         return $this->db->count_All_results();
     }

@@ -607,7 +607,7 @@ class UserModel extends CI_Model{
 		$this->db->group_by("TBL_HOSKO_USER.USER_SEQ, TBL_HOSKO_USER_DOCUMENT.DOC_SEQ");
         $this->db->order_by("TBL_HOSKO_USER.USER_SEQ");
         $this->db->select("TBL_HOSKO_USER.*, TBL_HOSKO_USER_DOCUMENT.*");
-        $this->db->limit(15);
+        $this->db->limit($whereArr["limit"], $whereArr["start"]);
         return $this->db->get("TBL_HOSKO_USER")->result();
 	}
 
@@ -680,7 +680,7 @@ class UserModel extends CI_Model{
 		$this->db->group_by("TBL_HOSKO_USER.USER_SEQ, TBL_HOSKO_USER_CERTIFICATE.CERT_SEQ");
         $this->db->order_by("TBL_HOSKO_USER.USER_SEQ");
         $this->db->select("TBL_HOSKO_USER.USER_SEQ AS USER_USER_SEQ, TBL_HOSKO_USER.*, TBL_HOSKO_USER_CERTIFICATE.USER_SEQ AS CERT_USER_SEQ, TBL_HOSKO_USER_CERTIFICATE.*");
-        $this->db->limit(15);
+        $this->db->limit($whereArr["limit"], $whereArr["start"]);
         return $this->db->get("TBL_HOSKO_USER")->result();
 	}
 
