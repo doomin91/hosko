@@ -54,59 +54,47 @@
 										<th class="col-sm-2">컨텐츠분류</th>
                                     
                                         <td class="col-sm-10">
-                                            <div class="col-sm-4">
-                                            <select name="ctg" class="chosen-select chosen-transparent chosen-single form-control abroad_contents_first_category common_select search_field" >
+                                            <select name="ctg" class="abroad_contents_first_category  common_select search_field" >
                                                 <option value="" <?php if($ctg == "") echo "selected"; ?>>:: 대분류 ::</option>
                                                 <option value="1" <?php if($ctg == 1) echo "selected"; ?>>인턴쉽</option>
                                                 <option value="2" <?php if($ctg == 2) echo "selected"; ?>>채용&헤드헌팅</option>
                                                 <option value="3" <?php if($ctg == 3) echo "selected"; ?>>유학</option>
                                             </select>
                                             
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <select name="ctg2" class="chosen-select chosen-transparent form-control abroad_contents_second_category common_select search_field">
-                                                    <option value="" selected>:: 중분류 ::</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <select name="ctg3" class="chosen-select chosen-transparent form-control abroad_contents_third_category common_select search_field">
-                                                    <option value="" selected>:: 소분류 ::</option>
-                                                </select>
-                                            </div>
+                                            <select name="ctg2" class="abroad_contents_second_category common_select search_field">
+                                                <option value="" selected>:: 중분류 ::</option>
+                                            </select>
+                                            <select name="ctg3" class="abroad_contents_third_category common_select search_field">
+                                                <option value="" selected>:: 소분류 ::</option>
+                                            </select>
+                                            
                                         </td>
 
 									</tr>
 									<tr>
                                         <th class="col-sm-2">검색조건</th>
                                         <td class="col-sm-10">
-                                            <div class="col-sm-3">
-                                                <select name="searchOpt" class="chosen-select chosen-transparent form-control abroad_contents_search_option common_select">
-                                                    <option value="name" <?php if($searchOpt == "name") echo "selected"; ?>>컨텐츠명</option>
-                                                    <option value="code" <?php if($searchOpt == "code") echo "selected"; ?>>컨텐츠코드</option>
-                                                    <option value="company" <?php if($searchOpt == "company") echo "selected"; ?>>제조사</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-5">
-                                                <input type="text" class="form-control" id="abroad_contents_search_text" name="searchTxt" placeholder="검색어를 입력해주세요" value="<?php echo $searchTxt; ?>">
-                                            </div>
+                                            <select name="searchOpt" class="abroad_contents_search_option common_select">
+                                                <option value="name" <?php if($searchOpt == "name") echo "selected"; ?>>컨텐츠명</option>
+                                                <option value="code" <?php if($searchOpt == "code") echo "selected"; ?>>컨텐츠코드</option>
+                                                <option value="company" <?php if($searchOpt == "company") echo "selected"; ?>>제조사</option>
+                                            </select>
+                                            <input type="text" id="abroad_contents_search_text" name="searchTxt" placeholder="검색어를 입력해주세요" value="<?php echo $searchTxt; ?>">
+                                            
                                         </td>
 									</tr>
                                     <tr>
                                         <th class="col-sm-2">그룹</th>
 										<td class="col-sm-10">
-                                            <div class="col-sm-3">
-                                                <select name="searchGrp" class="chosen-select chosen-transparent form-control abroad_group_option common_select search_field">
-                                                    <option value=""  <?php if($searchGrp == "") echo "selected"; ?>>:: 그룹선택 ::</option>
-                                                    <option value="new" <?php if($searchGrp == "new") echo "selected"; ?>>신컨텐츠</option>
-                                                    <option value="best" <?php if($searchGrp == "best") echo "selected"; ?>>베스트컨텐츠</option>
-                                                    <option value="popular" <?php if($searchGrp == "popular") echo "selected"; ?>>인기컨텐츠</option>
-                                                    <option value="recommend" <?php if($searchGrp == "recommend") echo "selected"; ?>>추천컨텐츠</option>
-                                                    <option value="sale" <?php if($searchGrp == "sale") echo "selected"; ?>>세일컨텐츠</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <input type="submit" class="btn btn-sm btn-primary" id="abroad_search" value="검색"></input>
-                                            </div>
+                                            <select name="searchGrp" class="abroad_group_option common_select search_field">
+                                                <option value=""  <?php if($searchGrp == "") echo "selected"; ?>>:: 그룹선택 ::</option>
+                                                <option value="new" <?php if($searchGrp == "new") echo "selected"; ?>>신컨텐츠</option>
+                                                <option value="best" <?php if($searchGrp == "best") echo "selected"; ?>>베스트컨텐츠</option>
+                                                <option value="popular" <?php if($searchGrp == "popular") echo "selected"; ?>>인기컨텐츠</option>
+                                                <option value="recommend" <?php if($searchGrp == "recommend") echo "selected"; ?>>추천컨텐츠</option>
+                                                <option value="sale" <?php if($searchGrp == "sale") echo "selected"; ?>>세일컨텐츠</option>
+                                            </select>
+                                            <input type="submit" class="btn btn-sm btn-primary" id="abroad_search" value="검색"></input>
 										</td>
 									</tr>
 								</tbody>
@@ -124,7 +112,7 @@
 										<th class="col-sm-2">쿠폰적용</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-3">
-                                                <select name="coupon" class="form-control common_select search_field">
+                                                <select name="coupon" class="common_select search_field">
                                                     <option value=""  <?php if($coupon == "") echo "selected"; ?>>:: 선택 ::</option>
                                                     <option value="Y" <?php if($coupon == "Y") echo "selected"; ?>>예</option>
                                                     <option value="N" <?php if($coupon == "N") echo "selected"; ?>>아니오</option>
@@ -136,7 +124,7 @@
 										<th class="col-sm-2">진열여부</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-3">
-                                                <select name="display" class="chosen-select chosen-transparent form-control abroad_display_option common_select search_field">
+                                                <select name="display" class="abroad_display_option common_select search_field">
                                                     <option value=""  <?php if($display == "") echo "selected"; ?>>:: 선택 ::</option>
                                                     <option value="Y" <?php if($display == "Y") echo "selected"; ?>>진열함</option>
                                                     <option value="N" <?php if($display == "N") echo "selected"; ?>>진열안함</option>
@@ -207,7 +195,11 @@
 								<tr>
 									<td class="text-center"><input type="checkbox" name="abroad_select" value=<?php echo $list->REC_SEQ?>></td>
 									<td class="text-center"><?php echo $list->REC_SEQ ?></td>
-                                    <td class="text-center"><img src="<?php echo $list->REC_THUMBNAIL_R ?>"></td>
+                                    <td class="text-center">
+                                        <?php if($list->REC_THUMBNAIL_R): ?>
+                                            <img src="<?php echo $list->REC_THUMBNAIL_R ?>">
+                                        <?php endif?>
+                                    </td>
                                     <td class="text-center"><a href="/admin/recruit/recruit_abroad_edit/<?php echo $list->REC_SEQ ?>"><?php echo $list->REC_TITLE ?></a></td>
                                     <td class="text-center"><?php echo $list->REC_PAY ?></td>
                                     <td class="text-center"><?php echo $list->REC_COUNT ?></td>
@@ -673,17 +665,27 @@
     </script>
     <style>
         .common_select{
-            min-height: 30px;
-            width: 100%;
-            font-size: 12px !important;
+            padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
         }
         #abroad_contents_search_text{
-            min-height: 30px;
-            font-size: 12px !important;
-            margin-left: -20px !important;
+            padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
         }
         #abroad_search{
-            margin-left: -20px !important;
+            padding: 4px 10px;
         }
 
         #apply_search{
