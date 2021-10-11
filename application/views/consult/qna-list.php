@@ -54,10 +54,15 @@
                                                 for ($i=0; $i<$list->QNA_DEPTH; $i++){
                                                     $replyStr .= "<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">&nbsp;";
                                                 }
+                                                $q_user_seq = $this->customclass->getQuestionUserSeq($list->QNA_GROUP);
                                     ?>
                                         <div class="tblBot-item">
                                             <span class="col_num"><?php echo $pagenum; ?></span>
+                                        <?php if (($this->session->userdata("USER_SEQ") == $list->QNA_USER_SEQ) || ($this->session->userdata("USER_SEQ") == $q_user_seq)){ ?>
                                             <span class="col_tit"><?php echo $replyStr; ?><a href="/consult/qnaView/<?php echo $list->QNA_SEQ; ?>"><?php echo $list->QNA_SUBJECT; ?></a></span>
+                                        <?php }else{ ?>    
+                                            <span class="col_tit"><?php echo $replyStr; ?><a href="javascript:alert('질문 작성자만 확인 가능합니다.');"><?php echo $list->QNA_SUBJECT; ?></a></span>
+                                        <?php } ?>
                                             <span class="col_name"><?php echo $list->QNA_USER_NAME; ?></span>
                                             <span class="col_date"><?php echo substr($list->QNA_REG_DATE, 0, 10); ?></span>                                            
                                         </div>

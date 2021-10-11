@@ -234,4 +234,12 @@ class Customclass{
         return $result;
     }
     
+    public function getQuestionUserSeq($group_key){
+        $this->CI->load->model("ConsultModel");
+
+        $result = $this->CI->ConsultModel->getQuestionInfo($group_key);
+
+        return $result->QNA_USER_SEQ;
+
+    }
 }

@@ -70,6 +70,7 @@
 				<i class="fa fa-caret-right"></i> 관리자 설정
 			  </a>
 			</li>
+			<!--
 			<li>
 			  <a href="/administrator/en/brochure">
 				<i class="fa fa-caret-right"></i> 접속통계
@@ -80,6 +81,7 @@
 				<i class="fa fa-caret-right"></i> 회원접속 현황
 			  </a>
 			</li>
+			-->
 		  </ul>
 		</li>
 
@@ -196,11 +198,11 @@
 				  </a>
 				</li>
 				<li>
-				  <a href="#">
+				  <a href="/admin/recruit/recruit_document_list">
 					<i class="fa fa-caret-right"></i> 수속서류관리
 				  </a>
 				</li>
-				<li>
+				<!-- <li>
 				  <a href="#">
 					<i class="fa fa-caret-right"></i> 입금 및 환불
 				  </a>
@@ -209,10 +211,10 @@
 				  <a href="#">
 					<i class="fa fa-caret-right"></i> 수속포기자
 				  </a>
-				</li>
+				</li> -->
 				<li>
-					<a href="#">
-						<i class="fa fa-caret-right"></i> 출굴 및 증명서
+					<a href="/admin/recruit/recruit_certificate_list">
+						<i class="fa fa-caret-right"></i> 출국 및 증명서
 					</a>
 				</li>
 			</ul>

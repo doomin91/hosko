@@ -53,7 +53,12 @@
 
                                 <div class="">
                                     <div class="col-md-12 text-center resume_img_frame">
-                                        <img src="<?php echo $RESUME_INFO->RESUME_USER_PHOTO?>">
+                                        <?php if($RESUME_INFO->RESUME_USER_PHOTO): ?>
+                                            <img src="<?php echo $RESUME_INFO->RESUME_USER_PHOTO?>">
+                                        <?php else: ?>
+                                            <img src="/upload/user_default.jpg">
+                                        <?php endif ?>
+                                        
                                     </div>
                                     
                                     <div class="input-group text-center col-sm-12">

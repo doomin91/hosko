@@ -52,27 +52,24 @@
                         <!-- tile body -->
                         
 						<div class="tile color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyTopViewTable">
+							<table class="table datatable table-custom applyTopViewTable">
 								<tbody>
 									<tr>
 										<th class="col-sm-2">컨텐츠분류</th>
                                         <td class="col-sm-10">
-                                            <div class="col-sm-2 ctg_select_form">
-                                                <select name="ctg" class="chosen-select chosen-transparent chosen-single form-control ctg_select search_field" >
+                                            <div class="col-sm-6">
+                                                <select name="ctg" class="ctg_select common_select" >
                                                     <option value="" >:: 대분류 ::</option>
                                                     <option value="1" >인턴쉽</option>
                                                     <option value="2" >채용&헤드헌팅</option>
                                                     <option value="3" >유학</option>
                                                 </select>
                                                 
-                                                </div>
-                                            <div class="col-sm-2 ctg_select_form ">
-                                                <select name="ctg2" class="chosen-select chosen-transparent form-control ctg_select search_field">
+                                                <select name="ctg2" class="ctg_select common_select">
                                                     <option value="" selected>:: 중분류 ::</option>
                                                 </select>
-                                            </div>
-                                            <div class="col-sm-2 ctg_select_form">
-                                                <select name="ctg3" class="chosen-select chosen-transparent form-control ctg_select search_field">
+
+                                                <select name="ctg3" class="ctg_select common_select">
                                                     <option value="" selected>:: 소분류 ::</option>
                                                 </select>
                                             </div>
@@ -81,8 +78,8 @@
 									<tr>
                                         <th class="col-sm-2">컨텐츠명</th>
                                         <td class="col-sm-10">
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" id="abroad_contents_title" name="abroad_contents_title" value="">
+                                            <div class="col-sm-4">
+                                                <input type="text" class="common_input wid100p" id="abroad_contents_title" name="abroad_contents_title" value="">
                                             </div></td>
 									</tr>
                                     <tr>
@@ -97,14 +94,14 @@
                                         <th class="col-sm-2">조회수</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-2">
-                                                <input type="text" class="form-control" id="abroad_hit_count" name="abroad_hit_count" value="0">
+                                                <input type="text" class="common_input" id="abroad_hit_count" name="abroad_hit_count" value="0">
                                             </div></td>
 									</tr>
                                     <tr>
                                         <th class="col-sm-2">담당</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-2">
-                                                <input type="text" class="form-control" id="abroad_manager" name="abroad_manager" value="<?php echo $this->session->userdata("admin_id")?>">
+                                                <input type="text" class="common_input" id="abroad_manager" name="abroad_manager" value="<?php echo $this->session->userdata("admin_id")?>">
                                             </div>
                                         </td>
 									</tr>
@@ -132,84 +129,84 @@
                                         <td class="col-sm-1 text-center">국가/도시</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_country" id="abroad_country"></textarea>
+                                                <textarea class="common_input wid100p" name="abroad_country" id="abroad_country"></textarea>
                                             </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1 text-center">유학분류</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_type" id="abroad_type"></textarea>
+                                                <textarea class="common_input wid100p" name="abroad_type" id="abroad_type"></textarea>
                                             </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1 text-center">기간</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_period" id="abroad_period"></textarea>
+                                                <textarea class="common_input wid100p" name="abroad_period" id="abroad_period"></textarea>
                                             </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1 text-center">채용분야</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_recruit_type" id="abroad_recruit_type"></textarea>
+                                                <textarea class="common_input wid100p" name="abroad_recruit_type" id="abroad_recruit_type"></textarea>
                                             </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1 text-center">채용마감</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_deadline" id="abroad_deadline"></textarea>
+                                                <textarea class="common_input wid100p" name="abroad_deadline" id="abroad_deadline"></textarea>
                                             </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1 text-center">면접방식</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_interview_type" id="abroad_interview_type"></textarea>
+                                                <textarea class="common_input wid100p" name="abroad_interview_type" id="abroad_interview_type"></textarea>
                                             </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1 text-center">면접일자</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_interview_date" id="abroad_interview_date"></textarea>
+                                                <textarea class="common_input wid100p" name="abroad_interview_date" id="abroad_interview_date"></textarea>
                                             </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1 text-center">자격요건</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_prerequisite" id="abroad_prerequisite"></textarea>
+                                                <textarea class="common_input wid100p" name="abroad_prerequisite" id="abroad_prerequisite"></textarea>
                                             </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1 text-center">급여</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_pay" id="abroad_pay"></textarea>
+                                                <textarea class="common_input wid100p" name="abroad_pay" id="abroad_pay"></textarea>
                                             </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1 text-center">숙소</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_accomdation" id="abroad_accomdation"></textarea>
+                                                <textarea class="common_input wid100p" name="abroad_accomdation" id="abroad_accomdation"></textarea>
                                             </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1 text-center">복지</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_welfare" id="abroad_welfare"></textarea>
+                                                <textarea class="common_input wid100p" name="abroad_welfare" id="abroad_welfare"></textarea>
                                             </div></td>
 									</tr>
 									<tr>
                                         <td class="col-sm-1 text-center">비자</td>
                                         <td class="col-sm-8">
                                             <div class="col-sm-11">
-                                                <textarea class="form-control common_textarea wid100p" name="abroad_visa" id="abroad_visa"></textarea>
+                                                <textarea class="common_input wid100p" name="abroad_visa" id="abroad_visa"></textarea>
                                             </div></td>
 									</tr>
 								</tbody>
@@ -621,36 +618,46 @@
             height: 90px;
         }
         
-        .ctg_select{
-            min-height: 30px;
-            width: 100%;
-            font-size: 12px !important;
-            margin-right: -10px;
+        .common_select{
+            padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
         }
-        .ctg_select_form{
-            margin-right: -20px;
+        
+        .common_input{
+            padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
         }
-
-        .common_textarea{
-            min-height: 80px;
+        
+        .note-editable{
+            overflow-y: auto;
+            background-color: #f3f3f3 !important;
+			color: #555 !important;
         }
 
         .file_view{
-            color: black !important;
+            background-color: #e4e4e4 !important;
         }
 
         .ui-tooltip-content{
             
         }
         .ui-tooltip{
-            background: grey;
+            background: #f3f3f3;
             opacity: 1;
         }
-        .dropdown-menu {
-            color: black !important;
-            background: grey !important;
-            /* opacity: 0.5; */
-        }
+        
 
     </style>
 </body>

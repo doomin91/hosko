@@ -41,24 +41,18 @@
 
 			<div class="row">
 				<div class="col-md-6">
-					<section class="tile transparent">
-						<div class="tile-body color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyTopViewTable">
+					<section class="tile color transparent transparent-black" style="height: 130px">
+                        <div class="tile-body" style="height: 120px">
+							<table class="table table-custom dataTable" style="height: 100px">
 								<tbody>
 									<tr>
 										<th class="col-sm-2">지원프로그램</th>
-                                        <td class="col-sm-10"><?php echo $APPLY_INFO->REC_TITLE?></td>
+                                        <td class="col-sm-10 common_text"><?php echo $APPLY_INFO->REC_TITLE?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">가격</th>
                                         <td class="col-sm-10">
-                                            <div class="col-sm-3">
-                                            <input type="text" class="form-control common_select wid100p" name="apply_price" id="apply_price" value="<?php echo $APPLY_INFO->APP_PRICE?>">
-                                            </div>
-                                            <div class="col-sm-2 common_input" style="line-height:3; margin-left:-20px;">
-                                            원
-                                            </div>
-                                            
+                                            <input type="text" class="common_input" name="apply_price" id="apply_price" value="<?php echo $APPLY_INFO->APP_PRICE?>">
                                         </td>
 									</tr>
 								</tbody>
@@ -67,18 +61,18 @@
 					</section>
 				</div>
                 <div class="col-md-6">
-					<section class="tile transparent">
-						<div class="tile-body color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyTopViewTable">
+                    <section class="tile color transparent transparent-black" style="height: 130px">
+						<div class="tile-body" style="height: 120px">
+							<table class="table table-custom dataTable" style="height: 100px" >
 								<tbody>
 									<tr>
 										<th class="col-sm-2">지원일자</th>
-                                        <td class="col-sm-10"><?php echo $APPLY_INFO->APP_REG_DATE?></td>
+                                        <td class="col-sm-10 common_text"><?php echo $APPLY_INFO->APP_REG_DATE?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">상태</th>
                                         <td class="col-sm-10">
-                                            <select class="apply_status_option">
+                                            <select class="common_select">
                                                 <option value="0" <?php if($APPLY_INFO->REC_STATUS==1) echo "selected"?>>온라인상담</option>
                                                 <option value="1" <?php if($APPLY_INFO->REC_STATUS==2) echo "selected"?>>지원</option>
                                                 <option value="2" <?php if($APPLY_INFO->REC_STATUS==3) echo "selected"?>>지원서류제출</option>
@@ -103,56 +97,54 @@
 
             <div class="row">
 				<div class="col-md-12">
-					<section class="tile transparent">
-						<div class="tile-body color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyViewTable">
+					<section class="tile color transparent transparent-black">
+						<div class="tile-body">
+							<table class="table table-custom dataTable">
 								<tbody>
 									<tr>
 										<th class="col-sm-2">이름(아이디)</th>
-                                        <td class="col-sm-10"><?php echo $APPLY_INFO->USER_NAME."(".$APPLY_INFO->USER_ID.")"?></td>
+                                        <td class="col-sm-10 common_text"><?php echo $APPLY_INFO->USER_NAME."(".$APPLY_INFO->USER_ID.")"?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">주민번호</th>
-                                        <td class="col-sm-10"><?php echo  $APPLY_INFO->USER_BIRTHDAY?></td>
+                                        <td class="col-sm-10 common_text"><?php echo  $APPLY_INFO->USER_BIRTHDAY?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">전화번호</th>
-                                        <td class="col-sm-10"><?php echo  $APPLY_INFO->USER_TEL?></td>
+                                        <td class="col-sm-10 common_text"><?php echo  $APPLY_INFO->USER_TEL?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">핸드폰번호</th>
-                                        <td class="col-sm-10"><?php echo  $APPLY_INFO->USER_HP?></td>
+                                        <td class="col-sm-10 common_text"><?php echo  $APPLY_INFO->USER_HP?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">이메일</th>
-                                        <td class="col-sm-10"><?php echo  $APPLY_INFO->USER_EMAIL?></td>
+                                        <td class="col-sm-10 common_text"><?php echo  $APPLY_INFO->USER_EMAIL?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">주소</th>
-                                        <td class="col-sm-10"><?php echo  $APPLY_INFO->USER_ADDR1." ".$APPLY_INFO->USER_ADDR1?></td>
+                                        <td class="col-sm-10 common_text"><?php echo  $APPLY_INFO->USER_ADDR1." ".$APPLY_INFO->USER_ADDR1?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">사진</th>
-                                        <td class="col-sm-10"><?php echo  $APPLY_INFO->APP_USER_IMG?></td>
+                                        <td class="col-sm-10 common_text"><?php echo  $APPLY_INFO->APP_USER_IMG?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">University</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-3">
-                                                <input type="text" class="form-control common_select wid100p" name="apply_uni" id="apply_uni" value="<?php echo  $APPLY_INFO->APP_UNIVERSITY?>">
+                                                <input type="text" class="common_select wid100p" name="apply_uni" id="apply_uni" value="<?php echo  $APPLY_INFO->APP_UNIVERSITY?>">
                                             </div>
                                         </td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">Major</th>
                                         <td class="col-sm-10">
-                                            <div class="col-sm-3">
-                                                <input type="text" class="form-control common_select wid100p" name="apply_major" id="apply_major" value="<?php echo  $APPLY_INFO->APP_MAJOR?>">
-                                            </div>
-                                            <div class="col-sm-1">
-                                                <input type="text" class="form-control common_select wid100p" name="apply_grade" id="apply_grade" value="<?php echo  $APPLY_INFO->APP_GRADE?>">
-                                            </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-6">
+                                                <input type="text" class="common_select " name="apply_major" id="apply_major" value="<?php echo  $APPLY_INFO->APP_MAJOR?>">
+                                            
+                                                <input type="text" class="common_select" name="apply_grade" id="apply_grade" value="<?php echo  $APPLY_INFO->APP_GRADE?>">
+                                            
                                                 <label for="apply_uni_status_1"><input type="radio" name="apply_uni_status" id="apply_uni_status_1" value="1" <?php if($APPLY_INFO->APP_GRADE_TYPE == 1) echo "checked"?>> 재학 </label>
                                                 <label for="apply_uni_status_2"><input type="radio" name="apply_uni_status" id="apply_uni_status_2" value="2" <?php if($APPLY_INFO->APP_GRADE_TYPE == 2) echo "checked"?>> 휴학 </label>
                                                 <label for="apply_uni_status_3"><input type="radio" name="apply_uni_status" id="apply_uni_status_3" value="3" <?php if($APPLY_INFO->APP_GRADE_TYPE == 3) echo "checked"?>> 졸업 </label>
@@ -161,22 +153,22 @@
 									</tr>
 									<tr>
                                         <th class="col-sm-2">졸업년도</th>
-                                        <td class="col-sm-10"><?php echo  $APPLY_INFO->APP_GRADE_YEAR?></td>
+                                        <td class="col-sm-10 common_text"><?php echo  $APPLY_INFO->APP_GRADE_YEAR?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">회사명</th>
-                                        <td class="col-sm-10"><?php echo  $APPLY_INFO->APP_COMP_NAME?></td>
+                                        <td class="col-sm-10 common_text"><?php echo  $APPLY_INFO->APP_COMP_NAME?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">재직기간</th>
-                                        <td class="col-sm-10"><?php echo  $APPLY_INFO->APP_WORK_START_YEAR.".".$APPLY_INFO->APP_WORK_START_MONTH." ~ ".$APPLY_INFO->APP_WORK_END_YEAR.".".$APPLY_INFO->APP_WORK_END_MONTH ?></td>
+                                        <td class="col-sm-10 common_text"><?php echo  $APPLY_INFO->APP_WORK_START_YEAR.".".$APPLY_INFO->APP_WORK_START_MONTH." ~ ".$APPLY_INFO->APP_WORK_END_YEAR.".".$APPLY_INFO->APP_WORK_END_MONTH ?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">부서명</th>
                                         
                                         <td class="col-sm-10">
                                             <div class="col-sm-5">
-                                                <input type="text" class="form-control common_select wid100p" name="apply_department" id="apply_department" value="<?php echo  $APPLY_INFO->APP_COMP_DEPARTMENT?>">
+                                                <input type="text" class="common_input wid100p" name="apply_department" id="apply_department" value="<?php echo  $APPLY_INFO->APP_COMP_DEPARTMENT?>">
                                             </div>
                                         </td>
 									</tr>
@@ -184,7 +176,7 @@
                                         <th class="col-sm-2">Date you wish to begin<br>yourdesired program</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-5">
-                                                <input type="text" class="form-control common_select wid100p" name="apply_start_date" id="apply_start_date" value="<?php echo  $APPLY_INFO->APP_START_DATE?>">
+                                                <input type="text" class="common_input wid100p" name="apply_start_date" id="apply_start_date" value="<?php echo  $APPLY_INFO->APP_START_DATE?>">
                                             </div>
                                         </td>
 									</tr>
@@ -201,7 +193,7 @@
                                                 <label for="apply_another_skill_1"><input type="radio" name="apply_another_skill" id="apply_another_skill_1" value="1"<?php if($APPLY_INFO->APP_ETC_LANG_SKILL == 1) echo "checked"?> > Fluent</label>
                                                 <label for="apply_another_skill_2"><input type="radio" name="apply_another_skill" id="apply_another_skill_2" value="2" <?php if($APPLY_INFO->APP_ETC_LANG_SKILL == 2) echo "checked"?>> Fair</label>
                                                 <label for="apply_another_skill_3"><input type="radio" name="apply_another_skill" id="apply_another_skill_3" value="3" <?php if($APPLY_INFO->APP_ETC_LANG_SKILL == 3) echo "checked"?>> Poor</label>
-                                                <input type="text" class="form-control common_select wid100p" name="apply_another_skill_name" id="apply_another_skill_name" value="<?php echo  $APPLY_INFO->APP_ETC_LANG_NAME?>">
+                                                <input type="text" class="common_input wid100p" name="apply_another_skill_name" id="apply_another_skill_name" value="<?php echo  $APPLY_INFO->APP_ETC_LANG_NAME?>">
                                             </div>
                                         </td>
 									</tr>
@@ -209,7 +201,7 @@
                                         <th class="col-sm-2">TOEIC Score</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-5">
-                                                <input type="text" class="form-control common_select wid100p" name="apply_toeic_score" id="apply_toeic_score" value="<?php echo  $APPLY_INFO->APP_TOEIC_SCORE?>">
+                                                <input type="text" class="common_input wid100p" name="apply_toeic_score" id="apply_toeic_score" value="<?php echo  $APPLY_INFO->APP_TOEIC_SCORE?>">
                                             </div>
                                         </td>
 									</tr>
@@ -217,7 +209,7 @@
                                         <th class="col-sm-2">TOEFL Score</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-5">
-                                                <input type="text" class="form-control common_select wid100p" name="apply_toefl_score" id="apply_toefl_score" value="<?php echo  $APPLY_INFO->APP_TOEFL_SCORE?>">
+                                                <input type="text" class="common_input wid100p" name="apply_toefl_score" id="apply_toefl_score" value="<?php echo  $APPLY_INFO->APP_TOEFL_SCORE?>">
                                             </div>
                                         </td>
 									</tr>
@@ -225,7 +217,7 @@
                                         <th class="col-sm-2">경력사항</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-5">
-                                                <textarea class="form-control common_textarea wid100p" name="apply_career" id="apply_career"><?php echo  $APPLY_INFO->APP_CAREER?></textarea>
+                                                <textarea class="common_input wid100p" name="apply_career" id="apply_career"><?php echo  $APPLY_INFO->APP_CAREER?></textarea>
                                             </div>
                                         </td>
 									</tr>
@@ -251,7 +243,7 @@
                                         <th class="col-sm-2">Self Introduction and goal<br>and motivation</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-5">
-                                                <textarea class="form-control common_textarea wid100p" name="apply_self_introduce" id="apply_self_introduce"><?php echo  $APPLY_INFO->APP_INTRODUCE?></textarea>
+                                                <textarea class="common_input wid100p" name="apply_self_introduce" id="apply_self_introduce"><?php echo  $APPLY_INFO->APP_INTRODUCE?></textarea>
                                                 <!-- <input type="textarea" class="form-control common_textarea wid100p" name="apply_self_introduce" id="apply_self_introduce" value="<?php echo  $APPLY_INFO->APP_INTRODUCE?>"> -->
                                             </div>
                                         </td>
@@ -260,7 +252,7 @@
                                         <th class="col-sm-2">관리자 메모</th>
                                         <td class="col-sm-10">
                                             <div class="col-sm-5">
-                                                <textarea type="textarea" class="form-control common_textarea wid100p" name="apply_admin_memo" id="apply_admin_memo"><?php echo  $APPLY_INFO->APP_ADMIN_MEMO?></textarea>
+                                                <textarea type="textarea" class="common_input wid100p" name="apply_admin_memo" id="apply_admin_memo"><?php echo  $APPLY_INFO->APP_ADMIN_MEMO?></textarea>
                                                 <!-- <input type="textarea" class="form-control common_textarea wid100p" name="apply_admin_memo" id="apply_admin_memo" value="<?php echo  $APPLY_INFO->APP_ADMIN_MEMO?>"> -->
                                             </div>
                                         </td>
@@ -459,13 +451,32 @@
             background-color:rgba(0, 0, 0, 0.3)
         }
 
-        .common_select, .common_input{
-            min-height: 30px;
-            font-size: 12px !important;
+        .common_input{
+            padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
         }
-        
-        .common_textarea{
-            min-height: 100px;
+
+        .common_text{
+            padding: 7px 10px !important;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+        }
+
+        .common_select{
+            padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
         }
         
     </style>
