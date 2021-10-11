@@ -69,18 +69,18 @@
                                                 date_default_timezone_set('Asia/Seoul');
                                                 if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
                                                     if(time() - strtotime($POST_INFO->POST_REG_DATE) < ( 86400 * $BOARD_INFO->BOARD_PERIOD_NEW )){
-                                                        echo "[NEW ICON]";												
+                                                        // echo "<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">";												
                                                     };
                                                 }
                                                     
                                                 if($BOARD_INFO->BOARD_PERIOD_HOT > 0){
                                                     if($POST_INFO->POST_VIEW_CNT >= $BOARD_INFO->BOARD_PERIOD_HOT){
-                                                        echo "[HOT ICON]";
+                                                        echo "<img src=\"/static/front/img/promotional.png\" style=\"width:30px;height:30px;\">";												
                                                     }
                                                 }
 
-                                                echo "<a href=\"/board/board_view/$POST_INFO->POST_SEQ\">$POST_INFO->POST_SUBJECT</a>";
-                                                echo $POST_INFO->POST_SECRET_YN == "Y" ? "[자물쇠 ICON]" : "";
+                                                echo "<a href=\"/board/board_view/$POST_INFO->POST_SEQ\">".strip_tags($POST_INFO->POST_SUBJECT)."</a>";
+                                                echo $POST_INFO->POST_SECRET_YN == "Y" ? "<img src=\"/static/front/img/ico_lock.png\" style=\"width:12px;height:18px;margin: 0 5px;\">" : "";
                                                 ?>					
                                                     </div>
                                                 </div>
@@ -214,7 +214,7 @@
                                                             echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;vertical-align:text-top\">";												
                                                         }
                                                     }
-													echo $NEXT->POST_SUBJECT;
+                                                    echo $this->customclass->strcut(strip_tags($NEXT->POST_SUBJECT), 100);
 													if($NEXT->POST_SECRET_YN == "Y"){
 														echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>"."</a>";
 													}
@@ -239,7 +239,7 @@
                                                             echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;vertical-align:text-top\">";												
                                                         }
                                                     }
-													echo $PREV->POST_SUBJECT;
+													echo $this->customclass->strcut(strip_tags($PREV->POST_SUBJECT), 100);
 													if($PREV->POST_SECRET_YN == "Y"){
 														echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>"."</a>";
 													}
