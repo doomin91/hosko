@@ -115,13 +115,8 @@
                                                             <li class="file_item">
                                                                 <?php
                                                                  foreach($ATTACH as $at){ 
-                                                                     if($this->session->userdata("USER_SEQ")):
                                                                      ?>
                                                                     <a href="/Board/downalod_attach/<?php echo $at->ATTACH_SEQ?>" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
-                                                                <?php else: ?>
-                                                                    <a onclick="alert('로그인 후 다운로드 가능합니다.')" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
-                                                                <?php endif; ?>
-
                                                                 <?php 
                                                                     }
                                                                 ?>
@@ -138,6 +133,18 @@
                                         <div class="View_cont">
                                             <?php if($BOARD_INFO->BOARD_TYPE == 2):?>
 												<div id="player"></div><br>
+											<?php endif;?>
+                                            <?php if($BOARD_INFO->BOARD_TYPE == 1):
+                                                foreach($ATTACH as $at){ 
+                                                    // $allow_types에 포함되는 경우 이미지를 뿌려준다.
+                                                    $filepath = $at->ATTACH_FILE_PATH;
+                                                    $filetype = explode(".", $filepath);
+                                                    $allow_types = ["jpg", "png", "jpeg", "bmp", "gif"];
+                                                    if(in_array(strtolower($filetype[1]), $allow_types)){
+                                                        echo "<img src=\"<?php echo $at->ATTACH_FILE_PATH?>\">";
+                                                    }
+                                                }
+                                                ?>                                                    
 											<?php endif;?>
                                             <?php echo $POST_INFO->POST_CONTENTS;?>
                                         </div>
