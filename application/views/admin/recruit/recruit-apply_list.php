@@ -41,8 +41,8 @@
 		  	<form name="applySearchForm" id="applySearchForm" class="form-horizontal" method="get" role="form">
 			<div class="row">
 				<div class="col-md-12">
-					<section class="tile transparent">
-						<div class="tile-body color transparent-black rounded-corners">
+					<section class="tile color transparent transparent-black">
+						<div class="tile-body">
 							<table class="table table-custom dataTable applyTable">
 								<tbody>
 									<tr>
@@ -80,14 +80,14 @@
 									<tr>
                                         <th class="col-sm-2">조건검색</th>
 										<td class="col-sm-10">
-                                            <select name="apply_search_option" class="apply_search_option">
+                                            <select name="apply_search_option" class="common_select">
                                                 <option value="title"  <?php if($searchOption=="title") echo "selected"?>>지원프로그램</option>
                                                 <option value="name" <?php if($searchOption=="name") echo "selected"?>>성명</option>
                                                 <option value="id" <?php if($searchOption=="id") echo "selected"?>>아이디</option>
                                             </select>
                                             <input type="text" id="apply_search_text" name="apply_search_text" placeholder="검색어를 입력해주세요" value="">
 
-                                            <input type="submit" class="btn btn-sm btn-primary" id="apply_search" value="검색"></input>
+                                            <input type="submit" class="btn btn-primary" id="apply_search" value="검색"></input>
                                             
 										</td>
 									</tr>
@@ -104,16 +104,16 @@
 				<!-- col 6 -->
 				<div class="col-md-12">
 				<!-- tile -->
-				<section class="tile transparent">
+				<section class="tile color transparent-black">
 
 					<!-- tile body -->
-					<div class="tile-body color transparent-black rounded-corners">
+					<div class="tile-body">
 
 						<div class="table-responsive dataTables_wrapper form-inline" role="grid" id="basicDataTable_wrapper">
 							<div class="row">
 								<div class="col-md-10">총 컨텐츠수 : <?php echo $listCountAll?> &nbsp&nbsp&nbsp 검색 컨텐츠수 : <?php echo $listCount ?></div>
                                 <div class="col-md-2 text-right">
-									<input type="button" id="apply_excel_save" class="btn btn-xs btn-default" value="+ 엑셀파일저장">
+									<!-- <input type="button" id="apply_excel_save" class="btn btn-xs btn-default" value="+ 엑셀파일저장"> -->
 								</div>
 							</div>
 
@@ -154,7 +154,7 @@
                                     <td class="text-center"><?php echo $list->REC_PAY ?></td>
                                     <td class="text-center"><?php echo $list->APP_REG_DATE ?></td>
                                     <td class="text-center">
-										<select class="apply_status">
+										<select class="common_select">
 											<option value="1" <?php if($list->APP_STATUS==1) echo "selected"?>>온라인상담</option>
 											<option value="2" <?php if($list->APP_STATUS==2) echo "selected"?>>지원</option>
 											<option value="3" <?php if($list->APP_STATUS==3) echo "selected"?>>지원서류제출</option>
@@ -521,21 +521,25 @@
         }
 
         .applyTable .date_field{
-            border-radius:5px; 
-            margin-left: 5px;
-            margin-right: 5px;
-            padding: 8px;
-            border:0; 
-            background-color:rgba(0, 0, 0, 0.3)
+            padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
         }
 
-        .apply_search_option{
-            border-radius:5px; 
-            margin-right: 5px;
-            width: 15%;
-            padding: 6px;
-            border:0; 
-            background-color:rgba(0, 0, 0, 0.3)
+        .common_select{
+            padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
         }
 
 		.apply_status{
@@ -548,12 +552,14 @@
         }
 
         #apply_search_text{
-            border-radius:5px; 
-            margin-right: 5px;
-            width: 20%;
-            padding: 6px;
-            border:0; 
-            background-color:rgba(0, 0, 0, 0.3)
+            padding: 7px 10px;
+			border-radius: 5px;
+			margin-bottom: 5px !important;
+			margin: 5px !important;
+			border: 0;
+			background-color: #f3f3f3;
+			color: #555;
+			border: 1px solid #e4e4e4;
         }
 
         #apply_search{
@@ -561,17 +567,21 @@
         }
 
         .applyTable .status_option, .date_option{
+            margin-left: 3px;
             margin-right:3px;
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 2px 6px;
             box-sizing: border-box;
-            background: grey;
+            background-color: #f3f3f3;
+			color: #555;
             cursor: pointer;
         }
 
         .applyTable .status_option.active, .date_option.active{
-            background: rgb(60,180,180);
+            background: #428bca;
+            border-color: #357ebd;
+            color: #f2f2f2;
         }
         
     </style>

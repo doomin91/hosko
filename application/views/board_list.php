@@ -111,11 +111,11 @@
                                                     if($lt->POST_USER_SEQ == $this->session->userdata("USER_SEQ") || $this->session->userdata("admin_seq")){
                                                         echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
                                                     } else {
-                                                        echo "<a onclick=\"alert('게시글 권한이 없습니다.');\">$lt->POST_SUBJECT</a>";
+                                                        echo "<a onclick=\"alert('게시글 권한이 없습니다.');\">" . $this->customclass->strcut(strip_tags($lt->POST_SUBJECT), 100) . "</a>";
                                                     }
                                                     echo "<img src=\"/static/front/img/ico_lock.png\" style=\"width:12px;height:18px;margin: 0 5px;\">";												
                                                 } else {
-                                                    echo "<a href=\"/board/board_view/$lt->POST_SEQ\">$lt->POST_SUBJECT</a>";
+                                                    echo "<a href=\"/board/board_view/$lt->POST_SEQ\">".$this->customclass->strcut(strip_tags($lt->POST_SUBJECT),100)."</a>";
                                                 }
 
                                                     echo $lt->ATTACHS > 0 ? "[". ($lt->ATTACHS) ."]" : "";

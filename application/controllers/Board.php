@@ -678,8 +678,8 @@ class Board extends CI_Controller {
 	}
     
 	public function downalod_attach($SEQ){
-		$this->customclass->userCheck();
-		echo "1";
+		// $this->customclass->userCheck();
+		// echo "1";
 		$attach = $this->BoardModel->getPostAttachByAttachSeq($SEQ);
 		$name = $attach->ATTACH_FILE_NAME;
 		$data = file_get_contents($server.$attach->ATTACH_FILE_PATH);

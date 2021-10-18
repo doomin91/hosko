@@ -69,18 +69,18 @@
                                                 date_default_timezone_set('Asia/Seoul');
                                                 if($BOARD_INFO->BOARD_PERIOD_NEW > 0){
                                                     if(time() - strtotime($POST_INFO->POST_REG_DATE) < ( 86400 * $BOARD_INFO->BOARD_PERIOD_NEW )){
-                                                        echo "[NEW ICON]";												
+                                                        // echo "<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;\">";												
                                                     };
                                                 }
                                                     
                                                 if($BOARD_INFO->BOARD_PERIOD_HOT > 0){
                                                     if($POST_INFO->POST_VIEW_CNT >= $BOARD_INFO->BOARD_PERIOD_HOT){
-                                                        echo "[HOT ICON]";
+                                                        echo "<img src=\"/static/front/img/promotional.png\" style=\"width:30px;height:30px;\">";												
                                                     }
                                                 }
 
-                                                echo "<a href=\"/board/board_view/$POST_INFO->POST_SEQ\">$POST_INFO->POST_SUBJECT</a>";
-                                                echo $POST_INFO->POST_SECRET_YN == "Y" ? "[자물쇠 ICON]" : "";
+                                                echo "<a href=\"/board/board_view/$POST_INFO->POST_SEQ\">".strip_tags($POST_INFO->POST_SUBJECT)."</a>";
+                                                echo $POST_INFO->POST_SECRET_YN == "Y" ? "<img src=\"/static/front/img/ico_lock.png\" style=\"width:12px;height:18px;margin: 0 5px;\">" : "";
                                                 ?>					
                                                     </div>
                                                 </div>
@@ -115,13 +115,8 @@
                                                             <li class="file_item">
                                                                 <?php
                                                                  foreach($ATTACH as $at){ 
-                                                                     if($this->session->userdata("USER_SEQ")):
                                                                      ?>
                                                                     <a href="/Board/downalod_attach/<?php echo $at->ATTACH_SEQ?>" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
-                                                                <?php else: ?>
-                                                                    <a onclick="alert('로그인 후 다운로드 가능합니다.')" title="파일 다운로드 하기"><em><?php echo $at->ATTACH_FILE_NAME;?></em></a>
-                                                                <?php endif; ?>
-
                                                                 <?php 
                                                                     }
                                                                 ?>
@@ -138,6 +133,18 @@
                                         <div class="View_cont">
                                             <?php if($BOARD_INFO->BOARD_TYPE == 2):?>
 												<div id="player"></div><br>
+											<?php endif;?>
+                                            <?php if($BOARD_INFO->BOARD_TYPE == 1):
+                                                foreach($ATTACH as $at){ 
+                                                    // $allow_types에 포함되는 경우 이미지를 뿌려준다.
+                                                    $filepath = $at->ATTACH_FILE_PATH;
+                                                    $filetype = explode(".", $filepath);
+                                                    $allow_types = ["jpg", "png", "jpeg", "bmp", "gif"];
+                                                    if(in_array(strtolower($filetype[1]), $allow_types)){
+                                                        echo "<img src=\"<?php echo $at->ATTACH_FILE_PATH?>\">";
+                                                    }
+                                                }
+                                                ?>                                                    
 											<?php endif;?>
                                             <?php echo $POST_INFO->POST_CONTENTS;?>
                                         </div>
@@ -214,7 +221,7 @@
                                                             echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;vertical-align:text-top\">";												
                                                         }
                                                     }
-													echo $NEXT->POST_SUBJECT;
+                                                    echo $this->customclass->strcut(strip_tags($NEXT->POST_SUBJECT), 100);
 													if($NEXT->POST_SECRET_YN == "Y"){
 														echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>"."</a>";
 													}
@@ -239,7 +246,7 @@
                                                             echo "ㄴ<img src=\"/static/front/img/ico_reply.png\" style=\"width:34px;height:20px;vertical-align:text-top\">";												
                                                         }
                                                     }
-													echo $PREV->POST_SUBJECT;
+													echo $this->customclass->strcut(strip_tags($PREV->POST_SUBJECT), 100);
 													if($PREV->POST_SECRET_YN == "Y"){
 														echo "&nbsp<i class=\"fa fa-lock\" aria-hidden=\"true\"></i>"."</a>";
 													}
