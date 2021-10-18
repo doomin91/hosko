@@ -370,7 +370,7 @@ class RecruitModel extends CI_Model{
         $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_ADMIN.ADMIN_NAME AS ADMIN_USER_NAME");
         
         $this->db->group_by("TBL_HOSKO_RECRUIT.REC_SEQ");
-        $this->db->order_by("TBL_HOSKO_RECRUIT.REC_DISPLAY_ORDER");
+        $this->db->order_by("TBL_HOSKO_RECRUIT.REC_DISPLAY_ORDER", "DESC");
         $this->db->limit($whereArr["limit"], $whereArr["start"]);
         $this->db->select("TBL_HOSKO_RECRUIT.*");
         return $this->db->get("TBL_HOSKO_RECRUIT")->result();
@@ -423,7 +423,7 @@ class RecruitModel extends CI_Model{
         $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_ADMIN.ADMIN_NAME AS ADMIN_USER_NAME", "LEFT");
         
         $this->db->group_by("TBL_HOSKO_RECRUIT.REC_SEQ");
-        $this->db->order_by("TBL_HOSKO_RECRUIT.REC_DISPLAY_ORDER");
+        $this->db->order_by("TBL_HOSKO_RECRUIT.REC_DISPLAY_ORDER", "DESC");
         $this->db->select("TBL_HOSKO_RECRUIT.*");
         $this->db->limit($whereArr["limit"], $whereArr["start"]);
         return $this->db->get("TBL_HOSKO_RECRUIT")->result();
