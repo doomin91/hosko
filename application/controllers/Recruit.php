@@ -27,7 +27,7 @@ class Recruit extends CI_Controller {
 
         $this->load->library('session');
         $this->load->library('pagination');
-        $this->load->library('customclass');
+        $this->load->library('CustomClass');
         $this->load->library('image_lib');
 
         $this->load->model("UserModel");

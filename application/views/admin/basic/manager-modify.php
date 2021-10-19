@@ -92,8 +92,8 @@
 											<input type="checkbox" name="admin_permi" value="basic_all" id="admin_permi1" <?php if (strpos($info->ADMIN_PERMI, "basic_all") > -1) echo "checked"; ?>><label for="admin_permi1">&nbsp;기본설정</label><br/>
 											<input type="checkbox" name="admin_permi" value="basic_01" id="admin_permi2" <?php if (strpos($info->ADMIN_PERMI, "basic_01") > -1) echo "checked"; ?>><label for="admin_permi2">&nbsp;사이트정보</label><br/>
 											<input type="checkbox" name="admin_permi" value="basic_02" id="admin_permi3" <?php if (strpos($info->ADMIN_PERMI, "basic_02") > -1) echo "checked"; ?>><label for="admin_permi3">&nbsp;관리자 설정</label><br/>
-											<input type="checkbox" name="admin_permi" value="basic_03" id="admin_permi4" <?php if (strpos($info->ADMIN_PERMI, "basic_03") > -1) echo "checked"; ?>><label for="admin_permi4">&nbsp;접속통계</label><br/>
-											<input type="checkbox" name="admin_permi" value="basic_04" id="admin_permi5" <?php if (strpos($info->ADMIN_PERMI, "basic_04") > -1) echo "checked"; ?>><label for="admin_permi5">&nbsp;회원접속 현황</label><br/>
+											<!--<input type="checkbox" name="admin_permi" value="basic_03" id="admin_permi4" <?php if (strpos($info->ADMIN_PERMI, "basic_03") > -1) echo "checked"; ?>><label for="admin_permi4">&nbsp;접속통계</label><br/>
+											<input type="checkbox" name="admin_permi" value="basic_04" id="admin_permi5" <?php if (strpos($info->ADMIN_PERMI, "basic_04") > -1) echo "checked"; ?>><label for="admin_permi5">&nbsp;회원접속 현황</label><br/>-->
 										</div>
 										<div class="col-lg-2">
 											<input type="checkbox" name="admin_permi" value="user_all" id="admin_permi6" <?php if (strpos($info->ADMIN_PERMI, "user_all") > -1) echo "checked"; ?>><label for="admin_permi6">&nbsp;<b>회원관리</b></label><br/>
@@ -117,17 +117,17 @@
 										<div class="col-lg-2">
 											<input type="checkbox" name="admin_permi" value="apply_all" id="admin_permi21" <?php if (strpos($info->ADMIN_PERMI, "apply_all") > -1) echo "checked"; ?>><label for="admin_permi21">&nbsp;수속관리</label><br/>
 											<input type="checkbox" name="admin_permi" value="apply_01" id="admin_permi22" <?php if (strpos($info->ADMIN_PERMI, "apply_01") > -1) echo "checked"; ?>><label for="admin_permi22">&nbsp;수속신청현황</label><br/>
-											<input type="checkbox" name="admin_permi" value="apply_02" id="admin_permi23" <?php if (strpos($info->ADMIN_PERMI, "apply_02") > -1) echo "checked"; ?>><label for="admin_permi23">&nbsp;수속진횅현황</label><br/>
-											<input type="checkbox" name="admin_permi" value="apply_03" id="admin_permi24" <?php if (strpos($info->ADMIN_PERMI, "apply_03") > -1) echo "checked"; ?>><label for="admin_permi24">&nbsp;이력서 관리</label><br/>
-											<input type="checkbox" name="admin_permi" value="apply_04" id="admin_permi25" <?php if (strpos($info->ADMIN_PERMI, "apply_04") > -1) echo "checked"; ?>><label for="admin_permi25">&nbsp;수속셔류관리</label><br/>
-											<input type="checkbox" name="admin_permi" value="apply_05" id="admin_permi26" <?php if (strpos($info->ADMIN_PERMI, "apply_05") > -1) echo "checked"; ?>><label for="admin_permi26">&nbsp;입금 및 환불</label><br/>
-											<input type="checkbox" name="admin_permi" value="apply_06" id="admin_permi27" <?php if (strpos($info->ADMIN_PERMI, "apply_06") > -1) echo "checked"; ?>><label for="admin_permi27">&nbsp;수속포기자</label><br/>
-											<input type="checkbox" name="admin_permi" value="apply_07" id="admin_permi28" <?php if (strpos($info->ADMIN_PERMI, "apply_07") > -1) echo "checked"; ?>><label for="admin_permi28">&nbsp;출금 및 증명서</label><br/>
+											<!--<input type="checkbox" name="admin_permi" value="apply_02" id="admin_permi23" <?php //if (strpos($info->ADMIN_PERMI, "apply_02") > -1) echo "checked"; ?>><label for="admin_permi23">&nbsp;수속진횅현황</label><br/>-->
+											<input type="checkbox" name="admin_permi" value="apply_02" id="admin_permi24" <?php if (strpos($info->ADMIN_PERMI, "apply_02") > -1) echo "checked"; ?>><label for="admin_permi24">&nbsp;이력서 관리</label><br/>
+											<input type="checkbox" name="admin_permi" value="apply_03" id="admin_permi25" <?php if (strpos($info->ADMIN_PERMI, "apply_03") > -1) echo "checked"; ?>><label for="admin_permi25">&nbsp;수속셔류관리</label><br/>
+											<!--<input type="checkbox" name="admin_permi" value="apply_05" id="admin_permi26" <?php //if (strpos($info->ADMIN_PERMI, "apply_05") > -1) echo "checked"; ?>><label for="admin_permi26">&nbsp;입금 및 환불</label><br/>
+											<input type="checkbox" name="admin_permi" value="apply_06" id="admin_permi27" <?php //if (strpos($info->ADMIN_PERMI, "apply_06") > -1) echo "checked"; ?>><label for="admin_permi27">&nbsp;수속포기자</label><br/>-->
+											<input type="checkbox" name="admin_permi" value="apply_04" id="admin_permi28" <?php if (strpos($info->ADMIN_PERMI, "apply_04") > -1) echo "checked"; ?>><label for="admin_permi28">&nbsp;출금 및 증명서</label><br/>
 										</div>
 										<div class="col-lg-2">
 											<input type="checkbox" name="admin_permi" value="board_all" id="admin_permi29" <?php if (strpos($info->ADMIN_PERMI, "board_all") > -1) echo "checked"; ?>><label for="admin_permi29">&nbsp;게시판관리</label><br/>
 											<input type="checkbox" name="admin_permi" value="board_01" id="admin_permi30" <?php if (strpos($info->ADMIN_PERMI, "board_01") > -1) echo "checked"; ?>><label for="admin_permi30">&nbsp;게시판관리</label><br/>
-											<input type="checkbox" name="admin_permi" value="board_02" id="admin_permi31" <?php if (strpos($info->ADMIN_PERMI, "board_021") > -1) echo "checked"; ?>><label for="admin_permi31">&nbsp;게시판목록</label><br/>
+											<input type="checkbox" name="admin_permi" value="board_02" id="admin_permi31" <?php if (strpos($info->ADMIN_PERMI, "board_02") > -1) echo "checked"; ?>><label for="admin_permi31">&nbsp;게시판목록</label><br/>
 										</div>
 									</td>
 								</tr>
