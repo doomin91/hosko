@@ -60,14 +60,15 @@
                       <table class="table datatable table-custom01 userTable">
 
 							<colgroup>
-									<col width="5%"/>
-									<col width="10%"/>
-									<col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
+									<col width="4%"/>
+									<col width="8%"/>
+									<col width="8%"/>
+                                    <col width="8%"/>
+                                    <col width="8%"/>
+                                    <col width="8%"/>
+                                    <col width="21%"/>
+                                    <col width="5%"/>
+                                    <col width="5%"/>
 									<col width="5%"/>
 							</colgroup>
 							<thead>
@@ -78,6 +79,7 @@
 									<th class="text-center">회원명</th>
 									<th class="text-center">학교명/직장명</th>
 									<th class="text-center">회원번호</th>
+                                    <th class="text-center">내용</th>
 									<th class="text-center">관심도</th>
 									<th class="text-center">외국어</th>
 									<th class="text-center"> - </th>
@@ -102,6 +104,7 @@
                                     <td class="text-center"><?php echo $lt->CLOG_USER_NAME; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_USER_COMPANY; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_USER_NUM; ?></td>
+                                    <td class="text-center"><?php echo nl2br($lt->CLOG_MESSAGE); ?></td>
                                     <td class="text-center"><?php echo $interest; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_LANG_SKILL; ?>점</td>
                                     <td class="text-center">
