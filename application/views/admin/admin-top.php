@@ -61,14 +61,26 @@
 			</li>
 			-->
 			<li>
-			  <a href="/admin/basic/siteInfo">
-				<i class="fa fa-caret-right"></i> 사이트정보
-			  </a>
+				<?php if (strpos($this->session->userdata("admin_permi"), "basic_01") !== false): ?>  
+				<a href="/admin/basic/siteInfo">
+					<i class="fa fa-caret-right"></i> 사이트정보	
+			  	</a>
+				<?php else: ?>
+				<a href="javascript:alert('권한이 없습니다.');">
+					<i class="fa fa-caret-right"></i> 사이트정보	
+			  	</a>
+				<?php endif; ?>
 			</li>
 			<li>
-			  <a href="/admin/basic/managers">
-				<i class="fa fa-caret-right"></i> 관리자 설정
-			  </a>
+				<?php if (strpos($this->session->userdata("admin_permi"), "basic_02") !== false): ?>  
+				<a href="/admin/basic/managers">
+					<i class="fa fa-caret-right"></i> 관리자 설정
+				</a>
+				<?php else: ?>
+				<a href="javascript:alert('권한이 없습니다.');">
+					<i class="fa fa-caret-right"></i> 관리자 설정
+			  	</a>
+				<?php endif; ?>
 			</li>
 			<!--
 			<li>
@@ -91,39 +103,81 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li>
+					<?php if (strpos($this->session->userdata("admin_permi"), "user_01") !== false): ?>  
 					<a href="/admin/user">
 						<i class="fa fa-caret-right"></i> 회원목록
 					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 회원목록
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="/admin/user/userLevel">
-					<i class="fa fa-caret-right"></i> 등급관리
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "user_02") !== false): ?>  
+					<a href="/admin/user/userLevel">
+						<i class="fa fa-caret-right"></i> 등급관리
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 등급관리
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="#">
-					<i class="fa fa-caret-right"></i> 탈퇴회원
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "user_03") !== false): ?>  
+					<a href="#">
+						<i class="fa fa-caret-right"></i> 탈퇴회원
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 탈퇴회원
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="/admin/user/userStatics">
-					<i class="fa fa-caret-right"></i> 회원분석(국가/전공/성별)
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "user_04") !== false): ?>  
+					<a href="/admin/user/userStatics">
+						<i class="fa fa-caret-right"></i> 회원분석(국가/전공/성별)
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 회원분석(국가/전공/성별)
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="/admin/user/mailFormList">
-					<i class="fa fa-caret-right"></i> 메일폼 관리
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "user_07") !== false): ?>  
+					<a href="/admin/user/mailFormList">
+						<i class="fa fa-caret-right"></i> 메일폼 관리
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 메일폼 관리
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="/admin/user/emailSend">
-					<i class="fa fa-caret-right"></i> 메일발송관리
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "user_05") !== false): ?>  
+					<a href="/admin/user/emailSend">
+						<i class="fa fa-caret-right"></i> 메일발송관리
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 메일발송관리
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="/admin/user/smsSend">
-					<i class="fa fa-caret-right"></i> SMS발송관리
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "user_06") !== false): ?>  
+					<a href="/admin/user/smsSend">
+						<i class="fa fa-caret-right"></i> SMS발송관리
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> SMS발송관리
+					</a>
+					<?php endif; ?>
 				</li>
 			  </ul>
 		</li>
@@ -134,44 +188,92 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li>
+					<?php if (strpos($this->session->userdata("admin_permi"), "consult_01") !== false): ?>  
 					<a href="/admin/consult/qnaList">
 						<i class="fa fa-caret-right"></i> QnA 게시판
 					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> QnA 게시판
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="/admin/consult/onlineConsult">
-					<i class="fa fa-caret-right"></i> 온라인상담
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "consult_02") !== false): ?>  
+					<a href="/admin/consult/onlineConsult">
+						<i class="fa fa-caret-right"></i> 온라인상담
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 온라인상담
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="/admin/consult/visitConsult">
-					<i class="fa fa-caret-right"></i> 방문상담
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "consult_03") !== false): ?>  
+					<a href="/admin/consult/visitConsult">
+						<i class="fa fa-caret-right"></i> 방문상담
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 방문상담
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="#">
-					<i class="fa fa-caret-right"></i> 정기설명회
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "consult_04") !== false): ?>  
+					<a href="#">
+						<i class="fa fa-caret-right"></i> 정기설명회
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 정기설명회
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="/admin/consult/callConsultList">
-					<i class="fa fa-caret-right"></i> 전화상담이력
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "consult_05") !== false): ?>  
+					<a href="/admin/consult/callConsultList">
+						<i class="fa fa-caret-right"></i> 전화상담이력
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 전화상담이력
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="/admin/consult/schedule?flag=hosko">
-					<i class="fa fa-caret-right"></i> HOSKO 일정
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "consult_06") !== false): ?>  
+					<a href="/admin/consult/schedule?flag=hosko">
+						<i class="fa fa-caret-right"></i> HOSKO 일정
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> HOSKO 일정
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
+					<?php if (strpos($this->session->userdata("admin_permi"), "consult_07") !== false): ?>  
 					<a href="/admin/consult/schedule?flag=presentation">
 						<i class="fa fa-caret-right"></i> 설명회 일정
 					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 설명회 일정
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
+					<?php if (strpos($this->session->userdata("admin_permi"), "consult_08") !== false): ?>  
 					<a href="/admin/consult/presentationList">
 						<i class="fa fa-caret-right"></i> 설명회 관리
 					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 설명회 관리
+					</a>
+					<?php endif; ?>
 				</li>
 			</ul>
 		</li>
@@ -182,25 +284,48 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li>
+					<?php if (strpos($this->session->userdata("admin_permi"), "apply_01") !== false): ?>  	
 					<a href="/admin/recruit/recruit_abroad_list">
 						<i class="fa fa-caret-right"></i> 유학목록
 					</a>
-				</li>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 유학목록
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
+					<?php if (strpos($this->session->userdata("admin_permi"), "apply_02") !== false): ?>  		
 					<a href="/admin/recruit">
 						<i class="fa fa-caret-right"></i> 수속신청현황
 					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 수속신청현황
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="/admin/recruit/recruit_resume_list">
-					<i class="fa fa-caret-right"></i> 이력서관리
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "apply_03") !== false): ?>  	
+					<a href="/admin/recruit/recruit_resume_list">
+						<i class="fa fa-caret-right"></i> 이력서관리
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 이력서관리
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
-				  <a href="/admin/recruit/recruit_document_list">
-					<i class="fa fa-caret-right"></i> 수속서류관리
-				  </a>
+					<?php if (strpos($this->session->userdata("admin_permi"), "apply_04") !== false): ?>  	
+					<a href="/admin/recruit/recruit_document_list">
+						<i class="fa fa-caret-right"></i> 수속서류관리
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 수속서류관리
+					</a>
+					<?php endif; ?>
 				</li>
 				<!-- <li>
 				  <a href="#">
@@ -226,14 +351,26 @@
 			</a>
 			<ul class="dropdown-menu" id="boardMenu">
 				<li>
+					<?php if (strpos($this->session->userdata("admin_permi"), "board_01") !== false): ?>  	
 					<a href="/admin/board/board_write">
 						<i class="fa fa-caret-right"></i> 게시판 등록
 					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 게시판 등록
+					</a>
+					<?php endif; ?>
 				</li>
 				<li>
+					<?php if (strpos($this->session->userdata("admin_permi"), "board_02") !== false): ?>  	
 					<a href="/admin/board/board_list">
 						<i class="fa fa-caret-right"></i> 게시판 현황
 					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 게시판 현황
+					</a>
+					<?php endif; ?>
 				</li>
 			</ul>
 

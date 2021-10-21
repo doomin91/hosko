@@ -85,8 +85,8 @@
                                             <input type="checkbox" name="admin_permi" value="basic_all" id="admin_permi1"><label for="admin_permi1">&nbsp;기본설정</label><br/>
                                             <input type="checkbox" name="admin_permi" value="basic_01" id="admin_permi2"><label for="admin_permi2">&nbsp;사이트정보</label><br/>
                                             <input type="checkbox" name="admin_permi" value="basic_02" id="admin_permi3"><label for="admin_permi3">&nbsp;관리자 설정</label><br/>
-                                            <input type="checkbox" name="admin_permi" value="basic_03" id="admin_permi4"><label for="admin_permi4">&nbsp;접속통계</label><br/>
-                                            <input type="checkbox" name="admin_permi" value="basic_04" id="admin_permi5"><label for="admin_permi5">&nbsp;회원접속 현황</label><br/>
+                                            <!--<input type="checkbox" name="admin_permi" value="basic_03" id="admin_permi4"><label for="admin_permi4">&nbsp;접속통계</label><br/>
+                                            <input type="checkbox" name="admin_permi" value="basic_04" id="admin_permi5"><label for="admin_permi5">&nbsp;회원접속 현황</label><br/>-->
                                         </div>
                                         <div class="col-lg-2">
                                             <input type="checkbox" name="admin_permi" value="user_all" id="admin_permi6"><label for="admin_permi6">&nbsp;<b>회원관리</b></label><br/>
@@ -110,12 +110,12 @@
                                         <div class="col-lg-2">
                                             <input type="checkbox" name="admin_permi" value="apply_all" id="admin_permi21"><label for="admin_permi21">&nbsp;수속관리</label><br/>
                                             <input type="checkbox" name="admin_permi" value="apply_01" id="admin_permi22"><label for="admin_permi22">&nbsp;수속신청현황</label><br/>
-                                            <input type="checkbox" name="admin_permi" value="apply_02" id="admin_permi23"><label for="admin_permi23">&nbsp;수속진횅현황</label><br/>
-                                            <input type="checkbox" name="admin_permi" value="apply_03" id="admin_permi24"><label for="admin_permi24">&nbsp;이력서 관리</label><br/>
-                                            <input type="checkbox" name="admin_permi" value="apply_04" id="admin_permi25"><label for="admin_permi25">&nbsp;수속셔류관리</label><br/>
-                                            <input type="checkbox" name="admin_permi" value="apply_05" id="admin_permi26"><label for="admin_permi26">&nbsp;입금 및 환불</label><br/>
-                                            <input type="checkbox" name="admin_permi" value="apply_06" id="admin_permi27"><label for="admin_permi27">&nbsp;수속포기자</label><br/>
-                                            <input type="checkbox" name="admin_permi" value="apply_07" id="admin_permi28"><label for="admin_permi28">&nbsp;출금 및 증명서</label><br/>
+                                            <!--<input type="checkbox" name="admin_permi" value="apply_02" id="admin_permi23"><label for="admin_permi23">&nbsp;수속진횅현황</label><br/>-->
+                                            <input type="checkbox" name="admin_permi" value="apply_02" id="admin_permi24"><label for="admin_permi24">&nbsp;이력서 관리</label><br/>
+                                            <input type="checkbox" name="admin_permi" value="apply_03" id="admin_permi25"><label for="admin_permi25">&nbsp;수속셔류관리</label><br/>
+                                            <!--<input type="checkbox" name="admin_permi" value="apply_05" id="admin_permi26"><label for="admin_permi26">&nbsp;입금 및 환불</label><br/>
+                                            <input type="checkbox" name="admin_permi" value="apply_06" id="admin_permi27"><label for="admin_permi27">&nbsp;수속포기자</label><br/>-->
+                                            <input type="checkbox" name="admin_permi" value="apply_04" id="admin_permi28"><label for="admin_permi28">&nbsp;출금 및 증명서</label><br/>
                                         </div>
                                         <div class="col-lg-2">
                                             <input type="checkbox" name="admin_permi" value="board_all" id="admin_permi29"><label for="admin_permi29">&nbsp;게시판관리</label><br/>

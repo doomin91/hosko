@@ -59,7 +59,8 @@ class Home extends CI_Controller {
 								"admin_seq" => $user->ADMIN_SEQ,
 								"admin_id" => $user->ADMIN_ID,
 								"admin_name" => $user->ADMIN_NAME,
-								"admin_email" => $user->ADMIN_EMAIL
+								"admin_email" => $user->ADMIN_EMAIL,
+								"admin_permi" => $user->ADMIN_PERMI
 			);
 			$this->session->set_userdata($session_data);
 
