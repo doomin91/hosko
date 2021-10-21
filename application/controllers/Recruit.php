@@ -92,8 +92,10 @@ class Recruit extends CI_Controller {
     }
 
     public function recruit_view($category, $rec_seq){
+        // print_r($rec_seq);
         $CATEGORY = $category;
         $RECRUIT = $this->RecruitModel->getRecruitAbroad($rec_seq);
+        // print_r($RECRUIT);
 
         $DATA["CATEGORY"] = $CATEGORY;
         $DATA["RECRUIT"] = $RECRUIT;

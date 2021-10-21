@@ -41,7 +41,7 @@
                                         <thead>
                                             <tr>
                                                 <th>제 목</th>
-                                                <th class="tal pl20">[해외인턴쉽] 미국 네브레스카 'A'복합 리조트 인턴채용</th>
+                                                <th class="tal pl20"><?php echo $RECRUIT->REC_TITLE?></th>
                                             </tr>
                                         </thead>
                                         <tbody>

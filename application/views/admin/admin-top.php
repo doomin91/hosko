@@ -147,7 +147,7 @@
 					<?php endif; ?>
 				</li>
 				<li>
-					<?php if (strpos($this->session->userdata("admin_permi"), "user_05") !== false): ?>  
+					<?php if (strpos($this->session->userdata("admin_permi"), "user_07") !== false): ?>  
 					<a href="/admin/user/mailFormList">
 						<i class="fa fa-caret-right"></i> 메일폼 관리
 					</a>
@@ -158,7 +158,7 @@
 					<?php endif; ?>
 				</li>
 				<li>
-					<?php if (strpos($this->session->userdata("admin_permi"), "user_06") !== false): ?>  
+					<?php if (strpos($this->session->userdata("admin_permi"), "user_05") !== false): ?>  
 					<a href="/admin/user/emailSend">
 						<i class="fa fa-caret-right"></i> 메일발송관리
 					</a>
@@ -169,7 +169,7 @@
 					<?php endif; ?>
 				</li>
 				<li>
-					<?php if (strpos($this->session->userdata("admin_permi"), "user_07") !== false): ?>  
+					<?php if (strpos($this->session->userdata("admin_permi"), "user_06") !== false): ?>  
 					<a href="/admin/user/smsSend">
 						<i class="fa fa-caret-right"></i> SMS발송관리
 					</a>

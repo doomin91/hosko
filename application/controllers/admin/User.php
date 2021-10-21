@@ -554,10 +554,10 @@ class User extends CI_Controller {
 					$sendArr = array(
 									"FILE_CNT" => 1,
 									"MMS_BODY" => $send_message,
-									"MMS_SUBJECRT" => substr($send_message, 0, 10)
+									"MMS_SUBJECT" => substr($send_message, 0, 10)
 					);
 					$this->UserModel->setMMSData($sendArr);
-					$cont_seq = $this->db->last_id();
+					$cont_seq = $this->db->insert_id();
 
 					$smsArr = array(
 									"CUR_STATE" => 0,
@@ -569,9 +569,26 @@ class User extends CI_Controller {
 									"CONT_SEQ" => $cont_seq
 					);
 
-					$this->UserModel->setMsgData($sendArr);
+					$this->UserModel->setMsgData($smsArr);
 				}
 				
+
+
+				$insertArr = array(
+								"CLOG_MANAGER_NAME" => $this->session->userdata("admin_name"),
+								"CLOG_USER_SEQ" => $list->USER_SEQ,
+								"CLOG_USER_NAME" => $list->USER_NAME,
+								"CLOG_USER_COMPANY" => $list->USER_COMPANY,
+								"CLOG_MESSAGE" => "SMS발송 - ".$send_message,
+								"CLOG_CONSULT_DATE" => date("y-m-d h:i:s"),
+								"CLOG_INTEREST" => 1,
+								"CLOG_LANG_SKILL" => 1,
+								"CLOG_REG_DATE" => date("Y-m-d H:i:s"),
+								"CLOG_REG_IP" => $_SERVER["REMOTE_ADDR"],
+								"CLOG_DEL_YN" => "N"
+								);
+
+				$result = $this->UserModel->insertUserCallMsg($insertArr);
 				
 			}
 		}

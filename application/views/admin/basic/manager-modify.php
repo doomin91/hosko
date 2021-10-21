@@ -102,6 +102,7 @@
 											<input type="checkbox" name="admin_permi" value="user_03" id="admin_permi9" <?php if (strpos($info->ADMIN_PERMI, "user_03") > -1) echo "checked"; ?>><label for="admin_permi9">&nbsp;탈퇴회원</label><br/>
 											<input type="checkbox" name="admin_permi" value="user_04" id="admin_permi10" <?php if (strpos($info->ADMIN_PERMI, "user_04") > -1) echo "checked"; ?>><label for="admin_permi10">&nbsp;회원분석</label><br/>
 											<input type="checkbox" name="admin_permi" value="user_05" id="admin_permi11" <?php if (strpos($info->ADMIN_PERMI, "user_05") > -1) echo "checked"; ?>><label for="admin_permi11">&nbsp;메일발송 관리</label><br/>
+											<input type="checkbox" name="admin_permi" value="user_07" id="admin_permi13" <?php if (strpos($info->ADMIN_PERMI, "user_07") > -1) echo "checked"; ?>><label for="admin_permi13">&nbsp;메일폼 관리</label><br/>
 											<input type="checkbox" name="admin_permi" value="user_06" id="admin_permi12" <?php if (strpos($info->ADMIN_PERMI, "user_06") > -1) echo "checked"; ?>><label for="admin_permi12">&nbsp;SMS발송 관리</label><br/>
 										</div>
 										<div class="col-lg-2">
