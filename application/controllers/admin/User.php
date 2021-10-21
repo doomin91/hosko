@@ -561,11 +561,11 @@ class User extends CI_Controller {
 
 					$smsArr = array(
 									"CUR_STATE" => 0,
-									"REQ_DATE" => date("y-m-d h:i:s"),
+									"REQ_DATE" => date("Y-m-d H:i:s"),
 									"CALL_FROM" => "0220529700",
 									"CALL_TO" => str_replace("-", "", $list->USER_HP),
 									"SMS_TXT" => $send_message,
-									"MSG_TYPE" => 4,
+									"MSG_TYPE" => 6,
 									"CONT_SEQ" => $cont_seq
 					);
 
