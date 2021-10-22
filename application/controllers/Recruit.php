@@ -27,7 +27,7 @@ class Recruit extends CI_Controller {
 
         $this->load->library('session');
         $this->load->library('pagination');
-        $this->load->library('customclass');
+        $this->load->library('CustomClass');
         $this->load->library('image_lib');
 
         $this->load->model("UserModel");
@@ -92,8 +92,10 @@ class Recruit extends CI_Controller {
     }
 
     public function recruit_view($category, $rec_seq){
+        // print_r($rec_seq);
         $CATEGORY = $category;
         $RECRUIT = $this->RecruitModel->getRecruitAbroad($rec_seq);
+        // print_r($RECRUIT);
 
         $DATA["CATEGORY"] = $CATEGORY;
         $DATA["RECRUIT"] = $RECRUIT;
