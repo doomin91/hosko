@@ -64,9 +64,9 @@
                                                 <td>
                                                     <span class="thumImg recuit_img">
                                                         <?php if($REC->REC_THUMBNAIL != "" && $REC->REC_THUMBNAIL != "/upload/recruit/"): ?>
-                                                            <img src="/upload/recruit/default.jpg">
-                                                        <?php else :?>
                                                             <img src="<?php echo $REC->REC_THUMBNAIL?>">
+                                                        <?php else :?>
+                                                            <img src="/upload/recruit/default.jpg">
                                                         <?php endif?>
                                                     </span>
                                                     <a class="fontcb" style="line-height:96px;" href ="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $REC->REC_SEQ?>"><?php echo $REC->REC_TITLE ?></a>
