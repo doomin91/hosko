@@ -149,7 +149,7 @@
                             </colgroup>
                             <thead>
                                 <tr>
-                                    <th class="text-center">#</th>
+                                    <th class="text-center"><input type="checkbox" name="userall"></th>
                                     <th class="text-center">아이디</th>
                                     <th class="text-center">이름</th>
                                     <th class="text-center">회원번호</th>
@@ -192,7 +192,7 @@
                                     }
                         ?>
                                 <tr>
-                                    <td class="text-center"><?php echo $pagenum; ?></td>
+                                    <td class="text-center"><input type="checkbox" name="user_seq" value="<?php echo $list->USER_SEQ; ?>"></td>
                                     <td class="text-center"><?php echo $list->USER_ID; ?></td>
                                     <td class="text-center"><?php echo $list->USER_NAME; ?></td>
                                     <td class="text-center"><?php echo $list->USER_NUMBER; ?></td>
@@ -345,7 +345,15 @@
             var search_string = $("input[name=search_string]").val();
             var user_email_flag = $("input:checkbox[name=user_email_flag]").val();
             var send_message = $("textarea[name=send_message]").val();
-
+            
+            const user_seq_arr = []
+            
+            $.each($("input:checkbox[name=user_seq]"), function(){
+                if ($(this).is(":checked") == true){
+                    user_seq_arr.push($(this).val());
+                }
+            })
+             
             if (send_message == ""){
                 alert("메세지를 입력해주세요");
                 $("textarea[name=send_message]").focus();
@@ -356,12 +364,7 @@
                 url:"/admin/user/smsSendProc",
                 type:"post",
                 data:{
-                    "reg_date_start" : reg_date_start,
-                    "reg_date_end" : reg_date_end,
-                    "user_level" : user_level,
-                    "search_field" : search_field,
-                    "search_string" : search_string,
-                    "user_email_flag" : user_email_flag,
+                    "user_seq_arr" : user_seq_arr,
                     "send_message" : send_message
                 },
                 dataType:"json",
@@ -379,6 +382,18 @@
                     console.log(e.responseText);
                 }
             })
+        });
+
+        $(document).on("click", "input:checkbox[name=userall]", function(){
+            var _checked = $(this).is(":checked")
+            $.each($("input:checkbox[name=user_seq]"), function(){
+                if (_checked == true){
+                    $(this).prop("checked", true);
+                }else{
+                    $(this).prop("checked", false);
+                }
+            })
+            
         });
     });
 </script>

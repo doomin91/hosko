@@ -263,6 +263,10 @@ class UserModel extends CI_Model{
 		if ((isset($whereArr["user_email_flag"])) && ($whereArr["user_email_flag"] != "")){
 			$this->db->where("TBL_HOSKO_USER.USER_EMAIL_FLAG", $whereArr["user_email_flag"]);
 		}
+		
+		if ((isset($whereArr["user_seq_arr"])) && (count($whereArr["user_seq_arr"]) > 0)){
+			$this->db->where_in("TBL_HOSKO_USER.USER_SEQ", $whereArr["user_seq_arr"]);
+		}
 
 		if ((isset($whereArr["search_string"])) && ($whereArr["search_string"] != "")){
 			if ($whereArr["search_field"] == "all"){
