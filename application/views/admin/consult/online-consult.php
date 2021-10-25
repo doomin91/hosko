@@ -71,8 +71,8 @@
 									<th class="text-center">연락처</th>
 									<th class="text-center">핸드폰</th>
 									<th class="text-center">내용</th>
-									<th class="text-center">접수일</th>
 									<th class="text-center">상태</th>
+									<th class="text-center">접수일</th>
 								</tr>
 							</thead>
 							<tbody>
