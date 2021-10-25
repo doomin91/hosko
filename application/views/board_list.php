@@ -127,7 +127,7 @@
                                             <span class="col_name"><?php echo !empty($lt->ADMIN_NAME)? $lt->ADMIN_NAME : $lt->USER_NAME ?></span>
                                             
                                             <span class="col_hit"><?php echo $lt->POST_VIEW_CNT?></span>
-                                            <span class="col_date"><?php echo $lt->POST_REG_DATE?></span>                                            
+                                            <span class="col_date"><?php echo date("Y-m-d", strtotime($lt->POST_REG_DATE));?></span>                                            
                                         </div>
                                         <?php 
                                         $pagenum -= 1;} 

@@ -62,16 +62,18 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php if ($ocInfo->OC_ANSWER_FLAG == "Y"){ ?>
+                                            <!--
+                                            <?php //if ($ocInfo->OC_ANSWER_FLAG == "Y"){ ?>
                                             <div class="col1">
                                                 <div class="boardViewTop_item">
                                                     <strong>답변내용</strong>
                                                     <div class="type_td">
-                                                        <?php echo nl2br($ocInfo->OC_ANSWER); ?>		
+                                                        <?php //echo nl2br($ocInfo->OC_ANSWER); ?>		
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php } ?>
+                                            <?php //} ?>
+                                            -->
                                         </div>
                                     </div>
 
