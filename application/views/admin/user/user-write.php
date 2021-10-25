@@ -317,6 +317,7 @@
 								<tr>
 									<th>추천경로</th>
 									<td colspan="3">
+										<!--
 										<input type="checkbox" name="user_join_route" value="1"><label>&nbsp;신문광고</label>&nbsp;
 										<input type="checkbox" name="user_join_route" value="2"><label>&nbsp;SNS매체</label>&nbsp;
 										<input type="checkbox" name="user_join_route" value="3"><label>&nbsp;온라인검색</label>&nbsp;
@@ -325,6 +326,16 @@
 										<input type="checkbox" name="user_join_route" value="6"><label>&nbsp;친구/친척소개</label>&nbsp;
 										<input type="checkbox" name="user_join_route" value="7"><label>&nbsp;교수님/선배소개</label>&nbsp;
 										<input type="checkbox" name="user_join_route" value="8"><label>&nbsp;업체소개</label>&nbsp;
+										-->
+										<input type="checkbox" name="user_join_route" value="4"><label>&nbsp;학교 취업처</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="7"><label>&nbsp;교수님</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="10"><label>&nbsp;학과 공지 혹은 학과 게시판</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="6"><label>&nbsp;친구, 동기, 선후배등 지인</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="3"><label>&nbsp;온라인 검색</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="11"><label>&nbsp;네이버 카페</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="12"><label>&nbsp;네이버 블로그</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="2"><label>&nbsp;페이스북/인스타그램</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="5"><label>&nbsp;홍보 이메일</label>&nbsp;
 										<input type="checkbox" name="user_join_route" value="9"><label>&nbsp;기타</label>&nbsp;
 										<input type="text" name="user_join_route_str">
 									</td>

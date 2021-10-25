@@ -78,7 +78,7 @@
 									<td><?php echo $info->USER_LOGIN_CNT; ?></td>
 									<th>회원등급</th>
 									<td>
-										<select name="" class="">
+										<select name="user_level" class="">
 											<option value="">회원등급</option>
 											<option value="6" <?php if ($info->USER_LEVEL == "6") echo "selected"; ?>>탈퇴회원</option>
 											<option value="8" <?php if ($info->USER_LEVEL == "8") echo "selected"; ?>>파기회원</option>
@@ -330,6 +330,7 @@
 								<tr>
 									<th>추천경로</th>
 									<td colspan="3">
+										<!--
 										<input type="checkbox" name="user_join_route" value="1"><label>&nbsp;신문광고</label>&nbsp;
 										<input type="checkbox" name="user_join_route" value="2"><label>&nbsp;SNS매체</label>&nbsp;
 										<input type="checkbox" name="user_join_route" value="3"><label>&nbsp;온라인검색</label>&nbsp;
@@ -338,7 +339,20 @@
 										<input type="checkbox" name="user_join_route" value="6"><label>&nbsp;친구/친척소개</label>&nbsp;
 										<input type="checkbox" name="user_join_route" value="7"><label>&nbsp;교수님/선배소개</label>&nbsp;
 										<input type="checkbox" name="user_join_route" value="8"><label>&nbsp;업체소개</label>&nbsp;
-										<input type="checkbox" name="user_join_route" value="9"><label>&nbsp;기타</label>&nbsp;
+										-->
+									<?php 
+										$routes = explode(",", $info->USER_JOIN_ROUTE);
+									?>
+										<input type="checkbox" name="user_join_route" value="4" <?php if (array_search("4", $routes)> -1) echo "checked"; ?>><label>&nbsp;학교 취업처</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="7" <?php if (array_search("7", $routes)> -1) echo "checked"; ?>><label>&nbsp;교수님</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="10" <?php if (array_search("10", $routes)> -1) echo "checked"; ?>><label>&nbsp;학과 공지 혹은 학과 게시판</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="6" <?php if (array_search("6", $routes)> -1) echo "checked"; ?>><label>&nbsp;친구, 동기, 선후배등 지인</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="3" <?php if (array_search("3", $routes)> -1) echo "checked"; ?>><label>&nbsp;온라인 검색</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="11" <?php if (array_search("11", $routes)> -1) echo "checked"; ?>><label>&nbsp;네이버 카페</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="12" <?php if (array_search("12", $routes)> -1) echo "checked"; ?>><label>&nbsp;네이버 블로그</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="2" <?php if (array_search("2", $routes)> -1) echo "checked"; ?>><label>&nbsp;페이스북/인스타그램</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="5" <?php if (array_search("5", $routes)> -1) echo "checked"; ?>><label>&nbsp;홍보 이메일</label>&nbsp;
+										<input type="checkbox" name="user_join_route" value="9" <?php if (array_search("9", $routes)> -1) echo "checked"; ?>><label>&nbsp;기타</label>&nbsp;
 										<input type="text" name="user_join_route_str">
 									</td>
 								</tr>

@@ -379,14 +379,19 @@
 	  </ul>
 	</li>
 	<li class="navigation">
-	  <ul class="menu">
-		<li>
-			<a href="/admin/home/logout">
-			  <i class="fa fa-power-off"></i> 로그아웃
-			</a>
-		  </li>
+		<ul class="menu">
+			<li>
+				<a href="/admin/home/logout">
+					<i class="fa fa-power-off"></i> 로그아웃
+				</a>
+			</li>
+			<li>
+				<a href="/">
+					<i class="fa fa-home"></i> 홈페이지 이동
+				</a>
+			</li>	
 		</ul>
-	  </li>
+	</li>
   </ul>
   <!-- Sidebar end -->
 

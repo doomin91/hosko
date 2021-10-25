@@ -190,7 +190,7 @@
                                 <th>상담날짜</td>
                                 <td>
                                     <!--<input type="text" class="form-control datepicker" id="consult_date" name="consult_date" value="<?php echo date("Y-m-d"); ?>">-->
-                                    <input name="consult_date" id="consult_date" type="text" class="wid100p datepicker">
+                                    <input name="consult_date" id="consult_date" type="text" class="wid100p datepicker" value="<?php echo date("Y-m-d"); ?>">
                                 </td>
                             </tr>
                             <tr>

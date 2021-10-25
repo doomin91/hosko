@@ -45,62 +45,208 @@
                         <div class="tile-body">
                             <table class="table table-custom datatable userTable">
                                 <colgroup>
-                                    <col width="15%"/>
-                                    <col width="85%"/>
-                                </colgroup>
+									<col width="15%"/>
+									<col width="35%"/>
+									<col width="15%"/>
+									<col width="35%"/>
+								</colgroup>
                                 <tbody>
                                 <form name="sform"  method="get" action="/admin/user/smsSend">
                                     <tr>
-                                        <th>가입일자</th>
-                                        <td>
-                                            <div class="col-md-2">
-                                                <input name="reg_date_start" type="text" class="wid100p datepicker" value="<?php echo $reg_date_start; ?>">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input name="reg_date_end" type="text" class="wid100p datepicker" value="<?php echo $reg_date_end; ?>">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>회원등급</th>
-                                        <td colspan="3">
-                                            <div class="col-md-2">
-                                                <select name="user_level" class="wid100p">
-                                                    <option value="">선택해주세요</option>
-                                                <?php
-                                                    foreach ($levels as $lev) {
-                                                        if ($lev->LEVEL_SEQ == $user_level){
-                                                            echo "<option value=\"".$lev->LEVEL_SEQ."\" selected>".$lev->LEVEL_NAME."</option>";
-                                                        }else{
-                                                            echo "<option value=\"".$lev->LEVEL_SEQ."\">".$lev->LEVEL_NAME."</option>";
-                                                        }
+										<th>가입일자</th>
+										<td>
+											<div class="col-md-5">
+												<input name="reg_date_start" type="text" class="wid100p datepicker" value="<?php echo $reg_date_start; ?>">
+											</div>
+											<div class="col-md-5">
+												<input name="reg_date_end" type="text" class="wid100p datepicker" value="<?php echo $reg_date_end; ?>">
+											</div>
+										</td>
+										<th>로그인 일자</th>
+										<td>
+											<div class="col-md-5">
+												<input name="last_login_start" type="text" class="wid100p datepicker" value="<?php echo $last_login_start; ?>">
+											</div>
+											<div class="col-md-5">
+												<input name="last_login_end" type="text" class="wid100p datepicker" value="<?php echo $last_login_end; ?>">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th>회화능력</th>
+										<td colspan="3">
+											<div class="col-md-2">
+												<select name="user_skill_eng" class="wid100p">
+													<option value="">::영어::</option>
+													<option value="1" <?php if ($user_skill_eng == "1") echo "selected"; ?>>1점</option>
+													<option value="2" <?php if ($user_skill_eng == "2") echo "selected"; ?>>2점</option>
+													<option value="3" <?php if ($user_skill_eng == "3") echo "selected"; ?>>3점</option>
+													<option value="4" <?php if ($user_skill_eng == "4") echo "selected"; ?>>4점</option>
+													<option value="5" <?php if ($user_skill_eng == "5") echo "selected"; ?>>5점</option>
+												</select>
+											</div>
+											<div class="col-md-2">
+												<select name="user_skill_jp" class="wid100p">
+													<option value="">::일본어::</option>
+													<option value="1" <?php if ($user_skill_jp == "1") echo "selected"; ?>>1점</option>
+													<option value="2" <?php if ($user_skill_jp == "2") echo "selected"; ?>>2점</option>
+													<option value="3" <?php if ($user_skill_jp == "3") echo "selected"; ?>>3점</option>
+													<option value="4" <?php if ($user_skill_jp == "4") echo "selected"; ?>>4점</option>
+													<option value="5" <?php if ($user_skill_jp == "5") echo "selected"; ?>>5점</option>
+												</select>
+											</div>
+											<div class="col-md-2">
+												<select name="user_skill_ch" class="wid100p">
+													<option value="">::중국::</option>
+													<option value="1" <?php if ($user_skill_ch == "1") echo "selected"; ?>>1점</option>
+													<option value="2" <?php if ($user_skill_ch == "2") echo "selected"; ?>>2점</option>
+													<option value="3" <?php if ($user_skill_ch == "3") echo "selected"; ?>>3점</option>
+													<option value="4" <?php if ($user_skill_ch == "4") echo "selected"; ?>>4점</option>
+													<option value="5" <?php if ($user_skill_ch == "5") echo "selected"; ?>>5점</option>
+												</select>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th>해외연수경험</th>
+										<td colspan="3">
+											<div class="col-md-2">
+												<select name="user_study_nation" class="wid100p">
+													<option value="">::국가::</option>
+													<option value="1" <?php if ($user_study_nation == "1") echo "selected"; ?>>미국</option>
+													<option value="2" <?php if ($user_study_nation == "2") echo "selected"; ?>>괌</option>
+													<option value="3" <?php if ($user_study_nation == "3") echo "selected"; ?>>일본</option>
+													<option value="4" <?php if ($user_study_nation == "4") echo "selected"; ?>>호주</option>
+													<option value="5" <?php if ($user_study_nation == "5") echo "selected"; ?>>아시아</option>
+													<option value="6" <?php if ($user_study_nation == "6") echo "selected"; ?>>유럽</option>
+													<option value="7" <?php if ($user_study_nation == "7") echo "selected"; ?>>서남아시아</option>
+													<option value="8" <?php if ($user_study_nation == "8") echo "selected"; ?>>기타</option>
+												</select>
+											</div>
+											<div class="col-md-2">
+												<select name="user_study_term" class="wid100p">
+													<option value="">::기간::</option>
+													<option value="0">없음</option>
+													<option value="1" <?php if ($user_study_term == "1") echo "selected"; ?>>6개월 미만</option>
+													<option value="2" <?php if ($user_study_term == "2") echo "selected"; ?>>12개월 미만</option>
+													<option value="3" <?php if ($user_study_term == "3") echo "selected"; ?>>12개월 이상</option>
+												</select>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th>해외어학연수경험</th>
+										<td colspan="3">
+											<div class="col-md-2">
+												<select name="user_lan_study_nation" class="wid100p">
+													<option value="">::국가::</option>
+													<option value="1" <?php if ($user_lan_study_nation == "1") echo "selected"; ?>>미국</option>
+													<option value="2" <?php if ($user_lan_study_nation == "2") echo "selected"; ?>>괌</option>
+													<option value="3" <?php if ($user_lan_study_nation == "3") echo "selected"; ?>>일본</option>
+													<option value="4" <?php if ($user_lan_study_nation == "4") echo "selected"; ?>>호주</option>
+													<option value="5" <?php if ($user_lan_study_nation == "5") echo "selected"; ?>>아시아</option>
+													<option value="6" <?php if ($user_lan_study_nation == "6") echo "selected"; ?>>유럽</option>
+													<option value="7" <?php if ($user_lan_study_nation == "7") echo "selected"; ?>>서남아시아</option>
+													<option value="8" <?php if ($user_lan_study_nation == "8") echo "selected"; ?>>기타</option>
+												</select>
+											</div>
+											<div class="col-md-2">
+												<select name="user_lan_study_term" class="wid100p">
+													<option value="">::기간::</option>
+													<option value="0">없음</option>
+													<option value="1" <?php if ($user_lan_study_term == "1") echo "selected"; ?>>6개월 미만</option>
+													<option value="2" <?php if ($user_lan_study_term == "2") echo "selected"; ?>>12개월 미만</option>
+													<option value="3" <?php if ($user_lan_study_term == "3") echo "selected"; ?>>12개월 이상</option>
+												</select>
+											</div>
+										</td>
+									</tr>
+									<!--
+									<tr>
+										<th>국내외 근무경력</th>
+										<td colspan="3">
+											<div class="col-md-2">
+												<select class="wid100p">
+													<option value="">::근무기간1::</option>
+													<option value="0">없음</option>
+													<option value="1">3개월 미만</option>
+													<option value="2">6개월 미만</option>
+													<option value="3">12개월 미만</option>
+													<option value="4">12개월 이상</option>
+												</select>
+											</div>
+											<div class="col-md-2">
+												<select class="wid100p">
+													<option value="">::근무기간2::</option>
+													<option value="0">없음</option>
+													<option value="1">3개월 미만</option>
+													<option value="2">6개월 미만</option>
+													<option value="3">12개월 미만</option>
+													<option value="4">12개월 이상</option>
+												</select>
+											</div>
+											<div class="col-md-2">
+												<select class="wid100p">
+													<option value="">::근무기간3::</option>
+													<option value="0">없음</option>
+													<option value="1">3개월 미만</option>
+													<option value="2">6개월 미만</option>
+													<option value="3">12개월 미만</option>
+													<option value="4">12개월 이상</option>
+												</select>
+											</div>
+										</td>
+									</tr>
+									-->
+									<tr>
+										<th>회원등급</th>
+										<td colspan="3">
+											<div class="col-md-2">
+												<select name="user_level" class="wid100p">
+													<option value="">선택해주세요</option>
+												<?php
+													foreach ($levels as $lev) {
+														if ($lev->LEVEL_SEQ == $user_level){
+															echo "<option value=\"".$lev->LEVEL_SEQ."\" selected>".$lev->LEVEL_NAME."</option>";
+														}else{
+															echo "<option value=\"".$lev->LEVEL_SEQ."\">".$lev->LEVEL_NAME."</option>";
+														}
 
-                                                    }
-                                                ?>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <select name="search_field" class="wid100p">
-                                                    <option value="all">전체</option>
-                                                    <option value="USER_ID" <?php if ($search_field == "USER_ID") echo "selected"; ?>>아이디</option>
-                                                    <option value="USER_NAME" <?php if ($search_field == "USER_NAME") echo "selected"; ?>>이름</option>
-                                                    <option value="USER_NUMBER" <?php if ($search_field == "USER_NUMBER") echo "selected"; ?>>회원번호</option>
-                                                    <option value="USER_HP" <?php if ($search_field == "USER_HP") echo "selected"; ?>>연락처</option>
-                                                    <option value="USER_EMAIL" <?php if ($search_field == "USER_EMAIL") echo "selected"; ?>>이메일주소</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <input type="text" name="search_string" class="wid100p" placeholder="검색어를 입력해주세요" value="<?php echo $search_string; ?>">
-                                            </div>
-                                        </td>
-                                    </tr>
+													}
+												?>
+												</select>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th>단어검색</th>
+										<td colspan="3">
+											<div class="col-md-2">
+												<select name="search_field" class="wid100p">
+													<option value="all">전체</option>
+													<option value="USER_ID" <?php if ($search_field == "USER_ID") echo "selected"; ?>>아이디</option>
+													<option value="USER_NAME" <?php if ($search_field == "USER_NAME") echo "selected"; ?>>이름</option>
+													<option value="USER_NUMBER" <?php if ($search_field == "USER_NUMBER") echo "selected"; ?>>회원번호</option>
+													<option value="USER_HP" <?php if ($search_field == "USER_HP") echo "selected"; ?>>연락처</option>
+													<option value="USER_EMAIL" <?php if ($search_field == "USER_EMAIL") echo "selected"; ?>>이메일주소</option>
+													<option value="USER_LEAVE_COUNTRY" <?php if ($search_field == "USER_LEAVE_COUNTRY") echo "selected"; ?>>출국국가</option>
+													<option value="USER_LEAVE_HOTEL" <?php if ($search_field == "USER_LEAVE_HOTEL") echo "selected"; ?>>출국호텔</option>
+													<option value="USER_COMPANY" <?php if ($search_field == "USER_COMPANY") echo "selected"; ?>>학교/직장</option>
+													<option value="USER_MANAGER_NAME" <?php if ($search_field == "USER_MANAGER_NAME") echo "selected"; ?>>담당자</option>
+												</select>
+											</div>
+											<div class="col-md-8">
+												<input type="text" name="search_string" class="wid100p" placeholder="검색어를 입력해주세요" value="<?php echo $search_string; ?>">
+											</div>
+										</td>
+									</tr>
                                     <tr>
                                         <th>SMS 수신</th>
-                                        <td>
+                                        <td colspan="3">
                                             <div class="col-md-6">
-                                                <input type="radio" id="all" name="user_email_flag" value="" <?php if ($user_email_flag == "") echo "checked"; ?>><label for="all"> 회원전체</label>
+                                                <input type="radio" id="all" name="user_sms_flag" value="" <?php if ($user_sms_flag == "") echo "checked"; ?>><label for="all"> 회원전체</label>
                                                 &nbsp;&nbsp;&nbsp;
-                                                <input type="radio" id="sms_send" name="user_email_flag" value="Y" <?php if ($user_email_flag == "Y") echo "checked"; ?>><label for="sms_send"> 수신거부회원 제의</label>
+                                                <input type="radio" id="sms_send" name="user_sms_flag" value="Y" <?php if ($user_sms_flag == "Y") echo "checked"; ?>><label for="sms_send"> 수신거부회원 제의</label>
                                             </div>
                                         </td>
                                     </tr>

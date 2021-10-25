@@ -269,6 +269,14 @@ class Consult extends CI_Controller {
 			$flag_string = "설명회 일정";
 		}
 
+		if ($dateM > 12){
+			$dateY = $dateY + 1;
+			$dateM = 1;
+		}else if ($dateM < 1){
+			$dateY = $dateY - 1;
+			$dateM = 12;
+		}
+
         $data["month"] = $dateM;
         $data["year"] = $dateY;
 		$data = array(

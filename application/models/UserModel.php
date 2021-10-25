@@ -75,7 +75,7 @@ class UserModel extends CI_Model{
 		}
 
 		if ((isset($whereArr["reg_date_end"])) && ($whereArr["reg_date_end"] != "")){
-			$this->db->where("TBL_HOSKO_USER.USER_REG_DATE <=", $whereArr["reg_date_start"]);
+			$this->db->where("TBL_HOSKO_USER.USER_REG_DATE <=", $whereArr["reg_date_end"]);
 		}
 
 		if ((isset($whereArr["last_login_start"])) && ($whereArr["last_login_start"] != "")){

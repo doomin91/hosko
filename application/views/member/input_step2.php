@@ -443,38 +443,37 @@
                                             <div class="joinBoxCheckbox">
                                                 <ul>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="1" id="ujr1">
-                                                        <label for="ujr1">신문광고</label>
+                                                        <input type="checkbox" name="user_join_route" value="4" id="ujr1">
+                                                        <label for="ujr1">학교 취업처</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="2" id="ujr2">
-                                                        <label for="ujr2">SMS매체</label>
+                                                        <input type="checkbox" name="user_join_route" value="7" id="ujr2">
+                                                        <label for="ujr2">교수님</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="3" id="ujr3">
-                                                        <label for="ujr3">온라인검색</label>
+                                                        <input type="checkbox" name="user_join_route" value="10" id="ujr3">
+                                                        <label for="ujr3">학과 공지 혹은 학과 게시판</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="4" id="ujr4">
-                                                        <label for="ujr4">학교설명회/박람회</label>
+                                                        <input type="checkbox" name="user_join_route" value="6" id="ujr4">
+                                                        <label for="ujr4">친구, 동기, 선후배등 지인</label>
                                                     </li>
-                                                </ul>
-                                                <ul>
+                                                
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="5" id="ujr5">
-                                                        <label for="ujr5">광고홍보물</label>
-                                                    </li>
-                                                    <li>
-                                                        <input type="checkbox" name="user_join_route" value="6" id="ujr6">
-                                                        <label for="ujr6">친구/친척소개</label>
+                                                        <input type="checkbox" name="user_join_route" value="3" id="ujr5">
+                                                        <label for="ujr5">온라인 검색</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="7" id="ujr7">
-                                                        <label for="ujr7">교수님/선배소개</label>
+                                                        <input type="checkbox" name="user_join_route" value="11" id="ujr6">
+                                                        <label for="ujr6">네이버 카페</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" name="user_join_route" value="8" id="ujr8">
-                                                        <label for="ujr8">업체소개</label>
+                                                        <input type="checkbox" name="user_join_route" value="12" id="ujr7">
+                                                        <label for="ujr7">네이버 블로그</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox" name="user_join_route" value="13" id="ujr8">
+                                                        <label for="ujr8">페이스북/인스타그램</label>
                                                     </li>
                                                 </ul>
                                                 <ul>

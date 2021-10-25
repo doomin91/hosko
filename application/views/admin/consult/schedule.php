@@ -54,7 +54,7 @@
                         <div class="col-lg-4">
                         <form name="weekForm" method="get">
                             <div class="col-lg-2 align-right">
-                                <button class="btn btn-default btn-sm" id="prevMon"><</button>
+                                <a href="/admin/consult/schedule?flag=<?php echo $flag; ?>&strYear=<?php echo $year; ?>&strMon=<?php echo $month-1; ?>" class="btn btn-default btn-sm" id="prevMon"><</a>
                             </div>
                             <div class="col-lg-4">
                                 <select name="strYear" class="form-control" style="height:30px !important;">
@@ -79,7 +79,7 @@
                                 </select>
                             </div>
                             <div class="col-lg-2 align-left">
-                                <button class="btn btn-default btn-sm" id="nextMon">></button>
+                                <a href="/admin/consult/schedule?flag=<?php echo $flag; ?>&strYear=<?php echo $year; ?>&strMon=<?php echo $month+1; ?>" class="btn btn-default btn-sm" id="nextMon">></a>
                             </div>
                         </form>
                         </div>
