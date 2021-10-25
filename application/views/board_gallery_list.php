@@ -78,7 +78,7 @@
                                                         <div class="galleryCon">
                                                             <div class="description"><?php echo $lt->POST_SUBJECT?></div>
                                                             <div class="galleryConfoot">
-                                                                <span class="date"><?php echo $lt->POST_REG_DATE?></span>
+                                                                <span class="date"><?php echo date("Y-m-d", strtotime($lt->POST_REG_DATE));?></span>
                                                             </div>
                                                         </div>
                                                     </div>

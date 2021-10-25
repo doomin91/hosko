@@ -149,7 +149,7 @@
                                                 <li>
                                                         <div class="news_box_item">
                                                             <p class="text" onclick="viewPage(<?php echo $val->POST_SEQ?>)"><?php echo $this->customclass->strcut(strip_tags($val->POST_SUBJECT), 30)?></p>
-                                                            <p class="date"><?php echo date("Y-d-m", strtotime($val->POST_REG_DATE))?></p>
+                                                            <p class="date"><?php echo date("Y-m-d", strtotime($val->POST_REG_DATE))?></p>
                                                         </div>
                                                 </li>
                                                 <?php endforeach; ?>
@@ -169,7 +169,7 @@
                                                 <li>
                                                     <div class="notice_box_item">
                                                         <p class="text" onclick="viewPage(<?php echo $val->POST_SEQ?>)"><?php echo $this->customclass->strcut(strip_tags($val->POST_SUBJECT), 30)?></p>
-                                                        <p class="date"><?php echo date("Y-d-m", strtotime($val->POST_REG_DATE))?></p>
+                                                        <p class="date"><?php echo date("Y-m-d", strtotime($val->POST_REG_DATE))?></p>
                                                     </div>                                                 
                                                 </li>
                                                 <?php endforeach; ?>
