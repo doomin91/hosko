@@ -262,7 +262,7 @@
             </div>
             <!-- /row -->
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <section class="tile color transparent-black">
                         <div class="tile-body">
                             <table class="table table-custom datatable userTable">
