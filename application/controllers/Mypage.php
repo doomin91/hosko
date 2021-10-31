@@ -32,6 +32,8 @@ class Mypage extends CI_Controller {
 
 		$this->load->model("UserModel");
 
+		date_default_timezone_set('Asia/Seoul');
+
 		$this->customclass->userCheck();
     }
 
@@ -258,7 +260,7 @@ class Mypage extends CI_Controller {
 		$rlang_name = isset($_POST["rlang_name"]) ? json_decode($_POST["rlang_name"]) : array();
 		$rlang_speaking = isset($_POST["rlang_speaking"]) ? json_decode($_POST["rlang_speaking"]) : array();
 		$rlang_writing = isset($_POST["rlang_writing"]) ? json_decode($_POST["rlang_writing"]) : array();
-		$resume_user_computer_skill = isset($_POST["resume_user_computer_skill"]) ? json_decode($_POST["resume_user_computer_skill"]) : "";
+		$resume_user_computer_skill = isset($_POST["resume_user_computer_skill"]) ? $_POST["resume_user_computer_skill"] : "";
 
 		$insertArr = array(
 			"USER_SEQ" => $user_seq,
@@ -463,6 +465,9 @@ class Mypage extends CI_Controller {
 			"RESUME_USER_COMPUTER_SKILL" => $resume_user_computer_skill
 		);
 
+		// print_r($updateArr);
+		// exit;
+
 		$result = $this->UserModel->updateUserResume($updateArr, $resume_seq);
 
 		foreach ($redu_date as $key => $edu_date){
@@ -508,7 +513,7 @@ class Mypage extends CI_Controller {
 				$insertArr = array(
 						"RESUME_SEQ" => $resume_seq,
 						"RACT_DATE" => $act_date,
-						"RACT_DESCRIPTION" => $ract_description[$key]	
+						"RACT_DESCRIPTION" => $ract_description[$key]
 					);
 				$this->UserModel->createUserResumeActivity($insertArr);
 			}
@@ -579,7 +584,9 @@ class Mypage extends CI_Controller {
 
 		$resume_img = "";
 		$resume_img_path = "";
+		// print_r("---------------------");
 		// print_r($_FILES['resume_img']['name']);
+		// print_r("---------------------");
 		if (isset($_FILES['resume_img']['name'])) {
 			if (0 < $_FILES['resume_img']['error']) {
 				echo 'Error during file upload' . $_FILES['resume_img']['error'];
@@ -601,11 +608,14 @@ class Mypage extends CI_Controller {
 			//echo 'Please choose a file';
 		}
 
-		$updateArr = array(
-						"RESUME_USER_PHOTO" => $resume_img_path
-					);
+		if($resume_img_path != ""){
+			$updateArr = array(
+				"RESUME_USER_PHOTO" => $resume_img_path
+			);
 
-		$result = $this->UserModel->updateUserResume($updateArr, $resume_seq);
+			$result = $this->UserModel->updateUserResume($updateArr, $resume_seq);
+		}
+
 
 		//echo $this->db->last_query();
 
@@ -727,6 +737,8 @@ class Mypage extends CI_Controller {
 						"DOC_LAST_UPDATE_DATE" => date("YmdHis")
 					);
 
+					// print_r(date("YmdHis"));
+
 		$result = $this->UserModel->updateUserDocument($updateArr, $doc_seq);
 
 		//echo $this->db->last_query();
@@ -746,4 +758,49 @@ class Mypage extends CI_Controller {
         force_download(mb_convert_encoding($cert_info->CERT_NAME, 'euc-kr', 'utf-8'), $data);
     }
 
+	public function DocumentDown($doc_seq, $flag){
+		$doc_info = $this->UserModel->getUserDocumentByDocSeq($doc_seq);
+		if($flag == "docEq"){
+			$path = $doc_info->DOC_EQ;
+			$name = $doc_info->DOC_EQ_FILE_NAME;
+		}else if($flag == "docCl"){
+			$path = $doc_info->DOC_CL;
+			$name = $doc_info->DOC_CL_FILE_NAME;
+		}else if($flag == "docEc"){
+			$path = $doc_info->DOC_EC;
+			$name = $doc_info->DOC_EC_FILE_NAME;
+		}else if($flag == "docPassport"){
+			$path = $doc_info->DOC_PASSPORT;
+			$name = $doc_info->DOC_PASSPORT_FILE_NAME;
+		}else if($flag == "docSc"){
+			$path = $doc_info->DOC_SC;
+			$name = $doc_info->DOC_SC_FILE_NAME;
+		}else if($flag == "docPhoto"){
+			$path = $doc_info->DOC_PHOTO;
+			$name = $doc_info->DOC_PHOTO_FILE_NAME;
+		}else if($flag == "docRod"){
+			$path = $doc_info->DOC_ROD;
+			$name = $doc_info->DOC_ROD_FILE_NAME;
+		}else if($flag == "docTranscript"){
+			$path = $doc_info->DOC_TRANSCRIPT;
+			$name = $doc_info->DOC_TRANSCRIPT_FILE_NAME;
+		}else if($flag == "docRec"){
+			$path = $doc_info->DOC_RECOMMENDATION;
+			$name = $doc_info->DOC_RECOMMENDATION_FILE_NAME;
+		}else if($flag == "docRec2"){
+			$path = $doc_info->DOC_RECOMMENDATION2;
+			$name = $doc_info->DOC_RECOMMENDATION2_FILE_NAME;
+		}else if($flag == "docMs"){
+			$path = $doc_info->DOC_MS;
+			$name = $doc_info->DOC_MS_FILE_NAME;
+		}else if($flag == "docCertificateEE"){
+			$path = $doc_info->DOC_CERTIFICATE_EE;
+			$name = $doc_info->DOC_CERTIFICATE_EE_FILE_NAME;
+		}
+		
+        $data = file_get_contents($_SERVER['DOCUMENT_ROOT'].$path);
+        // force_download($atach_info->FILE_NAME, $data);
+        force_download(mb_convert_encoding($name, 'euc-kr', 'utf-8'), $data);
+    }
+	
 }

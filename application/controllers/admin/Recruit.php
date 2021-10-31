@@ -1354,6 +1354,7 @@ class Recruit extends CI_Controller {
 		$rec = isset($_POST["DOC_RECOMMENDATION_FLAG"]) ? $_POST["DOC_RECOMMENDATION_FLAG"] : "";
 		$rec2 = isset($_POST["DOC_RECOMMENDATION2_FLAG"]) ? $_POST["DOC_RECOMMENDATION2_FLAG"] : "";
 		$ms = isset($_POST["DOC_MS_FLAG"]) ? $_POST["DOC_MS_FLAG"] : "";
+		$ee = isset($_POST["DOC_CERTIFICATE_EE_FLAG"]) ? $_POST["DOC_CERTIFICATE_EE_FLAG"] : "";
 
 		$updateArr = array(
 			"DOC_STATUS" => $status,
@@ -1368,7 +1369,9 @@ class Recruit extends CI_Controller {
 			"DOC_RECOMMENDATION_FLAG" => $rec,
 			"DOC_RECOMMENDATION2_FLAG" => $rec2,
 			"DOC_MS_FLAG" => $ms,
+			"DOC_CERTIFICATE_EE_FLAG" => $ee,
 		);
+
 
 		$result = $this->UserModel->updateUserDocument($updateArr, $seq);
 
@@ -1414,6 +1417,9 @@ class Recruit extends CI_Controller {
 		}else if($flag == "ms"){
 			$path = $doc_info->DOC_MS;
 			$name = $doc_info->DOC_MS_FILE_NAME;
+		}else if($flag == "ee"){
+			$path = $doc_info->DOC_CERTIFICATE_EE;
+			$name = $doc_info->DOC_CERTIFICATE_EE_FILE_NAME;
 		}
 		
         $data = file_get_contents($_SERVER['DOCUMENT_ROOT'].$path);
