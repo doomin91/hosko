@@ -104,6 +104,11 @@
 								<tr>
 									<th>회원사진</th>
 									<td colspan="3">
+										<?php 
+											if ($info->USER_PROFILE != ""){
+												echo "<img src=\"".$info->USER_PROFILE."\" width=100 height=100/>";
+											}
+										?>
 										<input type="file" class="" name="user_profile">
 									</td>
 								</tr>
@@ -325,6 +330,11 @@
 									<th>이력서 등록</th>
 									<td colspan="3">
 										<input type="file" name="user_profile_doc">
+										<?php 
+											if ($info->USER_PROFILE_DOC != ""){
+												echo "<a href=\"".$info->USER_PROFILE_DOC."\" target=\"_blank\">파일다운</a>";
+											}
+										?>
 									</td>
 								</tr>
 								<tr>
