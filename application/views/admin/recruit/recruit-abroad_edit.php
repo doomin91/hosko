@@ -393,6 +393,10 @@
                 var ctg1 = $("input[name=_ctg1]").val();
                 var ctg2 = $("input[name=_ctg2]").val();
                 var ctg3 = $("input[name=_ctg3]").val();
+                // alert();
+                // console.log("----------");
+                // console.log(ctg1);
+                // console.log("----------");
 
                 if(ctg1 == 1){
                     ctg2Html = ""

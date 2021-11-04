@@ -180,7 +180,7 @@
 									<th class="text-center"></th>
 									<th class="text-center">컨텐츠명</th>
 									<th class="text-center">컨텐츠가격</th>
-                                    <th class="text-center">재고</th>
+                                    <th class="text-center">조회수</th>
 									<th class="text-center">진열순서</th>
 									<th class="text-center">기능</th>
 									
@@ -196,9 +196,16 @@
 									<td class="text-center"><input type="checkbox" name="abroad_select" value=<?php echo $list->REC_SEQ?>></td>
 									<td class="text-center"><?php echo $list->REC_SEQ ?></td>
                                     <td class="text-center">
-                                        <?php if($list->REC_THUMBNAIL_R): ?>
-                                            <img src="<?php echo $list->REC_THUMBNAIL_R ?>">
-                                        <?php endif?>
+                                        <span class="thumImg recuit_img">
+                                            <?php if($list->REC_THUMBNAIL != "" && $list->REC_THUMBNAIL != "/upload/recruit/"): ?>
+                                                <img src="<?php echo $list->REC_THUMBNAIL?>">
+                                            <?php else :?>
+                                                <img src="/upload/recruit/default.jpg">
+                                            <?php endif?>
+                                        </span>
+                                        <!-- <?php if($list->REC_THUMBNAIL_R): ?>
+                                            <img src="<?php echo $list->REC_THUMBNAIL ?>">
+                                        <?php endif?> -->
                                     </td>
                                     <td class="text-center"><a href="/admin/recruit/recruit_abroad_edit/<?php echo $list->REC_SEQ ?>"><?php echo $list->REC_TITLE ?></a></td>
                                     <td class="text-center"><?php echo $list->REC_PAY ?></td>
