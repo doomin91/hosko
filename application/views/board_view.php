@@ -141,10 +141,11 @@
                                                     $filetype = explode(".", $filepath);
                                                     $allow_types = ["jpg", "png", "jpeg", "bmp", "gif"];
                                                     if(in_array(strtolower($filetype[1]), $allow_types)){
-                                                        echo "<img src=\"<?php echo $at->ATTACH_FILE_PATH?>\">";
+                                                        echo "<img src=\"". $at->ATTACH_FILE_PATH."\">";
                                                     }
                                                 }
-                                                ?>                                                    
+                                                ?>
+                                                <br><br>
 											<?php endif;?>
                                             <?php echo $POST_INFO->POST_CONTENTS;?>
                                         </div>

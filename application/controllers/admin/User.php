@@ -442,7 +442,7 @@ class User extends CI_Controller {
 	}
 
 	public function smsSend(){
-		$limit = 10;
+		$limit = 30;
 		$nowpage = "";
 		if (!isset($_GET["per_page"])){
 			$start = 0;
@@ -528,7 +528,7 @@ class User extends CI_Controller {
 	public function smsSendProc(){
 		$user_seq_arr = $this->input->post("user_seq_arr");
 		$send_message = $this->input->post("send_message");
-		print_r($this->input->post());
+		//print_r($this->input->post());
 		/*
 		$wheresql = array(
 						"reg_date_start" => $reg_date_start,
@@ -543,9 +543,10 @@ class User extends CI_Controller {
 						"user_seq_arr" => $user_seq_arr
 		);
 		//print_r($wheresql);
+		//exit;
 		$lists = $this->UserModel->getUserAll($wheresql);
 		//echo $this->db->last_query();
-		//print_r(count($lists));
+		//print_r($lists);
 		//exit; 
 		if (!empty($lists)){
 			

@@ -506,6 +506,11 @@
                 return false;
             }
 
+            if (user_seq_arr.length < 1){
+                alert("SMS 발송될 회원을 선택해주세요");
+                return false;
+            }
+
             $.ajax({
                 url:"/admin/user/smsSendProc",
                 type:"post",
