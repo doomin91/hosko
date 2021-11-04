@@ -232,7 +232,7 @@ class RecruitModel extends CI_Model{
         $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_USER_RESUME.USER_SEQ");
 
         $this->db->group_by("TBL_HOSKO_USER_RESUME.RESUME_SEQ");
-        $this->db->order_by("TBL_HOSKO_USER_RESUME.RESUME_SEQ");
+        $this->db->order_by("TBL_HOSKO_USER_RESUME.RESUME_SEQ", "DESC");
         $this->db->select("TBL_HOSKO_USER_RESUME.*, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_USER_RESUME.RESUME_TITLE");
         $this->db->limit($whereArr["limit"], $whereArr["start"]);
         return $this->db->get("TBL_HOSKO_USER_RESUME")->result();

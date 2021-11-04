@@ -283,17 +283,7 @@
 				<i class="fa fa-circle-o" aria-hidden="true"></i> 수속관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
 			<ul class="dropdown-menu">
-				<li>
-					<?php if (strpos($this->session->userdata("admin_permi"), "apply_01") !== false): ?>  	
-					<a href="/admin/recruit/recruit_abroad_list">
-						<i class="fa fa-caret-right"></i> 유학목록
-					</a>
-					<?php else: ?>
-					<a href="javascript:alert('권한이 없습니다.');">
-						<i class="fa fa-caret-right"></i> 유학목록
-					</a>
-					<?php endif; ?>
-				</li>
+				
 				<li>
 					<?php if (strpos($this->session->userdata("admin_permi"), "apply_02") !== false): ?>  		
 					<a href="/admin/recruit">
@@ -350,6 +340,17 @@
 				<i class="fa fa-circle-o" aria-hidden="true"></i> 게시판관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
 			<ul class="dropdown-menu" id="boardMenu">
+				<li>
+					<?php if (strpos($this->session->userdata("admin_permi"), "apply_01") !== false): ?>  	
+					<a href="/admin/recruit/recruit_abroad_list">
+						<i class="fa fa-caret-right"></i> 포지션공고
+					</a>
+					<?php else: ?>
+					<a href="javascript:alert('권한이 없습니다.');">
+						<i class="fa fa-caret-right"></i> 포지션공고
+					</a>
+					<?php endif; ?>
+				</li>
 				<li>
 					<?php if (strpos($this->session->userdata("admin_permi"), "board_01") !== false): ?>  	
 					<a href="/admin/board/board_write">

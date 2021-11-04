@@ -169,7 +169,7 @@ class User extends CI_Controller {
 				}
 			}
 		} else {
-			echo 'Please choose a file';
+			//echo 'Please choose a file';
 		}
 
 		$user_profile_doc = "";
@@ -178,8 +178,8 @@ class User extends CI_Controller {
 			if (0 < $_FILES['user_profile_doc']['error']) {
 				echo 'Error during file upload' . $_FILES['user_profile_doc']['error'];
 			} else {
-				if (file_exists('upload/attach' . $_FILES['user_profile_doc']['name'])) {
-					echo 'File already exists : upload/attach' . $_FILES['user_profile_doc']['name'];
+				if (file_exists('upload/profile' . $_FILES['user_profile_doc']['name'])) {
+					echo 'File already exists : upload/profile' . $_FILES['user_profile_doc']['name'];
 				} else {
 					$this->load->library('upload', $config);
 					if (!$this->upload->do_upload('user_profile_doc')) {
@@ -187,7 +187,7 @@ class User extends CI_Controller {
 					} else {
 						//echo 'File successfully uploaded : uploads/' . $_FILES['post_thumbnail']['name'];
 						$user_profile_doc = $_FILES['user_profile_doc']['name'];
-						$user_profile_doc_path = "/upload/attach/".$this->upload->data("file_name");
+						$user_profile_doc_path = "/upload/profile/".$this->upload->data("file_name");
 					}
 				}
 			}
@@ -195,8 +195,12 @@ class User extends CI_Controller {
 			//echo 'Please choose a file';
 		}
 
+		$userCnt = $this->UserModel->getMaxUserNumber();
+		$user_number = $userCnt->USER_NUMBER + 1;
+
 		$insertArr = array(
 						"USER_LEVEL" => $post_data["user_level"],
+						"USER_NUMBER" => $user_number,
 						"USER_ID" => $post_data["user_id"],
 						"USER_PASS" => $post_data["user_pass"],
 						"USER_NAME" => $post_data["user_name"],

@@ -316,19 +316,19 @@ class Recruit extends CI_Controller {
 
 		$MANAGER = $this->BasicModel->getManagerById($REC_ADMIN_ID);
 
-		$DISPLAY_ORDER = $this->RecruitModel->getRecruitAbroadListCountAll();
+		// $DISPLAY_ORDER = $this->RecruitModel->getRecruitAbroadListCountAll();
 
 		$REC_ADMIN_SEQ = isset($MANAGER->ADMIN_SEQ) ? $MANAGER->ADMIN_SEQ : "";
 
 		$insertArr = array(
-			"USER_SEQ" => $this->session->userdata("admin_seq"),
+			// "REC_ADMIN_SEQ" => $this->session->userdata("admin_seq"),
 			"REC_CONTENTS_CATEGORY" => $REC_CONTENTS_CATEGORY,
 			"REC_CONTENTS_SUB1_CATEGORY" => $REC_CONTENTS_SUB1_CATEGORY,
 			"REC_CONTENTS_SUB2_CATEGORY" => $REC_CONTENTS_SUB2_CATEGORY,
 			"REC_TITLE" => $REC_TITLE,
 			"REC_STATUS" => $REC_STATUS,
 			"REC_COUNT" => $REC_COUNT,
-			"REC_ADMIN_SEQ" => $REC_ADMIN_SEQ,
+			"REC_ADMIN_SEQ" => $this->session->userdata("admin_seq"),
 			"REC_COUNTRY" => $REC_COUNTRY,
 			"REC_TYPE" => $REC_TYPE,
 			"REC_PERIOD" => $REC_PERIOD,
@@ -341,7 +341,7 @@ class Recruit extends CI_Controller {
 			"REC_WELFARE" => $REC_WELFARE,
 			"REC_VISA" => $REC_VISA,
 			"REC_CONTENTS" => $REC_CONTENTS,
-			"REC_DISPLAY_ORDER" => $DISPLAY_ORDER+1
+			// "REC_DISPLAY_ORDER" => $DISPLAY_ORDER+1
 		);
 
 		// print_r($insertArr);
@@ -349,6 +349,12 @@ class Recruit extends CI_Controller {
 		$result = $this->RecruitModel->insertRecruitAbroad($insertArr);
 
 		$insert_id = $this->db->insert_id();
+
+		$updateArr = array(
+			"REC_DISPLAY_ORDER" => $insert_id
+		);
+
+		$result = $this->RecruitModel->updateRecruitAbroad($insert_id, $updateArr);
 
         $file_name = array();
         $file_path = array();
@@ -470,8 +476,6 @@ class Recruit extends CI_Controller {
 
 	public function recruit_abroad_edit($abroad_seq){
 		$DATA["ABROAD_INFO"] = $this->RecruitModel->getRecruitAbroadInfo($abroad_seq);
-		echo $this->db->last_query();
-		// print_r($DATA["APPLY_INFO"]);
         
 		$this->load->view("./admin/recruit/recruit-abroad_edit", $DATA);
 	}
@@ -1354,6 +1358,7 @@ class Recruit extends CI_Controller {
 		$rec = isset($_POST["DOC_RECOMMENDATION_FLAG"]) ? $_POST["DOC_RECOMMENDATION_FLAG"] : "";
 		$rec2 = isset($_POST["DOC_RECOMMENDATION2_FLAG"]) ? $_POST["DOC_RECOMMENDATION2_FLAG"] : "";
 		$ms = isset($_POST["DOC_MS_FLAG"]) ? $_POST["DOC_MS_FLAG"] : "";
+		$ee = isset($_POST["DOC_CERTIFICATE_EE_FLAG"]) ? $_POST["DOC_CERTIFICATE_EE_FLAG"] : "";
 
 		$updateArr = array(
 			"DOC_STATUS" => $status,
@@ -1368,7 +1373,9 @@ class Recruit extends CI_Controller {
 			"DOC_RECOMMENDATION_FLAG" => $rec,
 			"DOC_RECOMMENDATION2_FLAG" => $rec2,
 			"DOC_MS_FLAG" => $ms,
+			"DOC_CERTIFICATE_EE_FLAG" => $ee,
 		);
+
 
 		$result = $this->UserModel->updateUserDocument($updateArr, $seq);
 
@@ -1414,6 +1421,9 @@ class Recruit extends CI_Controller {
 		}else if($flag == "ms"){
 			$path = $doc_info->DOC_MS;
 			$name = $doc_info->DOC_MS_FILE_NAME;
+		}else if($flag == "ee"){
+			$path = $doc_info->DOC_CERTIFICATE_EE;
+			$name = $doc_info->DOC_CERTIFICATE_EE_FILE_NAME;
 		}
 		
         $data = file_get_contents($_SERVER['DOCUMENT_ROOT'].$path);

@@ -681,6 +681,37 @@
                                                 "</td>" +
                                             "</tr>"+
                                             "<tr>"+
+                                                "<th>- 출입국 사실 증명서</td>"+
+                                                "<td><a href=\"/admin/recruit/DocumentDown/" + document['DOC_SEQ'] + "/ee\">" +document["DOC_CERTIFICATE_EE_FILE_NAME"] + "</a></td>" +
+                                                "<td>"+
+                                                    "<select id=\"DOC_CERTIFICATE_EE_FLAG\" class=\"document_search_option\">"+
+                                                        "<option value=\"-1\" ";
+                                                        if(document["DOC_CERTIFICATE_EE_FLAG"] == -1){
+                                                            html += "selected"
+                                                        }
+                                    html +=             ">반송</option>";
+
+                                    html +=             "<option value=\"0\" ";
+                                                        if(document["DOC_CERTIFICATE_EE_FLAG"] == 0){
+                                                            html += "selected"
+                                                        }
+                                    html +=             ">미제출</option>";
+                                    
+                                    html +=             "<option value=\"1\" ";
+                                                        if(document["DOC_CERTIFICATE_EE_FLAG"] == 1){
+                                                            html += "selected"
+                                                        }
+                                    html +=             ">미확인</option>";
+
+                                    html +=             "<option value=\"2\" ";
+                                                        if(document["DOC_CERTIFICATE_EE_FLAG"] == 2){
+                                                            html += "selected"
+                                                        }
+                                    html +=             ">OK</option>";
+                                    html +=         "</select>"+
+                                                "</td>" +
+                                            "</tr>"+
+                                            "<tr>"+
                                                 // "<th></td>"+
                                                 "<td colspan=2 style='text-align: center; font-size: 20px; font-weight: 700'>"+"컨펌 상태"+"</td>"+
                                                 "<td>"+

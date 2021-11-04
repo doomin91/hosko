@@ -61,11 +61,11 @@
 					<section class="tile transparent">
 						<div class="tile color transparent-black rounded-corners">
                             <div class="col-sm-offset-4 col-sm-4 text-center"> <?php echo $RESUME_INFO->RESUME_USER_NAME ?> </div>
-							<table class="table table-custom dataTable applyViewTable">
+							<table class="table table-custom dataTable resumeViewTable">
 								<tbody>
 									<tr>
 										<th class="col-sm-2">Address</th>
-                                        <td class="col-sm-10"><?php echo '('.$RESUME_INFO->RESUME_USER_ZIPCODE.')'.$RESUME_INFO->RESUME_USER_ADDR1.$RESUME_INFO->RESUME_USER_ADDR2 ?></td>
+                                        <td class="col-sm-10"><?php echo '('.$RESUME_INFO->RESUME_USER_ZIPCODE.') '.$RESUME_INFO->RESUME_USER_ADDR1.$RESUME_INFO->RESUME_USER_ADDR2 ?></td>
 									</tr>
 									<tr>
                                         <th class="col-sm-2">Phone No</th>
@@ -95,7 +95,7 @@
 				<div class="col-md-12">
 					<section class="tile transparent">
 						<div class="tile color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyViewTable">
+							<table class="table table-custom dataTable resumeViewTable">
 								<tbody>
                                     <tr>
                                         <th colspan="4">PERSONAL PARTICULARS</th>
@@ -149,15 +149,15 @@
 				<div class="col-md-12">
 					<section class="tile transparent">
 						<div class="tile color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyViewTable">
+							<table class="table table-custom dataTable resumeViewTable">
 								<tbody>
                                     <tr>
                                         <th colspan="2">EDUCATION</th>
                                     </tr>
 									<?php foreach( $RESUME_EDUCATION as $EDU ):?>
 										<tr>
-											<th class="col-sm-5"><?php echo $EDU->REDU_DATE ?></th>
-											<td class="col-sm-7"><?php echo $EDU->REDU_DESCRIPTION ?></td>
+											<th class="col-sm-3"><?php echo $EDU->REDU_DATE ?></th>
+											<td class="col-sm-9"><?php echo $EDU->REDU_DESCRIPTION ?></td>
 										</tr>
 									
 									<?php endforeach ?>
@@ -175,7 +175,7 @@
 				<div class="col-md-12">
 					<section class="tile transparent">
 						<div class="tile color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyViewTable">
+							<table class="table table-custom dataTable resumeViewTable">
 								<tbody>
                                     <tr>
                                         <th colspan="2">⊙ WORKING EXPERIENCE</th>
@@ -183,8 +183,8 @@
                                     
                                 <?php foreach($RESUME_WORKING_EXP as $EXP) :?>
                                     <tr>
-                                        <td class="col-sm-5"><?php echo $EXP->RWEXP_DATE?></td>
-                                        <td class="col-sm-7"><?php echo $EXP->RWEXP_DESCRIPTION?></td>
+                                        <th class="col-sm-3"><?php echo $EXP->RWEXP_DATE?></td>
+                                        <td class="col-sm-9"><?php echo $EXP->RWEXP_DESCRIPTION?></td>
                                     </tr>
                                 <?php endforeach?>
 									
@@ -201,15 +201,15 @@
 				<div class="col-md-12">
 					<section class="tile transparent">
 						<div class="tile color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyViewTable">
+							<table class="table table-custom dataTable resumeViewTable">
 								<tbody>
                                     <tr>
                                         <th colspan="2">⊙ ACTIVITIES</th>
                                     </tr>
                                 <?php foreach($RESUME_ACTIVITY as $ACT) :?>
                                     <tr>
-                                        <td class="col-sm-5"><?php echo $ACT->RACT_DATE?></td>
-                                        <td class="col-sm-7"><?php echo $ACT->RACT_DESCRIPTION?></td>
+                                        <th class="col-sm-3"><?php echo $ACT->RACT_DATE?></td>
+                                        <td class="col-sm-9"><?php echo $ACT->RACT_DESCRIPTION?></td>
                                     </tr>
                                 <?php endforeach?>
 									
@@ -226,15 +226,15 @@
 				<div class="col-md-12">
 					<section class="tile transparent">
 						<div class="tile color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyViewTable">
+							<table class="table table-custom dataTable resumeViewTable">
 								<tbody>
                                     <tr>
                                         <th colspan="2">⊙ ACHIEVEMENTS</th>
                                     </tr>
                                 <?php foreach($RESUME_AHIEVEMENT as $AHVMNT) :?>
                                     <tr>
-                                        <td class="col-sm-5"><?php echo $AHVMNT->RACHV_TITLE?></td>
-                                        <td class="col-sm-7"><?php echo $AHVMNT->RACHV_DESCRIPTION?></td>
+                                        <th class="col-sm-3"><?php echo $AHVMNT->RACHV_TITLE?></td>
+                                        <td class="col-sm-9"><?php echo $AHVMNT->RACHV_DESCRIPTION?></td>
                                     </tr>
                                 <?php endforeach?>
 									
@@ -251,15 +251,15 @@
 				<div class="col-md-12">
 					<section class="tile transparent">
 						<div class="tile color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyViewTable">
+							<table class="table table-custom dataTable resumeViewTable">
 								<tbody>
                                     <tr>
                                         <th colspan="2">⊙ PROFESSIONAL SKILLS</th>
                                     </tr>
                                 <?php foreach($RESUME_SKILL as $SKL) :?>
                                     <tr>
-                                        <td class="col-sm-7"><?php echo $SKL->RSKL_DESCRIPTION?></td>
-                                        <td class="col-sm-5"><?php echo $SKL->RSKL_DATE?></td>
+										<th class="col-sm-3"><?php echo $SKL->RSKL_DATE?></td>
+                                        <td class="col-sm-9"><?php echo $SKL->RSKL_DESCRIPTION?></td>
                                     </tr>
                                 <?php endforeach?>
 									
@@ -319,13 +319,13 @@
 				<div class="col-md-12">
 					<section class="tile transparent">
 						<div class="tile color transparent-black rounded-corners">
-							<table class="table table-custom dataTable applyViewTable">
+							<table class="table table-custom dataTable resumeViewTable">
 								<tbody>
                                     <tr>
                                         <th>COMPUTER SKILLS</th>
                                     </tr>
                                     <tr>
-                                        <td><?php echo $RESUME_INFO->RESUME_USER_COMPUTER_SKILL?></th>
+                                        <td class="text-center"><?php echo $RESUME_INFO->RESUME_USER_COMPUTER_SKILL?></th>
                                     </tr>
 									
 								</tbody>

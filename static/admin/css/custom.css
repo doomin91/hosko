@@ -160,3 +160,7 @@ html .ui-button.ui-state-disabled:active {
 .box_content {
   display: flex;
 }
+
+.resumeViewTable tr td {
+  padding-left: 5px !important;
+}

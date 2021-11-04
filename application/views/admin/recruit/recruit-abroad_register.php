@@ -399,15 +399,33 @@
 
                 var form_data = $('#abroadRegisterForm').serializeArray(); // serialize 사용
                 $.each(form_data, function (key, input) {
-                    if(input.value=="" && input.name != "abroad_detail"){
+                    // if(input.value=="" && input.name != "abroad_detail"){
                         // console.log($(input));
-                        alert("빈 값을 넣어주세요");
-                        var ip = $(`textarea[name=${input.name}]`);
-                        console.log(ip);
-                        $(ip).focus();
-                        is_blank = true;
-                        return false;
+                        // alert("빈 값을 넣어주세요");
+                        // var ip = $(`textarea[name=${input.name}]`);
+                        // console.log(ip);
+                        // $(ip).focus();
+                        // is_blank = true;
+                        // return false;
+                    // }
+                    if(input.name == "ctg"){
+                        if(input.value == ""){
+                            alert("컨텐츠 분류를 선택해주세요 (대분류)");
+                            is_blank = true;
+                            return false;
+                        }
+                        
                     }
+
+                    if(input.name == "abroad_contents_title"){
+                        if(input.value == ""){
+                            alert("컨텐츠 명을 입력해주세요");
+                            is_blank = true;
+                            return false;
+                        }
+                    }
+                    
+                    console.log(input);
                     if(input.name=="abroad_detail"){
                         input.value = $("#abroad_detail").code();
                     }

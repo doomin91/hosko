@@ -41,7 +41,7 @@
                                     
                                     <div class="ResumeWrap">
                                         <div class="resume_img_frame">
-                                            <img src="../static/front/img/resume_noimg.jpg">
+                                            <img id="userPhoto" src="../static/front/img/resume_noimg.jpg">
                                         </div>
 
                                         <div class="resumefile">
@@ -178,13 +178,15 @@
                                                 <tr>
                                                     <th class="col-sm-3">Height</th>
                                                     <td class="col-sm-9">
-                                                        <input type="text" class="resumeform wid100p" name="resume_user_height" id="resume_user_height" value=""> cm
+                                                        <input type="text" class="resumeform wid50p" name="resume_user_height" id="resume_user_height" value="">
+                                                        <span class="">cm</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th class="col-sm-3">Weight</th>
                                                     <td class="col-sm-9">
-                                                        <input type="text" class="resumeform wid100p" name="resume_user_weight" id="resume_user_weight" value=""> Kg
+                                                        <input type="text" class="resumeform wid50p" name="resume_user_weight" id="resume_user_weight" value="">
+                                                        <span class="">Kg</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -213,16 +215,16 @@
                                             <div class="resumeBox">
                                                 <div class="box_content">
                                                     <div class="wid25p resume_activity_box">
-                                                        <input type="text" class="resumeform" name="redu_date[]" value="">
+                                                        <input type="text" class="resumeform" name="redu_date[]" value="" placeholder="날짜">
                                                     </div>
                                                     <div class="wid70p resume_activity_box">
-                                                        <input type="text" class="resumeform" name="redu_description[]" value="">
+                                                        <input type="text" class="resumeform" name="redu_description[]" value="" placeholder="내용">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_edu" data-which="redu">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_edu" data-which="redu_date">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_edu" data-which="redu_date" data-ph="날짜">
                                             </div>
                                         </div>
 
@@ -235,16 +237,16 @@
                                             <div class="resumeBox">
                                                 <div class="box_content">
                                                     <div class="wid25p resume_activity_box">
-                                                        <input type="text" class="resumeform" name="rwexp_date[]" value="">
+                                                        <input type="text" class="resumeform" name="rwexp_date[]" value="" placeholder="날짜">
                                                     </div>
                                                     <div class="wid70p resume_activity_box">
-                                                        <input type="text" class="resumeform" name="rwexp_description[]" value="">
+                                                        <input type="text" class="resumeform" name="rwexp_description[]" value="" placeholder="내용">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_wexp" data-which="rwexp">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_wexp" data-which="rwexp_date">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_wexp" data-which="rwexp_date" data-ph="날짜">
                                             </div>
                                         </div>
 
@@ -256,16 +258,16 @@
                                             <div class="resumeBox">
                                                 <div class="box_content">
                                                     <div class="wid25p resume_activity_box">
-                                                        <input type="text" class="resumeform" name="ract_date[]" value="">
+                                                        <input type="text" class="resumeform" name="ract_date[]" value="" placeholder="날짜">
                                                     </div>
                                                     <div class="wid70p resume_activity_box">
-                                                        <input type="text" class="resumeform" name="ract_description[]" value="">
+                                                        <input type="text" class="resumeform" name="ract_description[]" value="" placeholder="내용">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_ract" data-which="ract">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_ract" data-which="ract_date">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_ract" data-which="ract_date" data-ph="날짜">
                                             </div>                                            
                                         </div>
 
@@ -277,16 +279,16 @@
                                             <div class="resumeBox">
                                                 <div class="box_content">
                                                     <div class="wid25p resume_activity_box">
-                                                        <input type="text" class="resumeform" name="rahcv_title[]" value="">
+                                                        <input type="text" class="resumeform" name="rahcv_title[]" value="" placeholder="타이틀">
                                                     </div>
                                                     <div class="wid70p resume_activity_box">
-                                                        <input type="text" class="resumeform" name="rahcv_description[]" value="">
+                                                        <input type="text" class="resumeform" name="rahcv_description[]" value="" placeholder="내용">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_rahcv" data-which="rahcv">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rahcv" data-which="rahcv_title">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rahcv" data-which="rahcv_title" data-ph="타이틀">
                                             </div>
                                         </div>
 
@@ -298,21 +300,21 @@
                                             <div class="resumeBox">
                                                 <div class="box_content">
                                                     <div class="wid25p resume_activity_box">
-                                                        <input type="text" class="resumeform" name="rskil_date[]" value="">
+                                                        <input type="text" class="resumeform" name="rskil_date[]" value="" placeholder="날짜">
                                                     </div>
                                                     <div class="wid70p resume_activity_box">
-                                                        <input type="text" class="resumeform" name="rskil_description[]" value="">
+                                                        <input type="text" class="resumeform" name="rskil_description[]" value="" placeholder="내용">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_rskil" data-which="rskil">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rskil" data-which="rskil_date">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rskil" data-which="rskil_date" data-ph="날짜">
                                             </div>
                                         </div>
 
                                         <div class="resumetitle">
-                                            <h2>Languange Skills</h2>
+                                            <h2>Language Skills</h2>
                                         </div>
 
 
@@ -321,7 +323,7 @@
                                                 <div class="resume_activity_box wid25p">Language</div>
                                                 <div class="resume_activity_box wid25p">Speak</div>
                                                 <div class="resume_activity_box wid25p">Written</div>
-                                            </div>
+                                            </div> 
                                             <div class="resumeBox">
                                                 <div class="box_content">
                                                     <div class="resume_activity_box wid25p">
@@ -393,7 +395,12 @@
 
                                     <div class="ResumeWrap">
                                         <div class="resume_img_frame">
-                                            <img src="<?php echo $RESUME_INFO->RESUME_USER_PHOTO?>">
+                                            <?php if($RESUME_INFO->RESUME_USER_PHOTO != ""):?>
+                                                <img id="userPhoto" src="<?php echo $RESUME_INFO->RESUME_USER_PHOTO?>">
+                                            <?php else:?>
+                                                <img id="userPhoto" src="/upload/user_default.jpg">
+                                            <?php endif?>
+                                            
                                         </div>
                                         <div class="resumefile">
                                             <span class="filetitle">사진</span>
@@ -568,10 +575,10 @@
                                                         <div class="box_content">
                                                             <input type="hidden" name="redu_seq[]" value="<?php echo $EDU->SEQ ?>">
                                                             <div class="wid25p resume_activity_box ">
-                                                                <input type="text" class="resumeform" name="redu_date[]" value="<?php echo $EDU->REDU_DATE ?>">
+                                                                <input type="text" class="resumeform" name="redu_date[]" value="<?php echo $EDU->REDU_DATE ?>" placeholder="날짜">
                                                             </div>
                                                             <div class="wid70p resume_activity_box ">
-                                                                <input type="text" class="resumeform" name="redu_description[]" value="<?php echo $EDU->REDU_DESCRIPTION ?>">
+                                                                <input type="text" class="resumeform" name="redu_description[]" value="<?php echo $EDU->REDU_DESCRIPTION ?>" placeholder="내용">
                                                             </div>
                                                         </div>
                                                     <?php endforeach ?>
@@ -579,7 +586,7 @@
                                             </div>
                                             <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_edu" data-which="redu">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_edu" data-which="redu_date">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_edu" data-which="redu_date" data-ph="날짜">
                                             </div>
                                         </div>
 
@@ -596,10 +603,10 @@
                                                         <div class="box_content">
                                                             <input type="hidden" name="rwexp_seq[]" value="<?php echo $WEXP->SEQ ?>">
                                                             <div class="wid25p resume_activity_box">
-                                                                <input type="text" class="resumeform" name="rwexp_date[]" value="<?php echo $WEXP->RWEXP_DATE?>">
+                                                                <input type="text" class="resumeform" name="rwexp_date[]" value="<?php echo $WEXP->RWEXP_DATE?>" placeholder="날짜">
                                                             </div>
                                                             <div class="wid70p resume_activity_box">
-                                                                <input type="text" class="resumeform" name="rwexp_description[]" value="<?php echo $WEXP->RWEXP_DESCRIPTION?>">
+                                                                <input type="text" class="resumeform" name="rwexp_description[]" value="<?php echo $WEXP->RWEXP_DESCRIPTION?>" placeholder="내용">
                                                             </div>
                                                         </div>
                                                     <?php endforeach ?>
@@ -607,7 +614,7 @@
                                             </div>
                                             <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_wexp" data-which="rwexp">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_wexp" data-which="rwexp_date">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_wexp" data-which="rwexp_date" data-ph="날짜">
                                             </div>
                                         </div>
 
@@ -623,10 +630,10 @@
                                                         <div class="box_content">
                                                             <input type="hidden" name="ract_seq[]" value="<?php echo $ACT->SEQ ?>">
                                                             <div class="wid25p resume_activity_box">
-                                                                <input type="text" class="resumeform" name="ract_date[]" value="<?php echo $ACT->RACT_DATE?>">
+                                                                <input type="text" class="resumeform" name="ract_date[]" value="<?php echo $ACT->RACT_DATE?>" placeholder="날짜">
                                                             </div>
                                                             <div class="wid70p resume_activity_box">
-                                                                <input type="text" class="resumeform" name="ract_description[]" value="<?php echo $ACT->RACT_DESCRIPTION?>">
+                                                                <input type="text" class="resumeform" name="ract_description[]" value="<?php echo $ACT->RACT_DESCRIPTION?>" placeholder="내용">
                                                             </div>
                                                         </div>
                                                     <?php endforeach ?>
@@ -634,7 +641,7 @@
                                             </div>
                                             <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_ract" data-which="ract">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_ract" data-which="ract_date">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_ract" data-which="ract_date" data-ph="날짜">
                                             </div>
                                         </div>
 
@@ -650,10 +657,10 @@
                                                         <div class="box_content">
                                                             <input type="hidden" name="rahcv_seq[]" value="<?php echo $ACHV->SEQ ?>">
                                                             <div class="wid25p resume_activity_box">
-                                                                <input type="text" class="resumeform" name="rahcv_title[]" value="<?php echo $ACHV->RACHV_TITLE?>">
+                                                                <input type="text" class="resumeform" name="rahcv_title[]" value="<?php echo $ACHV->RACHV_TITLE?>" placeholder="타이틀">
                                                             </div>
                                                             <div class="wid70p resume_activity_box">
-                                                                <input type="text" class="resumeform" name="rahcv_description[]" value="<?php echo $ACHV->RACHV_DESCRIPTION?>">
+                                                                <input type="text" class="resumeform" name="rahcv_description[]" value="<?php echo $ACHV->RACHV_DESCRIPTION?>" placeholder="내용">
                                                             </div>
                                                         </div>
                                                     <?php endforeach ?>
@@ -661,7 +668,7 @@
                                             </div>
                                             <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_rahcv" data-which="rahcv">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rahcv" data-which="rahcv_title">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rahcv" data-which="rahcv_title" data-ph="타이틀">
                                             </div>
                                         </div>
 
@@ -678,10 +685,10 @@
                                                         <div class="box_content">
                                                             <input type="hidden" name="rskil_seq[]" value="<?php echo $SKIL->SEQ ?>">
                                                             <div class="wid25p resume_activity_box">
-                                                                <input type="text" class="resumeform" name="rskil_date[]" value="<?php echo $SKIL->RSKL_DATE?>">
+                                                                <input type="text" class="resumeform" name="rskil_date[]" value="<?php echo $SKIL->RSKL_DATE?>" placeholder="날짜">
                                                             </div>
                                                             <div class="wid70p resume_activity_box">
-                                                                <input type="text" class="resumeform" name="rskil_description[]" value="<?php echo $SKIL->RSKL_DESCRIPTION?>">
+                                                                <input type="text" class="resumeform" name="rskil_description[]" value="<?php echo $SKIL->RSKL_DESCRIPTION?>" placeholder="내용">
                                                             </div>
                                                         </div>
                                                     <?php endforeach ?>
@@ -689,12 +696,12 @@
                                             </div>
                                             <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_rskil" data-which="rskil">
-                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rskil" data-which="rskil_date">
+                                                <input type="button" class="btn btn-primary" value="추가" id="add_resume_rskil" data-which="rskil_date" data-ph="날짜">
                                             </div>
                                         </div>
 
                                         <div class="resumetitle">
-                                            <h2>Languange Skills</h2>
+                                            <h2>Language Skills</h2>
                                         </div>
 
                                         <div class="resumeJoinBox resumeJoinBoxWider">
@@ -893,6 +900,31 @@
             }       
         });
 
+        $("input[name='redu_date[]']").daterangepicker();
+        $("input[name='rwexp_date[]']").daterangepicker();
+        $("input[name='ract_date[]']").daterangepicker();
+        $("input[name='rskil_date[]']").daterangepicker();
+        // .daterangepicker({ 
+        //     "locale": { 
+        //         "format": "YYYY-MM-DD", 
+        //         "separator": " ~ ",
+        //         "applyLabel": "확인",
+        //         "cancelLabel": "취소",
+        //         "fromLabel": "From",
+        //         "toLabel": "To",
+        //         "customRangeLabel": "Custom",
+        //         "weekLabel": "W",
+        //         "daysOfWeek": ["월", "화", "수", "목", "금", "토", "일"],
+        //         "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"], "firstDay": 1 
+        //     },
+                   
+        //     "startDate": new Date(),
+        //     "endDate": new Date(),
+        //     "drops": "auto" 
+        // }, function (start, end, label) { 
+        //     console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')'); 
+        // });
+
         $("#del_resume_edu, #del_resume_wexp, #del_resume_ract, #del_resume_rahcv, #del_resume_rskil, #del_resume_lskil").on("click", function(){
             const Flag = $(this).data("which");
             // console.log(Flag);
@@ -914,6 +946,7 @@
 
         $("#add_resume_edu, #add_resume_wexp, #add_resume_ract, #add_resume_rahcv, #add_resume_rskil, #add_resume_lskil").on("click", function(){
             const Flag = $(this).data("which").split("_");
+            const Ph = $(this).data("ph");
             // console.log(Flag);
 
             const Frame = $(this).closest(".resumeJoinBox");
@@ -946,19 +979,23 @@
             }else{
                 html = `<div class="box_content">
                                 <div class="wid25p resume_activity_box">
-                                    <input type="text" class="resumeform" name="${Flag[0]}_${Flag[1]}[]" value="">
+                                    <input type="text" class="resumeform" placeholder="${Ph}" name="${Flag[0]}_${Flag[1]}[]" value="">
                                 </div>
                                 <div class="wid70p resume_activity_box">
-                                    <input type="text" class="resumeform" name="${Flag[0]}_description[]" value="">
+                                    <input type="text" class="resumeform" placeholder="내용" name="${Flag[0]}_description[]" value="">
                                 </div>
                             </div>`;
                 $(Frame).height($(Frame).height()+45);
             }
             $(Box).append(html);
-            
+
+            if(Flag[0] != "lskil" && Flag[0] != "rahcv"){
+                $(`input[name='${Flag[0]}_${Flag[1]}[]']`).daterangepicker();
+            }
         });
 
         $("input[name='resume_img']").change(function(){
+            FILE = new FormData();
             var file = this.files[0];
             FILE.append(this.id, file);
 
@@ -970,6 +1007,13 @@
             for (var value of FILE.values()) {
                 console.log(value);
             }
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $("#userPhoto").attr("src", e.target.result);
+            }
+
+            reader.readAsDataURL(file);
             $(".filename").val(file.name);
         });
 
@@ -1065,19 +1109,20 @@
 
             $.each(form_data, function (key, input) {
                 // console.log(input);
-                if(input.value=="" && input.name != "resume_img"){
-                    alert("값을 넣어주세요");
-                    var ip = $(`input[name=${input.name}]`);
-                    $(ip).focus();
-                    is_blank = true;
-                    return false;
+                if(input.name != "resume_img"){
+                    // alert("값을 넣어주세요");
+                    // var ip = $(`input[name=${input.name}]`);
+                    // $(ip).focus();
+                    // is_blank = true;
+                    // return false;
+                    fd.append(input.name, input.value);
                 }
-                fd.append(input.name, input.value);
+                
             });
             
-            if(is_blank){
-                return false;
-            }
+            // if(is_blank){
+            //     return false;
+            // }
 
             fd.append("redu_seq", JSON.stringify(redu_seq));
             fd.append("redu_date", JSON.stringify(redu_date));
@@ -1201,14 +1246,15 @@
 
             $.each(form_data, function (key, input) {
                 // console.log(input);
-                if(input.value=="" && input.name != "resume_img"){
-                    alert("값을 넣어주세요");
-                    var ip = $(`input[name=${input.name}]`);
-                    $(ip).focus();
-                    is_blank = true;
-                    return false;
+                if(input.name != "resume_img"){
+                    // alert("값을 넣어주세요");
+                    // var ip = $(`input[name=${input.name}]`);
+                    // $(ip).focus();
+                    // is_blank = true;
+                    // return false;
+                    fd.append(input.name, input.value);
                 }
-                fd.append(input.name, input.value);
+                
             });
             
             if(is_blank){
@@ -1267,7 +1313,9 @@
                 }
             });
         })
+
         
+
     });
 </script>
 

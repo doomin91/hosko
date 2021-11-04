@@ -518,7 +518,7 @@ $(function(){
 		$.ajax({
 			url:"/admin/User/userWriteProc",
 			type:"post",
-			//dataType:"json",
+			dataType:"json",
 			data : formData,
 			contentType: false,
 			processData: false,

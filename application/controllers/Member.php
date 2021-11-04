@@ -109,6 +109,12 @@ class Member extends CI_Controller {
 		$user_join_route = $this->input->post("user_join_route");
 		$user_join_route_str = $this->input->post("user_join_route_str");
 		
+		$idCheck = $this->UserModel->CheckUserId($user_id);
+		if (!empty($idCheck)){
+			echo json_encode(array("code" => "202", "msg" => "이미 등록되어 있는 아이디 입니다."));
+			exit;
+		}
+
 		$config["upload_path"] = $_SERVER['DOCUMENT_ROOT'] . "/upload/profile/";
 		$config["allowed_types"] = "xls|xlsx|ppt|pptx|gif|jpg|png|hwp|doc|bmp|jpeg|zip|GIF|JPG|PNG|JPEG";
 		$new_name = $user_id . "_img_" . date("YmdHis");
@@ -135,7 +141,7 @@ class Member extends CI_Controller {
 				}
 			}
 		} else {
-			echo 'Please choose a file';
+			//echo 'Please choose a file';
 		}
 
 		$user_profile_doc = "";
