@@ -91,8 +91,8 @@ class User extends CI_Controller {
 		}else{
 			$pagenum = $listCount;
 		}
-
-		$pagination = $this->customclass->pagenavi("/admin/user", $listCount, 10, 5, $nowpage);
+		$queryString = "?reg_date_start=".$reg_date_start."&amp;reg_date_end=".$reg_date_end."&amp;last_login_start=".$last_login_start."&last_login_end=".$last_login_end."&user_skill_eng".$user_skill_eng."&user_skill_jp=".$user_skill_jp."&user_skill_ch=".$user_skill_ch."&user_study_nation=".$user_study_nation."&user_study_term=".$user_study_term."&user_lan_study_nation=".$user_lan_study_nation."&user_lan_study_term=".$user_lan_study_term."&user_level=".$user_level."&search_field=".$search_field."&search_string=".$search_string;
+		$pagination = $this->customclass->pagenavi("/admin/user".$queryString, $listCount, 10, 5, $nowpage);
 		//print_r($listCount);
 		$levels = $this->UserModel->getUserLevelAll();
 		$data = array(
@@ -446,12 +446,12 @@ class User extends CI_Controller {
 	}
 
 	public function smsSend(){
-		$limit = 10;
+		$limit = 30;
 		$nowpage = "";
 		if (!isset($_GET["per_page"])){
 			$start = 0;
 		}else{
-			$start = ($_GET["per_page"]-1)*10;
+			$start = ($_GET["per_page"]-1)*30;
 			$nowpage = $_GET["per_page"];
 		}
 
@@ -498,8 +498,9 @@ class User extends CI_Controller {
 		}else{
 			$pagenum = $listCount;
 		}
-
-		$pagination = $this->customclass->pagenavi("/admin/user/smsSend", $listCount, 10, 5, $nowpage);
+		
+		$queryString = "?reg_date_start=".$reg_date_start."&amp;reg_date_end=".$reg_date_end."&amp;last_login_start=".$last_login_start."&last_login_end=".$last_login_end."&user_skill_eng".$user_skill_eng."&user_skill_jp=".$user_skill_jp."&user_skill_ch=".$user_skill_ch."&user_study_nation=".$user_study_nation."&user_study_term=".$user_study_term."&user_lan_study_nation=".$user_lan_study_nation."&user_lan_study_term=".$user_lan_study_term."&user_level=".$user_level."&search_field=".$search_field."&search_string=".$search_string."&user_sms_flag=".$user_sms_flag;
+		$pagination = $this->customclass->pagenavi("/admin/user/smsSend".$queryString, $listCount, 30, 5, $nowpage);
 		//print_r($listCount);
 		$levels = $this->UserModel->getUserLevelAll();
 		$data = array(
@@ -532,7 +533,7 @@ class User extends CI_Controller {
 	public function smsSendProc(){
 		$user_seq_arr = $this->input->post("user_seq_arr");
 		$send_message = $this->input->post("send_message");
-		print_r($this->input->post());
+		//print_r($this->input->post());
 		/*
 		$wheresql = array(
 						"reg_date_start" => $reg_date_start,
@@ -547,9 +548,10 @@ class User extends CI_Controller {
 						"user_seq_arr" => $user_seq_arr
 		);
 		//print_r($wheresql);
+		//exit;
 		$lists = $this->UserModel->getUserAll($wheresql);
 		//echo $this->db->last_query();
-		//print_r(count($lists));
+		//print_r($lists);
 		//exit; 
 		if (!empty($lists)){
 			

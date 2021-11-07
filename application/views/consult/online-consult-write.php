@@ -161,6 +161,7 @@
             var oc_user_tel = $("input[name=oc_user_tel1]").val() + "-" + $("input[name=oc_user_tel2]").val() + "-" + $("input[name=oc_user_tel3]").val();
             var oc_user_hp = $("input[name=oc_user_hp1]").val() + "-" + $("input[name=oc_user_hp2]").val() + "-" + $("input[name=oc_user_hp3]").val();
             var oc_user_email = $("input[name=oc_user_email1]").val() + "@" + $("input[name=oc_user_email2]").val();
+
             if (oc_subject == ""){
                 alert("제목을 입력해주세요");
                 $("input[name=oc_subject]").focus();

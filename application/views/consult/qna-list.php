@@ -89,7 +89,11 @@
                                         </div>
                                         <div class="f_right mt30 col-lg-3">
                                             <!--a href="/">글쓰기</a-->
-                                            <button type="button" class="btn_style02 f_right" id="qnaWrite">문의하기</button>
+                                            <?php if ($this->session->userdata("USER_ID") != ""): ?>
+                                                <button type="button" class="btn_style02 f_right" id="qnaWrite">문의하기</button>
+                                            <?php else: ?>
+                                                <a class="btn_style02 f_right" href="javascript:alert('로그인후 이용해주세요');">문의하기</a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
 
