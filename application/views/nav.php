@@ -1,3 +1,4 @@
+
 <header>
     <div class="header_con">
         <h1><a href="/">Hosko</a></h1>
@@ -114,7 +115,133 @@
     </div>
 </header>
 
+
+<header class="m_header">
+	<div id="m_top_area" class="clearfix">
+		<div class="m_left_area"></div>
+		<div id="m_menu_wrap">
+			<div id="menu">
+                <div class="loginbox">
+                <ul>
+                   <li><a href="/member/login">로그인</a></li>
+                    
+                   <!--
+                    <li class="loginid">홍길동</li>
+                    <li class="logout"><a href="#">로그아웃</a></li>
+                -->
+                </ul>
+                </div>
+
+				<a href="#none" class="close"></a>
+				<ul id="m_menu" class="gnb clearfix">
+					<li>
+						<a href="#" class="depth1_title">HOSKO</a>
+						<ul class="mb_sub_menu gnb">
+							<li><a href="/company/introduce">인사말</a></li>
+                            <li><a href="/company/vision">Mission & Vision</a></li>
+                            <li><a href="/company/ethics">윤리강령</a></li>
+                            <li><a href="/company/organization">사업분야ㆍ실적</a></li>
+                            <li><a href="/company/cooperation">산학협력현황</a></li>
+                            <li><a href="/company/location">오시는길</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" class="depth1_title">공지&뉴스</a>
+						<ul class="mb_sub_menu gnb">
+							<li><a href="/Board/q/1?seq=1">호스코뉴스</a></li>
+                            <li><a href="/Board/q/1?seq=2">해외취업후기</a></li>
+                            <li><a href="/Board/q/1?seq=3">출국회원소식</a></li>
+                            <li><a href="/Board/v/1?seq=4">동영상자료실</a></li>
+                            <li><a href="/Board/g/1?seq=5">갤러리</a></li>
+						</ul>
+					</li>
+                    <li>
+						<a href="#" class="depth1_title">포지션 공고</a>
+						<ul class="mb_sub_menu gnb">
+							<li><a href="/recruit?ctg=1">인턴쉽</a></li>
+                            <li><a href="/recruit?ctg=2">JOBㆍ헤드헌팅</a></li>
+						</ul>
+					</li>
+                    <li>
+						<a href="#" class="depth1_title">해외연수</a>
+						<ul class="mb_sub_menu gnb">
+							<li><a href="/Board/q/3?seq=12">해외연수</a></li>
+                            <li><a href="/Board/q/3?seq=13">해외현장실습</a></li>
+                            <li><a href="/Board/q/3?seq=14">해외유학</a></li>
+                            <li><a href="/Board/q/3?seq=15">해외취업연수</a></li>
+                            <li><a href="/Board/q/3?seq=16">국내연수</a></li>
+                            <li><a href="/Board/q/3?seq=17">EMT영어캠프</a></li>
+						</ul>
+					</li>
+                    <li>
+						<a href="#" class="depth1_title">해외취업가이드</a>
+						<ul class="mb_sub_menu gnb">
+							<li><a href="/Board/q/2?seq=6">이력서 가이드</a></li>
+                            <li><a href="/Board/q/2?seq=7">영어인터뷰 대비</a></li>
+                            <li><a href="/Board/q/2?seq=8">스폰서인터뷰 대비</a></li>
+                            <li><a href="/Board/q/2?seq=9">미국대사관 인터뷰대비</a></li>
+                            <li><a href="/Board/q/2?seq=10">해외취업 전략설명회</a></li>
+                            <li><a href="/Board/q/2?seq=11">해외진출 성공스토리</a></li>
+						</ul>
+					</li>
+                    <li>
+						<a href="#" class="depth1_title">상담신청</a>
+						<ul class="mb_sub_menu gnb">
+							<li><a href="/consult/qnaList">Q&A</a></li>
+                            <li><a href="/consult/onlineConsultList">온라인 상담</a></li>
+                            <li><a href="/consult/visitConsult">포지션&연수 지원</a></li>
+                            <li><a href="/consult/apply">설명회신청</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="bg_shadow"></div>
+		<div class="logo">
+			<a href="/"></a>
+		</div>
+		<div class="m_right_area">
+			<a href="tel:02-2052-9700" class="tel"></a>
+			<a href="/" target="_blank" class="talk"></a>
+		</div>
+	</div>
+</header>
+
+
+
 <script>
+
+    $(function(){
+        
+        $('#m_top_area .m_left_area').on('click', function(){
+            $('#m_menu_wrap').animate({
+                left: "0px"
+            }, 500);
+            
+            $('.bg_shadow').css('display', 'block');
+            $('body').css('overflow', 'hidden');
+        });
+        
+        $('#m_menu_wrap .close').on('click', function(){
+            
+            $('#m_menu_wrap').animate({
+                left: "-700px"
+            }, 500);
+            
+            $('.bg_shadow').css('display', 'none');
+            $('body').css('overflow', 'auto');
+            $('#m_menu li > a').next().slideUp();
+        });
+        
+        $('#m_menu li > a').on('click', function(){
+            $(this).next().slideToggle();
+        });
+        
+    });
+
+
+
 
 	ViewBoardMenu();
 	function ViewBoardMenu(){
@@ -212,5 +339,12 @@
 			}
 		})
 	}
+
+
+
+
+
+
+
 
 </script>
