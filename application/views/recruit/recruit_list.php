@@ -69,7 +69,11 @@
                                                             <img src="/upload/recruit/default.jpg">
                                                         <?php endif?>
                                                     </span>
-                                                    <a class="fontcb" style="line-height:96px;" href ="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $REC->REC_SEQ?>"><?php echo $REC->REC_TITLE ?></a>
+                                                    <?php if ($this->session->userdata("USER_ID") != ""): ?>
+                                                        <a class="fontcb" style="line-height:96px;" href ="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $REC->REC_SEQ?>"><?php echo $REC->REC_TITLE ?></a>
+                                                    <?php else: ?>
+                                                        <a class="fontcb" style="line-height:96px;" href ="javascript:alert('로그인후이용해주세요');"><?php echo $REC->REC_TITLE ?></a>
+                                                    <?php endif; ?>
                                                 </td>
                                                 <!-- <td><a class="fontcb" style="line-height:96px;" href ="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $REC->REC_SEQ?>"><?php echo $REC->REC_TITLE ?></a></td> -->
                                                 <td><?php echo $REC->ADMIN_USER_NAME ?></td>

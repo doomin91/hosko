@@ -104,7 +104,7 @@
                                     <td class="text-center"><?php echo $lt->CLOG_USER_NAME; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_USER_COMPANY; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_USER_NUM; ?></td>
-                                    <td class="text-center" style="word-break: break-all; white-space: pre-line"><?php echo nl2br($lt->CLOG_MESSAGE); ?></td>
+                                    <td class="text-center" style="word-break: break-all; white-space: pre-line"><?php echo $lt->CLOG_MESSAGE; ?></td>
                                     <td class="text-center"><?php echo $interest; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_LANG_SKILL; ?>점</td>
                                     <td class="text-center">

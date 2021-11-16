@@ -22,7 +22,7 @@ class ConsultModel extends CI_Model{
 			}
 		}
 		$this->db->where("TBL_HOSKO_ONLINE_CONSULT.OC_DEL_YN", "N");
-		$this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_ONLINE_CONSULT.OC_USER_SEQ = TBL_HOSKO_USER.USER_SEQ", "INNER");
+		$this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_ONLINE_CONSULT.OC_USER_SEQ = TBL_HOSKO_USER.USER_SEQ", "LEFT OUTER");
 		$this->db->select("TBL_HOSKO_ONLINE_CONSULT.*, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_TEL, TBL_HOSKO_USER.USER_HP");
 		$this->db->order_by("TBL_HOSKO_ONLINE_CONSULT.OC_SEQ", "DESC");
 		$this->db->limit($whereArr["limit"], $whereArr["start"]);

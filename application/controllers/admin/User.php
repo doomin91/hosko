@@ -451,7 +451,7 @@ class User extends CI_Controller {
 		if (!isset($_GET["per_page"])){
 			$start = 0;
 		}else{
-			$start = ($_GET["per_page"]-1)*10;
+			$start = ($_GET["per_page"]-1)*30;
 			$nowpage = $_GET["per_page"];
 		}
 

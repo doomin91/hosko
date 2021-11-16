@@ -67,6 +67,7 @@
 
                     <div class="main_contents">
 
+
                         <div class="mid_section01 mt80 mb80">
                             <div class="inner">
                                 <div class="mid_banner01">
@@ -84,6 +85,7 @@
                             </div>
                         </div>
                         
+
                         <div class="mid_section02 mb80">
                             <div class="inner">
                                 <div class="mid_banner02">
@@ -126,6 +128,7 @@
                             </div>
                         </div>
 
+                        
                         <div class="mid_section04 mb40">
                             <div class="inner">
                                 <div class="mid_banner_img01">
@@ -134,6 +137,7 @@
                             </div>
                         </div>
 
+                        
                         <div class="mid_section05 mb80">
                             <div class="inner pd0">
                                 <div class="mid_board">
@@ -190,6 +194,7 @@
         </div>
 
 <script>
+
 
 function viewPage(post_seq){
     window.location = "/board/board_view/" + post_seq;

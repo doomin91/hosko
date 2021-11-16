@@ -97,7 +97,8 @@ class Consult extends CI_Controller {
 		$oc_user_hp = $this->input->post("oc_user_hp");
 		$oc_user_email = $this->input->post("oc_user_email");
 		$oc_contents = $this->input->post("oc_contents");
-
+		$oc_password = $this->input->post("oc_password");
+		
 		$insertArr = array(
 						"OC_SUBJECT" => $oc_subject,
 						"OC_USER_SEQ" => $this->session->userdata("USER_SEQ"),
@@ -107,6 +108,7 @@ class Consult extends CI_Controller {
 						"OC_USER_EMAIL" => $oc_user_email,
 						"OC_CONTENTS" => $oc_contents,
 						"OC_ANSWER_FLAG" => "W",
+						"OC_PASSWORD" => md5($oc_password),
 						"OC_REG_DATE" => date("Y-m-d H:i:s"),
 						"OC_DEL_YN" => "N"
  		);

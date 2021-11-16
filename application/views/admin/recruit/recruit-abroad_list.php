@@ -165,12 +165,13 @@
 
 							<colgroup>
 									<col width="5%"/>
+									<col width="5%"/>
 									<col width="10%"/>
+									<col width="30%"/>
 									<col width="10%"/>
-									<col width="35%"/>
-									<col width="10%"/>
-									<col width="10%"/>
-									<col width="10%"/>
+									<col width="8%"/>
+									<col width="7%"/>
+                                    <col width="10%"/>
 									<col width="10%"/>
 							</colgroup>
 							<thead>
@@ -182,15 +183,14 @@
 									<th class="text-center">컨텐츠가격</th>
                                     <th class="text-center">조회수</th>
 									<th class="text-center">진열순서</th>
+                                    <th class="text-center">작성날자</th>
 									<th class="text-center">기능</th>
-									
 								</tr>
 							</thead>
 							<tbody>
 						<?php
 							if (!empty($lists)) :
 								foreach ($lists as $key => $list) : 
-									
 						?>
 								<tr>
 									<td class="text-center"><input type="checkbox" name="abroad_select" value=<?php echo $list->REC_SEQ?>></td>
@@ -211,6 +211,7 @@
                                     <td class="text-center"><?php echo $list->REC_PAY ?></td>
                                     <td class="text-center"><?php echo $list->REC_COUNT ?></td>
                                     <td class="text-center"><span class="recruit_abroad_display_up" data-prev="<?php $key>0 ? print($lists[$key-1]->REC_SEQ) : "" ?>" data-seq="<?php echo $list->REC_SEQ?>" data-order="<?php echo $list->REC_DISPLAY_ORDER?>"> 위 </span><span class="recruit_abroad_display_down" data-after="<?php count($lists)-1>$key ? print($lists[$key+1]->REC_SEQ) : "" ?>" data-seq="<?php echo $list->REC_SEQ?>" data-order="<?php echo $list->REC_DISPLAY_ORDER?>"> 아래 </span></td>
+                                    <td class="text-center"><?php echo $list->REC_REG_DATE ?></td>
                                     <td class="text-center">
                                         <a href ="/admin/recruit/recruit_abroad_edit/<?php echo $list->REC_SEQ?>" class="btn btn-xs btn-default">수정</a>
                                         <input type="button" data-seq="<?php echo $list->REC_SEQ?>" class="btn btn-xs btn-danger recruit_abroad_del" value="삭제">

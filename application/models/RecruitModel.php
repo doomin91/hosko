@@ -33,7 +33,7 @@ class RecruitModel extends CI_Model{
         $this->db->join("TBL_HOSKO_RECRUIT", "TBL_HOSKO_RECRUIT.REC_SEQ = TBL_HOSKO_RECRUIT_APPLY.REC_SEQ");
 
         $this->db->group_by("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_RECRUIT.REC_TITLE, TBL_HOSKO_RECRUIT.REC_PAY, TBL_HOSKO_RECRUIT.REC_STATUS");
-        $this->db->order_by("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ");
+        $this->db->order_by("TBL_HOSKO_RECRUIT_APPLY.APP_SEQ", "DESC");
         $this->db->select("TBL_HOSKO_RECRUIT_APPLY.*, TBL_HOSKO_USER.USER_ID, TBL_HOSKO_USER.USER_NAME, TBL_HOSKO_RECRUIT.REC_TITLE, TBL_HOSKO_RECRUIT.REC_PAY, TBL_HOSKO_RECRUIT.REC_STATUS");
         $this->db->limit($whereArr["limit"], $whereArr["start"]);
         return $this->db->get("TBL_HOSKO_RECRUIT_APPLY")->result();

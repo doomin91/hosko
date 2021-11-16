@@ -54,7 +54,7 @@
                                         <div class="tblBot-item">
                                             <span class="col_num"><?php echo $pagenum; ?></span>
                                             <span class="col_tit"><a href="/consult/onlineConsultView/<?php echo $list->OC_SEQ; ?>"><?php echo $list->OC_SUBJECT; ?></a></span>
-                                            <span class="col_name"><?php echo $list->USER_NAME; ?></span>
+                                            <span class="col_name"><?php echo $list->OC_USER_NAME; ?></span>
                                             <span class="col_date"><?php echo $list->OC_REG_DATE; ?></span>                                            
                                         </div>
                                     <?php 
