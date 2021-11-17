@@ -89,11 +89,7 @@
                                         </div>
                                         <div class="f_right mt30 col-lg-3">
                                             <!--a href="/">글쓰기</a-->
-                                            <?php if ($this->session->userdata("USER_ID") != ""): ?>
-                                                <button type="button" class="btn_style02 f_right" id="qnaWrite">문의하기</button>
-                                            <?php else: ?>
-                                                <a class="btn_style02 f_right" href="javascript:alert('로그인후 이용해주세요');">문의하기</a>
-                                            <?php endif; ?>
+                                            <button type="button" class="btn_style02 f_right" id="qnaWrite">문의하기</button>
                                         </div>
                                     </div>
 
@@ -120,6 +116,36 @@
                                         </form>
                                     </div>
 
+
+
+
+<!-- modal -->
+
+<div class="openPopup">ddddd</div>   
+<div id="popup01">
+    <div class="qnaclose"></div>
+    <div>
+    <div class="QnaPassbox">
+        <form name="form">
+        <input type="hidden" name="">
+        <input type="hidden" name="">
+        <div class="QnaPassbox_Title">비밀번호 확인</div>
+        <div class="QnaPassbox_Input"><input type="password" name="password"></div>
+        <div class="QnaPassbox_Button">
+            <button type="button" class="Qnapwbtn01" id="consultSave">확인</button>
+            <button type="button" class="Qnapwbtn02" id="consultCancel">취소</button>
+        </div>
+    </div>
+
+
+
+    </div>
+</div>
+<!-- E modal -->
+
+
+
+
                                 </div>
                             </div>
 
@@ -139,6 +165,8 @@
 
     </body>
 </html>
+
+
 <script type="text/javascript">
     $(function(){
         $(document).on("click", "#qnaWrite", function(){
@@ -146,9 +174,98 @@
         })
 
     });
+
+    $(document).ready(function( $ ){     
+    $(".openPopup").on("click", function(event) { 
+    $("#popup01").show();  
+    $("body").append('<div class="backon"></div>');
+    });
+    
+    $("body").on("click", function(event) { 
+        if(event.target.className == 'qnaclose' || event.target.className == 'backon'){
+            $("#popup01").hide();
+      	    $(".backon").hide();
+        }
+      });
+
+  });
+
+
+
+    
 </script>
 
 
+
+<style>
+
+#popup01{
+  display: none;
+}
+#popup01{
+width: 500px;
+height: 250px;
+position: absolute;
+top: 50%;
+left: 50%;
+margin: -250px 0 0 -250px;
+background-color: #fff;
+z-index: 302;
+  }
+.backon{
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #00000054;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 301;
+}
+
+.qnaclose {
+    position:absolute;
+    top:5px;
+    right: 5px;
+	width: 27px;
+	height: 27px;
+	border: 2px solid #828282;
+	background-color: #828282;
+	border-radius: 50%;
+    cursor:pointer;
+    z-index:100;
+	}
+.qnaclose::before, .qnaclose::after {
+	position: absolute;
+	top: 10px;
+	left: 5px;
+	width: 13px;
+	height: 3px;
+	content: "";
+	background-color: #fff;
+	display: block;
+	}
+.qnaclose::before {
+	-ms-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	}
+.qnaclose::after {
+	-ms-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	}
+
+
+
+
+
+.openPopup{
+cursor:pointer;
+}
+
+
+</style>
 
 
 

@@ -333,15 +333,15 @@
 }
 
 .main_news_box ul > li {
-  width: 100%;
+    width:100%;
 }
 .main_news_box ul > li:last-child {
-  margin-right: 0;
+    margin-right:0;
 }
 
 .news_box_item {
   width: 100%;
-  height: 40px;
+  height:40px;
 }
 .news_box_item .text {
   font-size: 16px;
@@ -350,15 +350,15 @@
   line-height: 20px;
   width: 73%;
   overflow: hidden;
-  display: inline-block;
+  display:inline-block;
 }
 .news_box_item .date {
   font-size: 16px;
   color: #999;
   font-weight: 400;
   text-align: left;
-  display: inline-block;
-  float: right;
+  display:inline-block;
+  float:right;
 }
 
 .main_notice {
@@ -395,16 +395,16 @@
   width: 100%;
 }
 .main_notice_box ul > li {
-  width: 100%;
+  width:100%;
 }
 .main_notice_box ul > li:last-child {
-  margin-right: 0;
+    margin-right:0;
 }
 
 .notice_box_item {
   position: relative;
   width: 100%;
-  height: 40px;
+  height:40px;
 }
 
 .notice_box_item .text {
@@ -414,50 +414,55 @@
   line-height: 20px;
   width: 73%;
   overflow: hidden;
-  display: inline-block;
+  display:inline-block;
 }
 .notice_box_item .date {
   font-size: 16px;
   color: #999;
   font-weight: 400;
   text-align: left;
-  display: inline-block;
-  float: right;
+  display:inline-block;
+  float:right;
 }
+
+
 
 /* right side menu */
 .right_sidemenu {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+    position:absolute;
+    right:0;
+    bottom:0;
 }
 .right_sidemenu li {
-  width: 84px;
-  height: 69px;
-  background-color: rgba(0, 91, 170, 0.6);
-  text-align: center;
-  vertical-align: middle;
+    width:84px;
+    height:69px;
+    background-color: rgba(0, 91, 170, 0.6);
+    text-align:center;
+    vertical-align: middle;
 }
 
+
 .right_sidemenu .sidemenu_item01 {
-  background: url("../img/main_side_menu01.png") no-repeat;
-  width: 56px;
-  height: 56px;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    background: url("../img/main_side_menu01.png") no-repeat;
+    width:56px;
+    height:56px;
+    position:relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
 }
 
 .right_sidemenu .sidemenu_item02 {
-  background: url("../img/main_side_menu02.png") no-repeat;
-  width: 56px;
-  height: 56px;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    background: url("../img/main_side_menu02.png") no-repeat;
+    width:56px;
+    height:56px;
+    position:relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
 }
+
+
 
 .sub_contents {
   position: relative;
@@ -558,6 +563,7 @@
   color: #222;
 }
 
+
 .sub_contents .sub_category03 {
   width: 100%;
   height: 59px;
@@ -588,6 +594,7 @@
 .sub_contents .sub_category03 a {
   color: #222;
 }
+
 
 .subContWrap {
   position: relative;
@@ -718,8 +725,8 @@
   border-right: 1px solid #e5e5e5;
   padding: 10px;
   box-sizing: border-box;
-  font-size: 14px;
-  font-weight: 400;
+  font-size:14px;
+  font-weight:400;
 }
 .agreebox_con {
   position: relative;
@@ -732,8 +739,8 @@
   border: 1px solid #e5e5e5;
   padding: 10px;
   box-sizing: border-box;
-  font-size: 14px;
-  font-weight: 400;
+  font-size:14px;
+  font-weight:400;
 }
 
 .memberBtn {
@@ -748,9 +755,9 @@
   border: 1px solid #055ca9;
   box-sizing: border-box;
   font-size: 14px;
-  font-weight: 400;
-  width: 100px;
-  height: 38px;
+  font-weight:400;
+  width:100px;
+  height:38px;
 }
 
 .memberBtnCancel {
@@ -760,9 +767,9 @@
   border: 1px solid #055ca9;
   box-sizing: border-box;
   font-size: 14px;
-  font-weight: 400;
-  width: 100px;
-  height: 38px;
+  font-weight:400;
+  width:100px;
+  height:38px;  
 }
 
 .memberJoinBox {
@@ -794,8 +801,8 @@
   width: 100%;
   padding: 10px;
   border: 1px solid #e5e5e5;
-  font-size: 14px;
-  font-weight: 400;
+  font-size:14px;
+  font-weight:400;
 }
 
 .joinBoxRadio {
@@ -906,7 +913,7 @@
   padding: 10px;
   border: 1px solid #e5e5e5;
   cursor: pointer;
-  height: 43px;
+  height:43px;
 }
 
 .joinEmailText {
@@ -968,7 +975,7 @@
   color: #055ca9;
   display: inline-block;
   float: right;
-  font-weight: 400;
+  font-weight:400;
 }
 .joinSubTitle {
   color: #055ca9;
@@ -1307,7 +1314,8 @@
   font-weight: 500;
   padding: 10px;
   height: 85px;
-  overflow: hidden;
+  overflow:hidden;
+
 }
 .movieCon .name {
   font-size: 14px;
@@ -1458,644 +1466,678 @@
   padding: 0;
 }
 
-/* 포지션 연수지원 */
+.company_ceo {
+  position:relative;
+  width:100%;
+  height:665px;
+  top:0;
+  left:0;
+  background: url("../img/company_img01.jpg") no-repeat;
+}
 
+.company_word {
+  position:absolute;
+  top:30px;
+  right:0;
+  background-color:#f7f8f8;
+  width:665px;
+  height:550px;
+  text-align:left;
+  box-sizing: border-box;
+  padding:30px 40px;
+}
+.company_word h2 {
+  font-weight:500;
+  font-size:26px;
+  color:#202020;
+  margin-bottom:10px;
+}
+.company_word h3 {
+  font-weight:500;
+  font-size:20px;
+  color:#202020;
+}
+.company_word p {
+  font-weight:400;
+  font-size:16px;
+  color:#444444;
+  padding:5px 0;
+  letter-spacing:-0.8px;
+}
+
+
+/* 대표이사 약력 */
+.introduce_cont {
+  position:relative;
+  width:100%;
+  padding:0;
+  margin:0 auto;
+}
+.his_tit > span {display:inline-block;color:#014099;vertical-align:top;/*background:linear-gradient(to right, #014099, #2196f3);-webkit-background-clip:text;-webkit-text-fill-color: transparent;*/}
+.his_sec {position:relative;box-sizing:border-box;}
+.his_sec:after {content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;height:100%;background:#e5e5e5;z-index:-1;}
+.his_info:after {content:"";display:block;clear:both;}
+.his_info > li {position:relative;float:right;width:50%;margin:50px 0 0 50%;padding-left:20px;font-size:18px;font-weight:300;line-height:20px;box-sizing:border-box;}
+.his_info > li:first-child {margin:0 0 0 50%;}
+.his_info > li:before {content:"";position:absolute;left:-8px;top:0;width:18px;height:18px;background-color:#095fa9; border-radius: 40px;}
+.his_info > li > span {font-weight:700;color:#202020;}
+.his_info > li > p {font-weight:400;color:#777778;display:block; padding:10px 0; font-size:17px;}
+.his_info > li:nth-child(even) {float:left;margin-left:0;margin-right:50%;padding:0 20px 0 0;text-align:right;}
+.his_info > li:nth-child(even):before {left:auto;right:-10px;}
+.his_info > li:nth-child(even) > span {left:auto;right:60px;}
+.his_info > li:nth-child(even) .img {margin:20px -60px 0 0;}
+
+
+
+/* 포지션 연수지원 */
 .consultCont {
-  position: relative;
-  width: 100%;
+  position:relative;
+  width:100%;
 }
 .TableTitle {
-  font-size: 16px;
-  font-weight: 600;
+  font-size:16px;
+  font-weight:600;
+
 }
+
 
 /* 인턴쉽 */
-.recruit_detail {
-  position: relative;
-  width: 100%;
-  margin: 0;
-}
-.recruit_detail .page_tab_title {
-  width: 100%;
-  border-bottom: 2px solid #212020;
-}
-.recruit_detail .tab_title_text {
-  background-color: #065da8;
-  color: #fff;
-  text-align: center;
-  width: 200px;
-  height: 50px;
-  line-height: 50px;
-  font-size: 16px;
-  font-weight: 400;
-}
-.recruit_detail .detail_view {
-  position: relative;
-  width: 100%;
-  padding: 15px 0;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 500;
-}
+.recruit_detail {position: relative; width:100%; margin:0;}
+.recruit_detail .page_tab_title {width:100%; border-bottom:2px solid #212020; }
+.recruit_detail .tab_title_text {background-color:#065da8; color:#fff; text-align:center; width:200px; height:50px; line-height:50px; font-size:16px; font-weight:400;}
+.recruit_detail .detail_view {position:relative; width:100%; padding:15px 0; text-align:center; font-size:14px; font-weight:500;}
 
-.detail_footer {
-  text-align: right;
-  display: block;
-  margin-top: 20px;
-}
-.detail_footer .recruit_btn01 {
-  width: 100px;
-  height: 38px;
-  background-color: #0c5ea9;
-  color: #fff;
-  line-height: 38px;
-  font-weight: 400;
-}
-.detail_footer .recruit_btn01 a {
-  color: #fff;
-  font-size: 14px;
-  font-weight: 400;
-  padding: 8px 24px;
-}
-.detail_footer .recruit_btn02 {
-  width: 100px;
-  height: 38px;
-  background-color: #e5e5e5;
-  color: #444444;
-  line-height: 38px;
-  font-weight: 400;
-}
-.detail_footer .recruit_btn02 a {
-  color: #444;
-  font-size: 14px;
-  font-weight: 400;
-  padding: 8px 24px;
-}
+.detail_footer {text-align:right; display:block; margin-top:20px;}
+.detail_footer .recruit_btn01 {width:100px; height:38px; background-color:#0c5ea9; color:#fff; line-height:38px; font-weight:400; }
+.detail_footer .recruit_btn01 a {color:#fff; font-size:14px; font-weight:400; padding: 8px 24px;}
+.detail_footer .recruit_btn02 {width:100px; height:38px; background-color:#e5e5e5; color:#444444; line-height:38px; font-weight:400;}
+.detail_footer .recruit_btn02 a {color:#444; font-size:14px; font-weight:400; padding: 8px 24px;}
 
-.recuit_img {
-  width: 136px;
-  height: 73px;
-  overflow: hidden;
-}
-.recuit_img img {
-  width: 100%;
-}
+
+
+
+.recuit_img {width:136px; height:73px; overflow:hidden;}
+.recuit_img img {width:100%;}
 
 .RecruitTitle {
-  position: relative;
-  width: 100%;
-  border-top: 1px solid #e5e5e5;
-  padding-top: 50px;
-  padding-bottom: 20px;
+  position:relative;
+  width:100%;
+  border-top:1px solid #e5e5e5;
+  padding-top:50px;
+  padding-bottom:20px;
 }
 .RecruitTitle h2 {
-  font-size: 20px;
-  font-weight: 500;
-  color: #222;
+  font-size:20px;
+  font-weight:500;
+  color:#222;
 }
+
 
 .recruitfile {
   display: inline-block;
-  position: relative;
-  width: 100%;
+  position:relative;
+  width:100%;
 }
-.recruitfile [type="file"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0 none;
+.recruitfile [type="file"] { 
+  position: absolute; 
+  width: 1px; 
+  height: 1px; 
+  padding: 0; 
+  margin: -1px; 
+  overflow: hidden; 
+  clip: rect(0, 0, 0, 0); 
+  border: 0 none; 
 }
-.recruitfile .filelabel {
-  display: inline-block;
-  width: 90px;
-  height: 30px;
-  line-height: 30px;
-  padding: 0 10px;
-  border-radius: 2px;
-  font-size: 13px;
-  background-color: #3872b3;
-  color: #fff;
-  text-align: center;
-}
-.recruitfile .filename {
-  width: 300px;
-  background: #fff;
-  height: 30px;
-  line-height: 30px;
-  text-indent: 5px;
-  border: 1px solid #ccc;
-  margin-bottom: 0 !important;
+.recruitfile .filelabel { 
+  display: inline-block; 
+  width:90px; 
+  height: 30px; 
+  line-height: 30px; 
+  padding: 0 10px; 
+  border-radius: 2px; 
+  font-size: 13px; 
+  background-color: #3872b3; 
+  color: #fff; 
+  text-align: center; 
+} 
+.recruitfile .filename { 
+  width: 300px; 
+  background: #fff; 
+  height: 30px; 
+  line-height: 30px; 
+  text-indent: 5px; 
+  border: 1px solid #ccc; 
+  margin-bottom:0 !important;
 }
 
 .recruitfile .filetitle {
-  font-size: 15px;
-  font-weight: 500;
-  color: #222;
-  padding-right: 10px;
+  font-size:15px;
+  font-weight:500;
+  color:#222;
+  padding-right:10px;
   vertical-align: middle;
 }
 
-/* 방문 상담 */
+
+
+/* 방문 상담 */ 
 
 .VisitTopText {
-  position: relative;
-  width: 100%;
-  background-color: #f7f8f8;
-  padding: 15px 20px;
+  position:relative;
+  width:100%;
+  background-color:#f7f8f8;
+  padding:15px 20px; 
   box-sizing: border-box;
 }
 
 .VisitTopText p {
-  color: #444444;
-  font-size: 16px;
-  font-weight: 500;
-  padding: 2px 0;
+  color:#444444;
+  font-size:16px;
+  font-weight:500;
+  padding:2px 0;
 }
 .visit_text01 {
-  font-size: 15px;
-  font-weight: 500;
-  color: #222;
-  padding: 10px 0;
+  font-size:15px;
+  font-weight:500;
+  color:#222;
+  padding:10px 0;
 }
 .datapaging {
-  padding: 10px 0;
+  padding:10px 0;
 }
 .datapaging {
-  font-size: 16px;
-  font-weight: 500;
-  color: #333;
+  font-size:16px;
+  font-weight:500;
+  color:#333;
 }
+
+
 .VisitPassbox {
-  position: relative;
-  border: 1px solid #e5e5e5;
-  width: 610px;
-  height: 240px;
-  margin: 0 auto;
+  position:relative;
+  border:1px solid #e5e5e5;
+  width:610px;
+  height:240px;
+  margin:0 auto;
   box-sizing: border-box;
-  padding: 40px 60px;
+  padding:40px 60px; 
 }
 .VisitPassbox_Title {
-  font-size: 16px;
-  font-weight: 400;
-  color: #9d9d9d;
-  padding-bottom: 10px;
+  font-size:16px;
+  font-weight:400;
+  color:#9d9d9d;
+  padding-bottom:10px;
 }
 .VisitPassbox_Input {
-  position: relative;
-  width: 100%;
+  position:relative;
+  width:100%;
 }
 .VisitPassbox_Input input {
-  width: 100%;
-  border: 1px solid #e5e5e5;
-  height: 40px;
-  padding: 10px;
+  width:100%;
+  border:1px solid #e5e5e5;
+  height:40px;
+  padding:10px;
 }
 .VisitPassbox_Button {
-  position: relative;
-  width: 100%;
-  padding-top: 30px;
+  position:relative;
+  width:100%;
+  padding-top:30px;
 }
 .VisitPassbox_Button .visitpwbtn01 {
-  background-color: #065da8;
-  width: 48%;
-  display: inline-block;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 400;
-  text-align: center;
-  height: 40px;
-  line-height: 40px;
-  float: left;
+  background-color:#065da8;
+  width:48%;
+  display:inline-block;
+  color:#fff;
+  font-size:16px;
+  font-weight:400;
+  text-align:center;
+  height:40px;
+  line-height:40px;
+  float:left;
 }
 .VisitPassbox_Button .visitpwbtn02 {
-  background-color: #e5e5e5;
-  width: 48%;
-  display: inline-block;
-  color: #202020;
-  font-size: 16px;
-  font-weight: 400;
-  text-align: center;
-  height: 40px;
-  line-height: 40px;
-  float: right;
+  background-color:#e5e5e5;
+  width:48%;
+  display:inline-block;
+  color:#202020;
+  font-size:16px;
+  font-weight:400;
+  text-align:center;
+  height:40px;
+  line-height:40px;  
+  float:right;
 }
+
 
 /* 마이페이지 */
 .ResumeWrap {
   position: relative;
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
+  width:100%;
+  height:auto;
+  margin:0 auto;
 }
 .resume_img_frame {
-  position: relative;
-  width: 170px;
-  height: 220px;
-  border-radius: 5px;
-  border: 1px solid #9a9a9a;
-  overflow: hidden;
-  margin: 0 auto;
+  position:relative;
+  width:170px;
+  height:220px;
+  border-radius:5px; 
+  border:1px solid #9a9a9a;
+  overflow:hidden;
+  margin:0 auto;
+  
 }
 .resume_img_frame img {
-  width: 100%;
+  width:100%;
 }
 
 .resumefile {
   display: inline-block;
-  position: relative;
-  width: 100%;
-  margin: 30px auto;
-  text-align: center;
+  position:relative;
+  width:100%;
+  margin:30px auto;
+  text-align:center;
 }
-.resumefile [type="file"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0 none;
+.resumefile [type="file"] { 
+  position: absolute; 
+  width: 1px; 
+  height: 1px; 
+  padding: 0; 
+  margin: -1px; 
+  overflow: hidden; 
+  clip: rect(0, 0, 0, 0); 
+  border: 0 none; 
 }
-.resumefile .filelabel {
-  display: inline-block;
-  width: 90px;
-  height: 30px;
-  line-height: 30px;
-  padding: 0 10px;
-  border-radius: 2px;
-  font-size: 13px;
-  background-color: #3872b3;
-  color: #fff;
-  text-align: center;
-}
-.resumefile .filename {
-  width: 220px;
-  background: #fff;
-  height: 30px;
-  line-height: 30px;
-  text-indent: 5px;
-  border: 1px solid #8c8c8c;
-  margin-bottom: 0 !important;
+.resumefile .filelabel { 
+  display: inline-block; 
+  width:90px; 
+  height: 30px; 
+  line-height: 30px; 
+  padding: 0 10px; 
+  border-radius: 2px; 
+  font-size: 13px; 
+  background-color: #3872b3; 
+  color: #fff; 
+  text-align: center; 
+} 
+.resumefile .filename { 
+  width: 220px; 
+  background: #fff; 
+  height: 30px; 
+  line-height: 30px; 
+  text-indent: 5px; 
+  border: 1px solid #8c8c8c; 
+  margin-bottom:0 !important;
 }
 
 .resumefile .filetitle {
-  font-size: 15px;
-  font-weight: 500;
-  color: #222;
-  padding-right: 10px;
+  font-size:15px;
+  font-weight:500;
+  color:#222;
+  padding-right:10px;
   vertical-align: middle;
 }
 
 .ResumeCont {
-  width: 610px;
-  border: 1px solid #8c8c8c;
-  margin: 0 auto;
+  width:610px;
+  border:1px solid #8c8c8c;
+  margin:0 auto;
   box-sizing: border-box;
-  padding: 40px 20px;
+  padding:40px 20px;
 }
 
 .resumetext01 {
-  font-size: 15px;
-  font-weight: 500;
-  color: #055ca9;
-  margin-bottom: 20px;
+  font-size:15px;
+  font-weight:500;
+  color:#055ca9;
+  margin-bottom:20px;
 }
 .resumetitle {
-  position: relative;
-  width: 100%;
+  position:relative;
+  width:100%;
 }
 .resumetitle h2 {
-  font-size: 18px;
-  font-weight: 500;
-  color: #383838;
-  margin: 30px 0 20px 0;
+  font-size:18px;
+  font-weight:500;
+  color:#383838;
+  margin:30px 0 20px 0;
 }
 
 .resume_zip_form {
-  width: 120px;
-  display: inline-block;
+  width:120px;
+  display:inline-block;
 }
 .resume_zip_btn {
-  padding-left: 10px;
-  display: inline-block;
+  padding-left:10px;
+  display:inline-block;
 }
 .resume_activity_box {
   float: left;
   margin-left: 5px;
 }
-.resume_activity_box input,
-select {
-  font-size: 15px;
-  font-weight: 400;
-  color: #383838;
+.resume_activity_box input, select{
+  font-size:15px;
+  font-weight:400;
+  color:#383838;
 }
 .resumeAcbox {
-  position: relative;
-  width: 100%;
+  position:relative;
+  width:100%;
 }
 .resumeBox {
-  position: relative;
-  width: 100%;
+  position:relative;
+  width:100%;
 }
 .resumeinputbox {
-  display: inline-block;
+  display:inline-block;
+
 }
 .resumeJoinBox {
   position: relative;
   width: 100%;
   height: auto !important;
   border: 0 !important;
-  padding: 0 !important;
+  padding:0 !important;
   box-sizing: border-box;
   margin-bottom: 0 !important;
   display: inline-block;
 }
 
 .resumeBox_label {
-  margin-bottom: 0 !important;
-  position: relative;
-  width: 100%;
-  display: inline-block;
-  padding-bottom: 10px;
+  margin-bottom:0 !important;
+  position:relative;
+  width:100%;
+  display:inline-block;
+  padding-bottom:10px;
 }
 .resumeBox_label > div {
-  font-size: 15px;
-  font-weight: 500;
+  font-size:15px;
+  font-weight:500;
+
 }
 
 .resumebtnwrap {
-  position: relative;
-  width: 100%;
-  margin: 60px auto;
-  text-align: center;
+  position:relative;
+  width:100%;
+  margin:60px auto;
+  text-align:center;
+
 }
 .resumebtnwrap .resumebtn {
-  background-color: #055ca9;
-  width: 150px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 400;
-  border: 0;
+  background-color:#055ca9;
+  width:150px;
+  height:40px;
+  line-height:40px;
+  text-align:center;
+  color:#fff;
+  font-size:14px;
+  font-weight:400;
+  border:0;
 }
 .resumebtnwrap .resumebtn01 {
-  background-color: #e5e5e5;
-  width: 150px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  color: #222;
-  font-size: 14px;
-  font-weight: 400;
-  border: 0;
+  background-color:#e5e5e5;
+  width:150px;
+  height:40px;
+  line-height:40px;
+  text-align:center;
+  color:#222;
+  font-size:14px;
+  font-weight:400;
+  border:0;
 }
 
+
 .ContTopresumeBtn {
-  position: relative;
-  width: 100%;
-  text-align: right;
-  margin-top: 30px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #c1c1c1;
+  position:relative;
+  width:100%;
+  text-align:right;
+  margin-top:30px;
+  padding-bottom:30px;
+  border-bottom:1px solid #c1c1c1;
 }
-.resumadminbtn {
-  border: 1px solid #f3f3f3;
-  color: #222;
-  font-size: 15px;
-  font-weight: 500;
-  text-align: center;
-  width: 140px;
-  height: 50px;
-  background-color: #fff;
+.resumadminbtn { 
+  border:1px solid #f3f3f3;
+  color:#222;
+  font-size:15px;
+  font-weight:500;
+  text-align:center;
+  width:140px;
+  height:50px;
+  background-color:#fff;
 }
-.resumadminbtn01 {
-  border: 1px solid #f3f3f3;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 500;
-  text-align: center;
-  width: 140px;
-  height: 50px;
-  background-color: #0c5ea8;
+.resumadminbtn01 { 
+  border:1px solid #f3f3f3;
+  color:#fff;
+  font-size:15px;
+  font-weight:500;
+  text-align:center;
+  width:140px;
+  height:50px;
+  background-color:#0c5ea8;
 }
 .resumetoptext {
-  position: relative;
-  width: 100%;
-  text-align: left;
-  padding-top: 20px;
+  position:relative;
+  width:100%;
+  text-align:left;
+  padding-top:20px;
 }
 .resumetoptext p {
-  color: #0c5ea8;
-  font-size: 15px;
-  font-weight: 400;
+  color:#0c5ea8;
+  font-size:15px;
+  font-weight:400;
 }
+
+
 
 /* 제출서류 관리 */
 .MissionDocCont {
-  position: relative;
-  width: 100%;
-  border-bottom: 1px solid #c8c8c8;
+  position:relative;
+  width:100%;
+  border-bottom:1px solid #c8c8c8;
 }
 .MissionDocTitle {
-  width: 100%;
-  text-align: center;
+  width:100%;
+  text-align:center;
 }
 .MissionDocTitle h2 {
-  display: inline-block;
-  font-size: 30px;
-  font-weight: 500;
-  color: #202020;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #0c5ea9;
+  display:inline-block;
+  font-size:30px;
+  font-weight:500;
+  color:#202020;
+  padding-bottom:10px;
+  border-bottom:2px solid #0c5ea9;
 }
 .MissionDocTitle h3 {
-  display: inline-block;
-  font-size: 30px;
-  font-weight: 500;
-  color: #202020;
-  padding-bottom: 10px;
+  display:inline-block;
+  font-size:30px;
+  font-weight:500;
+  color:#202020;
+  padding-bottom:10px;
 }
 
 .MissionDocimg {
-  position: relative;
-  width: 100%;
-  text-align: center;
+  position:relative;
+  width:100%;
+  text-align:center
 }
 
+
 .MissionTableWrap {
-  position: relative;
-  width: 100%;
-  padding-top: 60px;
+  position:relative;
+  width:100%;
+  padding-top:60px;
 }
 
 .MissionTableWrap h3 {
-  color: #202020;
-  font-size: 20px;
-  font-weight: 500;
-  padding-bottom: 10px;
+  color:#202020;
+  font-size:20px;
+  font-weight:500;
+  padding-bottom:10px;
+
 }
 
 .MissionDocTextbox {
-  position: relative;
-  width: 810px;
-  height: 150px;
-  margin: 20px auto;
-  background-color: #fbfcfc;
-  text-align: center;
-  border: 1px solid #d7d7d7;
-  border-radius: 5px;
+  position:relative;
+  width:810px;
+  height:50px;
+  margin:20px auto;
+  background-color:#fbfcfc;
+  text-align:center;
+  border:1px solid #d7d7d7;
+  border-radius:5px;
+
 }
 .MissionDocTextbox p {
-  font-size: 16px;
-  font-weight: 500;
-  color: #e32228;
-  line-height: 50px;
+  font-size:16px;
+  font-weight:500;
+  color:#e32228;
+  line-height:50px;
 }
 
 .MissionDocbox {
-  position: relative;
-  width: 100%;
-  display: block;
-  text-align: center;
-  margin-top: 50px;
+  position:relative;
+  width:100%;
+  display:block;
+  text-align:center;
+  margin-top:50px;
 }
 .MissionDocbox .Docboxname {
-  display: inline-block;
-  font-size: 22px;
-  font-weight: 500;
-  color: #202020;
-  margin-right: 50px;
+  display:inline-block;
+  font-size:22px;
+  font-weight:500; 
+  color:#202020; 
+  margin-right:50px;
 }
 .MissionDocbox .Docboxbtn {
-  display: inline-block;
-  background-color: #0c5ea9;
-  width: 200px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-}
-.MissionDocbox .DocboxbtnCheck {
-  display: inline-block;
-  background-color: #0c5ea9;
-  width: 200px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-}
-.MissionDocbox .DocboxbtnSuccess {
-  display: inline-block;
-  background-color: #0ca95b;
-  width: 200px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-}
-.MissionDocbox .DocboxbtnCancel {
-  display: inline-block;
-  background-color: red;
-  width: 200px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
+  display:inline-block;
+  background-color:#0c5ea9;
+  width:200px;
+  height:50px;
+  line-height:50px;
+  text-align:center;
+  color:#fff;
+  font-size:16px;
+  font-weight:500;
 }
 
-.MissionDocbox .DocboxbtnCheck a:hover {
-  color: black !important;
-}
-.MissionDocbox .DocboxbtnSuccess a:hover {
-  color: black !important;
-}
-.MissionDocbox .DocboxbtnCancel a:hover {
-  color: black !important;
-}
 
 /* agreement */
 .agreement_wrap {
-  position: relative;
-  width: 100%;
-  margin-bottom: 30px;
+    position: relative;
+    width:100%;
+    margin-bottom:30px;    
 }
 
 .agreement_wrap h2 {
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 20px;
-  padding: 20px 0 10px 0;
+    font-size:15px;
+    font-weight:500;
+    line-height: 20px;
+    padding:20px 0 10px 0;
 }
 
 .agreement_wrap p {
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 22px;
+    font-size:15px;
+    font-weight:400;
+    line-height:22px;
 }
 
 .membermission_cont {
-  position: relative;
-  width: 100%;
+    position:relative;
+    width:100%;
 }
 .membermission_title {
-  width: 100%;
-  margin-top: 30px;
+    width:100%;
+    margin-top:30px;
 }
 .membermission_title li {
-  display: inline-block;
-  width: 16.4%;
-  margin: 0 auto;
-  text-align: center;
+    display:inline-block;
+    width:16.4%;
+    margin:0 auto;
+    text-align: center;
 }
 
 .membermission_title li > span {
-  display: inline-block;
-  background-color: #ddd;
-  color: #000;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  border-radius: 20px;
-  padding: 5px 15px;
-  box-sizing: border-box;
+    display:inline-block;
+    background-color:#ddd;
+    color:#000;
+    text-align:center;
+    font-size:14px;
+    font-weight:400;
+    border-radius:20px;
+    padding:5px 15px;
+    box-sizing: border-box;
 }
 
-.membermission_title .on {
-  display: inline-block;
-  background-color: #0c5ea9;
-  color: #fff;
+.membermission_title .on{
+    display:inline-block;
+    background-color:#0c5ea9;
+    color:#fff;
 }
 .memebermission_step {
-  width: 100%;
-  font-size: 16px;
-  font-weight: 400;
-  margin-top: 50px;
-  color: #202020;
+    width:100%;
+    font-size:16px;
+    font-weight:400;
+    margin-top:50px;
+    color:#202020;
 }
 .memebermission_step > span {
-  background-color: #0c5ea9;
-  color: #fff;
-  padding: 0 10px;
-  border-radius: 20px;
-  font-size: 15px;
-  font-weight: 400;
+    background-color:#0c5ea9;
+    color:#fff;
+    padding:0 10px;
+    border-radius: 20px;
+    font-size:15px;
+    font-weight:400;
+}
+
+
+.QnaPassbox {
+  position:relative;
+  width:100%;
+  height:100%;
+  margin:0 auto;
+  box-sizing: border-box;
+  padding:40px 60px; 
+}
+.QnaPassbox_Title {
+  font-size:16px;
+  font-weight:400;
+  color:#9d9d9d;
+  padding-bottom:10px;
+}
+.QnaPassbox_Input {
+  position:relative;
+  width:100%;
+}
+.QnaPassbox_Input input {
+  width:100%;
+  border:1px solid #e5e5e5;
+  height:40px;
+  padding:10px;
+}
+.QnaPassbox_Button {
+  position:relative;
+  width:100%;
+  padding-top:30px;
+}
+.QnaPassbox_Button .Qnapwbtn01 {
+  background-color:#065da8;
+  width:48%;
+  display:inline-block;
+  color:#fff;
+  font-size:16px;
+  font-weight:400;
+  text-align:center;
+  height:40px;
+  line-height:40px;
+  float:left;
+}
+.QnaPassbox_Button .Qnapwbtn02 {
+  background-color:#e5e5e5;
+  width:48%;
+  display:inline-block;
+  color:#202020;
+  font-size:16px;
+  font-weight:400;
+  text-align:center;
+  height:40px;
+  line-height:40px;  
+  float:right;
 }
