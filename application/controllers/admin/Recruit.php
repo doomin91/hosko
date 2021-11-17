@@ -476,8 +476,6 @@ class Recruit extends CI_Controller {
 
 	public function recruit_abroad_edit($abroad_seq){
 		$DATA["ABROAD_INFO"] = $this->RecruitModel->getRecruitAbroadInfo($abroad_seq);
-
-		// print_r($DATA["ABROAD_INFO"]);
         
 		$this->load->view("./admin/recruit/recruit-abroad_edit", $DATA);
 	}
