@@ -96,4 +96,24 @@ class BasicModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_ADMIN.ADMIN_PW", md5($admin_pass));
 		return $this->db->get("TBL_HOSKO_ADMIN")->row();
 	}
+
+	public function setPopup($insertArr){
+		return $this->db->insert("TBL_HOSKO_POPUP", $insertArr);
+	}
+
+	public function getPopupList($whereArr){
+		$this->db->where("TBL_HOSKO_POPUP.POP_DEL_YN", "N");
+		$this->db->select("TBL_HOSKO_POPUP.*");
+		$this->db->order_by("TBL_HOSKO_POPUP.POP_SEQ", "DESC");
+		$this->db->limit($whereArr["limit"], $whereArr["start"]);
+		return $this->db->get("TBL_HOSKO_POPUP")->result();
+	}
+
+	public function getPopupCount($whereArr){
+		$this->db->where("TBL_HOSKO_POPUP.POP_DEL_YN", "N");
+		$this->db->select("TBL_HOSKO_POPUP.*");
+		$this->db->from("TBL_HOSKO_POPUP");
+		return $this->db->count_all_results();
+	}
+
 }

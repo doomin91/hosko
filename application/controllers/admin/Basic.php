@@ -34,6 +34,8 @@ class Basic extends CI_Controller {
 		$this->load->model("UserModel");
 		$this->load->model("BasicModel");
 		date_default_timezone_set('Asia/Seoul');
+
+		$this->customclass->adminCheck();
 	}
 
 	public function managers(){
@@ -367,6 +369,101 @@ class Basic extends CI_Controller {
 			echo json_encode(array("code"=>"200", "msg" => "사이트 정보 수정되었습니다."));
 		} else {
 			echo json_encode(array("code"=>"202", "msg" => "사이트 정보 수정 중 문제가 생겼습니다."));
+		}
+	}
+
+	public function popupList(){
+		$limit = 10;
+		$nowpage = "";
+		if (!isset($_GET["per_page"])){
+			$start = 0;
+		}else{
+			$start = ($_GET["per_page"]-1)*10;
+			$nowpage = $_GET["per_page"];
+		}
+
+		$reg_date_start = isset($_GET["reg_date_start"]) ? $_GET["reg_date_start"] : "";
+		$reg_date_end = isset($_GET["reg_date_end"]) ? $_GET["reg_date_end"] : "";
+		$last_login_start = isset($_POST["last_login_start"]) ? $_POST["last_login_start"] : "";
+		$last_login_end = isset($_POST["last_login_end"]) ? $_POST["last_login_end"] : "";
+		$user_type = isset($_GET["user_type"]) ? $_GET["user_type"] : "";
+		$searchField = isset($_GET["searchField"]) ? $_GET["searchField"] : "";
+		$searchString = isset($_GET["searchString"]) ? $_GET["searchString"] : "";
+
+		$wheresql = array(
+						"reg_date_start" => $reg_date_start,
+						"reg_date_end" => $reg_date_end,
+						"last_login_start" => $last_login_start,
+						"last_login_end" => $last_login_end,
+						"user_type" => $user_type,
+						"searchField" => $searchField,
+						"searchString" => $searchString,
+						"start" => $start,
+						"limit" => $limit
+						);
+		$lists = $this->BasicModel->getPopupList($wheresql);
+		//echo $this->db->last_query();
+		$listCount = $this->BasicModel->getPopupCount($wheresql);
+		if ($nowpage != ""){
+			$pagenum = $listCount-(($nowpage-1)*10);
+		}else{
+			$pagenum = $listCount;
+		}
+
+		$pagination = $this->customclass->pagenavi("/admin/basic/managers", $listCount, 10, 5, $nowpage);
+		//print_r($lists);
+		$data = array(
+					"reg_date_start" => $reg_date_start,
+					"reg_date_end" => $reg_date_end,
+					"last_login_start" => $last_login_start,
+					"last_login_end" => $last_login_end,
+					"user_type" => $user_type,
+					"searchField" => $searchField,
+					"searchString" => $searchString,
+					"lists" => $lists,
+					"listCount" => $listCount,
+					"pagination" => $pagination,
+					"pagenum" => $pagenum,
+					"start" => $start,
+					"limit" => $limit
+					);
+
+		$this->load->view("/admin/basic/popup-list", $data);
+	}
+
+	public function popupWrite(){
+		$this->load->view("/admin/basic/popup-write");
+	}
+
+	public function popupWriteProc(){
+		$popup_subject = $this->input->post("popup_subject");
+		$popup_start = $this->input->post("popup_start");
+		$popup_end = $this->input->post("popup_end");
+		$popup_width = $this->input->post("popup_width");
+		$popup_height = $this->input->post("popup_height");
+		$popup_x = $this->input->post("popup_x");
+		$popup_y = $this->input->post("popup_y");
+		$popup_contents = $this->input->post("popup_contents");
+
+		$insertArr = array(
+							"POP_ADMIN_SEQ" => $this->session->userdata("admin_seq"),
+							"POP_TITLE" => $popup_subject,
+							"POP_START" => $popup_start,
+							"POP_END" => $popup_end,
+							"POP_LOCAT_X" => $popup_x,
+							"POP_LOCAT_Y" => $popup_y,
+							"POP_WIDTH" => $popup_width,
+							"POP_HEIGHT" => $popup_height,
+							"POP_CONTENTS" => $popup_contents,
+							"POP_REG_DATE" => date("Y-m-d H:i:s"),
+							"POP_DEL_YN" => "N"
+							);
+		$result = $this->BasicModel->setPopup($insertArr);
+
+		if($result){
+			echo json_encode(array("code"=>"200", "msg" => "팝업 등록되었습니다."));
+		} else {
+			echo json_encode(array("code"=>"202", "msg" => "팝업 등록 중 문제가 생겼습니다."));
 		}
 	}
 }

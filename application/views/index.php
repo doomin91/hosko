@@ -41,7 +41,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/Board/q/1?seq=5">
+                                    <a href="/Board/g/1?seq=5">
                                         <div class="visual_menu">
                                             <p><img src="/static/front/img/main_visual_icon04.png"></p>
                                             <h1>갤러리</h1>
