@@ -82,6 +82,18 @@
 			  	</a>
 				<?php endif; ?>
 			</li>
+			<li>
+				<?php if (strpos($this->session->userdata("admin_permi"), "basic_03") !== false): ?>  
+				<a href="/admin/basic/popupList">
+					<i class="fa fa-caret-right"></i> 팝업관리
+				</a>
+				<?php else: ?>
+				<!--<a href="javascript:alert('권한이 없습니다.');">-->
+				<a href="/admin/basic/popupList">
+					<i class="fa fa-caret-right"></i> 팝업관리
+			  	</a>
+				<?php endif; ?>
+			</li>
 			<!--
 			<li>
 			  <a href="/administrator/en/brochure">
