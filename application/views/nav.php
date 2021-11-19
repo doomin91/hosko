@@ -123,12 +123,18 @@
 			<div id="menu">
                 <div class="loginbox">
                 <ul>
-                   <li><a href="/member/login">로그인</a></li>
-                    
-                   <!--
-                    <li class="loginid">홍길동</li>
-                    <li class="logout"><a href="#">로그아웃</a></li>
-                -->
+            <?php 
+                if (($this->session->userdata("USER_ID") == "")){
+            ?>
+                    <li><a href="/member/login">로그인</a></li>
+            <?php 
+                }else{
+            ?>                    
+                    <li class="loginid"><a href="/mypage/memberEdit"><?php echo $this->session->userdata("USER_NAME"); ?></a></li>
+                    <li class="logout"><a href="/member/logout">로그아웃</a></li>
+            <?php
+                }
+            ?>
                 </ul>
                 </div>
 
