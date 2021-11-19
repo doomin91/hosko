@@ -186,6 +186,7 @@ class Consult extends CI_Controller {
 		$qna_user_name = $this->input->post("qna_user_name");
 		$qna_user_email = $this->input->post("qna_user_email");
 		$qna_contents = $this->input->post("qna_contents");
+		$qna_password = $this->input->post("qna_password");
 
 		$group = $this->ConsultModel->getQnaGroupMax();
 		if ($group->QNA_GROUP == ""){
@@ -201,6 +202,7 @@ class Consult extends CI_Controller {
 						"QNA_USER_NAME" => $qna_user_name,
 						"QNA_USER_EMAIL" => $qna_user_email,
 						"QNA_CONTENTS" => $qna_contents,
+						"QNA_PASSWORD" => md5($qna_password),
 						"QNA_REG_DATE" => date("Y-m-d H:i:s"),
 						"QNA_DEL_YN" => "N"
  		);
@@ -210,6 +212,19 @@ class Consult extends CI_Controller {
 			echo json_encode(array("code" => "200", "msg" => "문의 신청 되었습니다."));
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "문의 신청중 문제가 생겼습니다."));
+		}
+	}
+
+	public function qnaPassCheck(){
+		$modal_pass = $this->input->post("modal_pass");
+		$qna_seq = $this->input->post("qna_seq");
+
+		$qnaInfo = $this->ConsultModel->getQna($qna_seq);
+
+		if ($qnaInfo->QNA_PASSWORD == md5($modal_pass)){
+			echo json_encode(array("code" => "200", "msg" => "비밀번호 확인 되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "비밀번호가 일치 하지 않습니다."));
 		}
 	}
 
