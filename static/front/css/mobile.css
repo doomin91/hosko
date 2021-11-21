@@ -8,6 +8,13 @@ header.m_header{
     display:none;
 }
 
+.title_num {
+    display:none;
+}
+
+.m_delimg1 {
+    display:none;
+}
 
 /* mobile */ 
 @media screen and (max-width: 768px){
@@ -448,6 +455,13 @@ header.m_header{
         right:60px;
 
     }
+    .mypage {
+        font-size:14px;
+        position:absolute;
+        right:130px;
+    }
+
+
     .loginbox a {
         color:#fff;
     }
@@ -549,8 +563,8 @@ header.m_header{
     }
         
     .m_right_area{float: right; position:absolute; top:12px; right:10px; cursor:pointer;}
-    a.tel{float: left; display: block; background: url(../img/main/top_tel.png) no-repeat center; width: 26px; height: 26px; background-size: 100%;margin-right: 10px;}   
-    a.talk{float: left; display: block; background: url(../img/common/kakao_icon.png) no-repeat center; width: 26px; height: 26px; background-size: 100%; }   
+    a.tel{float: left; display: block; background: url("../img/top_tel.png") no-repeat center; width: 26px; height: 26px; background-size: 100%;margin-right: 10px;}   
+    a.talk{float: left; display: block; background: url("../img/kakao_icon.png") no-repeat center; width: 26px; height: 26px; background-size: 100%; }   
 
 
 
@@ -705,7 +719,7 @@ header.m_header{
         border-bottom: 1px solid #e5e5e5;
       }
       .sub_contents .sub_category03 ul {
-        width: 1180px;
+        width: 100%;
         margin: 0 auto;
         display: table;
       }
@@ -738,7 +752,7 @@ header.m_header{
     .subTit h2 {
         position: relative;
         display: inline-block;
-        font-size: 24px;
+        font-size: 18px;
         font-weight: 500;
         line-height: 1.59;
         letter-spacing: 1.4px;
@@ -958,6 +972,7 @@ header.m_header{
   }
   .loginBox .loginBoxform input {
       width:100%;
+      color:#222;
   }
 
 
@@ -1824,7 +1839,578 @@ header.m_header{
 
 
 
+/* 마이페이지 */
+.ResumeWrap {
+    position: relative;
+    width:100%;
+    height:auto;
+    margin:0 auto;
+  }
+  .resume_img_frame {
+    position:relative;
+    width:170px;
+    height:220px;
+    border-radius:5px; 
+    border:1px solid #9a9a9a;
+    overflow:hidden;
+    margin:0 auto;
+    
+  }
+  .resume_img_frame img {
+    width:100%;
+  }
+  
+  .resumefile {
+    display: inline-block;
+    position:relative;
+    width:100%;
+    margin:30px auto;
+    text-align:center;
+  }
+  .resumefile [type="file"] { 
+    position: absolute; 
+    width: 1px; 
+    height: 1px; 
+    padding: 0; 
+    margin: -1px; 
+    overflow: hidden; 
+    clip: rect(0, 0, 0, 0); 
+    border: 0 none; 
+  }
+  .resumefile .filelabel { 
+    display: inline-block; 
+    width:90px; 
+    height: 30px; 
+    line-height: 30px; 
+    padding: 0 10px; 
+    border-radius: 2px; 
+    font-size: 13px; 
+    background-color: #3872b3; 
+    color: #fff; 
+    text-align: center; 
+  } 
+  .resumefile .filename { 
+    width: 220px; 
+    background: #fff; 
+    height: 30px; 
+    line-height: 30px; 
+    text-indent: 5px; 
+    border: 1px solid #8c8c8c; 
+    margin-bottom:0 !important;
+  }
+  
+  .resumefile .filetitle {
+    font-size:15px;
+    font-weight:500;
+    color:#222;
+    padding-right:10px;
+    vertical-align: middle;
+  }
+  
+  .ResumeCont {
+    width:100%;
+    border:1px solid #8c8c8c;
+    margin:0 auto;
+    box-sizing: border-box;
+    padding:20px 20px;
+  }
+  
+  .resumetext01 {
+    font-size:15px;
+    font-weight:500;
+    color:#055ca9;
+    margin-bottom:20px;
+  }
+  .resumetitle {
+    position:relative;
+    width:100%;
+  }
 
+  .resumetitle h2 {
+    font-size:18px;
+    font-weight:500;
+    color:#383838;
+    margin:30px 0 20px 0;
+  }
+  
+  .resume_zip_form {
+    width:120px;
+    display:inline-block;
+  }
+  .resume_zip_btn {
+    padding-left:10px;
+    display:inline-block;
+  }
+  .resume_activity_box {
+    float: left;
+    margin-left: 5px;
+  }
+  .resume_activity_box input, select{
+    font-size:15px;
+    font-weight:400;
+    color:#383838;
+  }
+  .resumeAcbox {
+    position:relative;
+    width:100%;
+  }
+  .resumeBox {
+    position:relative;
+    width:100%;
+  }
+  .resumeinputbox {
+    display:inline-block;
+  
+  }
+  .resumeJoinBox {
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    border: 0 !important;
+    padding:0 !important;
+    box-sizing: border-box;
+    margin-bottom: 0 !important;
+    display: inline-block;
+  }
+  
+  .resumeBox_label {
+    margin-bottom:0 !important;
+    position:relative;
+    width:100%;
+    display:inline-block;
+    padding-bottom:10px;
+  }
+  .resumeBox_label > div {
+    font-size:15px;
+    font-weight:500;
+  
+  }
+  
+  .resumebtnwrap {
+    position:relative;
+    width:100%;
+    margin:60px auto;
+    text-align:center;
+  
+  }
+  .resumebtnwrap .resumebtn {
+    background-color:#055ca9;
+    width:150px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    color:#fff;
+    font-size:14px;
+    font-weight:400;
+    border:0;
+  }
+  .resumebtnwrap .resumebtn01 {
+    background-color:#e5e5e5;
+    width:150px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    color:#222;
+    font-size:14px;
+    font-weight:400;
+    border:0;
+  }
+  
+  
+  .ContTopresumeBtn {
+    position:relative;
+    width:100%;
+    text-align:right;
+    margin-top:30px;
+    padding-bottom:30px;
+    border-bottom:1px solid #c1c1c1;
+  }
+  .resumadminbtn { 
+    border:1px solid #f3f3f3;
+    color:#222;
+    font-size:15px;
+    font-weight:500;
+    text-align:center;
+    width:120px;
+    height:40px;
+    background-color:#fff;
+  }
+  .resumadminbtn01 { 
+    border:1px solid #f3f3f3;
+    color:#fff;
+    font-size:14px;
+    font-weight:500;
+    text-align:center;
+    width:120px;
+    height:40px;
+    background-color:#0c5ea8;
+  }
+  .resumetoptext {
+    position:relative;
+    width:100%;
+    text-align:left;
+    padding-top:20px;
+  }
+  .resumetoptext p {
+    color:#0c5ea8;
+    font-size:15px;
+    font-weight:400;
+  }
+
+
+  .ResumeTable {
+    position:relative;
+    width:100%;
+}
+.ResumeTable th {
+    font-size:15px;
+    font-weight:500;
+    color:#383838;
+    padding:20px 0;
+    height:30px;
+}
+.ResumeTable tr {
+    height:50px;
+}
+.ResumeTable td  {
+    vertical-align: middle;
+}
+.ResumeTable td input{
+    margin-bottom:0;
+}
+
+.resumeform {
+    display:inline-block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight:400;
+    line-height: 1.42857143;
+    color: #848484;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.resumemanagertable {
+    position:relative;
+    width:100%;
+    border:1px solid #e5e5e5;
+}
+.resumemanagertable th {
+    font-size:14px !important;
+    font-weight:500;
+    color:#222222;
+    text-align:left;
+    padding-left:20px !important;
+    box-sizing: border-box;
+    border:1px solid #e5e5e5;
+    height:70px;
+    line-height:70px;
+}
+.resumemanagertable td {
+    border:1px solid #e5e5e5;
+    font-size:14px;
+    font-weight:500;
+    text-align:left;
+    padding-left:20px !important;
+    color:#f30100;
+    height:70px;
+    line-height:70px;    
+}
+
+.managertabletitle {
+    font-size:16px !important;
+    font-weight:500;
+}
+.managercolor01 {
+    color:#222 !important;
+}
+.managercolor02 {
+    color:#f30100;
+}
+.languangeText {
+    font-size:16px;
+    font-weight:500;
+    border-bottom:1px solid #4f4f4f;
+
+}
+
+
+
+  /* 제출서류 관리 */
+  .MissionDocCont {
+    position:relative;
+    width:100%;
+    border-bottom:1px solid #c8c8c8;
+    margin-top:30px !important;
+    padding-top:30px !important;
+  }
+
+  .MissionDocTitle {
+    width:100%;
+    text-align:center;
+  }
+  .MissionDocTitle h2 {
+    display:inline-block;
+    font-size:24px;
+    font-weight:500;
+    color:#202020;
+    padding-bottom:10px;
+    border-bottom:2px solid #0c5ea9;
+  }
+  .MissionDocTitle h3 {
+    display:inline-block;
+    font-size:18px;
+    font-weight:500;
+    color:#202020;
+    padding-bottom:10px;
+  }
+  
+  .MissionDocimg {
+    position:relative;
+    width:100%;
+    text-align:center
+  }
+    .MissionDocimg img {
+        width:100%;
+    }
+  
+  .MissionTableWrap {
+    position:relative;
+    width:100%;
+    padding-top:60px;
+  }
+  
+  .MissionTableWrap h3 {
+    color:#202020;
+    font-size:18px;
+    font-weight:500;
+    padding-bottom:10px;
+  
+  }
+  
+  .MissionDocTextbox {
+    position:relative;
+    width:100%;
+    height:50px;
+    margin:20px auto;
+    background-color:#fbfcfc;
+    text-align:center;
+    border:1px solid #d7d7d7;
+    border-radius:5px;
+  
+  }
+  .MissionDocTextbox p {
+    font-size:16px;
+    font-weight:500;
+    color:#e32228;
+    line-height:50px;
+  }
+  
+  .MissionDocbox {
+    position:relative;
+    width:100%;
+    display:block;
+    text-align:center;
+    margin-top:50px;
+  }
+  .MissionDocbox .Docboxname {
+    display:inline-block;
+    font-size:22px;
+    font-weight:500; 
+    color:#202020; 
+    margin-right:50px;
+  }
+  .MissionDocbox .Docboxbtn {
+    display:inline-block;
+    background-color:#0c5ea9;
+    width:200px;
+    height:50px;
+    line-height:50px;
+    text-align:center;
+    color:#fff;
+    font-size:16px;
+    font-weight:500;
+  }
+  
+.m_delimg {
+    display:none;
+}
+.m_delimg1 {
+    display:block;
+}
+
+  
+  /* agreement */
+  .agreement_wrap {
+      position: relative;
+      width:100%;
+      margin-bottom:30px;    
+  }
+  
+  .agreement_wrap h2 {
+      font-size:15px;
+      font-weight:500;
+      line-height: 20px;
+      padding:20px 0 10px 0;
+  }
+  
+  .agreement_wrap p {
+      font-size:15px;
+      font-weight:400;
+      line-height:22px;
+  }
+  
+  .membermission_cont {
+      position:relative;
+      width:100%;
+  }
+  .membermission_title {
+      width:100%;
+      margin-top:30px;
+  }
+  .membermission_title li {
+      display:inline-block;
+      width:32%;
+      margin:20 auto;
+      text-align: center;
+      box-sizing: border-box;
+  }
+  
+  .membermission_title li > span {
+      width:100%;
+      display:inline-block;
+      background-color:#ddd;
+      color:#000;
+      text-align:center;
+      font-size:14px;
+      font-weight:400;
+      border-radius:20px;
+      padding:5px 15px;
+      box-sizing: border-box;
+  }
+  
+  .title_num {
+      display:inline-block;
+      background-color:#292929;
+      border-radius: 30px;
+      color:#ffffff;
+      font-size:12px;
+      width:100%;
+      margin-bottom:10px;
+  }
+
+  .membermission_title .on{
+      display:inline-block;
+      background-color:#0c5ea9;
+      color:#fff;
+  }
+  .memebermission_step {
+      width:100%;
+      font-size:16px;
+      font-weight:400;
+      margin-top:50px;
+      color:#202020;
+  }
+  .memebermission_step > span {
+      background-color:#0c5ea9;
+      color:#fff;
+      padding:0 10px;
+      border-radius: 20px;
+      font-size:15px;
+      font-weight:400;
+  }
+
+
+/* 서류 제출 */
+.missiontable {
+    position: relative;
+    width:100%;
+    border:1px solid #e9e9e8;
+    font-size:14px;
+    font-weight:400;
+    color:#202020;
+}
+
+.missiontable th {
+    text-align:center;
+    background-color:#fff;
+    height:60px;
+    line-height:60px;
+    border:1px solid #e5e5e5;
+}
+
+.missiontable td {
+    text-align:center;
+    height:60px;
+    vertical-align: middle;
+    border:1px solid #e5e5e5;
+    font-size:12px;
+}
+.missiontable .doctablebtn01 {
+    width: 100px;
+    height: 40px;
+    background-color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #202020;
+    float: right;
+    line-height: 40px;
+    margin: 10px;
+}
+.missiontable .doctablebtn02 {
+    width: 54px;
+    height: 24px;
+    background-color: #0062a9;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    float: none;
+    line-height: 24px;
+    margin: 10px auto;
+    display:block;
+}
+.missiontable .doctablefont01 {
+    font-size:12px;
+    font-weight:500;
+    color:#202020;
+}
+.missiontable .doctablefont02 {
+    font-size:14px;
+    font-weight:500;
+    color:#0061a9;
+}
+.missiontable .doctablefont03 {
+    font-size:14px;
+    font-weight:500;
+    color:#e51d25;
+}
+.missiontable .doctablefont04 {
+    font-size:12px;
+    font-weight:500;
+    color:#0061a9;
+    display:block;
+    text-align:center;
+    margin-left:0px;
+}
+.missiontable .doctableline {
+    line-height:30px;
+}
+
+.missiontable .bg01 {
+    background-color:#f7f8f8;
+}
+
+.mobiledoctitle h3 {
+    font-size:16px;
+}
+
+.doctableline label {
+    display:block;
+}
 
 
 
