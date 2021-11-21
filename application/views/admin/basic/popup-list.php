@@ -82,8 +82,8 @@
 										<td><?php echo $lt->POP_END; ?></td>
 										<td><?php echo $lt->POP_LOCAT_X; ?>/<?php echo $lt->POP_LOCAT_Y; ?></td>
 										<td>
-											<button type="button" class="btn btn-default btn-xs managerModify" data-key="<?php echo $lt->POP_SEQ; ?>">수정</button>
-											<button type="button" class="btn btn-danger btn-xs managerDelete" data-key="<?php echo $lt->POP_SEQ; ?>">삭제</button>
+											<button type="button" class="btn btn-default btn-xs popupModify" data-key="<?php echo $lt->POP_SEQ; ?>">수정</button>
+											<button type="button" class="btn btn-danger btn-xs popupDelete" data-key="<?php echo $lt->POP_SEQ; ?>">삭제</button>
 										</td>
 									</tr>
 								<?php
@@ -144,26 +144,26 @@
 </html>
 <script type="text/javascript">
 	$(function(){
-		$(document).on("click", ".managerModify", function(){
+		$(document).on("click", ".popupModify", function(){
 			var admin_seq = $(this).data("key");
-			document.location.href="/admin/basic/managerModify/"+admin_seq;
+			document.location.href="/admin/basic/popupModify/"+admin_seq;
 		})
 
-		$(document).on("click", ".managerDelete", function(){
-			var admin_seq = $(this).data("key");
+		$(document).on("click", ".popupDelete", function(){
+			var popup_seq = $(this).data("key");
 
-			if (confirm("관리자를 삭제하시겠습니까?")){
+			if (confirm("팝업을 삭제하시겠습니까?")){
 				$.ajax({
-	                url:"/admin/basic/managerDeleteProc",
+	                url:"/admin/basic/popupDeleteProc",
 	                type:"post",
 	                data:{
-	                    "admin_seq" : admin_seq,
+	                    "popup_seq" : popup_seq,
 	                },
 	                dataType:"json",
 	                success:function(resultMsg){
 	                    if (resultMsg.code == "200"){
 	                        alert(resultMsg.msg);
-	                        document.location.href="/admin/basic/managers";
+	                        document.location.reload();
 	                    }else{
 	                        alert(resultMsg.msg);
 	                    }

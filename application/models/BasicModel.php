@@ -116,4 +116,25 @@ class BasicModel extends CI_Model{
 		return $this->db->count_all_results();
 	}
 
+	public function getPopup($popup_seq){
+		$this->db->where("TBL_HOSKO_POPUP.POP_SEQ", $popup_seq);
+		return $this->db->get("TBL_HOSKO_POPUP")->row();
+	}
+
+	public function updatePopup($updateArr, $popup_seq){
+		$this->db->where("TBL_HOSKO_POPUP.POP_SEQ", $popup_seq);
+		return $this->db->update("TBL_HOSKO_POPUP", $updateArr);
+	}
+
+	public function deletePopup($popup_seq){
+		$this->db->where("TBL_HOSKO_POPUP.POP_SEQ", $popup_seq);
+		return $this->db->update("TBL_HOSKO_POPUP", array("POP_DEL_YN" => "Y"));
+	}
+
+	public function getPopupToday(){
+		$this->db->where("TBL_HOSKO_POPUP.POP_START <=", date("Y-m-d"));
+		$this->db->where("TBL_HOSKO_POPUP.POP_END >=", date("Y-m-d"));
+		$this->db->where("TBL_HOSKO_POPUP.POP_DEL_YN", "N");
+		return $this->db->get("TBL_HOSKO_POPUP")->result();
+	}
 }

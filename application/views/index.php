@@ -201,10 +201,41 @@ function viewPage(post_seq){
 }
 
 </script>
-
-
+<?php 
+foreach ($POPUPS as $pop):
+?>    
+<div class="popup" style="top:<?php echo $pop->POP_LOCAT_X;?>; left:<?php echo $pop->POP_LOCAT_Y;?>">
+    <div class="pop_content" style="width:<?php echo $pop->POP_WIDTH;?>px; height:<?php echo $pop->POP_HEIGHT;?>px">
+        <?php echo $pop->POP_CONTENTS; ?>
+    </div>
+    <div class="pop_footer">
+        <span class="p_left"></span>    
+        <span class="p_right"><button class="popClose">닫기</button></span>
+    </div>
+</div>
+<?php 
+endforeach; 
+?>
     </body>
 </html>
 
+<style>
+.popup {
+    position:absolute;
+}
 
+.popup .pop_content {background:#fff; color:#000; overflow:auto}
+.popup .pop_footer {background:#000; color:#fff; line-height: 25px; display:block}
+.popup .pop_footer span {display:inline-block; width:49%}
+.popup .p_left {text-align:left}
+.popup .p_right {text-align:right}
+</style>
 
+<script type="text/javascript">
+    $(function(){
+        $(document).on("click", ".popClose", function(){
+            console.log("ADFASDFSDA");
+            $(this).parents(".popup").eq(0).css("display", "none");
+        });
+    });
+</script>
