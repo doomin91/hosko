@@ -33,16 +33,22 @@
                         <div class="inner">
                             <div class="subContWrap">
                                 <div class="subContSec mt80 mb80">
-                                    <div class="subContImg">
+                                    <div class="subContImg m_delimg">
                                         <img src="/static/front/img/company_03.jpg">
+                                    </div>
+                                    <div class="subContImg m_delimg1">
+                                        <img src="/static/front/img/company_m01.jpg">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="subContSec company_bg">
-                            <div class="subContImg pt40 pb30 tac">
+                            <div class="subContImg pt40 pb30 tac m_delimg">
                                 <img src="/static/front/img/company_04.jpg">
+                            </div>
+                            <div class="subContImg pt40 pb30 tac m_delimg1">
+                                <img src="/static/front/img/company_m02.jpg">
                             </div>
                         </div>
 
@@ -51,11 +57,21 @@
                                 <div class="subTit">
                                     <h2>연혁</h2>
                                 </div>
-                                <div class="subContImg pb30">
+                                <div class="subContImg pb30 m_delimg">
                                     <img src="/static/front/img/company_05.jpg">
+                                </div>
+                                <div class="subContImg pb30 m_delimg1">
+                                    <img src="/static/front/img/company_m03.jpg">
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
 
                     </div>
                 </div>

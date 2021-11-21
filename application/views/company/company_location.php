@@ -37,20 +37,28 @@
                                 </div>
 
                                 <div class="subContSec">
-                                    <div class="subContImg tac">
+                                    <div class="subContImg tac m_delimg">
                                         <img src="/static/front/img/company_19.jpg">
                                     </div>
 
-                                    <div class="company_map pt50 pb50">
+                                    <div class="company_map pt50 pb50 m_delimg">
                                         <div class="subContImg">
                                             <img src="/static/front/img/company_map.jpg">
                                         </div>
                                     </div>
 
-                                    <div class="subContImg tac pb100">
+                                    <div class="subContImg tac pb100 m_delimg">
                                         <img src="/static/front/img/company_20.jpg">
                                     </div>
-<!--
+
+                                    <div class="subContImg tac pb100 m_delimg1">
+                                        <img src="/static/front/img/company_m09.jpg">
+                                    </div>
+                                    <div class="subContImg tac pb100 m_delimg1">
+                                        <img src="/static/front/img/company_m10.jpg">
+                                    </div>
+                                    <!--
+
                                     <div class="company_contact">
                                         <ul>
                                             <li></li>

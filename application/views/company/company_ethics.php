@@ -36,14 +36,17 @@
                                     <h2>윤리강령</h2>
                                 </div>
                                 <div class="subContSec">
-                                    <div class="subContImg">
+                                    <div class="subContImg m_delimg">
                                         <img src="/static/front/img/company_06.jpg">
                                     </div>
-                                    <div class="subContImg mt60">
+                                    <div class="subContImg mt60 m_delimg">
                                         <img src="/static/front/img/company_07.jpg">
                                     </div>
-                                    <div class="subContImg01">
+                                    <div class="subContImg01 m_delimg">
                                         <img src="/static/front/img/company_08.png">
+                                    </div>
+                                    <div class="subContImg m_delimg1">
+                                        <img src="/static/front/img/company_m04.jpg">
                                     </div>
                                 </div>
 
