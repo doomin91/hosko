@@ -59,7 +59,7 @@ header.m_header{
     footer .footer_info .f_logo {
         float: none;
         display:inline-block;
-        width:36%;
+        width:32%;
         box-sizing: border-box;
         padding:20px 10px;
     }
@@ -67,11 +67,16 @@ header.m_header{
         width:100%;
     }
     footer .footer_info .f_address {
-        width:64%;
+        width:68%;
         float: none;
         display:inline-block;
         margin-left: 0px;
     }
+
+    footer .footer_info .f_address li {font-size:12px;  font-family:'Noto Sans KR', sans-serif; font-weight:400; color:#777;}
+    
+
+
 
     #wrap {
         position:relative;
@@ -335,9 +340,11 @@ header.m_header{
         color: #222;
         font-weight: 400;
         line-height: 16px;
-        width: 80%;
+        width: 75%;
         overflow: hidden;
         display:inline-block;
+        white-space: nowrap; 
+        text-overflow: ellipsis;
       }
       .news_box_item .date {
         font-size: 14px;
@@ -401,9 +408,11 @@ header.m_header{
         color: #222;
         font-weight: 400;
         line-height: 20px;
-        width: 80%;
+        width: 75%;
         overflow: hidden;
         display:inline-block;
+        white-space: nowrap; 
+        text-overflow: ellipsis;
       }
       .notice_box_item .date {
         font-size: 14px;
@@ -627,9 +636,10 @@ header.m_header{
       .sub_contents .sub_category ul li {
         width: 33.333%;
         float: none;
-        line-height: 59px;
+        height:50px;
+        line-height: 50px;
         text-align: center;
-        font-size: 16px;
+        font-size: 13px;
         font-family: "Noto Sans KR", sans-serif;
         font-weight: 400;
         display: inline-block;
@@ -661,9 +671,10 @@ header.m_header{
       .sub_contents .sub_category01 ul li {
         width: 33.333%;
         float: none;
+        height:50px;
         line-height: 50px;
         text-align: center;
-        font-size: 16px;
+        font-size: 13px;
         font-family: "Noto Sans KR", sans-serif;
         font-weight: 400;
         display: inline-block;
@@ -683,7 +694,7 @@ header.m_header{
       
       .sub_contents .sub_category02 {
         width: 100%;
-        height: 59px;
+        height: 50px;
         border-bottom: 1px solid #e5e5e5;
       }
       .sub_contents .sub_category02 ul {
@@ -694,9 +705,10 @@ header.m_header{
       .sub_contents .sub_category02 ul li {
         width: 50%;
         float: left;
-        line-height: 59px;
+        height:50px;
+        line-height: 50px;
         text-align: center;
-        font-size: 16px;
+        font-size: 13px;
         font-family: "Noto Sans KR", sans-serif;
         font-weight: 400;
         display: table-cell;
@@ -715,7 +727,7 @@ header.m_header{
       
       .sub_contents .sub_category03 {
         width: 100%;
-        height: 59px;
+        height: 50px;
         border-bottom: 1px solid #e5e5e5;
       }
       .sub_contents .sub_category03 ul {
@@ -726,9 +738,10 @@ header.m_header{
       .sub_contents .sub_category03 ul li {
         width: 33.333%;
         float: left;
-        line-height: 59px;
+        height:50px;
+        line-height: 50px;
         text-align: center;
-        font-size: 16px;
+        font-size: 13px;
         font-family: "Noto Sans KR", sans-serif;
         font-weight: 400;
         display: table-cell;
@@ -794,12 +807,13 @@ header.m_header{
         top:0;
         left:0;
         background: url("../img/company_img01.jpg") no-repeat;
-        background-size: 100% 300px;
+        background-size: 100% auto;
+        margin-bottom:130px;
       }
       
       .company_word {
         position:relative;
-        top:300px;
+        top:215px;
         right:0;
         background-color:#f7f8f8;
         width:100%;
@@ -810,18 +824,18 @@ header.m_header{
       }
       .company_word h2 {
         font-weight:500;
-        font-size:26px;
+        font-size:22px;
         color:#202020;
         margin-bottom:10px;
       }
       .company_word h3 {
         font-weight:500;
-        font-size:20px;
+        font-size:18px;
         color:#202020;
       }
       .company_word p {
         font-weight:400;
-        font-size:16px;
+        font-size:14px;
         color:#444444;
         padding:5px 0;
         letter-spacing:-0.8px;
@@ -843,7 +857,7 @@ header.m_header{
     .his_info > li:first-child {margin:0 0 0 50%;}
     .his_info > li:before {content:"";position:absolute;left:-8px;top:4px;width:14px;height:14px;background-color:#095fa9; border-radius: 40px;}
     .his_info > li > span {font-weight:700;color:#202020; font-size:16px;}
-    .his_info > li > p {font-weight:400;color:#777778;display:block; padding:10px 0; font-size:15px;}
+    .his_info > li > p {font-weight:400;color:#777778;display:block; padding:10px 0; font-size:12px;}
     .his_info > li:nth-child(even) {float:left;margin-left:0;margin-right:50%;padding:0 20px 0 0;text-align:right;}
     .his_info > li:nth-child(even):before {left:auto;right:-8px;}
     .his_info > li:nth-child(even) > span {left:auto;right:60px;}
@@ -856,7 +870,7 @@ header.m_header{
     position: relative;
     width: 100%;
     height: auto;
-    min-height: 100%;
+    min-height: auto;
     margin: 0 auto;
     padding: 0;
     font-family: "Noto Sans KR", sans-serif;
@@ -893,7 +907,7 @@ header.m_header{
   .loginContent {
     position: relative;
     width: 100%;
-    margin: 0 auto;
+    margin-bottom:30px;
     padding-top: 30px;
   }
   .loginContent .loginBox {
@@ -912,14 +926,14 @@ header.m_header{
     text-align: center;
   }
   .loginBox .loginBoxform h2 {
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 500;
     text-align: center;
     color: #222222;
     padding: 10px 0;
   }
   .loginBox .loginBoxform p {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     text-align: center;
     color: #999999;
@@ -1028,8 +1042,11 @@ header.m_header{
   }
   .joinStep ul > li {
     float: left;
-    width: 33.333%;
+    width: 33.33%;
     text-align: center;
+  }
+  .joinStep ul > li img {
+    width:100%;
   }
   
   .agreeTextBox {
@@ -1115,14 +1132,14 @@ header.m_header{
     box-sizing: border-box;
   }
   .memberJoinBox h2 {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 500;
     color: #222;
     display: block;
   }
   
   .joinBoxTitle {
-    font-size: 16px;
+    font-size: 14px;
     color: #222;
     font-weight: 500;
     display: block;
@@ -1133,17 +1150,17 @@ header.m_header{
     margin-top: 10px;
   }
   .joinBoxInput input {
-    width: 100%;
-    padding: 10px;
+    width: 75% !important;
+    padding: 6px;
     border: 1px solid #e5e5e5;
-    font-size:14px;
+    font-size:12px;
     font-weight:400;
   }
   
   .joinBoxRadio {
     position: relative;
     width: 100%;
-    font-size: 16px;
+    font-size: 13px;
     color: #222;
     margin-top: 10px;
     line-height: 17px;
@@ -1152,7 +1169,7 @@ header.m_header{
     vertical-align: top;
   }
   .joinBoxRadio label {
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 500;
     margin-right: 6px;
   }
@@ -1181,7 +1198,7 @@ header.m_header{
   }
   .joinBoxEtcSelect input {
     width: 74%;
-    padding: 10px;
+    padding: 6px;
     border: 1px solid #e5e5e5;
   }
   .joinBoxEtcSelect select {
@@ -1198,7 +1215,7 @@ header.m_header{
   }
   .fileInputWrap input#webThumb {
     float: left;
-    padding: 10px;
+    padding: 6px;
     width: 75%;
     border: 1px solid #e5e5e5;
     text-overflow: ellipsis;
@@ -1212,13 +1229,13 @@ header.m_header{
   }
   .fileInputWrap div.btnFlieWrap input {
     position: absolute;
-    left: -33px;
+    left: -30px;
     top: 0;
-    width: 100px;
-    height: 41px;
+    width: 80px !important;
+    height: 33px;
     display: block;
     background-color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 16px;
     color: #055ca9;
     text-align: center;
@@ -1240,19 +1257,19 @@ header.m_header{
   }
   .emailInput {
     width: 30.5%;
-    padding: 10px;
+    padding: 6px;
     border: 1px solid #e5e5e5;
   }
   .emailSelect {
     width: 32%;
-    padding: 10px;
+    padding: 6px;
     border: 1px solid #e5e5e5;
     cursor: pointer;
-    height:43px;
+    height:35px;
   }
   
   .joinEmailText {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     color: #055ca9;
     text-align: right;
@@ -1265,8 +1282,8 @@ header.m_header{
     margin-top: 10px;
   }
   .phoneInput {
-    width: 31.6%;
-    padding: 10px;
+    width: 31%;
+    padding: 6px;
     border: 1px solid #e5e5e5;
   }
   
@@ -1278,12 +1295,12 @@ header.m_header{
   }
   .joinBoxSelect input {
     width: 74%;
-    padding: 10px;
+    padding: 6px;
     border: 1px solid #e5e5e5;
   }
   .joinBoxSelect select {
-    width: 25%;
-    padding: 9px;
+    width: 28%;
+    padding: 6px;
     border: 1px solid #e5e5e5;
     cursor: pointer;
   }
@@ -1296,15 +1313,15 @@ header.m_header{
   }
   .adressInput {
     width: 38%;
-    padding: 10px;
+    padding: 6px;
     border: 1px solid #e5e5e5;
   }
   
   .joinBtn01 {
-    font-size: 16px;
-    height: 43px;
+    font-size: 14px;
+    height: 33px;
     text-align: center;
-    padding: 8px 10px;
+    padding: 4px 10px;
     border: 1px solid #055ca9;
     background-color: #ffffff;
     color: #055ca9;
@@ -1317,14 +1334,15 @@ header.m_header{
     font-size: 16px;
     font-weight: 500;
     width: 60px;
-    display: inline-block;
+    display: block;
   }
   .joinBoxSubInput {
     position: relative;
-    top: -10px;
+    top: 0px;
     left: 0;
-    width: 428px;
-    padding: 10px;
+    width: 100%;
+    padding: 6px;
+    margin-top:10px;
     border: 1px solid #e5e5e5;
   }
   
@@ -1340,7 +1358,7 @@ header.m_header{
   }
   .joinBoxCheckbox li {
     float: left;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     vertical-align: middle;
     margin-right: 10px;
@@ -1349,8 +1367,9 @@ header.m_header{
     position: relative;
     top: 0;
     left: 0;
-    width: 428px;
-    padding: 10px;
+    width: 100%;
+    height:33px;
+    padding: 6px;
     border: 1px solid #e5e5e5;
   }
   
@@ -1488,7 +1507,7 @@ header.m_header{
     position: relative;
     width: calc(48%);
     height: 358px;
-    margin-left:16px;
+    margin-left:10px;
     margin-top:5px;
     margin-bottom:5px;
     box-sizing: border-box;
@@ -1541,7 +1560,7 @@ header.m_header{
     font-family: "Noto Sans KR", sans-serif;
   }
   .movieCon .description {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     padding: 10px;
     height: 85px;
@@ -1604,7 +1623,7 @@ header.m_header{
     position: relative;
     width: calc(48%);
     height: 358px;
-    margin-left:16px;
+    margin-left:10px;
     margin-top:5px;
     margin-bottom:5px;
     box-sizing: border-box;
@@ -1695,11 +1714,11 @@ header.m_header{
 
 
   .boardSearchWrap {position:relative; width:100%; margin:30px auto 60px auto; padding:0; text-align:center;}
-  .boardSearchWrap .boardSearch {display: inline-block;vertical-align: top;padding-left: 121px;position: relative;}
-  .boardSearchWrap .boardSearch select {left: 0;top: 0;position: absolute;display: block;width: 122px;height: 40px;border: 1px solid #cfcfcf;font-size: 14px;background-color: #fff;color: #999;padding: 0 30px 0 14px;box-sizing:border-box;border-radius: 5px 0 0 5px;}
+  .boardSearchWrap .boardSearch {display: inline-block;vertical-align: top;padding-left: 99px;position: relative;}
+  .boardSearchWrap .boardSearch select {left: 0;top: 0;position: absolute;display: block;width: 100px;height: 30px;border: 1px solid #cfcfcf;font-size: 14px;background-color: #fff;color: #999;padding: 0 18px 0 10px;box-sizing:border-box;border-radius: 5px 0 0 5px;}
   .boardSearchWrap .boardSearch .inputSearch {position: relative;}
-  .boardSearchWrap .boardSearch .inputSearch input[type="text"] {color: #999;padding: 0 14px;padding-right: 40px;border: 1px solid #cfcfcf;box-sizing:border-box;display: block;width: 100%;height: 40px;    border-radius: 0 5px 5px 0;}
-  .boardSearchWrap .boardSearch .inputSearch input[type="submit"] {display: block;position: absolute;width: 40px;height: 40px;background-color: transparent;background-image: url("../img/icon_search.png");background-repeat: no-repeat;background-position: center center;right: 0;top: 0;border: none;} 
+  .boardSearchWrap .boardSearch .inputSearch input[type="text"] {color: #999;padding: 0 14px;padding-right: 40px;border: 1px solid #cfcfcf;box-sizing:border-box;display: block;width: 100%;height: 30px;    border-radius: 0 5px 5px 0;}
+  .boardSearchWrap .boardSearch .inputSearch input[type="submit"] {display: block;position: absolute;width: 20px;height: 20px;background-color: transparent;background-image: url("../img/icon_search.png");background-repeat: no-repeat;background-position: center center;right: 6px;top: 6px;border: none;} 
 
 
 
@@ -1744,14 +1763,14 @@ header.m_header{
 .tblBot-item {border-bottom: 1px solid #dcdcdc;}
 
 
-.boardList_flex .col_num {width: 10%;}
+.boardList_flex .col_num {width: 11%;}
 .boardList_flex .col_tit {width: 45%;}
 .boardList_flex .col_name {width: 15%;}
 .boardList_flex .col_hit {width: 15%;}
 .boardList_flex .col_date {width: 15%;}
-.boardList_flex .tblBot-item .col_tit {text-align: left;}
+.boardList_flex .tblBot-item .col_tit {text-align: left; }
 .boardList_flex .tblBot-item .col_tit:hover {text-decoration:none;}
-  
+.boardList_flex .tblBot-item .col_tit img {position:relative; top:3px; width:26px !important; height:15px !important;}
   .subContSec + .subContSec {
     padding-top: 50px;
   }
@@ -1946,7 +1965,7 @@ header.m_header{
     margin-left: 5px;
   }
   .resume_activity_box input, select{
-    font-size:15px;
+    font-size:12px;
     font-weight:400;
     color:#383838;
   }
@@ -2053,7 +2072,7 @@ header.m_header{
   }
   .resumetoptext p {
     color:#0c5ea8;
-    font-size:15px;
+    font-size:13px;
     font-weight:400;
   }
 
@@ -2098,25 +2117,27 @@ header.m_header{
     border:1px solid #e5e5e5;
 }
 .resumemanagertable th {
-    font-size:14px !important;
+    font-size:13px !important;
     font-weight:500;
     color:#222222;
     text-align:left;
-    padding-left:20px !important;
+    padding-left:4px !important;
     box-sizing: border-box;
     border:1px solid #e5e5e5;
     height:70px;
-    line-height:70px;
+    line-height:14px;
+    vertical-align: middle;
 }
 .resumemanagertable td {
     border:1px solid #e5e5e5;
-    font-size:14px;
+    font-size:13px;
     font-weight:500;
     text-align:left;
-    padding-left:20px !important;
+    padding-left:4px !important;
     color:#f30100;
     height:70px;
-    line-height:70px;    
+    line-height:14px;
+    vertical-align: middle;
 }
 
 .managertabletitle {
@@ -2328,7 +2349,7 @@ header.m_header{
     position: relative;
     width:100%;
     border:1px solid #e9e9e8;
-    font-size:14px;
+    font-size:12px;
     font-weight:400;
     color:#202020;
 }
@@ -2411,6 +2432,230 @@ header.m_header{
 .doctableline label {
     display:block;
 }
+
+
+.recruit_table {
+  width:100%;
+  font-size:12px !important;
+  border-collapse:collapse;
+}
+.recruit_table th {
+  padding:2px;
+}
+.recruit_table td a {
+  line-height:20px !important;
+}
+
+
+/* table btn */
+.subBtn_Write {position:relative; display:inline-block; background-color:#0c5ea9; z-index:100; margin-bottom:20px;}
+.subBtn_Write a {color:#fff; line-height:30px; text-align:center; padding:5px 20px; }
+
+.subBtn_List {position:relative; display:inline-block; background-color:#0c5ea9; z-index:100; margin-bottom:20px;}
+.subBtn_List a {color:#fff; line-height:30px; text-align:center; padding:5px 20px;}
+
+.subBtn01 { display:inline-block; background-color:#0c5ea9; color:#fff; line-height:50px; font-size:17px; width:200px; height:50px; }
+.subBtn02 { background-color:#0c5ea9; color:#fff !important;  font-size:14px; font-weight:400 !important; }
+ 
+
+
+
+
+/* board btn */
+.boardBtnArea {font-size: 0;text-align: center; margin:30px 0 80px 0;}
+.boardBtnArea.type2 {max-width:450px;margin: 0 auto;margin-top: 70px;}
+.boardBtnArea.taR {margin-top: 32px;}
+.boardBtnArea.col2 > div.boardBtnItem {width: 50%;}
+.boardBtnArea > div {display: inline-block;box-sizing:border-box;vertical-align: top;}
+.boardBtnArea > div * {display: block; }
+
+.boardBtnArea .btn_box {position:relative; }
+.boardBtnArea .btn_box a {display: inline-block;}
+.boardBtnArea .btn_box a:hover {color:#fff;}
+.btn_style01 {display: inline-block !important;width: 80px;line-height: 38px;font-size: 14px;font-weight: 400;color: #ffffff;box-sizing:border-box;text-align: center; background-color:#989898;}
+.btn_style02 {display: inline-block !important;width: 80px;line-height: 38px;font-size: 14px;font-weight: 400;color: #ffffff;box-sizing:border-box;text-align: center; background-color:#025ca9;}
+.btn_style03 {display: inline-block !important;width: 80px;line-height: 38px;font-size: 14px;font-weight: 400;color: #333333;box-sizing:border-box;text-align: center; }
+.btn_style04 {display: inline-block !important;width: 80px;line-height: 38px;font-size: 14px;font-weight: 400;color: #ffffff;box-sizing:border-box;text-align: center; background-color:#025ca9;}
+.btn_style05 {display: inline-block !important;width: 80px;line-height: 38px;font-size: 14px;font-weight: 400;color: #ffffff;box-sizing:border-box;text-align: center; background-color:#025ca9;}
+.btn_style06 {display: inline-block !important;width: 80px;line-height: 38px;font-size: 14px;font-weight: 400;color: #ffffff;box-sizing:border-box;text-align: center; background-color:#989898;}
+
+
+
+.row {
+  margin: 0 auto;
+}
+
+
+
+.QnaPassbox {
+  position:relative;
+  width:100%;
+  height:100%;
+  margin:0 auto;
+  box-sizing: border-box;
+  padding:30px 15px; 
+}
+.QnaPassbox_Title {
+  font-size:16px;
+  font-weight:400;
+  color:#9d9d9d;
+  padding-bottom:10px;
+}
+.QnaPassbox_Input {
+  position:relative;
+  width:100%;
+}
+.QnaPassbox_Input input {
+  width:100%;
+  border:1px solid #e5e5e5;
+  height:40px;
+  padding:10px;
+}
+.QnaPassbox_Button {
+  position:relative;
+  width:100%;
+  padding-top:30px;
+}
+.QnaPassbox_Button .Qnapwbtn01 {
+  background-color:#065da8;
+  width:48%;
+  display:inline-block;
+  color:#fff;
+  font-size:16px;
+  font-weight:400;
+  text-align:center;
+  height:40px;
+  line-height:40px;
+  float:left;
+}
+.QnaPassbox_Button .Qnapwbtn02 {
+  background-color:#e5e5e5;
+  width:48%;
+  display:inline-block;
+  color:#202020;
+  font-size:16px;
+  font-weight:400;
+  text-align:center;
+  height:40px;
+  line-height:40px;  
+  float:right;
+}
+
+#popup01{
+  width: 90% !important;
+  height: 220px !important;
+  position: absolute;
+  top: 50%;
+  left: 76% !important;
+  margin: -250px 0 0 -250px;
+  background-color: #fff;
+  z-index: 302;
+    }
+
+
+.type_table > div .boardViewTop_item_m strong {width:20%;}
+
+.consult_tit a {
+  display: inline-block;
+  width: 190px !important; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+.consult_w_num {
+  width:80px !important;
+}
+
+
+/* 방문 상담 */ 
+
+.VisitTopText {
+  position:relative;
+  width:100%;
+  background-color:#f7f8f8;
+  padding:15px 20px; 
+  box-sizing: border-box;
+}
+
+.VisitTopText p {
+  color:#444444;
+  font-size:13px;
+  font-weight:500;
+  padding:2px 0;
+}
+.visit_text01 {
+  font-size:15px;
+  font-weight:500;
+  color:#222;
+  padding:10px 0;
+}
+.datapaging {
+  padding:10px 0;
+}
+.datapaging {
+  font-size:16px;
+  font-weight:500;
+  color:#333;
+}
+
+
+.VisitPassbox {
+  position:relative;
+  border:1px solid #e5e5e5;
+  width:610px;
+  height:240px;
+  margin:0 auto;
+  box-sizing: border-box;
+  padding:40px 60px; 
+}
+.VisitPassbox_Title {
+  font-size:16px;
+  font-weight:400;
+  color:#9d9d9d;
+  padding-bottom:10px;
+}
+.VisitPassbox_Input {
+  position:relative;
+  width:100%;
+}
+.VisitPassbox_Input input {
+  width:100%;
+  border:1px solid #e5e5e5;
+  height:40px;
+  padding:10px;
+}
+.VisitPassbox_Button {
+  position:relative;
+  width:100%;
+  padding-top:30px;
+}
+.VisitPassbox_Button .visitpwbtn01 {
+  background-color:#065da8;
+  width:48%;
+  display:inline-block;
+  color:#fff;
+  font-size:16px;
+  font-weight:400;
+  text-align:center;
+  height:40px;
+  line-height:40px;
+  float:left;
+}
+.VisitPassbox_Button .visitpwbtn02 {
+  background-color:#e5e5e5;
+  width:48%;
+  display:inline-block;
+  color:#202020;
+  font-size:16px;
+  font-weight:400;
+  text-align:center;
+  height:40px;
+  line-height:40px;  
+  float:right;
+}
+
+
+
 
 
 

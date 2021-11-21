@@ -40,7 +40,7 @@
                                         <div class="boardViewTop">
                                             <div class="type_table">
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>제목</strong>
                                                         <div class="type_td">
                                                             <input type="text" class="input_s1" name="qna_subject">
@@ -48,7 +48,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>이름</strong>
                                                         <div class="type_td">
                                                             <input type="text" name="qna_user_name" class="input_s1" value="<?php echo isset($userInfo->USER_NAME) ? $userInfo->USER_NAME : ""; ?>">
@@ -63,7 +63,7 @@
                                                     }
                                                 ?>
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>이메일</strong>
                                                         <div class="type_td">
                                                             <input type="email" name="qna_user_email1" class="input_s2 mr5 mb0" value="<?php echo $userEmail[0]; ?>">@<input type="email" name="qna_user_email2" class="input_s2 ml5 mb0" value="<?php echo $userEmail[1]; ?>">
@@ -79,7 +79,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>내용</strong>
                                                         <div class="type_td">
                                                             <textarea name="qna_contents" class="textarea_s1"> </textarea>								
@@ -87,7 +87,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>비밀번호</strong>
                                                         <div class="type_td">
                                                             <input type="password" class="input_s2 mr5 mb0" name="qna_password">								

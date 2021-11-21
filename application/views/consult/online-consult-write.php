@@ -40,7 +40,7 @@
                                         <div class="boardViewTop">
                                             <div class="type_table">
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>제목</strong>
                                                         <div class="type_td">
                                                             <input type="text" class="input_s1" name="oc_subject">
@@ -48,7 +48,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>이름</strong>
                                                         <div class="type_td">
                                                             <input type="text" name="oc_user_name" class="input_s1" value="<?php if (!empty($userInfo)) echo $userInfo->USER_NAME; ?>">
@@ -63,14 +63,17 @@
                                                 }
                                                 ?>
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>전화번호</strong>
                                                         <div class="type_td">
-                                                            <input name="oc_user_tel1" type="text" class="input_s1" style="width:200px !important" value="<?php echo $userTel[0]; ?>" min="1" max="9999" maxlength="4">
-                                                            <input name="oc_user_tel2" type="text" class="input_s1" style="width:200px !important" value="<?php echo $userTel[1]; ?>" min="1" max="9999" maxlength="4">
-                                                            <input name="oc_user_tel3" type="text" class="input_s1" style="width:200px !important" value="<?php echo $userTel[2]; ?>" min="1" max="9999" maxlength="4">
+                                                            <input name="oc_user_tel1" type="tel" class="phoneInput consult_w_num"  value="<?php echo $userTel[0]; ?>" min="1" max="9999" maxlength="4">
+                                                             - <input name="oc_user_tel2" type="tel" class="phoneInput consult_w_num"  value="<?php echo $userTel[1]; ?>" min="1" max="9999" maxlength="4">
+                                                             - <input name="oc_user_tel3" type="tel" class="phoneInput consult_w_num"  value="<?php echo $userTel[2]; ?>" min="1" max="9999" maxlength="4">
                                                         </div>
                                                     </div>
+
+
+
                                                 </div>
                                                 <?php
                                                 if (!empty($userInfo)){
@@ -80,12 +83,12 @@
                                                 }
                                                 ?>
                                                 <div class="col1 ">
-                                                    <div class="boardViewTop_item">
-                                                        <strong>휴대폰번호</strong>
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
+                                                        <strong>휴대폰</strong>
                                                         <div class="type_td">
-                                                            <input name="oc_user_hp1" type="text" class="input_s1" style="width:200px !important" value="<?php echo $userHp[0]; ?>" maxlength="4">
-                                                            <input name="oc_user_hp2" type="text" class="input_s1" style="width:200px !important" value="<?php echo $userHp[1]; ?>" maxlength="4">
-                                                            <input name="oc_user_hp3" type="text" class="input_s1" style="width:200px !important" value="<?php echo $userHp[2]; ?>" maxlength="4">
+                                                            <input name="oc_user_hp1" type="tel" class="phoneInput consult_w_num"  value="<?php echo $userHp[0]; ?>" maxlength="4">
+                                                             - <input name="oc_user_hp2" type="tel" class="phoneInput consult_w_num"  value="<?php echo $userHp[1]; ?>" maxlength="4">
+                                                             - <input name="oc_user_hp3" type="tel" class="phoneInput consult_w_num"  value="<?php echo $userHp[2]; ?>" maxlength="4">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -97,11 +100,11 @@
                                                 }
                                                 ?>
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>이메일</strong>
                                                         <div class="type_td">
                                                             <input type="email" name="oc_user_email1" class="input_s1" value="<?php echo $userEmail[0]; ?>">@<input type="email" name="oc_user_email2" class="input_s1" value="<?php echo $userEmail[1]; ?>">
-                                                            <select name="user_email_sel" class="select_s1">
+                                                            <select name="user_email_sel" class="select_s1" style="margin-bottom:0; margin-left:5px;">
                                                                 <option value="">직접입력</option>
                                                                 <option value="nate.com">nate.com</option>
                                                                 <option value="naver.com">naver.com</option>
@@ -113,7 +116,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>상담 내용</strong>
                                                         <div class="type_td">
                                                             <textarea name="oc_contents" class="textarea_s1"> </textarea>								
