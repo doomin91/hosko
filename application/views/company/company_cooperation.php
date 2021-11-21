@@ -35,14 +35,24 @@
                                 <div class="subTit">
                                     <h2>산학협력</h2>
                                 </div>
-                                <div class="subContSec mt80 mb80">
-                                    <div class="subContImg tac">
+                                <div class="subContSec mt80 mb80 m_delimg">
+                                    <div class="subContImg tac ">
                                         <img src="/static/front/img/company_13.jpg">
                                     </div>
                                     <div class="subContImg tac mt50">
                                         <img src="/static/front/img/company_14.jpg">
                                     </div>
                                 </div>
+
+                                <div class="subContSec m_delimg1">
+                                    <div class="subContImg tac">
+                                        <img src="/static/front/img/company_m08.jpg">
+                                    </div>
+
+                                </div>
+
+
+
 
                                 <div class="hr mt80"></div>
 

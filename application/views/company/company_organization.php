@@ -37,14 +37,20 @@
                                     <h2>사업분야</h2>
                                 </div>
                                 <div class="subContSec">
-                                    <div class="subContImg">
+                                    <div class="subContImg m_delimg">
                                         <img src="/static/front/img/company_09.jpg">
+                                    </div>
+                                    <div class="subContImg m_delimg1">
+                                        <img src="/static/front/img/company_m05.jpg">
+                                    </div>
+                                    <div class="subContImg m_delimg1">
+                                        <img src="/static/front/img/company_m06.jpg">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="subContSec mt60">
+                        <div class="subContSec mt60 m_delimg">
                             <div class="subContImg">
                                 <img src="/static/front/img/company_10.jpg">
                             </div>
@@ -64,8 +70,11 @@
                                     <h2>CONSULTING</h2>
                                 </div>
                                 <div class="subContSec">
-                                    <div class="subContImg">
+                                    <div class="subContImg m_delimg">
                                         <img src="/static/front/img/company_12.jpg">
+                                    </div>
+                                    <div class="subContImg m_delimg1">
+                                        <img src="/static/front/img/company_m07.jpg">
                                     </div>
                                 </div>
                             </div>

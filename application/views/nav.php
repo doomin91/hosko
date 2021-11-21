@@ -130,7 +130,8 @@
             <?php 
                 }else{
             ?>                    
-                    <li class="loginid"><a href="/mypage/memberEdit"><?php echo $this->session->userdata("USER_NAME"); ?></a></li>
+                    <li class="loginid"><?php echo $this->session->userdata("USER_NAME"); ?></li>
+                    <li class="mypage"><a href="/mypage/memberEdit">마이페이지</a></li>
                     <li class="logout"><a href="/member/logout">로그아웃</a></li>
             <?php
                 }
