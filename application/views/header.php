@@ -36,6 +36,8 @@
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script src="/static/front/js/layout.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 		<link rel="icon" type="image/ico" href="/static/admin/images/favicon.ico" />
 
@@ -43,6 +45,8 @@
 		<link href="/static/admin/css/custom.css" rel="stylesheet">
 
 		<link href="/static/front/css/mobile.css" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 		
 
     </head>
