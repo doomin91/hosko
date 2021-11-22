@@ -232,7 +232,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>미국비자발급거절여뷰</th>
+                                                    <th>미국비자 발급거절 여부</th>
                                                     <td>
                                                         <label for="apply_visa_flag_y"><input type="radio" name="apply_visa_flag" id="apply_visa_flag_y" value="Y" > Yes</label>
                                                         <label for="apply_visa_flag_n"><input type="radio" name="apply_visa_flag" id="apply_visa_flag_n" value="N" checked = "checked"> No</label>
