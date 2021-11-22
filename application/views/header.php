@@ -30,6 +30,7 @@
 		<link rel="stylesheet" href="/static/front/css/style.css">	
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 		<link href="/static/admin/css/editor.css" rel="stylesheet">
 		
@@ -45,8 +46,7 @@
 		<link href="/static/admin/css/custom.css" rel="stylesheet">
 
 		<link href="/static/front/css/mobile.css" rel="stylesheet">
-
-		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+		
 		
 
     </head>
