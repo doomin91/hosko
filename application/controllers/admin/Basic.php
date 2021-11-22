@@ -466,4 +466,57 @@ class Basic extends CI_Controller {
 			echo json_encode(array("code"=>"202", "msg" => "팝업 등록 중 문제가 생겼습니다."));
 		}
 	}
+
+	public function popupModify($popup_seq){
+
+		$popinfo = $this->BasicModel->getPopup($popup_seq);
+
+		$data["info"] = $popinfo;
+
+		$this->load->view("/admin/basic/popup-modify", $data);
+	}
+
+	public function popupModifyProc(){
+		$popup_seq = $this->input->post("popup_seq");
+		$popup_subject = $this->input->post("popup_subject");
+		$popup_start = $this->input->post("popup_start");
+		$popup_end = $this->input->post("popup_end");
+		$popup_width = $this->input->post("popup_width");
+		$popup_height = $this->input->post("popup_height");
+		$popup_x = $this->input->post("popup_x");
+		$popup_y = $this->input->post("popup_y");
+		$popup_contents = $this->input->post("popup_contents");
+
+		$updateArr = array(
+							"POP_ADMIN_SEQ" => $this->session->userdata("admin_seq"),
+							"POP_TITLE" => $popup_subject,
+							"POP_START" => $popup_start,
+							"POP_END" => $popup_end,
+							"POP_LOCAT_X" => $popup_x,
+							"POP_LOCAT_Y" => $popup_y,
+							"POP_WIDTH" => $popup_width,
+							"POP_HEIGHT" => $popup_height,
+							"POP_CONTENTS" => $popup_contents,
+							);
+		$result = $this->BasicModel->updatePopup($updateArr, $popup_seq);
+ 
+		if($result){
+			echo json_encode(array("code"=>"200", "msg" => "팝업 수정되었습니다."));
+		} else {
+			echo json_encode(array("code"=>"202", "msg" => "팝업 수정 중 문제가 생겼습니다."));
+		}
+	}
+
+	public function popupDeleteProc(){
+		$popup_seq = $this->input->post("popup_seq");
+
+		$result = $this->BasicModel->deletePopup($popup_seq);
+
+		if($result){
+			echo json_encode(array("code"=>"200", "msg" => "팝업 삭제되었습니다."));
+		} else {
+			echo json_encode(array("code"=>"202", "msg" => "팝업 삭제 중 문제가 생겼습니다."));
+		}
+	}
+
 }

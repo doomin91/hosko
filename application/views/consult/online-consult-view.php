@@ -39,7 +39,7 @@
                                     <div class="boardViewTop">
                                         <div class="type_table">
                                             <div class="col1">
-                                                <div class="boardViewTop_item">
+                                                <div class="boardViewTop_item boardViewTop_item_m">
                                                     <strong>제목</strong>
                                                     <div class="type_td">
                                                         <?php echo $ocInfo->OC_SUBJECT; ?>										
@@ -47,7 +47,7 @@
                                                 </div>
                                             </div>
                                             <div class="col1">
-                                                <div class="boardViewTop_item">
+                                                <div class="boardViewTop_item boardViewTop_item_m">
                                                     <strong>등록일</strong>
                                                     <div class="type_td">
                                                         <?php echo $ocInfo->OC_REG_DATE; ?>										
@@ -55,7 +55,7 @@
                                                 </div>
                                             </div>
                                             <div class="col1">
-                                                <div class="boardViewTop_item">
+                                                <div class="boardViewTop_item boardViewTop_item_m">
                                                     <strong>상담내용</strong>
                                                     <div class="type_td">
                                                         <?php echo nl2br($ocInfo->OC_CONTENTS); ?>

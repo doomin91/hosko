@@ -31,6 +31,7 @@ class Home extends CI_Controller {
         //$this->load->library('encrypt');
         $this->load->helper('download');
 		$this->load->model("BoardModel");
+		$this->load->model("BasicModel");
 
     }
 
@@ -38,6 +39,10 @@ class Home extends CI_Controller {
 		$DATA["NEWS"] = $this->BoardModel->getNews();
 		$DATA["NOTICES"] = $this->BoardModel->getNotice();
 
+		$popups = $this->BasicModel->getPopupToday();
+		//print_r($popups);
+
+		$DATA["POPUPS"] = $popups;
         $this->load->view("index", $DATA);
     }
 }

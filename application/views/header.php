@@ -14,7 +14,7 @@
 		<meta http-equiv="Cache-Control" content="No-Cache">
 		<meta http-equiv="pragma" content="No-cache">
 		<meta http-equiv="expires" content="0">
-		<meta name="viewport" content="width=1380">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="robots" content="all">
 		<title>대표적인 교육 훈련기관 브랜드 HOSKO</title>
 		<meta name="author" content="교육 훈련기관 브랜드 HOSKO">

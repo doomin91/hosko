@@ -40,7 +40,7 @@
                                         <div class="boardViewTop">
                                             <div class="type_table">
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>제목</strong>
                                                         <div class="type_td">
                                                             <input type="text" class="input_s1" name="qna_subject">
@@ -48,7 +48,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>이름</strong>
                                                         <div class="type_td">
                                                             <input type="text" name="qna_user_name" class="input_s1" value="<?php echo isset($userInfo->USER_NAME) ? $userInfo->USER_NAME : ""; ?>">
@@ -63,7 +63,7 @@
                                                     }
                                                 ?>
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>이메일</strong>
                                                         <div class="type_td">
                                                             <input type="email" name="qna_user_email1" class="input_s2 mr5 mb0" value="<?php echo $userEmail[0]; ?>">@<input type="email" name="qna_user_email2" class="input_s2 ml5 mb0" value="<?php echo $userEmail[1]; ?>">
@@ -79,10 +79,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="col1">
-                                                    <div class="boardViewTop_item">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
                                                         <strong>내용</strong>
                                                         <div class="type_td">
                                                             <textarea name="qna_contents" class="textarea_s1"> </textarea>								
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col1">
+                                                    <div class="boardViewTop_item boardViewTop_item_m">
+                                                        <strong>비밀번호</strong>
+                                                        <div class="type_td">
+                                                            <input type="password" class="input_s2 mr5 mb0" name="qna_password">								
                                                         </div>
                                                     </div>
                                                 </div>
@@ -125,6 +133,7 @@
             var qna_user_name = $("input[name=qna_user_name]").val();
             var qna_contents = $("textarea[name=qna_contents]").val();
             var qna_user_email = $("input[name=qna_user_email1]").val() + "@" + $("input[name=qna_user_email2]").val();
+            var qna_password = $("input[name=qna_password]").val();
             if (qna_subject == ""){
                 alert("제목을 입력해주세요");
                 $("input[name=qna_subject]").focus();
@@ -151,7 +160,8 @@
                     "qna_subject" : qna_subject,
                     "qna_user_name" : qna_user_name,
                     "qna_user_email" : qna_user_email,
-                    "qna_contents" : qna_contents
+                    "qna_contents" : qna_contents,
+                    "qna_password" : qna_password
                 }, success:function(data){
                     console.log(data);
                     if (data.code == "200"){
