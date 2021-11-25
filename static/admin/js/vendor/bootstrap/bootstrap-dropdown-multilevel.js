@@ -21,6 +21,7 @@
   }
 
   Dropdown.prototype.toggle = function (e) {
+    console.log("TTT");
     var $this = $(this)
 
     if ($this.is('.disabled, :disabled')) return
@@ -52,6 +53,7 @@
   }
 
   Dropdown.prototype.keydown = function (e) {
+    console.log("TESTasfdsasfdsf")
     if (!/(38|40|27)/.test(e.keyCode)) return
 
     var $this = $(this)
@@ -83,7 +85,12 @@
     $items.eq(index).focus()
   }
 
+  
+
   function clearMenus(e) {
+    console.log(e);
+    console.log("TESTasfdsasfdsf");
+    // e.stopImmediatePropagation()
     $(backdrop).remove()
     $(toggle).each(function () {
       var $parent = getParent($(this));
@@ -99,7 +106,7 @@
       if (!$parent.hasClass('open')) return
       $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
       if (e.isDefaultPrevented()) return
-      $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
+      // $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
     })
   }
 
@@ -152,7 +159,7 @@
   // APPLY TO STANDARD DROPDOWN ELEMENTS
   // ===================================
   $(document)
-    .on('click.bs.dropdown.data-api', clearMenus)
+    // .on('click.bs.dropdown.data-api', clearMenus)
     .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
     .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
     .on('keydown.bs.dropdown.data-api', toggle + ', [role=menu], [role=listbox]', Dropdown.prototype.keydown)
