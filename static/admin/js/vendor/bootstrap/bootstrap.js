@@ -689,6 +689,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   Dropdown.VERSION = '3.2.0'
 
   Dropdown.prototype.toggle = function (e) {
+    console.log("TTT");
     var $this = $(this)
 
     if ($this.is('.disabled, :disabled')) return
@@ -752,6 +753,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   }
 
   function clearMenus(e) {
+    // console.log("TEST222");
     if (e && e.which === 3) return
     $(backdrop).remove()
     $(toggle).each(function () {
@@ -810,7 +812,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // ===================================
 
   $(document)
-    .on('click.bs.dropdown.data-api', clearMenus)
+    // .on('click.bs.dropdown.data-api', clearMenus)
     .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
     .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
     .on('keydown.bs.dropdown.data-api', toggle + ', [role="menu"], [role="listbox"]', Dropdown.prototype.keydown)
