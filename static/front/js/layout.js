@@ -19,7 +19,9 @@ jQuery(function($){
 		showMonthAfterYear: true,
 		yearSuffix: '년',
 		color: "black",
-		zindex: "20000"
+		zindex: "20000",
+		changeMonth: true,
+		changeYear: true
 	});
 	$(".datepicker").datepicker();
 

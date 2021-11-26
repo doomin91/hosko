@@ -21,9 +21,9 @@
                     <div class="sub_contents">
                         <div class="sub_category03">
                             <ul>
-                                <li><a href="/m/mypage/memberEdit">정보관리</a></li>
-                                <li><a href="/m/mypage/memberResumeRegist">이력서 작성</a></li>
-                                <li class="on"><a href="/m/mypage/memberResumeManage">제출서류 관리</a></li>
+                                <li><a href="/mypage/memberEdit">정보관리</a></li>
+                                <li><a href="/mypage/memberResumeRegist">이력서 작성</a></li>
+                                <li class="on"><a href="/mypage/memberResumeManage">제출서류 관리</a></li>
                             </ul>
                         </div>
 

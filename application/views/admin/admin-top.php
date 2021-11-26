@@ -399,7 +399,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="/">
+				<a href="/" target="_blank">
 					<i class="fa fa-home"></i> 홈페이지 이동
 				</a>
 			</li>	

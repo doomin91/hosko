@@ -129,84 +129,84 @@
                                             <tr>
                                                 <th class="col-sm-2" rowspan="12">컨텐츠 정보</th>
                                                 <td class="col-sm-1 text-center">국가/도시</td>
-                                                <td class="col-sm-8">
+                                                <td class="col-sm-8 zeropd">
                                                     <div class="col-sm-11">
                                                         <textarea class="common_input wid100p" name="abroad_country" id="abroad_country"><?php echo $ABROAD_INFO->REC_COUNTRY?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">유학분류</td>
-                                                <td class="col-sm-8">
+                                                <td class="col-sm-8 zeropd">
                                                     <div class="col-sm-11">
                                                         <textarea class="common_input wid100p" name="abroad_type" id="abroad_type"><?php echo $ABROAD_INFO->REC_TYPE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">기간</td>
-                                                <td class="col-sm-8">
+                                                <td class="col-sm-8 zeropd">
                                                     <div class="col-sm-11">
                                                         <textarea class="common_input wid100p" name="abroad_period" id="abroad_period"><?php echo $ABROAD_INFO->REC_PERIOD?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">채용분야</td>
-                                                <td class="col-sm-8">
+                                                <td class="col-sm-8 zeropd">
                                                     <div class="col-sm-11">
                                                         <textarea class="common_input wid100p" name="abroad_recruit_type" id="abroad_recruit_type"><?php echo $ABROAD_INFO->REC_RECRUIT_TYPE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">채용마감</td>
-                                                <td class="col-sm-8">
+                                                <td class="col-sm-8 zeropd">
                                                     <div class="col-sm-11">
                                                         <textarea class="common_input wid100p" name="abroad_deadline" id="abroad_deadline"><?php echo $ABROAD_INFO->REC_DEADLINE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">면접방식</td>
-                                                <td class="col-sm-8">
+                                                <td class="col-sm-8 zeropd">
                                                     <div class="col-sm-11">
                                                         <textarea class="common_input wid100p" name="abroad_interview_type" id="abroad_interview_type"><?php echo $ABROAD_INFO->REC_INTERVIEW_TYPE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">면접일자</td>
-                                                <td class="col-sm-8">
+                                                <td class="col-sm-8 zeropd">
                                                     <div class="col-sm-11">
                                                         <textarea class="common_input wid100p" name="abroad_interview_date" id="abroad_interview_date"><?php echo $ABROAD_INFO->REC_INTERVIEW_DATE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">자격요건</td>
-                                                <td class="col-sm-8">
+                                                <td class="col-sm-8 zeropd">
                                                     <div class="col-sm-11">
                                                         <textarea class="common_input wid100p" name="abroad_prerequisite" id="abroad_prerequisite"><?php echo $ABROAD_INFO->REC_PREREQUISITE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">급여</td>
-                                                <td class="col-sm-8">
+                                                <td class="col-sm-8 zeropd">
                                                     <div class="col-sm-11">
                                                         <textarea class="common_input wid100p" name="abroad_pay" id="abroad_pay"><?php echo $ABROAD_INFO->REC_PAY?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">숙소</td>
-                                                <td class="col-sm-8">
+                                                <td class="col-sm-8 zeropd">
                                                     <div class="col-sm-11">
                                                         <textarea class="common_input wid100p" name="abroad_accomdation" id="abroad_accomdation"><?php echo $ABROAD_INFO->REC_LODGIN?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">복지</td>
-                                                <td class="col-sm-8">
+                                                <td class="col-sm-8 zeropd">
                                                     <div class="col-sm-11">
                                                         <textarea class="common_input wid100p" name="abroad_welfare" id="abroad_welfare"><?php echo $ABROAD_INFO->REC_WELFARE?></textarea>
                                                     </div></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-1 text-center">비자</td>
-                                                <td class="col-sm-8">
+                                                <td class="col-sm-8 zeropd">
                                                     <div class="col-sm-11">
                                                         <textarea class="common_input wid100p" name="abroad_visa" id="abroad_visa"><?php echo $ABROAD_INFO->REC_VISA?></textarea>
                                                     </div></td>
