@@ -327,7 +327,7 @@
                                             <div class="resumeBox">
                                                 <div class="box_content">
                                                     <div class="resume_activity_box wid25p">
-                                                        <input type="text" name="rlang_name[]" value="" class="wid100p">
+                                                        <input type="text" name="rlang_name[]" value="English" class="wid100p" readonly style="cursor: not-allowed">
                                                     </div>
                                                     <div class="resume_activity_box wid25p">
                                                         <select name="rlang_speaking[]" class="wid100p">
@@ -345,10 +345,73 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 text-right">
+                                            <div class="resumeBox">
+                                                <div class="box_content">
+                                                    <div class="resume_activity_box wid25p">
+                                                        <input type="text" name="rlang_name[]" value="Chinese" class="wid100p" readonly style="cursor: not-allowed">
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_speaking[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_writing[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="resumeBox">
+                                                <div class="box_content">
+                                                    <div class="resume_activity_box wid25p">
+                                                        <input type="text" name="rlang_name[]" value="Japanese" class="wid100p" readonly style="cursor: not-allowed">
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_speaking[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_writing[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="resumeBox">
+                                                <div class="box_content">
+                                                    <div class="resume_activity_box wid25p">
+                                                        <input type="text" name="rlang_name[]" value="" class="wid100p placeholder_common_font" placeholder="ETC" >
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_speaking[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_writing[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_lskil" data-which="lskil">
                                                 <input type="button" class="btn btn-primary" value="추가" id="add_resume_lskil" data-which="lskil">
-                                            </div>
+                                            </div> -->
 
                                         </div>
 
@@ -712,11 +775,16 @@
                                             </div>
                                             <div class="resumeBox">
                                                 <?php if(isset($RESUME_LANG)) : ?>
-                                                    <?php foreach($RESUME_LANG as $LANG): ?>
+                                                    <?php foreach($RESUME_LANG as $key => $LANG): ?>
                                                         <div class="box_content">
                                                             <input type="hidden" name="rlang_seq[]" value="<?php echo $LANG->SEQ ?>">
                                                             <div class="resume_activity_box wid25p">
-                                                                <input type="text" name="rlang_name[]" value="<?php echo $LANG->RLANG_NAME?>" class="wid100p">
+                                                                <?php if($key+1 < count($RESUME_LANG)) :?>
+                                                                    <input type="text" name="rlang_name[]" value="<?php echo $LANG->RLANG_NAME?>" class="wid100p" readonly style="cursor: not-allowed">
+                                                                <?php else :?>
+                                                                    <input type="text" name="rlang_name[]" value="<?php echo $LANG->RLANG_NAME?>" class="wid100p placeholder_common_font" placeholder="ETC">
+                                                                <?php endif ?>
+                                                                
                                                             </div>
                                                             <div class="resume_activity_box wid25p">
                                                                 <select name="rlang_speaking[]" class="wid100p">
@@ -736,11 +804,11 @@
                                                     <?php endforeach ?>
                                                 <?php endif?>
                                             </div>
-                                            
+<!--                                             
                                             <div class="col-sm-12 text-right">
                                                 <input type="button" class="btn btn-default" value="삭제" id="del_resume_lskil" data-which="lskil">
                                                 <input type="button" class="btn btn-primary" value="추가" id="add_resume_lskil" data-which="lskil">
-                                            </div>
+                                            </div> -->
                                         </div>
 
                                         <div class="resumetitle">
@@ -783,6 +851,21 @@
 
     </body>
 </html>
+
+<style>
+    .placeholder_common_font::placeholder {
+        color: rgb(150, 150, 150) !important;
+    }
+    .placeholder_common_font:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+        color: rgb(150, 150, 150) !important;
+    }
+
+    .placeholder_common_font::-ms-input-placeholder {
+    /* Microsoft Edge */
+        color: rgb(150, 150, 150) !important;
+    }
+</style>
 
 <script>
     var FILE = new FormData();
