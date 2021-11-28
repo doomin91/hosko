@@ -210,7 +210,7 @@
 		</div>
 		<div class="m_right_area">
 			<a href="tel:02-2052-9700" class="tel"></a>
-			<a href="/" target="_blank" class="talk"></a>
+			<a href="http://pf.kakao.com/_ZrXjxl/chat" target="_blank" class="talk"></a>
 		</div>
 	</div>
 </header>

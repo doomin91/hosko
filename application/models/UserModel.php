@@ -592,11 +592,11 @@ class UserModel extends CI_Model{
         }
 
 		if(isset($whereArr["start_date"]) && $whereArr["start_date"] != ""){
-            $this->db->like("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE >=", $whereArr["start_date"]);
+            $this->db->where("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE >=", $whereArr["start_date"]." 00:00:00");
 		}
 
 		if(isset($whereArr["end_date"]) && $whereArr["end_date"] != ""){
-            $this->db->like("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE <=", $whereArr["end_date"]);
+            $this->db->where("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE <=", $whereArr["end_date"]." 23:59:59");
 		}
 
 		if(isset($whereArr["user_level"]) && $whereArr["user_level"] != ""){
@@ -628,11 +628,11 @@ class UserModel extends CI_Model{
         }
 
 		if(isset($whereArr["start_date"]) && $whereArr["start_date"] != ""){
-            $this->db->like("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE >=", $whereArr["start_date"]);
+            $this->db->where("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE >=", $whereArr["start_date"]." 00:00:00");
 		}
 
 		if(isset($whereArr["end_date"]) && $whereArr["end_date"] != ""){
-            $this->db->like("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE <=", $whereArr["end_date"]);
+            $this->db->where("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE <=", $whereArr["end_date"]." 23:59:59");
 		}
 
 		if(isset($whereArr["user_level"]) && $whereArr["user_level"] != ""){

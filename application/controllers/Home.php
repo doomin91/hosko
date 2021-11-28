@@ -32,15 +32,19 @@ class Home extends CI_Controller {
         $this->load->helper('download');
 		$this->load->model("BoardModel");
 		$this->load->model("BasicModel");
+		$this->load->model("ConsultModel");
 
     }
 
     function index(){
 		$DATA["NEWS"] = $this->BoardModel->getNews();
 		$DATA["NOTICES"] = $this->BoardModel->getNotice();
+		$DATA["QNALIST"] = $this->ConsultModel->getQnaTop5();
 
 		$popups = $this->BasicModel->getPopupToday();
 		//print_r($popups);
+
+		//print_r($DATA["QNALIST"]);
 
 		$DATA["POPUPS"] = $popups;
         $this->load->view("index", $DATA);

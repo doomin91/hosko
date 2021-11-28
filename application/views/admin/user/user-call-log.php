@@ -61,12 +61,12 @@
 
 							<colgroup>
 									<col width="4%"/>
-									<col width="8%"/>
-									<col width="8%"/>
+									<col width="6%"/>
+									<col width="6%"/>
+                                    <col width="6%"/>
                                     <col width="8%"/>
-                                    <col width="8%"/>
-                                    <col width="8%"/>
-                                    <col width="21%"/>
+                                    <col width="6%"/>
+                                    <col width="29%"/>
                                     <col width="5%"/>
                                     <col width="5%"/>
 									<col width="5%"/>
@@ -99,7 +99,7 @@
                             ?>
                                 <tr>
                                     <td class="text-center"><?php echo $pagenum; ?></td>
-                                    <td class="text-center"><?php echo $lt->CLOG_CONSULT_DATE; ?></td>
+                                    <td class="text-center"><?php echo $lt->CLOG_REG_DATE; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_MANAGER_NAME; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_USER_NAME; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_USER_COMPANY; ?></td>
@@ -168,6 +168,7 @@
                         <input type="hidden" name="user_seq" value="<?php echo $user_info->USER_SEQ; ?>">
                         <input type="hidden" name="clog_seq" value="">
                         <input type="hidden" name="clog_mode" value="">
+                        <input type="hidden" name="clog_user_number" value="">
 					<table class="table datatable table-custom01 userTable">
                         <colgroup>
                             <col width="30%"/>

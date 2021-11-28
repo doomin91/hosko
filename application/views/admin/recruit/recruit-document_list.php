@@ -65,9 +65,9 @@
                                             </select>
                                             <select name="doc_status" class="documentSearchUserLevel document_search_option" >
                                                 <option value="" <?php if($doc_status == "") echo "selected"; ?>>컨펌상태(전체)</option>
-                                                <option value="0" <?php if($doc_status == 1) echo "selected"; ?>>미확인</option>
+                                                <option value="0" <?php if($doc_status == 0) echo "selected"; ?>>미제출</option>
                                                 <option value="-1" <?php if($doc_status == -1) echo "selected"; ?>>반송</option>
-                                                <option value="1" <?php if($doc_status == 2) echo "selected"; ?>>완료</option>
+                                                <option value="1" <?php if($doc_status == 1) echo "selected"; ?>>완료</option>
                                             </select>
                                             
                                         </td>
@@ -176,7 +176,7 @@
                                     <td class="text-center"><?php echo $list->DOC_LAST_CHECK_DATE ?></td>
                                     <td class="text-center">
                                         <?php if($list->DOC_STATUS == 0): ?>
-                                            미확인
+                                            미제출
                                         <?php elseif($list->DOC_STATUS == 1): ?>
                                             OK
                                         <?php elseif($list->DOC_STATUS == -1): ?>

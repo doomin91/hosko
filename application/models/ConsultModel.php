@@ -136,6 +136,27 @@ class ConsultModel extends CI_Model{
 	}
 
 	public function getCallMsg($whereArr){
+
+		if ((isset($whereArr["reg_date_start"])) && ($whereArr["reg_date_start"] != "")){
+			$this->db->where("date(TBL_HOSKO_CALL_LOG.CLOG_REG_DATE) >=", $whereArr["reg_date_start"]);
+		}
+
+		if ((isset($whereArr["reg_date_end"])) && ($whereArr["reg_date_end"] != "")){
+			$this->db->where("date(TBL_HOSKO_CALL_LOG.CLOG_REG_DATE) <=", $whereArr["reg_date_end"]);
+		}
+
+		if ((isset($whereArr["search_string"])) && ($whereArr["search_string"] != "")){
+			if ($whereArr["search_field"] == "all"){
+				$this->db->group_start();
+					$this->db->like("TBL_HOSKO_CALL_LOG.CLOG_MANAGER_NAME", $whereArr["search_string"]);
+					$this->db->or_like("TBL_HOSKO_CALL_LOG.CLOG_USER_NAME", $whereArr["search_string"]);
+					$this->db->or_like("TBL_HOSKO_CALL_LOG.CLOG_USER_COMPANY", $whereArr["search_string"]);
+				$this->db->group_end();
+			}else{
+				$this->db->like("TBL_HOSKO_CALL_LOG.".$whereArr["search_field"], $whereArr["search_string"]);
+			}
+		}
+
 		$this->db->where("TBL_HOSKO_CALL_LOG.CLOG_DEL_YN", "N");
 		$this->db->order_by("TBL_HOSKO_CALL_LOG.CLOG_SEQ", "DESC");
 		$this->db->limit($whereArr["limit"], $whereArr["start"]);
@@ -143,6 +164,26 @@ class ConsultModel extends CI_Model{
 	}
 
 	public function getCallMsgCount($whereArr){
+		if ((isset($whereArr["reg_date_start"])) && ($whereArr["reg_date_start"] != "")){
+			$this->db->where("date(TBL_HOSKO_CALL_LOG.CLOG_REG_DATE) >=", $whereArr["reg_date_start"]);
+		}
+
+		if ((isset($whereArr["reg_date_end"])) && ($whereArr["reg_date_end"] != "")){
+			$this->db->where("date(TBL_HOSKO_CALL_LOG.CLOG_REG_DATE) <=", $whereArr["reg_date_end"]);
+		}
+
+		if ((isset($whereArr["search_string"])) && ($whereArr["search_string"] != "")){
+			if ($whereArr["search_field"] == "all"){
+				$this->db->group_start();
+					$this->db->like("TBL_HOSKO_CALL_LOG.CLOG_MANAGER_NAME", $whereArr["search_string"]);
+					$this->db->or_like("TBL_HOSKO_CALL_LOG.CLOG_USER_NAME", $whereArr["search_string"]);
+					$this->db->or_like("TBL_HOSKO_CALL_LOG.CLOG_USER_COMPANY", $whereArr["search_string"]);
+				$this->db->group_end();
+			}else{
+				$this->db->like("TBL_HOSKO_CALL_LOG.".$whereArr["search_field"], $whereArr["search_string"]);
+			}
+		}
+
 		$this->db->where("TBL_HOSKO_CALL_LOG.CLOG_DEL_YN", "N");
 		$this->db->from("TBL_HOSKO_CALL_LOG");
 		return $this->db->count_all_results();
@@ -373,5 +414,13 @@ class ConsultModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_QNA.QNA_GROUP", $group_key);
 		$this->db->where("TBL_HOSKO_QNA.QNA_DEPTH", 0);
 		return $this->db->get("TBL_HOSKO_QNA")->row();
+	}
+
+	public function getQnaTop5(){
+		$this->db->where("TBL_HOSKO_QNA.QNA_DEPTH", "0");
+		$this->db->where("TBL_HOSKO_QNA.QNA_DEL_YN", "N");
+		$this->db->order_by("TBL_HOSKO_QNA.QNA_GROUP", "DESC");
+		$this->db->limit(5);
+		return $this->db->get("TBL_HOSKO_QNA")->result();
 	}
 }

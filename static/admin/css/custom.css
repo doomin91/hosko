@@ -164,3 +164,5 @@ html .ui-button.ui-state-disabled:active {
 .resumeViewTable tr td {
   padding-left: 5px !important;
 }
+
+.zeropd {padding: 0 0 0 0 !important;}

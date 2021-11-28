@@ -612,6 +612,7 @@ class User extends CI_Controller {
 								"CLOG_USER_SEQ" => $list->USER_SEQ,
 								"CLOG_USER_NAME" => $list->USER_NAME,
 								"CLOG_USER_COMPANY" => $list->USER_COMPANY,
+								"CLOG_USER_NUMBER" => $list->USER_NUMBER,
 								"CLOG_MESSAGE" => "SMS발송 - ".$send_message,
 								"CLOG_CONSULT_DATE" => date("y-m-d h:i:s"),
 								"CLOG_INTEREST" => 1,

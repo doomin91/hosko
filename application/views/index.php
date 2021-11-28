@@ -164,16 +164,16 @@
                                     <div class="main_notice">
                                         <div class="main_notice_title">
                                             <h2>질문과 답변</h2>
-                                            <span><a href="/"><img src="/static/front/img/main_plus_icon.jpg"></a></span>
+                                            <span><a href="/consult/qnaList"><img src="/static/front/img/main_plus_icon.jpg"></a></span>
                                         </div>
 
                                         <div class="main_notice_box">
                                             <ul>
-                                                <?php foreach($NOTICES as $val): ?>
+                                                <?php foreach($QNALIST as $val): ?>
                                                 <li>
                                                     <div class="notice_box_item">
-                                                        <p class="text" onclick="viewPage(<?php echo $val->POST_SEQ?>)"><?php echo $this->customclass->strcut(strip_tags($val->POST_SUBJECT), 30)?></p>
-                                                        <p class="date"><?php echo date("Y-m-d", strtotime($val->POST_REG_DATE))?></p>
+                                                        <p class="text"><a href="/consult/qnaList"><?php echo $this->customclass->strcut(strip_tags($val->QNA_SUBJECT), 30)?></a></p>
+                                                        <p class="date"><?php echo date("Y-m-d", strtotime($val->QNA_REG_DATE))?></p>
                                                     </div>                                                 
                                                 </li>
                                                 <?php endforeach; ?>

@@ -198,7 +198,7 @@
                                     <td class="text-center">
                                         <span class="thumImg recuit_img">
                                             <?php if($list->REC_THUMBNAIL != "" && $list->REC_THUMBNAIL != "/upload/recruit/"): ?>
-                                                <img src="<?php echo $list->REC_THUMBNAIL?>">
+                                                <img src="<?php echo $list->REC_THUMBNAIL?>" width="200" height="120">
                                             <?php else :?>
                                                 <img src="/upload/recruit/default.jpg">
                                             <?php endif?>

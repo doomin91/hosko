@@ -231,7 +231,16 @@ class Consult extends CI_Controller {
 			$nowpage = $_GET["per_page"];
 		}
 
+		$reg_date_start = $this->input->get("reg_date_start");
+		$reg_date_end = $this->input->get("reg_date_end");
+		$search_field = $this->input->get("search_field");
+		$search_string = $this->input->get("search_string");
+
 		$wheresql = array(
+						"reg_date_start" => $reg_date_start,
+						"reg_date_end" => $reg_date_end,
+						"search_field" => $search_field,
+						"search_string" => $search_string,
 						"start" => $start,
 						"limit" => $limit
 						);
@@ -244,10 +253,14 @@ class Consult extends CI_Controller {
 		}else{
 			$pagenum = $listCount;
 		}
-
-		$pagination = $this->customclass->pagenavi("/admin/consult/callConsultList/", $listCount, 15, 5, $nowpage);
+		$queryString = "?reg_date_start=".$reg_date_start."&amp;reg_date_end=".$reg_date_end."&search_field=".$search_field."&search_string=".$search_string;
+		$pagination = $this->customclass->pagenavi("/admin/consult/callConsultList/".$queryString, $listCount, 15, 5, $nowpage);
 
 		$data = array(
+			"reg_date_start" => $reg_date_start,
+			"reg_date_end" => $reg_date_end,
+			"search_field" => $search_field,
+			"search_string" => $search_string,
 			"lists" => $lists,
 			"listCount" => $listCount,
 			"pagination" => $pagination,

@@ -38,7 +38,59 @@
 
 		  <!-- content main container -->
 		  <div class="main">
-
+          <div class="row">
+                <div class="col-md-12">
+                   <section class="tile color transparent-black">
+                        <div class="tile-body">
+                            <table class="table table-custom datatable userTable">
+                                <colgroup>
+									<col width="15%"/>
+									<col width="35%"/>
+									<col width="15%"/>
+									<col width="35%"/>
+								</colgroup>
+                                <tbody>
+                                <form name="sform"  method="get" action="/admin/consult/callConsultList">
+                                    <tr>
+										<th>날자</th>
+										<td>
+											<div class="col-md-5">
+												<input name="reg_date_start" type="text" class="wid100p datepicker" value="<?php echo $reg_date_start; ?>">
+											</div>
+											<div class="col-md-5">
+												<input name="reg_date_end" type="text" class="wid100p datepicker" value="<?php echo $reg_date_end; ?>">
+											</div>
+										</td>
+                                        <td colspan="2"></td>
+									</tr>
+									<tr>
+										<th>단어검색</th>
+										<td colspan="3">
+											<div class="col-md-2">
+												<select name="search_field" class="wid100p">
+													<option value="all">전체</option>
+													<option value="CLOG_MANAGER_NAME" <?php if ($search_field == "CLOG_MANAGER_NAME") echo "selected"; ?>>상담자</option>
+													<option value="CLOG_USER_NAME" <?php if ($search_field == "CLOG_USER_NAME") echo "selected"; ?>>회원명</option>
+													<option value="CLOG_USER_COMPANY" <?php if ($search_field == "CLOG_USER_COMPANY") echo "selected"; ?>>학교</option>
+												</select>
+											</div>
+											<div class="col-md-8">
+												<input type="text" name="search_string" class="wid100p" placeholder="검색어를 입력해주세요" value="<?php echo $search_string; ?>">
+											</div>
+										</td>
+									</tr>
+                                    <tr>
+                                        <td colspan="4" class="text-right" style="padding-right:10px">
+                                            <button class="btn btn-primary" type="submit">검색하기</button>
+                                        </td>
+                                    </tr>
+                                </form>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
 			<!-- row -->
 			<div class="row">
 
@@ -55,12 +107,12 @@
 
 							<colgroup>
                                     <col width="4%"/>
-									<col width="8%"/>
-									<col width="8%"/>
+									<col width="6%"/>
+									<col width="6%"/>
+                                    <col width="6%"/>
                                     <col width="8%"/>
-                                    <col width="8%"/>
-                                    <col width="8%"/>
-                                    <col width="21%"/>
+                                    <col width="6%"/>
+                                    <col width="29%"/>
                                     <col width="5%"/>
                                     <col width="5%"/>
 									<col width="5%"/>
@@ -93,12 +145,12 @@
                             ?>
                                 <tr>
                                     <td class="text-center"><?php echo $pagenum; ?></td>
-                                    <td class="text-center"><?php echo $lt->CLOG_CONSULT_DATE; ?></td>
+                                    <td class="text-center"><?php echo $lt->CLOG_REG_DATE; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_MANAGER_NAME; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_USER_NAME; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_USER_COMPANY; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_USER_NUM; ?></td>
-                                    <td class="text-center" style="word-break: break-all; white-space: pre-line"><?php echo nl2br($lt->CLOG_MESSAGE); ?></td>
+                                    <td class="text-center" style="word-break: break-all; white-space: pre-line"><?php echo $lt->CLOG_MESSAGE; ?></td>
                                     <td class="text-center"><?php echo $interest; ?></td>
                                     <td class="text-center"><?php echo $lt->CLOG_LANG_SKILL; ?>점</td>
                                     <td class="text-center">

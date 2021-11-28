@@ -53,7 +53,13 @@
                                     ?>
                                         <div class="tblBot-item">
                                             <span class="col_num"><?php echo $pagenum; ?></span>
-                                            <span class="col_tit consult_tit"><a href="/consult/onlineConsultView/<?php echo $list->OC_SEQ; ?>"><?php echo $list->OC_SUBJECT; ?></a></span>
+                                            <span class="col_tit consult_tit">
+                                            <?php if (($this->session->userdata("USER_SEQ") == $list->OC_USER_SEQ) && ($this->session->userdata("USER_SEQ") != "")){ ?>
+                                                <a href="/consult/onlineConsultView/<?php echo $list->OC_SEQ; ?>"><?php echo $list->OC_SUBJECT; ?></a>
+                                            <?php }else{ ?>
+                                                <?php echo $list->OC_SUBJECT; ?>
+                                            <?php } ?>
+                                            </span>
                                             <span class="col_name"><?php echo $list->OC_USER_NAME; ?></span>
                                             <span class="col_date"><?php echo $list->OC_REG_DATE; ?></span>                                            
                                         </div>
@@ -72,7 +78,11 @@
 
                                     <div class="subBtn_Write f_right mt40">
                                         <!--a href="/">글쓰기</a-->
-                                        <button type="button" class="btn_style02 f_right" id="consultWrite">문의하기</button>
+                                        <?php if ($this->session->userdata("USER_SEQ") != ""){ ?>
+                                            <button type="button" class="btn_style02 f_right" id="consultWrite">문의하기</button>
+                                        <?php }else{ ?>
+                                            <button type="button" class="btn_style02 f_right" id="loginAlert">문의하기</button>
+                                        <?php } ?>
                                     </div>
 
                                     <?php echo $pagination; ?>
@@ -123,6 +133,11 @@
             document.location.href="/consult/onlineConsultWrite"
         })
 
+
+        $(document).on("click", "#loginAlert", function(){
+            alert("로그인 후 이용가능합니다.");
+            return false;
+        })
     });
 </script>
 
