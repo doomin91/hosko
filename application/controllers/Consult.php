@@ -220,6 +220,10 @@ class Consult extends CI_Controller {
 		$qna_seq = $this->input->post("qna_seq");
 
 		$qnaInfo = $this->ConsultModel->getQna($qna_seq);
+		
+		if ($qnaInfo->QNA_DEPTH == "1"){
+			$qnaInfo = $this->ConsultModel->getQnaOrigin($qnaInfo->QNA_GROUP);
+		}
 
 		if ($qnaInfo->QNA_PASSWORD == md5($modal_pass)){
 			echo json_encode(array("code" => "200", "msg" => "비밀번호 확인 되었습니다."));

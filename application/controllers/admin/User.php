@@ -612,7 +612,7 @@ class User extends CI_Controller {
 								"CLOG_USER_SEQ" => $list->USER_SEQ,
 								"CLOG_USER_NAME" => $list->USER_NAME,
 								"CLOG_USER_COMPANY" => $list->USER_COMPANY,
-								"CLOG_USER_NUMBER" => $list->USER_NUMBER,
+								"CLOG_USER_NUM" => $list->USER_NUMBER,
 								"CLOG_MESSAGE" => "SMS발송 - ".$send_message,
 								"CLOG_CONSULT_DATE" => date("y-m-d h:i:s"),
 								"CLOG_INTEREST" => 1,
@@ -674,6 +674,7 @@ class User extends CI_Controller {
 		$manager_name = $this->input->post("manager_name");
 		$user_seq = $this->input->post("user_seq");
 		$user_name = $this->input->post("user_name");
+		$user_num = $this->input->post("user_num");
 		$user_company = $this->input->post("user_company");
 		$consult_date = $this->input->post("consult_date");
 		$call_message = $this->input->post("call_message");
@@ -688,6 +689,7 @@ class User extends CI_Controller {
 								"CLOG_USER_SEQ" => $user_seq,
 								"CLOG_USER_NAME" => $user_name,
 								"CLOG_USER_COMPANY" => $user_company,
+								"CLOG_USER_NUM" => $user_num,
 								"CLOG_MESSAGE" => $call_message,
 								"CLOG_CONSULT_DATE" => $consult_date,
 								"CLOG_INTEREST" => $interest,

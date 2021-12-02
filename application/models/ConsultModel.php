@@ -423,4 +423,11 @@ class ConsultModel extends CI_Model{
 		$this->db->limit(5);
 		return $this->db->get("TBL_HOSKO_QNA")->result();
 	}
+
+	public function getQnaOrigin($qna_group){
+		$this->db->where("TBL_HOSKO_QNA.QNA_GROUP", $qna_group);
+		$this->db->where("TBL_HOSKO_QNA.QNA_DEPTH", "0");
+		$this->db->where("TBL_HOSKO_QNA.QNA_DEL_YN", "N");		
+		return $this->db->get("TBL_HOSKO_QNA")->row();
+	}
 }
