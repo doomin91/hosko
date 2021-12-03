@@ -430,4 +430,9 @@ class ConsultModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_QNA.QNA_DEL_YN", "N");		
 		return $this->db->get("TBL_HOSKO_QNA")->row();
 	}
+
+	public function deleteOnlineConsult($oc_seq){
+		$this->db->where("TBL_HOSKO_ONLINE_CONSULT.OC_SEQ", $oc_seq);
+		return $this->db->update("TBL_HOSKO_ONLINE_CONSULT", array("OC_DEL_YN" => "Y"));
+	}
 }

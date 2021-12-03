@@ -137,4 +137,9 @@ class BasicModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_POPUP.POP_DEL_YN", "N");
 		return $this->db->get("TBL_HOSKO_POPUP")->result();
 	}
+
+	public function adminLoginTimeUpdate($admin_seq){
+		$this->db->where("TBL_HOSKO_ADMIN.ADMIN_SEQ", $admin_seq);
+		return $this->db->update("TBL_HOSKO_ADMIN", array("ADMIN_LAST_LOGIN" => date("Y-m-d H:i:s")));
+	}
 }

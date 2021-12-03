@@ -60,16 +60,16 @@
                       <table class="table datatable table-custom01 userTable">
 
 							<colgroup>
-									<col width="4%"/>
+                                    <col width="4%"/>
 									<col width="6%"/>
 									<col width="6%"/>
                                     <col width="6%"/>
                                     <col width="8%"/>
                                     <col width="6%"/>
-                                    <col width="29%"/>
-                                    <col width="5%"/>
-                                    <col width="5%"/>
-									<col width="5%"/>
+                                    <col width="31%"/>
+                                    <col width="4%"/>
+                                    <col width="4%"/>
+									<col width="4%"/>
 							</colgroup>
 							<thead>
 								<tr>
@@ -171,8 +171,8 @@
                         <input type="hidden" name="clog_user_number" value="<?php echo $user_info->USER_NUMBER; ?>">
 					<table class="table datatable table-custom01 userTable">
                         <colgroup>
-                            <col width="30%"/>
-						    <col width="70%"/>
+                            <col width="20%"/>
+						    <col width="80%"/>
                         </colgroup>
                         <tbody>
                             <tr>
@@ -196,7 +196,7 @@
                             </tr>
                             <tr>
                                 <th>내용</td>
-                                <td><textarea class="form-control" id="call_message" name="call_message"></textarea></td>
+                                <td><textarea class="form-control" id="call_message" name="call_message" style="height:180px"></textarea></td>
                             </tr>
                             <tr>
                                 <th>관심도</td>

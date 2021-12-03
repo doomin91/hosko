@@ -48,7 +48,11 @@
 			  <div class="col-md-12">
 				<!-- tile -->
 				<section class="tile color transparent-black">
-
+					<div class="row" style="padding:15px">
+						<div class="col-lg-12 text-right">
+							<a href="/admin/user/userCallMsg/<?php echo $info->USER_SEQ; ?>" type="button" class="btn btn-primary btn-sm"> 기록하기</a>
+						</div>
+					</div>
 					<!-- tile body -->
 					<div class="tile-body">
 						<form name="editForm" id="editForm">
@@ -410,7 +414,7 @@
 						<div class="row form-footer">
 							<div class="col-sm-offset-2 col-sm-10 text-right">
 
-								<button id="cancelBtn" data-seq="" class="btn btn-danger btn-sm">삭제하기</button>
+								<button id="cancelBtn" data-seq="<?php echo $info->USER_SEQ; ?>" class="btn btn-danger btn-sm">삭제하기</button>
 								<button id="saveBtn" data-seq="" class="btn btn-primary btn-sm">저장하기</button>
 
 							</div>
@@ -474,6 +478,30 @@ $(function(){
 			}
 		})
 	});
+
+	$(document).on("click", "#cancelBtn", function(){
+		var user_seq = $(this).data("seq");
+		if (confirm("해당 회원을 삭제하시겠습니까?")){
+			$.ajax({
+				url:"/admin/User/userDeleteProc",
+				type:"post",
+				dataType:"json",
+				data : {
+					"user_seq" : user_seq
+				},
+				success:function(data){
+					console.log(data);
+					if (data.code == "200"){
+						alert(data.msg);
+						//$("#modalDomain").modal("hide");
+						document.location.href="/admin/user/";
+					}
+				}, error:function(e){
+					console.log(e);
+				}
+			})
+		}
+	})
 
 
 	$(document).on("click", "#searchZip", function(){

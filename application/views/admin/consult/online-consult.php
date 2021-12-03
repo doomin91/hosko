@@ -87,10 +87,10 @@
 						?>
 								<tr>
 									<td><?php echo $pagenum; ?></td>
-									<td><?php echo $lt->USER_NAME; ?></td>
+									<td><?php echo $lt->OC_USER_NAME; ?></td>
 									<td><?php echo $lt->USER_ID; ?></td>
-									<td><?php echo $lt->USER_TEL; ?></td>
-									<td><?php echo $lt->USER_HP; ?></td>
+									<td><?php echo $lt->OC_USER_TEL; ?></td>
+									<td><?php echo $lt->OC_USER_HP; ?></td>
 									<td><a href="/admin/consult/onlineConsultView/<?php echo $lt->OC_SEQ; ?>"><?php echo $lt->OC_SUBJECT; ?></a></td>
 									<td><?php echo $answer_flag; ?></td>
 									<td><?php echo substr($lt->OC_REG_DATE, 0, 10); ?></td>

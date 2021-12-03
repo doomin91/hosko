@@ -111,8 +111,10 @@
                             <div class="col-sm-offset-2 col-sm-10 text-right">
                             <?php if ($info->OC_ANSWER_FLAG == "W"){ ?>    
                                 <a href="/admin/consult/onlineConsult" class="btn btn-default btn-sm">취소</a>
+                                <button id="onlineDelete" data-seq="<?php echo $info->OC_SEQ; ?>" class="btn btn-danger btn-sm">삭제</button>
                                 <button type="button" class="btn btn-primary btn-sm" id="answer_save">답변저장</a>
                             <?php }else if ($info->OC_ANSWER_FLAG == "Y"){ ?>
+                                <button id="onlineDelete" data-seq="<?php echo $info->OC_SEQ; ?>" class="btn btn-danger btn-sm">삭제</button>
                                 <a href="/admin/consult/onlineConsult" class="btn btn-primary btn-sm">목록</a>
                             <?php }  ?>
                             </div>
@@ -193,5 +195,32 @@
                 })
             }
         });
+
+        $(document).on("click", "#onlineDelete", function(){
+            var oc_seq = $(this).data("seq");
+
+            if (confirm("온라인상담 삭제 하시겠습니까?")){
+                $.ajax({
+                    url:"/admin/consult/onlineConsultDelete",
+                    type:"post",
+                    data:{
+                        "oc_seq" : oc_seq
+                    },
+                    dataType:"json",
+                    success:function(resultMsg){
+                        console.log(resultMsg);
+                        if (resultMsg.code == "200"){
+                            alert(resultMsg.msg);
+                            document.location.href="/admin/consult/onlineConsult";
+                        }else{
+                            alert(resultMsg.msg);
+                        }
+                    },
+                    error:function(e){
+                        console.log(e);
+                    }
+                })
+            }
+        })
     });
 </script>

@@ -82,7 +82,8 @@
                         <div class="row form-footer">
                             <div class="col-sm-offset-2 col-sm-10 text-right">
                                 <?php if ($info->QNA_ADMIN_SEQ == ""){ ?>
-                                <a href="/admin/consult/qnaAnswer/<?php echo $info->QNA_SEQ; ?>" class="btn btn-primary btn-sm">답변하기</a>
+                                    <button class="btn btn-danger btn-sm" data-seq="<?php echo $info->QNA_SEQ; ?>" id="qna_del">삭제</button>
+                                    <a href="/admin/consult/qnaAnswer/<?php echo $info->QNA_SEQ; ?>" class="btn btn-primary btn-sm">답변하기</a>
                                 <?php }else if ($info->QNA_ADMIN_SEQ != ""){ ?>
                                     <button class="btn btn-danger btn-sm" data-seq="<?php echo $info->QNA_SEQ; ?>" id="qna_del">삭제</button>
                                     <button class="btn btn-primary btn-sm">수정</button>

@@ -253,6 +253,8 @@ class Member extends CI_Controller {
 				);
 				$this->session->set_userdata($session_data);
 
+				$this->UserModel->setLoginUpdate($userInfo->USER_SEQ);
+				
 				echo json_encode(array("code" => "200", "msg" => "로그인되었습니다."));
 			}else{
 				echo json_encode(array("code" => "202", "msg" => "비밀번호가 맞지 않습니다."));
