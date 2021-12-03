@@ -113,7 +113,8 @@ class Board extends CI_Controller {
             $board_info = $this->BoardModel->getBoard($board_seq);
             $searchField = $this->input->get("search_field");
             $searchString = $this->input->get("search_string");
-            $limit = $board_info->BOARD_LIST_COUNT;
+			$limit = 12;
+            // $limit = $board_info->BOARD_LIST_COUNT;
             $nowpage = "";
             if (!isset($_GET["per_page"])){
                 $start = 0;
@@ -177,7 +178,8 @@ class Board extends CI_Controller {
             $board_info = $this->BoardModel->getBoard($board_seq);
             $searchField = $this->input->get("search_field");
             $searchString = $this->input->get("search_string");
-            $limit = $board_info->BOARD_LIST_COUNT;
+			$limit = 12;
+            // $limit = $board_info->BOARD_LIST_COUNT;
             $nowpage = "";
             if (!isset($_GET["per_page"])){
                 $start = 0;

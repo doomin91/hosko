@@ -168,7 +168,7 @@
                         <input type="hidden" name="user_seq" value="<?php echo $user_info->USER_SEQ; ?>">
                         <input type="hidden" name="clog_seq" value="">
                         <input type="hidden" name="clog_mode" value="">
-                        <input type="hidden" name="clog_user_number" value="">
+                        <input type="hidden" name="clog_user_number" value="<?php echo $user_info->USER_NUMBER; ?>">
 					<table class="table datatable table-custom01 userTable">
                         <colgroup>
                             <col width="30%"/>
@@ -264,6 +264,7 @@
             var manager_name = $("input[name=manager_name]").val();
             var user_seq = $("input[name=user_seq]").val();
             var user_name = $("input[name=user_name]").val();
+            var user_num = $("input[name=clog_user_number]").val();
             var user_company = $("input[name=user_company]").val();
             var call_message = $("textarea[name=call_message]").val();
             var consult_date = $("input[name=consult_date]").val();
@@ -280,6 +281,7 @@
                     "user_seq" : user_seq,
                     "user_name" : user_name,
                     "user_company" : user_company,
+                    "user_num" : user_num,
                     "call_message" : call_message,
                     //"consult_date" : consult_year + "-" + numLneCheck(consult_month) + "-" + numLneCheck(consult_day),
                     "consult_date" : consult_date,
