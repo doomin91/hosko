@@ -65,9 +65,10 @@
                                             </select>
                                             <select name="doc_status" class="documentSearchUserLevel document_search_option" >
                                                 <option value="" <?php if($doc_status == "") echo "selected"; ?>>컨펌상태(전체)</option>
-                                                <option value="0" <?php if($doc_status == 0) echo "selected"; ?>>미제출</option>
+                                                <option value="2" <?php if($doc_status == 2) echo "selected"; ?>>미확인</option>
                                                 <option value="-1" <?php if($doc_status == -1) echo "selected"; ?>>반송</option>
                                                 <option value="1" <?php if($doc_status == 1) echo "selected"; ?>>완료</option>
+                                                <option value="3" <?php if($doc_status == 3) echo "selected"; ?>>미제출</option>
                                             </select>
                                             
                                         </td>
@@ -175,12 +176,14 @@
                                     <td class="text-center"><?php echo $list->DOC_LAST_UPDATE_DATE ?></td>
                                     <td class="text-center"><?php echo $list->DOC_LAST_CHECK_DATE ?></td>
                                     <td class="text-center">
-                                        <?php if($list->DOC_STATUS == 0): ?>
-                                            미제출
+                                        <?php if($list->DOC_STATUS == 2): ?>
+                                            미확인
                                         <?php elseif($list->DOC_STATUS == 1): ?>
                                             OK
                                         <?php elseif($list->DOC_STATUS == -1): ?>
                                             반송
+                                        <?php elseif($list->DOC_STATUS == 0): ?>
+                                            미제출
                                         <?php endif ?>
                                     </td>
                                     <td class="text-center"><input type="button" class="btn btn-xs btn-primary showDocument" data-doc_seq="<?php echo $list->DOC_SEQ?>" value="서류보기"></td>
@@ -722,8 +725,8 @@
                                                         }
                                     html +=             ">반송</option>";
 
-                                    html +=             "<option value=\"0\" ";
-                                                        if(document["DOC_STATUS"] == 0){
+                                    html +=             "<option value=\"2\" ";
+                                                        if(document["DOC_STATUS"] == 2){
                                                             html += "selected"
                                                         }
                                     html +=             ">미확인</option>";
@@ -766,11 +769,24 @@
                 console.log(select);
                 var data = {};
                 data["DOC_SEQ"] = doc_seq;
+                
                 $.each(select, function(index, form){
                     var value = $(form).val();
                     var key= $(form).attr('id');
                     data[key] = value;
-                })
+                }) 
+                
+                var isOk = data["DOC_STATUS"];
+                for (const [key, value] of Object.entries(data)) {
+                    if(isOk == 1 && key != "DOC_STATUS" && key !="DOC_SEQ"){
+                        if(value != 2){
+                            alert("전체문서 상태가 OK가 아닙니다.")
+                            return false;
+                        }
+                    }
+                    console.log(`${key}: ${value}`);
+                }
+
 
                 $.ajax({
                         url: "/admin/recruit/saveUserDocument",

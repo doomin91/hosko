@@ -54,15 +54,25 @@
                                     </div>
                                     <div class="membermission_cont">
                                         <ul class="membermission_title">
-                                            <li><span>일반</span></li>
-                                            <li><span>상담진행</span></li>
-                                            <li><span>참가 계약확정</span></li>
-                                            <li><span class="on">멘토링 서비스</span></li>
-                                            <li><span>비자수속</span></li>
-                                            <li><span>출국</span></li>
+                                            <li><em class="title_num"><img src="../static/front/img/membermission_m01.jpg" style="width:100%;"></em><span class="<?php if(array_search($USER->USER_LEVEL, [1, 2, 3, 4]) !== false) echo "on"?>">일반</span></li>
+                                            <li><em class="title_num"><img src="../static/front/img/membermission_m02.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 5) echo "on"?>">상담진행</span></li>
+                                            <li><em class="title_num"><img src="../static/front/img/membermission_m03.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 7) echo "on"?>">참가 계약확정</span></li>
+                                            <li><em class="title_num"><img src="../static/front/img/membermission_m04.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 8) echo "on"?>">멘토링 서비스</span></li>
+                                            <li><em class="title_num"><img src="../static/front/img/membermission_m05.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 8) echo "on"?>">비자수속</span></li>
+                                            <li><em class="title_num"><img src="../static/front/img/membermission_m06.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 9) echo "on"?>">출국</span></li>
                                         </ul>
                                         <div class="memebermission_step">
-                                            *** 회원님은 현재 <span>참가계약 확정</span> 단계입니다.
+                                            *** 회원님은 현재 
+                                            <span>
+                                                <?php if(array_search($USER->USER_LEVEL, [1, 2, 3, 4]) !== false) echo "일반"?>
+                                                <?php if($USER->USER_LEVEL== 5) echo "상담진행"?>
+                                                <?php if($USER->USER_LEVEL== 6) echo "참가 계약확정"?>
+                                                <?php if($USER->USER_LEVEL== 7) echo "멘토링 서비스"?>
+                                                <?php if($USER->USER_LEVEL== 8) echo "비자수속"?>
+                                                <?php if($USER->USER_LEVEL== 9) echo "출국"?>
+                                                
+                                            </span> 
+                                            단계입니다.
                                         </div>
                                     </div>
                                 </div>

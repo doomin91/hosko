@@ -244,33 +244,36 @@ class Recruit extends CI_Controller {
         }else{
             $user_info = $this->UserModel->getUserInfo($this->session->userdata("USER_SEQ"));
             // print_r($user_info);
-            $time = time();
-            $tmp = explode(".", $user_info->USER_PROFILE);
+            if($user_info->USER_PROFILE && $user_info->USER_PROFILE != ""){
+                $time = time();
+                $tmp = explode(".", $user_info->USER_PROFILE);
 
-            $thumb_file_path = "";
-			
-            $config['image_library'] = 'gd2';
-            $config['source_image'] = ".".$user_info->USER_PROFILE;
-            $config['new_image'] = "./upload/apply/"."APPLY".$time."_".$insert_id."_USER_THUMB".".".end($tmp);
-            $pathArr = explode(".",$config['new_image']);
-            
-            $config['width'] = 110;
-            $config['height'] = 120;
+                $thumb_file_path = "";
+                
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = ".".$user_info->USER_PROFILE;
+                $config['new_image'] = "./upload/apply/"."APPLY".$time."_".$insert_id."_USER_THUMB".".".end($tmp);
+                $pathArr = explode(".",$config['new_image']);
+                
+                $config['width'] = 110;
+                $config['height'] = 120;
 
-            // $this->load->library('image_lib', $config);
-            $this->image_lib->initialize($config);
+                // $this->load->library('image_lib', $config);
+                $this->image_lib->initialize($config);
 
-            if($this->image_lib->resize() == false){
-                echo json_encode(array("code" => "202", "error" => $this->image_lib->display_errors()));
-                // print_r($this->image_lib->display_errors());
-            }else{
-                // array_push($thumb_file_path, $pathArr[1].".".$pathArr[2]);
-                $thumb_file_path = $pathArr[1].".".$pathArr[2];
+                if($this->image_lib->resize() == false){
+                    echo json_encode(array("code" => "202", "error" => $this->image_lib->display_errors()));
+                    // print_r($this->image_lib->display_errors());
+                }else{
+                    // array_push($thumb_file_path, $pathArr[1].".".$pathArr[2]);
+                    $thumb_file_path = $pathArr[1].".".$pathArr[2];
+                }
+                
+                $this->image_lib->clear();
+
+                $result2 = $this->RecruitModel->updateRecruitApply($insert_id, array("APP_USER_IMG" => $thumb_file_path));
             }
-			
-			$this->image_lib->clear();
-
-            $result2 = $this->RecruitModel->updateRecruitApply($insert_id, array("APP_USER_IMG" => $thumb_file_path));
+            
 
         }
 
