@@ -371,7 +371,7 @@ class Consult extends CI_Controller {
 			
             $config['image_library'] = 'gd2';
             $config['source_image'] = $file_path;
-            $config['new_image'] = "./upload/apply/"."APPLYB".$time."_".$app_seq."_USER_THUMB".".".end($tmp);
+            $config['new_image'] = "./upload/apply/"."APPLY".$time."_".$app_seq."_USER_THUMB".".".end($tmp);
             $pathArr = explode(".",$config['new_image']);
             
             $config['width'] = 110;
