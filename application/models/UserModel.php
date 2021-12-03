@@ -587,8 +587,10 @@ class UserModel extends CI_Model{
                 $this->db->like("TBL_HOSKO_USER.USER_ID", $whereArr["search_text"]);
             }
         }else if(isset($whereArr["search_option"]) && $whereArr["search_option"] == "all"){
+			$this->db->group_start();
             $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["search_text"]);
             $this->db->or_like("TBL_HOSKO_USER.USER_ID", $whereArr["search_text"]);
+			$this->db->group_end();
         }
 
 		if(isset($whereArr["start_date"]) && $whereArr["start_date"] != ""){
@@ -597,6 +599,14 @@ class UserModel extends CI_Model{
 
 		if(isset($whereArr["end_date"]) && $whereArr["end_date"] != ""){
             $this->db->where("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE <=", $whereArr["end_date"]." 23:59:59");
+		}
+
+		if(isset($whereArr["doc_status"]) && $whereArr["doc_status"] != ""){
+			if($whereArr["doc_status"] == "3"){
+				$this->db->where("TBL_HOSKO_USER_DOCUMENT.DOC_STATUS", NULL);
+			}else{
+				$this->db->where("TBL_HOSKO_USER_DOCUMENT.DOC_STATUS", $whereArr["doc_status"]);
+			}
 		}
 
 		if(isset($whereArr["user_level"]) && $whereArr["user_level"] != ""){
@@ -623,8 +633,10 @@ class UserModel extends CI_Model{
                 $this->db->like("TBL_HOSKO_USER.USER_ID", $whereArr["search_text"]);
             }
         }else if(isset($whereArr["search_option"]) && $whereArr["search_option"] == "all"){
+            $this->db->group_start();
             $this->db->like("TBL_HOSKO_USER.USER_NAME", $whereArr["search_text"]);
             $this->db->or_like("TBL_HOSKO_USER.USER_ID", $whereArr["search_text"]);
+			$this->db->group_end();
         }
 
 		if(isset($whereArr["start_date"]) && $whereArr["start_date"] != ""){
@@ -633,6 +645,14 @@ class UserModel extends CI_Model{
 
 		if(isset($whereArr["end_date"]) && $whereArr["end_date"] != ""){
             $this->db->where("TBL_HOSKO_USER_DOCUMENT.DOC_LAST_UPDATE_DATE <=", $whereArr["end_date"]." 23:59:59");
+		}
+
+		if(isset($whereArr["doc_status"]) && $whereArr["doc_status"] != ""){
+			if($whereArr["doc_status"] == "3"){
+				$this->db->where("TBL_HOSKO_USER_DOCUMENT.DOC_STATUS", NULL);
+			}else{
+				$this->db->where("TBL_HOSKO_USER_DOCUMENT.DOC_STATUS", $whereArr["doc_status"]);
+			}
 		}
 
 		if(isset($whereArr["user_level"]) && $whereArr["user_level"] != ""){

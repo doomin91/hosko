@@ -324,21 +324,21 @@
             var form_data = $('#myApplyCreateForm').serializeArray(); // serialize 사용
 
             $.each(form_data, function (key, input) {
-                var ip = "";
-                console.log(input);
-                if(input.name == "apply_career" || input.name == "apply_self_introduce"){
-                    ip = $(`textarea[name=${input.name}]`);
-                }else{
-                    ip = $(`input[name=${input.name}]`);
-                }
+                // var ip = "";
+                // console.log(input);
+                // if(input.name == "apply_career" || input.name == "apply_self_introduce"){
+                //     ip = $(`textarea[name=${input.name}]`);
+                // }else{
+                //     ip = $(`input[name=${input.name}]`);
+                // }
                 
-                console.log(ip);
-                if($(ip).val() == ""){
-                    alert("빈 값을 넣어주세요");
-                    $(ip).focus();
-                    is_blank = true;
-                    return false;
-                }
+                // console.log(ip);
+                // if($(ip).val() == ""){
+                //     alert("빈 값을 넣어주세요");
+                //     $(ip).focus();
+                //     is_blank = true;
+                //     return false;
+                // }
                 
                 
                 fd.append(input.name, input.value);
@@ -353,9 +353,9 @@
                 console.log(value);
             }
 
-            if(is_blank){
-                return false;
-            }
+            // if(is_blank){
+            //     return false;
+            // }
             
             if($(".filename").val() != ""){
                 for (var key of FILE.keys()) {
@@ -384,7 +384,7 @@
                 success: function(resultMsg){
                     console.log(resultMsg.code);
                     if(resultMsg.code == 200){
-                        alert("지원 되었습니다");
+                        alert("지원이 완료되었습니다");
                         document.location.href="/consult/apply";
                         
                     }else{

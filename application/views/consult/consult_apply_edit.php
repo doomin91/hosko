@@ -205,7 +205,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>미국비자발급거절여뷰</th>
+                                                    <th>미국 비자발급거절 여부</th>
                                                     <td class="recruitRadio">
                                                         <label for="apply_visa_flag_y"><input type="radio" name="apply_visa_flag" id="apply_visa_flag_y" value="Y" <?php if($MY_APPLY->APP_VISA_FLAG == 'Y') echo "checked"?>> Yes</label>
                                                         <label for="apply_visa_flag_n"><input type="radio" name="apply_visa_flag" id="apply_visa_flag_n" value="N" <?php if($MY_APPLY->APP_VISA_FLAG == 'N') echo "checked"?>> No</label>
@@ -300,21 +300,21 @@
 
             var form_data = $('#myApplyEditForm').serializeArray(); // serialize 사용
             $.each(form_data, function (key, input) {
-                var ip = "";
-                console.log(input);
-                if(input.name == "apply_career" || input.name == "apply_self_introduce"){
-                    ip = $(`textarea[name=${input.name}]`);
-                }else{
-                    ip = $(`input[name=${input.name}]`);
-                }
+                // var ip = "";
+                // console.log(input);
+                // if(input.name == "apply_career" || input.name == "apply_self_introduce"){
+                //     ip = $(`textarea[name=${input.name}]`);
+                // }else{
+                //     ip = $(`input[name=${input.name}]`);
+                // }
                 
-                console.log(ip);
-                if($(ip).val() == ""){
-                    alert("빈 값을 넣어주세요");
-                    $(ip).focus();
-                    is_blank = true;
-                    return false;
-                }
+                // console.log(ip);
+                // if($(ip).val() == ""){
+                //     alert("빈 값을 넣어주세요");
+                //     $(ip).focus();
+                //     is_blank = true;
+                //     return false;
+                // }
                 
                 
                 fd.append(input.name, input.value);
