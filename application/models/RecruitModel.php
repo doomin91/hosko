@@ -339,9 +339,9 @@ class RecruitModel extends CI_Model{
         $this->db->where("TBL_HOSKO_USER_INTEREST_RECRUIT.USER_SEQ", $user_seq);
         
         $this->db->join("TBL_HOSKO_USER_INTEREST_RECRUIT", "TBL_HOSKO_USER_INTEREST_RECRUIT.REC_SEQ = TBL_HOSKO_RECRUIT.REC_SEQ");
-        $this->db->join("TBL_HOSKO_USER", "TBL_HOSKO_USER.USER_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ");
+        $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ");
 
-        $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_USER.USER_NAME AS ADMIN_USER_NAME");
+        $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_ADMIN.ADMIN_NAME AS ADMIN_USER_NAME");
         
         return $this->db->get("TBL_HOSKO_RECRUIT")->result();
     }
@@ -354,10 +354,10 @@ class RecruitModel extends CI_Model{
             if($whereArr["searchField"] == "title" && $whereArr["searchString"] != ""){
                 $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
             }else if($whereArr["searchField"] == "writer" && $whereArr["searchString"] != ""){
-                $this->db->like("TBL_HOSKO_ADMIN.ADMIN_NAME", $whereArr["searchString"]);
+                $this->db->like("TBL_HOSKO_ADMIN.ADMIN_ID", $whereArr["searchString"]);
             }else if($whereArr["searchField"] == "all" && $whereArr["searchString"] != ""){
                 $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
-                $this->db->or_like("TBL_HOSKO_ADMIN.ADMIN_NAME", $whereArr["searchString"]);
+                $this->db->or_like("TBL_HOSKO_ADMIN.ADMIN_ID", $whereArr["searchString"]);
             }
             $this->db->group_end();
         }
@@ -367,7 +367,7 @@ class RecruitModel extends CI_Model{
 
         $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ", "LEFT");
 
-        $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_ADMIN.ADMIN_NAME AS ADMIN_USER_NAME");
+        $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_ADMIN.ADMIN_ID AS ADMIN_USER_NAME");
         
         $this->db->group_by("TBL_HOSKO_RECRUIT.REC_SEQ");
         $this->db->order_by("TBL_HOSKO_RECRUIT.REC_DISPLAY_ORDER", "DESC");
@@ -382,10 +382,10 @@ class RecruitModel extends CI_Model{
             if($whereArr["searchField"] == "title" && $whereArr["searchString"] != ""){
                 $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
             }else if($whereArr["searchField"] == "writer" && $whereArr["searchString"] != ""){
-                $this->db->like("TBL_HOSKO_ADMIN.ADMIN_NAME", $whereArr["searchString"]);
+                $this->db->like("TBL_HOSKO_ADMIN.ADMIN_ID", $whereArr["searchString"]);
             }else if($whereArr["searchField"] == "all" && $whereArr["searchString"] != ""){
                 $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
-                $this->db->or_like("TBL_HOSKO_ADMIN.ADMIN_NAME", $whereArr["searchString"]);
+                $this->db->or_like("TBL_HOSKO_ADMIN.ADMIN_ID", $whereArr["searchString"]);
             }
             $this->db->group_end();
         }
@@ -407,10 +407,10 @@ class RecruitModel extends CI_Model{
             if($whereArr["searchField"] == "title" && $whereArr["searchString"] != ""){
                 $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
             }else if($whereArr["searchField"] == "writer" && $whereArr["searchString"] != ""){
-                $this->db->like("TBL_HOSKO_ADMIN.ADMIN_NAME", $whereArr["searchString"]);
+                $this->db->like("TBL_HOSKO_ADMIN.ADMIN_ID", $whereArr["searchString"]);
             }else if($whereArr["searchField"] == "all" && $whereArr["searchString"] != ""){
                 $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
-                $this->db->or_like("TBL_HOSKO_ADMIN.ADMIN_NAME", $whereArr["searchString"]);
+                $this->db->or_like("TBL_HOSKO_ADMIN.ADMIN_ID", $whereArr["searchString"]);
             }
             $this->db->group_end();
         }
@@ -420,7 +420,7 @@ class RecruitModel extends CI_Model{
 
         $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ", "LEFT");
 
-        $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_ADMIN.ADMIN_NAME AS ADMIN_USER_NAME", "LEFT");
+        $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_ADMIN.ADMIN_ID AS ADMIN_USER_NAME", "LEFT");
         
         $this->db->group_by("TBL_HOSKO_RECRUIT.REC_SEQ");
         $this->db->order_by("TBL_HOSKO_RECRUIT.REC_DISPLAY_ORDER", "DESC");
@@ -435,10 +435,10 @@ class RecruitModel extends CI_Model{
             if($whereArr["searchField"] == "title" && $whereArr["searchString"] != ""){
                 $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
             }else if($whereArr["searchField"] == "writer" && $whereArr["searchString"] != ""){
-                $this->db->like("TBL_HOSKO_ADMIN.ADMIN_NAME", $whereArr["searchString"]);
+                $this->db->like("TBL_HOSKO_ADMIN.ADMIN_ID", $whereArr["searchString"]);
             }else if($whereArr["searchField"] == "all" && $whereArr["searchString"] != ""){
                 $this->db->like("TBL_HOSKO_RECRUIT.REC_TITLE", $whereArr["searchString"]);
-                $this->db->or_like("TBL_HOSKO_ADMIN.ADMIN_NAME", $whereArr["searchString"]);
+                $this->db->or_like("TBL_HOSKO_ADMIN.ADMIN_ID", $whereArr["searchString"]);
             }
             $this->db->group_end();
         }

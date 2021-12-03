@@ -155,6 +155,12 @@
                                     <td class="text-center"><?php echo $list->APP_REG_DATE ?></td>
                                     <td class="text-center">
 										<select class="common_select">
+											<!-- <option value="6" <?php if($list->APP_STATUS==6) echo "selected"?>>일반</option>
+											<option value="10" <?php if($list->APP_STATUS==10) echo "selected"?>>상담진행</option>
+											<option value="4" <?php if($list->APP_STATUS==4) echo "selected"?>>참가 계약확정</option>
+											<option value="3" <?php if($list->APP_STATUS==3) echo "selected"?>>멘토링 서비스</option>
+											<option value="2" <?php if($list->APP_STATUS==2) echo "selected"?>>비자수속</option>
+											<option value="5" <?php if($list->APP_STATUS==5) echo "selected"?>>출국</option> -->
 											<option value="1" <?php if($list->APP_STATUS==1) echo "selected"?>>온라인상담</option>
 											<option value="2" <?php if($list->APP_STATUS==2) echo "selected"?>>지원</option>
 											<option value="3" <?php if($list->APP_STATUS==3) echo "selected"?>>지원서류제출</option>

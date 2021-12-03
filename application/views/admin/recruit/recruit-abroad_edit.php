@@ -24,7 +24,7 @@
 
 		  <!-- page header -->
 		  <div class="pageheader">
-			<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b>유학상세보기</b> <span></span></h2>
+			<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b>포지션공고 등록</b> <span></span></h2>
 			<div class="breadcrumbs">
 			  <ol class="breadcrumb">
 				<li>관리자 페이지</li>

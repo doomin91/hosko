@@ -54,24 +54,24 @@
                                     </div>
                                     <div class="membermission_cont">
                                         <ul class="membermission_title">
-                                            <li><em class="title_num"><img src="../static/front/img/membermission_m01.jpg" style="width:100%;"></em><span class="<?php if(array_search($USER->USER_LEVEL, [1, 2, 3, 4]) !== false) echo "on"?>">일반</span></li>
-                                            <li><em class="title_num"><img src="../static/front/img/membermission_m02.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 5) echo "on"?>">상담진행</span></li>
-                                            <li><em class="title_num"><img src="../static/front/img/membermission_m03.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 6) echo "on"?>">참가 계약확정</span></li>
-                                            <li><em class="title_num"><img src="../static/front/img/membermission_m04.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 8) echo "on"?>">멘토링 서비스</span></li>
-                                            <li><em class="title_num"><img src="../static/front/img/membermission_m05.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 8) echo "on"?>">비자수속</span></li>
-                                            <li><em class="title_num"><img src="../static/front/img/membermission_m06.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 9) echo "on"?>">출국</span></li>
+                                            <li><em class="title_num"><img src="../static/front/img/membermission_m01.jpg" style="width:100%;"></em><span class="<?php if(array_search($USER->USER_LEVEL, [6, 7, 8, 9]) !== false) echo "on"?>">일반</span></li>
+                                            <li><em class="title_num"><img src="../static/front/img/membermission_m02.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 10) echo "on"?>">상담진행</span></li>
+                                            <li><em class="title_num"><img src="../static/front/img/membermission_m03.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 4) echo "on"?>">참가 계약확정</span></li>
+                                            <li><em class="title_num"><img src="../static/front/img/membermission_m04.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 3) echo "on"?>">멘토링 서비스</span></li>
+                                            <li><em class="title_num"><img src="../static/front/img/membermission_m05.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 2) echo "on"?>">비자수속</span></li>
+                                            <li><em class="title_num"><img src="../static/front/img/membermission_m06.jpg" style="width:100%;"></em><span class="<?php if($USER->USER_LEVEL== 5) echo "on"?>">출국</span></li>
                                         </ul>
                                         <div class="memebermission_step">
                                             *** 회원님은 현재 
                                             <span>
-                                                <?php if(array_search($USER->USER_LEVEL, [1, 2, 3, 4]) !== false) echo "일반"?>
-                                                <?php if($USER->USER_LEVEL== 5) echo "상담진행"?>
-                                                <?php if($USER->USER_LEVEL== 6) echo "참가 계약확정"?>
-                                                <?php if($USER->USER_LEVEL== 7) echo "멘토링 서비스"?>
-                                                <?php if($USER->USER_LEVEL== 8) echo "비자수속"?>
-                                                <?php if($USER->USER_LEVEL== 9) echo "출국"?>
-                                                
+                                                <?php if(array_search($USER->USER_LEVEL, [6, 7, 8, 9]) !== false) echo "일반"?> <!-- 일반회원(9), 탈퇴(6), 환불(7),파기(8) -->
+                                                <?php if($USER->USER_LEVEL== 10) echo "상담진행"?> <!-- 관심회원(10) -->
+                                                <?php if($USER->USER_LEVEL== 4) echo "참가 계약확정"?> <!-- 응시회원(4) -->
+                                                <?php if($USER->USER_LEVEL== 3) echo "멘토링 서비스"?> <!-- 특별회원(3) -->
+                                                <?php if($USER->USER_LEVEL== 2) echo "비자수속"?> <!-- 합격회원(2) -->
+                                                <?php if($USER->USER_LEVEL== 5) echo "출국"?> <!-- 정회원(5) -->
                                             </span> 
+                                            
                                             단계입니다.
                                         </div>
                                     </div>

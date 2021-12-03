@@ -190,6 +190,25 @@ class Recruit extends CI_Controller {
 
 		$result = $this->RecruitModel->updateRecruitApply($app_seq, $where_arr);
 
+		$apply = $this->RecruitModel->getRecruitApplyInfo($app_seq);
+		$user_level = 0;
+
+		if($app_status == 1){
+			$user_level = 10;
+		}else if($app_status == 2){
+			$user_level = 4;
+		}else if($app_status == 6){
+			$user_level = 3;
+		}else if($app_status == 9){
+			$user_level = 2;
+		}else if($app_status == 11){
+			$user_level = 5;
+		}
+
+		if($user_level != 0){
+			$result = $this->UserModel->editUser(array("USER_LEVEL" => $user_level), $apply->USER_SEQ);
+		}
+
 		if ($result == true){
 			echo json_encode(array("code" => "200"));
 		}else{
