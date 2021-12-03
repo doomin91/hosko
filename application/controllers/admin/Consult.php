@@ -603,4 +603,16 @@ class Consult extends CI_Controller {
 			echo json_encode(array("code" => "202", "msg" => "설명회 삭제중 문제가 생겼습니다."));
 		}
 	}
+
+	public function onlineConsultDelete(){
+		$oc_seq = $this->input->post("oc_seq");
+
+		$result = $this->ConsultModel->deleteOnlineConsult($oc_seq);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "온라인 상담 삭제 완료 되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "온라인 상담 삭제중 문제가 생겼습니다."));
+		}
+	}
 }

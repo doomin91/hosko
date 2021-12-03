@@ -1007,4 +1007,16 @@ class User extends CI_Controller {
 
 		echo $this->email->print_debugger();
 	}
+
+	public function userDeleteProc(){
+		$user_seq = $this->input->post("user_seq");
+
+		$result = $this->UserModel->userDelete($user_seq);
+		
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "삭제 완료되었습니다.", "result" => $result));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "회원 삭제중 문제가 생겼습니다."));
+		}
+	}
 }

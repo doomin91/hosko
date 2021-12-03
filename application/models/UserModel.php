@@ -727,5 +727,13 @@ class UserModel extends CI_Model{
 		return $this->db->update("TBL_HOSKO_USER_CERTIFICATE", $updateArr);
 	}
 
-	
+	public function setLoginUpdate($user_seq){
+		$this->db->where("TBL_HOSKO_USER.USER_SEQ", $user_seq);
+		return $this->db->update("TBL_HOSKO_USER", array("USER_LAST_LOGIN"=>date("Y-m-d H:i:s"), "USER_LAST_LOGIN_IP"=>$_SERVER["REMOTE_ADDR"], "USER_LOGIN_CNT"=>(int)"TBL_HOSKO_USER.USER_LOGIN_CNT"+1));
+	}
+
+	public function userDelete($user_seq){
+		$this->db->where("TBL_HOSKO_USER.USER_SEQ", $user_seq);
+		return $this->db->update("TBL_HOSKO_USER", array("USER_DEL_YN" => "Y"));
+	}
 }

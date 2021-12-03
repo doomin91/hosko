@@ -64,6 +64,8 @@ class Home extends CI_Controller {
 			);
 			$this->session->set_userdata($session_data);
 
+			$this->BasicModel->adminLoginTimeUpdate($user->ADMIN_SEQ);
+
 			echo json_encode(array("code" => "200"));
 		}
 	}
