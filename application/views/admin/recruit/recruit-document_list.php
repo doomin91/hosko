@@ -53,15 +53,15 @@
                                         <td class="col-sm-10">
                                             <select name="user_level" class="documentSearchUserLevel document_search_option" >
                                                 <option value="" <?php if($user_level == "") echo "selected"; ?>>회원등급(전체)</option>
-                                                <option value="1" <?php if($user_level == 1) echo "selected"; ?>>일반회원</option>
-                                                <option value="2" <?php if($user_level == 2) echo "selected"; ?>>정회원</option>
-                                                <option value="3" <?php if($user_level == 3) echo "selected"; ?>>합격회원</option>
-                                                <option value="4" <?php if($user_level == 4) echo "selected"; ?>>특별회원</option>
-                                                <option value="5" <?php if($user_level == 5) echo "selected"; ?>>응시회원</option>
-                                                <option value="6" <?php if($user_level == 6) echo "selected"; ?>>관심회원</option>
-                                                <option value="7" <?php if($user_level == 7) echo "selected"; ?>>환불회원</option>
-                                                <option value="8" <?php if($user_level == 8) echo "selected"; ?>>파기회원</option>
-                                                <option value="9" <?php if($user_level == 9) echo "selected"; ?>>탈퇴회원</option>
+                                                <option value="1" <?php if($user_level == 2) echo "selected"; ?>>합격회원</option>
+                                                <option value="2" <?php if($user_level == 3) echo "selected"; ?>>특별회원</option>
+                                                <option value="3" <?php if($user_level == 4) echo "selected"; ?>>응시회원</option>
+                                                <option value="4" <?php if($user_level == 5) echo "selected"; ?>>정회원</option>
+                                                <option value="5" <?php if($user_level == 6) echo "selected"; ?>>탈퇴회원</option>
+                                                <option value="6" <?php if($user_level == 7) echo "selected"; ?>>환불회원</option>
+                                                <option value="7" <?php if($user_level == 8) echo "selected"; ?>>파기회원</option>
+                                                <option value="8" <?php if($user_level == 9) echo "selected"; ?>>일반회원</option>
+                                                <option value="9" <?php if($user_level == 10) echo "selected"; ?>>관심회원</option>
                                             </select>
                                             <select name="doc_status" class="documentSearchUserLevel document_search_option" >
                                                 <option value="" <?php if($doc_status == "") echo "selected"; ?>>컨펌상태(전체)</option>
@@ -153,23 +153,23 @@
 									<td class="text-center"><?php echo $list->USER_NAME ?></td>
 									<td class="text-center"><?php echo $list->USER_ID ?></td>
                                     <td class="text-center">
-                                        <?php if($list->USER_LEVEL == 1): ?>
+                                        <?php if($list->USER_LEVEL == 9): ?>
                                             일반회원
-                                        <?php elseif($list->USER_LEVEL == 2): ?>
-                                            정회원
-                                        <?php elseif($list->USER_LEVEL == 3): ?>
-                                            합격회원
-                                        <?php elseif($list->USER_LEVEL == 4): ?>
-                                            특별회원
                                         <?php elseif($list->USER_LEVEL == 5): ?>
+                                            정회원
+                                        <?php elseif($list->USER_LEVEL == 2): ?>
+                                            합격회원
+                                        <?php elseif($list->USER_LEVEL == 3): ?>
+                                            특별회원
+                                        <?php elseif($list->USER_LEVEL == 4): ?>
                                             응시회원
-                                        <?php elseif($list->USER_LEVEL == 6): ?>
+                                        <?php elseif($list->USER_LEVEL == 10): ?>
                                             관심회원
                                         <?php elseif($list->USER_LEVEL == 7): ?>
                                             환불회원
                                         <?php elseif($list->USER_LEVEL == 8): ?>
                                             파기회원
-                                        <?php elseif($list->USER_LEVEL == 9): ?>
+                                        <?php elseif($list->USER_LEVEL == 6): ?>
                                             탈퇴회원
                                         <?php endif ?>
                                     </td>

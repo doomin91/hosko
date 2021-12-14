@@ -352,16 +352,16 @@
 
                                 <div class="">
                                     <div class="row" style="margin-bottom: 10px">
-                                        <div class="col-md-10"><h3>Languange Skills</h3></div>
+                                        <div class="col-md-10"><h3>Language Skills</h3></div>
                                     </div>
-                                    <div class="resumeJoinBox resumeJoinBoxWider">
+                                    <div class="resumeJoinBox resumeJoinBoxWider" style="height: 250px">
                                         <div class="resumeBox_label">
                                             <div class="resume_activity_box wid25p">Language</div>
                                             <div class="resume_activity_box wid25p">Speak</div>
                                             <div class="resume_activity_box wid25p">Written</div>
                                         </div>
                                         <div class="resumeBox">
-                                            <?php if(isset($RESUME_LANG)) : ?>
+                                            <?php if(isset($RESUME_LANG) && count($RESUME_LANG) > 0) : ?>
                                                 <?php foreach($RESUME_LANG as $LANG): ?>
                                                     <div class="box_content">
                                                         <input type="hidden" name="rlang_seq[]" value="<?php echo $LANG->SEQ ?>">
@@ -384,12 +384,45 @@
                                                         </div>
                                                     </div>   
                                                 <?php endforeach ?>
-                                            <?php endif?>
+                                            <?php else:?>
+                                                <?php for($i = 0 ; $i < 4 ; $i++) :?>
+                                                    <div class="box_content">
+                                                        <div class="resume_activity_box wid25p">
+                                                            <?php if($i == 0) :?>
+                                                                <input type="text" name="rlang_name[]" value="English" readonly style="cursor: not-allowed">
+                                                            <?php elseif($i == 1 ):?>
+                                                                <input type="text" name="rlang_name[]" value="Japanese" readonly style="cursor: not-allowed">
+                                                            <?php elseif($i == 2 ):?>
+                                                                <input type="text" name="rlang_name[]" value="Chinese" readonly style="cursor: not-allowed">
+                                                            <?php else :?>
+                                                                <input type="text" name="rlang_name[]" value="" placeholder="ETC" >
+                                                            <?php endif?>
+                                                            
+                                                        </div>
+                                                        <div class="resume_activity_box wid25p">
+                                                            <select name="rlang_speaking[]">
+                                                                <option value="0">BASIC</option>
+                                                                <option value="1">GOOD</option>
+                                                                <option value="2">EXCELLENT</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="resume_activity_box wid25p">
+                                                            <select name="rlang_writing[]">
+                                                                <option value="0">BASIC</option>
+                                                                <option value="1">GOOD</option>
+                                                                <option value="2">EXCELLENT</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>   
+                                                <?php endfor?>
+                                                
+                                            <?php endif ?>
+                                            
                                         </div>
-                                        <div class="col-sm-12 text-right">
+                                        <!-- <div class="col-sm-12 text-right">
                                             <input type="button" class="btn btn-default" value="삭제" id="del_resume_lskil" data-which="lskil">
                                             <input type="button" class="btn btn-primary" value="추가" id="add_resume_lskil" data-which="lskil">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     
                                 </div>

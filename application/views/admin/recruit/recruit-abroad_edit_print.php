@@ -67,7 +67,7 @@
                                                 <div class="col-sm-2 ctg_select_form">
                                                     <select name="ctg" class="chosen-select chosen-transparent chosen-single form-control ctg_select search_field" >
                                                         <option value="" >:: 대분류 ::</option>
-                                                        <option value="1" >인턴쉽</option>
+                                                        <option value="1" >인턴십</option>
                                                         <option value="2" >채용&헤드헌팅</option>
                                                         <option value="3" >유학</option>
                                                     </select>
