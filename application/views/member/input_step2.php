@@ -179,9 +179,21 @@
                                             <div class="joinBoxTitle">학과</div>
                                             <div class="joinBoxSelect">
                                                 <select class="" name="user_department">
+                                                    
                                                     <option value="">학과선택</option>
+                                                    <!--
                                                     <option value="1">호텔/관광</option>
                                                     <option value="3">조리</option>
+                                                    <option value="4">기타/외국어</option>
+                                                    -->
+                                                    <option value="5">상경계</option>
+                                                    <option value="6">이공계</option>
+                                                    <option value="1">호텔/관광</option>
+                                                    <option value="3">식품/조리</option>
+                                                    <option value="7">패션/디자인</option>
+                                                    <option value="8">산림/환경</option>
+                                                    <option value="9">간호</option>
+                                                    <option value="10">예체능</option>
                                                     <option value="4">기타/외국어</option>
                                                 </select>
                                             </div>

@@ -382,6 +382,7 @@
 													<option value="USER_LEAVE_COUNTRY" <?php if ($search_field == "USER_LEAVE_COUNTRY") echo "selected"; ?>>출국국가</option>
 													<option value="USER_LEAVE_HOTEL" <?php if ($search_field == "USER_LEAVE_HOTEL") echo "selected"; ?>>출국호텔</option>
 													<option value="USER_COMPANY" <?php if ($search_field == "USER_COMPANY") echo "selected"; ?>>학교/직장</option>
+													<option value="USER_MAJOR" <?php if ($search_field == "USER_MAJOR") echo "selected"; ?>>전공/부서</option>
 													<option value="USER_MANAGER_NAME" <?php if ($search_field == "USER_MANAGER_NAME") echo "selected"; ?>>담당자</option>
 												</select>
 											</div>

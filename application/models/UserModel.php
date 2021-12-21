@@ -56,6 +56,11 @@ class UserModel extends CI_Model{
 				$this->db->or_like("TBL_HOSKO_USER.USER_NUMBER", $whereArr["search_string"]);
 				$this->db->or_like("TBL_HOSKO_USER.USER_HP", $whereArr["search_string"]);
 				$this->db->or_like("TBL_HOSKO_USER.USER_EMAIL", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_LEAVE_COUNTRY", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_LEAVE_HOTEL", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_COMPANY", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_MAJOR", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_MANAGER_NAME", $whereArr["search_string"]);
 				$this->db->group_end();
 			}else{
 				$this->db->like("TBL_HOSKO_USER.".$whereArr["search_field"], $whereArr["search_string"]);
@@ -118,6 +123,11 @@ class UserModel extends CI_Model{
 				$this->db->or_like("TBL_HOSKO_USER.USER_NUMBER", $whereArr["search_string"]);
 				$this->db->or_like("TBL_HOSKO_USER.USER_HP", $whereArr["search_string"]);
 				$this->db->or_like("TBL_HOSKO_USER.USER_EMAIL", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_LEAVE_COUNTRY", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_LEAVE_HOTEL", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_COMPANY", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_MAJOR", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_MANAGER_NAME", $whereArr["search_string"]);
 				$this->db->group_end();
 			}else{
 				$this->db->like("TBL_HOSKO_USER.".$whereArr["search_field"], $whereArr["search_string"]);
