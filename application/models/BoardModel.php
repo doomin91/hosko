@@ -191,7 +191,7 @@ class BoardModel extends CI_Model{
 
     public function getPostsCnt($BOARD_SEQ, $wheresql){
         $this->db->select("TBL_HOSKO_BOARD_POSTS.POST_SEQ");
-        // $this->db->where("POST_DEL_YN", "N");
+        $this->db->where("POST_DEL_YN", "N");
 
         if ((isset($wheresql["reg_date_start"])) && ($wheresql["reg_date_start"] != "")){
 			$this->db->where("DATE(TBL_HOSKO_BOARD_POSTS.POST_REG_DATE) >=", $wheresql["reg_date_start"]);

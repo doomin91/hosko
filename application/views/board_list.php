@@ -114,10 +114,16 @@
                                                         echo "<a onclick=\"alert('게시글 권한이 없습니다.');\">" . $this->customclass->strcut(strip_tags($lt->POST_SUBJECT), 100) . "</a>";
                                                     }
                                                     echo "<img src=\"/static/front/img/ico_lock.png\" style=\"width:12px;height:18px;margin: 0 5px;\">";												
-                                                } else {
-                                                    echo "<a href=\"/board/board_view/$lt->POST_SEQ\">".$this->customclass->strcut(strip_tags($lt->POST_SUBJECT),100)."</a>";
-                                                }
-
+                                                } else 
+                                                    if($BOARD_INFO->BOARD_AUTH_FLAG == "Y"){
+                                                        if($this->session->userdata("USER_SEQ") || $this->session->userdata("admin_seq")){
+                                                            echo "<a href=\"/board/board_view/$lt->POST_SEQ\">".$this->customclass->strcut(strip_tags($lt->POST_SUBJECT), 100)."</a>";
+                                                        } else {
+                                                            echo "<a onclick=\"alert('로그인 후 볼 수 있습니다.');\">" . $this->customclass->strcut(strip_tags($lt->POST_SUBJECT), 100) . "</a>";
+                                                        }
+                                                    } else {
+                                                        echo "<a href=\"/board/board_view/$lt->POST_SEQ\">".$this->customclass->strcut(strip_tags($lt->POST_SUBJECT), 100)."</a>";
+                                                    }
                                                     echo $lt->ATTACHS > 0 ? "[". ($lt->ATTACHS) ."]" : "";
                                                 } else {
                                                     echo "삭제된 게시글 입니다.";
