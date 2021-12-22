@@ -316,7 +316,7 @@ class Member extends CI_Controller {
 			$mail_body = str_replace("{SITE_NAME}", "호스코", $mail_body);
 			$mail_body = str_replace("{SITE_EMAIL}", "hosko-email", $mail_body);
 			$mail_body = str_replace("{SITE_TEL}", "010-0000-0000", $mail_body);
-			$mail_body = str_replace("{SITE_URL}", "http://hoskoweb.cafe24.com", $mail_body);
+			$mail_body = str_replace("{SITE_URL}", "http://www.hospitalitykorea.com", $mail_body);
 
 			$this->SendMail("inho4864@withnetworks.com", $send_subject, $mail_body);
 
