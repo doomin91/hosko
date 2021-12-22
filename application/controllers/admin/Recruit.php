@@ -35,6 +35,9 @@ class Recruit extends CI_Controller {
 		$this->load->model("RecruitModel");
 		$this->load->model("BasicModel");
 		$this->load->model("UserModel");
+
+		$this->customclass->adminCheck();
+
 		date_default_timezone_set('Asia/Seoul');
 	}
 
