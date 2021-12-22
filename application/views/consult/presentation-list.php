@@ -85,7 +85,7 @@
                                                 }
                                             }else{
                                         ?>
-                                                <tr><td olspan="6" align="center">등록된 설명회가 없습니다.</td></tr>
+                                                <tr><td colspan="6" align="center">등록된 설명회가 없습니다.</td></tr>
                                         <?php 
                                             }
                                         ?>
@@ -129,7 +129,7 @@
                                     <div class="row mb20">
                                         <div class="col-md-12 TableTitle mb20 mt30">설명회 지원 현황 현황</div>
                                         <div class="boardTotallist clearfix mb20">
-                                            <p>총 <?php echo count($applyList); ?>개의 설명회에 신청하셨습니다..</p>
+                                            <p>총 <?php echo count($applyList); ?>개의 설명회에 신청하셨습니다.</p>
                                         </div>                                        
                                     </div>
                                     <table class="tableCont">

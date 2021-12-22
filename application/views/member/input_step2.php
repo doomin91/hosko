@@ -234,7 +234,7 @@
                                         </div>
                                         
                                         <div class="mt20">
-                                            <div class="joinBoxTitle">이메일 수신</div>
+                                            <div class="joinBoxTitle">외국어 능력</div>
                                             <div class="joinBoxRadio">
                                                 <span class="joinSubTitle">영어</span>
                                                 <input type="radio" name="user_skill_eng" value="5" id="eng5">
@@ -308,42 +308,11 @@
                                         </div>
 
                                         <div class="mt20">
-                                            <div class="joinBoxTitle">해외연수경험</div>
-                                            <div class="joinBoxEtc">
-                                                <span class="joinSubEtcTitle">국가</span>
-                                                <div class="joinBoxEtcSelect">
-                                                    <select name="user_lan_study_nation">
-                                                        <option value="">선택</option>
-                                                        <option value="1">미국</option>
-                                                        <option value="2">괌</option>
-                                                        <option value="3">일본</option>
-                                                        <option value="4">호주</option>
-                                                        <option value="5">아시아</option>
-                                                        <option value="6">유럽</option>
-                                                        <option value="7">서남아시아</option>
-                                                        <option value="8">기타</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="joinBoxRadio">
-                                                <span class="joinSubTitle">기간</span>
-                                                <input type="radio" name="user_lan_study_term" value="0" checked id="ulst0">
-                                                <label for="ulst0">없음</label>
-                                                <input type="radio" name="user_lan_study_term" value="1" id="ulst1">
-                                                <label for="ulst1">6개월미만</label>
-                                                <input type="radio" name="user_lan_study_term" value="2" id="ulst2">
-                                                <label for="ulst2">12개월미만</label>
-                                                <input type="radio" name="user_lan_study_term" value="3" id="ulst3">
-                                                <label for="ulst3">12개월이상</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt20">
-                                            <div class="joinBoxTitle">국내외근무경력1</div>
+                                            <div class="joinBoxTitle">국내외 근무경력1</div>
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">회사명</span>
                                                 <div class="joinBoxEtcSelect">
-                                                    <input type="text" class="wd100" name="user_work_company">
+                                                    <input type="text"  name="user_work_company">
                                                 </div>
                                             </div>
                                             <div class="joinBoxRadio">
@@ -357,7 +326,7 @@
                                         </div>
 
                                         <div class="mt20">
-                                            <div class="joinBoxTitle">국내외근무경력2</div>
+                                            <div class="joinBoxTitle">국내외 근무경력2</div>
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">회사명</span>
                                                 <div class="joinBoxEtcSelect">
@@ -375,7 +344,7 @@
                                         </div>
 
                                         <div class="mt20">
-                                            <div class="joinBoxTitle">국내외근무경력2</div>
+                                            <div class="joinBoxTitle">국내외 근무경력3</div>
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">회사명</span>
                                                 <div class="joinBoxEtcSelect">

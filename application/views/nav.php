@@ -165,7 +165,7 @@
                     <li>
 						<a href="#" class="depth1_title">포지션 공고</a>
 						<ul class="mb_sub_menu gnb">
-							<li><a href="/recruit?ctg=1">인턴쉽</a></li>
+							<li><a href="/recruit?ctg=1">인턴십</a></li>
                             <li><a href="/recruit?ctg=2">JOBㆍ헤드헌팅</a></li>
 						</ul>
 					</li>

@@ -21,7 +21,7 @@
                     <div class="sub_contents">
                         <div class="sub_category02">
                             <ul>
-                                <li <?php $CATEGORY==1 ? print("class='on'") : "" ?> ><a href="/recruit?ctg=1">인턴쉽</a></li>
+                                <li <?php $CATEGORY==1 ? print("class='on'") : "" ?> ><a href="/recruit?ctg=1">인턴십</a></li>
                                 <li <?php $CATEGORY==2 ? print("class='on'") : "" ?>><a href="/recruit?ctg=2">JOB·헤드헌팅</a></li>
                             </ul>
                         </div>
@@ -59,13 +59,13 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>주민번호</th>
+                                                    <th>생년월일</th>
                                                     <td>
                                                         <input type="text" class="recruitform common_select wid100p" name="apply_user_birthday" id="apply_user_birthday" value="<?php echo  $USER->USER_BIRTHDAY?>">    
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>전화번호</th>
+                                                    <th>연락처</th>
                                                     <td>
                                                         <input type="text" class="recruitform common_select wid100p" name="apply_user_tel" id="apply_user_tel" value="<?php echo  $USER->USER_HP?>">
                                                     </td>

@@ -173,10 +173,10 @@ input[type=radio], input[type=checkbox] {margin:0 !important;}
 
 
 /* input style */
-.input_s1 {width:100%; border:1px solid #cbcbca; padding:10px; margin:0 !important;}
-.input_s2 {width:85%; border:1px solid #cbcbca; padding:10px; height:44px;}
-.login_s1 {width:438px; border:1px solid #cbcbca; padding:10px; margin:5px 0; }
-.inquiry_s1 {width:100%; border:1px solid #cbcbca; padding:10px; margin:5px 0; }
+.input_s1 {width:100%; border:1px solid #cbcbca; padding:10px; margin:0 !important; font-size:14px; font-weight:400;}
+.input_s2 {width:85%; border:1px solid #cbcbca; padding:10px; height:44px; font-size:14px; font-weight:400;}
+.login_s1 {width:438px; border:1px solid #cbcbca; padding:10px; margin:5px 0; font-size:14px; font-weight:400;}
+.inquiry_s1 {width:100%; border:1px solid #cbcbca; padding:10px; margin:5px 0; font-size:14px; font-weight:400;}
 
 
 /* select style */
