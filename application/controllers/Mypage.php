@@ -631,14 +631,14 @@ class Mypage extends CI_Controller {
 		$DATA = array();
 
 		if($my_admin_resume){
-			// print_r($my_resume);
+			// print_r($my_admin_resume);
 			$DATA["RESUME_INFO"] = $my_admin_resume;
-			$DATA["RESUME_EDU"] = $this->UserModel->getUserResumeEducation($my_admin_resume->ADMIN_RESUME_SEQ);
-			$DATA["RESUME_WEXP"] = $this->UserModel->getUserResumeWorkExp($my_admin_resume->ADMIN_RESUME_SEQ);
-			$DATA["RESUME_ACT"] = $this->UserModel->getUserResumeActivity($my_admin_resume->ADMIN_RESUME_SEQ);
-			$DATA["RESUME_ACHV"] = $this->UserModel->getUserResumeAchiv($my_admin_resume->ADMIN_RESUME_SEQ);
-			$DATA["RESUME_SKIL"] = $this->UserModel->getUserResumeSkill($my_admin_resume->ADMIN_RESUME_SEQ);
-			$DATA["RESUME_LANG"] = $this->UserModel->getUserResumeLanguage($my_admin_resume->ADMIN_RESUME_SEQ);
+			$DATA["RESUME_EDU"] = $this->UserModel->getAdminUserResumeEducation($my_admin_resume->ADMIN_RESUME_SEQ);
+			$DATA["RESUME_WEXP"] = $this->UserModel->getAdminUserResumeWorkExp($my_admin_resume->ADMIN_RESUME_SEQ);
+			$DATA["RESUME_ACT"] = $this->UserModel->getAdminUserResumeActivity($my_admin_resume->ADMIN_RESUME_SEQ);
+			$DATA["RESUME_ACHV"] = $this->UserModel->getAdminUserResumeAchiv($my_admin_resume->ADMIN_RESUME_SEQ);
+			$DATA["RESUME_SKIL"] = $this->UserModel->getAdminUserResumeSkill($my_admin_resume->ADMIN_RESUME_SEQ);
+			$DATA["RESUME_LANG"] = $this->UserModel->getAdminUserResumeLanguage($my_admin_resume->ADMIN_RESUME_SEQ);
 		}
 
 		$this->load->view("/mypage/member-resume_manage", $DATA);
@@ -800,6 +800,24 @@ class Mypage extends CI_Controller {
 		
         $data = file_get_contents($_SERVER['DOCUMENT_ROOT'].$path);
         // force_download($atach_info->FILE_NAME, $data);
+        force_download(mb_convert_encoding($name, 'euc-kr', 'utf-8'), $data);
+    }
+
+	public function DocumentSampleDown($flag){
+		if($flag == 1){
+			$data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/upload/sameple/EssayQuestion.doc");
+			$name = "EssayQuestion.doc";
+		}else if($flag == 2){
+			$data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/upload/sameple/Coverletter.doc");
+			$name = "Coverletter.doc";
+		}else if($flag == 3){
+			$data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/upload/sameple/EmergencyContact.doc");
+			$name = "EmergencyContact.doc";
+		}else if($flag == 4){
+			$data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/upload/sameple/Recommendation.doc");
+			$name = "Recommendation.doc";
+		}
+        
         force_download(mb_convert_encoding($name, 'euc-kr', 'utf-8'), $data);
     }
 	

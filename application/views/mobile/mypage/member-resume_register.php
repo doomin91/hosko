@@ -312,7 +312,7 @@
                                         </div>
 
                                         <div class="resumetitle">
-                                            <h2>Languange Skills</h2>
+                                            <h2>Language Skills</h2>
                                         </div>
 
 
@@ -694,7 +694,7 @@
                                         </div>
 
                                         <div class="resumetitle">
-                                            <h2>Languange Skills</h2>
+                                            <h2>Language Skills</h2>
                                         </div>
 
                                         <div class="resumeJoinBox resumeJoinBoxWider">

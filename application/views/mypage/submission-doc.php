@@ -100,7 +100,7 @@
                                             <tbody>
                                                 <tr class="bg01">
                                                     <td>- 영문에세이(Essay Question)</td>
-                                                    <td>essay.doc</td>
+                                                    <td><?php echo "<a href=\"/mypage/DocumentSampleDown/1\">"."EssayQuestion.doc"."</a>"; ?></td>
                                                     <td class="doctableline">
                                                         <!-- <input type="text" readonly="readonly" class="filename" /> -->
                                                         <?php if(isset($DOCUMENT)): ?>
@@ -139,7 +139,7 @@
                                                 </tr>
                                                 <tr class="">
                                                     <td>- 영문커버레터(Cover Letter)</td>
-                                                    <td>etter.doc</td>
+                                                    <td><?php echo "<a href=\"/mypage/DocumentSampleDown/2\">"."Coverletter.doc"."</a>"; ?></td>
                                                     <td class="doctableline">
                                                         <!-- <input type="text" readonly="readonly" class="filename" /> -->
                                                         <?php if(isset($DOCUMENT)): ?>
@@ -178,7 +178,7 @@
                                                 </tr>
                                                 <tr class="bg01">
                                                     <td>- 비상연락처(Emergency Contact)</td>
-                                                    <td>contact.doc</td>
+                                                    <td><?php echo "<a href=\"/mypage/DocumentSampleDown/3\">"."EmergencyContact.doc"."</a>"; ?></td>
                                                     <td class="doctableline">
                                                         <!-- <input type="text" readonly="readonly" class="filename" /> -->
                                                         <?php if(isset($DOCUMENT)): ?>
@@ -238,7 +238,7 @@
                                             <tbody>
                                                 <tr class="bg01">
                                                     <td>- 여권전면상하사본(Passport)</td>
-                                                    <td>essay.doc</td>
+                                                    <td></td>
                                                     <td class="doctableline">
                                                         <!-- <input type="text" readonly="readonly" class="filename" /> -->
                                                         <?php if(isset($DOCUMENT)): ?>
@@ -279,7 +279,7 @@
                                                 </tr>
                                                 <tr class="">
                                                     <td>- 학생증 사본(Student Card)</td>
-                                                    <td>etter.doc</td>
+                                                    <td></td>
                                                     <td class="doctableline">
                                                         <!-- <input type="text" readonly="readonly" class="filename" /> -->
                                                         <?php if(isset($DOCUMENT)): ?>
@@ -318,7 +318,7 @@
                                                 </tr>
                                                 <tr class="bg01">
                                                     <td style="">-비자용 사진(Photo for J1 visa)<span class="doctablefont04">*5cm x 5cm</span></td>
-                                                    <td>contact.doc</td>
+                                                    <td></td>
                                                     <td class="doctableline">
                                                         <!-- <input type="text" readonly="readonly" class="filename" /> -->
                                                         <?php if(isset($DOCUMENT)): ?>
@@ -378,7 +378,7 @@
                                             <tbody>
                                                 <tr class="bg01">
                                                     <td>- 영문 재학/졸업 증명서<br/>(Registration or Diploma)</td>
-                                                    <td>diploma.jpg</td>
+                                                    <td></td>
                                                     <td class="doctableline">
                                                         <!-- <input type="text" readonly="readonly" class="filename" /> -->
                                                         <?php if(isset($DOCUMENT)): ?>
@@ -417,7 +417,7 @@
                                                 </tr>
                                                 <tr class="">
                                                     <td>- 영문 성적증명서(Transcript)</td>
-                                                    <td>transcript.jpg</td>
+                                                    <td></td>
                                                     <td class="doctableline">
                                                         <!-- <input type="text" readonly="readonly" class="filename" /> -->
                                                         <?php if(isset($DOCUMENT)): ?>
@@ -456,7 +456,7 @@
                                                 </tr>
                                                 <tr class="bg01">
                                                     <td>- 영문 추천서1(Recommendation)</td>
-                                                    <td>recommendation.jpg</td>
+                                                    <td><?php echo "<a href=\"/mypage/DocumentSampleDown/4\">"."Recommendation.doc"."</a>"; ?></td>
                                                     <td class="doctableline">
                                                         <!-- <input type="text" readonly="readonly" class="filename" /> -->
                                                         <?php if(isset($DOCUMENT)): ?>
@@ -495,7 +495,7 @@
                                                 </tr>
                                                 <tr class="">
                                                     <td>- 영문 추천서2(Recommendation)</td>
-                                                    <td>recommendation.jpg</td>
+                                                    <td></td>
                                                     <td class="doctableline">
                                                         <!-- <input type="text" readonly="readonly" class="filename" /> -->
                                                         <?php if(isset($DOCUMENT)): ?>
@@ -534,7 +534,7 @@
                                                 </tr>
                                                 <tr class="bg01">
                                                     <td>- 영문 건강진단서<br/>(Medical Statement)</td>
-                                                    <td>statement.jpg</td>
+                                                    <td></td>
                                                     <td class="doctableline">
                                                         <!-- <input type="text" readonly="readonly" class="filename" /> -->
                                                         <?php if(isset($DOCUMENT)): ?>

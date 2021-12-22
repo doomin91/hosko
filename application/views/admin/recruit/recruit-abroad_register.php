@@ -60,7 +60,7 @@
                                             <div class="col-sm-6">
                                                 <select name="ctg" class="ctg_select common_select" >
                                                     <option value="" >:: 대분류 ::</option>
-                                                    <option value="1" >인턴쉽</option>
+                                                    <option value="1" >인턴십</option>
                                                     <option value="2" >채용&헤드헌팅</option>
                                                     <option value="3" >유학</option>
                                                 </select>
@@ -492,9 +492,9 @@
                     }else if(ctg == 1){
                         ctg2Html = ""
                                 + "<option value=\"\">:: 중분류 ::</option>"
-                                + "<option value=\"10\">해외호텔 인턴쉽</option>"
-                                + "<option value=\"11\">해외 외식전문 인턴쉽</option>"
-                                + "<option value=\"12\">국내호텔 인턴쉽</option>";
+                                + "<option value=\"10\">해외 인턴쉽</option>"
+                                + "<option value=\"11\">국내 인턴쉽</option>";
+                                // + "<option value=\"12\">국내호텔 인턴쉽</option>";
 
                     }else if(ctg == 2){
                         ctg2Html = ""

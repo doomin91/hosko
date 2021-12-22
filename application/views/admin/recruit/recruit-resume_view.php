@@ -286,9 +286,16 @@
 										<th> Speaking  </th>
 										<th> Writing </th>
 									</tr>
-                                <?php foreach($RESUME_LANGUAGE as $LANG) :?>
+                                <?php foreach($RESUME_LANGUAGE as $key => $LANG) :?>
                                     <tr>
-                                        <td class="col-sm-4 text-center"><?php echo $LANG->RLANG_NAME?></td>
+                                        <td class="col-sm-4 text-center">
+											<?php if($key != 3):?>
+												<?php echo $LANG->RLANG_NAME?>
+											<?php else :?>
+												<?php echo "Etc.(".$LANG->RLANG_NAME.")"?>
+											<?php endif?>
+											
+										</td>
 										<?php if( $LANG->RLANG_SPEAKING ==  0): ?>
 											<td class="col-sm-4 text-center"><?php echo "Basic" ?></td>
 										<?php elseif( $LANG->RLANG_SPEAKING == 1): ?>

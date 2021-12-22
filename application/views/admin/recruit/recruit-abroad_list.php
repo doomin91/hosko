@@ -56,7 +56,7 @@
                                         <td class="col-sm-10">
                                             <select name="ctg" class="abroad_contents_first_category  common_select search_field" >
                                                 <option value="" <?php if($ctg == "") echo "selected"; ?>>:: 대분류 ::</option>
-                                                <option value="1" <?php if($ctg == 1) echo "selected"; ?>>인턴쉽</option>
+                                                <option value="1" <?php if($ctg == 1) echo "selected"; ?>>인턴십</option>
                                                 <option value="2" <?php if($ctg == 2) echo "selected"; ?>>채용&헤드헌팅</option>
                                                 <option value="3" <?php if($ctg == 3) echo "selected"; ?>>유학</option>
                                             </select>
@@ -309,9 +309,9 @@
             }else if(ctg == 1){
                 ctg2Html = ""
                         + "<option value=\"\">:: 중분류 ::</option>"
-                        + "<option value=\"10\">해외호텔 인턴쉽</option>"
-                        + "<option value=\"11\">해외 외식전문 인턴쉽</option>"
-                        + "<option value=\"12\">국내호텔 인턴쉽</option>";
+                        + "<option value=\"10\">해외 인턴쉽</option>"
+                        + "<option value=\"11\">국내 인턴쉽</option>";
+                        // + "<option value=\"12\">국내호텔 인턴쉽</option>";
 
             }else if(ctg == 2){
                 ctg2Html = ""

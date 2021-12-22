@@ -320,7 +320,7 @@
 				</li>
 				<li>
 					<?php if (strpos($this->session->userdata("admin_permi"), "apply_04") !== false): ?>  	
-					<a href="/admin/recruit/recruit_document_list">
+					<a href="/admin/recruit/recruit_document_list/?doc_status=2">
 						<i class="fa fa-caret-right"></i> 수속서류관리
 					</a>
 					<?php else: ?>

@@ -178,12 +178,16 @@
                                                 <tr>
                                                     <th colspan="2" class="managertabletitle">Education</th>
                                                 </tr>
+                                                <?php foreach($RESUME_EDU as $edu) :?>
                                                 <tr>
-                                                    <th></th>
+                                                    <th>
+                                                        <?php echo $edu->REDU_DATE ?>
+                                                    </th>
                                                     <td>
-                                                        
+                                                        <?php echo $edu->REDU_DESCRIPTION ?>
                                                     </td>
                                                 </tr>
+                                                <?php endforeach ?>
                                             </tbody>
                                         </table>
 
@@ -196,12 +200,16 @@
                                                 <tr>
                                                     <th colspan="2" class="managertabletitle">Working Experience</th>
                                                 </tr>
+                                                <?php foreach($RESUME_WEXP as $wexp) :?>
                                                 <tr>
-                                                    <th></th>
+                                                    <th>
+                                                        <?php echo $wexp->RWEXP_DATE ?>
+                                                    </th>
                                                     <td>
-                                                        
+                                                        <?php echo $wexp->RWEXP_DESCRIPTION ?>
                                                     </td>
                                                 </tr>
+                                                <?php endforeach ?>
                                             </tbody>
                                         </table>
 
@@ -215,12 +223,16 @@
                                                 <tr>
                                                     <th colspan="2" class="managertabletitle">Activities</th>
                                                 </tr>
+                                                <?php foreach($RESUME_ACT as $act) :?>
                                                 <tr>
-                                                    <th></th>
+                                                    <th>
+                                                        <?php echo $act->RACT_DATE ?>
+                                                    </th>
                                                     <td>
-                                                        
+                                                        <?php echo $act->RACT_DESCRIPTION ?>
                                                     </td>
                                                 </tr>
+                                                <?php endforeach ?>
                                             </tbody>
                                         </table>
 
@@ -233,12 +245,16 @@
                                                 <tr>
                                                     <th colspan="2" class="managertabletitle">Achievements</th>
                                                 </tr>
+                                                <?php foreach($RESUME_ACHV as $achv) :?>
                                                 <tr>
-                                                    <th></th>
+                                                    <th>
+                                                        <?php echo $achv->RACHV_TITLE ?>
+                                                    </th>
                                                     <td>
-                                                        
+                                                        <?php echo $achv->RACHV_DESCRIPTION ?>
                                                     </td>
                                                 </tr>
+                                                <?php endforeach ?>
                                             </tbody>
                                         </table>
 
@@ -252,11 +268,16 @@
                                                 <tr>
                                                     <th colspan="3" class="managertabletitle">Professional Skills</th>
                                                 </tr>
+                                                <?php foreach($RESUME_SKIL as $skill) :?>
                                                 <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <th>
+                                                        <?php echo $skill->RSKL_DATE ?>
+                                                    </th>
+                                                    <td>
+                                                        <?php echo $skill->RSKL_DESCRIPTION ?>
+                                                    </td>
                                                 </tr>
+                                                <?php endforeach ?>
                                             </tbody>
                                         </table>
 
@@ -268,18 +289,31 @@
                                             </colgroup>
                                             <tbody>
                                                 <tr>
-                                                    <th colspan="3" class="managertabletitle">Languange Skills</th>
+                                                    <th colspan="3" class="managertabletitle">Language Skills</th>
                                                 </tr>
                                                 <tr>
                                                     <th><span class="languangeText">Laguage</span></th>
                                                     <th><span class="languangeText">Spoken</span></th>
                                                     <th><span class="languangeText">Written</span></th>
                                                 </tr>
+                                                <?php foreach($RESUME_LANG as $lang) :?>
                                                 <tr>
+                                                    <th>
+                                                        <?php echo $lang->RLANG_NAME ?>
+                                                    </th>
+                                                    <td>
+                                                        <?php $lang->RLANG_SPEAKING == 0 ? print("BASIC") : ( $lang->RLANG_SPEAKING == 1 ? print("GOOD") : print("EXCELLENT") ) ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php $lang->RLANG_WRITING == 0 ? print("BASIC") : ( $lang->RLANG_WRITING == 1 ? print("GOOD") : print("EXCELLENT") ) ?>
+                                                    </td>
+                                                </tr>
+                                                <?php endforeach ?>
+                                                <!-- <tr>
                                                     <td class="managercolor01">English</td>
                                                     <td class="managercolor02">Basic</td>
                                                     <td class="managercolor02">Basic</td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
 
