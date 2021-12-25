@@ -29,7 +29,7 @@
 
 				<!-- page header -->
 				<div class="pageheader">
-					<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b><?php echo $BOARD->BOARD_NAME?></b> 게시판 수정 
+					<h2><i class="fa fa-puzzle-piece" style="line-height: 48px;padding-left: 5px;"></i> <b><?php echo $BOARD->BOARD_KOR_NAME?></b> 게시판 수정 
 					</h2>
 					<div class="breadcrumbs">
 						<ol class="breadcrumb">

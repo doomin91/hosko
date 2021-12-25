@@ -90,10 +90,16 @@
                             <div class="inner">
                                 <div class="mid_banner02">
                                     <h2>RECRUIT HOSKO</h2>
-                                    <div class="mid_banner_text01">
+                                    <div class="mid_banner_text01 webp">
                                         <b>HOSKO</b>는 대한민국 <b>HR(Human Resource)</b>분야를 이끌어가고 있는<br/>
-                                        <b>대표적인 교육 훈련기관 브랜드</b> 입니다.
+                                        <b>해외취업 및 교육 브랜드</b> 입니다.
                                     </div>
+
+                                    <div class="mid_banner_text01 mebp">
+                                        <b>HOSKO</b>는 대한민국 <b>HR(Human Resource)<br/></b>분야를 이끌어가고 있는<br/>
+                                        <b>해외취업 및 교육 브랜드</b> 입니다.
+                                    </div>
+
 
                                     <ul class="mt50">
                                         <li>
