@@ -397,6 +397,8 @@
                 // console.log("----------");
                 // console.log(ctg1);
                 // console.log("----------");
+                var ctg2Html = "";
+                var ctg3Html = "";
 
                 if(ctg1 == 1){
                     ctg2Html = ""
