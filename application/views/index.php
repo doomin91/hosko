@@ -9,9 +9,9 @@
                 <div class="layout_main">
                     <div class="main_visual">
                         <div class="main_visual_text">
-                            <h1>대표적인 교육 훈련기관 브랜드</h1>
+                            <h1>대표적인 해외취업 교육 훈련기관 브랜드</h1>
                             <h2>“ HOSKO ”</h2>
-                            <p>지속적인 교육훈련을 제공하는 Hospitality HR 전문기관입니다.</p>
+                            <p>지속적인 해외취업 교육훈련을 제공하는 HR 전문기관입니다.</p>
                         </div>
 
                         <div class="main_visual_menu">
@@ -90,10 +90,16 @@
                             <div class="inner">
                                 <div class="mid_banner02">
                                     <h2>RECRUIT HOSKO</h2>
-                                    <div class="mid_banner_text01">
+                                    <div class="mid_banner_text01 webp">
                                         <b>HOSKO</b>는 대한민국 <b>HR(Human Resource)</b>분야를 이끌어가고 있는<br/>
-                                        <b>대표적인 교육 훈련기관 브랜드</b> 입니다.
+                                        <b>해외취업 및 교육 브랜드</b> 입니다.
                                     </div>
+
+                                    <div class="mid_banner_text01 mebp">
+                                        <b>HOSKO</b>는 대한민국 <b>HR(Human Resource)<br/></b>분야를 이끌어가고 있는<br/>
+                                        <b>해외취업 및 교육 브랜드</b> 입니다.
+                                    </div>
+
 
                                     <ul class="mt50">
                                         <li>

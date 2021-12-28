@@ -130,9 +130,9 @@
                                     </div>
 
                                     <div class="boardViewCont">
-                                        <div class="View_cont">
+                                        <div class="View_cont" style="text-align:center;">
                                             <?php if($BOARD_INFO->BOARD_TYPE == 2):?>
-												<div id="player"></div><br>
+												<div id="player"></div>
 											<?php endif;?>
                                             <?php if($BOARD_INFO->BOARD_TYPE == 1):
                                                 foreach($ATTACH as $at){ 
