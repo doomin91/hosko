@@ -528,7 +528,7 @@ class Recruit extends CI_Controller {
 
 		$MANAGER = $this->BasicModel->getManagerById($REC_ADMIN_ID);
 
-		$DISPLAY_ORDER = $this->RecruitModel->getRecruitAbroadListCountAll();
+		// $DISPLAY_ORDER = $this->RecruitModel->getRecruitAbroadListCountAll();
 
 		$REC_ADMIN_SEQ = isset($MANAGER->ADMIN_SEQ) ? $MANAGER->ADMIN_SEQ : "";
 
@@ -553,7 +553,7 @@ class Recruit extends CI_Controller {
 			"REC_WELFARE" => $REC_WELFARE,
 			"REC_VISA" => $REC_VISA,
 			"REC_CONTENTS" => $REC_CONTENTS,
-			"REC_DISPLAY_ORDER" => $DISPLAY_ORDER+1
+			// "REC_DISPLAY_ORDER" => $DISPLAY_ORDER+1
 		);
 
 		// print_r($insertArr);
