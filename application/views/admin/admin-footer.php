@@ -77,6 +77,7 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/static/admin/js/vendor/bootstrap/bootstrap.js"></script>
     <script src="/static/admin/js/vendor/bootstrap/bootstrap-dropdown-multilevel.js"></script>
@@ -100,11 +101,11 @@
 
     <script src="/static/admin/js/vendor/momentjs/moment.min.js"></script>
     <script src="/static/admin/js/vendor/datepicker/bootstrap-datetimepicker.js"></script>
-    <script src="/static/admin/js/vendor/summernote/summernote.min.js"></script>
+    <script src="/static/admin/js/vendor/summernote/summernote.js"></script>
 
 
     <script src="/static/admin/js/minimal.js"></script>
 
     <script src="/js/editor.js"></script>
 
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
