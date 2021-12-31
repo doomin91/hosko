@@ -682,9 +682,18 @@ class Recruit extends CI_Controller {
 		$abroad_data = $this->RecruitModel->getRecruitAbroad($abroad_seq);
 		
 		$data_arr = get_object_vars($abroad_data);
+		$data_arr["REC_REG_DATE"] = date("YmdHis");
 		unset($data_arr["REC_SEQ"]);
 
 		$result = $this->RecruitModel->insertRecruitAbroad($data_arr);
+
+		$insert_id = $this->db->insert_id();
+
+		$updateArr = array(
+			"REC_DISPLAY_ORDER" => $insert_id
+		);
+
+		$result = $this->RecruitModel->updateRecruitAbroad($insert_id, $updateArr);
 		
 
 		if ($result == true){
@@ -701,9 +710,18 @@ class Recruit extends CI_Controller {
 			$data = $this->RecruitModel->getRecruitAbroad($seq);
 
 			$data_arr = get_object_vars($data);
+			$data_arr["REC_REG_DATE"] = date("YmdHis");
 			unset($data_arr["REC_SEQ"]);
 
 			$result = $this->RecruitModel->insertRecruitAbroad($data_arr);
+
+			$insert_id = $this->db->insert_id();
+
+			$updateArr = array(
+				"REC_DISPLAY_ORDER" => $insert_id
+			);
+
+			$result = $this->RecruitModel->updateRecruitAbroad($insert_id, $updateArr);
 
 			if(!$result){
 				break;
