@@ -805,16 +805,16 @@ class Mypage extends CI_Controller {
 
 	public function DocumentSampleDown($flag){
 		if($flag == 1){
-			$data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/upload/sameple/EssayQuestion.doc");
+			$data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/upload/sample/EssayQuestions.doc");
 			$name = "EssayQuestion.doc";
 		}else if($flag == 2){
-			$data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/upload/sameple/Coverletter.doc");
+			$data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/upload/sample/Coverletter.doc");
 			$name = "Coverletter.doc";
 		}else if($flag == 3){
-			$data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/upload/sameple/EmergencyContact.doc");
+			$data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/upload/sample/EmergencyContact.doc");
 			$name = "EmergencyContact.doc";
 		}else if($flag == 4){
-			$data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/upload/sameple/Recommendation.doc");
+			$data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/upload/sample/Recommendation.doc");
 			$name = "Recommendation.doc";
 		}
         
