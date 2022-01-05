@@ -24,6 +24,18 @@ class UserModel extends CI_Model{
 			$this->db->where("TBL_HOSKO_USER.USER_LAST_LOGIN <=", $whereArr["last_login_end"]);
 		}
 
+		if ((isset($whereArr["user_skill_eng"])) && ($whereArr["user_skill_eng"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_SKILL_ENG", $whereArr["user_skill_eng"]);
+		}
+
+		if ((isset($whereArr["user_skill_jp"])) && ($whereArr["user_skill_jp"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_SKILL_JP", $whereArr["user_skill_jp"]);
+		}
+
+		if ((isset($whereArr["user_skill_ch"])) && ($whereArr["user_skill_ch"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_SKILL_CH", $whereArr["user_skill_ch"]);
+		}
+
 		if ((isset($whereArr["user_study_nation"])) && ($whereArr["user_study_nation"] != "")){
 			$this->db->where("TBL_HOSKO_USER.USER_STUDY_NATION", $whereArr["user_study_nation"]);
 		}
@@ -89,6 +101,18 @@ class UserModel extends CI_Model{
 
 		if ((isset($whereArr["last_login_end"])) && ($whereArr["last_login_end"] != "")){
 			$this->db->where("TBL_HOSKO_USER.USER_LAST_LOGIN <=", $whereArr["last_login_end"]);
+		}
+
+		if ((isset($whereArr["user_skill_eng"])) && ($whereArr["user_skill_eng"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_SKILL_ENG", $whereArr["user_skill_eng"]);
+		}
+
+		if ((isset($whereArr["user_skill_jp"])) && ($whereArr["user_skill_jp"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_SKILL_JP", $whereArr["user_skill_jp"]);
+		}
+
+		if ((isset($whereArr["user_skill_ch"])) && ($whereArr["user_skill_ch"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_SKILL_CH", $whereArr["user_skill_ch"]);
 		}
 
 		if ((isset($whereArr["user_study_nation"])) && ($whereArr["user_study_nation"] != "")){
