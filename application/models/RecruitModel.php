@@ -182,7 +182,7 @@ class RecruitModel extends CI_Model{
     public function getRecruitAbroadInfo($aborad_seq){
         $this->db->where("TBL_HOSKO_RECRUIT.REC_SEQ", $aborad_seq);
 
-        $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ");
+        $this->db->join("TBL_HOSKO_ADMIN", "TBL_HOSKO_ADMIN.ADMIN_SEQ = TBL_HOSKO_RECRUIT.REC_ADMIN_SEQ", "left");
 
         $this->db->select("TBL_HOSKO_RECRUIT.*, TBL_HOSKO_ADMIN.ADMIN_NAME AS ADMIN_USER_NAME, TBL_HOSKO_ADMIN.ADMIN_ID AS ADMIN_USER_ID");
 

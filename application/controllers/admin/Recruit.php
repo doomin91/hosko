@@ -528,7 +528,7 @@ class Recruit extends CI_Controller {
 
 		$MANAGER = $this->BasicModel->getManagerById($REC_ADMIN_ID);
 
-		$DISPLAY_ORDER = $this->RecruitModel->getRecruitAbroadListCountAll();
+		// $DISPLAY_ORDER = $this->RecruitModel->getRecruitAbroadListCountAll();
 
 		$REC_ADMIN_SEQ = isset($MANAGER->ADMIN_SEQ) ? $MANAGER->ADMIN_SEQ : "";
 
@@ -553,7 +553,7 @@ class Recruit extends CI_Controller {
 			"REC_WELFARE" => $REC_WELFARE,
 			"REC_VISA" => $REC_VISA,
 			"REC_CONTENTS" => $REC_CONTENTS,
-			"REC_DISPLAY_ORDER" => $DISPLAY_ORDER+1
+			// "REC_DISPLAY_ORDER" => $DISPLAY_ORDER+1
 		);
 
 		// print_r($insertArr);
@@ -590,7 +590,7 @@ class Recruit extends CI_Controller {
 					move_uploaded_file($_FILES["abroad_origin_pic"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/upload/recruit/".$new_name);
 					//array_push($file_name, preg_replace("/[ #\&\+\-%@=\/\\\:;,\.'\"\^`~\|\!\?\*$#<>()\[\]\{\}]/i", "",$tmp[0]).".".$tmp[count($tmp)-1]);
 					$file_name = $_FILES["abroad_origin_pic"]["name"];
-					$file_path = "./upload/recruit/".$new_name;
+					$file_path = "/upload/recruit/".$new_name;
 					// print_r($_FILES["apply_attach"]);
 				}
 			}
@@ -600,7 +600,7 @@ class Recruit extends CI_Controller {
 
 			for($i = 0 ; $i < 4 ; $i++){
 				$config['image_library'] = 'gd2';
-				$config['source_image'] = $file_path;
+				$config['source_image'] = ".".$file_path;
 				$config['new_image'] = "./upload/recruit/"."recruit".$time."_".$REC_SEQ."_".$thumb_name[$i].".".end($tmp);
 				$pathArr = explode(".",$config['new_image']);
 				
@@ -682,9 +682,18 @@ class Recruit extends CI_Controller {
 		$abroad_data = $this->RecruitModel->getRecruitAbroad($abroad_seq);
 		
 		$data_arr = get_object_vars($abroad_data);
+		$data_arr["REC_REG_DATE"] = date("YmdHis");
 		unset($data_arr["REC_SEQ"]);
 
 		$result = $this->RecruitModel->insertRecruitAbroad($data_arr);
+
+		$insert_id = $this->db->insert_id();
+
+		$updateArr = array(
+			"REC_DISPLAY_ORDER" => $insert_id
+		);
+
+		$result = $this->RecruitModel->updateRecruitAbroad($insert_id, $updateArr);
 		
 
 		if ($result == true){
@@ -701,9 +710,18 @@ class Recruit extends CI_Controller {
 			$data = $this->RecruitModel->getRecruitAbroad($seq);
 
 			$data_arr = get_object_vars($data);
+			$data_arr["REC_REG_DATE"] = date("YmdHis");
 			unset($data_arr["REC_SEQ"]);
 
 			$result = $this->RecruitModel->insertRecruitAbroad($data_arr);
+
+			$insert_id = $this->db->insert_id();
+
+			$updateArr = array(
+				"REC_DISPLAY_ORDER" => $insert_id
+			);
+
+			$result = $this->RecruitModel->updateRecruitAbroad($insert_id, $updateArr);
 
 			if(!$result){
 				break;

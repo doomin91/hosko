@@ -2253,7 +2253,7 @@
         if (tplShortcut) { $btn.attr('title', function (i, v) { return v + ' (' + tplShortcut + ')'; }); }
       // bootstrap tooltip on btn-group bug: https://github.com/twitter/bootstrap/issues/5687
       }).tooltip({container: 'body', trigger: 'hover', placement: sPlacement || 'top'})
-        .on('click', function () {$(this).tooltip('hide'); });
+        .on('click', function () {$(this).tooltip('option','hide'); });
     };
 
     // pallete colors
