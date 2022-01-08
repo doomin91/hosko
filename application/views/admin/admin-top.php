@@ -48,7 +48,7 @@
 
 	  <ul class="menu">
 
-		<li class="dropdown">
+		<li class="dropdown <?php if (strpos($_SERVER['PHP_SELF'], "/admin/basic") > -1) echo "open"; ?>">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 			<i class="fa fa-circle-o" aria-hidden="true"></i> 기본설정 <b class="fa fa-plus dropdown-plus"></b>
 		  </a>
@@ -108,8 +108,7 @@
 			-->
 		  </ul>
 		</li>
-
-		<li class="dropdown">
+		<li class="dropdown <?php if (strpos($_SERVER['PHP_SELF'], "/admin/user") > -1) echo "open"; ?>">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<i class="fa fa-circle-o" aria-hidden="true"></i> 회원관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
@@ -194,7 +193,7 @@
 			  </ul>
 		</li>
 
-		<li class="dropdown">
+		<li class="dropdown <?php if (strpos($_SERVER['PHP_SELF'], "/admin/consult") > -1) echo "open"; ?>">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<i class="fa fa-circle-o" aria-hidden="true"></i> 상담관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
@@ -291,7 +290,7 @@
 			</ul>
 		</li>
 
-		<li class="dropdown">
+		<li class="dropdown <?php if (strpos($_SERVER['PHP_SELF'], "/admin/recruit") > -1) echo "open"; ?>">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<i class="fa fa-circle-o" aria-hidden="true"></i> 수속관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>
@@ -348,7 +347,7 @@
 			</ul>
 		</li>
 
-		<li class="dropdown">
+		<li class="dropdown <?php if (strpos($_SERVER['PHP_SELF'], "/admin/board") > -1) echo "open"; ?>">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<i class="fa fa-circle-o" aria-hidden="true"></i> 게시판관리 <b class="fa fa-plus dropdown-plus"></b>
 			</a>

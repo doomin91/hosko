@@ -790,4 +790,9 @@ class UserModel extends CI_Model{
 		$this->db->where("TBL_HOSKO_USER.USER_SEQ", $user_seq);
 		return $this->db->update("TBL_HOSKO_USER", array("USER_DEL_YN" => "Y"));
 	}
+
+	public function setUserPwReset($user_seq, $newString){
+		$this->db->where("TBL_HOSKO_USER.USER_SEQ", $user_seq);
+		return $this->db->update("TBL_HOSKO_USER", array("USER_PASS" => md5($newString)));
+	}
 }

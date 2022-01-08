@@ -73,7 +73,7 @@
 								</tr>
 								<tr>
 									<th>아이디</th>
-									<td><?php echo $info->USER_ID; ?></td>
+									<td><?php echo $info->USER_ID; ?> &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default btn-sm" id="passwd-reset">비밀번호 초기화</button></td>
 									<th>이름</th>
 									<td><?php echo $info->USER_NAME; ?></td>
 								</tr>
@@ -463,6 +463,31 @@
 
 <script type="text/javascript">
 $(function(){
+
+	$(document).on("click", "#passwd-reset", function(){
+		var user_seq = $("input[name=user_seq]").val();
+
+		if (confirm("비밀번호 초기화를 하겠습니까?")){
+			$.ajax({
+				url:"/admin/User/userPasswdReset",
+				type:"post",
+				dataType:"json",
+				data : {
+					"user_seq" : user_seq
+				},
+				success:function(data){
+					console.log(data);
+					if (data.code == "200"){
+						alert(data.msg);
+						//$("#modalDomain").modal("hide");
+						document.location.reload();
+					}
+				}, error:function(e){
+					console.log(e);
+				}
+			})
+		}
+	})
 
 	$(document).on("click", "#saveBtn", function(){
 		var formData = $("#editForm").serialize();
