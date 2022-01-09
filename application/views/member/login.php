@@ -22,8 +22,7 @@
                                 <div class="loginContentTop">
                                     <h2>ALWAYS <span>WITH YOU</span></h2>
                                     <h3>언제나 회원님과 함께, HOSKO</h3>
-                                    <p>호스코는 회원제로 운영이 됩니다.</p>
-                                    <p>하나의 ID로 해외 인턴십 및 채용프로그램 정보를 편리하고 안전하게 제공받을 수 있으며, 고객님의 정보를 소중하게 다루겠습니다.</p>
+                                    <p>하나의ID로 해외 인턴십 및 채용프로그램 정보를<br/>편리하고 안전하게 제공받을 수 있습니다.</p>
                                 </div>
                                 <div class="loginContent">
                                     <div class="loginBox">

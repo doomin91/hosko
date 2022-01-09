@@ -221,7 +221,7 @@
                                         </div>
 
                                         <div class="mt20">
-                                            <div class="joinBoxTitle">희망국가</div>
+                                            <div class="joinBoxTitle">취업 희망국가</div>
                                             <div class="joinBoxSelect">
                                                 <select name="user_hope_nation">
                                                     <option value="">선택</option>
@@ -288,12 +288,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">해외연수</div>
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">국가</span>
                                                 <div class="joinBoxEtcSelect">
-                                                    <select name="user_study_nation">
+                                                    <select name="user_study_nation" class="selpd4">
                                                         <option value="">선택</option>
                                                         <option value="1">미국</option>
                                                         <option value="2">괌</option>
@@ -319,12 +319,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">국내외 근무경력1</div>
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">회사명</span>
                                                 <div class="joinBoxEtcSelect">
-                                                    <input type="text"  name="user_work_company">
+                                                    <input type="text"  name="user_work_company" class="selpd4">
                                                 </div>
                                             </div>
                                             <div class="joinBoxRadio">
@@ -337,12 +337,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">국내외 근무경력2</div>
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">회사명</span>
                                                 <div class="joinBoxEtcSelect">
-                                                <input type="text" name="user_work_company2">
+                                                <input type="text" name="user_work_company2" class="selpd4">
                                                 </div>
                                             </div>
                                             <div class="joinBoxRadio">
@@ -355,12 +355,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">국내외 근무경력3</div>
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">회사명</span>
                                                 <div class="joinBoxEtcSelect">
-                                                <input type="text" name="user_work_company3">
+                                                <input type="text" name="user_work_company3" class="selpd4">
                                                 </div>
                                             </div>
                                             <div class="joinBoxRadio">
@@ -373,16 +373,16 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">자격증</div>
                                             <div class="joinBoxRadio mt20">
                                                 <input type="radio" name="user_certi_flag" value="N" checked id="ucfN"><label for="ucfN">없음</label>
                                                 <input type="radio" name="user_certi_flag" value="Y" id="ucfY"><label for="ucfY">있음</label>
-                                                <input type="text" name="user_certificate_name" class="joinBoxSubInput">
+                                                <input type="text" name="user_certificate_name" class="joinBoxSubInput selpd4">
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt10">
                                             <div class="joinBoxTitle">여권소지여부</div>
                                             <div class="joinBoxRadio">
                                                 <input type="radio" name="user_passport_flag" value="N" checked id="upfN"><label for="upfN">없음</label>
@@ -390,7 +390,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">W/H (워킹홀리데이) 비자소지유무</div>
                                             <div class="joinBoxRadio">
                                                 <input type="radio" name="user_visa_flag" value="N" checked id="uvfN"><label for="uvfN">없음
@@ -398,7 +398,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">추천인</div>
                                             <div class="joinBoxInput">
                                                 <input type="text" name="user_recomm_id">
@@ -461,7 +461,7 @@
                                                     <li class="mt10">
                                                         <input type="checkbox" name="user_join_route" value="" id="ujr9">
                                                         <label for="ujr9">기타</label>
-                                                        <input type="text" class="TextInput" name="user_join_route_str">
+                                                        <input type="text" class="TextInput selpd4" name="user_join_route_str">
                                                     </li>
                                                 </ul>
                                             </div>

@@ -196,3 +196,12 @@ input[type=radio], input[type=checkbox] {margin:0 !important;}
 .file_s1 {width:100%; border:1px solid #cbcbca;padding:2px 33px; background: url("../img/icon_fileupload.png") no-repeat; } 
 
 
+
+/* select padding */
+.selpd4 { padding:4px 2px !important; height:34px !important;}
+
+
+
+
+
+
