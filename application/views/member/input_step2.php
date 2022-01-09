@@ -632,10 +632,10 @@ $(function(){
 		formData.append("user_lan_study_term", $("input:radio[name=user_lan_study_term]:checked").val());
 		formData.append("user_work_company", $("input[name=user_work_company]").val());
 		formData.append("user_work_term", $("input:radio[name=user_work_term]:checked").val());
-		formData.append("user_work_company_2", $("input[name=user_work_company_2]").val());
-		formData.append("user_work_term_2", $("input:radio[name=user_work_term_2]:checked").val());
-		formData.append("user_work_company_3", $("input[name=user_work_company_3]").val());
-		formData.append("user_work_term_3", $("input:radio[name=user_work_term_3]:checked").val());
+		formData.append("user_work_company_2", $("input[name=user_work_company2]").val());
+		formData.append("user_work_term_2", $("input:radio[name=user_work_term2]:checked").val());
+		formData.append("user_work_company_3", $("input[name=user_work_company3]").val());
+		formData.append("user_work_term_3", $("input:radio[name=user_work_term3]:checked").val());
 		formData.append("user_certi_flag", $("input:radio[name=user_certi_flag]:checked").val());
 		formData.append("user_certificate_name", $("input[name=user_certificate_name]").val());
 		formData.append("user_passport_flag", $("input:radio[name=user_passport_flag]:checked").val());

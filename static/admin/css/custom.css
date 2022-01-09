@@ -166,3 +166,28 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .zeropd {padding: 0 0 0 0 !important;}
+
+
+.navbar-nav.side-nav > li.navigation .menu > li.dropdown.active > a, .navbar-nav.side-nav > li.navigation .menu > li > .dropdown-menu .dropdown.dropdown.active > a { text-decoration: none; color:#0cb8d0; background-color: transparent; }
+
+.navbar-nav.side-nav > li.navigation .menu > li.dropdown.active > a b.dropdown-plus, .navbar-nav.side-nav > li.navigation .menu > li > .dropdown-menu .dropdown.dropdown.active > a b.dropdown-plus { color:#0cb8d0; }
+
+.navbar-nav.side-nav > li.navigation .menu > li.dropdown.active > a b.dropdown-plus:before, .navbar-nav.side-nav > li.navigation .menu > li > .dropdown-menu .dropdown.dropdown.active > a b.dropdown-plus:before { content: "\f068"; }
+
+.navbar-nav.side-nav > li.navigation .menu > li.dropdown.active > a:after, .navbar-nav.side-nav > li.navigation .menu > li > .dropdown-menu .dropdown.dropdown.active > a:after { background: linear; background: linear; width: 100%; }
+
+.navbar-nav.side-nav > li.navigation .menu > li.dropdown.active > ul.dropdown-menu, .navbar-nav.side-nav > li.navigation .menu > li > .dropdown-menu .dropdown.dropdown.active > ul.dropdown-menu { float: none; position: relative; min-width: 250px; margin: 0; padding: 0; border: none; background: transparent; -webkit-border-radius: 0; -moz-border-radius: 0; -ms-border-radius: 0; -o-border-radius: 0; border-radius: 0; -webkit-box-shadow: none; box-shadow: none; -webkit-animation-duration: 0.3s; -moz-animation-duration: 0.3s; animation-duration: 0.3s; z-index: 1; }
+
+.navbar-nav.side-nav > li.navigation .menu > li.dropdown.active > ul.dropdown-menu > li:not(.dropdown) a, .navbar-nav.side-nav > li.navigation .menu > li > .dropdown-menu .dropdown.dropdown.active > ul.dropdown-menu > li:not(.dropdown) a { display: inline-block; line-height: 30px; padding: 0 30px; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; transition: all 0.2s linear; font-size: 12px; color:#fff; width: 100%; -webkit-transition: none; -moz-transition: none; transition: none; font-weight: 500; position: relative; }
+
+.navbar-nav.side-nav > li.navigation .menu > li.dropdown.active > ul.dropdown-menu > li:not(.dropdown) a > i, .navbar-nav.side-nav > li.navigation .menu > li > .dropdown-menu .dropdown.dropdown.active > ul.dropdown-menu > li:not(.dropdown) a > i { margin-right: 3px; width: 15px; text-align: center; }
+
+.navbar-nav.side-nav > li.navigation .menu > li.dropdown.active > ul.dropdown-menu > li:not(.dropdown) a:hover, .navbar-nav.side-nav > li.navigation .menu > li > .dropdown-menu .dropdown.dropdown.active > ul.dropdown-menu > li:not(.dropdown) a:hover { background: transparent; color: #418bca; }
+
+.navbar-nav.side-nav > li.navigation .menu > li.dropdown.active > ul.dropdown-menu > li:not(.dropdown) a .badge, .navbar-nav.side-nav > li.navigation .menu > li > .dropdown-menu .dropdown.dropdown.active > ul.dropdown-menu > li:not(.dropdown) a .badge { position: absolute; top: 9px; right: 12px; z-index: 9; font-size: 9px; padding: 2px 4px; }
+
+.navbar-nav.side-nav > li.navigation .menu > li.dropdown.active > ul.dropdown-menu > li:not(.dropdown) a .label, .navbar-nav.side-nav > li.navigation .menu > li > .dropdown-menu .dropdown.dropdown.active > ul.dropdown-menu > li:not(.dropdown) a .label { position: absolute; top: 8px; right: 12px; z-index: 9; font-size: 10px; padding: 3px 5px 2px 5px; }
+
+.navbar-nav.side-nav > li.navigation .menu > li.dropdown.active > ul.dropdown-menu > li:not(.dropdown).active a, .navbar-nav.side-nav > li.navigation .menu > li > .dropdown-menu .dropdown.dropdown.active > ul.dropdown-menu > li:not(.dropdown).active a { background: transparent; color: #418bca; }
+
+.navbar-nav.side-nav > li.navigation .menu > li.dropdown.active > ul.dropdown-menu > li.dropdown a, .navbar-nav.side-nav > li.navigation .menu > li > .dropdown-menu .dropdown.dropdown.active > ul.dropdown-menu > li.dropdown a { line-height: 30px; padding-left: 30px; font-size: 12px; color: rgba(255, 255, 255, 0.9); font-weight: 500; }
