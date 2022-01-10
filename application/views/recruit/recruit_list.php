@@ -91,16 +91,14 @@
                                         <colgroup>
                                                 <col width="43px">
                                                 <col width="">
+                                                <col width="80px">
                                                 <col width="">
                                                 <col width="70px">
-                                                <col width="">
-                                                <col width="55px">
                                         </colgroup>
                                         <thead>
                                             <tr>
                                                 <th>번호</th>
                                                 <th>제목</th>
-                                                <th>글쓴이</th>
                                                 <th>진행상황</th>
                                                 <th>조회</th>
                                                 <th>등록일</th>
@@ -124,8 +122,6 @@
                                                         <a class="fontcb" style="" href ="javascript:alert('로그인후이용해주세요');"><?php echo $REC->REC_TITLE ?></a>
                                                     <?php endif; ?>
                                                 </td>
-                                                <!-- <td><a class="fontcb" style="line-height:96px;" href ="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $REC->REC_SEQ?>"><?php echo $REC->REC_TITLE ?></a></td> -->
-                                                <td><?php echo $REC->ADMIN_USER_NAME ?></td>
                                                 <td><!-- <span class="deadlineIcon">마감</span> <span class="recuitIcon">모집중</span> --><?php $REC->REC_STATUS==0 ? print("마감") : print("모집중") ?></td>
                                                 <td><?php echo $REC->REC_COUNT ?></td>
                                                 <td><?php echo explode(" ", $REC->REC_REG_DATE)[0] ?></td>
