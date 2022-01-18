@@ -76,7 +76,7 @@
                                 <tr>
                                     <th>일정 내용</th>
                                     <td colspan="3">
-                                        <?php echo nl2br($detail->CAL_TITLE); ?>
+                                        <?php echo nl2br($detail->CAL_SCHEDULE); ?>
                                     </td>
                                 </tr>
                             </tbody>

@@ -73,7 +73,7 @@
 								</tr>
 								<tr>
 									<th>아이디</th>
-									<td><?php echo $info->USER_ID; ?></td>
+									<td><?php echo $info->USER_ID; ?> &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default btn-sm" id="passwd-reset">비밀번호 초기화</button></td>
 									<th>이름</th>
 									<td><?php echo $info->USER_NAME; ?></td>
 								</tr>
@@ -179,8 +179,14 @@
 									<td>
 										<select name="user_department">
 											<option value="">학과선택</option>
+											<option value="5" <?php if ($info->USER_DEPARTMENT == "5") echo "selected"; ?>>상경계</option>
+											<option value="6" <?php if ($info->USER_DEPARTMENT == "6") echo "selected"; ?>>이공계</option>
 											<option value="1" <?php if ($info->USER_DEPARTMENT == "1") echo "selected"; ?>>호텔/관광</option>
-											<option value="3" <?php if ($info->USER_DEPARTMENT == "3") echo "selected"; ?>>조리</option>
+											<option value="3" <?php if ($info->USER_DEPARTMENT == "3") echo "selected"; ?>>식품/조리</option>
+											<option value="7" <?php if ($info->USER_DEPARTMENT == "7") echo "selected"; ?>>패션/디자인</option>
+											<option value="8" <?php if ($info->USER_DEPARTMENT == "8") echo "selected"; ?>>산림/환경</option>
+											<option value="9" <?php if ($info->USER_DEPARTMENT == "9") echo "selected"; ?>>간호</option>
+											<option value="10" <?php if ($info->USER_DEPARTMENT == "10") echo "selected"; ?>>예체능</option>
 											<option value="4" <?php if ($info->USER_DEPARTMENT == "4") echo "selected"; ?>>기타/외국어</option>
 										</select>
 									<th>전공/부서</th>
@@ -457,6 +463,31 @@
 
 <script type="text/javascript">
 $(function(){
+
+	$(document).on("click", "#passwd-reset", function(){
+		var user_seq = $("input[name=user_seq]").val();
+
+		if (confirm("비밀번호 초기화를 하겠습니까?")){
+			$.ajax({
+				url:"/admin/User/userPasswdReset",
+				type:"post",
+				dataType:"json",
+				data : {
+					"user_seq" : user_seq
+				},
+				success:function(data){
+					console.log(data);
+					if (data.code == "200"){
+						alert(data.msg);
+						//$("#modalDomain").modal("hide");
+						document.location.reload();
+					}
+				}, error:function(e){
+					console.log(e);
+				}
+			})
+		}
+	})
 
 	$(document).on("click", "#saveBtn", function(){
 		var formData = $("#editForm").serialize();

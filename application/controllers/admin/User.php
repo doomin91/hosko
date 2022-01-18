@@ -202,7 +202,7 @@ class User extends CI_Controller {
 						"USER_LEVEL" => $post_data["user_level"],
 						"USER_NUMBER" => $user_number,
 						"USER_ID" => $post_data["user_id"],
-						"USER_PASS" => $post_data["user_pass"],
+						"USER_PASS" => md5($post_data["user_pass"]),
 						"USER_NAME" => $post_data["user_name"],
 						"USER_ENG_NAME" => $post_data["user_eng_name"],
 						"USER_SEX" => $post_data["user_sex"],
@@ -326,6 +326,20 @@ class User extends CI_Controller {
 			echo json_encode(array("code" => "200", "msg" => "회원 정보 수정 완료되었습니다."));
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "회원 정보 수정중 문제가 생겼습니다."));
+		}
+	}
+
+	public function userPasswdReset(){
+		$user_seq = $this->input->post("user_seq");
+
+		$user_info = $this->UserModel->getUserInfo($user_seq);
+
+		$result = $this->UserModel->setUserPwReset($user_seq, $user_info->USER_ID);
+
+		if ($result == true){
+			echo json_encode(array("code" => "200", "msg" => "비밀번호 초기화 완료되었습니다."));
+		}else{
+			echo json_encode(array("code" => "202", "msg" => "비밀번호 초기화 중 문제가 생겼습니다."));
 		}
 	}
 

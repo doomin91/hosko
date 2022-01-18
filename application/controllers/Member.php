@@ -57,7 +57,7 @@ class Member extends CI_Controller {
 	}
 
 	function userInsertProc(){
-		//print_r($this->input->post());
+		
 		$user_id = $this->input->post("user_id");
 		$user_pass = $this->input->post("user_pass");
 		$user_name = $this->input->post("user_name");
@@ -217,6 +217,7 @@ class Member extends CI_Controller {
 						"USER_DEL_YN" => "N",
 						"USER_REG_DATE" => date("Y-m-d"),
 		);
+
 		$result = $this->UserModel->insertUser($insertArr);
 
 		if ($result == true){
@@ -303,24 +304,31 @@ class Member extends CI_Controller {
 		$user_email = $this->input->post("user_email");
 
 		$result = $this->UserModel->getPwFind($user_id, $user_name, $user_email);
-		echo $this->db->last_query();
+		//echo $this->db->last_query();
 		//print_r($result);
+
+		$new_pwd = $this->customclass->RandomString(10);
+
 		if ($result == true){
 			$mfinfo = $this->UserModel->getMailForm(14);
 			$mf_body = $mfinfo->MF_BODY;
+			
+			$this->UserModel->setUserPwReset($result->USER_SEQ, $new_pwd);
+
+			$send_subject = "HOSKO 회원 비밀번호 찾기 이메일입니다.";
 
 			$mail_body = str_replace("{DATE}", date("Y-m-d"), $mf_body);
 			$mail_body = str_replace("{MEM_ID}", $result->USER_ID, $mail_body);
-			$mail_body = str_replace("{MEM_PW}", $result->USER_PW, $mail_body);
+			$mail_body = str_replace("{MEM_PW}", $new_pwd, $mail_body);
 			$mail_body = str_replace("{MEM_NAME}", $result->USER_NAME, $mail_body);
 			$mail_body = str_replace("{SITE_NAME}", "호스코", $mail_body);
 			$mail_body = str_replace("{SITE_EMAIL}", "hosko-email", $mail_body);
 			$mail_body = str_replace("{SITE_TEL}", "010-0000-0000", $mail_body);
 			$mail_body = str_replace("{SITE_URL}", "http://www.hospitalitykorea.com", $mail_body);
 
-			$this->SendMail("inho4864@withnetworks.com", $send_subject, $mail_body);
+			$this->SendMail($result->USER_EMAIL, $send_subject, $mail_body);
 
-			echo json_encode(array("code" => "200", "msg" => "비밀번호를 등록된 메일로 되었습니다."));
+			echo json_encode(array("code" => "200", "msg" => "비밀번호를 등록된 메일로 전송 되었습니다."));
 		}else{
 			echo json_encode(array("code" => "202", "msg" => "회원정보를 찾아볼 수 없습니다."));
 		}
@@ -333,10 +341,12 @@ class Member extends CI_Controller {
 		$config['wordwrap'] = TRUE;
 		$config['charset'] = 'utf-8';
 		$config['mailtype'] = "html";
-		$config['smtp_host'] = "smtp.mailplug.co.kr";
-		$config['smtp_user'] = "inho4864@withnetworks.com";
-		$config['smtp_pass'] = "with!2009";
-		$config['smtp_port'] = "465";
+		//$config['smtp_host'] = "ssl://smtp.gmail.com";
+		//$config['smtp_user'] = "inho4864@gmail.com";
+		//$config['smtp_pass'] = "dlsh4864";
+		//$config['smtp_port'] = "465";
+		$config['smtp_host'] = "210.114.22.16";
+		$config['smtp_port'] = "25";
 		$config['newline'] = "\r\n";
 		$config['crlf'] = "\r\n";
 
@@ -348,7 +358,7 @@ class Member extends CI_Controller {
 		$this->email->subject($subject);
 		$this->email->message($contents);
 
-		//$this->email->send();
+		$this->email->send();
 
 		//echo $this->email->print_debugger();
 	}

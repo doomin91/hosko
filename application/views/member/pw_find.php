@@ -31,7 +31,7 @@
                                             <h2>아이디 / 비밀번호 찾기</h2>
                                             <div class="inquirymenu">
                                                 <ul>
-                                                    <li><a href="idpwInquiry.php">아이디 찾기</a></li>
+                                                    <li><a href="/member/idfind">아이디 찾기</a></li>
                                                     <li class="on">비밀번호 찾기</li>
                                                 </ul>
                                             </div>
@@ -49,7 +49,7 @@
                                             </div>
                                             <p class="tal pt30">위에 정보를 입력시면 가입시 작성하신 이메일로 비밀번호를 보내드립니다.</p>
                                             <div class="inquiryBtn">
-                                                <a href="#" id="pwfind">확인</a>
+                                                <a type="button" id="pwfind">확인</a>
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +94,7 @@ $(function(){
 		$.ajax({
 			url:"/Member/pwFindProc",
 			type:"post",
-			//dataType:"json",
+			dataType:"json",
 			data : {
                 "user_id" : user_id,
                 "user_name" : user_name,
@@ -102,7 +102,8 @@ $(function(){
             }, success:function(data){
 				console.log(data);
 				if (data.code == "200"){
-					alert("회원님의 아이디는 "+data.user_id+"입니다");
+                    alert(data.msg);
+					//alert("회원님의 아이디는 "+data.user_id+"입니다");
 					//document.location.href="/";
 				}else{
                     alert(data.msg);

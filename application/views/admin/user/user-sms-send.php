@@ -52,6 +52,7 @@
 								</colgroup>
                                 <tbody>
                                 <form name="sform"  method="get" action="/admin/user/smsSend">
+                                    <!--
                                     <tr>
 										<th>가입일자</th>
 										<td>
@@ -161,6 +162,7 @@
 											</div>
 										</td>
 									</tr>
+                                    -->
 									<!--
 									<tr>
 										<th>국내외 근무경력</th>

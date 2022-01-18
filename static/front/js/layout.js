@@ -18,6 +18,7 @@ jQuery(function($){
 		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 		showMonthAfterYear: true,
 		yearSuffix: '년',
+		yearRange: 'c-52:c+52',
 		color: "black",
 		zindex: "20000",
 		changeMonth: true,

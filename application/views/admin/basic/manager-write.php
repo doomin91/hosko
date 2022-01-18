@@ -106,7 +106,7 @@
                                             <input type="checkbox" name="admin_permi" value="consult_05" id="admin_permi18"><label for="admin_permi18">&nbsp;전화상담이력</label><br/>
                                             <input type="checkbox" name="admin_permi" value="consult_06" id="admin_permi19"><label for="admin_permi19">&nbsp;HJOSKO 일정</label><br/>
                                             <input type="checkbox" name="admin_permi" value="consult_07" id="admin_permi20"><label for="admin_permi20">&nbsp;설명회 일정</label><br/>
-                                            <input type="checkbox" name="admin_permi" value="consult_08" id="admin_permi32"><label for="admin_permi32">&nbsp;설명회 일정</label><br/>
+                                            <input type="checkbox" name="admin_permi" value="consult_08" id="admin_permi32"><label for="admin_permi32">&nbsp;설명회 관리</label><br/>
                                         </div>
                                         <div class="col-lg-2">
                                             <input type="checkbox" name="admin_permi" value="apply_all" id="admin_permi21"><label for="admin_permi21">&nbsp;수속관리</label><br/>

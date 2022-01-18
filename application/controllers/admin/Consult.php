@@ -519,7 +519,7 @@ class Consult extends CI_Controller {
 		$info = $this->ConsultModel->getPresentation($pt_seq);
 		//print_r($info);
 		$aUsers = $this->ConsultModel->getPresentationApply($pt_seq);
-		print_r($aUsers);
+		//print_r($aUsers);
 		$data = array(
 					"info" => $info,
 					"aUsers" => $aUsers

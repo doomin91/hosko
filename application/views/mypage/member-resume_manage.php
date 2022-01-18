@@ -296,6 +296,7 @@
                                                     <th><span class="languangeText">Spoken</span></th>
                                                     <th><span class="languangeText">Written</span></th>
                                                 </tr>
+                                                <?php print_r($RESUME_LANG); ?>
                                                 <?php foreach($RESUME_LANG as $lang) :?>
                                                 <tr>
                                                     <th>

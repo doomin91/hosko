@@ -24,6 +24,18 @@ class UserModel extends CI_Model{
 			$this->db->where("TBL_HOSKO_USER.USER_LAST_LOGIN <=", $whereArr["last_login_end"]);
 		}
 
+		if ((isset($whereArr["user_skill_eng"])) && ($whereArr["user_skill_eng"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_SKILL_ENG", $whereArr["user_skill_eng"]);
+		}
+
+		if ((isset($whereArr["user_skill_jp"])) && ($whereArr["user_skill_jp"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_SKILL_JP", $whereArr["user_skill_jp"]);
+		}
+
+		if ((isset($whereArr["user_skill_ch"])) && ($whereArr["user_skill_ch"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_SKILL_CH", $whereArr["user_skill_ch"]);
+		}
+
 		if ((isset($whereArr["user_study_nation"])) && ($whereArr["user_study_nation"] != "")){
 			$this->db->where("TBL_HOSKO_USER.USER_STUDY_NATION", $whereArr["user_study_nation"]);
 		}
@@ -56,6 +68,11 @@ class UserModel extends CI_Model{
 				$this->db->or_like("TBL_HOSKO_USER.USER_NUMBER", $whereArr["search_string"]);
 				$this->db->or_like("TBL_HOSKO_USER.USER_HP", $whereArr["search_string"]);
 				$this->db->or_like("TBL_HOSKO_USER.USER_EMAIL", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_LEAVE_COUNTRY", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_LEAVE_HOTEL", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_COMPANY", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_MAJOR", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_MANAGER_NAME", $whereArr["search_string"]);
 				$this->db->group_end();
 			}else{
 				$this->db->like("TBL_HOSKO_USER.".$whereArr["search_field"], $whereArr["search_string"]);
@@ -86,6 +103,18 @@ class UserModel extends CI_Model{
 			$this->db->where("TBL_HOSKO_USER.USER_LAST_LOGIN <=", $whereArr["last_login_end"]);
 		}
 
+		if ((isset($whereArr["user_skill_eng"])) && ($whereArr["user_skill_eng"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_SKILL_ENG", $whereArr["user_skill_eng"]);
+		}
+
+		if ((isset($whereArr["user_skill_jp"])) && ($whereArr["user_skill_jp"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_SKILL_JP", $whereArr["user_skill_jp"]);
+		}
+
+		if ((isset($whereArr["user_skill_ch"])) && ($whereArr["user_skill_ch"] != "")){
+			$this->db->where("TBL_HOSKO_USER.USER_SKILL_CH", $whereArr["user_skill_ch"]);
+		}
+
 		if ((isset($whereArr["user_study_nation"])) && ($whereArr["user_study_nation"] != "")){
 			$this->db->where("TBL_HOSKO_USER.USER_STUDY_NATION", $whereArr["user_study_nation"]);
 		}
@@ -118,6 +147,11 @@ class UserModel extends CI_Model{
 				$this->db->or_like("TBL_HOSKO_USER.USER_NUMBER", $whereArr["search_string"]);
 				$this->db->or_like("TBL_HOSKO_USER.USER_HP", $whereArr["search_string"]);
 				$this->db->or_like("TBL_HOSKO_USER.USER_EMAIL", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_LEAVE_COUNTRY", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_LEAVE_HOTEL", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_COMPANY", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_MAJOR", $whereArr["search_string"]);
+				$this->db->or_like("TBL_HOSKO_USER.USER_MANAGER_NAME", $whereArr["search_string"]);
 				$this->db->group_end();
 			}else{
 				$this->db->like("TBL_HOSKO_USER.".$whereArr["search_field"], $whereArr["search_string"]);
@@ -755,5 +789,10 @@ class UserModel extends CI_Model{
 	public function userDelete($user_seq){
 		$this->db->where("TBL_HOSKO_USER.USER_SEQ", $user_seq);
 		return $this->db->update("TBL_HOSKO_USER", array("USER_DEL_YN" => "Y"));
+	}
+
+	public function setUserPwReset($user_seq, $newString){
+		$this->db->where("TBL_HOSKO_USER.USER_SEQ", $user_seq);
+		return $this->db->update("TBL_HOSKO_USER", array("USER_PASS" => md5($newString)));
 	}
 }

@@ -179,9 +179,21 @@
                                             <div class="joinBoxTitle">학과</div>
                                             <div class="joinBoxSelect">
                                                 <select class="" name="user_department">
+                                                    
                                                     <option value="">학과선택</option>
+                                                    <!--
                                                     <option value="1">호텔/관광</option>
                                                     <option value="3">조리</option>
+                                                    <option value="4">기타/외국어</option>
+                                                    -->
+                                                    <option value="5">상경계</option>
+                                                    <option value="6">이공계</option>
+                                                    <option value="1">호텔/관광</option>
+                                                    <option value="3">식품/조리</option>
+                                                    <option value="7">패션/디자인</option>
+                                                    <option value="8">산림/환경</option>
+                                                    <option value="9">간호</option>
+                                                    <option value="10">예체능</option>
                                                     <option value="4">기타/외국어</option>
                                                 </select>
                                             </div>
@@ -209,7 +221,7 @@
                                         </div>
 
                                         <div class="mt20">
-                                            <div class="joinBoxTitle">희망국가</div>
+                                            <div class="joinBoxTitle">취업 희망국가</div>
                                             <div class="joinBoxSelect">
                                                 <select name="user_hope_nation">
                                                     <option value="">선택</option>
@@ -276,12 +288,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">해외연수</div>
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">국가</span>
                                                 <div class="joinBoxEtcSelect">
-                                                    <select name="user_study_nation">
+                                                    <select name="user_study_nation" class="selpd4">
                                                         <option value="">선택</option>
                                                         <option value="1">미국</option>
                                                         <option value="2">괌</option>
@@ -307,12 +319,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">국내외 근무경력1</div>
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">회사명</span>
                                                 <div class="joinBoxEtcSelect">
-                                                    <input type="text"  name="user_work_company">
+                                                    <input type="text"  name="user_work_company" class="selpd4">
                                                 </div>
                                             </div>
                                             <div class="joinBoxRadio">
@@ -325,12 +337,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">국내외 근무경력2</div>
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">회사명</span>
                                                 <div class="joinBoxEtcSelect">
-                                                <input type="text" name="user_work_company2">
+                                                <input type="text" name="user_work_company2" class="selpd4">
                                                 </div>
                                             </div>
                                             <div class="joinBoxRadio">
@@ -343,12 +355,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">국내외 근무경력3</div>
                                             <div class="joinBoxEtc">
                                                 <span class="joinSubEtcTitle">회사명</span>
                                                 <div class="joinBoxEtcSelect">
-                                                <input type="text" name="user_work_company3">
+                                                <input type="text" name="user_work_company3" class="selpd4">
                                                 </div>
                                             </div>
                                             <div class="joinBoxRadio">
@@ -361,16 +373,16 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">자격증</div>
                                             <div class="joinBoxRadio mt20">
                                                 <input type="radio" name="user_certi_flag" value="N" checked id="ucfN"><label for="ucfN">없음</label>
                                                 <input type="radio" name="user_certi_flag" value="Y" id="ucfY"><label for="ucfY">있음</label>
-                                                <input type="text" name="user_certificate_name" class="joinBoxSubInput">
+                                                <input type="text" name="user_certificate_name" class="joinBoxSubInput selpd4">
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt10">
                                             <div class="joinBoxTitle">여권소지여부</div>
                                             <div class="joinBoxRadio">
                                                 <input type="radio" name="user_passport_flag" value="N" checked id="upfN"><label for="upfN">없음</label>
@@ -378,7 +390,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">W/H (워킹홀리데이) 비자소지유무</div>
                                             <div class="joinBoxRadio">
                                                 <input type="radio" name="user_visa_flag" value="N" checked id="uvfN"><label for="uvfN">없음
@@ -386,7 +398,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt20">
+                                        <div class="mt30">
                                             <div class="joinBoxTitle">추천인</div>
                                             <div class="joinBoxInput">
                                                 <input type="text" name="user_recomm_id">
@@ -449,7 +461,7 @@
                                                     <li class="mt10">
                                                         <input type="checkbox" name="user_join_route" value="" id="ujr9">
                                                         <label for="ujr9">기타</label>
-                                                        <input type="text" class="TextInput" name="user_join_route_str">
+                                                        <input type="text" class="TextInput selpd4" name="user_join_route_str">
                                                     </li>
                                                 </ul>
                                             </div>
@@ -595,7 +607,7 @@ $(function(){
 		formData.append("user_name", $("input[name=user_name]").val());
 		formData.append("user_eng_name", $("input[name=user_eng_name]").val());
 		formData.append("user_level", $("select[name=user_level]").val());
-		formData.append("user_sex", $("input:radio[name=user_sex]").val());
+		formData.append("user_sex", $("input:radio[name=user_sex]:checked").val());
 		formData.append("user_tel", $("input[name=tel1]").val()+"-"+$("input[name=tel2]").val()+"-"+$("input[name=tel3]").val());
 		formData.append("user_hp", $("input[name=hp1]").val()+"-"+$("input[name=hp2]").val()+"-"+$("input[name=hp3]").val());
 		formData.append("user_zip", $("input[name=user_zip]").val());
@@ -603,32 +615,32 @@ $(function(){
 		formData.append("user_addr2", $("input[name=user_addr2]").val());
 		formData.append("user_email", $("input[name=user_email1]").val() + "@" + $("input[name=user_email2]").val());
 		formData.append("user_skype_id", $("input[name=user_skype_id]").val());
-		formData.append("user_email_flag", $("input:radio[name=user_email_flag]").val());
-		formData.append("user_sms_flag", $("input:radio[name=user_sms_flag]").val());
+		formData.append("user_email_flag", $("input:radio[name=user_email_flag]:checked").val());
+		formData.append("user_sms_flag", $("input:radio[name=user_sms_flag]:checked").val());
 		formData.append("user_birthday", $("input[name=user_birthday]").val());
 		formData.append("user_company", $("input[name=user_company]").val());
 		formData.append("user_department", $("select[name=user_department]").val());
 		formData.append("user_major", $("input[name=user_major]").val());
 		formData.append("user_hope_nation", $("select[name=user_hope_nation]").val());
 		formData.append("user_hope_part", $("input[name=user_hope_part]").val());
-		formData.append("user_skill_eng", $("input:radio[name=user_skill_eng]").val());
-		formData.append("user_skill_jp", $("input:radio[name=user_skill_jp]").val());
-		formData.append("user_skill_ch", $("input:radio[name=user_skill_ch]").val());
+		formData.append("user_skill_eng", $("input:radio[name=user_skill_eng]:checked").val());
+		formData.append("user_skill_jp", $("input:radio[name=user_skill_jp]:checked").val());
+		formData.append("user_skill_ch", $("input:radio[name=user_skill_ch]:checked").val());
 		formData.append("user_study_nation", $("select[name=user_study_nation]").val());
-		formData.append("user_study_term", $("input:radio[name=user_study_term]").val());
+		formData.append("user_study_term", $("input:radio[name=user_study_term]:checked").val());
 		formData.append("user_lan_study_nation", $("select[name=user_lan_study_nation]").val());
-		formData.append("user_lan_study_term", $("input:radio[name=user_lan_study_term]").val());
+		formData.append("user_lan_study_term", $("input:radio[name=user_lan_study_term]:checked").val());
 		formData.append("user_work_company", $("input[name=user_work_company]").val());
-		formData.append("user_work_term", $("input:radio[name=user_work_term]").val());
-		formData.append("user_work_company_2", $("input[name=user_work_company_2]").val());
-		formData.append("user_work_term_2", $("input:radio[name=user_work_term_2]").val());
-		formData.append("user_work_company_3", $("input[name=user_work_company_3]").val());
-		formData.append("user_work_term_3", $("input:radio[name=user_work_term_3]").val());
-		formData.append("user_certi_flag", $("input:radio[name=user_certi_flag]").val());
+		formData.append("user_work_term", $("input:radio[name=user_work_term]:checked").val());
+		formData.append("user_work_company_2", $("input[name=user_work_company2]").val());
+		formData.append("user_work_term_2", $("input:radio[name=user_work_term2]:checked").val());
+		formData.append("user_work_company_3", $("input[name=user_work_company3]").val());
+		formData.append("user_work_term_3", $("input:radio[name=user_work_term3]:checked").val());
+		formData.append("user_certi_flag", $("input:radio[name=user_certi_flag]:checked").val());
 		formData.append("user_certificate_name", $("input[name=user_certificate_name]").val());
-		formData.append("user_passport_flag", $("input:radio[name=user_passport_flag]").val());
-		formData.append("user_visa_flag", $("input:radio[name=user_visa_flag]").val());
-		formData.append("user_join_route", $("input:checkbox[name=user_join_route]").val());
+		formData.append("user_passport_flag", $("input:radio[name=user_passport_flag]:checked").val());
+		formData.append("user_visa_flag", $("input:radio[name=user_visa_flag]:checked").val());
+		formData.append("user_join_route", $("input:checkbox[name=user_join_route]:checked").val());
 		formData.append("user_join_route_str", $("input[name=user_join_route_str]").val());
 		formData.append("user_leave_country", $("select[name=user_leave_country]").val());
 		formData.append("user_leave_hotel", $("input[name=user_leave_hotel]").val());
