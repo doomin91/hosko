@@ -774,35 +774,89 @@
                                                 <div class="resume_activity_box wid25p">Written</div>
                                             </div>
                                             <div class="resumeBox">
-                                                <?php if(isset($RESUME_LANG)) : ?>
-                                                    <?php foreach($RESUME_LANG as $key => $LANG): ?>
-                                                        <div class="box_content">
-                                                            <input type="hidden" name="rlang_seq[]" value="<?php echo $LANG->SEQ ?>">
-                                                            <div class="resume_activity_box wid25p">
-                                                                <?php if($key+1 < count($RESUME_LANG)) :?>
-                                                                    <input type="text" name="rlang_name[]" value="<?php echo $LANG->RLANG_NAME?>" class="wid100p" readonly style="cursor: not-allowed">
-                                                                <?php else :?>
-                                                                    <input type="text" name="rlang_name[]" value="<?php echo $LANG->RLANG_NAME?>" class="wid100p placeholder_common_font" placeholder="ETC">
-                                                                <?php endif ?>
-                                                                
-                                                            </div>
-                                                            <div class="resume_activity_box wid25p">
-                                                                <select name="rlang_speaking[]" class="wid100p">
-                                                                    <option value="0" <?php if($LANG->RLANG_SPEAKING == "0") echo "selected" ?>>BASIC</option>
-                                                                    <option value="1" <?php if($LANG->RLANG_SPEAKING == "1") echo "selected" ?>>GOOD</option>
-                                                                    <option value="2" <?php if($LANG->RLANG_SPEAKING == "2") echo "selected" ?>>EXCELLENT</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="resume_activity_box wid25p">
-                                                                <select name="rlang_writing[]" class="wid100p">
-                                                                    <option value="0" <?php if($LANG->RLANG_WRITING == "0") echo "selected" ?>>BASIC</option>
-                                                                    <option value="1" <?php if($LANG->RLANG_WRITING == "1") echo "selected" ?>>GOOD</option>
-                                                                    <option value="2" <?php if($LANG->RLANG_WRITING == "2") echo "selected" ?>>EXCELLENT</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>   
-                                                    <?php endforeach ?>
-                                                <?php endif?>
+                                            <div class="resumeBox">
+                                                <div class="box_content">
+                                                    <div class="resume_activity_box wid25p">
+                                                        <input type="text" name="rlang_name[]" value="English" class="wid100p" readonly style="cursor: not-allowed">
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_speaking[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_writing[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="resumeBox">
+                                                <div class="box_content">
+                                                    <div class="resume_activity_box wid25p">
+                                                        <input type="text" name="rlang_name[]" value="Chinese" class="wid100p" readonly style="cursor: not-allowed">
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_speaking[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_writing[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="resumeBox">
+                                                <div class="box_content">
+                                                    <div class="resume_activity_box wid25p">
+                                                        <input type="text" name="rlang_name[]" value="Japanese" class="wid100p" readonly style="cursor: not-allowed">
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_speaking[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_writing[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="resumeBox">
+                                                <div class="box_content">
+                                                    <div class="resume_activity_box wid25p">
+                                                        <input type="text" name="rlang_name[]" value="" class="wid100p placeholder_common_font" placeholder="ETC" >
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_speaking[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="resume_activity_box wid25p">
+                                                        <select name="rlang_writing[]" class="wid100p">
+                                                            <option value="0" selected>BASIC</option>
+                                                            <option value="1" >GOOD</option>
+                                                            <option value="2" >EXCELLENT</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
 <!--                                             
                                             <div class="col-sm-12 text-right">
