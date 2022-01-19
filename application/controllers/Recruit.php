@@ -94,6 +94,7 @@ class Recruit extends CI_Controller {
     }
 
     public function recruit_view($category, $rec_seq){
+        $this->customclass->userCheck();
         // print_r($rec_seq);
         $CATEGORY = $category;
         $RECRUIT = $this->RecruitModel->getRecruitAbroad($rec_seq);

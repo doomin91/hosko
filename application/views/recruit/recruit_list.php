@@ -74,7 +74,7 @@
                                                     <?php if ($this->session->userdata("USER_ID") != ""): ?>
                                                         <a class="fontcb" style="line-height:96px;" href ="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $REC->REC_SEQ?>"><?php echo $REC->REC_TITLE ?></a>
                                                     <?php else: ?>
-                                                        <a class="fontcb" style="line-height:96px;" href ="javascript:alert('로그인후이용해주세요');"><?php echo $REC->REC_TITLE ?></a>
+                                                        <a class="fontcb sessionCheck" style="line-height:96px;"><?php echo $REC->REC_TITLE ?></a>
                                                     <?php endif; ?>
                                                 </td>
                                                 <!-- <td><a class="fontcb" style="line-height:96px;" href ="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $REC->REC_SEQ?>"><?php echo $REC->REC_TITLE ?></a></td> -->
@@ -119,7 +119,7 @@
                                                     <?php if ($this->session->userdata("USER_ID") != ""): ?>
                                                         <a class="fontcb" style="" href ="/recruit/recruit_view/<?php echo $CATEGORY?>/<?php echo $REC->REC_SEQ?>"><?php echo $REC->REC_TITLE ?></a>
                                                     <?php else: ?>
-                                                        <a class="fontcb" style="" href ="javascript:alert('로그인후이용해주세요');"><?php echo $REC->REC_TITLE ?></a>
+                                                        <a class="fontcb sessionCheck" style=""><?php echo $REC->REC_TITLE ?></a>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td><!-- <span class="deadlineIcon">마감</span> <span class="recuitIcon">모집중</span> --><?php $REC->REC_STATUS==0 ? print("마감") : print("모집중") ?></td>
@@ -179,7 +179,11 @@
 
 <script>
     $(function(){
-        
+        $(".sessionCheck").on("click", function(){
+            alert("로그인 후 사용해주세요");
+
+            location.href = "http://hospitalitykorea.com/member/login";
+        })
     });
 </script>
 

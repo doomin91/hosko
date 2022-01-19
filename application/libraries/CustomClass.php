@@ -160,7 +160,7 @@ class Customclass{
         $this->CI->load->library('session');
 
         if ($this->CI->session->userdata("admin_id") == ""){
-             redirect('/admin', 'refresh');
+            redirect('/admin', 'refresh');
         }
     }
 
@@ -168,7 +168,7 @@ class Customclass{
         $this->CI->load->library('session');
 
         if ($this->CI->session->userdata("USER_SEQ") == ""){
-             redirect('/member/login', 'refresh');
+            redirect('http://hospitalitykorea.com/member/login', 'refresh');
         }
     }
 
