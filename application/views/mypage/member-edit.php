@@ -44,6 +44,21 @@
                                         </div>
 
                                         <div class="mt20">
+                                            <div class="joinBoxTitle">비밀번호 변경</div>
+                                            <div class="joinBoxInput">
+                                                <input type="password" name="user_pass" value="">
+                                            </div>
+                                            <p class="joinEmailText">※비밀번호를 변경할 경우에만 입력해주세요</p>
+                                        </div>
+
+                                        <div class="mt20">
+                                            <div class="joinBoxTitle">비밀번호 확인</div>
+                                            <div class="joinBoxInput">
+                                                <input type="password" name="user_pass_chk" value="">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt20">
                                             <div class="joinBoxTitle">사진</div>
                                             <div class="joinBoxInput">
                                                 <div class="fileInputWrap">
@@ -527,6 +542,9 @@ $(function(){
         var user_zip = $("input[name=user_zip]").val();
         var user_addr1 = $("input[name=user_addr1]").val();
         var user_addr2 = $("input[name=user_addr2]").val();
+        var user_pass = $("input[name=user_pass]").val();
+        var user_pass_chk = $("input[name=user_pass_chk]").val();
+
         /*
         var user_hope_nation = $("select[name=user_hope_nation]").val();
         var user_hope_part = $("input[name=user_hope_part]").val();
@@ -538,6 +556,15 @@ $(function(){
             alert("이름을 입력해주세요");
             $("input[name=user_name]").focus();
             return false;
+        }
+
+        if (user_pass != ""){
+            console.log(user_pass);
+            if (user_pass != user_pass_chk){
+                alert("비밀번호 확인이 정확하지 않습니다.");
+                $("input[name=user_pass_chk]").focus();
+                return false;
+            }
         }
 
         var user_join_route = [];
@@ -591,6 +618,7 @@ $(function(){
 		formData.append("user_manager_name", $("input[name=user_manager_name]").val());
 		formData.append("user_recomm_id", $("input[name=user_recomm_id]").val());
 		formData.append("user_memo", $("textarea[name=user_memo]").val());
+        formData.append("user_pass", user_pass);
 
 		formData.append("user_profile", $("#user_profile").prop('files')[0]);
 		formData.append("user_profile_doc", $("input[name=user_profile_doc]").prop('files')[0]);

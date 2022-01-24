@@ -346,9 +346,9 @@ class Consult extends CI_Controller {
 		//echo $this->db->last_query();
 
 		if ($result == true){
-			echo json_encode(array("code" => "200", "msg" => "일정 등록 완료되었습니다."));
+			echo json_encode(array("code" => "200", "msg" => "일정 수정 완료되었습니다."));
 		}else{
-			echo json_encode(array("code" => "202", "msg" => "일정 등록중 문제가 생겼습니다."));
+			echo json_encode(array("code" => "202", "msg" => "일정 수정중 문제가 생겼습니다."));
 		}
 	}
 

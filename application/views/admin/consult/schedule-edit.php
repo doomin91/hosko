@@ -139,7 +139,6 @@
 
         $(document).on("click", "#saveSchedule", function(){
             var flag = "<?php echo $flag; ?>";
-            var cal_date = "<?php echo $nDay; ?>";
             var cal_title = $("input[name=cal_title]").val();
             var cal_schedule = $("textarea[name=cal_schedule]").val();
             var cal_seq = $("input[name=cal_seq]").val();
@@ -149,7 +148,6 @@
                 type:"post",
                 data:{
                     "flag" : flag,
-                    "cal_date" : cal_date,
                     "cal_title" : cal_title,
                     "cal_schedule" : cal_schedule,
                     "cal_seq" : cal_seq
