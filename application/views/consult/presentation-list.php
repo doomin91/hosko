@@ -70,7 +70,11 @@
                                         <?php 
                                             if (!empty($lists)){
                                                 foreach ($lists as $lt){
-                                                    $pt_status = "진행중"
+                                                    if ($lt->PT_STATUS == 0 || $lt->PT_STATUS === null){
+                                                        $pt_status = "진행중";
+                                                    }else if ($lt->PT_STATUS == 1){
+                                                        $pt_status = "마감";
+                                                    }
                                         ?>
                                                 <tr>
                                                     <td><?php echo $pagenum; ?></td>

@@ -81,7 +81,7 @@
 									<th class="text-center">출국국가</th>
 									<th class="text-center">출국호텔</th>
 									<th class="text-center">연락처</th>
-									<th class="text-center">학교/직창</th>
+									<th class="text-center">학교/직장</th>
 									<th class="text-center">등급</th>
 									<th class="text-center">가입일</th>
 									<th class="text-center">방문일</th>

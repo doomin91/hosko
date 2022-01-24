@@ -207,6 +207,11 @@ class ConsultModel extends CI_Model{
 		return $this->db->get("TBL_HOSKO_SCHEDULE")->row();
 	}
 
+	public function updateSchedule($updateArr, $cal_seq){
+		$this->db->where("TBL_HOSKO_SCHEDULE.CAL_SEQ", $cal_seq);
+		return $this->db->update("TBL_HOSKO_SCHEDULE", $updateArr);
+	}
+
 	public function delSchedule($cal_seq){
 		$this->db->where("TBL_HOSKO_SCHEDULE.CAL_SEQ", $cal_seq);
 		return $this->db->update("TBL_HOSKO_SCHEDULE", array("CAL_DEL_YN" => "Y"));
@@ -376,6 +381,11 @@ class ConsultModel extends CI_Model{
 	public function deletePresentation($pt_seq){
 		$this->db->where("TBL_HOSKO_PRESENTATION.PT_SEQ", $pt_seq);
 		return $this->db->update("TBL_HOSKO_PRESENTATION", array("PT_DEL_YN" => "Y"));
+	}
+
+	public function endPresentation($pt_seq){
+		$this->db->where("TBL_HOSKO_PRESENTATION.PT_SEQ", $pt_seq);
+		return $this->db->update("TBL_HOSKO_PRESENTATION", array("PT_STATUS" => 1));
 	}
 
 	public function setPresentationApply($applyArr){

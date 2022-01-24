@@ -75,12 +75,17 @@
 						<?php
 							if (!empty($lists)){
 								foreach ($lists as $lt){
+									if ($lt->PT_STATUS == 0 || $lt->PT_STATUS === null){
+										$pt_status = "진행중";
+									}else if ($lt->PT_STATUS == 1){
+										$pt_status = "마감";
+									}
 						?>
 								<tr>
 									<td align="center"><?php echo $pagenum; ?></td>
 									<td><a href="/admin/consult/presentationView/<?php echo $lt->PT_SEQ; ?>"><?php echo $lt->PT_SUBJECT; ?></a></td>
 									<td align="center"><?php echo $lt->ADMIN_NAME; ?></td>
-									<td align="center"><?php echo $lt->PT_STATUS; ?></a></td>
+									<td align="center"><?php echo $pt_status; ?></a></td>
 									<td align="center"><?php echo $lt->PT_READ_CNT; ?></td>
                                     <td align="center"><?php echo $lt->PT_REG_DATE; ?></td>
 								</tr>
