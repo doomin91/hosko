@@ -3,7 +3,7 @@
         <ul>
             <li><a href="/company/agreement">이용약관</a></li>
             <li><a href="/company/privacy">개인정보정책</a></li>
-            <li><a href="/static/front/file/(주)프로액티브러닝 HOSKO 브로셔(2021).pdf" target="_blank" style="color:#005baa;">HOSKO소개자료</a></li>
+            <li><a href="/static/front/file/(주)프로액티브러닝 HOSKO 브로셔(2021).pdf" target="_blank" style="color:#005baa;">HOSKO 브로셔</a></li>
         </ul>
     </div>
 

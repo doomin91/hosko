@@ -85,6 +85,7 @@
                         </form>
                         <div class="row form-footer">
                             <div class="col-sm-offset-2 col-sm-10 text-right">
+                                <button class="btn btn-info btn-sm" data-seq="<?php echo $info->PT_SEQ; ?>" id="pt_deadline">마감처리</button>
                                 <button class="btn btn-danger btn-sm" data-seq="<?php echo $info->PT_SEQ; ?>" id="pt_del">삭제</button>
                                 <a href="/admin/consult/presentationEdit/<?php echo $info->PT_SEQ; ?>" class="btn btn-primary btn-sm">수정</a>
                                 <a href="/admin/consult/presentationList" class="btn btn-default btn-sm">목록</a>
@@ -183,6 +184,33 @@
             if (confirm("설명회 삭제 하시겠습니까?")){
                 $.ajax({
                     url:"/admin/consult/presentationDelete",
+                    type:"post",
+                    data:{
+                        "pt_seq" : pt_seq
+                    },
+                    dataType:"json",
+                    success:function(resultMsg){
+                        console.log(resultMsg);
+                        if (resultMsg.code == "200"){
+                            alert(resultMsg.msg);
+                            document.location.href="/admin/consult/presentationList";
+                        }else{
+                            alert(resultMsg.msg);
+                        }
+                    },
+                    error:function(e){
+                        console.log(e);
+                    }
+                })
+            }
+        });
+
+        $(document).on("click", "#pt_deadline", function(){
+            var pt_seq = $(this).data("seq");
+
+            if (confirm("마감 처리 하시겠습니까?")){
+                $.ajax({
+                    url:"/admin/consult/presentationDeadline",
                     type:"post",
                     data:{
                         "pt_seq" : pt_seq

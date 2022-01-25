@@ -96,7 +96,7 @@ class Mypage extends CI_Controller {
 		$user_recomm_id = $this->input->post("user_recomm_id");
 		$user_join_route = $this->input->post("user_join_route");
 		$user_join_route_str = $this->input->post("user_join_route_str");
-		
+		$user_pass = $this->input->post("user_pass");
 		//print_r($this->input->post());
 
 		$config["upload_path"] = $_SERVER['DOCUMENT_ROOT'] . "/upload/profile/";
@@ -195,8 +195,11 @@ class Mypage extends CI_Controller {
 						"USER_JOIN_ROUTE_STR" => $user_join_route_str,
 						"USER_RECOMM_ID" => $user_recomm_id
 		);
-		$result = $this->UserModel->editUser($updateArr, 
-		$this->session->userdata("USER_SEQ"));
+		$result = $this->UserModel->editUser($updateArr, $this->session->userdata("USER_SEQ"));
+		
+		if ($user_pass != ""){
+			$result = $this->UserModel->editUser(array("USER_PASS" => md5($user_pass)), $this->session->userdata("USER_SEQ"));
+		}
 		
 		//echo $this->db->last_query();
 

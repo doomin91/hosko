@@ -16,9 +16,9 @@
 		<meta http-equiv="expires" content="0">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="robots" content="all">
-		<title>대표적인 교육 훈련기관 브랜드 HOSKO</title>
+		<title>World HR Consulting Group</title>
 		<meta name="author" content="교육 훈련기관 브랜드 HOSKO">
-		<meta name="title" content="교육 훈련기관 브랜드 HOSKO">
+		<meta name="title" content="World HR Consulting Group">
 		<meta name="Description" content="교육 훈련기관 브랜드 HOSKO">
 		<meta name="Keywords" content="교육 훈련기관 브랜드 HOSKO">
 		<meta name="format-detection" content="telephone=no">

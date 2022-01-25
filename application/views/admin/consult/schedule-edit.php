@@ -51,6 +51,7 @@
                     <!-- tile body -->
                     <div class="tile-body">
                         <form name="form1" id="form1" method="post">
+                        <input type="hidden" name="cal_seq" value="<?php echo $detail->CAL_SEQ; ?>">
                         <table class="table table-custom dataTable userTable">
                             <colgroup>
                                 <col width="15%"/>
@@ -61,9 +62,9 @@
                             <tbody>
                                 <tr>
                                     <th>이름</th>
-                                    <td><?php echo $detail->ADMIN_NAME; ?></td>
+                                    <td><input type="text" name="user_name" value="<?php echo $this->session->userdata("admin_name"); ?>" size="50" readonly></td>
                                     <th>이메일</th>
-                                    <td><?php echo $detail->ADMIN_EMAIL; ?></td>
+                                    <td><input type="text" name="user_name" value="<?php echo $this->session->userdata("admin_email"); ?>" size="50" readonly></td>
                                 </tr>
                                 <tr>
                                     <th>일정 날짜</th>
@@ -71,12 +72,12 @@
                                 </tr>
                                 <tr>
                                     <th>일정 제목</th>
-                                    <td colspan="3"><?php echo $detail->CAL_TITLE; ?></td>
+                                    <td colspan="3"><input type="text" name="cal_title" value="<?php echo $detail->CAL_TITLE; ?>" size="100"></td>
                                 </tr>
                                 <tr>
                                     <th>일정 내용</th>
                                     <td colspan="3">
-                                        <?php echo nl2br($detail->CAL_SCHEDULE); ?>
+                                        <textarea name="cal_schedule"><?php echo $detail->CAL_SCHEDULE; ?></textarea>
                                     </td>
                                 </tr>
                             </tbody>
@@ -84,9 +85,8 @@
                         </form>
                         <div class="row form-footer">
                             <div class="col-sm-offset-2 col-sm-10 text-right">
-                                <button type="button" class="btn btn-danger btn-sm" id="delSchedule" data-seq="<?php echo $detail->CAL_SEQ; ?>">삭제</button>
-                                <a href="/admin/consult/schedule_edit/<?php echo $detail->CAL_SEQ; ?>/<?php echo $flag; ?>" class="btn btn-info btn-sm">수정</a>
-                                <a type="button" class="btn btn-primary btn-sm" href="/admin/consult/schedule?flag=<?php echo $flag; ?>">목록</a>
+                                <a href="/admin/consult/schedule?flag=<?php echo $flag; ?>" class="btn btn-default btn-sm">취소</a>
+                                <button type="button" class="btn btn-primary btn-sm" id="saveSchedule">저장</a>
                             </div>
                         </div>
 
@@ -137,31 +137,35 @@
         });
         $(".datepicker").datepicker();
 
-        $(document).on("click", "#delSchedule", function(){
-            var cal_seq = $(this).data("seq");
+        $(document).on("click", "#saveSchedule", function(){
+            var flag = "<?php echo $flag; ?>";
+            var cal_title = $("input[name=cal_title]").val();
+            var cal_schedule = $("textarea[name=cal_schedule]").val();
+            var cal_seq = $("input[name=cal_seq]").val();
 
-            if (confirm("삭제하시겠습니까?")){
-                $.ajax({
-                    url:"/admin/consult/scheduleDelProc",
-                    type:"post",
-                    data:{
-                        "cal_seq" : cal_seq
-                    },
-                    dataType:"json",
-                    success:function(resultMsg){
-                        console.log(resultMsg);
-                        if (resultMsg.code == "200"){
-                            alert(resultMsg.msg);
-                            document.location.href="/admin/consult/schedule?flag=<?php echo $flag; ?>";
-                        }else{
-                            alert(resultMsg.msg);
-                        }
-                    },
-                    error:function(e){
-                        console.log(e);
+            $.ajax({
+                url:"/admin/consult/scheduleEditProc",
+                type:"post",
+                data:{
+                    "flag" : flag,
+                    "cal_title" : cal_title,
+                    "cal_schedule" : cal_schedule,
+                    "cal_seq" : cal_seq
+                },
+                dataType:"json",
+                success:function(resultMsg){
+                    console.log(resultMsg);
+                    if (resultMsg.code == "200"){
+                        alert(resultMsg.msg);
+                        document.location.href="/admin/consult/schedule?flag="+flag;
+                    }else{
+                        alert(resultMsg.msg);
                     }
-                })
-            }
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            })
         });
     });
 </script>
