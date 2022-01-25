@@ -102,6 +102,7 @@
     <script src="/static/admin/js/vendor/momentjs/moment.min.js"></script>
     <script src="/static/admin/js/vendor/datepicker/bootstrap-datetimepicker.js"></script>
     <script src="/static/admin/js/vendor/summernote/summernote.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 
     <script src="/static/admin/js/minimal.js"></script>

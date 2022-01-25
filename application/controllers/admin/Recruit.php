@@ -862,7 +862,7 @@ class Recruit extends CI_Controller {
 		$rlang_name = isset($_POST["rlang_name"]) ? json_decode($_POST["rlang_name"]) : array();
 		$rlang_speaking = isset($_POST["rlang_speaking"]) ? json_decode($_POST["rlang_speaking"]) : array();
 		$rlang_writing = isset($_POST["rlang_writing"]) ? json_decode($_POST["rlang_writing"]) : array();
-		$resume_user_computer_skill = isset($_POST["resume_user_computer_skill"]) ? json_decode($_POST["resume_user_computer_skill"]) : "";
+		$resume_user_computer_skill = isset($_POST["resume_user_computer_skill"]) ? $_POST["resume_user_computer_skill"] : "";
 
 		$insertArr = array(
 			"ADMIN_SEQ" => $admin_seq,
@@ -982,6 +982,8 @@ class Recruit extends CI_Controller {
 			}
 		} else {
 			//echo 'Please choose a file';
+			$resume = $this->UserModel->getUserResume($this->session->userdata("USER_SEQ"));
+			$resume_img_path = $resume->RESUME_USER_PHOTO;
 		}
 
 		$updateArr = array(
@@ -1201,7 +1203,9 @@ class Recruit extends CI_Controller {
 				}
 			}
 		} else {
-			//echo 'Please choose a file';
+			//echo 'Please choose a file';.
+			$resume = $this->UserModel->getUserResume($this->session->userdata("USER_SEQ"));
+			$resume_img_path = $resume->RESUME_USER_PHOTO;
 		}
 
 		$updateArr = array(

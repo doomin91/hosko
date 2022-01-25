@@ -238,8 +238,8 @@
 
                                         <table class="resumemanagertable dataTable mt50">
                                             <colgroup>
-                                                <col width="75%">
-                                                <col width="25%">
+                                                <col width="60%">
+                                                <col width="40%">
                                             </colgroup>
                                             <tbody>
                                                 <tr>
@@ -260,9 +260,8 @@
 
                                         <table class="resumemanagertable dataTable mt50">
                                             <colgroup>
-                                                <col width="33.333%">
-                                                <col width="33.333%">
-                                                <col width="33.333%">
+                                                <col width="25%">
+                                                <col width="75%">
                                             </colgroup>
                                             <tbody>
                                                 <tr>
@@ -296,7 +295,6 @@
                                                     <th><span class="languangeText">Spoken</span></th>
                                                     <th><span class="languangeText">Written</span></th>
                                                 </tr>
-                                                <?php print_r($RESUME_LANG); ?>
                                                 <?php foreach($RESUME_LANG as $lang) :?>
                                                 <tr>
                                                     <th>
@@ -339,8 +337,8 @@
                                     </div>
 
                                     <div class="resumebtnwrap">
-                                        <input type="button" id="" name="" class="resumebtn01 mw10" value="취소하기">
-                                        <input type="button" id="" name="" class="resumebtn mw10" value="저장하기">
+                                        <!-- <input type="button" id="" name="" class="resumebtn01 mw10" value="취소하기">
+                                        <input type="button" id="" name="" class="resumebtn mw10" value="저장하기"> -->
                                     </div>
 
 <!--

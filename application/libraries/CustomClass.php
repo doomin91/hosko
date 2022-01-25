@@ -168,6 +168,8 @@ class Customclass{
         $this->CI->load->library('session');
 
         if ($this->CI->session->userdata("USER_SEQ") == ""){
+            echo '<script type="text/javascript">alert("로그인 후 사용해주세요.");</script>';
+
             redirect('http://hospitalitykorea.com/member/login', 'refresh');
         }
     }

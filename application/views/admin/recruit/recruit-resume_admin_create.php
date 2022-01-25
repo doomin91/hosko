@@ -439,13 +439,13 @@
                         </div>
 
                         <?php if($RESUME_FLAG == "USER"): ?>
-                            <div class="">
+                            <div class="" style="margin-bottom: 100px;">
                                 <div class="col-md-12 text-center">
                                     <input type="button" id="create_admin_resume" name="create_admin_resume" class="btn btn-s btn-primary" value="저장하기">
                                 </div>
                             </div>
                         <?php else:?>
-                            <div class="">
+                            <div class="" style="margin-bottom: 100px;">
                                 <div class="col-md-12 text-center">
                                     <input type="button" id="update_admin_resume" name="update_admin_resume" class="btn btn-s btn-primary" value="수정하기">
                                 </div>
@@ -656,8 +656,17 @@
                     $(Frame).height($(Frame).height()+45);
                 }
                 $(Box).append(html);
+
+                if(Flag[0] != "lskil" && Flag[0] != "rahcv"){
+                    $(`input[name='${Flag[0]}_${Flag[1]}[]']`).daterangepicker();
+                }
                 
             });
+
+            $("input[name='redu_date[]']").daterangepicker();
+            $("input[name='rwexp_date[]']").daterangepicker();
+            $("input[name='ract_date[]']").daterangepicker();
+            $("input[name='rskil_date[]']").daterangepicker();
 
             $("input[name='resume_img']").change(function(){
                 var file = this.files[0];
@@ -764,20 +773,12 @@
                 });
 
                 $.each(form_data, function (key, input) {
-                    // console.log(input);
-                    if(input.value=="" && input.name != "resume_img"){
-                        alert("값을 넣어주세요");
-                        var ip = $(`input[name=${input.name}]`);
-                        $(ip).focus();
-                        is_blank = true;
-                        return false;
-                    }
                     fd.append(input.name, input.value);
                 });
                 
-                if(is_blank){
-                    return false;
-                }
+                // if(is_blank){
+                //     return false;
+                // }
 
                 fd.append("redu_seq", JSON.stringify(redu_seq));
                 fd.append("redu_date", JSON.stringify(redu_date));
@@ -902,20 +903,12 @@
                 });
 
                 $.each(form_data, function (key, input) {
-                    console.log(input);
-                    if(input.value=="" && input.name != "resume_img" && input.name != "admin_seq"){
-                        alert("값을 넣어주세요");
-                        var ip = $(`input[name=${input.name}]`);
-                        $(ip).focus();
-                        is_blank = true;
-                        return false;
-                    }
                     fd.append(input.name, input.value);
                 });
                 
-                if(is_blank){
-                    return false;
-                }
+                // if(is_blank){
+                //     return false;
+                // }
 
                 fd.append("redu_date", JSON.stringify(redu_date));
                 fd.append("redu_description", JSON.stringify(redu_description));
@@ -943,6 +936,8 @@
                 // for (var value of fd.values()) {
                 //     console.log(value);
                 // }
+
+                // return false;
 
                 $.ajax({
                     url: "/admin/recruit/recruit_resume_admin_create_proc",
@@ -976,6 +971,9 @@
         .resume_zip_form{
             float: left;
             margin-right: 10px;
+        }
+        #del_resume_edu,#add_resume_edu,#del_resume_wexp,#add_resume_wexp,#del_resume_ract,#add_resume_ract,#del_resume_rahcv,#add_resume_rahcv,#del_resume_rskil,#add_resume_rskil{
+            margin-top: 20px;
         }
     </style>
 </body>

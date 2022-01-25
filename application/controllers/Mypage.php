@@ -640,6 +640,7 @@ class Mypage extends CI_Controller {
 			$DATA["RESUME_SKIL"] = $this->UserModel->getAdminUserResumeSkill($my_admin_resume->ADMIN_RESUME_SEQ);
 			$DATA["RESUME_LANG"] = $this->UserModel->getAdminUserResumeLanguage($my_admin_resume->ADMIN_RESUME_SEQ);
 		}
+		// print_r($DATA);
 
 		$this->load->view("/mypage/member-resume_manage", $DATA);
 	}
