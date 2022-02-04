@@ -9,6 +9,7 @@ class BoardModel extends CI_Model{
 
     public function getBoard($BOARD_SEQ){
         $this->db->where("BOARD_SEQ", $BOARD_SEQ);
+        $this->db->join("TBL_HOSKO_BOARD_GROUP", "TBL_HOSKO_BOARD_GROUP.GP_SEQ = TBL_HOSKO_BOARD.BOARD_GROUP", "LEFT");
         return $this->db->get("TBL_HOSKO_BOARD")->row();
     }
 
@@ -142,7 +143,7 @@ class BoardModel extends CI_Model{
     }
 
     public function getPosts($BOARD_SEQ, $wheresql){
-        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.USER_NAME, ADMIN.ADMIN_NAME, count(RECOMMAND.RMD_SEQ) AS CNT, count(COMMENTS.COM_SEQ) AS COMMENTS, count(ATTACH.ATTACH_SEQ) AS ATTACHS");
+        $this->db->select("TBL_HOSKO_BOARD_POSTS.*, USER.USER_NAME, ADMIN.ADMIN_NAME, ADMIN.ADMIN_ID, count(RECOMMAND.RMD_SEQ) AS CNT, count(COMMENTS.COM_SEQ) AS COMMENTS, count(ATTACH.ATTACH_SEQ) AS ATTACHS");
         $this->db->where("POST_DEL_YN", "N");
 
         if ((isset($wheresql["reg_date_start"])) && ($wheresql["reg_date_start"] != "")){

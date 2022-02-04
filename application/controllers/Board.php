@@ -37,7 +37,7 @@ class Board extends CI_Controller {
     function q($seq){
         $group_info = $this->GroupModel->getGroup($seq);
         $boards_info = $this->BoardModel->getBoardInGroup($seq);
-            
+
         if(count($boards_info) > 0){
             if(isset($_GET["seq"])){
                 $board_seq = $this->input->get("seq");
@@ -46,6 +46,15 @@ class Board extends CI_Controller {
             }
 
             $board_info = $this->BoardModel->getBoard($board_seq);
+			if($board_info->GP_AUTH == 'Y'){
+				if( ($this->session->userdata("USER_LEVEL") >= 2 && $this->session->userdata("USER_LEVEL") <= 3) || $this->session->userdata("admin_id") ){
+				} else{
+					echo "<script>alert('특별회원, 합격회원, 정회원만 열람 가능합니다.');</script>";
+					// echo "<script>location.replace(\"/member/login\")</script>";
+					echo "<script>history.back()</script>";
+					exit;
+				}
+			}
             $searchField = $this->input->get("search_field");
             $searchString = $this->input->get("search_string");
             $limit = $board_info->BOARD_LIST_COUNT;
@@ -111,6 +120,15 @@ class Board extends CI_Controller {
             }
 
             $board_info = $this->BoardModel->getBoard($board_seq);
+			if($board_info->GP_AUTH == 'Y'){
+				if( ($this->session->userdata("USER_LEVEL") >= 2 && $this->session->userdata("USER_LEVEL") <= 3) || $this->session->userdata("admin_id") ){
+				} else{
+					echo "<script>alert('특별회원, 합격회원, 정회원만 열람 가능합니다.');</script>";
+					// echo "<script>location.replace(\"/member/login\")</script>";
+					echo "<script>history.back()</script>";
+					exit;
+				}
+			}
             $searchField = $this->input->get("search_field");
             $searchString = $this->input->get("search_string");
 			$limit = 12;
@@ -176,6 +194,15 @@ class Board extends CI_Controller {
             }
 
             $board_info = $this->BoardModel->getBoard($board_seq);
+			if($board_info->GP_AUTH == 'Y'){
+				if( ($this->session->userdata("USER_LEVEL") >= 2 && $this->session->userdata("USER_LEVEL") <= 3) || $this->session->userdata("admin_id") ){
+				} else{
+					echo "<script>alert('특별회원, 합격회원, 정회원만 열람 가능합니다.');</script>";
+					// echo "<script>location.replace(\"/member/login\")</script>";
+					echo "<script>history.back()</script>";
+					exit;
+				}
+			}
             $searchField = $this->input->get("search_field");
             $searchString = $this->input->get("search_string");
 			$limit = 12;

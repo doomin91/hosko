@@ -220,7 +220,6 @@
 <script>
 
     $(function(){
-        
         $('#m_top_area .m_left_area').on('click', function(){
             $('#m_menu_wrap').animate({
                 left: "0px"
@@ -244,11 +243,7 @@
         $('#m_menu li > a').on('click', function(){
             $(this).next().slideToggle();
         });
-        
     });
-
-
-
 
 	ViewBoardMenu();
 	function ViewBoardMenu(){
@@ -286,7 +281,6 @@
                 guide += "<ul class=\"sub\" style=\"display:none;\">";
                 abroad += "<ul class=\"sub\" style=\"display:none;\">";
 
-/** 나중에 함수형으로 수정 */
                 $.each(board, function(index, value){
                     switch(value["GP_SEQ"]){
                         case "1":

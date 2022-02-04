@@ -190,7 +190,7 @@
 										// }
 									?> 
 								</td>
-								<td><?php echo !empty($lt->ADMIN_NAME)? $lt->ADMIN_NAME : $lt->USER_NAME ?></td>
+								<td><?php echo !empty($lt->ADMIN_ID)? $lt->ADMIN_ID : $lt->USER_NAME ?></td>
 
 								<td style="text-align:center;"><?php echo $lt->POST_VIEW_CNT?></td>
 								<?php

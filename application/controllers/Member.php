@@ -250,7 +250,8 @@ class Member extends CI_Controller {
 					"USER_SEQ" => $userInfo->USER_SEQ,
 					"USER_ID" => $userInfo->USER_ID,
 					"USER_NAME" => $userInfo->USER_NAME,
-					"USER_EMAIL" => $userInfo->USER_EMAIL
+					"USER_EMAIL" => $userInfo->USER_EMAIL,
+					"USER_LEVEL" => $userInfo->USER_LEVEL
 				);
 				$this->session->set_userdata($session_data);
 
