@@ -46,6 +46,7 @@ class Board extends CI_Controller {
             }
 
             $board_info = $this->BoardModel->getBoard($board_seq);
+			
 			if($board_info->GP_AUTH == 'Y'){
 				if( ($this->session->userdata("USER_LEVEL") >= 2 && $this->session->userdata("USER_LEVEL") <= 3) || $this->session->userdata("admin_id") ){
 				} else{
@@ -55,6 +56,14 @@ class Board extends CI_Controller {
 					exit;
 				}
 			}
+
+			if( ( ($board_info->BOARD_NAME == "guide3" || $board_info->BOARD_NAME == "guide4") && $this->session->userdata("USER_LEVEL") != 3 && !$this->session->userdata("admin_id"))   ){
+				echo "<script>alert('합격회원만 열람 가능합니다.');</script>";
+				// echo "<script>location.replace(\"/member/login\")</script>";
+				echo "<script>history.back()</script>";
+				exit;
+			}
+
             $searchField = $this->input->get("search_field");
             $searchString = $this->input->get("search_string");
             $limit = $board_info->BOARD_LIST_COUNT;

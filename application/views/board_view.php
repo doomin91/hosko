@@ -90,7 +90,7 @@
                                                 <div class="boardViewTop_item">
                                                     <strong>작성자</strong>
                                                     <div class="type_td">
-                                                        <?php echo !empty($POST_INFO->ADMIN_NAME)? $POST_INFO->ADMIN_NAME : $POST_INFO->USER_NAME ?>
+                                                        <?php echo !empty($POST_INFO->ADMIN_NAME)? $POST_INFO->ADMIN_ID : $POST_INFO->USER_ID ?>
                                                     </div>
                                                 </div>
                                                 <div class="boardViewTop_item">

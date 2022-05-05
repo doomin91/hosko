@@ -80,7 +80,7 @@
 
                                                         <div class="movieCon">
                                                             <div class="description"><?php echo $lt->POST_SUBJECT?></div>
-                                                            <div class="name"><?php echo !empty($lt->ADMIN_NAME)? $lt->ADMIN_NAME : $lt->USER_NAME ?></div>
+                                                            <div class="name"><?php echo !empty($lt->ADMIN_ID)? $lt->ADMIN_ID : $lt->USER_ID ?></div>
                                                             <div class="movieConfoot">
                                                                 <span class="date"><?php echo date("Y-m-d", strtotime($lt->POST_REG_DATE));?></span>
                                                                 <span class="hit"><?php echo $lt->POST_VIEW_CNT?></span>

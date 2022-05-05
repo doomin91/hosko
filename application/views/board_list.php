@@ -130,7 +130,7 @@
                                                 }
 
                                                 ?></span>
-                                            <span class="col_name"><?php echo !empty($lt->ADMIN_ID)? $lt->ADMIN_ID : $lt->USER_NAME ?></span>
+                                            <span class="col_name"><?php echo !empty($lt->ADMIN_ID)? $lt->ADMIN_ID : $lt->USER_ID ?></span>
                                             
                                             <span class="col_hit"><?php echo $lt->POST_VIEW_CNT?></span>
                                             <span class="col_date"><?php echo date("Y-m-d", strtotime($lt->POST_REG_DATE));?></span>                                            
